@@ -27,7 +27,7 @@
                                       AutoComplete="True"
                                       ImmediatePopup="True"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="แพทย์">
+                <dxlc:LayoutItem Label="แพทย์" Visibility="{Binding VisibiltyDoctor}">
                     <dxe:ComboBoxEdit x:Name="cmbDoctor"
                                       IsEnabled="True"
                                               ItemsSource="{Binding Doctors}"

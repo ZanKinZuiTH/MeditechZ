@@ -65,6 +65,13 @@ namespace MediTech.ViewModels
             get { return _ActiveTo; }
             set { Set(ref _ActiveTo, value); }
         }
+        
+        private bool _IsConfidential;
+        public bool IsConfidential
+        {
+            get { return _IsConfidential; }
+            set { Set(ref _IsConfidential, value); }
+        }
 
         private List<LookupReferenceValueModel> _Category;
 
@@ -778,6 +785,7 @@ namespace MediTech.ViewModels
             RequestResultLinks = model.RequestResultLinks;
             RequestItemSpecimen = model.RequestItemSpecimens;
             RequestItemGroupResults = model.RequestItemGroupResults;
+            IsConfidential = model.IsConfidential == "Y" ? true : false;
         }
         private void AssingPropertiesToModel()
         {
@@ -796,6 +804,7 @@ namespace MediTech.ViewModels
             {
                 model.RIMTYPUID = SelectImageType != null ? SelectImageType.Key : (int?)null;
             }
+            model.IsConfidential = IsConfidential == true ? "Y" : "N";
             model.EffectiveFrom = ActiveFrom;
             model.EffectiveTo = ActiveTo;
             model.RequestResultLinks = RequestResultLinks;

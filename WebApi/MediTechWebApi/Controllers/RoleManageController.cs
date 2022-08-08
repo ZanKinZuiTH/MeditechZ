@@ -269,7 +269,9 @@ namespace MediTechWebApi.Controllers
                                                       Permission = PER.Description,
                                                       PermissionUID = PER.UID,
                                                       PageViewPermissionUID = PVP.UID,
-                                                      RoleUID = RO.UID
+                                                      RoleUID = RO.UID,
+                                                      PageViewCode = PV.ViewCode,
+                                                      Type = PV.Type
                                                   }).ToList();
 
             return data;

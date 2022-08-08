@@ -139,7 +139,7 @@ namespace MediTech.ViewModels
 
         public SendConsultViewModel()
         {
-            BookingStatus = DataService.Technical.GetReferenceValueByCode("VISTS", "REGST");
+            BookingStatus = DataService.Technical.GetReferenceValueByCode("BKSTS", "REQTED");
             Doctors = DataService.UserManage.GetCareproviderDoctor();
             var org = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
             Locations = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
@@ -154,10 +154,18 @@ namespace MediTech.ViewModels
                 return;
             }
 
-            //if(SelectLocations.LocationUID == AppUtil.Current.LocationUID){
-            //    WarningDialog("กรุณาเลือกแผนกใหม่");
-            //    return;
-            //}
+            
+            if (SelectLocations == null)
+            {
+                WarningDialog("กรุณาเลือกแผนก");
+                return;
+            }
+            
+            if (SelectLocations.LocationUID == SelectedPatientVisit.LocationUID)
+            {
+                WarningDialog("ปัจุบันคนไข้อยู่แผนก "+ SelectLocations.Name + "\r\nกรุณาเลือกแผนกใหม่");
+                return;
+            }
 
             if (AppointmentDate == DateTime.MinValue)
             {
@@ -171,12 +179,12 @@ namespace MediTech.ViewModels
                 return;
             }
 
-            var time = AppointmentTime?.TimeOfDay;
-            if (AppointmentDate.Date == DateTime.Now.Date && time <= DateTime.Now.TimeOfDay)
-            {
-                WarningDialog("กรุณาเลือกวันเวลาทำนัดใหม่");
-                return;
-            }
+            //var time = AppointmentTime?.TimeOfDay;
+            //if (AppointmentDate.Date == DateTime.Now.Date && time <= DateTime.Now.TimeOfDay)
+            //{
+            //    WarningDialog("กรุณาเลือกวันเวลาทำนัดใหม่");
+            //    return;
+            // }
             
             AssignToGrid();
 
@@ -205,7 +213,7 @@ namespace MediTech.ViewModels
             requestDetail.MUser = AppUtil.Current.UserID;
             requestDetail.StatusFlag = "A";
             requestDetail.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
-            requestDetail.LocationUID = SelectLocations.LocationUID;
+            requestDetail.LocationUID = SelectLocations != null ? SelectLocations.LocationUID : 0;
             requestDetail.LocationName = Locations.FirstOrDefault(p => p.LocationUID == SelectLocations.LocationUID).Name;
 
         }

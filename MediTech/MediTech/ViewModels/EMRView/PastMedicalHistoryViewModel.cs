@@ -426,7 +426,18 @@ namespace MediTech.ViewModels
 
         private void LoadLabResult()
         {
+            bool Permission = RoleIsConfidential();
             LabResultDetails = DataService.Lab.GetResultLabGroupRequestNumber(SelectPastVisit.PatientVisitUID);
+            foreach (var item in LabResultDetails.ToList())
+            {
+                if (item.IsConfidential == "Y")
+                {
+                    if (Permission != true)
+                    {
+                        LabResultDetails.Remove(item);
+                    }
+                }
+            }
         }
         public void AssingPatientVisit(PatientVisitModel visitModel)
         {

@@ -58,6 +58,7 @@ namespace MediTech.Model
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
+        public string CreateBy { get; set; }
         public string StatusFlag { get; set; }
         public string OwnerOrganisation { get; set; }
         public int PayorDetailUID { get; set; }

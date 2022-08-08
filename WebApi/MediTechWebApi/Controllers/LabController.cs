@@ -50,17 +50,23 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<RequestDetailItemModel> GetRequesDetailLabByRequestUID(long requestUID)
         {
-            List<RequestDetailItemModel> data = db.RequestDetail.Where(p => p.RequestUID == requestUID && p.StatusFlag == "A")
-                .Select(p => new RequestDetailItemModel
-                {
-                    RequestDetailUID = p.UID,
-                    RequestItemName = p.RequestItemName,
-                    RequestItemCode = p.RequestItemCode,
-                    OrderStatus = SqlFunction.fGetRfValDescription(p.ORDSTUID),
-                    PriorityStatus = SqlFunction.fGetRfValDescription(p.RQPRTUID ?? 0),
-                    Comments = p.Comments
-                }).ToList();
-
+            List<RequestDetailItemModel> data =
+                (from rqd in db.RequestDetail
+                 join item in db.RequestItem on rqd.RequestitemUID equals item.UID
+                 where rqd.StatusFlag == "A"
+                 && item.StatusFlag == "A"
+                 && rqd.RequestUID == requestUID
+                 select new RequestDetailItemModel
+                 {
+                     RequestDetailUID = rqd.UID,
+                     RequestItemName = rqd.RequestItemName,
+                     RequestItemCode = rqd.RequestItemCode,
+                     OrderStatus = SqlFunction.fGetRfValDescription(rqd.ORDSTUID),
+                     PriorityStatus = SqlFunction.fGetRfValDescription(rqd.RQPRTUID ?? 0),
+                     Comments = rqd.Comments,
+                     IsConfidential = item.IsConfidential
+                 }).ToList();
+               
             return data;
         }
 
@@ -252,6 +258,7 @@ namespace MediTechWebApi.Controllers
                 {
                     request.RequestDetailLabs = (from red in db.RequestDetail
                                                  join rs in db.Result on red.UID equals rs.RequestDetailUID
+                                                 join rqi in db.RequestItem on red.RequestitemUID equals rqi.UID
                                                  where rs.StatusFlag == "A"
                                                  && red.StatusFlag == "A"
                                                  && red.RequestUID == request.RequestUID
@@ -263,6 +270,7 @@ namespace MediTechWebApi.Controllers
                                                      RequestItemCode = red.RequestItemCode,
                                                      RequestItemName = red.RequestItemName,
                                                      ResultUID = rs.UID,
+                                                     IsConfidential = rqi.IsConfidential,
                                                      ResultEnteredDttm = rs.ResultEnteredDttm,
                                                      ResultedEnterBy = SqlFunction.fGetCareProviderName(rs.ResultEnteredUserUID ?? 0),
                                                      OrderStatus = SqlFunction.fGetRfValDescription(red.ORDSTUID)
@@ -335,6 +343,7 @@ namespace MediTechWebApi.Controllers
                 {
                     request.RequestDetailLabs = (from red in db.RequestDetail
                                                  join rs in db.Result on red.UID equals rs.RequestDetailUID
+                                                 join rqd in db.RequestItem on red.RequestitemUID equals rqd.UID
                                                  where rs.StatusFlag == "A"
                                                  && red.StatusFlag == "A"
                                                  && red.RequestUID == request.RequestUID
@@ -346,6 +355,7 @@ namespace MediTechWebApi.Controllers
                                                      RequestItemCode = red.RequestItemCode,
                                                      RequestItemName = red.RequestItemName,
                                                      ResultUID = rs.UID,
+                                                     IsConfidential = rqd.IsConfidential,
                                                      ResultEnteredDttm = rs.ResultEnteredDttm,
                                                      ResultedEnterBy = SqlFunction.fGetCareProviderName(rs.ResultEnteredUserUID ?? 0),
                                                      OrderStatus = SqlFunction.fGetRfValDescription(red.ORDSTUID)
@@ -470,6 +480,7 @@ namespace MediTechWebApi.Controllers
         {
             var data = (from re in db.Request
                         join red in db.RequestDetail on re.UID equals red.RequestUID
+                        join item in db.RequestItem on red.RequestitemUID equals item.UID
                         join r in db.Result on
                                             new
                                             {
@@ -497,6 +508,7 @@ namespace MediTechWebApi.Controllers
                             OrderStatus = SqlFunction.fGetRfValDescription(red.ORDSTUID),
                             PriorityStatus = SqlFunction.fGetRfValDescription(red.RQPRTUID ?? 0),
                             ResultUID = rs.UID,
+                            IsConfidential = item.IsConfidential,
                             Comments = red.Comments
                         }).ToList();
 

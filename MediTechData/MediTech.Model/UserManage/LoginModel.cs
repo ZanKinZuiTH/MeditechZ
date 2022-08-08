@@ -43,5 +43,7 @@ namespace MediTech.Model
         public int RoleUID { get; set; }
         public int PermissionUID { get; set; }
         public string Permission { get; set; }
+        public string Type { get; set; }
+        public string PageViewCode { get; set; }
     }
 }

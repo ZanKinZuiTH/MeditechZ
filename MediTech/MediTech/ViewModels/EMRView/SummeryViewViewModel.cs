@@ -73,6 +73,14 @@ namespace MediTech.ViewModels
             set { Set(ref _ListDiagnosis, value); }
         }
 
+        private bool _Permission;
+
+        public bool Permission
+        {
+            get { return _Permission; }
+            set { Set(ref _Permission, value); }
+        }
+
         #region PatientOrder
         private ObservableCollection<PatientOrderDetailModel> _ListOrder;
 
@@ -772,6 +780,7 @@ namespace MediTech.ViewModels
 
         public void LoadLabResult()
         {
+            Permission = RoleIsConfidential();
             ListLabsResult = new ObservableCollection<ResultModel>();
             if (SelectedPatientVisit.PatientVisitUID == 0)
             {
@@ -786,6 +795,17 @@ namespace MediTech.ViewModels
             {
                 foreach (var resultDetail in LabResultDetails.OrderBy(p => p.LabNumber))
                 {
+                    foreach(var item in resultDetail.RequestDetailLabs.ToList())
+                    {
+                        if(item.IsConfidential == "Y")
+                        {
+                            if(Permission != true)
+                            {
+                                resultDetail.RequestDetailLabs.Remove(item);
+                            }
+                        }
+                    }
+
                     var LabResult = resultDetail.RequestDetailLabs.Select(p => new ResultModel
                     {
                         ResultUID = p.ResultUID ?? 0,

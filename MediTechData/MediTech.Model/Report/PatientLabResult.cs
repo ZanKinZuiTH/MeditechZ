@@ -42,7 +42,6 @@ namespace MediTech.Model.Report
         public string OrganisationName { get; set; }
         public string OrganisationCode { get; set; }
         public string OrganisationAddress { get; set; }
-
-
+        public string IsConfidential { get; set; }
     }
 }

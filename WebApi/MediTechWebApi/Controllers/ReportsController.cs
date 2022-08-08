@@ -1327,6 +1327,7 @@ namespace MediTechWebApi.Controllers
                                                ResultEnteredDttm = rs.ResultEnteredDttm,
                                                ResultItemName = rsc.ResultItemName,
                                                //PrintOrder = rslk.PrintOrder ?? 0,
+                                               IsConfidential = rit.IsConfidential,
                                                ResultUID = rs.UID,
                                                ResultValue = rsc.ResultValue + (!string.IsNullOrEmpty(rsc.IsAbnormal) ? " " + rsc.IsAbnormal : ""),
                                                ResultValueType = SqlFunction.fGetRfValDescription(rsc.RVTYPUID),

@@ -161,6 +161,20 @@ namespace MediTech.ViewModels
             set { _ResultDialog = value; }
         }
 
+        public bool RoleIsConfidential()
+        {
+            var permission = DataService.RoleManage.GetPageViewPermission(AppUtil.Current.RoleUID);
+            var Confidentiall = permission.FirstOrDefault(p => p.Type == "PERMISSION" && p.PageViewCode == "LABCFD");
+            if (Confidentiall == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         #region ViewManagement
 
 

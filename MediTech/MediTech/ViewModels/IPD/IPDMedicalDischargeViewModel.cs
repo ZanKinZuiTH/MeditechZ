@@ -188,7 +188,9 @@ namespace MediTech.ViewModels
         public void AssingModel(BedStatusModel model, DischargeEventModel discharge, string type)
         {
             bedmodel = model;
-            SelectPatientVisit = DataService.PatientIdentity.GetPatientVisitByUID(model.PatientVisitUID ?? 0); ;
+            SelectPatientVisit = DataService.PatientIdentity.GetPatientVisitByUID(model.PatientVisitUID ?? 0);
+            if (discharge == null)
+                discharge = new DischargeEventModel();
             dischargeModel = discharge;
             dischargeType = type;
 
@@ -200,8 +202,8 @@ namespace MediTech.ViewModels
 
             if (type == "Discharge")
             {
-                dischargeModel.VISTSUID = DataService.Technical.GetReferenceValueByCode("VISTS", "CHKOUT").Key;
-                dischargeModel.ENSTAUID = DataService.Technical.GetReferenceValueByCode("ENSTA", "DISCH").Key;
+                dischargeModel.VISTSUID = DataService.Technical.GetReferenceValueByCode("VISTS","CHKOUT").Key ?? 0;
+                dischargeModel.ENSTAUID = DataService.Technical.GetReferenceValueByCode("ENSTA","DISCH").Key ?? 0;
                 AssingModelToProperties();
             }
 
@@ -217,13 +219,13 @@ namespace MediTech.ViewModels
             dischargeModel.PatientUID = bedmodel.PatientUID;
             dischargeModel.PatientVisitUID = bedmodel.PatientVisitUID ?? 0;
 
-            dischargeModel.DSCSTUID = SelectDischargeStatus.Key ?? 0;
+            dischargeModel.DSCSTUID = SelectDischargeStatus != null ? SelectDischargeStatus.Key ?? 0 : 0;
             dischargeModel.MedicalDischargeDttm = DischargeDate;
             dischargeModel.ActualDischargeDttm = DischargeDate;
             dischargeModel.RecordedBy = AppUtil.Current.UserID;
-            dischargeModel.MDTRNUID =  SelectModeTransport.Key ?? 0;
+            dischargeModel.MDTRNUID = SelectModeTransport != null ? SelectModeTransport.Key ?? 0 : 0; 
             dischargeModel.DischargeComments = Comment;
-            dischargeModel.DSCTYUID = SelectDischargeTypes.Key ?? 0;
+            dischargeModel.DSCTYUID = SelectDischargeTypes != null ? SelectDischargeTypes.Key ?? 0 : 0;
             dischargeModel.INFCTUID = SelectInfectionTypes != null ? SelectInfectionTypes.Key : (int?)null;
             dischargeModel.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
             dischargeModel.DSOCMUID = SelectDispositionTypes != null ? SelectDispositionTypes.Key : (int?)null;
