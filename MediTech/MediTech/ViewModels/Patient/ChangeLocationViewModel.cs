@@ -12,6 +12,27 @@ namespace MediTech.ViewModels
     {
         #region Properties
 
+        private DateTime? _DateFrom;
+        public DateTime? DateFrom
+        {
+            get { return _DateFrom; }
+            set
+            {
+                Set(ref _DateFrom, value);
+            }
+        }
+
+
+        private DateTime? _DateTo;
+        public DateTime? DateTo
+        {
+            get { return _DateTo; }
+            set
+            {
+                Set(ref _DateTo, value);
+            }
+        }
+
         private List<PatientVisitModel> _PatientVisitData;
         public List<PatientVisitModel> PatientVisitData
         {
@@ -30,6 +51,12 @@ namespace MediTech.ViewModels
                     CurrentLocation = SelectPatientVisit.LocationName;
                 }
             }
+        }
+        private string _PatientID;
+        public string PatientID
+        {
+            get { return _PatientID; }
+            set { Set(ref _PatientID, value); }
         }
 
         private string _VisitID;
@@ -59,54 +86,10 @@ namespace MediTech.ViewModels
             get { return _SelectLocations; }
             set { Set(ref _SelectLocations, value); }
         }
-
-        #region PatientSearch
-
-        private string _SearchPatientCriteria;
-
-        public string SearchPatientCriteria
-        {
-            get { return _SearchPatientCriteria; }
-            set
-            {
-                Set(ref _SearchPatientCriteria, value);
-                PatientsSearchSource = null;
-            }
-        }
-
-
-        private List<PatientInformationModel> _PatientsSearchSource;
-        public List<PatientInformationModel> PatientsSearchSource
-        {
-            get { return _PatientsSearchSource; }
-            set { Set(ref _PatientsSearchSource, value); }
-        }
-
-        private PatientInformationModel _SelectedPateintSearch;
-        public PatientInformationModel SelectedPateintSearch
-        {
-            get { return _SelectedPateintSearch; }
-            set
-            {
-                _SelectedPateintSearch = value;
-                //if (_SelectedPateintSearch != null)
-                //{
-                //    AssignToModel(SelectedPateintSearch);
-                //}
-            }
-        }
-
-        #endregion
-
+      
         #endregion
 
         #region Command
-        private RelayCommand _PatientSearchCommand;
-
-        public RelayCommand PatientSearchCommand
-        {
-            get { return _PatientSearchCommand ?? (_PatientSearchCommand = new RelayCommand(PatientSearch)); }
-        }
 
         private RelayCommand _SearchCommand;
         public RelayCommand SearchCommand
@@ -136,67 +119,25 @@ namespace MediTech.ViewModels
         #region Method
         public ChangeLocationViewModel()
         {
+            DateFrom = DateTime.Now;
             var org = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
             Locations = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
-        }
-
-        public void PatientSearch()
-        {
-            string patientID = string.Empty;
-            string firstName = string.Empty;
-            string lastName = string.Empty;
-            if (SearchPatientCriteria.Length >= 3)
-            {
-                string[] patientName = SearchPatientCriteria.Split(' ');
-                if (patientName.Length >= 2)
-                {
-                    firstName = patientName[0];
-                    lastName = patientName[1];
-                }
-                else
-                {
-                    int num = 0;
-                    foreach (var ch in SearchPatientCriteria)
-                    {
-                        if (ShareLibrary.CheckValidate.IsNumber(ch.ToString()))
-                        {
-                            num++;
-                        }
-                    }
-                    if (num >= 5)
-                    {
-                        patientID = SearchPatientCriteria;
-                    }
-                    else if (num <= 2)
-                    {
-                        firstName = SearchPatientCriteria;
-                        lastName = "empty";
-                    }
-
-                }
-                List<PatientInformationModel> searchResult = DataService.PatientIdentity.SearchPatientEmergency(patientID, firstName, "", lastName, "", null, null, "", null, "");
-                PatientsSearchSource = searchResult;
-            }
-            else
-            {
-                PatientsSearchSource = null;
-            }
-
         }
 
         private void Search()
         {
             string visitID = VisitID;
-            long? patientUID = SelectedPateintSearch != null ? SelectedPateintSearch.PatientUID : (long?)null;
+            long? patientUID = (PatientID != "" && PatientID != null) ? long.Parse(PatientID) : (long?)null;
 
-            PatientVisitData = DataService.PatientIdentity.GetPatientVisitToChangeLocation(patientUID, visitID);
+            PatientVisitData = DataService.PatientIdentity.GetPatientVisitToChangeLocation(patientUID, visitID, DateFrom, DateTo);
         }
         private void Clear()
         {
-            SelectedPateintSearch = null;
             SelectLocations = null;
             PatientVisitData = null;
             CurrentLocation = null;
+            DateFrom = DateTime.Now;
+            DateTo = null;
         }
 
         private void Save()

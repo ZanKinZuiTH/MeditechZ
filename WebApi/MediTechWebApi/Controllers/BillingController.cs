@@ -2543,7 +2543,6 @@ namespace MediTechWebApi.Controllers
                             agreementAccount.Discount = item.Discount;
                             agreementAccount.DateFrom = item.DateFrom;
                             agreementAccount.DateTo = item.DateTo;
-                            agreementAccount.OwnerOrganisationUID = item.OwnerOrganisationUID;
                             agreementAccount.MWhen = now;
                             agreementAccount.MUser = userID;
                             agreementAccount.StatusFlag = item.StatusFlag == "D" ? "D" : "A";
@@ -2575,7 +2574,6 @@ namespace MediTechWebApi.Controllers
                                         agreementDetail.Discount = item2.Discount;
                                         agreementDetail.DateFrom = item2.DateFrom;
                                         agreementDetail.DateTo = item2.DateTo;
-                                        agreementDetail.OwnerOrganisationUID = item2.OwnerOrganisationUID;
                                         agreementDetail.MWhen = now;
                                         agreementDetail.MUser = userID;
                                         agreementDetail.StatusFlag = item2.StatusFlag == "D" ? "D" : "A";
@@ -2608,7 +2606,6 @@ namespace MediTechWebApi.Controllers
                                                     agreementItem.Discount = item3.Discount;
                                                     agreementItem.DateFrom = item3.DateFrom;
                                                     agreementItem.DateTo = item3.DateTo;
-                                                    agreementItem.OwnerOrganisationUID = item3.OwnerOrganisationUID;
                                                     agreementItem.MWhen = now;
                                                     agreementItem.MUser = userID;
                                                     agreementItem.StatusFlag = item3.StatusFlag == "D" ? "D" : "A";
@@ -3116,7 +3113,6 @@ namespace MediTechWebApi.Controllers
                                                             ServiceUID = p.ServiceUID,
                                                             ServiceName = g.Description,
                                                             PayorAgreementUID = p.PayorAgreementUID,
-                                                            OwnerOrganisationUID = p.OwnerOrganisationUID,
                                                             PBLCTUID = p.PBLCTUID ?? 0,
                                                             ALLDIUID = p.ALLDIUID ?? 0,
                                                             Discount = p.Discount ?? 0,
@@ -3146,8 +3142,6 @@ namespace MediTechWebApi.Controllers
                                                            BillgGroupUID = g.BillingGroupUID,
                                                            ServiceUID = p.ServiceUID,
                                                            ServiceName = g.Description,
-                                                           PayorAgreementUID = p.PayorAgreementUID,
-                                                           OwnerOrganisationUID = p.OwnerOrganisationUID,
                                                            PBLCTUID = p.PBLCTUID ?? 0,
                                                            ALLDIUID = p.ALLDIUID ?? 0,
                                                            Discount = p.Discount ?? 0,
@@ -3178,7 +3172,6 @@ namespace MediTechWebApi.Controllers
                                                          BillableItemUID = g.UID,
                                                          BillableItemName = g.ItemName,
                                                          PayorAgreementUID = p.PayorAgreementUID,
-                                                         OwnerOrganisationUID = p.OwnerOrganisationUID,
                                                          PBLCTUID = p.PBLCTUID ?? 0,
                                                          ALLDIUID = p.ALLDIUID ?? 0,
                                                          Discount = p.Discount,

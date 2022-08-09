@@ -126,11 +126,11 @@ namespace MediTech.DataService
             return listData;
         }
 
-        public void ReviewLabResult(List<RequestDetailItemModel> labRequestDetails, int userID)
+        public void ReviewLabResult(List<RequestDetailItemModel> labRequestDetails, int careproviderUID, int userID)
         {
             try
             {
-                string requestApi = string.Format("Api/Lab/ReviewLabResult?userID={0}", userID);
+                string requestApi = string.Format("Api/Lab/ReviewLabResult?careproviderUID={0}&userID={1}", careproviderUID, userID);
                 MeditechApiHelper.Post<List<RequestDetailItemModel>>(requestApi, labRequestDetails);
             }
             catch (Exception)

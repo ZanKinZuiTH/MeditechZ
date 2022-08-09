@@ -41,5 +41,6 @@ namespace MediTech.Model
         public string StatusFlag { get; set; }
         public LoginModel loginModel { get; set; }
         public int VISTYUID { get; set; }
+        public int? CPTYPUID { get; set; }
     }
 }

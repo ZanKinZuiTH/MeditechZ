@@ -8,15 +8,27 @@ using System.Linq;
 using System.Windows.Media.Imaging;
 using System.IO;
 using System.Windows;
+using MediTech.Model;
+using System.Collections.Generic;
+using DevExpress.XtraReports.Parameters;
 
 namespace MediTech.Reports.Operating.Lab 
 {
     public partial class LabResultReport : DevExpress.XtraReports.UI.XtraReport
     {
+        List<HealthOrganisationModel> Organisations = new List<HealthOrganisationModel>();
         public bool PrintAuto = false;
         public LabResultReport()
         {
             InitializeComponent();
+            Organisations = (new MasterDataService()).GetHealthOrganisation();
+            StaticListLookUpSettings lookupSettings = new StaticListLookUpSettings();
+            foreach (var item in Organisations)
+            {
+                lookupSettings.LookUpValues.Add(new LookUpValue(item.HealthOrganisationUID, item.Name));
+            }
+
+            this.LogoType.LookUpSettings = lookupSettings;
             this.BeforePrint += LabResultReport_BeforePrint;
         }
 
@@ -24,10 +36,70 @@ namespace MediTech.Reports.Operating.Lab
         {
             try
             {
+                int OrganisationUID = int.Parse(this.Parameters["OrganisationUID"].Value.ToString());
+                int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
                 long patientVisitUID = Convert.ToInt64(this.Parameters["PatientVisitUID"].Value.ToString());
                 string requestNumber = this.Parameters["RequestNumber"].Value.ToString();
                 var labResults = (new ReportsService()).GetLabResultByRequestNumber(patientVisitUID, requestNumber);
                 var permission = new ViewModels.MediTechViewModelBase().RoleIsConfidential();
+
+
+                var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);
+
+                if (logoType == 0)
+                {
+                    var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+                    lbLicenseNo.Text = OrganisationDefault.Description?.ToString();
+                    if(OrganisationDefault.LicenseNo != null)
+                    {
+                        lbLicenseNo.Text = lbLicenseNo.Text + "\r\nใบอนุญาตเลขที่ " + OrganisationDefault.LicenseNo.ToString();
+                    }
+                    //lbLicenseNo.Text = OrganisationDefault.LicenseNo != null ? "ใบอนุญาตเลขที่ " + OrganisationDefault.LicenseNo.ToString() : "";
+
+                    string mobile1 = OrganisationDefault.MobileNo != null ? "โทรศัพท์ " + OrganisationDefault.MobileNo.ToString() : "";
+                    string email = OrganisationDefault.Email != null ? "e-mail:" + OrganisationDefault.Email.ToString() : "";
+
+                    xrLabel19.Text = OrganisationDefault.Address?.ToString() + " " + mobile1;
+
+                    if (OrganisationDefault.LogoImage != null)
+                    {
+                        MemoryStream ms = new MemoryStream(OrganisationDefault.LogoImage);
+                        logo.Image = Image.FromStream(ms);
+                    }
+                    else
+                    {
+                        MemoryStream ms = new MemoryStream(OrganisationBRXG.LogoImage);
+                        logo.Image = Image.FromStream(ms);
+                    }
+                }
+                else
+                {
+                    var SelectOrganisation = (new MasterDataService()).GetHealthOrganisationByUID(logoType);
+                    if (SelectOrganisation != null)
+                    {
+                        lbLicenseNo.Text = SelectOrganisation.Description?.ToString();
+                        //lbLicenseNo.Text = SelectOrganisation.LicenseNo != null ? "ใบอนุญาตเลขที่ " + SelectOrganisation.LicenseNo.ToString() : "";
+                        if (SelectOrganisation.LicenseNo != null)
+                        {
+                            lbLicenseNo.Text = lbLicenseNo.Text + "\r\nใบอนุญาตเลขที่ " + SelectOrganisation.LicenseNo.ToString();
+                        }
+                        string mobile1 = SelectOrganisation.MobileNo != null ? "โทรศัพท์ " + SelectOrganisation.MobileNo.ToString() : "";
+                        string email = SelectOrganisation.Email != null ? "e-mail:" + SelectOrganisation.Email.ToString() : "";
+
+                        xrLabel19.Text = SelectOrganisation.Address?.ToString() + " " + mobile1;
+                    }
+
+                    if (SelectOrganisation.LogoImage != null)
+                    {
+                        MemoryStream ms = new MemoryStream(SelectOrganisation.LogoImage);
+                        logo.Image = Image.FromStream(ms);
+                    }
+                    else
+                    {
+                        MemoryStream ms = new MemoryStream(OrganisationBRXG.LogoImage);
+                        logo.Image = Image.FromStream(ms);
+                    }
+                }
 
                 if (labResults.FirstOrDefault(p => p.IsConfidential == "Y") != null)
                 {
@@ -50,31 +122,6 @@ namespace MediTech.Reports.Operating.Lab
                     if (labResultNoImage != null && labResultNoImage.Count() > 0)
                     {
                         this.DataSource = labResultNoImage;
-                        string healthOrganisationCode = labResults.FirstOrDefault().OrganisationCode;
-                        if (healthOrganisationCode.ToUpper().Contains("DRC"))
-                        {
-                            Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/LogoDRC.png", UriKind.Absolute);
-                            BitmapImage imageSource = new BitmapImage(uri);
-                            using (MemoryStream outStream = new MemoryStream())
-                            {
-                                BitmapEncoder enc = new BmpBitmapEncoder();
-                                enc.Frames.Add(BitmapFrame.Create(imageSource));
-                                enc.Save(outStream);
-                                this.logo1.Image = System.Drawing.Image.FromStream(outStream);
-                            }
-                        }
-                        else
-                        {
-                            Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/LogoBRXG.png", UriKind.Absolute);
-                            BitmapImage imageSource = new BitmapImage(uri);
-                            using (MemoryStream outStream = new MemoryStream())
-                            {
-                                BitmapEncoder enc = new BmpBitmapEncoder();
-                                enc.Frames.Add(BitmapFrame.Create(imageSource));
-                                enc.Save(outStream);
-                                this.logo1.Image = System.Drawing.Image.FromStream(outStream);
-                            }
-                        }
                     }
 
                     //if (PrintAuto == false)

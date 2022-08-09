@@ -321,9 +321,9 @@ namespace MediTech.DataService
             return data;
         }
 
-        public List<PatientVisitModel> GetPatientVisitToChangeLocation(long? patientUID, string visitID)
+        public List<PatientVisitModel> GetPatientVisitToChangeLocation(long? patientUID, string visitID, DateTime? dateFrom, DateTime? dateTo)
         {
-            string requestApi = string.Format("Api/PatientIdentity/GetPatientVisitToChangeLocation?patientUID={0}&visitID={1}", patientUID, visitID);
+            string requestApi = string.Format("Api/PatientIdentity/GetPatientVisitToChangeLocation?patientUID={0}&visitID={1}&dateFrom={2:MM/dd/yyyy}&dateTo={3:MM/dd/yyyy}", patientUID, visitID, dateFrom, dateTo);
             List<PatientVisitModel> data = MeditechApiHelper.Get<List<PatientVisitModel>>(requestApi);
 
             return data;

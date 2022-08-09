@@ -27,6 +27,7 @@ namespace MediTech.Model
         public string RequestNumber { get; set; }
         public long PatientVisitUID { get; set; }
         public string IsConfidential { get; set; }
+        public int? ResultEnterUID { get; set; }
         public  ObservableCollection<ResultComponentModel> ResultComponents { get; set; }
     }
 }

@@ -1879,11 +1879,14 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetPatientVisitToChangeLocation")]
         [HttpGet]
-        public List<PatientVisitModel> GetPatientVisitToChangeLocation(long? patientUID, string visitID)
+        public List<PatientVisitModel> GetPatientVisitToChangeLocation(long? patientUID, string visitID, DateTime? dateFrom, DateTime? dateTo)
         {
-            List<PatientVisitModel> visitData = db.PatientVisit.Where(p => p.VISTSUID != 418 && p.VISTSUID != 410 && p.VISTSUID != 421
+            List<PatientVisitModel> visitData = db.PatientVisit.Where(p => p.VISTSUID != 423 && p.VISTSUID != 418 
+                                        && p.VISTSUID != 410 && p.VISTSUID != 421
                                         && (visitID == null || p.VisitID == visitID)
                                         && (patientUID == null || p.PatientUID == patientUID)
+                                        && (dateFrom == null || DbFunctions.TruncateTime(p.StartDttm) >= DbFunctions.TruncateTime(dateFrom))
+                                        && (dateTo == null || DbFunctions.TruncateTime(p.StartDttm) < DbFunctions.TruncateTime(dateTo))
                                         && p.StatusFlag == "A")
                                                     .Select(p => new PatientVisitModel
                                                     {

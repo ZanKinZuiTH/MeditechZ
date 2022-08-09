@@ -19,6 +19,14 @@ namespace MediTech.ViewModels
     {
 
         #region Properties
+        public List<CareproviderModel> Careprovider { get; set; }
+        private CareproviderModel _SelectCareprovider;
+
+        public CareproviderModel SelectCareprovider
+        {
+            get { return _SelectCareprovider; }
+            set { Set(ref _SelectCareprovider, value); }
+        }
 
         private List<LookupReferenceValueModel> _ResultItemRanges;
 
@@ -172,6 +180,8 @@ namespace MediTech.ViewModels
         {
             ResultItemRanges = DataService.Technical.GetReferenceValueMany("LABRAM");
             SelectResultItemRange = ResultItemRanges.FirstOrDefault();
+            int labTechnicianUID = DataService.Technical.GetReferenceValueByCode("CPTYP", "CPTEN06").Key ?? 0;
+            Careprovider = DataService.UserManage.GetCareProviderByType(labTechnicianUID);
             Permission = RoleIsConfidential();
         }
 
@@ -179,6 +189,12 @@ namespace MediTech.ViewModels
         {
             try
             {
+                if(SelectCareprovider == null)
+                {
+                    WarningDialog("กรุณาเลือกนักเทคนิคห้องปฏิบัติการ");
+                    return;
+                }
+
                 List<RequestDetailItemModel> reviewRequestDetails = new List<RequestDetailItemModel>();
                 reviewRequestDetails = RequestDetailLabs.Where(p => p.ResultComponents.Count(f => !string.IsNullOrEmpty(f.ResultValue)) > 0).ToList();
                 if (reviewRequestDetails != null && reviewRequestDetails.Count > 0)
@@ -187,11 +203,12 @@ namespace MediTech.ViewModels
                     {
                         reviewRequestDetail.ResultComponents = new ObservableCollection<ResultComponentModel>
                             (RequestDetailLabs.FirstOrDefault(p => p.RequestDetailUID == reviewRequestDetail.RequestDetailUID).ResultComponents.Where(p => p.RequestDetailUID == reviewRequestDetail.RequestDetailUID && !string.IsNullOrEmpty(p.ResultValue)).ToList());
+                        
                     }
                 }
 
 
-                DataService.Lab.ReviewLabResult(reviewRequestDetails, AppUtil.Current.UserID);
+                DataService.Lab.ReviewLabResult(reviewRequestDetails, SelectCareprovider.CareproviderUID, AppUtil.Current.UserID);
                 SaveSuccessDialog();
                 CloseViewDialog(ActionDialog.Save);
             }
@@ -225,6 +242,8 @@ namespace MediTech.ViewModels
                     }
                 }
             }
+            int resultBy = RequestDetailLabs.FirstOrDefault().ResultEnterUID ?? 0;
+            SelectCareprovider = Careprovider.FirstOrDefault(p => p.CareproviderUID == resultBy);
         }
         private void GetRange()
         {

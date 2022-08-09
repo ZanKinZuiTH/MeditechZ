@@ -82,6 +82,16 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectGender, value); }
         }
 
+        public List<LookupReferenceValueModel> CareproviderType { get; set; }
+        private LookupReferenceValueModel _SelectCareproviderType;
+
+        public LookupReferenceValueModel SelectCareproviderType
+    {
+            get { return _SelectCareproviderType; }
+            set { Set(ref _SelectCareproviderType, value); }
+        }
+
+
         private DateTime? _ActiveFrom;
 
         public DateTime? ActiveFrom
@@ -348,10 +358,10 @@ namespace MediTech.ViewModels
         public ManageUserViewModel()
         {
             RoleProfiles = new List<RoleProfileModel>();
-            var refData = DataService.Technical.GetReferenceValueList("TITLE,SEXXX");
+            var refData = DataService.Technical.GetReferenceValueList("TITLE,SEXXX,CPTYP");
             Titles = refData.Where(p => p.DomainCode == "TITLE").ToList();
             Genders = refData.Where(p => p.DomainCode == "SEXXX").ToList();
-
+            CareproviderType = refData.Where(p => p.DomainCode == "CPTYP").ToList();
             Roles = DataService.RoleManage.GetLookUpRoleAll();
             
         }
@@ -475,6 +485,7 @@ namespace MediTech.ViewModels
             Tel = modelCareprovider.Tel;
             Email = modelCareprovider.Email;
             LineID = modelCareprovider.LineID;
+            SelectCareproviderType = CareproviderType.FirstOrDefault(p => p.Key == modelCareprovider.CPTYPUID);
             if (modelCareprovider.loginModel != null)
             {
                 LoginName = modelCareprovider.loginModel.LoginName;
@@ -525,7 +536,7 @@ namespace MediTech.ViewModels
             modelCareprovider.loginModel.ActiveFrom = LoginActiveFrom;
             modelCareprovider.loginModel.ActiveTo = LoginActiveTo;
             modelCareprovider.loginModel.RoleUID = SelectRole != null ? SelectRole.Key.Value : 0;
-
+            modelCareprovider.CPTYPUID = SelectCareproviderType != null ? SelectCareproviderType.Key :(int?)null;
             modelCareprovider.loginModel.RoleProfiles = RoleProfiles;
 
         }

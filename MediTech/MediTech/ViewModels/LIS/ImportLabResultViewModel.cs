@@ -18,6 +18,14 @@ namespace MediTech.ViewModels
     public class ImportLabResultViewModel : MediTechViewModelBase
     {
         #region Properties
+        public List<CareproviderModel> Careprovider { get; set; }
+        private CareproviderModel _SelectCareprovider;
+
+        public CareproviderModel SelectCareprovider
+        {
+            get { return _SelectCareprovider; }
+            set { Set(ref _SelectCareprovider, value); }
+        }
 
         private string _FileLocation;
 
@@ -414,6 +422,8 @@ namespace MediTech.ViewModels
             DateTypes.Add(new LookupItemModel { Key = 60, Display = "60 วัน" });
             DateTypes.Add(new LookupItemModel { Key = 90, Display = "90 วัน" });
             SelectDateType = DateTypes.FirstOrDefault();
+            int labTechnicianUID = DataService.Technical.GetReferenceValueByCode("CPTYP", "CPTEN06").Key ?? 0;
+            Careprovider = DataService.UserManage.GetCareProviderByType(labTechnicianUID);
         }
 
         private void ChooseFile()
@@ -618,6 +628,12 @@ namespace MediTech.ViewModels
             string hn = string.Empty;
             try
             {
+                if (SelectCareprovider == null)
+                {
+                    WarningDialog("กรุณาเลือกนักเทคนิคห้องปฏิบัติการ");
+                    return;
+                }
+
                 ImportLabResult view = (ImportLabResult)this.View;
                 if (view.gcTestParameter.ItemsSource == null)
                 {
@@ -638,7 +654,7 @@ namespace MediTech.ViewModels
                         {
                             List<RequestDetailItemModel> sendLabResult = new List<RequestDetailItemModel>();
                             sendLabResult.Add(labResult);
-                            DataService.Lab.ReviewLabResult(sendLabResult, AppUtil.Current.UserID);
+                            DataService.Lab.ReviewLabResult(sendLabResult, SelectCareprovider.CareproviderUID, AppUtil.Current.UserID);
                         }
 
                         pgBarCounter = pgBarCounter + 1;

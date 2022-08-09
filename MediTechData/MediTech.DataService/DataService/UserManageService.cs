@@ -123,6 +123,12 @@ namespace MediTech.DataService
             return flag;
 
         }
+        public List<CareproviderModel> GetCareProviderByType(int type)
+        {
+            string requestApi = string.Format("Api/UserManage/GetCareProviderByType?type={0}", type);
+            List<CareproviderModel> data = MeditechApiHelper.Get<List<CareproviderModel>>(requestApi);
+            return data;
+        }
 
         public List<CareproviderModel> GetCareproviderDoctor()
         {
