@@ -394,8 +394,9 @@ namespace MediTechWebApi.Controllers
                     StartDttm = p.StartDttm,
                     EndDttm = p.EndDttm,
                     EligibleAmount = p.EligibleAmount,
-                    Comments = p.Comments
-                }).ToList();
+                    Comments = p.Comments,
+                    CreatedBy = SqlFunction.fGetCareProviderName(p.CUser)
+                }).ToList().OrderBy(p => int.Parse(p.PayorType ?? "99")).ToList();
             return data;
         }
 
@@ -451,7 +452,7 @@ namespace MediTechWebApi.Controllers
 
                             detail.PolicyMasterUID = payor.PolicyMasterUID;
 
-                            detail.EligibleAmount = payor.EligibileAmount;
+                            detail.EligibleAmount = payor.EligibleAmount;
                             detail.StartDttm = payor.ActiveFrom;
                             detail.EndDttm = payor.ActiveTo;
                             detail.Comments = payor.Comment;
@@ -465,9 +466,7 @@ namespace MediTechWebApi.Controllers
                             if (detail.FixedCopayAmount == 0)
                                 detail.FixedCopayAmount = null;
 
-                            detail.CUser = payor.CUser;
                             detail.MUser = payor.MUser;
-                            detail.CWhen = now;
                             detail.MWhen = now;
                             detail.StatusFlag = payor.StatusFlag;
                             detail.OwnerOrganisationUID = payor.OwnerOrganisationUID;
@@ -497,45 +496,77 @@ namespace MediTechWebApi.Controllers
             try
             {
                 DateTime now = DateTime.Now;
-                foreach (var patientInsurance in patientInsuranceDetails)
+                using (var tran = new TransactionScope())
                 {
-                    PatientInsuranceDetail detail = db.PatientInsuranceDetail.Find(patientInsurance.PatientInsuranceDetailUID);
-                    if (detail == null)
+
+                    foreach (var patientInsurance in patientInsuranceDetails)
                     {
-                        detail = new PatientInsuranceDetail();
-                        detail.CUser = userUID;
-                        detail.CWhen = now;
+                        var deletedVisitPayors = patientInsuranceDetails.Where(p => p.StatusFlag == "D");
+                        var activedVisitPayors = patientInsuranceDetails.Where(p => p.StatusFlag == "A");
+
+                        foreach (var deletedPayor in deletedVisitPayors)
+                        {
+                            PatientInsuranceDetail deleteData = db.PatientInsuranceDetail.Where(i => i.InsuranceCompanyUID == deletedPayor.InsuranceCompanyUID
+                && i.PayorDetailUID == deletedPayor.PayorDetailUID && i.PayorAgreementUID == deletedPayor.PayorAgreementUID).FirstOrDefault();
+                            if (deleteData != null)
+                            {
+                                db.PatientInsuranceDetail.Attach(deleteData);
+                                deleteData.StatusFlag = "D";
+                                deleteData.MUser = userUID;
+                                deleteData.MWhen = now;
+
+                                db.SaveChanges();
+                            }
+                        }
+
+
+                        foreach (var payor in activedVisitPayors)
+                        {
+                            PatientInsuranceDetail detail = db.PatientInsuranceDetail.Where(i => i.InsuranceCompanyUID == payor.InsuranceCompanyUID
+                            && i.PayorDetailUID == payor.PayorDetailUID && i.PayorAgreementUID == payor.PayorAgreementUID).FirstOrDefault();
+                            if (detail == null)
+                            {
+                                detail = new PatientInsuranceDetail();
+                                detail.CUser = userUID;
+                                detail.CWhen = now;
+                            }
+
+                            detail.PatientUID = payor.PatientUID;
+                            detail.PatientVisitUID = payor.PatientVisitUID != 0 ? payor.PatientVisitUID : (long?)null;
+                            detail.PayorName = payor.PayorName;
+                            detail.PayorDetailUID = payor.PayorDetailUID;
+                            detail.PolicyName = payor.PolicyName;
+                            detail.InsuranceCompanyUID = payor.InsuranceCompanyUID;
+                            detail.InsuranceCompanyName = payor.InsuranceCompanyName;
+                            detail.PAYRTPUID = payor.PAYRTPUID;
+
+                            detail.PolicyMasterUID = payor.PolicyMasterUID;
+
+                            detail.EligibleAmount = payor.EligibleAmount;
+                            detail.StartDttm = payor.StartDttm;
+                            detail.EndDttm = payor.EndDttm;
+                            detail.Comments = payor.Comments;
+
+                            detail.PayorAgreementUID = payor.PayorAgreementUID;
+                            detail.PayorAgreementName = payor.PayorAgreementName;
+                            detail.ClaimPercentage = payor.ClaimPercentage;
+                            if (detail.ClaimPercentage == 0)
+                                detail.ClaimPercentage = null;
+                            detail.FixedCopayAmount = payor.FixedCopayAmount;
+                            if (detail.FixedCopayAmount == 0)
+                                detail.FixedCopayAmount = null;
+
+                            detail.MUser = userUID;
+                            detail.MWhen = now;
+                            detail.StatusFlag = payor.StatusFlag;
+                            detail.OwnerOrganisationUID = payor.OwnerOrganisationUID;
+                            db.PatientInsuranceDetail.AddOrUpdate(detail);
+
+                            db.SaveChanges();
+                        }
+
                     }
-
-                    detail.PatientUID = patientInsurance.PatientUID;
-                    detail.PatientVisitUID = patientInsurance.PatientVisitUID;
-                    detail.PayorDetailUID = patientInsurance.PayorDetailUID;
-                    detail.PolicyName = patientInsurance.PolicyName;
-                    detail.InsuranceCompanyUID = patientInsurance.InsuranceCompanyUID;
-                    detail.InsuranceCompanyName = patientInsurance.InsuranceCompanyName;
-                    detail.PAYRTPUID = patientInsurance.PAYRTPUID;
-                    detail.PolicyMasterUID = patientInsurance.PolicyMasterUID;
-                    detail.EligibleAmount = patientInsurance.EligibleAmount;
-                    detail.StartDttm = patientInsurance.StartDttm;
-                    detail.EndDttm = patientInsurance.EndDttm;
-                    detail.Comments = patientInsurance.Comments;
-                    detail.StatusFlag = patientInsurance.StatusFlag.ToString();
-                    detail.PayorAgreementUID = patientInsurance.PayorAgreementUID;
-                    detail.PayorName = patientInsurance.PayorName;
-                    detail.PayorAgreementName = patientInsurance.PayorAgreementName;
-                    detail.ClaimPercentage = patientInsurance.ClaimPercentage;
-                    if (detail.ClaimPercentage == 0)
-                        detail.ClaimPercentage = null;
-                    detail.FixedCopayAmount = patientInsurance.FixedCopayAmount;
-                    if (detail.FixedCopayAmount == 0)
-                        detail.FixedCopayAmount = null;
-
-                    detail.OwnerOrganisationUID = patientInsurance.OwnerOrganisationUID;
-                    detail.MUser = userUID;
-                    detail.MWhen = now;
-
-                    db.PatientInsuranceDetail.AddOrUpdate(detail);
-                    db.SaveChanges();
+                    tran.Complete();
                 }
 
                 return Request.CreateResponse(HttpStatusCode.OK);
@@ -616,6 +647,7 @@ namespace MediTechWebApi.Controllers
                         patient.UID = patientData.UID;
                         patient.CUser = patientData.CUser;
                         patient.CWhen = patientData.CWhen;
+                        patient.OwnerOrganisationUID = patientData.OwnerOrganisationUID;
                     }
 
 
@@ -780,6 +812,12 @@ namespace MediTechWebApi.Controllers
                         }
                     }
 
+
+                    if (patientInfo.PatientInsuranceDetails != null && patientInfo.PatientInsuranceDetails.Count > 0)
+                    {
+                        patientInfo.PatientInsuranceDetails.ForEach(p => p.PatientUID = patientInfo.PatientUID);
+                        ManagePatientInsurance(patientInfo.PatientInsuranceDetails, userID);
+                    }
 
                     tran.Complete();
                 }
@@ -1108,7 +1146,7 @@ namespace MediTechWebApi.Controllers
                         aPayor.PolicyMasterUID = aIns.PolicyMasterUID;
                         aPayor.PolicyName = aIns.PolicyName;
                         aPayor.InsuranceCompanyUID = aIns.InsuranceCompanyUID;
-                        aPayor.EligibileAmount = aIns.EligibileAmount;
+                        aPayor.EligibileAmount = aIns.EligibleAmount;
                         aPayor.PAYRTPUID = aIns.PAYRTPUID;
                         aPayor.ActiveFrom = aIns.ActiveFrom;
                         aPayor.ActiveTo = aIns.ActiveTo;
@@ -2594,7 +2632,7 @@ namespace MediTechWebApi.Controllers
                                                      PayorAgreementUID = pvp.PayorAgreementUID,
                                                      PayorDetailUID = pvp.PayorDetailUID,
                                                      PolicyMasterUID = pvp.PolicyMasterUID,
-                                                     EligibileAmount = pvp.EligibileAmount,
+                                                     EligibleAmount = pvp.EligibileAmount,
                                                      FixedCopayAmount = pvp.FixedCopayAmount,
                                                      ClaimPercentage = pvp.ClaimPercentage,
                                                      ActiveFrom = pvp.ActiveFrom,
@@ -2610,8 +2648,9 @@ namespace MediTechWebApi.Controllers
                                                      PolicyName = pvp.PolicyName,
                                                      PayorType = SqlFunction.fGetRfValDescription(pvp.PAYRTPUID ?? 0),
                                                      CoveredAmount = pvp.CoveredAmount,
-                                                     StatusFlag = pvp.StatusFlag
-                                                 }).ToList();
+                                                     StatusFlag = pvp.StatusFlag,
+                                                     CreatedBy = SqlFunction.fGetCareProviderName(pvp.CUser)
+                                                 }).ToList().OrderBy(p => int.Parse(p.PayorType ?? "99")).ToList();
 
             foreach (var item in data)
             {
@@ -2673,7 +2712,7 @@ namespace MediTechWebApi.Controllers
                             patientVisitPayor.InsuranceCompanyUID = inVisitPayor.InsuranceCompanyUID;
                             patientVisitPayor.PolicyMasterUID = inVisitPayor.PolicyMasterUID;
                             patientVisitPayor.PolicyName = inVisitPayor.PolicyName;
-                            patientVisitPayor.EligibileAmount = inVisitPayor.EligibileAmount;
+                            patientVisitPayor.EligibileAmount = inVisitPayor.EligibleAmount;
                             patientVisitPayor.PAYRTPUID = inVisitPayor.PAYRTPUID;
                             patientVisitPayor.ActiveFrom = inVisitPayor.ActiveFrom;
                             patientVisitPayor.ActiveTo = inVisitPayor.ActiveTo;
@@ -3728,6 +3767,7 @@ namespace MediTechWebApi.Controllers
                     FiledName = p.FiledName,
                     TableName = p.TableName,
                     OldValue = p.OldValue,
+                    NewValue = p.NewValue,
                     Modifiedby = p.Modifiedby ?? 0,
                     ModifiedDttm = p.ModifiedDttm,
                     ModifiedbyName = SqlFunction.fGetCareProviderName(p.Modifiedby ?? 0)
@@ -4082,7 +4122,7 @@ namespace MediTechWebApi.Controllers
                             OldValNewVal.Add(originalPropertyValue);
                             OldValNewVal.Add(newPropertyValue);
 
-                            if (!list.ContainsKey(property.Name))
+                            if (!list.ContainsKey(property.Name) && property.Name != "OwnerOrganisationUID")
                                 list.Add(originalObject.GetType().Name + " - " + property.Name, OldValNewVal);
                         }
                     }

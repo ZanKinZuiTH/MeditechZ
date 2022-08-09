@@ -101,11 +101,9 @@
                                     <dxe:DateEdit EditValue="{Binding ActiveTo}"/>
                                 </dxlc:LayoutItem>
                                 
-                                <dxlc:LayoutItem  Label="{Binding AgreementType}"/>
+                                <dxlc:LayoutItem  Label="{Binding AgreementType}" FontSize="14" FontWeight="Bold" Foreground="Red"/>
                             </dxlc:LayoutGroup>
                             <dxlc:LayoutGroup Orientation="Vertical" ItemSpace="5" Margin="5,0,5,0">
-                               
-
                                 <dxlc:LayoutItem >
                                     <dxlc:LayoutItem.Label>
                                         <StackPanel Orientation="Horizontal">
@@ -123,19 +121,22 @@
                                 <dxlc:LayoutItem  Label="Secondary Tariff">
                                     <dxe:ComboBoxEdit ItemsSource="{Binding SecondaryTariff}"
                                                       SelectedItem="{Binding SelectSecondaryTariff}"
+                                                      NullValueButtonPlacement="EditBox"
                                                       DisplayMember="Display"
                                                       ValueMember="Key"/>
                                 </dxlc:LayoutItem>
 
-                                <dxlc:LayoutItem  Label="ertiary Tariff">
+                                <dxlc:LayoutItem  Label="Tertiary Tariff">
                                     <dxe:ComboBoxEdit ItemsSource="{Binding TertiaryTariff}"
                                                       SelectedItem="{Binding SelectTertiaryTariff}"
+                                                      NullValueButtonPlacement="EditBox"
                                                       DisplayMember="Display"
                                                       ValueMember="Key"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem  Label="Credit Term">
                                     <dxe:ComboBoxEdit ItemsSource="{Binding CreditTerm}"
                                                       SelectedItem="{Binding SelectCreditTerm}"
+                                                      NullValueButtonPlacement="EditBox"
                                                       DisplayMember="Display"
                                                       ValueMember="Key"/>
                                 </dxlc:LayoutItem>

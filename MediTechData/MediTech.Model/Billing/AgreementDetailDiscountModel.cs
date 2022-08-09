@@ -16,7 +16,6 @@ namespace MediTech.Model
         public string ServiceName { get; set; }
         public double? Discount { get; set; }
         public string IsPercentage { get; set; }
-        public int OwnerOrganisationUID { get; set; }
         public int? PBLCTUID { get; set; }
         public int? ALLDIUID { get; set; }
         public string AllowDiscount { get; set; }

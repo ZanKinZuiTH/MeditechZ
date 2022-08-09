@@ -31,29 +31,26 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _SelectTabIndex, value);
-                if (SelectTabIndex == 1)
+                if (SelectTabIndex == 1 && InsuranceNameSource == null)
                 {
                     var now = DateTime.Now;
                     PayorDetailActiveFrom = now;
                     var data = DataService.Billing.GetInsuranceCompanies();
                     InsuranceNameSource = data;
                     PayorType = DataService.Technical.GetReferenceValueMany("PAYRTP");
-                    //InsuranceNameSource = DataService.Billing.GetInsurancePlansGroupPayorCompany();
 
-                    //PayorDetailSource = DataService.Billing.GetPayorDetail();
-                    //PolicySource = DataService.Billing.GetPolicyMasterAll();
+                    if (PatientInsuranceDetail != null && PatientInsuranceDetail.Count() > 0 && PayorType != null)
+                        SelectPayorType = (from p in PayorType where (!(from q in PatientInsuranceDetail select q.PAYRTPUID).Contains(p.Key)) select p).FirstOrDefault();
+                    else
+                        SelectPayorType = PayorType.FirstOrDefault(p => p.ValueCode == "PRIMARY");
 
-                    if (patientModel != null && patientModel.PatientUID != 0)
+
+                }
+                else if(SelectTabIndex == 2)
+                {
+                    if (patientModel != null && patientModel.PatientUID != 0 && PatientModificateLog == null)
                     {
-                        var PatientInsurance = DataService.PatientIdentity.GetPatientInsuranceDetail(patientModel.PatientUID);
-                        PatientInsuranceDetail = new ObservableCollection<PatientInsuranceDetailModel>(PatientInsurance);
-                    }
-                    if (SelectTabIndex == 2)
-                    {
-                        if (patientModel != null && patientModel.PatientUID != 0)
-                        {
-                            PatientModificateLog = DataService.PatientIdentity.GetPatientDemographicLogByUID(patientModel.PatientUID);
-                        }
+                        PatientModificateLog = DataService.PatientIdentity.GetPatientDemographicLogByUID(patientModel.PatientUID);
                     }
                 }
             }
@@ -112,7 +109,7 @@ namespace MediTech.ViewModels
         private ObservableCollection<PatientInsuranceDetailModel> _PatientInsuranceDetail;
         public ObservableCollection<PatientInsuranceDetailModel> PatientInsuranceDetail
         {
-            get { return _PatientInsuranceDetail; }
+            get { return _PatientInsuranceDetail ?? (_PatientInsuranceDetail = new ObservableCollection<PatientInsuranceDetailModel>()); }
             set { Set(ref _PatientInsuranceDetail, value); }
         }
 
@@ -120,8 +117,10 @@ namespace MediTech.ViewModels
         public PatientInsuranceDetailModel SelectPatientInsuranceDetail
         {
             get { return _SelectPatientInsuranceDetail; }
-            set { Set(ref _SelectPatientInsuranceDetail, value); 
-            if (SelectPatientInsuranceDetail != null)
+            set
+            {
+                Set(ref _SelectPatientInsuranceDetail, value);
+                if (SelectPatientInsuranceDetail != null)
                 {
                     AssignSelectToPropotiesPayor();
                 }
@@ -139,20 +138,12 @@ namespace MediTech.ViewModels
         public InsuranceCompanyModel SelectInsuranceName
         {
             get { return _SelectInsuranceName; }
-            set { Set(ref _SelectInsuranceName, value); 
-            if (SelectInsuranceName != null)
+            set
+            {
+                Set(ref _SelectInsuranceName, value);
+                if (SelectInsuranceName != null)
                 {
-                    //InsuranceCompanySource = DataService.Billing.SearchInsurancePlaneByINCO(SelectInsuranceName.InsuranceCompanyUID);
-
-                    var insurancePlan = DataService.Billing.GetInsurancePlans(SelectInsuranceName.InsuranceCompanyUID);
-                    InsuranceCompanySource = insurancePlan;
-                    //AgreementSource = InsuranceCompanySource.Where(p => p.InsuranceCompanyUID == SelectInsuranceName.InsuranceCompanyUID ).ToList();
-                    AgreementSource = insurancePlan.Where(p => p.StatusFlag == "A" && p.InsuranceCompanyUID == SelectInsuranceName.InsuranceCompanyUID).ToList();
-                    
-                    if(AgreementSource.Count > 0)
-                    {
-                        SelectAgreement = AgreementSource.First();
-                    }
+                    InsurancePlans = DataService.Billing.GetInsurancePlans(_SelectInsuranceName.InsuranceCompanyUID);
                 }
             }
         }
@@ -163,78 +154,31 @@ namespace MediTech.ViewModels
             set { Set(ref _InsuranceCompanySource, value); }
         }
 
-        private List<InsurancePlanModel> _PayorDetailSource;
-        public List<InsurancePlanModel> PayorDetailSource
+        private List<InsurancePlanModel> _InsurancePlans;
+
+        public List<InsurancePlanModel> InsurancePlans
         {
-            get { return _PayorDetailSource; }
-            set { Set(ref _PayorDetailSource, value); }
+            get { return _InsurancePlans; }
+            set { Set(ref _InsurancePlans, value); }
         }
 
-        private InsurancePlanModel _SelectPayorDetail;
-        public InsurancePlanModel SelectPayorDetail
-        {
-            get { return _SelectPayorDetail; }
-            set { Set(ref _SelectPayorDetail, value); 
-                if(SelectPayorDetail != null)
-                {
-                    //PolicySource = InsuranceCompanySource.Where(p => p.PolicyMasterUID == SelectPayorDetail.PolicyMasterUID && p.StatusFlag == "A").ToList();
-                    //SelectPolicy = PolicySource.First();
+        private InsurancePlanModel _SelectInsurancePlan;
 
-                    //AgreementSource = DataService.Billing.GetAgreementByInsuranceUID(SelectPayorDetail.InsuranceCompanyUID ?? 0);
-                    //SelectAgreement = AgreementSource.FirstOrDefault();
-                }
-            }
-        }
-
-        private List<InsurancePlanModel> _AgreementSource;
-        public List<InsurancePlanModel> AgreementSource
+        public InsurancePlanModel SelectInsurancePlan
         {
-            get { return _AgreementSource; }
-            set { Set(ref _AgreementSource, value); }
-        }
-
-        private InsurancePlanModel _SelectAgreement;
-        public InsurancePlanModel SelectAgreement
-        {
-            get { return _SelectAgreement; }
+            get { return _SelectInsurancePlan; }
             set
             {
-                Set(ref _SelectAgreement, value);
-                if (SelectAgreement != null)
+                Set(ref _SelectInsurancePlan, value);
+                if (_SelectInsurancePlan != null)
                 {
-                    PayorDetailSource = InsuranceCompanySource.Where(p => p.PayorAgreementUID == SelectAgreement.PayorAgreementUID && p.StatusFlag == "A").ToList();
-                    SelectPayorDetail = PayorDetailSource != null ? PayorDetailSource.First() : null;
-
-                    if(SelectAgreement.PolicyMasterUID != 0)
-                    {
-                        PolicySource = InsuranceCompanySource.Where(p => p.PolicyMasterUID == SelectAgreement.PolicyMasterUID && p.StatusFlag == "A").ToList();
-                        SelectPolicy = PolicySource != null ? PolicySource.First() : null;
-                    }
-
-                    FixedCopayAmount = SelectAgreement.FixedCopayAmount;
-                    ClaimPercentage = SelectAgreement.ClaimPercentage;
-                }
-                else
-                {
-                    PayorDetailSource = null;
-                    SelectPayorDetail = null;
+                    FixedCopayAmount = _SelectInsurancePlan.FixedCopayAmount;
+                    ClaimPercentage = _SelectInsurancePlan.ClaimPercentage;
                 }
             }
         }
 
-        private List<InsurancePlanModel> _PolicySource;
-        public List<InsurancePlanModel> PolicySource
-        {
-            get { return _PolicySource; }
-            set { Set(ref _PolicySource, value); }
-        }
 
-        private InsurancePlanModel _SelectPolicy;
-        public InsurancePlanModel SelectPolicy
-        {
-            get { return _SelectPolicy; }
-            set { Set(ref _SelectPolicy, value); }
-        }
 
         private DateTime? _PayorDetailActiveFrom;
         public DateTime? PayorDetailActiveFrom
@@ -249,7 +193,7 @@ namespace MediTech.ViewModels
             get { return _PayorDetailActiveTo; }
             set { Set(ref _PayorDetailActiveTo, value); }
         }
-       
+
         private List<LookupReferenceValueModel> _PayorType;
         public List<LookupReferenceValueModel> PayorType
         {
@@ -812,7 +756,7 @@ namespace MediTech.ViewModels
             get { return _PatientModificateLog; }
             set { Set(ref _PatientModificateLog, value); }
         }
-        
+
         #endregion
 
         #endregion
@@ -881,7 +825,7 @@ namespace MediTech.ViewModels
         {
             get { return _AddPayorDetailCommand ?? (_AddPayorDetailCommand = new RelayCommand(AddPayorDetail)); }
         }
-       
+
         private RelayCommand _EditPayorDetailCommand;
         public RelayCommand EditPayorDetailCommand
         {
@@ -900,17 +844,8 @@ namespace MediTech.ViewModels
             get { return _ClearPayorDetailCommand ?? (_ClearPayorDetailCommand = new RelayCommand(ClearPayorDetail)); }
         }
 
-        private RelayCommand _SavePayorDetailCommand;
-        public RelayCommand SavePayorDetailCommand
-        {
-            get { return _SavePayorDetailCommand ?? (_SavePayorDetailCommand = new RelayCommand(SavePayorDetail)); }
-        }
 
-        private RelayCommand _CancelPayorDetailCommand;
-        public RelayCommand CancelPayorDetailCommand
-        {
-            get { return _CancelPayorDetailCommand ?? (_CancelPayorDetailCommand = new RelayCommand(CancelPayorDetail)); }
-        }
+
 
         #endregion
 
@@ -1021,7 +956,7 @@ namespace MediTech.ViewModels
             try
             {
                 PatientInformationModel patientInfo = GeneratePatientID();
-                if(patientInfo != null)
+                if (patientInfo != null)
                 {
                     RegisterPatient register = new RegisterPatient();
                     ChangeViewPermission(register);
@@ -1074,7 +1009,7 @@ namespace MediTech.ViewModels
                 }
                 #endregion
 
-                if(String.IsNullOrEmpty(patientInfo.PatientID))
+                if (String.IsNullOrEmpty(patientInfo.PatientID))
                 {
                     SaveSuccessDialog("HN : " + resultPatient.PatientID);
                 }
@@ -1194,6 +1129,18 @@ namespace MediTech.ViewModels
             CommentDoctor = string.Empty;
             IsVIP = false;
 
+            SelectInsuranceName = null;
+            SelectInsurancePlan = null;
+            EligibleAmount = null;
+            ClaimPercentage = null;
+            FixedCopayAmount = null;
+            Comment = null;
+            PayorDetailActiveFrom = DateTime.Now;
+            PayorDetailActiveTo = null;
+            PatientInsuranceDetail = null;
+            PatientModificateLog = null;
+
+            SelectTabIndex = 0;
         }
 
         public void AssingModel(PatientInformationModel patientData)
@@ -1201,6 +1148,9 @@ namespace MediTech.ViewModels
             SelectTabIndex = 0;
             patientModel = patientData;
             AssingModelToProperties();
+
+            var PatientInsurance = DataService.PatientIdentity.GetPatientInsuranceDetail(patientModel.PatientUID);
+            PatientInsuranceDetail = new ObservableCollection<PatientInsuranceDetailModel>(PatientInsurance);
         }
         public void AssingModelToProperties()
         {
@@ -1391,6 +1341,15 @@ namespace MediTech.ViewModels
             }
 
 
+            var dataPayor = AssignPayorToModel();
+            if (patientInsuranceDetailDelete != null)
+            {
+                dataPayor.AddRange(patientInsuranceDetailDelete);
+            }
+            if (dataPayor != null && dataPayor.Count > 0)
+            {
+                patientModel.PatientInsuranceDetails = dataPayor;
+            }
 
             return patientModel;
         }
@@ -1439,37 +1398,42 @@ namespace MediTech.ViewModels
 
         private void AddPayorDetail()
         {
-            if(SelectInsuranceName == null)
+            if (SelectInsuranceName == null || SelectInsuranceName.InsuranceCompanyUID == 0)
             {
-                WarningDialog("กรุณาเลือก Insurance Company");
+                WarningDialog("กรุณาเลือก Payor");
                 return;
             }
-
-            if (SelectAgreement == null)
+            if (SelectInsurancePlan == null || SelectInsurancePlan.PayorAgreementUID == 0)
             {
                 WarningDialog("กรุณาเลือก Agreement");
                 return;
             }
 
-            if (SelectPayorDetail == null)
+            if (ClaimPercentage != null && ClaimPercentage > 100)
             {
-                WarningDialog("กรุณาเลือก Payor");
+                WarningDialog("ClaimPercentage ไม่ถูกต้อง");
                 return;
             }
-
-            bool isDuplicate = CheckDuplicate(SelectInsuranceName.InsuranceCompanyUID, SelectAgreement.PayorAgreementUID);
-
-            if (isDuplicate == true)
+            if (PatientInsuranceDetail != null && PatientInsuranceDetail.Count() > 0)
             {
-                WarningDialog(SelectInsuranceName.CompanyName + " Agreement "+ SelectAgreement.PayorAgreementName + " มีรายการแล้ว กรุณาตรวจสอบรายการที่ต้องการเพิ่มอีกครั้ง");
+                if (PatientInsuranceDetail.Where(i => i.PAYRTPUID == SelectPayorType.Key) != null && PatientInsuranceDetail.Where(i => i.PAYRTPUID == SelectPayorType.Key).Count() > 0)
+                {
+                    WarningDialog("Rank ซ้ำ กรุณาตรวจสอบ");
+                    return;
+                }
+            }
+
+            if (CheckDataPresentInList(new PatientInsuranceDetailModel { PayorAgreementUID = SelectInsurancePlan.PayorAgreementUID, PayorDetailUID = SelectInsurancePlan.PayorDetailUID }))
+            {
+                WarningDialog("Payor ซ้ำ กรุณาตรวจสอบ");
                 return;
             }
 
             AssignSelectToPayorGrid();
 
-            if(patientInsuranceDetail != null)
+            if (patientInsuranceDetail != null)
             {
-              
+
                 PatientInsuranceDetail.Add(patientInsuranceDetail);
             }
 
@@ -1478,12 +1442,47 @@ namespace MediTech.ViewModels
 
         private void EditPayorDetail()
         {
-            if(SelectPatientInsuranceDetail != null)
+            if (SelectPatientInsuranceDetail != null)
             {
-                if (SelectInsuranceName == null)
+                if (SelectInsuranceName == null || SelectInsuranceName.InsuranceCompanyUID == 0)
                 {
-                    WarningDialog("กรุณาเลือก Insurance Company");
+                    WarningDialog("กรุณาเลือก Payor");
                     return;
+                }
+                if (SelectInsurancePlan == null || SelectInsurancePlan.PayorAgreementUID == 0)
+                {
+                    WarningDialog("กรุณาเลือก Agreement");
+                    return;
+                }
+
+                if (ClaimPercentage != null && ClaimPercentage > 100)
+                {
+                    WarningDialog("ClaimPercentage ไม่ถูกต้อง");
+                    return;
+                }
+                if (PatientInsuranceDetail != null && PatientInsuranceDetail.Count() > 0)
+                {
+                    if (PatientInsuranceDetail.Where(i => i.PAYRTPUID == SelectPayorType.Key && !i.Equals(SelectPatientInsuranceDetail)) != null
+                        && PatientInsuranceDetail.Where(i => i.PAYRTPUID == SelectPayorType.Key && !i.Equals(SelectPatientInsuranceDetail)).Count() > 0)
+                    {
+                        WarningDialog("Rank ซ้ำ กรุณาตรวจสอบ");
+                        return;
+                    }
+                }
+
+                if (PatientInsuranceDetail != null && PatientInsuranceDetail.Count > 0)
+                {
+                    foreach (PatientInsuranceDetailModel payor in PatientInsuranceDetail)
+                    {
+                        if (payor.PayorDetailUID == SelectInsurancePlan.PayorDetailUID
+                            && payor.PayorAgreementUID == SelectInsurancePlan.PayorAgreementUID
+                            && !payor.Equals(SelectPatientInsuranceDetail)
+                            )
+                        {
+                            WarningDialog("Payor ซ้ำ กรุณาตรวจสอบ");
+                            return;
+                        }
+                    }
                 }
                 //var index = PatientInsuranceDetail.IndexOf(SelectPatientInsuranceDetail);
                 var index = PatientInsuranceDetail.Where(p => p.PayorAgreementUID == SelectPatientInsuranceDetail.PayorAgreementUID && p.InsuranceCompanyUID == SelectPatientInsuranceDetail.InsuranceCompanyUID);
@@ -1492,18 +1491,18 @@ namespace MediTech.ViewModels
                 item.InsuranceCompanyUID = SelectInsuranceName.InsuranceCompanyUID;
 
                 item.EligibleAmount = EligibleAmount;
-                item.PayorAgreementName = SelectAgreement.PayorAgreementName;
-                item.PayorAgreementUID = SelectAgreement != null ? SelectAgreement.PayorAgreementUID : (int?)null;
-                item.PayorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.PayorDetailUID : (int?)null;
-                item.PayorName = SelectPayorDetail.PayorName;
-                item.PolicyMasterUID = SelectPolicy != null ? SelectPolicy.PolicyMasterUID : (int?)null;
-                item.PolicyName = SelectPolicy != null ? SelectPolicy.PolicyName : null;
+                item.PayorAgreementName = SelectInsurancePlan.PayorAgreementName;
+                item.PayorAgreementUID = SelectInsurancePlan != null ? SelectInsurancePlan.PayorAgreementUID : (int?)null;
+                item.PayorDetailUID = SelectInsurancePlan != null ? SelectInsurancePlan.PayorDetailUID : (int?)null;
+                item.PayorName = SelectInsurancePlan.PayorName;
+                item.PolicyMasterUID = SelectInsurancePlan != null ? SelectInsurancePlan.PolicyMasterUID : (int?)null;
+                item.PolicyName = SelectInsurancePlan != null ? SelectInsurancePlan.PolicyName : null;
 
                 item.FixedCopayAmount = FixedCopayAmount;
                 item.ClaimPercentage = ClaimPercentage;
 
                 item.PAYRTPUID = SelectPayorType != null ? SelectPayorType.Key : (int?)null;
-                item.Type = SelectPayorType != null ? SelectPayorType.Display : null;
+                item.PayorType = SelectPayorType != null ? SelectPayorType.Display : null;
 
                 item.StartDttm = PayorDetailActiveFrom;
                 item.EndDttm = PayorDetailActiveTo;
@@ -1520,7 +1519,7 @@ namespace MediTech.ViewModels
         {
             if (SelectPatientInsuranceDetail != null)
             {
-                if(SelectPatientInsuranceDetail.PatientInsuranceDetailUID != 0)
+                if (SelectPatientInsuranceDetail.PatientInsuranceDetailUID != 0)
                 {
                     PatientInsuranceDetailModel item = new PatientInsuranceDetailModel();
                     item = SelectPatientInsuranceDetail;
@@ -1541,11 +1540,14 @@ namespace MediTech.ViewModels
 
         private void ClearPayorDetail()
         {
+            if (PatientInsuranceDetail != null && PatientInsuranceDetail.Count() > 0 && PayorType != null)
+                SelectPayorType = (from p in PayorType where (!(from q in PatientInsuranceDetail select q.PAYRTPUID).Contains(p.Key)) select p).FirstOrDefault();
+            else
+                SelectPayorType = PayorType.FirstOrDefault(p => p.ValueCode == "PRIMARY");
+
             SelectInsuranceName = null;
-            SelectPayorDetail = null;
-            SelectAgreement = null;
-            SelectPolicy = null;
-            SelectPayorType = null;
+            SelectInsurancePlan = null;
+
             EligibleAmount = null;
             ClaimPercentage = null;
             FixedCopayAmount = null;
@@ -1555,11 +1557,11 @@ namespace MediTech.ViewModels
         }
         private void AssignSelectToPropotiesPayor()
         {
-            
+
             if (SelectPatientInsuranceDetail != null)
             {
                 SelectInsuranceName = InsuranceNameSource.FirstOrDefault(p => p.InsuranceCompanyUID == SelectPatientInsuranceDetail.InsuranceCompanyUID);
-                SelectAgreement = AgreementSource.FirstOrDefault(p => p.PayorAgreementUID == SelectPatientInsuranceDetail.PayorAgreementUID);
+                SelectInsurancePlan = InsurancePlans.FirstOrDefault(p => p.PayorAgreementUID == SelectPatientInsuranceDetail.PayorAgreementUID);
                 SelectPayorType = PayorType.FirstOrDefault(p => p.Key == SelectPatientInsuranceDetail.PAYRTPUID);
                 FixedCopayAmount = SelectPatientInsuranceDetail.FixedCopayAmount;
                 ClaimPercentage = SelectPatientInsuranceDetail.ClaimPercentage;
@@ -1568,31 +1570,31 @@ namespace MediTech.ViewModels
                 PayorDetailActiveFrom = SelectPatientInsuranceDetail.StartDttm;
                 PayorDetailActiveTo = SelectPatientInsuranceDetail.EndDttm;
 
-               
+
             }
         }
         private void AssignSelectToPayorGrid()
         {
             patientInsuranceDetail = new PatientInsuranceDetailModel();
 
-            patientInsuranceDetail.PatientUID = patientModel.PatientUID;
+            //patientInsuranceDetail.PatientUID = patientModel.PatientUID;
 
             patientInsuranceDetail.InsuranceCompanyName = SelectInsuranceName.CompanyName;
             patientInsuranceDetail.InsuranceCompanyUID = SelectInsuranceName.InsuranceCompanyUID;
 
             patientInsuranceDetail.EligibleAmount = EligibleAmount;
-            patientInsuranceDetail.PayorAgreementName = SelectAgreement.PayorAgreementName;
-            patientInsuranceDetail.PayorAgreementUID = SelectAgreement != null ? SelectAgreement.PayorAgreementUID : (int?)null;
-            patientInsuranceDetail.PayorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.PayorDetailUID : (int?)null;
-            patientInsuranceDetail.PayorName =  SelectPayorDetail.PayorName ;
-            patientInsuranceDetail.PolicyMasterUID = SelectPolicy != null ? SelectPolicy.PolicyMasterUID : (int?)null;
-            patientInsuranceDetail.PolicyName = SelectPolicy != null ? SelectPolicy.PolicyName : null ;
+            patientInsuranceDetail.PayorAgreementName = SelectInsurancePlan.PayorAgreementName;
+            patientInsuranceDetail.PayorAgreementUID = SelectInsurancePlan != null ? SelectInsurancePlan.PayorAgreementUID : (int?)null;
+            patientInsuranceDetail.PayorDetailUID = SelectInsurancePlan != null ? SelectInsurancePlan.PayorDetailUID : (int?)null;
+            patientInsuranceDetail.PayorName = SelectInsurancePlan.PayorName;
+            patientInsuranceDetail.PolicyMasterUID = SelectInsurancePlan != null ? SelectInsurancePlan.PolicyMasterUID : (int?)null;
+            patientInsuranceDetail.PolicyName = SelectInsurancePlan != null ? SelectInsurancePlan.PolicyName : null;
 
             patientInsuranceDetail.FixedCopayAmount = FixedCopayAmount;
             patientInsuranceDetail.ClaimPercentage = ClaimPercentage;
 
-            patientInsuranceDetail.PAYRTPUID = SelectPayorType != null ? SelectPayorType.Key : (int?)null ;
-            patientInsuranceDetail.Type = SelectPayorType != null ? SelectPayorType.Display : null;
+            patientInsuranceDetail.PAYRTPUID = SelectPayorType != null ? SelectPayorType.Key : (int?)null;
+            patientInsuranceDetail.PayorType = SelectPayorType != null ? SelectPayorType.Display : null;
 
             patientInsuranceDetail.StartDttm = PayorDetailActiveFrom;
             patientInsuranceDetail.EndDttm = PayorDetailActiveTo;
@@ -1607,7 +1609,7 @@ namespace MediTech.ViewModels
 
             if (PatientInsuranceDetail != null)
             {
-                foreach(var item in PatientInsuranceDetail)
+                foreach (var item in PatientInsuranceDetail)
                 {
                     //PatientInsuranceDetailModel data = new PatientInsuranceDetailModel();
                     //data = item;
@@ -1619,40 +1621,27 @@ namespace MediTech.ViewModels
             return returnData;
         }
 
-        private void SavePayorDetail()
+
+        private bool CheckDataPresentInList(PatientInsuranceDetailModel inputInsurnace)
         {
-            if(PatientInsuranceDetail.Count > 0 || patientInsuranceDetailDelete.Count > 0)
+            bool ret = false;
+            if (PatientInsuranceDetail != null && PatientInsuranceDetail.Count > 0)
             {
-                var data = AssignPayorToModel();
-                if (patientInsuranceDetailDelete != null)
+                foreach (PatientInsuranceDetailModel payor in PatientInsuranceDetail)
                 {
-                    data.AddRange(patientInsuranceDetailDelete);
+                    if (payor.PayorDetailUID == inputInsurnace.PayorDetailUID
+                        && payor.PayorAgreementUID == inputInsurnace.PayorAgreementUID)
+                    {
+                        ret = true;
+                        break;
+                    }
                 }
-
-                DataService.PatientIdentity.ManagePatientInsurance(data, AppUtil.Current.UserID);
-                SaveSuccessDialog();
-                ClearPayorDetail();
             }
-           
-        }
-
-        private void CancelPayorDetail()
-        {
-
-        }
-
-        private bool CheckDuplicate(int insuranceCompanyUID, int agreementUID)
-        {
-            bool Duplicate;
-            var data = PatientInsuranceDetail.Where(p => p.InsuranceCompanyUID == insuranceCompanyUID && p.PayorAgreementUID == agreementUID).FirstOrDefault();
-            
-            Duplicate = data != null ? true : false;
-            return Duplicate;
+            return ret;
         }
         #endregion
 
         #endregion
-
 
     }
 }

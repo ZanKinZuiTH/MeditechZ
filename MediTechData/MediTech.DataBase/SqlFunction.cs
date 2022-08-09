@@ -2675,7 +2675,7 @@ namespace MediTech.DataBase
 
         }
 
-        public static bool pInsertSplitItem(long allocatedPatBillableITemUID, double amount, double discount, double netAmount, int userUID, string isSplit, int? groupUID, int? subGroupUID, long currentVisitPayorUID, string canKeepDiscount, double discountDecimal
+        public static bool pInsertSplitItem(long? allocatedPatBillableITemUID, double amount, double discount, double netAmount, int userUID, string isSplit, int? groupUID, int? subGroupUID, long currentVisitPayorUID, string canKeepDiscount, double discountDecimal
             , double amountDecimal, DateTime? fromDate, DateTime? toDate)
         {
             bool flag = false;
@@ -2690,14 +2690,14 @@ namespace MediTech.DataBase
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "pInsertSplitItem";
-                cmd.Parameters.AddWithValue("@P_AllocatedPatBillableItemUID", allocatedPatBillableITemUID);
+                cmd.Parameters.AddWithValue("@P_AllocatedPatBillableItemUID", allocatedPatBillableITemUID ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@P_Amount", amount);
                 cmd.Parameters.AddWithValue("@P_Discount", discount);
                 cmd.Parameters.AddWithValue("@P_NetAmount", netAmount);
                 cmd.Parameters.AddWithValue("@P_User", userUID);
                 cmd.Parameters.AddWithValue("@P_IsSplit", isSplit);
-                cmd.Parameters.AddWithValue("@P_GroupUID", groupUID);
-                cmd.Parameters.AddWithValue("@P_SubGroupUID", subGroupUID);
+                cmd.Parameters.AddWithValue("@P_GroupUID", groupUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_SubGroupUID", subGroupUID ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@P_CurrentPatientVisitPayorUID", currentVisitPayorUID);
                 cmd.Parameters.AddWithValue("@P_CanKeepDiscount", canKeepDiscount);
                 cmd.Parameters.AddWithValue("@P_DiscountDecimal", discountDecimal);
@@ -2757,7 +2757,7 @@ namespace MediTech.DataBase
             return flag;
         }
 
-        public static bool pAllocatePatientBillableItem(long patientUID, long patientVisitUID, int ownerOrganisationUID, string isAutoAllocate, int? groupUID, int? subGroupUID
+        public static bool pAllocatePatientBillableItem(long patientUID, long patientVisitUID, string isAutoAllocate, int? groupUID, int? subGroupUID
             , long? patientVisitPayorUID, int? payorAgreementUID, int userUID, long? allocatedVisitPayorUID, long? patientBillableItemUID, string canKeepDiscount, DateTime? startDate,
             DateTime? endDate
             )
@@ -2777,7 +2777,6 @@ namespace MediTech.DataBase
 
                 cmd.Parameters.AddWithValue("@P_PatientUID", patientUID);
                 cmd.Parameters.AddWithValue("@P_PatientVisitUID", patientVisitUID);
-                cmd.Parameters.AddWithValue("@P_OwnerOrganisationUID", ownerOrganisationUID);
                 cmd.Parameters.AddWithValue("@P_IsAutoAllocate", isAutoAllocate);
                 cmd.Parameters.AddWithValue("@P_GroupUID", groupUID ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@P_SubGroupUID", subGroupUID ?? (object)DBNull.Value);

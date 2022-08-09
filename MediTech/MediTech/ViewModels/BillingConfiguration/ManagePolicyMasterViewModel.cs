@@ -11,6 +11,85 @@ namespace MediTech.ViewModels
 {
     public class ManagePolicyMasterViewModel : MediTechViewModelBase
     {
+        #region Variable
+        int? INCLU, EXCLU;
+
+        private List<BillableItemModel> _deleteBillableItem;
+
+        public List<BillableItemModel> deleteBillableItem
+        {
+            get { return _deleteBillableItem ?? (_deleteBillableItem = new List<BillableItemModel>()); }
+            set { _deleteBillableItem = value; }
+        }
+
+        private List<BillingGroupModel> _deletebillingGroup;
+
+        public List<BillingGroupModel> deletebillingGroup
+        {
+            get { return _deletebillingGroup ?? (_deletebillingGroup = new List<BillingGroupModel>()); }
+            set { _deletebillingGroup = value; }
+        }
+
+        private List<BillingSubGroupModel> _deletebillingSubGroup;
+
+        public List<BillingSubGroupModel> deletebillingSubGroup
+        {
+            get { return _deletebillingSubGroup ?? (_deletebillingSubGroup = new List<BillingSubGroupModel>()); }
+            set { _deletebillingSubGroup = value; }
+        }
+
+        private List<OrderCategoryModel> _deleteOrderSetGroup;
+
+        public List<OrderCategoryModel> deleteOrderSetGroup
+        {
+            get { return _deleteOrderSetGroup ?? (_deleteOrderSetGroup = new List<OrderCategoryModel>()); }
+            set { _deleteOrderSetGroup = value; }
+        }
+
+        private List<OrderSubCategoryModel> _deleteOrderSetSubGroup;
+
+        public List<OrderSubCategoryModel> deleteOrderSetSubGroup
+        {
+            get { return _deleteOrderSetSubGroup ?? (_deleteOrderSetSubGroup = new List<OrderSubCategoryModel>()); }
+            set { _deleteOrderSetSubGroup = value; }
+        }
+
+        private List<OrderSetModel> _deleteOrderSetItem;
+
+        public List<OrderSetModel> deleteOrderSetItem
+        {
+            get { return _deleteOrderSetItem ?? (_deleteOrderSetItem = new List<OrderSetModel>()); }
+            set { _deleteOrderSetItem = value; }
+        }
+
+
+        private List<OrderCategoryModel> _deletePackageGroup;
+
+        public List<OrderCategoryModel> deletePackageGroup
+        {
+            get { return _deletePackageGroup ?? (_deletePackageGroup = new List<OrderCategoryModel>()); }
+            set { _deletePackageGroup = value; }
+        }
+
+
+        private List<OrderSubCategoryModel> _deletePackageSubGroup;
+
+        public List<OrderSubCategoryModel> deletePackageSubGroup
+        {
+            get { return _deletePackageSubGroup ?? (_deletePackageSubGroup = new List<OrderSubCategoryModel>()); }
+            set { _deletePackageSubGroup = value; }
+        }
+
+        private List<BillPackageModel> _deletePackage;
+
+        public List<BillPackageModel> deletePackage
+        {
+            get { return _deletePackage ?? (_deletePackage = new List<BillPackageModel>()); }
+            set { _deletePackage = value; }
+        }
+
+        #endregion
+
         #region Properties
 
         private string _Name;
@@ -620,21 +699,17 @@ namespace MediTech.ViewModels
         List<OrderSubCategoryModel> packageSubGroup = new List<OrderSubCategoryModel>();
         List<BillPackageModel> package = new List<BillPackageModel>();
 
-        List<BillingGroupModel> deletebillingGroup ;
-        List<BillingSubGroupModel> deletebillingSubGroup;
-        List<BillableItemModel> deleteBillableItem;
 
-        List<OrderCategoryModel> deleteOrderSetGroup;
-        List<OrderSubCategoryModel> deleteOrderSetSubGroup;
-        List<OrderSetModel> deleteOrderSetItem;
-
-        List<OrderCategoryModel> deletePackageGroup;
-        List<OrderSubCategoryModel> deletePackageSubGroup;
-        List<BillPackageModel> deletePackage;
 
         public ManagePolicyMasterViewModel()
         {
             IsOrder = true;
+            var agrementType = DataService.Technical.GetReferenceValueMany("AGTYP");
+            if (agrementType != null)
+            {
+                INCLU = agrementType.FirstOrDefault(p => p.ValueCode == "INCLU").Key;
+                EXCLU = agrementType.FirstOrDefault(p => p.ValueCode == "EXCLU").Key;
+            }
             OrderBillGroup = DataService.Billing.GetBillingGroup();
             OrderSetCategory = DataService.MasterData.GetOrderCategory();
             PackageCategory = DataService.MasterData.GetOrderCategory();
@@ -709,33 +784,33 @@ namespace MediTech.ViewModels
             {
                 policyMasterModel = new PolicyMasterModel();
 
-                policyMasterModel.OrderGroup = OrderBillGroupSource != null ? new List<BillingGroupModel>(OrderBillGroupSource) : null;
-                policyMasterModel.OrderSubGroup = billingSubGroup.Count != 0 ? billingSubGroup : null;
-                policyMasterModel.OrderItem = billableItem.Count != 0 ? billableItem : null;
+                policyMasterModel.OrderGroup = OrderBillGroupSource != null ? new List<BillingGroupModel>(OrderBillGroupSource) : new List<BillingGroupModel>();
+                policyMasterModel.OrderSubGroup = billingSubGroup.Count != 0 ? billingSubGroup : new List<BillingSubGroupModel>();
+                policyMasterModel.OrderItem = billableItem.Count != 0 ? billableItem : new List<BillableItemModel>();
 
 
-                policyMasterModel.OrderSetGroup = OrderSetCategorySource != null ? new List<OrderCategoryModel>(OrderSetCategorySource) : null;
-                policyMasterModel.OrderSetSubGroup = orderSetSubGroup.Count != 0 ? orderSetSubGroup : null;
-                policyMasterModel.OrderSetItem = orderSetItem.Count != 0 ? orderSetItem : null;
+                policyMasterModel.OrderSetGroup = OrderSetCategorySource != null ? new List<OrderCategoryModel>(OrderSetCategorySource) : new List<OrderCategoryModel>();
+                policyMasterModel.OrderSetSubGroup = orderSetSubGroup.Count != 0 ? orderSetSubGroup : new List<OrderSubCategoryModel>();
+                policyMasterModel.OrderSetItem = orderSetItem.Count != 0 ? orderSetItem : new List<OrderSetModel>();
 
-                policyMasterModel.PackageGroup = PackageCategorySource != null ? new List<OrderCategoryModel>(PackageCategorySource) : null;
-                policyMasterModel.PackageSubGroup = packageSubGroup.Count != 0 ? packageSubGroup : null;
-                policyMasterModel.Package = package.Count != 0 ? package : null;
+                policyMasterModel.PackageGroup = PackageCategorySource != null ? new List<OrderCategoryModel>(PackageCategorySource) : new List<OrderCategoryModel>();
+                policyMasterModel.PackageSubGroup = packageSubGroup.Count != 0 ? packageSubGroup : new List<OrderSubCategoryModel>();
+                policyMasterModel.Package = package.Count != 0 ? package : new List<BillPackageModel>();
             }
             else
             {
-                policyMasterModel.OrderGroup = OrderBillGroupSource.Count != 0 ? new List<BillingGroupModel>(OrderBillGroupSource) : null;
-                policyMasterModel.OrderSubGroup = policyMasterModel.OrderSubGroup != null ? policyMasterModel.OrderSubGroup : null;
-                policyMasterModel.OrderItem = policyMasterModel.OrderItem != null ? policyMasterModel.OrderItem : null;
+                policyMasterModel.OrderGroup = OrderBillGroupSource.Count != 0 ? new List<BillingGroupModel>(OrderBillGroupSource) : new List<BillingGroupModel>();
+                policyMasterModel.OrderSubGroup = policyMasterModel.OrderSubGroup != null ? policyMasterModel.OrderSubGroup : new List<BillingSubGroupModel>();
+                policyMasterModel.OrderItem = policyMasterModel.OrderItem != null ? policyMasterModel.OrderItem : new List<BillableItemModel>();
 
 
-                policyMasterModel.OrderSetGroup = OrderSetCategorySource.Count != 0 ? new List<OrderCategoryModel>(OrderSetCategorySource) : null;
-                policyMasterModel.OrderSetSubGroup = policyMasterModel.OrderSetSubGroup != null ? policyMasterModel.OrderSetSubGroup : null;
-                policyMasterModel.OrderSetItem = policyMasterModel.OrderSetItem != null ? policyMasterModel.OrderSetItem : null;
+                policyMasterModel.OrderSetGroup = OrderSetCategorySource.Count != 0 ? new List<OrderCategoryModel>(OrderSetCategorySource) : new List<OrderCategoryModel>();
+                policyMasterModel.OrderSetSubGroup = policyMasterModel.OrderSetSubGroup != null ? policyMasterModel.OrderSetSubGroup : new List<OrderSubCategoryModel>();
+                policyMasterModel.OrderSetItem = policyMasterModel.OrderSetItem != null ? policyMasterModel.OrderSetItem : new List<OrderSetModel>();
 
-                policyMasterModel.PackageGroup = PackageCategorySource.Count != 0 ? new List<OrderCategoryModel>(PackageCategorySource) : null;
-                policyMasterModel.PackageSubGroup = policyMasterModel.PackageSubGroup != null ? policyMasterModel.PackageSubGroup : null;
-                policyMasterModel.Package = policyMasterModel.Package != null ? policyMasterModel.Package : null;
+                policyMasterModel.PackageGroup = PackageCategorySource.Count != 0 ? new List<OrderCategoryModel>(PackageCategorySource) : new List<OrderCategoryModel>();
+                policyMasterModel.PackageSubGroup = policyMasterModel.PackageSubGroup != null ? policyMasterModel.PackageSubGroup : new List<OrderSubCategoryModel>();
+                policyMasterModel.Package = policyMasterModel.Package != null ? policyMasterModel.Package : new List<BillPackageModel>();
 
             }
 
@@ -743,7 +818,7 @@ namespace MediTech.ViewModels
             policyMasterModel.PolicyName = Name;
             policyMasterModel.Description = Description;
             policyMasterModel.OwnweOwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
-            policyMasterModel.AGTYPUID = IsExclude == true ? DataService.Technical.GetReferenceValueByCode("AGTYP", "EXCLU").Key : null;
+            policyMasterModel.AGTYPUID = IsExclude == true ? EXCLU : INCLU;
 
         }
 
@@ -752,7 +827,7 @@ namespace MediTech.ViewModels
             Code = model.Code;
             Name = model.PolicyName;
             Description = model.Description;
-            IsExclude = (model.AGTYPUID != 0 && model.Code != null)  ? true : false;
+            IsExclude = (model.AGTYPUID == EXCLU)  ? true : false;
             
             var order = DataService.Billing.GetPolicyOrder(model.PolicyMasterUID);
             
@@ -1022,12 +1097,12 @@ namespace MediTech.ViewModels
                     if (SelectOrderBillGroupSource != null)
                     {
                         var d = SelectOrderBillGroupSource;
-                        var value = OrderBillSubGroupSource.Where(p => p.BillingGroupUID == SelectOrderBillGroupSource.BillingGroupUID);
+                        var value = OrderBillSubGroupSource.Where(p => p.BillingGroupUID == SelectOrderBillGroupSource.BillingGroupUID).ToList();
                         if (value != null)
                         {
                             foreach (var item in value)
                             {
-                                var valueDetail = OrderItemSource.Where(p => p.BillingSubGroupUID == item.BillingSubGroupUID);
+                                var valueDetail = OrderItemSource.Where(p => p.BillingSubGroupUID == item.BillingSubGroupUID).ToList();
                                 if (valueDetail != null)
                                 {
                                     foreach (var itemDetail in valueDetail)
@@ -1037,8 +1112,6 @@ namespace MediTech.ViewModels
                                             if (itemDetail.ContactAgreementAccountItemUID != null)
                                             {
                                                 itemDetail.StatusFlag = "D";
-                                                if (deleteBillableItem == null)
-                                                    deleteBillableItem = new List<BillableItemModel>();
 
                                                 deleteBillableItem.Add(itemDetail);
                                             }
@@ -1053,8 +1126,7 @@ namespace MediTech.ViewModels
                                     if (item.ContactAgreementAccountDetailUID != null)
                                     {
                                         item.StatusFlag = "D";
-                                        if (deletebillingSubGroup == null)
-                                            deletebillingSubGroup = new List<BillingSubGroupModel>();
+
 
                                         deletebillingSubGroup.Add(item);
                                     }
@@ -1071,8 +1143,7 @@ namespace MediTech.ViewModels
                             if (d.ContactAgreementAccountUID != null)
                             {
                                 d.StatusFlag = "D";
-                                if (deletebillingGroup == null)
-                                    deletebillingGroup = new List<BillingGroupModel>();
+   
 
                                 deletebillingGroup.Add(d);
                             }
@@ -1084,7 +1155,7 @@ namespace MediTech.ViewModels
                     if (SelectOrderBillSubGroupSource != null)
                     {
                         var d = SelectOrderBillSubGroupSource;
-                        var value = OrderItemSource.Where(p => p.BillingSubGroupUID == SelectOrderBillSubGroupSource.BillingSubGroupUID);
+                        var value = OrderItemSource.Where(p => p.BillingSubGroupUID == SelectOrderBillSubGroupSource.BillingSubGroupUID).ToList();
                         if(value != null) 
                         {
                             foreach (var item in value)
@@ -1094,8 +1165,6 @@ namespace MediTech.ViewModels
                                     if (item.ContactAgreementAccountItemUID != null)
                                     {
                                         item.StatusFlag = "D";
-                                        if (deleteBillableItem == null)
-                                            deleteBillableItem = new List<BillableItemModel>();
 
                                         deleteBillableItem.Add(item);
                                     }
@@ -1112,9 +1181,6 @@ namespace MediTech.ViewModels
                             if (d.ContactAgreementAccountDetailUID != null)
                             {
                                 d.StatusFlag = "D";
-
-                                if (deletebillingSubGroup == null)
-                                    deletebillingSubGroup = new List<BillingSubGroupModel>();
                                 deletebillingSubGroup.Add(d);
                             }
                         }
@@ -1133,9 +1199,6 @@ namespace MediTech.ViewModels
                             {
                                 d.StatusFlag = "D";
 
-                                if (deletebillingSubGroup == null)
-                                    deletebillingSubGroup = new List<BillingSubGroupModel>();
-
                                 deleteBillableItem.Add(d);
                             }
                         }
@@ -1149,12 +1212,12 @@ namespace MediTech.ViewModels
                         if (SelectOrderSetCategorySource != null)
                         {
                         var d = SelectOrderSetCategorySource;
-                            var value = OrderSetSubCategorySource.Where(p => p.OrderCategoryUID == SelectOrderSetCategorySource.OrderCategoryUID);
+                            var value = OrderSetSubCategorySource.Where(p => p.OrderCategoryUID == SelectOrderSetCategorySource.OrderCategoryUID).ToList();
                             if (value != null)
                             {
                                 foreach (var item in value)
                                 {
-                                    var valueDetail = orderSetItem.Where(p => p.OrderSubCategoryUID == item.OrderSubCategoryUID);
+                                    var valueDetail = orderSetItem.Where(p => p.OrderSubCategoryUID == item.OrderSubCategoryUID).ToList();
                                     if (valueDetail != null)
                                     {
                                         foreach (var itemDetail in valueDetail)
@@ -1164,8 +1227,6 @@ namespace MediTech.ViewModels
                                                 if (itemDetail.ContactAgreementAccountItemUID != null)
                                                 {
                                                     itemDetail.StatusFlag = "D";
-                                                    if (deleteOrderSetItem == null)
-                                                        deleteOrderSetItem = new List<OrderSetModel>();
 
                                                     deleteOrderSetItem.Add(itemDetail);
                                                 }
@@ -1180,8 +1241,6 @@ namespace MediTech.ViewModels
                                         if (item.ContactAgreementAccountDetailUID != null)
                                         {
                                             item.StatusFlag = "D";
-                                            if (deleteOrderSetSubGroup == null)
-                                                deleteOrderSetSubGroup = new List<OrderSubCategoryModel>();
 
                                             deleteOrderSetSubGroup.Add(item);
                                         }
@@ -1198,8 +1257,6 @@ namespace MediTech.ViewModels
                                 if (d.ContactAgreementAccountUID != null)
                                 {
                                     d.StatusFlag = "D";
-                                    if (deleteOrderSetGroup == null)
-                                        deleteOrderSetGroup = new List<OrderCategoryModel>();
 
                                     deleteOrderSetGroup.Add(d);
                                 }
@@ -1212,7 +1269,7 @@ namespace MediTech.ViewModels
                         {
                         var d = SelectOrderSetSubCategorySource;
 
-                        var valueDetail = orderSetItem.Where(p => p.OrderSubCategoryUID == SelectOrderSetSubCategorySource.OrderSubCategoryUID);
+                        var valueDetail = orderSetItem.Where(p => p.OrderSubCategoryUID == SelectOrderSetSubCategorySource.OrderSubCategoryUID).ToList();
                         if (valueDetail != null)
                         {
                             foreach (var itemDetail in valueDetail)
@@ -1222,8 +1279,6 @@ namespace MediTech.ViewModels
                                     if (itemDetail.ContactAgreementAccountItemUID != null)
                                     {
                                         itemDetail.StatusFlag = "D";
-                                        if (deleteOrderSetItem == null)
-                                            deleteOrderSetItem = new List<OrderSetModel>();
 
                                         deleteOrderSetItem.Add(itemDetail);
                                     }
@@ -1241,8 +1296,6 @@ namespace MediTech.ViewModels
                                 if (d.ContactAgreementAccountDetailUID != null)
                                 {
                                     d.StatusFlag = "D";
-                                    if (deleteOrderSetSubGroup == null)
-                                        deleteOrderSetSubGroup = new List<OrderSubCategoryModel>();
 
                                     deleteOrderSetSubGroup.Add(d);
                                 }
@@ -1262,8 +1315,6 @@ namespace MediTech.ViewModels
                                 if (d.ContactAgreementAccountItemUID != null)
                                 {
                                     d.StatusFlag = "D";
-                                    if (deleteOrderSetItem == null)
-                                        deleteOrderSetItem = new List<OrderSetModel>();
 
                                     deleteOrderSetItem.Add(d);
                                 }
@@ -1279,12 +1330,12 @@ namespace MediTech.ViewModels
                         if (SelectPackageCategorySource != null)
                         {
                             var d = SelectPackageCategorySource;
-                            var value = packageSubGroup.Where(p => p.OrderCategoryUID == SelectPackageCategorySource.OrderCategoryUID);
+                            var value = packageSubGroup.Where(p => p.OrderCategoryUID == SelectPackageCategorySource.OrderCategoryUID).ToList();
                             if (value != null)
                             {
                                 foreach (var item in value)
                                 {
-                                    var valueDetail = PackageSource.Where(p => p.OrderSubCategoryUID == SelectPackageSubCategorySource.OrderSubCategoryUID);
+                                    var valueDetail = PackageSource.Where(p => p.OrderSubCategoryUID == SelectPackageSubCategorySource.OrderSubCategoryUID).ToList();
                                     if (valueDetail != null)
                                     {
                                         foreach (var itemDetail in valueDetail)
@@ -1294,8 +1345,6 @@ namespace MediTech.ViewModels
                                                 if (itemDetail.ContactAgreementAccountItemUID != null)
                                                 {
                                                     itemDetail.StatusFlag = "D";
-                                                    if (deletePackage == null)
-                                                        deletePackage = new List<BillPackageModel>();
 
                                                     deletePackage.Add(itemDetail);
                                                 }
@@ -1310,8 +1359,6 @@ namespace MediTech.ViewModels
                                         if (item.ContactAgreementAccountDetailUID != null)
                                         {
                                             item.StatusFlag = "D";
-                                            if (deleteOrderSetSubGroup == null)
-                                                deleteOrderSetSubGroup = new List<OrderSubCategoryModel>();
 
                                             deleteOrderSetSubGroup.Add(item);
                                         }
@@ -1328,9 +1375,6 @@ namespace MediTech.ViewModels
                                 {
                                     d.StatusFlag = "D";
 
-                                    if (deletePackageGroup == null)
-                                        deletePackageGroup = new List<OrderCategoryModel>();
-
                                     deletePackageGroup.Add(d);
                                 }
                             }
@@ -1341,7 +1385,7 @@ namespace MediTech.ViewModels
                         if (SelectPackageSubCategorySource != null)
                         {
                             var d = SelectPackageSubCategorySource;
-                            var valueDetail = PackageSource.Where(p => p.OrderSubCategoryUID == SelectPackageSubCategorySource.OrderSubCategoryUID);
+                            var valueDetail = PackageSource.Where(p => p.OrderSubCategoryUID == SelectPackageSubCategorySource.OrderSubCategoryUID).ToList();
                             if (valueDetail != null)
                             {
                                 foreach (var itemDetail in valueDetail)
@@ -1351,8 +1395,6 @@ namespace MediTech.ViewModels
                                         if (itemDetail.ContactAgreementAccountItemUID != null)
                                         {
                                             itemDetail.StatusFlag = "D";
-                                            if (deletePackage == null)
-                                            deletePackage = new List<BillPackageModel>();
 
                                             deletePackage.Add(itemDetail);
                                         }
@@ -1369,9 +1411,6 @@ namespace MediTech.ViewModels
                                 if (d.ContactAgreementAccountDetailUID != null)
                                 {
                                     d.StatusFlag = "D";
-
-                                    if (deletePackageSubGroup == null)
-                                        deletePackageSubGroup = new List<OrderSubCategoryModel>();
 
                                     deletePackageSubGroup.Add(d);
                                 }
@@ -1390,9 +1429,6 @@ namespace MediTech.ViewModels
                                 if (d.ContactAgreementAccountItemUID != null)
                                 {
                                     d.StatusFlag = "D";
-
-                                    if (deletePackage == null)
-                                        deletePackage = new List<BillPackageModel>();
 
                                     deletePackage.Add(d);
                                 }

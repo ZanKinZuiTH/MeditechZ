@@ -1313,8 +1313,8 @@ namespace MediTechWebApi.Controllers
         {
             try
             {
-                SqlDirectStore.pAllocatePatientBillableItem(allocateModel.patientUID, allocateModel.patientVisitUID, allocateModel.ownerOrganisationUID, allocateModel.isAutoAllocate, allocateModel.groupUID, allocateModel.subGroupUID, allocateModel.patientVisitPayorUID
-                    , allocateModel.payorAgreementUID, allocateModel.userUID, allocateModel.allocatedVisitPayorUID, allocateModel.patientBillableItemUID, allocateModel.canKeepDiscount, allocateModel.startDate, allocateModel.endDate);
+                SqlDirectStore.pAllocatePatientBillableItem(allocateModel.PatientUID, allocateModel.PatientVisitUID, allocateModel.IsAutoAllocate, allocateModel.GroupUID, allocateModel.SubGroupUID, allocateModel.PatientVisitPayorUID
+                    , allocateModel.PayorAgreementUID, allocateModel.UserUID, allocateModel.AllocatedVisitPayorUID, allocateModel.PatientBillableItemUID, allocateModel.CanKeepDiscount, allocateModel.StartDate, allocateModel.EndDate);
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception ex)
@@ -3142,6 +3142,7 @@ namespace MediTechWebApi.Controllers
                                                            BillgGroupUID = g.BillingGroupUID,
                                                            ServiceUID = p.ServiceUID,
                                                            ServiceName = g.Description,
+                                                           PayorAgreementUID = p.PayorAgreementUID,
                                                            PBLCTUID = p.PBLCTUID ?? 0,
                                                            ALLDIUID = p.ALLDIUID ?? 0,
                                                            Discount = p.Discount ?? 0,
@@ -3515,7 +3516,7 @@ namespace MediTechWebApi.Controllers
                     policy.PolicyName = policyMaster.PolicyName;
                     policy.Code = policyMaster.Code;
                     policy.AGTYPUID = policyMaster.AGTYPUID;
-                    policy.Description = policyMaster.Description;
+                    policy.Description = policyMaster.Description ?? "";
                     policy.MUser = userID;
                     policy.MWhen = now;
                     policy.StatusFlag = "A";

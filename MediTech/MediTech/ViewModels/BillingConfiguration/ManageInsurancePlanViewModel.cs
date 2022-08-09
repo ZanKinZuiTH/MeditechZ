@@ -81,7 +81,8 @@ namespace MediTech.ViewModels
                 {
                     if(SelectAgreement.PolicyMasterUID != null)
                     {
-                        PolicyName = DataService.Billing.GetPolicyMasterByUID(SelectAgreement.PolicyMasterUID ?? 0).PolicyName;
+                        var policyMaster = DataService.Billing.GetPolicyMasterByUID(SelectAgreement.PolicyMasterUID ?? 0);
+                        PolicyName = (policyMaster != null && !String.IsNullOrEmpty(policyMaster.PolicyName)) ? policyMaster.PolicyName : "";
                     }
                     else
                     {
@@ -138,6 +139,11 @@ namespace MediTech.ViewModels
             if(SelectAgreement == null)
             {
                 WarningDialog("กรุณาเลือก Agreement");
+                return;
+            }
+            if (string.IsNullOrEmpty(PolicyName))
+            {
+                WarningDialog("ยังไม่ได้ทำการผูก Policy กับ Agreement กรุณาตรวจสอบ");
                 return;
             }
 
