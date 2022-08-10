@@ -580,9 +580,9 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchPatient")]
         [HttpGet]
-        public List<PatientInformationModel> SearchPatient(string patientID, string firstName, string middleName, string lastName, string nickName, DateTime? birthDate, int? SEXXXUID, string idCard, DateTime? lastVisitDate, string mobilePhone)
+        public List<PatientInformationModel> SearchPatient(string patientID, string firstName, string middleName, string lastName, string nickName, DateTime? birthDate, int? SEXXXUID, string idCard, DateTime? lastVisitDate, string mobilePhone, string idPassport)
         {
-            DataTable dataTable = SqlDirectStore.pSearchPatient(patientID, firstName, middleName, lastName, nickName, birthDate, SEXXXUID, idCard, lastVisitDate, mobilePhone);
+            DataTable dataTable = SqlDirectStore.pSearchPatient(patientID, firstName, middleName, lastName, nickName, birthDate, SEXXXUID, idCard, lastVisitDate, mobilePhone, idPassport);
 
             List<PatientInformationModel> data = dataTable.ToList<PatientInformationModel>();
 
@@ -962,9 +962,9 @@ namespace MediTechWebApi.Controllers
 
         [Route("CheckDupicatePatient")]
         [HttpGet]
-        public PatientInformationModel CheckDupicatePatientByIDCard(string firstName, string lastName, DateTime? birthDate, int SEXXXUID)
+        public PatientInformationModel CheckDupicatePatient(string firstName, string lastName)
         {
-            PatientInformationModel data = SqlDirectStore.pCheckDupicatePatient(firstName, lastName, birthDate, SEXXXUID).ToList<PatientInformationModel>().FirstOrDefault();
+            PatientInformationModel data = SqlDirectStore.pCheckDupicatePatient(firstName, lastName).ToList<PatientInformationModel>().FirstOrDefault();
             return data;
         }
 
@@ -1917,11 +1917,14 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetPatientVisitToChangeLocation")]
         [HttpGet]
-        public List<PatientVisitModel> GetPatientVisitToChangeLocation(long? patientUID, string visitID)
+        public List<PatientVisitModel> GetPatientVisitToChangeLocation(long? patientUID, string visitID, DateTime? dateFrom, DateTime? dateTo)
         {
-            List<PatientVisitModel> visitData = db.PatientVisit.Where(p => p.VISTSUID != 418 && p.VISTSUID != 410 && p.VISTSUID != 421
+            List<PatientVisitModel> visitData = db.PatientVisit.Where(p => p.VISTSUID != 423 && p.VISTSUID != 418 
+                                        && p.VISTSUID != 410 && p.VISTSUID != 421
                                         && (visitID == null || p.VisitID == visitID)
                                         && (patientUID == null || p.PatientUID == patientUID)
+                                        && (dateFrom == null || DbFunctions.TruncateTime(p.StartDttm) >= DbFunctions.TruncateTime(dateFrom))
+                                        && (dateTo == null || DbFunctions.TruncateTime(p.StartDttm) < DbFunctions.TruncateTime(dateTo))
                                         && p.StatusFlag == "A")
                                                     .Select(p => new PatientVisitModel
                                                     {
@@ -2941,6 +2944,8 @@ namespace MediTechWebApi.Controllers
                                                   OwnerOrganisationUID = bki.OwnerOrganisationUID,
                                                   PATMSGUID = bki.PATMSGUID,
                                                   PatientReminderMessage = SqlFunction.fGetRfValDescription(bki.PATMSGUID ?? 0),
+                                                  LocationUID = bki.LocationUID,
+                                                  Location = SqlFunction.fGetLocationName(bki.LocationUID)
                                               }).ToList();
 
             if (dataBooking != null)

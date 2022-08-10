@@ -43,18 +43,34 @@
                                                   SelectedItem="{Binding SelectDateType}"
                                                   IsTextEditable="False" />
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem >
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem >
+                        <dxlc:LayoutItem.Label>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                <TextBlock Text="จากวันที่" />
+                            </StackPanel>
+                        </dxlc:LayoutItem.Label>
+                        <dxe:DateEdit EditValue="{Binding DateFrom}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="ถึงวันที่">
+                        <dxe:DateEdit EditValue="{Binding DateTo}"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutItem>
                     <dxlc:LayoutItem.Label>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
-                            <TextBlock Text="จากวันที่" />
+                            <TextBlock Text="นักเทคนิคห้องปฏิบัติการ" />
                         </StackPanel>
                     </dxlc:LayoutItem.Label>
-                    <dxe:DateEdit EditValue="{Binding DateFrom}"/>
-                </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="ถึงวันที่">
-                    <dxe:DateEdit EditValue="{Binding DateTo}"/>
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Careprovider}"
+                                      DisplayMember="FullName"
+                                      ValueMember="CareproviderUID"
+                                      SelectedItem="{Binding SelectCareprovider}"
+                                      Height="20"></dxe:ComboBoxEdit>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup Orientation="Horizontal">
@@ -118,6 +134,7 @@
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
+            
             <dxlc:LayoutItem>
                 <ProgressBar Height="15"  Name="progressBar1"/>
             </dxlc:LayoutItem>

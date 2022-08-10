@@ -509,6 +509,8 @@ namespace MediTechWebApi.Controllers
                             PriorityStatus = SqlFunction.fGetRfValDescription(red.RQPRTUID ?? 0),
                             ResultUID = rs.UID,
                             IsConfidential = item.IsConfidential,
+                            ResultedEnterBy = SqlFunction.fGetCareProviderName(rs.ResultEnteredUserUID ?? 0),
+                            ResultEnterUID = rs.ResultEnteredUserUID ?? 0,
                             Comments = red.Comments
                         }).ToList();
 
@@ -773,7 +775,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("ReviewLabResult")]
         [HttpPost]
-        public HttpResponseMessage ReviewLabResult(List<RequestDetailItemModel> labRequestDetails, int userID)
+        public HttpResponseMessage ReviewLabResult(List<RequestDetailItemModel> labRequestDetails,int careproviderUID, int userID)
         {
             try
             {
@@ -834,7 +836,7 @@ namespace MediTechWebApi.Controllers
                         result.MUser = userID;
                         result.MWhen = now;
                         result.ResultEnteredDttm = now;
-                        result.ResultEnteredUserUID = userID;
+                        result.ResultEnteredUserUID = careproviderUID;
                         result.ORDSTUID = reviewStatus;
                         result.PatientUID = labRequestDetail.PatientUID;
                         result.PatientVisitUID = labRequestDetail.PatientVisitUID;

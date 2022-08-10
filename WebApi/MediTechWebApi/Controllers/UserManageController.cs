@@ -278,6 +278,7 @@ namespace MediTechWebApi.Controllers
                                           IsAdminRadiologist = ca.IsAdminRadiologist ?? false,
                                           IsAdminRadread = ca.IsAdminRadread ?? false,
                                           IsRDUStaff = ca.IsRDUStaff ?? false,
+                                          CPTYPUID = ca.CPTYPUID,
                                           Tel = ca.Tel,
                                           Email = ca.Email,
                                           LineID = ca.LineID,
@@ -476,7 +477,7 @@ namespace MediTechWebApi.Controllers
                     careprovider.LastName = careproviderData.LastName;
                     careprovider.SEXXXUID = careproviderData.SEXXXUID;
                     careprovider.EnglishName = careproviderData.EnglishName;
-
+                    careprovider.CPTYPUID = careproviderData.CPTYPUID;
                     careprovider.ImgPath = careproviderData.ImgPath;
                     careprovider.LicenseNo = careproviderData.LicenseNo;
                     careprovider.LicenseIssueDttm = careproviderData.LicenseIssueDttm;
@@ -681,6 +682,42 @@ namespace MediTechWebApi.Controllers
 
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
             }
+        }
+
+        [Route("GetCareProviderByType")]
+        [HttpGet]
+        public List<CareproviderModel> GetCareProviderByType(int type)
+        {
+            List<CareproviderModel> data = db.Careprovider.Where(p => p.CPTYPUID == type && p.StatusFlag == "A").Select(ca => new CareproviderModel
+            {
+                CareproviderUID = ca.UID,
+                Code = ca.Code,
+                TITLEUID = ca.TITLEUID,
+                TitleDesc = ca.TITLEUID != null ? SqlFunction.fGetRfValDescription(ca.TITLEUID.Value) : "",
+                FirstName = ca.FirstName,
+                MiddleName = ca.MiddleName,
+                LastName = ca.LastName,
+                FullName = SqlFunction.fGetCareProviderName(ca.UID),
+                SEXXXUID = ca.SEXXXUID,
+                SexDesc = ca.SEXXXUID != null ? SqlFunction.fGetRfValDescription(ca.SEXXXUID.Value) : "",
+                EnglishName = ca.EnglishName,
+                ImgPath = ca.ImgPath,
+                LicenseNo = ca.LicenseNo,
+                LicenseIssueDttm = ca.LicenseIssueDttm,
+                LicenseExpiryDttm = ca.LicenseExpiryDttm,
+                DOBDttm = ca.DOBDttm,
+                IsDoctor = ca.IsDoctor ?? false,
+                IsRadiologist = ca.IsRadiologist ?? false,
+                IsAdminRadread = ca.IsAdminRadread ?? false,
+                Tel = ca.Tel,
+                Email = ca.Email,
+                LineID = ca.LineID,
+                ActiveFrom = ca.ActiveFrom,
+                ActiveTo = ca.ActiveTo,
+                MWhen = ca.MWhen,
+            }).ToList();
+
+            return data;
         }
 
         [Route("GetCareProviderDoctor")]

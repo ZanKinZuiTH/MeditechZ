@@ -87,6 +87,7 @@ namespace MediTech.Model
         public int OwnerOrganisationUID { get; set; }
 
         public int LocationUID { get; set; }
+        public string LocationName { get; set; }
 
         public System.Nullable<double> Discount { get; set; }
 

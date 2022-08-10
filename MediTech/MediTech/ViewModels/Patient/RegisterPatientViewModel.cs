@@ -208,7 +208,7 @@ namespace MediTech.ViewModels
                 PatientInformationModel patientData = DataService.PatientIdentity.GetPatientByIDCard(nationalID);
                 if (patientData == null)
                 {
-                    var dataPat = DataService.PatientIdentity.SearchPatient(null, firstName, middleName, lastName, null, birthDttm, null, null, null, null);
+                    var dataPat = DataService.PatientIdentity.SearchPatient(null, firstName, middleName, lastName, null, birthDttm, null, null, null, null, "");
                     patientData = (dataPat != null && dataPat.Count > 0) ? dataPat.FirstOrDefault() : null;
                 }
 

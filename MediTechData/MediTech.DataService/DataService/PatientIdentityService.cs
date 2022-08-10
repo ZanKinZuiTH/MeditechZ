@@ -52,15 +52,15 @@ namespace MediTech.DataService
             return data;
         }
 
-        public List<PatientInformationModel> SearchPatient(string patientID, string firstName, string middleName, string lastName, string nickName, DateTime? birthDate, int? SEXXXUID, string idCard, DateTime? lastVisitDate, string mobilePhone)
+        public List<PatientInformationModel> SearchPatient(string patientID, string firstName, string middleName, string lastName, string nickName, DateTime? birthDate, int? SEXXXUID, string idCard, DateTime? lastVisitDate, string mobilePhone, string idPassport)
         {
             if (patientID == string.Empty && firstName == string.Empty && middleName == string.Empty && lastName == string.Empty &&
-                nickName == string.Empty && birthDate == null && SEXXXUID == null && idCard == string.Empty && lastVisitDate == null && mobilePhone == string.Empty)
+                nickName == string.Empty && birthDate == null && SEXXXUID == null && idCard == string.Empty && lastVisitDate == null && mobilePhone == string.Empty && idPassport == string.Empty)
             {
                 return null;
 
             }
-            string requestApi = string.Format("Api/PatientIdentity/SearchPatient?patientID={0}&firstName={1}&middleName={2}&lastName={3}&nickName={4}&birthDate={5:MM/dd/yyyy}&SEXXXUID={6}&idCard={7}&lastVisitDate={8:MM/dd/yyyy}&mobilePhone={9}", patientID, firstName, middleName, lastName, nickName, birthDate, SEXXXUID, idCard, lastVisitDate, mobilePhone);
+            string requestApi = string.Format("Api/PatientIdentity/SearchPatient?patientID={0}&firstName={1}&middleName={2}&lastName={3}&nickName={4}&birthDate={5:MM/dd/yyyy}&SEXXXUID={6}&idCard={7}&lastVisitDate={8:MM/dd/yyyy}&mobilePhone={9}&idPassport={10}", patientID, firstName, middleName, lastName, nickName, birthDate, SEXXXUID, idCard, lastVisitDate, mobilePhone, idPassport);
             List<PatientInformationModel> data = MeditechApiHelper.Get<List<PatientInformationModel>>(requestApi);
 
             return data;
@@ -104,9 +104,9 @@ namespace MediTech.DataService
             return data;
         }
 
-        public PatientInformationModel CheckDupicatePatient(string firstName, string lastName, DateTime? birthDate, int SEXXXUID)
+        public PatientInformationModel CheckDupicatePatient(string firstName, string lastName)
         {
-            string requestApi = string.Format("Api/PatientIdentity/CheckDupicatePatient?firstName={0}&lastName={1}&birthDate={2:MM/dd/yyyy}&SEXXXUID={3}", firstName, lastName, birthDate, SEXXXUID);
+            string requestApi = string.Format("Api/PatientIdentity/CheckDupicatePatient?firstName={0}&lastName={1}", firstName, lastName);
             PatientInformationModel result = MeditechApiHelper.Get<PatientInformationModel>(requestApi);
 
             return result;
@@ -321,9 +321,9 @@ namespace MediTech.DataService
             return data;
         }
 
-        public List<PatientVisitModel> GetPatientVisitToChangeLocation(long? patientUID, string visitID)
+        public List<PatientVisitModel> GetPatientVisitToChangeLocation(long? patientUID, string visitID, DateTime? dateFrom, DateTime? dateTo)
         {
-            string requestApi = string.Format("Api/PatientIdentity/GetPatientVisitToChangeLocation?patientUID={0}&visitID={1}", patientUID, visitID);
+            string requestApi = string.Format("Api/PatientIdentity/GetPatientVisitToChangeLocation?patientUID={0}&visitID={1}&dateFrom={2:MM/dd/yyyy}&dateTo={3:MM/dd/yyyy}", patientUID, visitID, dateFrom, dateTo);
             List<PatientVisitModel> data = MeditechApiHelper.Get<List<PatientVisitModel>>(requestApi);
 
             return data;

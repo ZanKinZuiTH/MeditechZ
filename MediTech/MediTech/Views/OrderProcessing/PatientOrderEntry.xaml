@@ -269,6 +269,7 @@
                                 <dxg:GridColumn Header="OrderSet" FieldName="OrderSetName" ReadOnly="True"/>
                                 <dxg:GridColumn Header="ผู้คีย์" FieldName="OrderBy" ReadOnly="True"/>
                                 <dxg:GridColumn Header="Order จาก" FieldName="OwnerOrganisationName" ReadOnly="True"/>
+                                <dxg:GridColumn Header="แผนก" FieldName="LocationName" ReadOnly="True"/>
                                 <dxg:GridColumn Header="หมายเหตุ" FieldName="Comments" ReadOnly="True"/>
                                 <dxg:GridControl.View>
                                     <dxg:TableView ShowCheckBoxSelectorColumn="True"

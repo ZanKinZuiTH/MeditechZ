@@ -620,7 +620,7 @@ namespace MediTech.ViewModels
                     }
 
                 }
-                List<PatientInformationModel> searchResult = DataService.PatientIdentity.SearchPatient(patientID, firstName, "", lastName, "", null, null, "", null, "");
+                List<PatientInformationModel> searchResult = DataService.PatientIdentity.SearchPatient(patientID, firstName, "", lastName, "", null, null, "", null, "", "");
                 PatientsSearchSource = searchResult;
             }
             else
@@ -661,7 +661,8 @@ namespace MediTech.ViewModels
                 LabResultReport rpt = new LabResultReport();
                 ReportPrintTool printTool = new ReportPrintTool(rpt);
 
-
+                rpt.Parameters["LogoType"].Value = AppUtil.Current.OwnerOrganisationUID;
+                rpt.Parameters["OrganisationUID"].Value = AppUtil.Current.OwnerOrganisationUID;
                 rpt.Parameters["PatientVisitUID"].Value = SelectRequestLab.PatientVisitUID;
                 rpt.Parameters["RequestNumber"].Value = SelectRequestLab.LabNumber;
                 rpt.RequestParameters = false;

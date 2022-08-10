@@ -84,6 +84,12 @@
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem/>
                         </dxlc:LayoutGroup>
+                        <dxlc:LayoutItem Label="ประเภทผู้ใช้">
+                            <dxe:ComboBoxEdit DisplayMember="Display" 
+                                      ValueMember="Key"
+                                      ItemsSource="{Binding CareproviderType}"
+                                      SelectedItem="{Binding SelectCareproviderType}"/>
+                        </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="เลขที่ใบอนุญาติ">
                             <dxe:TextEdit Text="{Binding LicenseNo}"/>
                         </dxlc:LayoutItem>

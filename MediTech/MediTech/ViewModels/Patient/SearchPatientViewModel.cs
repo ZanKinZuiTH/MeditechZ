@@ -97,6 +97,14 @@ namespace MediTech.ViewModels
             set { _NationalID = value; RaisePropertyChanged("NationalID"); }
         }
 
+        private string _PassportID;
+
+        public string PassportID
+        {
+            get { return _PassportID; }
+            set { _PassportID = value; RaisePropertyChanged("PassportID"); }
+        }
+
         private string _MobilePhone;
         public string MobilePhone
         {
@@ -210,7 +218,7 @@ namespace MediTech.ViewModels
             {
                 gender = SelectedGender.Display;
             }
-            SearchPatient(PatientID, FirstName, LastName, MiddleName, NickName, BirthDate, NationalID, LastVisitDate, gender, MobilePhone);
+            SearchPatient(PatientID, FirstName, LastName, MiddleName, NickName, BirthDate, NationalID, LastVisitDate, gender, MobilePhone, PassportID);
             if (PatientSource == null || PatientSource.Count <= 0)
             {
                 InformationDialog("ไม่พบข้อมูลปู้ป่วย");
@@ -222,7 +230,7 @@ namespace MediTech.ViewModels
             }
         }
 
-        public void SearchPatient(string pateintID, string firstName, string lastName, string middleName, string nickName, DateTime? birthDate, string nationalID, DateTime? lastVisitData, string gender, string mobilePhone)
+        public void SearchPatient(string pateintID, string firstName, string lastName, string middleName, string nickName, DateTime? birthDate, string nationalID, DateTime? lastVisitData, string gender, string mobilePhone, string idPassport)
         {
             int? sexxxUID = null;
             if (GenderSource != null)
@@ -241,7 +249,7 @@ namespace MediTech.ViewModels
             }
 
 
-            PatientSource = DataService.PatientIdentity.SearchPatient(pateintID, firstName, middleName, lastName, nickName, birthDate, sexxxUID, nationalID, lastVisitData, MobilePhone);
+            PatientSource = DataService.PatientIdentity.SearchPatient(pateintID, firstName, middleName, lastName, nickName, birthDate, sexxxUID, nationalID, lastVisitData, MobilePhone, idPassport);
             SelectedPatient = PatientSource?.FirstOrDefault();
         }
 
