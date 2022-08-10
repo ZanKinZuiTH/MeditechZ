@@ -294,7 +294,7 @@ namespace MediTech.ViewModels
                     }
 
                 }
-                List<PatientInformationModel> searchResult = DataService.PatientIdentity.SearchPatient(patientID, firstName, "", lastName, "", null, null, "", null, null);
+                List<PatientInformationModel> searchResult = DataService.PatientIdentity.SearchPatient(patientID, firstName, "", lastName, "", null, null, "", null, null, "");
                 PatientsSearchSource = searchResult;
             }
             else

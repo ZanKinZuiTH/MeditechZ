@@ -172,6 +172,9 @@ namespace MediTechWebApi.Controllers
                     addItem.PaymentStatus = item["PaymentStatus"].ToString();
                     addItem.OwnerOrganisationName = item["OwnerOrganisationName"].ToString();
                     addItem.OwnerOrganisationUID = int.Parse(item["OwnerOrganisationUID"].ToString());
+                    addItem.LocationUID = int.Parse(item["LocationUID"].ToString());
+                    addItem.LocationName = item["LocationName"].ToString();
+
                     if (addItem.IsPriceOverwrite == "Y")
                     {
                         addItem.DisplayPrice = addItem.OverwritePrice;

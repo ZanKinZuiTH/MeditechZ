@@ -771,17 +771,10 @@ namespace MediTech.ViewModels
 
                 if (patientModel == null)
                 {
-                    DateTime? birthDttm;
-                    CheckBirthDttm(out birthDttm);
-                    if (birthDttm == null)
-                    {
-                        birthDttm = BirthDate != null ? BirthDate.Value : (DateTime?)null;
-                    }
-
-                    PatientInformationModel patAlready = DataService.PatientIdentity.CheckDupicatePatient(FirstName, LastName, birthDttm.Value, SelectedGender.Key.Value);
+                    PatientInformationModel patAlready = DataService.PatientIdentity.CheckDupicatePatient(FirstName, LastName);
                     if (patAlready != null)
                     {
-                        MessageBoxResult dialogResult = System.Windows.MessageBox.Show("มีผู้ป่วยนี้ มี ชื่อ นามสกุล เพศ วันเดือนปีเกิด ซ้ำในะระบบ" + " \r\n คุณต้องการลงทะเบียนต่อหรือไม่ ? ", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                        MessageBoxResult dialogResult = System.Windows.MessageBox.Show("มีผู้ป่วยนี้ มี ชื่อ นามสกุล ซ้ำในะระบบ" + " \r\n คุณต้องการลงทะเบียนต่อหรือไม่ ? ", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
                         if (dialogResult == MessageBoxResult.No)
                         {
                             return;

@@ -55,7 +55,9 @@
                 <dxlc:LayoutItem Label="เบอร์โทรศัพท์">
                     <dxe:TextEdit Name="txtMobilePhone" Text="{Binding MobilePhone,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem />
+                <dxlc:LayoutItem Label="เลขพาสปอร์ต" >
+                    <dxe:TextEdit Name="txtPassportID" Text="{Binding PassportID,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                </dxlc:LayoutItem>
                 <dxlc:LayoutItem>
                     <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
                         <dxlc:LayoutItem >
@@ -111,6 +113,7 @@
                                             <dxe:DateEditSettings  DisplayFormat="HH:mm" />
                                         </dxg:GridColumn.EditSettings>
                                     </dxg:GridColumn>
+                                    <dxg:GridColumn Header="แผนก" FieldName="Location"/>
                                     <dxg:GridColumn Header="แพทย์" FieldName="CareProviderName"/>
                                     <dxg:GridColumn Header="นัดมา" FieldName="PatientReminderMessage"/>
                                     <dxg:GridColumn Header="หมายเหตุ" FieldName="Comments"/>

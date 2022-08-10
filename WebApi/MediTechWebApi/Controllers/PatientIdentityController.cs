@@ -580,9 +580,9 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchPatient")]
         [HttpGet]
-        public List<PatientInformationModel> SearchPatient(string patientID, string firstName, string middleName, string lastName, string nickName, DateTime? birthDate, int? SEXXXUID, string idCard, DateTime? lastVisitDate, string mobilePhone)
+        public List<PatientInformationModel> SearchPatient(string patientID, string firstName, string middleName, string lastName, string nickName, DateTime? birthDate, int? SEXXXUID, string idCard, DateTime? lastVisitDate, string mobilePhone, string idPassport)
         {
-            DataTable dataTable = SqlDirectStore.pSearchPatient(patientID, firstName, middleName, lastName, nickName, birthDate, SEXXXUID, idCard, lastVisitDate, mobilePhone);
+            DataTable dataTable = SqlDirectStore.pSearchPatient(patientID, firstName, middleName, lastName, nickName, birthDate, SEXXXUID, idCard, lastVisitDate, mobilePhone, idPassport);
 
             List<PatientInformationModel> data = dataTable.ToList<PatientInformationModel>();
 
@@ -962,9 +962,9 @@ namespace MediTechWebApi.Controllers
 
         [Route("CheckDupicatePatient")]
         [HttpGet]
-        public PatientInformationModel CheckDupicatePatientByIDCard(string firstName, string lastName, DateTime? birthDate, int SEXXXUID)
+        public PatientInformationModel CheckDupicatePatient(string firstName, string lastName)
         {
-            PatientInformationModel data = SqlDirectStore.pCheckDupicatePatient(firstName, lastName, birthDate, SEXXXUID).ToList<PatientInformationModel>().FirstOrDefault();
+            PatientInformationModel data = SqlDirectStore.pCheckDupicatePatient(firstName, lastName).ToList<PatientInformationModel>().FirstOrDefault();
             return data;
         }
 
@@ -2944,6 +2944,8 @@ namespace MediTechWebApi.Controllers
                                                   OwnerOrganisationUID = bki.OwnerOrganisationUID,
                                                   PATMSGUID = bki.PATMSGUID,
                                                   PatientReminderMessage = SqlFunction.fGetRfValDescription(bki.PATMSGUID ?? 0),
+                                                  LocationUID = bki.LocationUID,
+                                                  Location = SqlFunction.fGetLocationName(bki.LocationUID)
                                               }).ToList();
 
             if (dataBooking != null)

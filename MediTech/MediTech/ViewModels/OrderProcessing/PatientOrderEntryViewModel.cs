@@ -389,7 +389,7 @@ namespace MediTech.ViewModels
             SelectCareprovider = Careproviders.FirstOrDefault(p => p.CareproviderUID == AppUtil.Current.UserID);
             var locationData = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
             Locations = locationData.Where(p => p.IsCanOrder == "Y").ToList();
-            SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
+            SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == PatientVisit.LocationUID);
 
             DateTime now = DateTime.Now;
             StartDate = now.Date;

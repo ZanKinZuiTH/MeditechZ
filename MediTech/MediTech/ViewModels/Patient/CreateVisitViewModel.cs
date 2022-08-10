@@ -278,8 +278,14 @@ namespace MediTech.ViewModels
             }
         }
 
+        private List<CareproviderModel> _CareproviderSource;
 
-        public List<CareproviderModel> CareproviderSource { get; set; }
+        public List<CareproviderModel> CareproviderSource
+        {
+            get { return _CareproviderSource; }
+            set { Set(ref _CareproviderSource, value); }
+        }
+
         private CareproviderModel _SelectedCareprovider;
 
         public CareproviderModel SelectedCareprovider
