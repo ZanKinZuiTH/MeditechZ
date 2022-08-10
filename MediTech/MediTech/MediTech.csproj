@@ -1447,6 +1447,7 @@
     <Compile Include="ViewModels\Billing\BillingPaymentModePopUpViewModel.cs" />
     <Compile Include="ViewModels\Billing\BillSettlementIPViewModel.cs" />
     <Compile Include="ViewModels\Billing\BillSettlementOPViewModel.cs" />
+    <Compile Include="ViewModels\Billing\CancelBillPopupViewModel.cs" />
     <Compile Include="ViewModels\Billing\ListBillPaymentViewModel.cs" />
     <Compile Include="ViewModels\Billing\ListPaymentDetailsViewModel.cs" />
     <Compile Include="ViewModels\Billing\ListQueryBillsIPViewModel.cs" />
@@ -1695,6 +1696,9 @@
     </Compile>
     <Compile Include="Views\Billing\BillSettlementOP.xaml.cs">
       <DependentUpon>BillSettlementOP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\CancelBillPopup.xaml.cs">
+      <DependentUpon>CancelBillPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Billing\ListBillPayment.xaml.cs">
       <DependentUpon>ListBillPayment.xaml</DependentUpon>
@@ -2415,6 +2419,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Billing\BillSettlementOP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Billing\CancelBillPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -4163,8 +4171,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Resources\Images\Fincace\cashless-payment.png" />
     <Resource Include="Resources\Images\Menu\ProductReturn.png" />
-    <Resource Include="Resources\Images\Fincace\wallet.png" />
     <Resource Include="Resources\Images\Fincace\lock.png" />
     <Resource Include="Resources\Images\Fincace\unlock.png" />
     <Resource Include="Resources\Images\Fincace\credit.png" />
