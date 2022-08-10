@@ -37,6 +37,8 @@ namespace MediTech.DataBase
         public Nullable<int> ROUTEUID { get; set; }
         public Nullable<int> DFORMUID { get; set; }
         public Nullable<int> PDSTSUID { get; set; }
+        public Nullable<int> OrderCategoryUID { get; set; }
+        public Nullable<int> OrderSubCategoryUID { get; set; }
         public Nullable<double> UsedQuantity { get; set; }
         public Nullable<double> Dosage { get; set; }
         public Nullable<int> DrugDuration { get; set; }

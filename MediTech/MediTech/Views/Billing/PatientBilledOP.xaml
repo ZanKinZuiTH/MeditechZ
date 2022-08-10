@@ -11,8 +11,10 @@
              xmlns:cc="clr-namespace:MediTech.CustomControl"
              xmlns:local="clr-namespace:MediTech.Views"
              DataContext="{Binding Path=PatientBilledOPViewModel, Source={StaticResource Locator}}"
+             xmlns:cv="clr-namespace:MediTech.Converter"
              d:DesignHeight="600" d:DesignWidth="900">
     <UserControl.Resources>
+        <cv:NumericN2Formatter x:Key="NumericN2Formatter" />
         <cc:PatientSearchPopUp x:Key="PatientColumn" d:IsDataSource="True" />
         <DataTemplate x:Key="DetailCoreTemplate">
             <dx:MeasurePixelSnapper>
@@ -70,7 +72,7 @@
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                             </Image>
-                            <Image Source="/MediTech;component/Resources/Images/Fincace/wallet.png" 
+                            <Image Source="/MediTech;component/Resources/Images/Fincace/cashless-payment.png" 
                                    Width="30" Height="30"
                                    Cursor="Hand"
                                    ToolTip="วิธีการชำระเงิน">
@@ -173,9 +175,21 @@
                     <dxg:GridColumn Header="Visit ID" FieldName="VisitID" ReadOnly="True"/>
                     <dxg:GridColumn Header="เลขที่ใบเสร็จ" FieldName="BillNumber" ReadOnly="True"/>
                     <dxg:GridColumn Header="วันที่ออก" FieldName="BillGeneratedDttm" ReadOnly="True"/>
-                    <dxg:GridColumn Header="ยอดค่ารักษาพยาบาล" FieldName="TotalAmount" ReadOnly="True"/>
-                    <dxg:GridColumn Header="ยอดส่วนลด" FieldName="DiscountAmount" ReadOnly="True"/>
-                    <dxg:GridColumn Header="ราคาขายสุทธิ" FieldName="NetAmount" ReadOnly="True"/>
+                    <dxg:GridColumn Header="ยอดค่ารักษาพยาบาล" FieldName="TotalAmount" ReadOnly="True">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings DisplayTextConverter="{StaticResource NumericN2Formatter}"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="ยอดส่วนลด" FieldName="DiscountAmount" ReadOnly="True">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings DisplayTextConverter="{StaticResource NumericN2Formatter}"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="ราคาขายสุทธิ" FieldName="NetAmount" ReadOnly="True">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings DisplayTextConverter="{StaticResource NumericN2Formatter}"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
                     <dxg:GridColumn Header="Note Cashier" FieldName="Comments" ReadOnly="True"/>
                     <dxg:GridColumn Header="Payor" FieldName="PayorName" ReadOnly="True"/>
                     <dxg:GridColumn Header="Office Name" FieldName="PayorOffice" ReadOnly="True"/>

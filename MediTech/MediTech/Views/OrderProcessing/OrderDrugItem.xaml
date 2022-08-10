@@ -10,8 +10,8 @@
              xmlns:uc="clr-namespace:MediTech.CustomControl.Banner"
              x:Name="OrderDrugView"
              DataContext="{Binding Path=OrderDrugItemViewModel,Source={StaticResource Locator}}"
-             Width="800"
-             d:DesignHeight="450" d:DesignWidth="800">
+             Width="900"
+             d:DesignHeight="450" d:DesignWidth="900">
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical" IsEnabled="{Binding IsEnableOrderDrugItem}">
             <dxlc:LayoutItem>

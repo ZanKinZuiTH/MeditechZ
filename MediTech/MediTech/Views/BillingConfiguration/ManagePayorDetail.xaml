@@ -91,6 +91,7 @@
                         <dxlc:LayoutItem  Label="Credit Term">
                             <dxe:ComboBoxEdit ItemsSource="{Binding CreditTerm}"
                                                       SelectedItem="{Binding SelectPayorCredit}"
+                                                     NullValueButtonPlacement="EditBox"
                                                       DisplayMember="Display"
                                                       ValueMember="Key"/>
                         </dxlc:LayoutItem>
@@ -131,6 +132,7 @@
                                       ValueMember="Key"
                                       AutoComplete="True"
                                       IsTextEditable="True"
+                                      NullValueButtonPlacement="EditBox"
                                       ItemsSource="{Binding ProvinceSource}"
                                       SelectedItem="{Binding SelectedProvince}">
                                 <dxe:ComboBoxEdit.StyleSettings>
@@ -143,6 +145,7 @@
                                       ValueMember="Key"
                                       AutoComplete="True"
                                       IsTextEditable="True"
+                                      NullValueButtonPlacement="EditBox"
                                       ItemsSource="{Binding AmphurSource}"
                                       SelectedItem="{Binding SelectedAmphur}"/>
                         </dxlc:LayoutItem>
@@ -151,6 +154,7 @@
                                       ValueMember="Key"
                                       AutoComplete="True"
                                       IsTextEditable="True"
+                                      NullValueButtonPlacement="EditBox"
                                       ItemsSource="{Binding DistrictSource}"
                                       SelectedItem="{Binding SelectedDistrict}"/>
                         </dxlc:LayoutItem>
@@ -179,7 +183,8 @@
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem  Label="หมวดหมู่">
                             <dxe:ComboBoxEdit ItemsSource="{Binding PayorCategory}"
-                                                      SelectedItem="{Binding SelectPayorCategory}"
+                                              SelectedItem="{Binding SelectPayorCategory}"
+                                              NullValueButtonPlacement="EditBox"
                                                       DisplayMember="Display"
                                                       ValueMember="Key"/>
                         </dxlc:LayoutItem>

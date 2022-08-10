@@ -2508,6 +2508,7 @@
           <Property Name="StartDttm" Type="datetime" />
           <Property Name="EndDttm" Type="datetime" />
           <Property Name="PRSTYPUID" Type="int" />
+          <Property Name="OrderCategoryUID" Type="int" />
           <Property Name="Comments" Type="nvarchar" MaxLength="255" />
           <Property Name="IdentifyingUID" Type="bigint" />
           <Property Name="IdentifyingType" Type="nvarchar" MaxLength="30" />
@@ -2571,6 +2572,8 @@
           <Property Name="ROUTEUID" Type="int" />
           <Property Name="DFORMUID" Type="int" />
           <Property Name="PDSTSUID" Type="int" />
+          <Property Name="OrderCategoryUID" Type="int" />
+          <Property Name="OrderSubCategoryUID" Type="int" />
           <Property Name="UsedQuantity" Type="float" />
           <Property Name="Dosage" Type="float" />
           <Property Name="DrugDuration" Type="int" />
@@ -6176,6 +6179,11 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <FunctionImport Name="pPrintStatementBill" ReturnType="Collection(MediTechModel.pPrintStatementBill_Result)">
           <Parameter Name="P_PatientBillUID" Mode="In" Type="Int64" />
           </FunctionImport>
+          <FunctionImport Name="pClearRoomUNBILLED" />
+          <FunctionImport Name="pFixPatientVisitPayorPayerofficeExpire">
+            <Parameter Name="P_PatientVisitiUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_PatientUID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <EntitySet Name="AdmissionEvent" EntityType="MediTechModel.AdmissionEvent" />
           <EntitySet Name="ADTEventStatus" EntityType="MediTechModel.ADTEventStatus" />
           <EntitySet Name="AEDischargeEvent" EntityType="MediTechModel.AEDischargeEvent" />
@@ -6395,11 +6403,6 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <EntitySet Name="vAllBillableItemRates" EntityType="MediTechModel.vAllBillableItemRates" />
           <EntitySet Name="vAllPayorAgreements" EntityType="MediTechModel.vAllPayorAgreements" />
           <EntitySet Name="vAllPayorAgreementsDiscount" EntityType="MediTechModel.vAllPayorAgreementsDiscount" />
-          <FunctionImport Name="pClearRoomUNBILLED" />
-          <FunctionImport Name="pFixPatientVisitPayorPayerofficeExpire">
-            <Parameter Name="P_PatientVisitiUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_PatientUID" Mode="In" Type="Int32" />
-          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pGetPatientBillableItemsAccount_Result">
           <Property Type="String" Name="SubAccountName" Nullable="true" MaxLength="500" />
@@ -8986,6 +8989,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Property Name="StartDttm" Type="DateTime" Precision="3" />
           <Property Name="EndDttm" Type="DateTime" Precision="3" />
           <Property Name="PRSTYPUID" Type="Int32" />
+          <Property Name="OrderCategoryUID" Type="Int32" />
           <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="IdentifyingUID" Type="Int64" />
           <Property Name="IdentifyingType" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
@@ -9049,6 +9053,8 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Property Name="ROUTEUID" Type="Int32" />
           <Property Name="DFORMUID" Type="Int32" />
           <Property Name="PDSTSUID" Type="Int32" />
+          <Property Name="OrderCategoryUID" Type="Int32" />
+          <Property Name="OrderSubCategoryUID" Type="Int32" />
           <Property Name="UsedQuantity" Type="Double" />
           <Property Name="Dosage" Type="Double" />
           <Property Name="DrugDuration" Type="Int32" />
@@ -11187,6 +11193,8 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pClearRoomUNBILLED" FunctionName="MediTechModel.Store.pClearRoomUNBILLED" />
+          <FunctionImportMapping FunctionImportName="pFixPatientVisitPayorPayerofficeExpire" FunctionName="MediTechModel.Store.pFixPatientVisitPayorPayerofficeExpire" />
           <EntitySetMapping Name="AdmissionEvent">
             <EntityTypeMapping TypeName="MediTechModel.AdmissionEvent">
               <MappingFragment StoreEntitySet="AdmissionEvent">
@@ -13806,6 +13814,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
                 <ScalarProperty Name="IdentifyingType" ColumnName="IdentifyingType" />
                 <ScalarProperty Name="IdentifyingUID" ColumnName="IdentifyingUID" />
                 <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="OrderCategoryUID" ColumnName="OrderCategoryUID" />
                 <ScalarProperty Name="PRSTYPUID" ColumnName="PRSTYPUID" />
                 <ScalarProperty Name="EndDttm" ColumnName="EndDttm" />
                 <ScalarProperty Name="StartDttm" ColumnName="StartDttm" />
@@ -13868,6 +13877,8 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
                 <ScalarProperty Name="DrugDuration" ColumnName="DrugDuration" />
                 <ScalarProperty Name="Dosage" ColumnName="Dosage" />
                 <ScalarProperty Name="UsedQuantity" ColumnName="UsedQuantity" />
+                <ScalarProperty Name="OrderSubCategoryUID" ColumnName="OrderSubCategoryUID" />
+                <ScalarProperty Name="OrderCategoryUID" ColumnName="OrderCategoryUID" />
                 <ScalarProperty Name="PDSTSUID" ColumnName="PDSTSUID" />
                 <ScalarProperty Name="DFORMUID" ColumnName="DFORMUID" />
                 <ScalarProperty Name="ROUTEUID" ColumnName="ROUTEUID" />
@@ -15967,8 +15978,6 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="pClearRoomUNBILLED" FunctionName="MediTechModel.Store.pClearRoomUNBILLED" />
-          <FunctionImportMapping FunctionImportName="pFixPatientVisitPayorPayerofficeExpire" FunctionName="MediTechModel.Store.pFixPatientVisitPayorPayerofficeExpire" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

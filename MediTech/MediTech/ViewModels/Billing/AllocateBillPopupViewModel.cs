@@ -195,6 +195,7 @@ namespace MediTech.ViewModels
                     Set(ref _AmountString, value);
                     if ((!_isAmountEdit && !_isNetAmountEdit))
                     {
+
                         _isNetAmountEdit = false;
                         _isAmountEdit = true;
                         if (AmountString != null && !AmountString.Contains('%') && double.TryParse(AmountString, out _amount))

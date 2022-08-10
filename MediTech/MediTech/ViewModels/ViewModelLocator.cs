@@ -225,6 +225,17 @@ namespace MediTech.ViewModels
             }
         }
 
+        public CancelBillPopupViewModel CancelBillPopupViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<CancelBillPopupViewModel>())
+                    SimpleIoc.Default.Register<CancelBillPopupViewModel>();
+
+                return ServiceLocator.Current.GetInstance<CancelBillPopupViewModel>();
+            }
+        }
+
         #endregion
 
         #region BillingConfiguration

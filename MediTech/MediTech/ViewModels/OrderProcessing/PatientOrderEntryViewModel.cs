@@ -823,7 +823,7 @@ namespace MediTech.ViewModels
 
                                     var orderNoContinuous = (PatientOrderDetailModel)resultDrug.PatientOrderDetail.CloneObject();
                                     orderNoContinuous.StartDttm = DateTime.Now;
-                                    orderNoContinuous.EndDttm = StartDate.Date.AddSeconds(86399);
+                                    orderNoContinuous.EndDttm = StartDate.Date.AddSeconds(86400);
                                     PatientOrders.Add(orderNoContinuous);
 
                                 }
@@ -875,7 +875,7 @@ namespace MediTech.ViewModels
                     }
                     break;
                 case "Drug":
-                    OrderDrugItem ordDrug = new OrderDrugItem(selectPatientOrder);
+                    OrderDrugItem ordDrug = new OrderDrugItem(selectPatientOrder, PatientVisit.ENTYPUID ?? 0);
                     OrderDrugItemViewModel resultDrug = (OrderDrugItemViewModel)LaunchViewDialog(ordDrug, "ORDDRG", true);
                     if (resultDrug != null && resultDrug.ResultDialog == ActionDialog.Save)
                     {

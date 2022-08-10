@@ -259,6 +259,8 @@ namespace MediTech.ViewModels
                     PatientOrderDetail.UnitPrice = BillableItem.Price;
                     PatientOrderDetail.OriginalUnitPrice = BillableItem.Price;
                     PatientOrderDetail.DoctorFeePer = BillableItem.DoctorFee;
+                    PatientOrderDetail.OrderCatagoryUID = BillableItem.OrderCategoryUID;
+                    PatientOrderDetail.OrderSubCategoryUID = BillableItem.OrderSubCategoryUID;
                 }
 
                 if (CareproviderVisibility == Visibility.Visible)

@@ -491,17 +491,24 @@ namespace MediTechWebApi.Controllers
                                 }
                                 patientOrder.PRSTYPUID = OrderType;
                                 patientOrder.OrderRaisedBy = userUID;
+                                patientOrder.IsContinuous = OrderType == PRST_STAN ? "Y" : "N";
                                 patientOrder.MUser = userUID;
                                 patientOrder.MWhen = now;
                                 patientOrder.StatusFlag = "A";
                                 patientOrder.PatientUID = patientUID;
                                 patientOrder.PatientVisitUID = patientVisitUID;
                                 patientOrder.OrderLocationUID = locationUID;
+                                patientOrder.OrderCategoryUID = dataInOrderDetail.FirstOrDefault()?.OrderCatagoryUID;
                                 patientOrder.OwnerOrganisationUID = ownerOrganisationUID;
-                                patientOrder.IdentifyingType = "PATIENTORDER";
+                                patientOrder.IdentifyingType = (BSMDDUID == BSMDD_STORE || BSMDDUID == BSMDD_MDSLP || BSMDDUID == BSMDD_SULPY) ? "PRESCRIPTION" : "PATIENTORDER";
                                 db.PatientOrder.Add(patientOrder);
 
                                 db.SaveChanges();
+
+                                if (true)
+                                {
+
+                                }
 
                                 #endregion
 
@@ -568,7 +575,7 @@ namespace MediTechWebApi.Controllers
                                 #endregion
 
                                 #region Store
-                                if ((BSMDDUID == BSMDD_STORE || BSMDDUID == BSMDD_MDSLP || BSMDDUID == BSMDD_SULPY) )
+                                if ((BSMDDUID == BSMDD_STORE || BSMDDUID == BSMDD_MDSLP || BSMDDUID == BSMDD_SULPY) && OrderType != PRST_STAN)
                                 {
                                     MediTech.DataBase.Prescription presc = new MediTech.DataBase.Prescription();
                                     presc.CUser = userUID;
@@ -626,11 +633,11 @@ namespace MediTechWebApi.Controllers
                                 }
                                 #endregion
 
-                                #region OrderDetail
-
+              
 
                                 foreach (var item in dataInOrderDetail)
                                 {
+                                    #region OrderDetail
                                     PatientOrderDetail orderDetail = new PatientOrderDetail();
                                     orderDetail.CUser = userUID;
                                     orderDetail.CWhen = now;
@@ -664,6 +671,8 @@ namespace MediTechWebApi.Controllers
                                     orderDetail.InstructionText = item.InstructionText;
                                     orderDetail.LocalInstructionText = item.LocalInstructionText;
                                     orderDetail.BillableItemUID = item.BillableItemUID;
+                                    orderDetail.OrderCategoryUID = item.OrderCatagoryUID;
+                                    orderDetail.OrderSubCategoryUID = item.OrderSubCategoryUID;
                                     orderDetail.IsStockItem = item.IsStock;
                                     orderDetail.StoreUID = item.StoreUID;
                                     orderDetail.Comments = item.Comments;
@@ -775,7 +784,7 @@ namespace MediTechWebApi.Controllers
                                     #region PrescrtionItem
 
                                     long? prescrtionItemUID = null;
-                                    if (BSMDDUID == BSMDD_STORE || BSMDDUID == BSMDD_MDSLP || BSMDDUID == BSMDD_SULPY)
+                                    if ((BSMDDUID == BSMDD_STORE || BSMDDUID == BSMDD_MDSLP || BSMDDUID == BSMDD_SULPY) && OrderType != PRST_STAN)
                                     {
                                         string identifyingType = BSMDDUID == BSMDD_STORE ? "DRUG" : BSMDDUID == BSMDD_MDSLP ? "MEDICALSUPPLIES" : BSMDDUID == BSMDD_SULPY ? "SUPPLY" : "ORDERITEM";
 

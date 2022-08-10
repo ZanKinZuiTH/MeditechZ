@@ -169,6 +169,14 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectPolicyMaster, value); 
                 if(SelectPolicyMaster != null)
                 {
+                    SelectBillingGroupSource = null;
+                    SelectBillingSubGroupSource = null;
+                    SelectItemSource = null;
+                    BillingGroupSource = null;
+                    BillingSubGroupSource = null;
+                    ItemSource = null;
+
+
                     AgreementType = SelectPolicyMaster.AgreementType;
 
                     var policy = DataService.Billing.GetPolicyForPayorAgreement(SelectPolicyMaster.PolicyMasterUID);

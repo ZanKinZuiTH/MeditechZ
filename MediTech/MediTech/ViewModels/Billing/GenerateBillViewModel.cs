@@ -352,19 +352,24 @@ namespace MediTech.ViewModels
             var viewModel = (pageview.DataContext as BillingPaymentModePopUpViewModel);
             viewModel.IsCardChecked = true;
             BillingPaymentModePopUpViewModel result = (BillingPaymentModePopUpViewModel)LaunchViewDialogNonPermiss(pageview, true);
-            if (result.ResultDialog == ActionDialog.Save)
+            if (result.ResultDialog == ActionDialog.Save && result.SelectedPaymentDetail != null)
             {
                 PaymentDetailsList = new List<PatientPaymentDetailModel>();
+                result.SelectedPaymentDetail.Amount = NetAmount.Value;
+                result.SelectedPaymentDetail.PaidDttm = DateTime.Now;
+                result.SelectedPaymentDetail.CURNCUID = defaultCURNC;
                 PaymentDetailsList.Add(result.SelectedPaymentDetail);
                 PaymentAmount = null;
+                calculateBalance();
                 Save();
             }
         }
         void CashOnly()
         {
             PaymentDetailsList = new List<PatientPaymentDetailModel>();
-            PaymentDetailsList.Add(new PatientPaymentDetailModel { Amount = NetAmount.Value, PaidDttm = DateTime.Now, CURNCUID = defaultCURNC });
+            PaymentDetailsList.Add(new PatientPaymentDetailModel { PAYMDUID = CASHH,Amount = NetAmount.Value, PaidDttm = DateTime.Now, CURNCUID = defaultCURNC });
             PaymentAmount = null;
+            calculateBalance();
             Save();
         }
 
@@ -382,7 +387,7 @@ namespace MediTech.ViewModels
                 {
                     return;
                 }
-                if (BalanceAmount != 0)
+                if (BalanceAmount != 0 && SelectPatientVisitPayor.PBTYPUID != INVOC)
                 {
                     WarningDialog("ยอดไม่ถูกต้อง กรุณาตรวจสอบ");
                     return;
@@ -397,7 +402,7 @@ namespace MediTech.ViewModels
                     }
                     else
                     {
-                        PaymentDetailsList.Add(new PatientPaymentDetailModel { Amount = PaymentAmount.Value,PaidDttm = DateTime.Now,CURNCUID = defaultCURNC});
+                        PaymentDetailsList.Add(new PatientPaymentDetailModel { PAYMDUID = CASHH,Amount = PaymentAmount.Value,PaidDttm = DateTime.Now,CURNCUID = defaultCURNC});
                     }
                 }
 

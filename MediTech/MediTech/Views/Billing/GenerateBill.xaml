@@ -57,10 +57,26 @@
             <dxg:GridControl x:Name="gridList" ItemsSource="{Binding Path=PatientBillableItemsAccounts, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
                                      Visibility="Visible">
                 <dxg:GridColumn FieldName="SubAccountName" Header="Name" ReadOnly="True"/>
-                <dxg:GridColumn FieldName="Quantity" Header="Qty." ReadOnly="True"/>
-                <dxg:GridColumn FieldName="Amount" Header="Amount" ReadOnly="True"/>
-                <dxg:GridColumn FieldName="Discount" Header="Discount" ReadOnly="True"/>
-                <dxg:GridColumn FieldName="NetAmount" Header="Net Amount" ReadOnly="True"/>
+                <dxg:GridColumn FieldName="Quantity" Header="Qty." ReadOnly="True">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings DisplayTextConverter="{StaticResource NumericN2Formatter}"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn FieldName="Amount" Header="Amount" ReadOnly="True">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings DisplayTextConverter="{StaticResource NumericN2Formatter}"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn FieldName="Discount" Header="Discount" ReadOnly="True">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings DisplayTextConverter="{StaticResource NumericN2Formatter}"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn FieldName="NetAmount" Header="Net Amount" ReadOnly="True">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings DisplayTextConverter="{StaticResource NumericN2Formatter}"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
                 <dxg:GridColumn FieldName="PayorName" Header="Payor" ReadOnly="True"/>
                 <dxg:GridColumn FieldName="PackageName" Header="Package" ReadOnly="True"/>
                 <dxg:GridControl.View>

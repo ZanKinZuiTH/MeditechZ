@@ -332,7 +332,7 @@ namespace MediTech.ViewModels
                             SearchDrugCriteria = "";
                             FreeText = "";
                             break;
-                        case "ยา":
+                        case "ชื่อยาการค้า":
 
                             SearchGenericCriteria = "";
                             SearchDrugCriteria = SelectPatientAllergy.AllergicTo;
@@ -458,7 +458,7 @@ namespace MediTech.ViewModels
             {
                 if (string.IsNullOrEmpty(SearchDrugCriteria))
                 {
-                    WarningDialog("กรุณาระบุชื่อยา");
+                    WarningDialog("กรุณาระบุชื่อยาการค้า");
                     return false;
                 }
                 if (SelectDrugSearch == null)
@@ -657,7 +657,7 @@ namespace MediTech.ViewModels
                     IsCheckGeneric = true;
 
                     break;
-                case "ยา":
+                case "ชื่อยาการค้า":
                     IsEnableDrug = true;
                     IsEnableOther = false;
                     IsEnableDrugGeneric = false;
@@ -666,7 +666,7 @@ namespace MediTech.ViewModels
                     IsCheckOther = false;
                     IsCheckGeneric = false;
                     break;
-                case "อื่นๆ":
+                case "ไม่มีในระบบ":
                     IsEnableDrug = false;
                     IsEnableOther = true;
                     IsEnableDrugGeneric = false;

@@ -358,7 +358,8 @@ namespace MediTech.ViewModels
                     PatientOrderDetail.UnitPrice = BillableItem.Price;
                     PatientOrderDetail.OriginalUnitPrice = BillableItem.Price;
                     PatientOrderDetail.DoctorFee = (BillableItem.DoctorFee / 100) * BillableItem.Price;
-
+                    PatientOrderDetail.OrderCatagoryUID = BillableItem.OrderCategoryUID;
+                    PatientOrderDetail.OrderSubCategoryUID = BillableItem.OrderSubCategoryUID;
                 }
 
                 PatientOrderDetail.Comments = Comment;

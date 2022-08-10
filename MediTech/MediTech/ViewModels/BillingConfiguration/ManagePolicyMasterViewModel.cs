@@ -183,7 +183,7 @@ namespace MediTech.ViewModels
             }
         }
 
-        private bool _IsExclude;
+        private bool _IsExclude = false;
         public bool IsExclude
         {
             get { return _IsExclude; }
@@ -704,6 +704,7 @@ namespace MediTech.ViewModels
         public ManagePolicyMasterViewModel()
         {
             IsOrder = true;
+            IsExclude = false;
             var agrementType = DataService.Technical.GetReferenceValueMany("AGTYP");
             if (agrementType != null)
             {

@@ -61,10 +61,10 @@ namespace MediTech.DataService
             return returnData;
         }
 
-        public PatientBillModel GetPatientBill(long patientUID, long patientVisitUID)
+        public List<PatientBillModel> GetPatientBill(long patientUID, long patientVisitUID)
         {
             string requestApi = string.Format("Api/Billing/GetPatientBill?patientUID={0}&patientVisitUID={1}", patientUID, patientVisitUID);
-            PatientBillModel data = MeditechApiHelper.Get<PatientBillModel>(requestApi);
+            List<PatientBillModel> data = MeditechApiHelper.Get<List<PatientBillModel>>(requestApi);
             return data;
         }
 
@@ -114,6 +114,23 @@ namespace MediTech.DataService
             {
                 string requestApi = string.Format("Api/Billing/CancelBill?patientBillUID={0}&cancelReason={1}&userUID={2}", patientBillUID, cancelReason, userUID);
                 MeditechApiHelper.Put(requestApi);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return flag;
+        }
+
+        public bool CancelBillLists(List<PatientBillModel> bills)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/Billing/CancelBillLists");
+                MeditechApiHelper.Put(requestApi, bills);
                 flag = true;
             }
             catch (Exception)

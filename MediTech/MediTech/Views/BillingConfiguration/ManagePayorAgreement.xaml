@@ -148,7 +148,7 @@
                             </dxlc:LayoutGroup>
                         </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <TextBlock Text="{Binding SelectBillingGroupSource.Description}" FontWeight="SemiBold" FontSize="15" Foreground="Gray"/>
+                            <TextBlock Text="{Binding SelectBillingGroupSource.Description,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontWeight="SemiBold" FontSize="15" Foreground="Gray"/>
                             <TextBlock Text=" >> " FontWeight="SemiBold" FontSize="15" Foreground="Gray">
                                 <TextBlock.Style>
                                     <Style TargetType="TextBlock">
@@ -161,7 +161,7 @@
                                     </Style>
                                 </TextBlock.Style>
                             </TextBlock>
-                            <TextBlock Text="{Binding SelectBillingSubGroupSource.Description}" FontWeight="SemiBold" FontSize="15" Foreground="Gray"/>
+                            <TextBlock Text="{Binding SelectBillingSubGroupSource.Description,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontWeight="SemiBold" FontSize="15" Foreground="Gray"/>
                             <TextBlock Text=" >> " FontWeight="SemiBold" FontSize="15" Foreground="Gray">
                                 <TextBlock.Style>
                                     <Style TargetType="TextBlock">
@@ -174,7 +174,7 @@
                                     </Style>
                                 </TextBlock.Style>
                             </TextBlock>
-                            <TextBlock Text="{Binding SelectItemSource.ItemName}" FontWeight="SemiBold" FontSize="15" Foreground="Gray"/>
+                            <TextBlock Text="{Binding SelectItemSource.ItemName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontWeight="SemiBold" FontSize="15" Foreground="Gray"/>
                         </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup Orientation="Vertical">
                             
@@ -314,7 +314,7 @@
                                             <dx:SimpleButton Width="70" HorizontalAlignment="Right" Command="{Binding DeleteGroupCommand}"
                                                              Height="25" Content="Delete"/>
                                             <dx:SimpleButton Width="70" HorizontalAlignment="Right" Command="{Binding ClearGroupCommand}"
-                                                             Height="25" Content="clear"/>
+                                                             Height="25" Content="Clear"/>
                                         </dxlc:LayoutGroup>
 
                                         <dxg:GridControl x:Name="grdContactGroup" ItemsSource="{Binding DiscountGroupSource}" SelectedItem="{Binding SelectDiscountGroupSource}">
@@ -412,7 +412,7 @@
                                             <dx:SimpleButton Width="70" HorizontalAlignment="Right" Command="{Binding DeleteSubGroupCommand}"
                                                              Height="25" Content="Delete"/>
                                             <dx:SimpleButton Width="70" HorizontalAlignment="Right" Command="{Binding ClearSubGroupCommand}"
-                                                             Height="25" Content="clear"/>
+                                                             Height="25" Content="Clear"/>
                                         </dxlc:LayoutGroup>
 
                                         <dxg:GridControl x:Name="grdContactItem" ItemsSource="{Binding DiscountSubGroupSource}" SelectedItem="{Binding SelectDiscountSubGroupSource}">
@@ -511,7 +511,7 @@
                                             <dx:SimpleButton Width="70" HorizontalAlignment="Right" Command="{Binding DeleteItemCommand}"
                                                              Height="25" Content="Delete"/>
                                             <dx:SimpleButton Width="70" HorizontalAlignment="Right" Command="{Binding ClearItemCommand}"
-                                                             Height="25" Content="clear"/>
+                                                             Height="25" Content="Clear"/>
                                         </dxlc:LayoutGroup>
 
                                         <dxg:GridControl x:Name="grdDiscountSubGroup" ItemsSource="{Binding DiscountItemSource}" SelectedItem="{Binding SelectDiscountItemSource}">

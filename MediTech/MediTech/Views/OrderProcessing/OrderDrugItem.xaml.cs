@@ -44,12 +44,13 @@ namespace MediTech.Views
 
 
 
-        public OrderDrugItem(PatientOrderDetailModel orderDetail)
+        public OrderDrugItem(PatientOrderDetailModel orderDetail, int encounterTypeUID)
         {
             InitializeComponent();
             if (this.DataContext is OrderDrugItemViewModel)
             {
                 (this.DataContext as OrderDrugItemViewModel).PatientOrderDetail = orderDetail;
+                (this.DataContext as OrderDrugItemViewModel).EncounterTypeUID = encounterTypeUID;
                 (this.DataContext as OrderDrugItemViewModel).BindingFromPatientOrderDetail();
             }
         }

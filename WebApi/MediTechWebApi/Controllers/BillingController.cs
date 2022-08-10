@@ -1181,6 +1181,35 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        public List<PatientBillModel> GetPatientBill(long patientUID, long patientVisitUID)
+        {
+            List<PatientBillModel> data = (from bill in db.PatientBill
+                                           where bill.StatusFlag == "A"
+                                           && bill.PatientUID == patientUID
+                                           && bill.PatientVisitUID == patientVisitUID
+                                           select new PatientBillModel
+                                           {
+                                               PatientBillUID = bill.UID,
+                                               PatientUID = bill.PatientUID ?? 0,
+                                               PatientVisitUID = bill.PatientVisitUID ?? 0,
+                                               BillGeneratedDttm = bill.BillGeneratedDttm,
+                                               BillNumber = bill.BillNumber,
+                                               BLCATUID = bill.BLCATUID,
+                                               BLTYPUID = bill.BLTYPUID,
+                                               PBTYPUID = bill.PBTYPUID,
+                                               TotalAmount = bill.TotalAmount,
+                                               DiscountAmount = bill.DiscountAmount,
+                                               NetAmount = bill.DiscountAmount,
+                                               PaidAmount = bill.PaidAmount,
+                                               Comments = bill.Comments,
+                                               CUser = bill.CUser,
+                                               CWhen = bill.CWhen,
+                                               MUser = bill.MUser,
+                                               MWhen = bill.MWhen
+                                           }).ToList();
+            return data;
+        }
+
         [Route("SearchUnbilledPatients")]
         [HttpGet]
         public List<PatientVisitModel> SearchUnbilledPatients(long? patientUID, DateTime? billFromDTTM, DateTime? billToDTTM, int? ownerOrganisationUID, string IsIP)
@@ -1208,6 +1237,7 @@ namespace MediTechWebApi.Controllers
             }
             return data;
         }
+
 
 
         [Route("GetPatientBillableItemsAccount")]
@@ -1575,6 +1605,37 @@ namespace MediTechWebApi.Controllers
 
                 }
 
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("CancelBillLists")]
+        [HttpPut]
+        public HttpResponseMessage CancelBillLists(List<PatientBillModel> bills)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                foreach (var editbill in bills)
+                {
+                    PatientBill patBill = db.PatientBill.Find(editbill.PatientBillUID);
+                    if (patBill != null)
+                    {
+                        db.PatientBill.Attach(patBill);
+                        patBill.CancelledDttm = now;
+                        patBill.CancelReason = editbill.CancelReason;
+                        patBill.MWhen = now;
+                        patBill.MUser = editbill.MUser;
+                        db.SaveChanges();
+                    }
+
+
+                }
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception ex)

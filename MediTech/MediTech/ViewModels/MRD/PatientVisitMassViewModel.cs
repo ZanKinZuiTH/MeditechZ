@@ -1147,22 +1147,22 @@ namespace MediTech.ViewModels
                     }
                 case "Medical Supplies":
                 case "Supply":
-                    OrderMedicalItem ordMed = new OrderMedicalItem(selectPatientOrder);
-                    OrderMedicalItemViewModel resultMed = (OrderMedicalItemViewModel)LaunchViewDialog(ordMed, "ORDMED", true);
-                    if (resultMed != null && resultMed.ResultDialog == ActionDialog.Save)
-                    {
-                        selectPatientOrder = resultMed.PatientOrderDetail;
-                        OnUpdateEvent();
-                    }
+                    //OrderMedicalItem ordMed = new OrderMedicalItem(selectPatientOrder);
+                    //OrderMedicalItemViewModel resultMed = (OrderMedicalItemViewModel)LaunchViewDialog(ordMed, "ORDMED", true);
+                    //if (resultMed != null && resultMed.ResultDialog == ActionDialog.Save)
+                    //{
+                    //    selectPatientOrder = resultMed.PatientOrderDetail;
+                    //    OnUpdateEvent();
+                    //}
                     break;
                 case "Drug":
-                    OrderDrugItem ordDrug = new OrderDrugItem(selectPatientOrder);
-                    OrderDrugItemViewModel resultDrug = (OrderDrugItemViewModel)LaunchViewDialog(ordDrug, "ORDDRG", true);
-                    if (resultDrug != null && resultDrug.ResultDialog == ActionDialog.Save)
-                    {
-                        selectPatientOrder = resultDrug.PatientOrderDetail;
-                        OnUpdateEvent();
-                    }
+                    //OrderDrugItem ordDrug = new OrderDrugItem(selectPatientOrder);
+                    //OrderDrugItemViewModel resultDrug = (OrderDrugItemViewModel)LaunchViewDialog(ordDrug, "ORDDRG", true);
+                    //if (resultDrug != null && resultDrug.ResultDialog == ActionDialog.Save)
+                    //{
+                    //    selectPatientOrder = resultDrug.PatientOrderDetail;
+                    //    OnUpdateEvent();
+                    //}
                     break;
             }
             OnUpdateEvent();
