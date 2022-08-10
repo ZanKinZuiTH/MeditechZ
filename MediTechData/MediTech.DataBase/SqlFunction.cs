@@ -1077,7 +1077,7 @@ namespace MediTech.DataBase
         }
 
         public static DataTable pSearchPatient(string patientID, string firstName, string middleName, string lastName, string nickName, DateTime? birthDate
-            , int? SEXXXUID, string idCard, DateTime? lastVisitDate, string mobilePhone)
+            , int? SEXXXUID, string idCard, DateTime? lastVisitDate, string mobilePhone, string idPassport)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchPatient", entities.Database.Connection.ConnectionString);
@@ -1093,6 +1093,7 @@ namespace MediTech.DataBase
             adp.SelectCommand.Parameters.AddWithValue("@P_IDCard", idCard ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_LastVisitDate", lastVisitDate ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_MobilePhone", mobilePhone ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_IDPassport", idCard ?? (object)DBNull.Value);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
@@ -1137,7 +1138,7 @@ namespace MediTech.DataBase
         }
 
 
-        public static DataTable pCheckDupicatePatient(string firstName, string lastName, DateTime? birthDate, int SEXXXUID)
+        public static DataTable pCheckDupicatePatient(string firstName, string lastName)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pCheckDupicatePatient", entities.Database.Connection.ConnectionString);
@@ -1145,8 +1146,6 @@ namespace MediTech.DataBase
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_FirstName", firstName);
             adp.SelectCommand.Parameters.AddWithValue("@P_LastName", !string.IsNullOrEmpty(lastName) ? lastName : (object)DBNull.Value);
-            adp.SelectCommand.Parameters.AddWithValue("@P_BirthDttm", birthDate ?? (object)DBNull.Value);
-            adp.SelectCommand.Parameters.AddWithValue("@P_SEXXXUID", SEXXXUID);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
