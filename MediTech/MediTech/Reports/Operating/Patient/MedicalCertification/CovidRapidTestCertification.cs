@@ -25,6 +25,7 @@ namespace MediTech.Reports.Operating.Patient
 
             if (model != null)
             {
+                this.lbIdCard.Text = model.PassportID != null ? model.IDCard + "/" + model.PassportID : model.IDCard;
                 page2.lbStartDate1.Text = model.strVisitData?.ToString("dd'/'MM'/'yyyy");
                 page2.lbDoctor.Text = model.Doctor;
                 page2.lbDoctorLicense.Text = model.DoctorLicenseNo;

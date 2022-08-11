@@ -16,12 +16,15 @@
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
+       
             <RowDefinition Height="35*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.322*" />
             <ColumnDefinition Width="0.103*" />
             <ColumnDefinition Width="0.086*" />
+            <ColumnDefinition Width="0.070*" />
+            <ColumnDefinition Width="0.137*" />
             <ColumnDefinition Width="0.070*" />
             <ColumnDefinition Width="0.137*" />
             <ColumnDefinition Width="0.110*" />
@@ -50,8 +53,9 @@
             </Label>
 
         </DockPanel>
+        
 
-        <DockPanel Grid.Column="3" Grid.ColumnSpan="4" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,0,0">
+        <DockPanel Grid.Column="7" Grid.ColumnSpan="4" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,0,0">
             <Label  Margin="3,0,0,0" Width="Auto" Content="Payor"  HorizontalContentAlignment="Left" FontSize="11" FontStyle="Italic"  Foreground="Wheat" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
             <Label  HorizontalAlignment="Left" VerticalAlignment="Center">
                 <TextBlock Margin="3,0,0,0"  Name="tePayorName" Width="Auto"  HorizontalAlignment="Left" FontSize="14"  FontStyle="Normal"  Foreground="GhostWhite" FontWeight="Bold" TextWrapping="Wrap" VerticalAlignment="Center"/>
@@ -74,6 +78,23 @@
             <Label Name="lbGender" Width="Auto"  HorizontalContentAlignment="Left" FontSize="14"  FontStyle="Normal"  Foreground="GhostWhite" FontWeight="Bold"/>
         </DockPanel>
 
+
+        <!-- weight / height  -->
+        <Label Name="wh" Grid.Column="3"  Grid.Row="1" Width="Auto" Content="น้ำหนัก/ส่วนสูง"  HorizontalContentAlignment="Right" FontSize="11" FontStyle="Italic"  Foreground="Wheat" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+        <DockPanel Margin="3,0,0,0"  Grid.Column="4"  Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Label Name="lbWeight" Width="Auto" HorizontalContentAlignment="Left" FontSize="14"  FontStyle="Normal"  Foreground="GhostWhite" FontWeight="Bold"/>
+            <Label Content="/" Foreground="GhostWhite" FontSize="11" />
+            <Label Name="lbHeight" Width="Auto"  HorizontalContentAlignment="Left" FontSize="14"  FontStyle="Normal"  Foreground="GhostWhite" FontWeight="Bold"/>
+        </DockPanel>
+
+        <!-- BMI  -->
+        <Label Name="BMI" Grid.Column="5"  Grid.Row="1" Width="Auto" Content="BMI"  HorizontalContentAlignment="Right" FontSize="11" FontStyle="Italic"  Foreground="Wheat" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+        <DockPanel Margin="3,0,0,0"  Grid.Column="6"  Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Label Name="lbBMI" Width="Auto" HorizontalContentAlignment="Left" FontSize="14"  FontStyle="Normal"  Foreground="GhostWhite" FontWeight="Bold"/>
+        </DockPanel>
+
+
+
         <!--Company-->
         <!--
         <Label Grid.Column="5"  Grid.Row="0" Name="CompanyLabel" Width="Auto" Content="Company"  HorizontalContentAlignment="Right" FontSize="11"  FontStyle="Italic"  Foreground="Wheat" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
@@ -84,8 +105,8 @@
         </DockPanel>-->
 
         <!--Phone Number-->
-        <Label Grid.Column="5"  Grid.Row="0"  Name="DoctorLabel" Width="Auto" Content="Reference No"  HorizontalContentAlignment="Right" FontSize="11" FontStyle="Italic"  Foreground="Wheat" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
-        <DockPanel Margin="3,0,0,0"  Grid.Column="6"  Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <Label Grid.Column="7"  Grid.Row="0"  Name="DoctorLabel" Width="Auto" Content="Reference No"  HorizontalContentAlignment="Right" FontSize="11" FontStyle="Italic"  Foreground="Wheat" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+        <DockPanel Margin="3,0,0,0"  Grid.Column="8"  Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
             <TextBlock Name="teReferenceNo"
                             FontSize="14" FontStyle="Normal"  Foreground="GhostWhite"  FontWeight="Bold" TextTrimming="CharacterEllipsis" VerticalAlignment="Top" />
         </DockPanel>

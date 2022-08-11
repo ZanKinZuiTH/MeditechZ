@@ -46,8 +46,8 @@ namespace MediTech.Reports.Operating.Patient
             if (model != null)
             {
                 this.lbPatientName.Text = model.PatientName;
-                this.lbIdCard.Text = model.IDCard;
-
+                //this.lbIdCard.Text = model.IDCard;
+                this.lbIdCard.Text = model.PassportID != null ? model.IDCard + "/" + model.PassportID : model.IDCard;
                 page2.lbDoctor.Text = model.Doctor;
                 page2.lbDoctorNo.Text = model.DoctorLicenseNo;
                 page2.lbPatientName.Text = model.PatientName;

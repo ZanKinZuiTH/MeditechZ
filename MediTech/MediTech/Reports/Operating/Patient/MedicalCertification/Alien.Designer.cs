@@ -281,6 +281,8 @@ namespace MediTech.Reports.Operating.Patient
             // 
             // xrLabel75
             // 
+            this.xrLabel75.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[PassportID]")});
             this.xrLabel75.Font = new System.Drawing.Font("Angsana New", 14F, System.Drawing.FontStyle.Bold);
             this.xrLabel75.InteractiveSorting.TargetBand = this.Detail;
             this.xrLabel75.LocationFloat = new DevExpress.Utils.PointFloat(156.4375F, 102.0625F);

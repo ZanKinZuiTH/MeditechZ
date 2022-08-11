@@ -32,5 +32,7 @@ namespace MediTech.Model.Report
         public string HealthOrganisationName { get; set; }
         public string Comments { get; set; }
         public string CancelReason { get; set; }
+        public string TypeOrder { get; set; }
+
     }
 }
