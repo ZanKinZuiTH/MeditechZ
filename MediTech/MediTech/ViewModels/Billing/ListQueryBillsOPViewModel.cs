@@ -296,7 +296,7 @@ namespace MediTech.ViewModels
             if (SelectUnBilledPatient != null)
             {
                 PatientOrderEntry pageview = new PatientOrderEntry();
-                (pageview.DataContext as PatientOrderEntryViewModel).AssingPatientVisit(SelectUnBilledPatient);
+                (pageview.DataContext as PatientOrderEntryViewModel).AssingPatientVisit(SelectUnBilledPatient, true);
                 PatientOrderEntryViewModel result = (PatientOrderEntryViewModel)LaunchViewDialog(pageview, "ORDITM", false, true);
             }
         }

@@ -241,17 +241,12 @@ namespace MediTech.ViewModels
                 }
                 try
                 {
-                    CancelPopup cancelPopup = new CancelPopup();
-                    CancelPopupViewModel result = (CancelPopupViewModel)LaunchViewDialog(cancelPopup, "CANBILLOP", true);
+                    var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPatientBill.PatientVisitUID);
+                    CancelBillPopup cancelPopup = new CancelBillPopup();
+                    (cancelPopup.DataContext as CancelBillPopupViewModel).AssignPatientVisit(patientVisit);
+                    CancelBillPopupViewModel result = (CancelBillPopupViewModel)LaunchViewDialog(cancelPopup, "CANBILLOP", true);
                     if (result != null && result.ResultDialog == ActionDialog.Save)
                     {
-                        if (String.IsNullOrEmpty(result.Comments))
-                        {
-                            WarningDialog("ไม่สามารถยกเลิกได้ กรุณาใส่เหตุผล");
-                            return;
-                        }
-                        DataService.Billing.CancelBill(SelectPatientBill.PatientBillUID, result.Comments, AppUtil.Current.UserID);
-                        SaveSuccessDialog();
                         SearchPatientBill();
                     }
 

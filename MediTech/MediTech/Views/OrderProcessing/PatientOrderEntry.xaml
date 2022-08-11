@@ -43,7 +43,7 @@
                                                     OnTextChangedEvent="True"
                                                     SuppressEvent="{Binding SuppressEvent,Mode=OneWayToSource}"
                                                     MaxCompletions="30"
-                                                    IsEnabled="{Binding EnableSearchItem}"
+                                                    IsEnabled="{Binding EnableEnterOrder}"
                                                     ItemsSource="{Binding OrderItems}"
                                                     SelectedItem="{Binding SelectOrderItem,Mode=OneWayToSource}"
                                                     >
@@ -193,6 +193,7 @@
 
                         <dxlc:LayoutGroup HorizontalAlignment="Right">
                             <dx:SimpleButton Width="80" Command="{Binding SaveCommand}"
+                                             IsEnabled="{Binding EnableEnterOrder}"
                                      Height="25" Content="บันทึก"/>
                             <dx:SimpleButton Width="85" Command="{Binding ClearOrderCommand}"
                                      Height="25" Content="Clear Order"/>
@@ -265,6 +266,7 @@
                                         <dxe:TextEditSettings DisplayFormat="#,#.00"/>
                                     </dxg:GridColumn.EditSettings>
                                 </dxg:GridColumn>
+                                <dxg:GridColumn FieldName="PaymentStatus" Header="สถานะการชำระเงิน"/>
                                 <dxg:GridColumn Header="OverridePrice" FieldName="IsPriceOverwrite" ReadOnly="True"/>
                                 <dxg:GridColumn Header="OrderSet" FieldName="OrderSetName" ReadOnly="True"/>
                                 <dxg:GridColumn Header="ผู้คีย์" FieldName="OrderBy" ReadOnly="True"/>
