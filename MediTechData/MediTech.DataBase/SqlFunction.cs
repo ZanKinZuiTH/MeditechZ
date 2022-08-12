@@ -2804,6 +2804,42 @@ namespace MediTech.DataBase
             return flag;
         }
 
+        public static bool pHourlyComplete(string patientOrderDetailUIDs,int userUID,DateTime endDttm,string comments)
+        {
+            bool flag = false;
+            MediTechEntities entities = new MediTechEntities();
+
+            SqlConnection con = new SqlConnection(entities.Database.Connection.ConnectionString);
+            try
+            {
+
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "pHourlyComplete";
+
+                cmd.Parameters.AddWithValue("@P_PatientOrderDetailUIDs", patientOrderDetailUIDs);
+                cmd.Parameters.AddWithValue("@P_MUser", userUID);
+                cmd.Parameters.AddWithValue("@Enddttm", endDttm);
+                cmd.Parameters.AddWithValue("@Comment", comments ?? (object)DBNull.Value);
+
+                cmd.ExecuteNonQuery();
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return flag;
+        }
+
         public static string pCheckPatientBillStatus(long patientUID, long patientVisitUID)
         {
             MediTechEntities entities = new MediTechEntities();

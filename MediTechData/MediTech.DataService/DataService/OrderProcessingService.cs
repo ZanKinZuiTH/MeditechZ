@@ -72,6 +72,21 @@ namespace MediTech.DataService
             return data;
         }
 
+        public bool ClosureStandingOrder(string patientOrderDetailUIDs, int userUID, DateTime endDttm, string comments)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/OrderProcessing/ClosureStandingOrder?patientOrderDetailUIDs={0}&userUID={1}&endDttm={2:MM/dd/yyyy HH:mm}&comments={3}", patientOrderDetailUIDs, userUID, endDttm, comments);
+                MeditechApiHelper.Put(requestApi);
+                flag = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return flag;
+        }
 
         #region OrderDrugItem
 

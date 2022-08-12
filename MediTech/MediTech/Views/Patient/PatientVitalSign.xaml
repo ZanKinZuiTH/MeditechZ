@@ -9,7 +9,7 @@
              mc:Ignorable="d"
              DataContext="{Binding PatientVitalSignModel,Source={StaticResource Locator}}"
              xmlns:ban="clr-namespace:MediTech.CustomControl.Banner" Padding="10"
-             d:DesignHeight="600" d:DesignWidth="800">
+             d:DesignHeight="800" d:DesignWidth="900">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -22,14 +22,32 @@
                 <dx:DXTabItem Header="Vital Sign" >
                     <dxlc:LayoutControl
                     Orientation="Vertical">
+                        <dxlc:LayoutGroup HorizontalAlignment="Right">
+                            <dxlc:LayoutItem Label="วันที่บันทึก">
+                                <dxe:DateEdit Height="25" EditValue="{Binding StampDate}"  Width="130"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="เวลา" >
+                                <dxe:DateEdit x:Name="timeEditor" Height="25" 
+                                              Width="85"
+                                       HorizontalAlignment="Right"
+                                      EditValue="{Binding StampTime}"
+                                      DisplayFormatString="HH:mm"
+                                      Mask="HH:mm">
+                                    <dxe:DateEdit.StyleSettings>
+                                        <dxe:DateEditTimePickerStyleSettings/>
+                                    </dxe:DateEdit.StyleSettings>
+                                </dxe:DateEdit>
+                            </dxlc:LayoutItem>
+
+                        </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup Orientation="Horizontal">
                             <TextBlock Text="Height" FontSize="14" />
                             <dxe:TextEdit  Name="txtHeight" Height="25"  
                                            Width="100"
                                            EditValue="{Binding Height}" VerticalAlignment="Top" Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"/>
                             <TextBlock Text="Cms" FontSize="14" />
-                            <TextBlock Text="วันที่บันทึก" Height="25" />
-                            <dxe:DateEdit Height="25" EditValue="{Binding StampDate}"  />
+                            <dxlc:LayoutItem/>
+                            <dxlc:LayoutItem/>
                         </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup Orientation="Horizontal">
                             <TextBlock Text="Weight" FontSize="14" />
@@ -38,16 +56,8 @@
                                        Width="100" 
                                        VerticalAlignment="Top"/>
                             <TextBlock Text="kg" FontSize="14" Height="25" />
-                            <TextBlock Text="เวลาที่บันทึก"  Height="25" />
-                            <dxe:DateEdit x:Name="timeEditor" Height="25"
-                                      EditValue="{Binding StampTime}"
-                                      DisplayFormatString="HH:mm"
-                                      Mask="HH:mm">
-                                <dxe:DateEdit.StyleSettings>
-                                    <dxe:DateEditTimePickerStyleSettings/>
-                                </dxe:DateEdit.StyleSettings>
-                            </dxe:DateEdit>
-
+                            <dxlc:LayoutItem/>
+                            <dxlc:LayoutItem/>
                         </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup Orientation="Horizontal">
                             <TextBlock Text="BMI" FontSize="14" />
@@ -215,9 +225,26 @@
                             </dxg:GridColumn>
                         </dxg:GridControl>
                         <dxlc:LayoutControl Grid.Column="1" 
-                                            ItemSpace="8"
-                                            IsEnabled="{Binding IsEditRecent}"
-                    Orientation="Vertical">
+                                            IsEnabled="{Binding IsEditRecent}" 
+                                            Orientation="Vertical">
+                            <dxlc:LayoutGroup HorizontalAlignment="Right">
+                                <dxlc:LayoutItem Label="วันที่บันทึก">
+                                    <dxe:DateEdit Height="25" EditValue="{Binding StampDateRe}"  Width="130" />
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="เวลา" >
+                                    <dxe:DateEdit x:Name="timeEditorRe" Height="25" 
+                                              Width="85"
+                                       HorizontalAlignment="Right"
+                                      EditValue="{Binding StampTimeRe}"
+                                      DisplayFormatString="HH:mm"
+                                      Mask="HH:mm">
+                                        <dxe:DateEdit.StyleSettings>
+                                            <dxe:DateEditTimePickerStyleSettings/>
+                                        </dxe:DateEdit.StyleSettings>
+                                    </dxe:DateEdit>
+                                </dxlc:LayoutItem>
+
+                            </dxlc:LayoutGroup>
                             <dxlc:LayoutGroup Orientation="Horizontal">
                                 <TextBlock Text="Height" FontSize="14" />
                                 <dxe:TextEdit  Name="txtHeightRe"  EditValue="{Binding HeightRe}"
@@ -225,10 +252,9 @@
                                  Width="100" 
                                  VerticalAlignment="Top" Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx" />
                                 <TextBlock Text="Cms" FontSize="14" />
-            
-                             
-                                <TextBlock Text="วันที่บันทึก" Height="25" />
-                                <dxe:DateEdit Height="25" EditValue="{Binding StampDateRe}" />
+                                <TextBlock/>
+                                <TextBlock/>
+
                             </dxlc:LayoutGroup>
                             <dxlc:LayoutGroup Orientation="Horizontal">
                                 <TextBlock Text="Weight" FontSize="14" />
@@ -238,16 +264,8 @@
                                        Width="100" 
                                        VerticalAlignment="Top"/>
                                 <TextBlock Text="kg" FontSize="14" />
-
-                                <TextBlock Text="เวลาที่บันทึก"  Height="25" />
-                                <dxe:DateEdit x:Name="timeEditorRe" Height="25" 
-                                      EditValue="{Binding StampTimeRe}"
-                                      DisplayFormatString="HH:mm"
-                                      Mask="HH:mm">
-                                    <dxe:DateEdit.StyleSettings>
-                                        <dxe:DateEditTimePickerStyleSettings/>
-                                    </dxe:DateEdit.StyleSettings>
-                                </dxe:DateEdit>
+                                <TextBlock />
+                                <TextBlock />
                             </dxlc:LayoutGroup>
                             <dxlc:LayoutGroup Orientation="Horizontal">
                                 <TextBlock Text="BMI" FontSize="14" />

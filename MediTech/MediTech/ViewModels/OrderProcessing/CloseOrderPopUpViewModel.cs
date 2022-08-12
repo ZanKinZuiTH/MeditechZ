@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using MediTech.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,21 @@ namespace MediTech.ViewModels
     {
 
         #region Properties
+        private List<PatientOrderDetailModel> _ListOrderCloseLists;
+
+        public List<PatientOrderDetailModel> ListOrderCloseLists
+        {
+            get { return _ListOrderCloseLists; }
+            set { _ListOrderCloseLists = value; }
+        }
+
 
         private DateTime? _CloseDate;
 
         public DateTime? CloseDate
         {
             get { return _CloseDate; }
-            set { _CloseDate = value; }
+            set { Set(ref _CloseDate , value); }
         }
 
         private DateTime? _CloseTime;
@@ -25,7 +34,15 @@ namespace MediTech.ViewModels
         public DateTime? CloseTime
         {
             get { return _CloseTime; }
-            set { _CloseTime = value; }
+            set { Set(ref _CloseTime, value); }
+        }
+
+        private string _Comments;
+
+        public string Comments
+        {
+            get { return _Comments; }
+            set { Set(ref _Comments, value); }
         }
 
 
@@ -56,10 +73,39 @@ namespace MediTech.ViewModels
         #endregion
 
         #region Method
+        public CloseOrderPopUpViewModel()
+        {
+            CloseDate = DateTime.Now;
+            CloseTime = CloseDate;
+        }
 
         void Save()
         {
-            CloseViewDialog(ActionDialog.Save);
+            try
+            {
+                string patientOrderDetails = "";
+                foreach (var orderDetailItem in ListOrderCloseLists)
+                {
+                    if (patientOrderDetails == "")
+                    {
+                        patientOrderDetails = orderDetailItem.PatientOrderDetailUID.ToString();
+                    }
+                    else
+                    {
+                        patientOrderDetails += "," + orderDetailItem.PatientOrderDetailUID.ToString();
+
+                    }
+                }
+                var endDttm = DateTime.Parse(CloseDate?.ToString("dd/MM/yyyy") + " " + CloseTime?.ToString("HH:mm"));
+                var comments = Comments;
+                DataService.OrderProcessing.ClosureStandingOrder(patientOrderDetails, AppUtil.Current.UserID, endDttm, comments);
+                CloseViewDialog(ActionDialog.Save);
+            }
+            catch (Exception er)
+            {
+                ErrorDialog(er.Message);
+            }
+
         }
 
         void Cancel()

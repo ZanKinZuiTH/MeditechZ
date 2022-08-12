@@ -510,11 +510,13 @@ namespace MediTech.ViewModels
                     List<PatientOrderDetailModel> closedOrderList = SelectExistingOrder.Where(p => p.ORDSTUID != 2848 && p.EndDttm == null).ToList();
                     if (closedOrderList != null && closedOrderList.Count > 0)
                     {
-                        CloseOrderPopUp closeOrderPopUp = new CloseOrderPopUp();
+                        CloseOrderPopUp closeOrderPopUp = new CloseOrderPopUp(closedOrderList);
                         CloseOrderPopUpViewModel result = (CloseOrderPopUpViewModel)LaunchViewDialogNonPermiss(closeOrderPopUp, true);
                         if (result != null && result.ResultDialog == ActionDialog.Save)
                         {
+
                             SearchExistingOrder();
+                            ResultDialog = ActionDialog.Save;
                         }
                     }
 
@@ -967,7 +969,7 @@ namespace MediTech.ViewModels
                         }
 
 
-                    
+
                         OnUpdateEvent();
                     }
                     break;
