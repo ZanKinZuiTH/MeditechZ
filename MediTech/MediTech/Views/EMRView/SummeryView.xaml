@@ -757,35 +757,50 @@
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <dxg:GridControl.Columns>
-                                <dxg:GridColumn FieldName="ItemCode" Width="50" Header="รหัส">
-                                    <dxg:GridColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding RowData.Row.ItemCode}" Margin="2"
-                                               FontWeight="Bold" />
-                                        </DataTemplate>
-                                    </dxg:GridColumn.CellTemplate>
-                                </dxg:GridColumn>
-                                <dxg:GridColumn FieldName="ItemName" Header="ชื่อ" Width="200">
+                                <dxg:GridColumn Header="สถานะ" FieldName="OrderDetailStatus" ReadOnly="True"/>
+                                <dxg:GridColumn Header="เวลาคีย์" FieldName="OrderDttm" ReadOnly="True">
                                     <dxg:GridColumn.EditSettings>
-                                        <dxe:TextEditSettings AcceptsReturn="True" TextWrapping="Wrap"/>
+                                        <dxe:DateEditSettings DisplayFormat="dd/MM/yyyy HH:mm"/>
                                     </dxg:GridColumn.EditSettings>
                                 </dxg:GridColumn>
-                                <dxg:GridColumn FieldName="BillingService" Header="หมวดหมู่"/>
-                                <dxg:GridColumn FieldName="StartDttm" Header="วันที่">
+                                <dxg:GridColumn Header="รหัส" FieldName="ItemCode" ReadOnly="True"/>
+                                <dxg:GridColumn Header="ชื่อ" FieldName="ItemName" ReadOnly="True"/>
+                                <dxg:GridColumn Header="ประเภท" FieldName="BillingService" ReadOnly="True"/>
+                                <dxg:GridColumn Header="ราคาต่อหน่วย" FieldName="DisplayPrice" ReadOnly="True">
                                     <dxg:GridColumn.EditSettings>
-                                        <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy"/>
+                                        <dxe:TextEditSettings DisplayFormat="#,#.00"/>
                                     </dxg:GridColumn.EditSettings>
                                 </dxg:GridColumn>
-                                <dxg:GridColumn FieldName="Comments" Header="Comments"/>
-                                <dxg:GridColumn FieldName="OrderDetailStatus" Header="สถานะ"/>
-                                <dxg:GridColumn FieldName="Quantity" Header="จำนวน"/>
-                                <dxg:GridColumn FieldName="QuantityUnit" Header="หน่วย"/>
-                                <dxg:GridColumn FieldName="OrderNumber"/>
-                                <dxg:GridColumn FieldName="CareproviderName" Header="แพทย์" ReadOnly="True"/>
-                                <dxg:GridColumn FieldName="NetAmount" Header="ราคา"/>
-                                <dxg:GridColumn FieldName="OrderSetName" Header="OrderSet"/>
-                                <dxg:GridColumn FieldName="OwnerOrganisationName" Header="Order จาก"/>
+                                <dxg:GridColumn Header="จำนวน" FieldName="Quantity" ReadOnly="True"/>
+                                <!--<dxg:GridColumn Header="ค่าแพทย์" FieldName="DoctorFee" ReadOnly="True">
+                                    <dxg:GridColumn.EditSettings>
+                                        <dxe:TextEditSettings DisplayFormat="#,#.00"/>
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>-->
+                                <dxg:GridColumn Header="แพทย์" FieldName="CareproviderName" ReadOnly="True"/>
+                                <dxg:GridColumn Header="ราคารวม" FieldName="NetAmount" ReadOnly="True">
+                                    <dxg:GridColumn.EditSettings>
+                                        <dxe:TextEditSettings DisplayFormat="#,#.00"/>
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>
                                 <dxg:GridColumn FieldName="PaymentStatus" Header="สถานะการชำระเงิน"/>
+                                <dxg:GridColumn Header="OverridePrice" FieldName="IsPriceOverwrite" ReadOnly="True"/>
+                                <dxg:GridColumn Header="OrderSet" FieldName="OrderSetName" ReadOnly="True"/>
+                                <dxg:GridColumn Header="ผู้คีย์" FieldName="OrderBy" ReadOnly="True"/>
+                                <dxg:GridColumn FieldName="OrderNumber"/>
+                                <dxg:GridColumn Header="StartDttm" FieldName="StartDttm" ReadOnly="True">
+                                    <dxg:GridColumn.EditSettings>
+                                        <dxe:DateEditSettings DisplayFormat="dd/MM/yyyy HH:mm"/>
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>
+                                <dxg:GridColumn Header="EndDttm" FieldName="EndDttm" ReadOnly="True">
+                                    <dxg:GridColumn.EditSettings>
+                                        <dxe:DateEditSettings DisplayFormat="dd/MM/yyyy HH:mm"/>
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>
+                                <dxg:GridColumn Header="Order จาก" FieldName="OwnerOrganisationName" ReadOnly="True"/>
+                                <dxg:GridColumn Header="แผนก" FieldName="LocationName" ReadOnly="True"/>
+                                <dxg:GridColumn Header="หมายเหตุ" FieldName="Comments" ReadOnly="True"/>
                             </dxg:GridControl.Columns>
                             <dxg:GridControl.View>
                                 <dxg:TableView  ShowGroupPanel="False"
@@ -827,7 +842,7 @@
                         </dxg:GridColumn.EditSettings>
                     </dxg:GridColumn>
                     <dxg:GridColumn FieldName="BillingService" Header="หมวดหมู่"/>
-                    <dxg:GridColumn FieldName="StartDttm" Header="วันที่">
+                    <dxg:GridColumn FieldName="OrderDttm" Header="วันที่">
                         <dxg:GridColumn.EditSettings>
                             <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy"/>
                         </dxg:GridColumn.EditSettings>

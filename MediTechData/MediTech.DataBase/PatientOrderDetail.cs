@@ -11,7 +11,7 @@ namespace MediTech.DataBase
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class PatientOrderDetail
     {
         public long UID { get; set; }

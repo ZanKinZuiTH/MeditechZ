@@ -410,8 +410,8 @@ namespace MediTech.ViewModels
         {
             var orderAll = DataService.OrderProcessing.GetOrderAllByVisitUID(SelectPastVisit.PatientVisitUID);
             orderAll = orderAll.Where(p => p.ORDSTUID != 2848).ToList();
-            ListOrder = orderAll.Where(p => p.IdentifyingType.ToUpper() != "PRESCRIPTIONITEM").ToList();
-            ListDrugProfile = orderAll.Where(p => p.IdentifyingType.ToUpper() == "PRESCRIPTIONITEM" && p.ORDSTUID == 2861).ToList();
+            ListOrder = orderAll.Where(p => p.IdentifyingType.ToUpper() != "DRUG").ToList();
+            ListDrugProfile = orderAll.Where(p => p.IdentifyingType.ToUpper() == "DRUG" && p.ORDSTUID == 2861).ToList();
 
             if (ListDrugProfile != null && ListDrugProfile.Count > 0)
                 IsEnableDrug = true;

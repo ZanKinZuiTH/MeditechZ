@@ -90,12 +90,11 @@
                                     <TextBlock Text="เวลา" />
                                 </StackPanel>
                             </dxlc:LayoutItem.Label>
-                            <dxe:DateEdit x:Name="timeEditor"
-                                      EditValue="{Binding StartTime}"
-                                      DisplayFormatString="HH:mm"
-                                      Mask="HH:mm">
+                            <dxe:DateEdit x:Name="timeEditor" EditValue="{Binding StartTime}"
+                                          Mask="HH:mm"
+                                          MaskUseAsDisplayFormat="True">
                                 <dxe:DateEdit.StyleSettings>
-                                    <dxe:DateEditPickerStyleSettings/>
+                                    <dxe:DateEditTimePickerStyleSettings  />
                                 </dxe:DateEdit.StyleSettings>
                             </dxe:DateEdit>
                         </dxlc:LayoutItem>

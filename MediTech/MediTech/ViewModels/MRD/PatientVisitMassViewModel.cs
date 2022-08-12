@@ -694,7 +694,7 @@ namespace MediTech.ViewModels
 
                                 var locationUID = SelectLocationOrder.LocationUID;
                                 int ownerorganisationUID = AppUtil.Current.OwnerOrganisationUID;
-                                string orderNumber = DataService.OrderProcessing.CreateOrder(patientVisit.PatientUID, patientVisit.PatientVisitUID, userUID, locationUID, ownerorganisationUID, saveOrders);
+                                DataService.OrderProcessing.CreateOrder(patientVisit.PatientUID, patientVisit.PatientVisitUID, userUID, locationUID, ownerorganisationUID, saveOrders);
                                 patientVisit.Select = false;
                                 loopCounter = loopCounter + 1;
                                 view.SetProgressBarValue(loopCounter);
