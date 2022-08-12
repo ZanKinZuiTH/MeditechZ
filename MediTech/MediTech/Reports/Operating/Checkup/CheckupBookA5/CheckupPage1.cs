@@ -651,9 +651,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         || p.RequestItemCode.Contains("LAB587") //Cadmium in Blood
                         || p.RequestItemCode.Contains("LAB547") // Zinc in zerum
                         || p.RequestItemCode.Contains("LAB463") // Iron zerum
-                         || p.RequestItemCode.Contains("LAB542") // chro zerum
-                          || p.RequestItemCode.Contains("LAB575")// Ammo
-                           || p.RequestItemCode.Contains("LAB487")) //Lead in Urin 
+                        || p.RequestItemCode.Contains("LAB542") // chro zerum
+                        || p.RequestItemCode.Contains("LAB575")// Ammo
+                        || p.RequestItemCode.Contains("LAB487") //Lead in Urin 
+                        || p.RequestItemCode.Contains("LAB511")
+                        || p.RequestItemCode.Contains("LAB606"))
                          .OrderByDescending(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
                     #endregion
@@ -1567,6 +1569,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page7.RowChroinB.Visible = false;
                 page7.RowAmmo.Visible = false;
                 page7.RowLeadInu.Visible = false;
+                page7.RowCholinesteraseBlood.Visible = false;
+                page7.RowThinnerUrine.Visible = false;
 
 
                 if (labTestSet != null && labTestSet.Count() > 0)
@@ -2028,6 +2032,31 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
 
                     #endregion
 
+                    #region Cholinesterase in blood
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR126") != null)
+                    {
+                        page7.RowCholinesteraseBlood.Visible = true;
+                        page7.CholinesterasebloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR126")?.ReferenceRange;
+                        page7.Cholinesteraseblood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR126" && p.Year == year1)?.ResultValue;
+                        page7.Cholinesteraseblood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR126" && p.Year == year2)?.ResultValue;
+                        page7.Cholinesteraseblood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR126" && p.Year == year3)?.ResultValue;
+                    }
+
+                    #endregion
+
+                    #region Thinner in urine
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285") != null)
+                    {
+                        page7.RowThinnerUrine.Visible = true;
+                        page7.ThinnerUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285")?.ReferenceRange;
+                        page7.ThinnerUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285" && p.Year == year1)?.ResultValue;
+                        page7.ThinnerUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285" && p.Year == year2)?.ResultValue;
+                        page7.ThinnerUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285" && p.Year == year3)?.ResultValue;
+                    }
+
+                    #endregion
 
                 }
                 else

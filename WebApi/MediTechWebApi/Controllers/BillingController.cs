@@ -1187,6 +1187,7 @@ namespace MediTechWebApi.Controllers
                                            where bill.StatusFlag == "A"
                                            && bill.PatientUID == patientUID
                                            && bill.PatientVisitUID == patientVisitUID
+                                           && bill.CancelledDttm == null
                                            select new PatientBillModel
                                            {
                                                PatientBillUID = bill.UID,
@@ -1620,21 +1621,73 @@ namespace MediTechWebApi.Controllers
         {
             try
             {
+                int BLINP = 423;
+                int FINDIS = 421;
                 DateTime now = DateTime.Now;
-                foreach (var editbill in bills)
+                using (var tran = new TransactionScope())
                 {
-                    PatientBill patBill = db.PatientBill.Find(editbill.PatientBillUID);
-                    if (patBill != null)
+                    foreach (var editbill in bills)
                     {
-                        db.PatientBill.Attach(patBill);
-                        patBill.CancelledDttm = now;
-                        patBill.CancelReason = editbill.CancelReason;
-                        patBill.MWhen = now;
-                        patBill.MUser = editbill.MUser;
-                        db.SaveChanges();
+                        PatientBill patBill = db.PatientBill.Find(editbill.PatientBillUID);
+                        if (patBill != null)
+                        {
+                            db.PatientBill.Attach(patBill);
+                            patBill.CancelledDttm = now;
+                            patBill.CancelReason = editbill.CancelReason;
+                            patBill.IsRefund = "Y";
+                            patBill.MWhen = now;
+                            patBill.MUser = editbill.MUser;
+                            db.SaveChanges();
+                        }
+
+
+                        var patPaymentDetails = db.PatientPaymentDetail.Where(p => p.StatusFlag == "A" && p.PatientBillUID == patBill.UID);
+                        if (patPaymentDetails != null && patPaymentDetails.Count() > 0)
+                        {
+                            foreach (var patPay in patPaymentDetails)
+                            {
+                                db.PatientPaymentDetail.Attach(patPay);
+                                patPay.IsRefund = "Y";
+                                patPay.MUser = editbill.MUser;
+                                patPay.MWhen = now;
+                                db.SaveChanges();
+                            }
+
+                        }
+
+                        PatientVisit patpv = db.PatientVisit.Find(patBill.PatientVisitUID);
+                        if (patpv != null)
+                        {
+                            if (patpv.VISTSUID == FINDIS)
+                            {
+                                db.PatientVisit.Attach(patpv);
+                                patpv.MUser = editbill.MUser;
+                                patpv.MWhen = now;
+                                patpv.IsBillFinalized = null;
+                                patpv.VISTSUID = BLINP;
+                                patpv.EndDttm = null;
+                                db.SaveChanges();
+
+                                #region PatientServiceEvent
+
+                                PatientServiceEvent serviceEvent = new PatientServiceEvent();
+                                serviceEvent.PatientVisitUID = patpv.UID;
+                                serviceEvent.EventStartDttm = now;
+                                serviceEvent.VISTSUID = patpv.VISTSUID.Value;
+                                serviceEvent.MUser = editbill.MUser;
+                                serviceEvent.MWhen = now;
+                                serviceEvent.CUser = editbill.MUser;
+                                serviceEvent.CWhen = now;
+                                serviceEvent.StatusFlag = "A";
+
+                                db.PatientServiceEvent.Add(serviceEvent);
+                                #endregion
+
+                                db.SaveChanges();
+                            }
+                        }
                     }
-
-
+                    tran.Complete();
                 }
                 return Request.CreateResponse(HttpStatusCode.OK);
             }

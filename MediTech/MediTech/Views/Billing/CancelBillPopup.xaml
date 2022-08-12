@@ -21,7 +21,7 @@
             <dxlc:LayoutItem>
                 <uc:PatientOPBanner x:Name="Banner" PatientVisit="{Binding SelectPatientVisit}"/>
             </dxlc:LayoutItem>
-            <dxg:GridControl ItemsSource="{Binding PatientBillLists}" 
+            <dxg:GridControl Name="grdPatientBillLists" ItemsSource="{Binding PatientBillLists,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                              SelectedItems="{Binding SelectedPatientBills}"
                              SelectionMode="MultipleRow">
                 <dxg:GridColumn Header="เลขที่ใบเสร็จ" FieldName="BillNumber"  ReadOnly="True"/>
@@ -42,10 +42,9 @@
                 </dxg:GridControl.View>
             </dxg:GridControl>
             <dxlc:LayoutGroup  >
-                <dxlc:LayoutItem Label="Comment" LabelVerticalAlignment="Top"  HorizontalAlignment="Center">
-                    <dxe:TextEdit Text="{Binding Comments}"
-                TextWrapping="Wrap" Height="50" Width="250"
-                AcceptsReturn="True"
+                <dxlc:LayoutItem Label="Comment" LabelVerticalAlignment="Center"   HorizontalAlignment="Center">
+                    <dxe:TextEdit Text="{Binding Comments,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"
+                Width="250"
                 VerticalScrollBarVisibility="Auto"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutGroup VerticalAlignment="Bottom"  HorizontalAlignment="Right">

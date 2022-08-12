@@ -234,10 +234,10 @@
                                       ValueMember="Key"
                         Width="180" Height="25"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem>
-                    <!--<dx:SimpleButton Command="{Binding SendDataBlabCommand}" Content="SendToBlab" Height="25" Width="95"/>-->
+                <!--<dxlc:LayoutItem>
+                    <dx:SimpleButton Command="{Binding SendDataBlabCommand}" Content="SendToBlab" Height="25" Width="95"/>
                     <dx:SimpleButton Command="{Binding CollectCommand}" Content="SendToBlab" Height="25" Width="95"/>
-                </dxlc:LayoutItem>
+                </dxlc:LayoutItem>-->
                 <dxlc:LayoutItem>
                     <dx:SimpleButton Command="{Binding PrintBarcodeCommand}" Content="Print Barcode" Height="25" Width="95"/>
                 </dxlc:LayoutItem>

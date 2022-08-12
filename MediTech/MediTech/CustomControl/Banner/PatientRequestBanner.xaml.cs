@@ -38,6 +38,31 @@ namespace MediTech.CustomControl.Banner
             lbVisitID.Content = request.VisitID;
             teAddress.Text = request.PatientAddress;
             tePayorName.Text = request.PayorName;
+            lbWeight.Content = request.Weight;
+            lbHeight.Content = request.Height;
+            lbBMI.Content = CalculateBMI(request.Weight.ToString(),request.Height.ToString());
         }
+
+        string CalculateBMI(string h, string w)
+        {
+            string ret = string.Empty;
+            try
+            {
+                
+                ret = String.Format("{0:F2}", (float.Parse(w) / (float.Parse(h) / 100 * float.Parse(h) / 100)));
+
+            }
+            catch (Exception)
+            {
+                return ret;
+            }
+
+
+            return ret;
+        }
+
+
+
+
     }
 }

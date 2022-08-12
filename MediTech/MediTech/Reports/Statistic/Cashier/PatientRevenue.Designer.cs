@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrPivotGrid1 = new DevExpress.XtraReports.UI.XRPivotGrid();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.pivotGridField4 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField7 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.xrPivotGridField23 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
@@ -60,7 +61,6 @@
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.OrganisationList = new DevExpress.XtraReports.Parameters.Parameter();
             this.VISTYUID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.colPatientName = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.colVisitID = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.colVisitDttm = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
@@ -93,6 +93,7 @@
             this.xrPivotGridField20 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.xrPivotGridField25 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.xrPivotGridField28 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.fieldTypeOrder = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -128,6 +129,7 @@
             this.xrPivotGridField27,
             this.pivotGridField9,
             this.pivotGridField8,
+            this.fieldTypeOrder,
             this.pivotGridField5,
             this.pivotGridField11,
             this.pivotGridField10,
@@ -141,6 +143,11 @@
             this.xrPivotGrid1.OptionsPrint.PrintColumnAreaOnEveryPage = true;
             this.xrPivotGrid1.OptionsView.ShowDataHeaders = false;
             this.xrPivotGrid1.SizeF = new System.Drawing.SizeF(1281.917F, 79.99998F);
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.PatientRevenueModel);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // pivotGridField4
             // 
@@ -411,11 +418,6 @@
             this.VISTYUID.ValueInfo = "0";
             this.VISTYUID.Visible = false;
             // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.PatientRevenueModel);
-            this.objectDataSource1.Name = "objectDataSource1";
-            // 
             // colPatientName
             // 
             this.colPatientName.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
@@ -628,6 +630,13 @@
             this.xrPivotGridField28.AreaIndex = 7;
             this.xrPivotGridField28.Name = "xrPivotGridField28";
             // 
+            // fieldTypeOrder
+            // 
+            this.fieldTypeOrder.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.fieldTypeOrder.AreaIndex = 14;
+            this.fieldTypeOrder.FieldName = "TypeOrder";
+            this.fieldTypeOrder.Name = "fieldTypeOrder";
+            // 
             // PatientRevenue
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -719,5 +728,6 @@
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField8;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField11;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField10;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldTypeOrder;
     }
 }

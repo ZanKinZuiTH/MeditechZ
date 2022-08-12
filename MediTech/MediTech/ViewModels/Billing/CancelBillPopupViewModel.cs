@@ -1,7 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
+using MediTech.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,21 +23,45 @@ namespace MediTech.ViewModels
         }
 
 
-        private List<PatientBillModel> _PatientBillLists;
+        private ObservableCollection<PatientBillModel> _PatientBillLists;
 
-        public List<PatientBillModel> PatientBillLists
+        public ObservableCollection<PatientBillModel> PatientBillLists
         {
             get { return _PatientBillLists; }
             set { Set(ref _PatientBillLists, value); }
         }
 
-        private List<PatientBillModel> _SelectedPatientBills;
+        private ObservableCollection<PatientBillModel> _SelectedPatientBills;
 
-        public List<PatientBillModel> SelectedPatientBills
+        public ObservableCollection<PatientBillModel> SelectedPatientBills
         {
-            get { return _SelectedPatientBills ?? (_SelectedPatientBills = new List<PatientBillModel>()); }
+            get { return _SelectedPatientBills ?? (_SelectedPatientBills = new ObservableCollection<PatientBillModel>()); }
             set { Set(ref _SelectedPatientBills, value); }
         }
+
+        private string _Comments;
+
+        public string Comments
+        {
+            get { return _Comments; }
+            set
+            {
+                Set(ref _Comments, value);
+                if (!string.IsNullOrEmpty(_Comments))
+                {
+                    foreach (var bill in PatientBillLists)
+                    {
+                        if (string.IsNullOrEmpty(bill.CancelReason))
+                        {
+                            bill.CancelReason = _Comments;
+                        }
+                    }
+                    (this.View as CancelBillPopup).grdPatientBillLists.RefreshData();
+                }
+            }
+        }
+
+
         #endregion
 
         #region Command
@@ -67,15 +93,46 @@ namespace MediTech.ViewModels
 
         #region Method
 
+        public override void OnLoaded()
+        {
+            if (SelectPatientVisit != null)
+            {
+                PatientBillLists = new ObservableCollection<PatientBillModel>(DataService.Billing.GetPatientBill(SelectPatientVisit.PatientUID, SelectPatientVisit.PatientVisitUID));
+            }
+        }
+
+        public void AssignPatientVisit(PatientVisitModel patientVisit)
+        {
+            this.SelectPatientVisit = patientVisit;
+        }
 
         void Save()
         {
+            try
+            {
+                if (SelectedPatientBills == null || SelectedPatientBills.Count <= 0)
+                {
+                    WarningDialog("กรุณาเลือกใบเสร็จที่จะยกเลิก");
+                    return;
+                }
+                if (SelectedPatientBills.Count(p => string.IsNullOrEmpty(p.CancelReason?.Trim())) > 0)
+                {
+                    WarningDialog("กรุณาระบุเหตุผลในการยกเลิกให้ครบถ้วน");
+                    return;
+                }
+                DataService.Billing.CancelBillLists(SelectedPatientBills.ToList());
+                CloseViewDialog(ActionDialog.Save);
+            }
+            catch (Exception ex)
+            {
 
+                ErrorDialog(ex.Message);
+            }
         }
 
         void Cancel()
         {
-
+            CloseViewDialog(ActionDialog.Cancel);
         }
 
         #endregion

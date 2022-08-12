@@ -17,9 +17,19 @@ namespace MediTech.ViewModels
     public class PatientOrderEntryViewModel : MediTechViewModelBase
     {
         int FINDIS = 421;
+        int BLINP = 423;
         int CANCEL = 410;
 
         #region Properites
+
+        private bool _IsBilling;
+
+        public bool IsBilling
+        {
+            get { return _IsBilling; }
+            set { _IsBilling = value; }
+        }
+
 
         private int _SelectTabIndex;
 
@@ -221,7 +231,8 @@ namespace MediTech.ViewModels
 
                         SearchExistingOrder();
 
-                        if (selectVisit.VISTSUID != 410 && selectVisit.VISTSUID != 421)
+                        if (selectVisit.VISTSUID != CANCEL && selectVisit.VISTSUID != FINDIS &&  selectVisit.VISTSUID != BLINP 
+                            || (selectVisit.VISTSUID == BLINP && IsBilling))
                         {
                             EnabledCancelOrder = true;
                         }
@@ -258,12 +269,12 @@ namespace MediTech.ViewModels
             set { Set(ref _TotalExistingAmount, value); }
         }
 
-        private bool _EnableSearchItem = true;
+        private bool _EnableEnterOrder = true;
 
-        public bool EnableSearchItem
+        public bool EnableEnterOrder
         {
-            get { return _EnableSearchItem; ; }
-            set { Set(ref _EnableSearchItem, value); }
+            get { return _EnableEnterOrder; ; }
+            set { Set(ref _EnableEnterOrder, value); }
         }
 
         private bool _EnabledCancelOrder;
@@ -397,9 +408,9 @@ namespace MediTech.ViewModels
 
             var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(PatientVisit.PatientVisitUID);
 
-            if (patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
+            if ((patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == BLINP || patientVisit.VISTSUID == CANCEL) && IsBilling == false)
             {
-                EnableSearchItem = false;
+                EnableEnterOrder = false;
             }
 
             (this.View as PatientOrderEntry).txtOrder.Focus();
@@ -415,7 +426,7 @@ namespace MediTech.ViewModels
                     LookupVisit = PatientVisitsList.Select(p => new LookupItemModel
                     {
                         Key2 = p.PatientVisitUID,
-                        Display = p.VisitID + " : " + p.StartDttm.Value.ToString("dd/MM/yyyy") + " - " + (p.EndDttm.HasValue ? p.EndDttm.Value.ToString("dd/MM/yyyy") : "[N/A]")
+                        Display = p.VisitID + " : " + p.StartDttm.Value.ToString("dd/MM/yyyy") + " - " + (p.EndDttm.HasValue ? p.EndDttm.Value.ToString("dd/MM/yyyy") : "Today")
                     }).ToList();
 
                     SelectLookupVisit = LookupVisit.FirstOrDefault(p => p.Key2 == PatientVisit.PatientVisitUID);
@@ -430,7 +441,7 @@ namespace MediTech.ViewModels
             {
                 if (SelectExistingOrder != null)
                 {
-                    List<PatientOrderDetailModel> existingOrderNotCancel = SelectExistingOrder.Where(p => p.ORDSTUID != 2848).ToList();
+                    List<PatientOrderDetailModel> existingOrderNotCancel = SelectExistingOrder.Where(p => p.ORDSTUID != 2848 && p.PaymentStatus == "Un Billed").ToList();
                     if (existingOrderNotCancel != null && existingOrderNotCancel.Count > 0)
                     {
                         CancelOrder cancelOrderView = new CancelOrder(existingOrderNotCancel);
@@ -886,9 +897,10 @@ namespace MediTech.ViewModels
             }
             OnUpdateEvent();
         }
-        public void AssingPatientVisit(PatientVisitModel visitModel)
+        public void AssingPatientVisit(PatientVisitModel visitModel,bool isbilling = false)
         {
             PatientVisit = visitModel;
+            IsBilling = isbilling;
         }
 
         public BillableItemDetailModel GetBillableItemPrice(List<BillableItemDetailModel> billItmDetail, int ownerOrganisationUID)

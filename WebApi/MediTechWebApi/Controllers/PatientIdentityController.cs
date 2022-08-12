@@ -2189,6 +2189,7 @@ namespace MediTechWebApi.Controllers
         {
             try
             {
+                int FINDIS = 421;
                 DateTime now = DateTime.Now;
                 PatientVisit patientvisit = db.PatientVisit.Find(patientVisitUID);
                 using (var tran = new TransactionScope())
@@ -2200,7 +2201,7 @@ namespace MediTechWebApi.Controllers
                         patientvisit.CareProviderUID = careProviderUID;
                         patientvisit.VISTSUID = VISTSUID;
                         patientvisit.ENSTAUID = ENSTAUID != null ? ENSTAUID : patientvisit.ENSTAUID;
-
+                        patientvisit.EndDttm = VISTSUID == FINDIS ? DateTime.Now : (DateTime?)null;
                         patientvisit.MUser = userID;
                         patientvisit.MWhen = now;
 
