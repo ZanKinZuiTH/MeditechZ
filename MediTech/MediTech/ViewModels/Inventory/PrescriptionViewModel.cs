@@ -454,8 +454,9 @@ namespace MediTech.ViewModels
 
                 PatientPrescription rpt = new PatientPrescription();
                 ReportPrintTool printTool = new ReportPrintTool(rpt);
-                rpt.Parameters["prescriptionUID"].Value = SelectPrescription.PrescriptionUID;
-                rpt.Parameters["OrganisationUID"].Value = AppUtil.Current.OwnerOrganisationUID;
+                rpt.Parameters["PrescriptionUID"].Value = SelectPrescription.PrescriptionUID;
+                rpt.Parameters["OrganisationUID"].Value = SelectPrescription.OwnerOrganisationUID;
+                rpt.Parameters["LogoType"].Value = SelectPrescription.OwnerOrganisationUID;
                 rpt.RequestParameters = false;
                 rpt.ShowPrintMarginsWarning = false;
                 printTool.ShowPreviewDialog();
@@ -466,16 +467,31 @@ namespace MediTech.ViewModels
         {
             if (SelectPrescription != null)
             {
-                OPPrescription rpt = new OPPrescription();
-                ReportPrintTool printTool = new ReportPrintTool(rpt);
-                rpt.Parameters["PrescriptionUID"].Value = SelectPrescription.PrescriptionUID;
-                rpt.Parameters["OrganisationUID"].Value = SelectPrescription.OwnerOrganisationUID;
-                rpt.Parameters["LogoType"].Value = SelectPrescription.OwnerOrganisationUID;
-                rpt.RequestParameters = false;
-                rpt.ShowPrintMarginsWarning = false;
-                printTool.ShowPreviewDialog();
+                if (SelectPrescription.VisitID.Contains("I"))
+                {
+                    PatientPrescription rpt = new PatientPrescription();
+                    ReportPrintTool printTool = new ReportPrintTool(rpt);
+                    rpt.Parameters["PrescriptionUID"].Value = SelectPrescription.PrescriptionUID;
+                    rpt.Parameters["OrganisationUID"].Value = SelectPrescription.OwnerOrganisationUID;
+                    rpt.Parameters["LogoType"].Value = SelectPrescription.OwnerOrganisationUID;
+                    rpt.RequestParameters = false;
+                    rpt.ShowPrintMarginsWarning = false;
+                    printTool.ShowPreviewDialog();
+                }
+                else
+                {
+                    OPPrescription rpt = new OPPrescription();
+                    ReportPrintTool printTool = new ReportPrintTool(rpt);
+                    rpt.Parameters["PrescriptionUID"].Value = SelectPrescription.PrescriptionUID;
+                    rpt.Parameters["OrganisationUID"].Value = SelectPrescription.OwnerOrganisationUID;
+                    rpt.Parameters["LogoType"].Value = SelectPrescription.OwnerOrganisationUID;
+                    rpt.RequestParameters = false;
+                    rpt.ShowPrintMarginsWarning = false;
+                    printTool.ShowPreviewDialog();
+                }
             }
         }
+        
 
 
         public void Dispense()

@@ -83,8 +83,9 @@ namespace MediTech.Reports.Operating.Pharmacy
             this.GroupFooter1 = new DevExpress.XtraReports.UI.GroupFooterBand();
             this.xrLabel24 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.prescription_supreport = new DevExpress.XtraReports.UI.XRSubreport();
+            this.diagnosis_supreport = new DevExpress.XtraReports.UI.XRSubreport();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -691,9 +692,10 @@ namespace MediTech.Reports.Operating.Pharmacy
             // GroupFooter1
             // 
             this.GroupFooter1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.diagnosis_supreport,
             this.xrLine1,
             this.xrLabel24});
-            this.GroupFooter1.HeightF = 83.36725F;
+            this.GroupFooter1.HeightF = 37.29705F;
             this.GroupFooter1.Name = "GroupFooter1";
             // 
             // xrLabel24
@@ -716,17 +718,24 @@ namespace MediTech.Reports.Operating.Pharmacy
             this.xrLine1.Name = "xrLine1";
             this.xrLine1.SizeF = new System.Drawing.SizeF(537.5F, 9.057985F);
             // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(MediTech.Model.PrescriptionModel);
-            this.objectDataSource1.Name = "objectDataSource1";
-            // 
             // prescription_supreport
             // 
             this.prescription_supreport.LocationFloat = new DevExpress.Utils.PointFloat(25F, 0F);
             this.prescription_supreport.Name = "prescription_supreport";
             this.prescription_supreport.ReportSource = new MediTech.Reports.Operating.Pharmacy.OPPrescriptionDetail();
             this.prescription_supreport.SizeF = new System.Drawing.SizeF(537.5F, 23F);
+            // 
+            // diagnosis_supreport
+            // 
+            this.diagnosis_supreport.LocationFloat = new DevExpress.Utils.PointFloat(92.73811F, 12.50001F);
+            this.diagnosis_supreport.Name = "diagnosis_supreport";
+            this.diagnosis_supreport.ReportSource = new MediTech.Reports.Operating.Pharmacy.DiagnosisDetail();
+            this.diagnosis_supreport.SizeF = new System.Drawing.SizeF(457.2619F, 23F);
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(MediTech.Model.PrescriptionModel);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // OPPrescription
             // 
@@ -813,5 +822,6 @@ namespace MediTech.Reports.Operating.Pharmacy
         private DevExpress.XtraReports.UI.GroupFooterBand GroupFooter1;
         private DevExpress.XtraReports.UI.XRLine xrLine1;
         private DevExpress.XtraReports.UI.XRLabel xrLabel24;
+        private DevExpress.XtraReports.UI.XRSubreport diagnosis_supreport;
     }
 }

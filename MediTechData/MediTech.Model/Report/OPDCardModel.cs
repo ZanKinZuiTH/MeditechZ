@@ -14,6 +14,7 @@ namespace MediTech.Model.Report
         public string Age { get; set; }
         public string PatientIDCard { get; set; }
         public string VisitID { get; set; }
+        public DateTime DOBDttm { get; set; }
         public DateTime VisitDttm { get; set; }
         public string PatientAddress { get; set; }
         public string MobilePhone { get; set; }

@@ -47,10 +47,9 @@ namespace MediTech.Reports.Operating.Pharmacy
                 }
             }
             var dianosis = (new PatientDiagnosticsService()).GetPatientProblemByVisitUID(prescription.FirstOrDefault().PatientVisitUID);
-            prescription.FirstOrDefault().PatientDianosis = dianosis;
             this.DataSource = prescription;
             prescription_supreport.ReportSource.DataSource = ListPrescriptions;
-            
+            diagnosis_supreport.ReportSource.DataSource = dianosis;
 
             var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);
 

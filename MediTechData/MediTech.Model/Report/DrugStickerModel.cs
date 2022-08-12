@@ -28,5 +28,6 @@ namespace MediTech.Model.Report
         public string LicenseNo { get; set; }
         public string OrganisationAddress { get; set; }
         public double? Quantity { get; set; }
+        public string QuantityLabel { get; set; }
     }
 }

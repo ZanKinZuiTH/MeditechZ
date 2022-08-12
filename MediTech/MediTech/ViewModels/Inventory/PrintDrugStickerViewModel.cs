@@ -117,6 +117,8 @@ namespace MediTech.ViewModels
 
         public void AssignModel(PrescriptionModel prescription)
         {
+            var item = DataService.Pharmacy.GetPrescriptionItemByPrescriptionUID(prescription.PrescriptionUID);
+            prescription.PrescriptionItems = new ObservableCollection<PrescriptionItemModel>(item);
             Prescription = prescription;
         }
         void Print()

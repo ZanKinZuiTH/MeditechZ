@@ -77,7 +77,6 @@
             this.xrLabel31 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel49 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel26 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel27 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel51 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel62 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel52 = new DevExpress.XtraReports.UI.XRLabel();
@@ -115,6 +114,7 @@
             this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
             this.ReportName = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.xrLabel27 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -500,7 +500,7 @@
             this.xrLabel10.SizeF = new System.Drawing.SizeF(246.1666F, 22.99998F);
             this.xrLabel10.StylePriority.UseFont = false;
             this.xrLabel10.StylePriority.UseTextAlignment = false;
-            this.xrLabel10.Text = "ได้มารับการตรวจ ณ คลินิกแห่งนี้ เมื่อ";
+            this.xrLabel10.Text = "ได้มารับการตรวจ ณ สถานพยาบาลแห่งนี้ เมื่อ";
             this.xrLabel10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
             // xrLabel9
@@ -705,18 +705,6 @@
             this.xrLabel26.SizeF = new System.Drawing.SizeF(164.2768F, 23.00005F);
             this.xrLabel26.StylePriority.UseFont = false;
             this.xrLabel26.Text = "........................................................";
-            // 
-            // xrLabel27
-            // 
-            this.xrLabel27.Font = new System.Drawing.Font("Angsana New", 12F);
-            this.xrLabel27.LocationFloat = new DevExpress.Utils.PointFloat(194.9582F, 214.0002F);
-            this.xrLabel27.Name = "xrLabel27";
-            this.xrLabel27.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel27.SizeF = new System.Drawing.SizeF(482.4413F, 23.00006F);
-            this.xrLabel27.StylePriority.UseFont = false;
-            this.xrLabel27.Text = "................................................................................." +
-    "................................................................................" +
-    "......";
             // 
             // xrLabel51
             // 
@@ -1096,6 +1084,18 @@
             this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.MedicalCertificateModel);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
+            // xrLabel27
+            // 
+            this.xrLabel27.Font = new System.Drawing.Font("Angsana New", 12F);
+            this.xrLabel27.LocationFloat = new DevExpress.Utils.PointFloat(229.5415F, 212.7502F);
+            this.xrLabel27.Name = "xrLabel27";
+            this.xrLabel27.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel27.SizeF = new System.Drawing.SizeF(447.858F, 20.91667F);
+            this.xrLabel27.StylePriority.UseFont = false;
+            this.xrLabel27.Text = "................................................................................." +
+    "..........................................................................";
+            this.xrLabel27.WordWrap = false;
+            // 
             // MedicalCertificate
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1158,7 +1158,6 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel11;
         private DevExpress.XtraReports.UI.XRLabel xrLabel22;
         private DevExpress.XtraReports.UI.XRLabel xrLabel19;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel27;
         private DevExpress.XtraReports.UI.XRLabel xrLabel26;
         private DevExpress.XtraReports.UI.XRLabel xrLabel32;
         private DevExpress.XtraReports.Parameters.Parameter PatientVisitUID;
@@ -1212,5 +1211,6 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel7;
         private DevExpress.XtraReports.UI.XRLabel xrLabel12;
         private DevExpress.XtraReports.UI.XRLabel xrLabel16;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel27;
     }
 }

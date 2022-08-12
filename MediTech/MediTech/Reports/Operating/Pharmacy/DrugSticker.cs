@@ -34,8 +34,10 @@ namespace MediTech.Reports.Operating.Pharmacy
                     {
                         item.DrugLable = item.DrugLable + " " + item.Dosage + " " + item.ItemUnit;
                     }
+                    item.QuantityLabel = item.Quantity != null ? "#" + item.Quantity + " " + item.ItemUnit : "";
                 }
             }
+            
             this.DataSource = drugSticker;
 
             var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);
