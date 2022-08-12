@@ -267,13 +267,6 @@ namespace MediTech.ViewModels
             get { return _PrintPrescriptionCommand ?? (_PrintPrescriptionCommand = new RelayCommand(PrintPrescription)); }
         }
 
-        private RelayCommand _PrintPrescriptionOPDCommand;
-        public RelayCommand PrintPrescriptionOPDCommand
-        {
-            get { return _PrintPrescriptionOPDCommand ?? (_PrintPrescriptionOPDCommand = new RelayCommand(PrintPrescriptionOPD)); }
-        }
-
-
         #endregion
 
         #region Method
@@ -451,23 +444,7 @@ namespace MediTech.ViewModels
         {
             if (SelectPrescription != null)
             {
-
-                PatientPrescription rpt = new PatientPrescription();
-                ReportPrintTool printTool = new ReportPrintTool(rpt);
-                rpt.Parameters["PrescriptionUID"].Value = SelectPrescription.PrescriptionUID;
-                rpt.Parameters["OrganisationUID"].Value = SelectPrescription.OwnerOrganisationUID;
-                rpt.Parameters["LogoType"].Value = SelectPrescription.OwnerOrganisationUID;
-                rpt.RequestParameters = false;
-                rpt.ShowPrintMarginsWarning = false;
-                printTool.ShowPreviewDialog();
-            }
-        }
-
-        private void PrintPrescriptionOPD()
-        {
-            if (SelectPrescription != null)
-            {
-                if (SelectPrescription.VisitID.Contains("I"))
+                if (SelectPrescription.VisitID != null && SelectPrescription.VisitID.Contains("I"))
                 {
                     PatientPrescription rpt = new PatientPrescription();
                     ReportPrintTool printTool = new ReportPrintTool(rpt);
@@ -491,8 +468,6 @@ namespace MediTech.ViewModels
                 }
             }
         }
-        
-
 
         public void Dispense()
         {

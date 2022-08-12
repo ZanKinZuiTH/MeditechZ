@@ -72,8 +72,8 @@ namespace MediTech.Reports.Operating.Patient
                 lbLicenseNo.Text = OrganisationDefault.Description?.ToString();
                 if (OrganisationDefault.LicenseNo != null)
                 {
-                    lbLicenseNo.Text = lbLicenseNo.Text + " ใบอนุญาตเลขที่ " + OrganisationDefault.LicenseNo.ToString();
                     lbLicenseNo2.Text = lbLicenseNo.Text + " ใบอนุญาตเลขที่ " + OrganisationDefault.LicenseNo.ToString();
+                    lbLicenseNo.Text = lbLicenseNo.Text + " ใบอนุญาตเลขที่ " + OrganisationDefault.LicenseNo.ToString();
                 }
 
                 string mobile1 = OrganisationDefault.MobileNo != null ? "Tel. " + OrganisationDefault.MobileNo.ToString() : "";
@@ -104,8 +104,8 @@ namespace MediTech.Reports.Operating.Patient
                     lbLicenseNo.Text = SelectOrganisation.Description?.ToString();
                     if (SelectOrganisation.LicenseNo != null)
                     {
-                        lbLicenseNo.Text = lbLicenseNo.Text + " ใบอนุญาตเลขที่ " + SelectOrganisation.LicenseNo.ToString();
                         lbLicenseNo2.Text = lbLicenseNo.Text + " ใบอนุญาตเลขที่ " + SelectOrganisation.LicenseNo.ToString();
+                        lbLicenseNo.Text = lbLicenseNo.Text + " ใบอนุญาตเลขที่ " + SelectOrganisation.LicenseNo.ToString();
                     }
                     string mobile1 = SelectOrganisation.MobileNo != null ? "Tel. " + SelectOrganisation.MobileNo.ToString() : "";
                     string email = SelectOrganisation.Email != null ? " e-mail:" + SelectOrganisation.Email.ToString() : "";

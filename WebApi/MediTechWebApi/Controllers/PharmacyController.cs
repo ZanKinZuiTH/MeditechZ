@@ -624,7 +624,8 @@ namespace MediTechWebApi.Controllers
                                                 IsBilled = pv.IsBillFinalized == null ? "N" : pv.IsBillFinalized,
                                                 LocationName = SqlFunction.fGetLocationName(pv.LocationUID ?? 0),
                                                 OrganisationName = SqlFunction.fGetHealthOrganisationName(ps.OwnerOrganisationUID ?? 0),
-                                                OwnerOrganisationUID = ps.OwnerOrganisationUID
+                                                OwnerOrganisationUID = ps.OwnerOrganisationUID,
+                                                VisitID = pv.VisitID
                                             }).ToList();
 
 

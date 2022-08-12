@@ -33,6 +33,8 @@ namespace MediTech.Reports.Operating.Pharmacy
             DevExpress.XtraReports.Parameters.StaticListLookUpSettings staticListLookUpSettings1 = new DevExpress.XtraReports.Parameters.StaticListLookUpSettings();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.xrPanel1 = new DevExpress.XtraReports.UI.XRPanel();
+            this.xrLabel22 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel17 = new DevExpress.XtraReports.UI.XRLabel();
             this.Tel = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel19 = new DevExpress.XtraReports.UI.XRLabel();
             this.lbLicenseNo = new DevExpress.XtraReports.UI.XRLabel();
@@ -55,8 +57,6 @@ namespace MediTech.Reports.Operating.Pharmacy
             this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
             this.txtheader1 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel17 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel22 = new DevExpress.XtraReports.UI.XRLabel();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.xrLabel15 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
@@ -73,16 +73,16 @@ namespace MediTech.Reports.Operating.Pharmacy
             this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PrescriptionUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PageFooter = new DevExpress.XtraReports.UI.PageFooterBand();
-            this.xrLine2 = new DevExpress.XtraReports.UI.XRLine();
             this.xrPanel2 = new DevExpress.XtraReports.UI.XRPanel();
-            this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLine3 = new DevExpress.XtraReports.UI.XRLine();
             this.xrLine4 = new DevExpress.XtraReports.UI.XRLine();
             this.xrLabel23 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLine3 = new DevExpress.XtraReports.UI.XRLine();
+            this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLine2 = new DevExpress.XtraReports.UI.XRLine();
             this.GroupFooter1 = new DevExpress.XtraReports.UI.GroupFooterBand();
-            this.xrLabel24 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
+            this.xrLabel24 = new DevExpress.XtraReports.UI.XRLabel();
             this.prescription_supreport = new DevExpress.XtraReports.UI.XRSubreport();
             this.diagnosis_supreport = new DevExpress.XtraReports.UI.XRSubreport();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
@@ -128,6 +128,33 @@ namespace MediTech.Reports.Operating.Pharmacy
             this.xrPanel1.LocationFloat = new DevExpress.Utils.PointFloat(25F, 18.33332F);
             this.xrPanel1.Name = "xrPanel1";
             this.xrPanel1.SizeF = new System.Drawing.SizeF(536.3751F, 231.6667F);
+            // 
+            // xrLabel22
+            // 
+            this.xrLabel22.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "DrugAllergy")});
+            this.xrLabel22.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
+            this.xrLabel22.LocationFloat = new DevExpress.Utils.PointFloat(123.9035F, 186.0526F);
+            this.xrLabel22.Multiline = true;
+            this.xrLabel22.Name = "xrLabel22";
+            this.xrLabel22.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel22.SizeF = new System.Drawing.SizeF(406.5625F, 22.5F);
+            this.xrLabel22.StylePriority.UseFont = false;
+            this.xrLabel22.StylePriority.UsePadding = false;
+            // 
+            // xrLabel17
+            // 
+            this.xrLabel17.Font = new System.Drawing.Font("Angsana New", 13F);
+            this.xrLabel17.LocationFloat = new DevExpress.Utils.PointFloat(0.438591F, 185.8333F);
+            this.xrLabel17.Multiline = true;
+            this.xrLabel17.Name = "xrLabel17";
+            this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel17.SizeF = new System.Drawing.SizeF(121.6666F, 22.5F);
+            this.xrLabel17.StylePriority.UseFont = false;
+            this.xrLabel17.StylePriority.UsePadding = false;
+            this.xrLabel17.StylePriority.UseTextAlignment = false;
+            this.xrLabel17.Text = "ประวัติแพ้ยา (Allergy) :";
+            this.xrLabel17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
             // Tel
             // 
@@ -416,33 +443,6 @@ namespace MediTech.Reports.Operating.Pharmacy
             this.txtheader1.Text = "ใบสั่งยา\r\nผู้ป่วยนอก";
             this.txtheader1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
-            // xrLabel17
-            // 
-            this.xrLabel17.Font = new System.Drawing.Font("Angsana New", 13F);
-            this.xrLabel17.LocationFloat = new DevExpress.Utils.PointFloat(0.438591F, 185.8333F);
-            this.xrLabel17.Multiline = true;
-            this.xrLabel17.Name = "xrLabel17";
-            this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel17.SizeF = new System.Drawing.SizeF(121.6666F, 22.5F);
-            this.xrLabel17.StylePriority.UseFont = false;
-            this.xrLabel17.StylePriority.UsePadding = false;
-            this.xrLabel17.StylePriority.UseTextAlignment = false;
-            this.xrLabel17.Text = "ประวัติแพ้ยา (Allergy) :";
-            this.xrLabel17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            // 
-            // xrLabel22
-            // 
-            this.xrLabel22.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "DrugAllergy")});
-            this.xrLabel22.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel22.LocationFloat = new DevExpress.Utils.PointFloat(123.9035F, 186.0526F);
-            this.xrLabel22.Multiline = true;
-            this.xrLabel22.Name = "xrLabel22";
-            this.xrLabel22.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel22.SizeF = new System.Drawing.SizeF(406.5625F, 22.5F);
-            this.xrLabel22.StylePriority.UseFont = false;
-            this.xrLabel22.StylePriority.UsePadding = false;
-            // 
             // BottomMargin
             // 
             this.BottomMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
@@ -612,15 +612,6 @@ namespace MediTech.Reports.Operating.Pharmacy
             this.PageFooter.HeightF = 100.358F;
             this.PageFooter.Name = "PageFooter";
             // 
-            // xrLine2
-            // 
-            this.xrLine2.BorderWidth = 0.5F;
-            this.xrLine2.LineWidth = 0.5F;
-            this.xrLine2.LocationFloat = new DevExpress.Utils.PointFloat(30.09258F, 69.16022F);
-            this.xrLine2.Name = "xrLine2";
-            this.xrLine2.SizeF = new System.Drawing.SizeF(119.5121F, 15.89507F);
-            this.xrLine2.StylePriority.UseBorderWidth = false;
-            // 
             // xrPanel2
             // 
             this.xrPanel2.CanGrow = false;
@@ -634,39 +625,6 @@ namespace MediTech.Reports.Operating.Pharmacy
             this.xrPanel2.LocationFloat = new DevExpress.Utils.PointFloat(25F, 0F);
             this.xrPanel2.Name = "xrPanel2";
             this.xrPanel2.SizeF = new System.Drawing.SizeF(536.3751F, 99.99999F);
-            // 
-            // xrLabel16
-            // 
-            this.xrLabel16.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrLabel16.LocationFloat = new DevExpress.Utils.PointFloat(9.237118F, 62.49999F);
-            this.xrLabel16.Name = "xrLabel16";
-            this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel16.SizeF = new System.Drawing.SizeF(27.4016F, 23.00002F);
-            this.xrLabel16.StylePriority.UseFont = false;
-            this.xrLabel16.StylePriority.UseTextAlignment = false;
-            this.xrLabel16.Text = "ผู้จัด";
-            this.xrLabel16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            // 
-            // xrLabel20
-            // 
-            this.xrLabel20.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrLabel20.LocationFloat = new DevExpress.Utils.PointFloat(189.899F, 62.34568F);
-            this.xrLabel20.Name = "xrLabel20";
-            this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel20.SizeF = new System.Drawing.SizeF(41.79553F, 23.00002F);
-            this.xrLabel20.StylePriority.UseFont = false;
-            this.xrLabel20.StylePriority.UseTextAlignment = false;
-            this.xrLabel20.Text = "เภสัชกร";
-            this.xrLabel20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            // 
-            // xrLine3
-            // 
-            this.xrLine3.BorderWidth = 0.5F;
-            this.xrLine3.LineWidth = 0.5F;
-            this.xrLine3.LocationFloat = new DevExpress.Utils.PointFloat(225F, 69.19192F);
-            this.xrLine3.Name = "xrLine3";
-            this.xrLine3.SizeF = new System.Drawing.SizeF(122.0374F, 15.89507F);
-            this.xrLine3.StylePriority.UseBorderWidth = false;
             // 
             // xrLine4
             // 
@@ -689,6 +647,48 @@ namespace MediTech.Reports.Operating.Pharmacy
             this.xrLabel23.Text = "ผู้จ่าย";
             this.xrLabel23.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
+            // xrLabel20
+            // 
+            this.xrLabel20.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.xrLabel20.LocationFloat = new DevExpress.Utils.PointFloat(189.899F, 62.34568F);
+            this.xrLabel20.Name = "xrLabel20";
+            this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel20.SizeF = new System.Drawing.SizeF(41.79553F, 23.00002F);
+            this.xrLabel20.StylePriority.UseFont = false;
+            this.xrLabel20.StylePriority.UseTextAlignment = false;
+            this.xrLabel20.Text = "เภสัชกร";
+            this.xrLabel20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // xrLine3
+            // 
+            this.xrLine3.BorderWidth = 0.5F;
+            this.xrLine3.LineWidth = 0.5F;
+            this.xrLine3.LocationFloat = new DevExpress.Utils.PointFloat(225F, 69.19192F);
+            this.xrLine3.Name = "xrLine3";
+            this.xrLine3.SizeF = new System.Drawing.SizeF(122.0374F, 15.89507F);
+            this.xrLine3.StylePriority.UseBorderWidth = false;
+            // 
+            // xrLabel16
+            // 
+            this.xrLabel16.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.xrLabel16.LocationFloat = new DevExpress.Utils.PointFloat(9.237118F, 62.49999F);
+            this.xrLabel16.Name = "xrLabel16";
+            this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel16.SizeF = new System.Drawing.SizeF(27.4016F, 23.00002F);
+            this.xrLabel16.StylePriority.UseFont = false;
+            this.xrLabel16.StylePriority.UseTextAlignment = false;
+            this.xrLabel16.Text = "ผู้จัด";
+            this.xrLabel16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // xrLine2
+            // 
+            this.xrLine2.BorderWidth = 0.5F;
+            this.xrLine2.LineWidth = 0.5F;
+            this.xrLine2.LocationFloat = new DevExpress.Utils.PointFloat(30.09258F, 69.16022F);
+            this.xrLine2.Name = "xrLine2";
+            this.xrLine2.SizeF = new System.Drawing.SizeF(119.5121F, 15.89507F);
+            this.xrLine2.StylePriority.UseBorderWidth = false;
+            // 
             // GroupFooter1
             // 
             this.GroupFooter1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
@@ -697,6 +697,12 @@ namespace MediTech.Reports.Operating.Pharmacy
             this.xrLabel24});
             this.GroupFooter1.HeightF = 37.29705F;
             this.GroupFooter1.Name = "GroupFooter1";
+            // 
+            // xrLine1
+            // 
+            this.xrLine1.LocationFloat = new DevExpress.Utils.PointFloat(24.99999F, 0F);
+            this.xrLine1.Name = "xrLine1";
+            this.xrLine1.SizeF = new System.Drawing.SizeF(537.5F, 9.057985F);
             // 
             // xrLabel24
             // 
@@ -711,12 +717,6 @@ namespace MediTech.Reports.Operating.Pharmacy
             this.xrLabel24.StylePriority.UseTextAlignment = false;
             this.xrLabel24.Text = "Diagnosis :";
             this.xrLabel24.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            // 
-            // xrLine1
-            // 
-            this.xrLine1.LocationFloat = new DevExpress.Utils.PointFloat(24.99999F, 0F);
-            this.xrLine1.Name = "xrLine1";
-            this.xrLine1.SizeF = new System.Drawing.SizeF(537.5F, 9.057985F);
             // 
             // prescription_supreport
             // 
