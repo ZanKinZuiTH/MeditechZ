@@ -209,6 +209,14 @@ namespace MediTech.DataService
             return returnData;
         }
 
+        public PrescriptionModel Getprescription(int prescriptionUID)
+        {
+            string requestApi = string.Format("Api/Pharmacy/Getprescription?prescriptionUID={0}", prescriptionUID);
+            PrescriptionModel returnData = MeditechApiHelper.Get<PrescriptionModel>(requestApi);
+
+            return returnData;
+        }
+
         public bool UpdatePrescriptionLabelSticker(long prescriptionItemUID, String localInstructionText, int userUID)
         {
             bool flag = false;

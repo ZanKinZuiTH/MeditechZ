@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DrugSticker));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
@@ -50,7 +51,6 @@
             this.ExpiryDate = new DevExpress.XtraReports.Parameters.Parameter();
             this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
             this.DrugLabelF = new DevExpress.XtraReports.UI.CalculatedField();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -77,6 +77,21 @@
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // xrLabel6
+            // 
+            this.xrLabel6.CanGrow = false;
+            this.xrLabel6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "DrugLabelF")});
+            this.xrLabel6.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(9F, 73.04642F);
+            this.xrLabel6.Name = "xrLabel6";
+            this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            this.xrLabel6.SizeF = new System.Drawing.SizeF(320F, 17.99998F);
+            this.xrLabel6.StylePriority.UseFont = false;
+            this.xrLabel6.StylePriority.UsePadding = false;
+            this.xrLabel6.StylePriority.UseTextAlignment = false;
+            this.xrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrLabel13
             // 
@@ -239,7 +254,7 @@
             // lbFooterOrganisation
             // 
             this.lbFooterOrganisation.CanGrow = false;
-            this.lbFooterOrganisation.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.lbFooterOrganisation.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbFooterOrganisation.LocationFloat = new DevExpress.Utils.PointFloat(9.000003F, 141.886F);
             this.lbFooterOrganisation.Name = "lbFooterOrganisation";
             this.lbFooterOrganisation.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -252,7 +267,7 @@
             // lbAddress
             // 
             this.lbAddress.CanGrow = false;
-            this.lbAddress.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.lbAddress.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbAddress.LocationFloat = new DevExpress.Utils.PointFloat(9.000003F, 158.3162F);
             this.lbAddress.Multiline = true;
             this.lbAddress.Name = "lbAddress";
@@ -311,21 +326,6 @@
             // 
             this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.DrugStickerModel);
             this.objectDataSource1.Name = "objectDataSource1";
-            // 
-            // xrLabel6
-            // 
-            this.xrLabel6.CanGrow = false;
-            this.xrLabel6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "DrugLabelF")});
-            this.xrLabel6.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(9F, 73.04642F);
-            this.xrLabel6.Name = "xrLabel6";
-            this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
-            this.xrLabel6.SizeF = new System.Drawing.SizeF(320F, 17.99998F);
-            this.xrLabel6.StylePriority.UseFont = false;
-            this.xrLabel6.StylePriority.UsePadding = false;
-            this.xrLabel6.StylePriority.UseTextAlignment = false;
-            this.xrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // formattingRule1
             // 

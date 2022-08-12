@@ -659,7 +659,8 @@ namespace MediTechWebApi.Controllers
                         InstructionText = p.InstructionText,
                         LocalInstructionText = p.LocalInstructionText,
                         ClinicalComments = p.ClinicalComments,
-                        DrugType = SqlFunction.fGetRfValDescription(p.DFORMUID ?? 0)
+                        DrugType = SqlFunction.fGetRfValDescription(p.DFORMUID ?? 0),
+                        OwnerOrganisationUID = p.OwnerOrganisationUID
                     });
 
                     prescription.PrescriptionItems = new System.Collections.ObjectModel.ObservableCollection<PrescriptionItemModel>(prescriptionItems);
@@ -761,7 +762,9 @@ namespace MediTechWebApi.Controllers
                                                 IsBilled = pv.IsBillFinalized == null ? "N" : pv.IsBillFinalized,
                                                 LocationName = SqlFunction.fGetLocationName(pv.LocationUID ?? 0),
                                                 OrganisationName = SqlFunction.fGetHealthOrganisationName(ps.OwnerOrganisationUID ?? 0),
-                                                OwnerOrganisationUID = ps.OwnerOrganisationUID
+                                                OwnerOrganisationUID = ps.OwnerOrganisationUID,
+                                                VisitID = pv.VisitID,
+                                                DrugAllergy = SqlFunction.fGetPatientAllergy(pa.UID),
                                             }).ToList();
 
 
@@ -811,9 +814,38 @@ namespace MediTechWebApi.Controllers
         }
 
 
+        [Route("Getprescription")]
+        [HttpGet]
+        public PrescriptionModel Getprescription(long? prescriptionUID)
+        {
 
+            PrescriptionModel data = (from ps in db.Prescription
+                                            join pa in db.Patient on ps.PatientUID equals pa.UID
+                                            join pv in db.PatientVisit on ps.PatientVisitUID equals pv.UID
+                                            where ps.StatusFlag == "A" && ps.UID == prescriptionUID
+                                            select new PrescriptionModel
+                                            {
+                                                PrescriptionUID = ps.UID,
+                                                PrescriptionNumber = ps.PrescriptionNumber,
+                                                PrescriptionStatus = SqlFunction.fGetRfValDescription(ps.ORDSTUID ?? 0),
+                                                PatientID = pa.PatientID,
+                                                PRSTYPUID = ps.PRSTYPUID,
+                                                PrescriptionType = SqlFunction.fGetRfValDescription(ps.PRSTYPUID ?? 0),
+                                                PatientName = SqlFunction.fGetPatientName(ps.PatientUID),
+                                                PatientVisitUID = ps.PatientVisitUID,
+                                                AgeString = pa.DOBDttm.HasValue ? SqlFunction.fGetAgeString(pa.DOBDttm.Value) : "",
+                                                DOBDttm = pa.DOBDttm.HasValue ? pa.DOBDttm : null,
+                                                Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
+                                                EncounterType = SqlFunction.fGetRfValDescription(pv.ENTYPUID ?? 0),
+                                                PrescribedDttm = ps.PrescribedDttm,
+                                                IsBilled = pv.IsBillFinalized == null ? "N" : pv.IsBillFinalized,
+                                                LocationName = SqlFunction.fGetLocationName(pv.LocationUID ?? 0),
+                                                OrganisationName = SqlFunction.fGetHealthOrganisationName(ps.OwnerOrganisationUID ?? 0),
+                                                OwnerOrganisationUID = ps.OwnerOrganisationUID
+                                            }).FirstOrDefault();
 
-
+            return data;
+        }
 
 
         [Route("UpdatePrescriptionLabelSticker")]

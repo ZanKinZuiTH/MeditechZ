@@ -190,7 +190,18 @@
                                    Margin="0,0,10,0"
                                    Width="30" Height="30"
                                    Cursor="Hand"                                   
-                                   ToolTip="Print Sticker">
+                                   ToolTip="Print ใบสั่งยาผู้ป่วยนอก">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.PrintPrescriptionOPDCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:Prescription}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
+                                <Image Source="/MediTech;component/Resources/Images/Phamacy/Prescription2.png"
+                                   Margin="0,0,10,0"
+                                   Width="30" Height="30"
+                                   Cursor="Hand"                                   
+                                   ToolTip="Print ใบสั่งยา">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
                                             <mvvm:EventToCommand Command="{Binding DataContext.PrintPrescriptionCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:Prescription}}}" />

@@ -93,12 +93,12 @@ namespace MediTech.Reports.Operating.Patient
             // 
             // TopMargin
             // 
-            this.TopMargin.HeightF = 22.5F;
+            this.TopMargin.HeightF = 28.66666F;
             this.TopMargin.Name = "TopMargin";
             // 
             // BottomMargin
             // 
-            this.BottomMargin.HeightF = 33.6281F;
+            this.BottomMargin.HeightF = 43.51893F;
             this.BottomMargin.Name = "BottomMargin";
             // 
             // Detail
@@ -138,7 +138,7 @@ namespace MediTech.Reports.Operating.Patient
             this.Allergytxt.LocationFloat = new DevExpress.Utils.PointFloat(112.5F, 75F);
             this.Allergytxt.Name = "Allergytxt";
             this.Allergytxt.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.Allergytxt.SizeF = new System.Drawing.SizeF(662.5F, 23F);
+            this.Allergytxt.SizeF = new System.Drawing.SizeF(637.5F, 23F);
             this.Allergytxt.StylePriority.UseFont = false;
             // 
             // xrLabel1
@@ -354,7 +354,7 @@ namespace MediTech.Reports.Operating.Patient
             // birthDate
             // 
             this.birthDate.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.birthDate.LocationFloat = new DevExpress.Utils.PointFloat(687.5F, 150F);
+            this.birthDate.LocationFloat = new DevExpress.Utils.PointFloat(662.5F, 150F);
             this.birthDate.Name = "birthDate";
             this.birthDate.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.birthDate.SizeF = new System.Drawing.SizeF(100F, 23F);
@@ -363,7 +363,7 @@ namespace MediTech.Reports.Operating.Patient
             // age
             // 
             this.age.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.age.LocationFloat = new DevExpress.Utils.PointFloat(600F, 175F);
+            this.age.LocationFloat = new DevExpress.Utils.PointFloat(587.5F, 175F);
             this.age.Name = "age";
             this.age.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.age.SizeF = new System.Drawing.SizeF(100F, 23F);
@@ -412,7 +412,7 @@ namespace MediTech.Reports.Operating.Patient
             // xrLabel31
             // 
             this.xrLabel31.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
-            this.xrLabel31.LocationFloat = new DevExpress.Utils.PointFloat(550F, 150F);
+            this.xrLabel31.LocationFloat = new DevExpress.Utils.PointFloat(537.5F, 150F);
             this.xrLabel31.Name = "xrLabel31";
             this.xrLabel31.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel31.SizeF = new System.Drawing.SizeF(166.6667F, 23F);
@@ -422,7 +422,7 @@ namespace MediTech.Reports.Operating.Patient
             // xrLabel12
             // 
             this.xrLabel12.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
-            this.xrLabel12.LocationFloat = new DevExpress.Utils.PointFloat(550F, 175F);
+            this.xrLabel12.LocationFloat = new DevExpress.Utils.PointFloat(537.5F, 175F);
             this.xrLabel12.Name = "xrLabel12";
             this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel12.SizeF = new System.Drawing.SizeF(55.95238F, 23F);
@@ -614,7 +614,7 @@ namespace MediTech.Reports.Operating.Patient
             this.xrLabel19.Multiline = true;
             this.xrLabel19.Name = "xrLabel19";
             this.xrLabel19.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel19.SizeF = new System.Drawing.SizeF(776.6667F, 68.16671F);
+            this.xrLabel19.SizeF = new System.Drawing.SizeF(750F, 68.16672F);
             this.xrLabel19.StylePriority.UseFont = false;
             this.xrLabel19.Text = resources.GetString("xrLabel19.Text");
             // 
@@ -672,7 +672,7 @@ namespace MediTech.Reports.Operating.Patient
             this.DataSource = this.objectDataSource1;
             this.Font = new System.Drawing.Font("Arial", 9.75F);
             this.Landscape = true;
-            this.Margins = new System.Drawing.Printing.Margins(12, 17, 22, 34);
+            this.Margins = new System.Drawing.Printing.Margins(29, 33, 29, 44);
             this.PageHeight = 583;
             this.PageWidth = 827;
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;

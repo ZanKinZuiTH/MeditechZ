@@ -186,7 +186,7 @@ namespace MediTech.Reports.Operating.Patient
             // 
             this.xrLabel27.CanGrow = false;
             this.xrLabel27.Font = new System.Drawing.Font("Angsana New", 12F);
-            this.xrLabel27.LocationFloat = new DevExpress.Utils.PointFloat(131.6763F, 147.2467F);
+            this.xrLabel27.LocationFloat = new DevExpress.Utils.PointFloat(131.6763F, 148.7467F);
             this.xrLabel27.Name = "xrLabel27";
             this.xrLabel27.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel27.SizeF = new System.Drawing.SizeF(36.62815F, 22.5F);

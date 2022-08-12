@@ -45,7 +45,9 @@ namespace MediTech.Reports.Operating.Pharmacy
                 {
                     var Organisation = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
                     lbFooterOrganisation.Text = Organisation.Description != null ? Organisation.Description?.ToString() : "";
-                    lbAddress.Text = Organisation.Address != null ? Organisation.Address?.ToString() : "";
+                    string mobile1 = Organisation.MobileNo != null ? "Tel. " + Organisation.MobileNo.ToString() : "";
+
+                    lbAddress.Text = Organisation.Address != null ? Organisation.Address?.ToString() + " "+ mobile1 : "";
 
                     if (Organisation.LogoImage != null)
                     {
@@ -63,7 +65,9 @@ namespace MediTech.Reports.Operating.Pharmacy
                 {
                     var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(AppUtil.Current.OwnerOrganisationUID);
                     lbFooterOrganisation.Text = OrganisationDefault.Description?.ToString();
-                    lbAddress.Text = OrganisationDefault.Address?.ToString();
+                    string mobile2 = OrganisationDefault.MobileNo != null ? "Tel. " + OrganisationDefault.MobileNo.ToString() : "";
+
+                    lbAddress.Text = OrganisationDefault.Address?.ToString() + " " + mobile2;
                     if (OrganisationDefault.LogoImage != null)
                     {
                         MemoryStream ms = new MemoryStream(OrganisationDefault.LogoImage);
