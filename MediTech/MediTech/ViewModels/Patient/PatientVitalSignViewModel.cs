@@ -354,7 +354,8 @@ namespace MediTech.ViewModels
         PatientVitalSignModel model;
         public PatientVitalSignViewModel()
         {
-
+            StampDate = DateTime.Now;
+            StampTime = StampDate;
         }
 
         void OpenVitalSignsChart()

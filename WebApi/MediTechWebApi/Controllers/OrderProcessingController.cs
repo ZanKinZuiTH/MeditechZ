@@ -1236,6 +1236,22 @@ namespace MediTechWebApi.Controllers
             }
         }
 
+        [Route("ClosureStandingOrder")]
+        [HttpPut]
+        public HttpResponseMessage ClosureStandingOrder(string patientOrderDetailUIDs, int userUID, DateTime endDttm, string comments)
+        {
+            try
+            {
+                SqlDirectStore.pHourlyComplete(patientOrderDetailUIDs, userUID, endDttm, comments);
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
         #region OrderDrugItem
 
         [Route("GetOrderDrugByPatientUID")]

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MediTech.Model;
+using MediTech.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,13 @@ namespace MediTech.Views
     /// </summary>
     public partial class CloseOrderPopUp : UserControl
     {
-        public CloseOrderPopUp()
+        public CloseOrderPopUp(List<PatientOrderDetailModel> ListOrderCancel)
         {
             InitializeComponent();
+            if (this.DataContext is CloseOrderPopUpViewModel)
+            {
+                (this.DataContext as CloseOrderPopUpViewModel).ListOrderCloseLists = ListOrderCancel;
+            }
         }
     }
 }
