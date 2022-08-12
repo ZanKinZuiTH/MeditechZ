@@ -1030,6 +1030,8 @@ namespace MediTechWebApi.Controllers
                                         foreach (var orderStadingDetail in stadingOrderLists)
                                         {
                                             #region PatientOrderDetailStading
+                                            string identifyingType = (BSMDDUID == BSMDD_LAB || BSMDDUID == BSMDD_RADIO) ? "REQUESTITEM" : BSMDDUID == BSMDD_STORE ? "DRUG" : BSMDDUID == BSMDD_MDSLP ? "MEDICALSUPPLIES" : BSMDDUID == BSMDD_SULPY ? "SUPPLY" : "ORDERITEM";
+
                                             PatientOrderDetail orderDetailStading = new PatientOrderDetail();
                                             orderDetailStading.ParentUID = orderStadingDetail.ParentUID;
                                             orderDetailStading.PatientOrderUID = patientOrderStading.UID;
@@ -1072,7 +1074,8 @@ namespace MediTechWebApi.Controllers
                                             orderDetailStading.Comments = orderStadingDetail.Comments;
                                             orderDetailStading.OrderSetUID = orderStadingDetail.OrderSetUID;
                                             orderDetailStading.OrderSetBillableItemUID = orderStadingDetail.OrderSetBillableItemUID;
-                                            orderDetailStading.IdentifyingType = "ORDERITEM";
+                                            orderDetailStading.IdentifyingType = identifyingType;
+                                            orderDetailStading.IdentifyingUID = orderStadingDetail.ItemUID;
                                             orderDetailStading.IsStandingOrder = orderStadingDetail.IsStandingOrder;
                                             db.PatientOrderDetail.Add(orderDetailStading);
                                             db.SaveChanges();
@@ -1100,7 +1103,7 @@ namespace MediTechWebApi.Controllers
                                             #region PrescrtionItem
 
                                             long? prescrtionItemStadingUID = null;
-                                            string identifyingType = BSMDDUID == BSMDD_STORE ? "DRUG" : BSMDDUID == BSMDD_MDSLP ? "MEDICALSUPPLIES" : BSMDDUID == BSMDD_SULPY ? "SUPPLY" : "ORDERITEM";
+                                            //string identifyingType = BSMDDUID == BSMDD_STORE ? "DRUG" : BSMDDUID == BSMDD_MDSLP ? "MEDICALSUPPLIES" : BSMDDUID == BSMDD_SULPY ? "SUPPLY" : "ORDERITEM";
 
                                             PrescriptionItem prescrItemStading = new PrescriptionItem();
                                             prescrItemStading.CUser = userUID;
@@ -1135,10 +1138,10 @@ namespace MediTechWebApi.Controllers
                                             db.PrescriptionItem.Add(prescrItemStading);
                                             db.SaveChanges();
 
-                                            db.PatientOrderDetail.Attach(orderDetailStading);
-                                            orderDetailStading.IdentifyingUID = orderStadingDetail.ItemUID;
-                                            orderDetailStading.IdentifyingType = identifyingType;
-                                            db.SaveChanges();
+                                            //db.PatientOrderDetail.Attach(orderDetailStading);
+                                            //orderDetailStading.IdentifyingUID = orderStadingDetail.ItemUID;
+                                            //orderDetailStading.IdentifyingType = identifyingType;
+                                            //db.SaveChanges();
 
                                             prescrtionItemStadingUID = prescrItemStading.UID;
 
