@@ -642,6 +642,8 @@ namespace MediTechWebApi.Controllers
                                     foreach (var item in dataInOrderDetail)
                                     {
                                         #region OrderDetail
+                                        string identifyingType = BSMDDUID == BSMDD_STORE ? "DRUG" : BSMDDUID == BSMDD_MDSLP ? "MEDICALSUPPLIES" : BSMDDUID == BSMDD_SULPY ? "SUPPLY" : "ORDERITEM";
+
                                         PatientOrderDetail orderDetail = new PatientOrderDetail();
                                         orderDetail.CUser = userUID;
                                         orderDetail.CWhen = now;
@@ -682,7 +684,7 @@ namespace MediTechWebApi.Controllers
                                         orderDetail.Comments = item.Comments;
                                         orderDetail.OrderSetUID = item.OrderSetUID;
                                         orderDetail.OrderSetBillableItemUID = item.OrderSetBillableItemUID;
-                                        orderDetail.IdentifyingType = "ORDERITEM";
+                                        orderDetail.IdentifyingType = identifyingType;
                                         orderDetail.IsStandingOrder = item.IsStandingOrder;
                                         db.PatientOrderDetail.Add(orderDetail);
                                         db.SaveChanges();
@@ -1452,7 +1454,6 @@ namespace MediTechWebApi.Controllers
 
         #region OrderItem
 
-        [Route("Get")]
 
 
         [Route("GetOrderItemByVisitUID")]
