@@ -642,7 +642,7 @@ namespace MediTechWebApi.Controllers
                                     foreach (var item in dataInOrderDetail)
                                     {
                                         #region OrderDetail
-                                        string identifyingType = BSMDDUID == BSMDD_STORE ? "DRUG" : BSMDDUID == BSMDD_MDSLP ? "MEDICALSUPPLIES" : BSMDDUID == BSMDD_SULPY ? "SUPPLY" : "ORDERITEM";
+                                        string identifyingType = (BSMDDUID == BSMDD_LAB || BSMDDUID == BSMDD_RADIO) ? "REQUESTITEM" : BSMDDUID == BSMDD_STORE ? "DRUG" : BSMDDUID == BSMDD_MDSLP ? "MEDICALSUPPLIES" : BSMDDUID == BSMDD_SULPY ? "SUPPLY" : "ORDERITEM";
 
                                         PatientOrderDetail orderDetail = new PatientOrderDetail();
                                         orderDetail.CUser = userUID;
@@ -685,6 +685,7 @@ namespace MediTechWebApi.Controllers
                                         orderDetail.OrderSetUID = item.OrderSetUID;
                                         orderDetail.OrderSetBillableItemUID = item.OrderSetBillableItemUID;
                                         orderDetail.IdentifyingType = identifyingType;
+                                        orderDetail.IdentifyingUID = item.ItemUID;
                                         orderDetail.IsStandingOrder = item.IsStandingOrder;
                                         db.PatientOrderDetail.Add(orderDetail);
                                         db.SaveChanges();
@@ -780,10 +781,10 @@ namespace MediTechWebApi.Controllers
                                             db.RequestDetail.Add(requestDetail);
                                             db.SaveChanges();
 
-                                            db.PatientOrderDetail.Attach(orderDetail);
-                                            orderDetail.IdentifyingType = "REQUESTITEM";
-                                            orderDetail.IdentifyingUID = requestItem.UID;
-                                            db.SaveChanges();
+                                            //db.PatientOrderDetail.Attach(orderDetail);
+                                            //orderDetail.IdentifyingType = "REQUESTITEM";
+                                            //orderDetail.IdentifyingUID = requestItem.UID;
+                                            //db.SaveChanges();
 
                                             requestDetailUID = requestDetail.UID;
                                         }
@@ -795,7 +796,7 @@ namespace MediTechWebApi.Controllers
                                         long? prescrtionItemUID = null;
                                         if ((BSMDDUID == BSMDD_STORE || BSMDDUID == BSMDD_MDSLP || BSMDDUID == BSMDD_SULPY) && isContinuous != "Y")
                                         {
-                                            string identifyingType = BSMDDUID == BSMDD_STORE ? "DRUG" : BSMDDUID == BSMDD_MDSLP ? "MEDICALSUPPLIES" : BSMDDUID == BSMDD_SULPY ? "SUPPLY" : "ORDERITEM";
+                                            //string identifyingType = BSMDDUID == BSMDD_STORE ? "DRUG" : BSMDDUID == BSMDD_MDSLP ? "MEDICALSUPPLIES" : BSMDDUID == BSMDD_SULPY ? "SUPPLY" : "ORDERITEM";
 
                                             PrescriptionItem prescrItem = new PrescriptionItem();
                                             prescrItem.CUser = userUID;
@@ -830,10 +831,10 @@ namespace MediTechWebApi.Controllers
                                             db.PrescriptionItem.Add(prescrItem);
                                             db.SaveChanges();
 
-                                            db.PatientOrderDetail.Attach(orderDetail);
-                                            orderDetail.IdentifyingUID = item.ItemUID;
-                                            orderDetail.IdentifyingType = identifyingType;
-                                            db.SaveChanges();
+                                            //db.PatientOrderDetail.Attach(orderDetail);
+                                            //orderDetail.IdentifyingUID = item.ItemUID;
+                                            //orderDetail.IdentifyingType = identifyingType;
+                                            //db.SaveChanges();
 
                                             prescrtionItemUID = prescrItem.UID;
                                         }
