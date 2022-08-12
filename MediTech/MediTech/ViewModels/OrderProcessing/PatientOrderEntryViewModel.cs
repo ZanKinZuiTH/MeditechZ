@@ -231,7 +231,7 @@ namespace MediTech.ViewModels
 
                         SearchExistingOrder();
 
-                        if (selectVisit.VISTSUID != CANCEL && selectVisit.VISTSUID != FINDIS &&  selectVisit.VISTSUID != BLINP 
+                        if (selectVisit.VISTSUID != CANCEL && selectVisit.VISTSUID != FINDIS && selectVisit.VISTSUID != BLINP
                             || (selectVisit.VISTSUID == BLINP && IsBilling))
                         {
                             EnabledCancelOrder = true;
@@ -375,6 +375,15 @@ namespace MediTech.ViewModels
             }
         }
 
+        private RelayCommand _OffMedicineCommand;
+        public RelayCommand OffMedicineCommand
+        {
+            get
+            {
+                return _OffMedicineCommand ?? (_OffMedicineCommand = new RelayCommand(OffMedicine));
+            }
+        }
+
         #endregion
 
         #region Variable
@@ -400,7 +409,8 @@ namespace MediTech.ViewModels
             SelectCareprovider = Careproviders.FirstOrDefault(p => p.CareproviderUID == AppUtil.Current.UserID);
             var locationData = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
             Locations = locationData.Where(p => p.IsCanOrder == "Y").ToList();
-            SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == PatientVisit.LocationUID);
+            SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
+            //SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == PatientVisit.LocationUID);
 
             DateTime now = DateTime.Now;
             StartDate = now.Date;
@@ -490,6 +500,32 @@ namespace MediTech.ViewModels
                 ErrorDialog(er.Message);
             }
         }
+
+        public void OffMedicine()
+        {
+            try
+            {
+                if (SelectExistingOrder != null)
+                {
+                    List<PatientOrderDetailModel> closedOrderList = SelectExistingOrder.Where(p => p.ORDSTUID != 2848 && p.EndDttm == null).ToList();
+                    if (closedOrderList != null && closedOrderList.Count > 0)
+                    {
+                        CloseOrderPopUp closeOrderPopUp = new CloseOrderPopUp();
+                        CloseOrderPopUpViewModel result = (CloseOrderPopUpViewModel)LaunchViewDialogNonPermiss(closeOrderPopUp, true);
+                        if (result != null && result.ResultDialog == ActionDialog.Save)
+                        {
+                            SearchExistingOrder();
+                        }
+                    }
+
+                }
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+        }
         void SearchExistingOrder()
         {
             ExistingOrders = new ObservableCollection<PatientOrderDetailModel>(DataService.OrderProcessing.GetOrderAllByVisitUID(SelectLookupVisit.Key2.Value, DateExitingFrom, DateExitingTo));
@@ -501,6 +537,16 @@ namespace MediTech.ViewModels
         {
             if (SelectPatientOrder != null)
             {
+                if (SelectPatientOrder.IsStandingOrder == "Y")
+                {
+                    foreach (var orders in PatientOrders.Where(p => p.StandingPatientOrder != null))
+                    {
+                        if (orders.StandingPatientOrder.IdentityGen == SelectPatientOrder.IdentityGen)
+                        {
+                            orders.StandingPatientOrder = null;
+                        }
+                    }
+                }
                 PatientOrders.Remove(SelectPatientOrder);
             }
         }
@@ -534,7 +580,19 @@ namespace MediTech.ViewModels
                     //}
                     int locationUID = SelectLocation.LocationUID;
                     int ownerorganisationUID = AppUtil.Current.OwnerOrganisationUID;
-                    string orderNumber = DataService.OrderProcessing.CreateOrder(PatientVisit.PatientUID, PatientVisit.PatientVisitUID, userUID, locationUID, ownerorganisationUID, PatientOrders.ToList());
+                    var createOrderList = PatientOrders.ToList();
+                    if (createOrderList.Count(p => p.IsContinuous == "Y") > 0)
+                    {
+                        foreach (var orderDetail in createOrderList.ToList())
+                        {
+                            if (orderDetail.IsStandingOrder == "Y" && PatientOrders.Count(p => p.StandingPatientOrder != null && p.StandingPatientOrder.IdentityGen == orderDetail.IdentityGen) > 0)
+                            {
+                                createOrderList.Remove(orderDetail);
+                            }
+                        }
+                    }
+
+                    DataService.OrderProcessing.CreateOrder(PatientVisit.PatientUID, PatientVisit.PatientVisitUID, userUID, locationUID, ownerorganisationUID, createOrderList);
                     PatientOrderEntry view = (PatientOrderEntry)this.View;
                     SaveSuccessDialog();
                     CloseViewDialog(ActionDialog.Save);
@@ -826,16 +884,17 @@ namespace MediTech.ViewModels
                             {
                                 if (PatientOrderAlerts != null && PatientOrderAlerts.Count() > 0)
                                     resultDrug.PatientOrderDetail.PatientOrderAlert = PatientOrderAlerts;
+
                                 if (resultDrug.PatientOrderDetail.IsStandingOrder == "Y")
                                 {
-
-                                    PatientOrders.Add(resultDrug.PatientOrderDetail);
-
-
                                     var orderNoContinuous = (PatientOrderDetailModel)resultDrug.PatientOrderDetail.CloneObject();
+                                    orderNoContinuous.IsContinuous = "N";
                                     orderNoContinuous.StartDttm = DateTime.Now;
                                     orderNoContinuous.EndDttm = StartDate.Date.AddSeconds(86400);
-                                    PatientOrders.Add(orderNoContinuous);
+                                    orderNoContinuous.IdentityGen = Guid.NewGuid().ToString();
+                                    resultDrug.PatientOrderDetail.StandingPatientOrder = orderNoContinuous;
+                                    PatientOrders.Add(resultDrug.PatientOrderDetail);
+                                    PatientOrders.Add(resultDrug.PatientOrderDetail.StandingPatientOrder);
 
                                 }
                                 else
@@ -890,14 +949,32 @@ namespace MediTech.ViewModels
                     OrderDrugItemViewModel resultDrug = (OrderDrugItemViewModel)LaunchViewDialog(ordDrug, "ORDDRG", true);
                     if (resultDrug != null && resultDrug.ResultDialog == ActionDialog.Save)
                     {
-                        selectPatientOrder = resultDrug.PatientOrderDetail;
+                        if (resultDrug.PatientOrderDetail.IsStandingOrder == "Y")
+                        {
+                            var orderNoContinuous = (PatientOrderDetailModel)resultDrug.PatientOrderDetail.CloneObject();
+                            orderNoContinuous.IsContinuous = "N";
+                            orderNoContinuous.StartDttm = DateTime.Now;
+                            orderNoContinuous.EndDttm = StartDate.Date.AddSeconds(86400);
+                            orderNoContinuous.IdentityGen = Guid.NewGuid().ToString();
+                            resultDrug.PatientOrderDetail.StandingPatientOrder = orderNoContinuous;
+                            selectPatientOrder = resultDrug.PatientOrderDetail;
+                            PatientOrders.Add(resultDrug.PatientOrderDetail.StandingPatientOrder);
+
+                        }
+                        else
+                        {
+                            selectPatientOrder = resultDrug.PatientOrderDetail;
+                        }
+
+
+                    
                         OnUpdateEvent();
                     }
                     break;
             }
             OnUpdateEvent();
         }
-        public void AssingPatientVisit(PatientVisitModel visitModel,bool isbilling = false)
+        public void AssingPatientVisit(PatientVisitModel visitModel, bool isbilling = false)
         {
             PatientVisit = visitModel;
             IsBilling = isbilling;

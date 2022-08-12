@@ -57,7 +57,7 @@
                                   DisplayFormatString="HH:mm"
                                   x:Name="editor" Mask="HH:mm">
                         <dxe:DateEdit.StyleSettings>
-                            <dxe:DateEditPickerStyleSettings/>
+                            <dxe:DateEditTimePickerStyleSettings/>
                         </dxe:DateEdit.StyleSettings>
                     </dxe:DateEdit>
                 </dxlc:LayoutItem>

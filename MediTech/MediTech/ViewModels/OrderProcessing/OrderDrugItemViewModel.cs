@@ -738,6 +738,7 @@ namespace MediTech.ViewModels
                 if (SelectPrescriptionType.ValueCode == "STORD")
                 {
                     PatientOrderDetail.IsStandingOrder = "Y";
+                    PatientOrderDetail.IsContinuous = "Y";
                 }
 
                 if (OverwritePrice != null)

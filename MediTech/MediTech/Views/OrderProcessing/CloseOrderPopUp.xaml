@@ -3,10 +3,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MediTech.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+             xmlns:local="clr-namespace:MediTech.Views" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             mc:Ignorable="d"
+             DataContext="{Binding Path=CloseOrderPopUpViewModel,Source={StaticResource Locator}}"
+             Width="310" Height="120" >
+    <AdornerDecorator>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="45" />
+                <RowDefinition Height="45" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!--Close Order Date-->
+            <Label Content="CloseDate" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+            <DockPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="0,0,10,0" Height="30">
+                <dxe:DateEdit DateTime="{Binding CloseDate}" Width="130" ShowEditorButtons="True"/>
+                <dxe:DateEdit EditValue="{Binding CloseTime}"
+    Mask="HH:mm"
+    MaskUseAsDisplayFormat="True"
+    Width="85" HorizontalAlignment="Right">
+                    <dxe:DateEdit.StyleSettings>
+                        <dxe:DateEditTimePickerStyleSettings  />
+                    </dxe:DateEdit.StyleSettings>
+                </dxe:DateEdit>
+            </DockPanel>
+
+            <!--OK Button-->
+            <DockPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,10,0">
+                <Button HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2"  x:Name="OKButton" VerticalAlignment="Center" MinWidth="60" Content="บันทึก" Command="{Binding SaveCommand}" />
+                <Button HorizontalAlignment="Center" Grid.Column="1" Grid.Row="2"  x:Name="CancelButton" VerticalAlignment="Center" MinWidth="60" Content="ยกเลิก" Command="{Binding CancelCommand}" />
+            </DockPanel>
+
+
+
+        </Grid>
+    </AdornerDecorator>
 </UserControl>

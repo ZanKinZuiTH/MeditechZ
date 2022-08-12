@@ -15,6 +15,8 @@ namespace MediTech.Model
         public long? IdentifyingUID { get; set; }
 
         public string IdentifyingType { get; set; }
+
+        public Nullable<System.DateTime> OrderDttm { get; set; }
         public Nullable<System.DateTime> StartDttm { get; set; }
 
         public Nullable<System.DateTime> EndDttm { get; set; }
@@ -96,8 +98,13 @@ namespace MediTech.Model
 
         public bool IsWithoutStock { get; set; }
         public bool IsExpired { get; set; }
+        public string IsContinuous { get; set; }
         public string IsStandingOrder { get; set; }
         public int? OrderCatagoryUID { get; set; }
         public int? OrderSubCategoryUID { get; set; }
+        public PatientOrderDetailModel StandingPatientOrder { get; set; }
+        public long? ParentUID { get; set; }
+        public string IdentityGen { get; set; }
+
     }
 }

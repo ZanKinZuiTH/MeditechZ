@@ -80,7 +80,7 @@
                                       DisplayFormatString="HH:mm:ss"
                                       Mask="HH:mm:ss">
                     <dxe:DateEdit.StyleSettings>
-                        <dxe:DateEditPickerStyleSettings/>
+                        <dxe:DateEditTimePickerStyleSettings/>
                     </dxe:DateEdit.StyleSettings>
                 </dxe:DateEdit>
             </dxlc:LayoutItem>

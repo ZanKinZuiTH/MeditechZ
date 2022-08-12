@@ -240,12 +240,12 @@
                                         </DataTemplate>
                                     </dxg:GridColumn.CellTemplate>
                                 </dxg:GridColumn>
-                                <dxg:GridColumn Header="เวลาคีย์" FieldName="StartDttm" ReadOnly="True">
+                                <dxg:GridColumn Header="สถานะ" FieldName="OrderDetailStatus" ReadOnly="True"/>
+                                <dxg:GridColumn Header="เวลาคีย์" FieldName="OrderDttm" ReadOnly="True">
                                     <dxg:GridColumn.EditSettings>
-                                        <dxe:DateEditSettings DisplayFormat="dd/MM/yyyy"/>
+                                        <dxe:DateEditSettings DisplayFormat="dd/MM/yyyy HH:mm"/>
                                     </dxg:GridColumn.EditSettings>
                                 </dxg:GridColumn>
-                                <dxg:GridColumn Header="สถานะ" FieldName="OrderDetailStatus" ReadOnly="True"/>
                                 <dxg:GridColumn Header="รหัส" FieldName="ItemCode" ReadOnly="True"/>
                                 <dxg:GridColumn Header="ชื่อ" FieldName="ItemName" ReadOnly="True"/>
                                 <dxg:GridColumn Header="ประเภท" FieldName="BillingService" ReadOnly="True"/>
@@ -270,11 +270,23 @@
                                 <dxg:GridColumn Header="OverridePrice" FieldName="IsPriceOverwrite" ReadOnly="True"/>
                                 <dxg:GridColumn Header="OrderSet" FieldName="OrderSetName" ReadOnly="True"/>
                                 <dxg:GridColumn Header="ผู้คีย์" FieldName="OrderBy" ReadOnly="True"/>
+                                <dxg:GridColumn FieldName="OrderNumber"/>
+                                <dxg:GridColumn Header="StartDttm" FieldName="StartDttm" ReadOnly="True">
+                                    <dxg:GridColumn.EditSettings>
+                                        <dxe:DateEditSettings DisplayFormat="dd/MM/yyyy HH:mm"/>
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>
+                                <dxg:GridColumn Header="EndDttm" FieldName="EndDttm" ReadOnly="True">
+                                    <dxg:GridColumn.EditSettings>
+                                        <dxe:DateEditSettings DisplayFormat="dd/MM/yyyy HH:mm"/>
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>
                                 <dxg:GridColumn Header="Order จาก" FieldName="OwnerOrganisationName" ReadOnly="True"/>
                                 <dxg:GridColumn Header="แผนก" FieldName="LocationName" ReadOnly="True"/>
                                 <dxg:GridColumn Header="หมายเหตุ" FieldName="Comments" ReadOnly="True"/>
                                 <dxg:GridControl.View>
                                     <dxg:TableView ShowCheckBoxSelectorColumn="True"
+                                               NavigationStyle="Row"
                                                UseLightweightTemplates="None"
                                                ShowGroupPanel="False"
                                                RowStyle="{StaticResource BackgroundStyle}"/>
@@ -304,6 +316,8 @@
                         <dxlc:LayoutGroup HorizontalAlignment="Right">
                             <dx:SimpleButton Width="95" Command="{Binding ReviewOrderCommand}"
                                      Height="25" Content="Review Order"/>
+                            <dx:SimpleButton Width="95" Command="{Binding OffMedicineCommand}"
+                                     Height="25" Content="Off Medicine"/>
                             <dx:SimpleButton Width="95" Command="{Binding CancelOrderCommand}"
                                      IsEnabled="{Binding EnabledCancelOrder}"
                                      Height="25" Content="Cancel Order"/>
