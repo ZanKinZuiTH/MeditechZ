@@ -34,7 +34,7 @@ namespace MediTech.Reports.Operating.Pharmacy
             int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
             int prescriptionUID = Convert.ToInt32(this.Parameters["PrescriptionUID"].Value.ToString());
             var prescription = (new PharmacyService()).GetprescriptionList(prescriptionUID);
-            this.DataSource = prescription;
+            
             ListPrescriptions = prescription.FirstOrDefault().PrescriptionItems.ToList(); 
 
             if(ListPrescriptions != null && ListPrescriptions.Count != 0)
@@ -46,8 +46,11 @@ namespace MediTech.Reports.Operating.Pharmacy
                     i++;
                 }
             }
-
+            var dianosis = (new PatientDiagnosticsService()).GetPatientProblemByVisitUID(prescription.FirstOrDefault().PatientVisitUID);
+            prescription.FirstOrDefault().PatientDianosis = dianosis;
+            this.DataSource = prescription;
             prescription_supreport.ReportSource.DataSource = ListPrescriptions;
+            
 
             var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);
 

@@ -764,7 +764,7 @@ namespace MediTechWebApi.Controllers
                                                 OrganisationName = SqlFunction.fGetHealthOrganisationName(ps.OwnerOrganisationUID ?? 0),
                                                 OwnerOrganisationUID = ps.OwnerOrganisationUID,
                                                 VisitID = pv.VisitID,
-                                                DrugAllergy = SqlFunction.fGetPatientAllergy(pa.UID),
+                                                DrugAllergy = SqlFunction.fGetPatientAllergy(pa.UID)
                                             }).ToList();
 
 

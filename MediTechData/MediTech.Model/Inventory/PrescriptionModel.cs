@@ -44,6 +44,7 @@ namespace MediTech.Model
         public string IsBilled { get; set; }
         public string IsIPFill { get; set; }
         public string DrugAllergy { get; set; }
+        public List<PatientProblemModel> PatientDianosis { get; set; }
 
         private ObservableCollection<PrescriptionItemModel> _PrescriptionItems;
 
