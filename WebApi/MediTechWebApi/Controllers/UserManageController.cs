@@ -823,6 +823,46 @@ namespace MediTechWebApi.Controllers
             }
         }
 
+        #region Blife
+        [Route("BLIFEVerifyPatientIdentity")]
+        [HttpPut]
+        public HttpResponseMessage BLIFEVerifyPatientIdentity(int patientUID, string natinalID,int userID)
+        {
+            try
+            {
+                var citizenID =  ShareLibrary.Encryption.EncryptBLifeAccess(natinalID);
+                var dtBlife = SqlStatement.BLIFEGetUsersByNationalID(citizenID);
+                if (dtBlife != null && dtBlife.Rows.Count > 0)
+                {
+                    var blifeUserUID = int.Parse(dtBlife.Rows[0]["UID"].ToString());
+                    var flagVerify = SqlStatement.BLIFEVerifyPatientIdentity(blifeUserUID);
+
+                    if (flagVerify == true)
+                    {
+                        var patient = db.Patient.Find(patientUID);
+                        if (patient != null)
+                        {
+                            db.Patient.Attach(patient);
+                            patient.IsIdentityOnBLIFE = "Y";
+                            patient.MWhen = DateTime.Now;
+                            patient.MUser = userID;
+                            db.SaveChanges();
+                        }
+                    }
+
+                }
+
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+        #endregion
+
 
         protected override void Dispose(bool disposing)
         {

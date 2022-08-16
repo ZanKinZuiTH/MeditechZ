@@ -218,6 +218,12 @@ namespace MediTech.ViewModels
             get { return _SendToBLIFECommand ?? (_SendToBLIFECommand = new RelayCommand(SendToBLIFE)); }
         }
 
+        private RelayCommand _VerifyPatientIdentityToBLIFECommand;
+        public RelayCommand VerifyPatientIdentityToBLIFECommand
+        {
+            get { return _VerifyPatientIdentityToBLIFECommand ?? (_VerifyPatientIdentityToBLIFECommand = new RelayCommand(VerifyPatientIdentityToBLIFE)); }
+        }
+
         private RelayCommand _PreviewCommand;
         public RelayCommand PreviewCommand
         {
@@ -389,30 +395,42 @@ namespace MediTech.ViewModels
         {
             if (SelectPatientCheckupResult != null)
             {
-                var patientResultLabList = SelectPatientCheckupResult.OrderBy(p => p.RowHandle);
-                bool saveSucess = true;
-                foreach (var item in patientResultLabList.ToList())
+                try
                 {
-                    try
+                    var patientWellnessList = SelectPatientCheckupResult.Where(p => p.OnBLIFE == "N" && !string.IsNullOrEmpty(p.NationalID)).OrderBy(p => p.RowHandle);
+                    foreach (var patient in patientWellnessList)
                     {
                         WellnessDataModel WellnessData = new WellnessDataModel();
-                        WellnessData.WellnessDataUID = item.WellnessResultUID;
+                        WellnessData.WellnessDataUID = patient.WellnessResultUID;
                         DataService.PatientHistory.SendWellnessToBLIFE(WellnessData, AppUtil.Current.UserID);
-
+                        SelectPatientCheckupResult.Remove(patient);
                     }
-                    catch (Exception er)
-                    {
-
-                        ErrorDialog(er.Message);
-                        saveSucess = false;
-                    }
-                    SelectPatientCheckupResult.Remove(item);
-                }
-                if (saveSucess)
-                {
                     SaveSuccessDialog();
+                    Search();
                 }
+                catch (Exception er)
+                {
+                    ErrorDialog(er.Message);
+                }
+            }
+        }
+
+        void VerifyPatientIdentityToBLIFE()
+        {
+            try
+            {
+                var patientWellnessList = SelectPatientCheckupResult.Where(p => p.IsIdentityOnBLIFE == "N" && !string.IsNullOrEmpty(p.NationalID)).OrderBy(p => p.RowHandle);
+                foreach (var patient in patientWellnessList)
+                {
+                    DataService.UserManage.BLIFEVerifyPatientIdentity(patient.PatientUID, patient.NationalID, AppUtil.Current.UserID);
+                    SelectPatientCheckupResult.Remove(patient);
+                }
+                SaveSuccessDialog();
                 Search();
+            }
+            catch (Exception er)
+            {
+                ErrorDialog(er.Message);
             }
         }
         void Preview()

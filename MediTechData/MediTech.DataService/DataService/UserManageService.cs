@@ -184,5 +184,27 @@ namespace MediTech.DataService
 
         }
 
+        #region Blife
+        public bool BLIFEVerifyPatientIdentity(long patientUID, string natinalID, int userID)
+        {
+            bool flag = false;
+
+            try
+            {
+                string requestApi = string.Format("Api/UserManage/BLIFEVerifyPatientIdentity?patientUID={0}&natinalID={1}&userID={1}", patientUID,natinalID, userID);
+                MeditechApiHelper.Put(requestApi);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return flag;
+
+        }
+        #endregion
+
     }
 }

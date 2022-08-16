@@ -44,6 +44,7 @@ namespace MediTech.DataBase
         public string EmployeeID { get; set; }
         public string Department { get; set; }
         public string Position { get; set; }
+        public string IsIdentityOnBLIFE { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

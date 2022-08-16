@@ -2572,5 +2572,72 @@ and GPRSTUID in (@GPRSTUID)";
 
             return flag;
         }
+
+        #region Blife
+
+
+        public static DataTable BLIFEGetUsersByNationalID(string nationalID)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection con = new SqlConnection("BlifeDatabase");
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+                SqlCommand command = new SqlCommand();
+                command.CommandType = CommandType.Text;
+                command.Connection = con;
+                command.CommandText = @"Select * From users Where StatusFlag = 'A' and CitizenID = @CitizenID";
+                command.Parameters.AddWithValue("@CitizenID", nationalID);
+
+                dt.Load(command.ExecuteReader());
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                con.Close();
+                con.Dispose();
+            }
+
+            return dt;
+        }
+
+        public static bool BLIFEVerifyPatientIdentity(int userUID)
+        {
+            bool flag = false;
+            SqlConnection con = new SqlConnection("BlifeDatabase");
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+                SqlCommand command = new SqlCommand();
+                command.CommandType = CommandType.Text;
+                command.Connection = con;
+                command.CommandText = @"Update Set IsPatientIdentity = 'Y',Comments = 'Verify By MediTech' Patient Where UID = @UserUID";
+                command.Parameters.AddWithValue("@UserUID", userUID);
+
+                flag = true;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                con.Close();
+                con.Dispose();
+            }
+
+            return flag;
+        }
+
+        #endregion
     }
 }

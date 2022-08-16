@@ -1148,6 +1148,7 @@
           <Property Name="EmployeeID" Type="nvarchar" MaxLength="30" />
           <Property Name="Department" Type="nvarchar" MaxLength="100" />
           <Property Name="Position" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsIdentityOnBLIFE" Type="nvarchar" MaxLength="1" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
           <Property Name="MUser" Type="int" Nullable="false" />
@@ -1280,6 +1281,7 @@
           <Property Name="ChangeAmount" Type="float" />
           <Property Name="ReferredBy" Type="nvarchar" MaxLength="255" />
           <Property Name="StaffUID" Type="int" />
+          <Property Name="IsTDSDeducted" Type="nvarchar" MaxLength="1" />
           <Property Name="PAYMDUID" Type="int" />
           <Property Name="SALTOUID" Type="int" />
           <Property Name="IdentifyingType" Type="nvarchar" MaxLength="50" />
@@ -1530,6 +1532,7 @@
           <Property Name="OrderNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="PatientUID" Type="bigint" Nullable="false" />
           <Property Name="PatientVisitUID" Type="bigint" Nullable="false" />
+          <Property Name="PRSTYPUID" Type="int" />
           <Property Name="StartDttm" Type="datetime" />
           <Property Name="Comments" Type="nvarchar" MaxLength="255" />
           <Property Name="IdentifyingUID" Type="bigint" />
@@ -2952,7 +2955,7 @@
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StoreUID" Type="int" Nullable="false" />
           <Property Name="ItemMasterUID" Type="int" Nullable="false" />
-          <Property Name="ItemName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="VendorDetailUID" Type="int" />
           <Property Name="ManufacturerUID" Type="int" />
           <Property Name="Quantity" Type="float" Nullable="false" />
@@ -3689,6 +3692,10 @@
           <Parameter Name="P_UserUID" Type="int" Mode="In" />
         </Function>
         <Function Name="pInvenTransferItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_ItemIssueUID" Type="int" Mode="In" />
+          <Parameter Name="P_UserUID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pInvenTransferItemEcount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_ItemIssueUID" Type="int" Mode="In" />
           <Parameter Name="P_UserUID" Type="int" Mode="In" />
         </Function>
@@ -5434,6 +5441,10 @@
           <EntitySet Name="XrayTranslateCondition" EntityType="MediTechModel.XrayTranslateCondition" />
           <EntitySet Name="XrayTranslateConditionDetail" EntityType="MediTechModel.XrayTranslateConditionDetail" />
           <EntitySet Name="XrayTranslateMapping" EntityType="MediTechModel.XrayTranslateMapping" />
+          <FunctionImport Name="pInvenTransferItemEcount" ReturnType="Collection(DateTime)">
+            <Parameter Name="P_ItemIssueUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_UserUID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pConvertUOM_Result">
           <Property Type="Int32" Name="UID" Nullable="true" />
@@ -8917,6 +8928,7 @@
           <Property Name="EmployeeID" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsIdentityOnBLIFE" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
@@ -9049,6 +9061,7 @@
           <Property Name="ChangeAmount" Type="Double" />
           <Property Name="ReferredBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="StaffUID" Type="Int32" />
+          <Property Name="IsTDSDeducted" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="PAYMDUID" Type="Int32" />
           <Property Name="SALTOUID" Type="Int32" />
           <Property Name="IdentifyingType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -9299,6 +9312,7 @@
           <Property Name="OrderNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PatientUID" Type="Int64" Nullable="false" />
           <Property Name="PatientVisitUID" Type="Int64" Nullable="false" />
+          <Property Name="PRSTYPUID" Type="Int32" />
           <Property Name="StartDttm" Type="DateTime" Precision="3" />
           <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="IdentifyingUID" Type="Int64" />
@@ -10721,7 +10735,7 @@
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StoreUID" Type="Int32" Nullable="false" />
           <Property Name="ItemMasterUID" Type="Int32" Nullable="false" />
-          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="VendorDetailUID" Type="Int32" />
           <Property Name="ManufacturerUID" Type="Int32" />
           <Property Name="Quantity" Type="Double" Nullable="false" />
@@ -13934,6 +13948,7 @@
                 <ScalarProperty Name="MUser" ColumnName="MUser" />
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="IsIdentityOnBLIFE" ColumnName="IsIdentityOnBLIFE" />
                 <ScalarProperty Name="Position" ColumnName="Position" />
                 <ScalarProperty Name="Department" ColumnName="Department" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -14097,6 +14112,7 @@
                 <ScalarProperty Name="IdentifyingType" ColumnName="IdentifyingType" />
                 <ScalarProperty Name="SALTOUID" ColumnName="SALTOUID" />
                 <ScalarProperty Name="PAYMDUID" ColumnName="PAYMDUID" />
+                <ScalarProperty Name="IsTDSDeducted" ColumnName="IsTDSDeducted" />
                 <ScalarProperty Name="StaffUID" ColumnName="StaffUID" />
                 <ScalarProperty Name="ReferredBy" ColumnName="ReferredBy" />
                 <ScalarProperty Name="ChangeAmount" ColumnName="ChangeAmount" />
@@ -14363,6 +14379,7 @@
                 <ScalarProperty Name="IdentifyingUID" ColumnName="IdentifyingUID" />
                 <ScalarProperty Name="Comments" ColumnName="Comments" />
                 <ScalarProperty Name="StartDttm" ColumnName="StartDttm" />
+                <ScalarProperty Name="PRSTYPUID" ColumnName="PRSTYPUID" />
                 <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
                 <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
                 <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
@@ -16103,6 +16120,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="pInvenTransferItemEcount" FunctionName="MediTechModel.Store.pInvenTransferItemEcount" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
