@@ -397,7 +397,7 @@ namespace MediTech.ViewModels
             {
                 try
                 {
-                    var patientWellnessList = SelectPatientCheckupResult.Where(p => p.OnBLIFE == "N" && !string.IsNullOrEmpty(p.NationalID)).OrderBy(p => p.RowHandle);
+                    var patientWellnessList = SelectPatientCheckupResult.OrderBy(p => p.RowHandle);
                     foreach (var patient in patientWellnessList)
                     {
                         WellnessDataModel WellnessData = new WellnessDataModel();
@@ -419,7 +419,7 @@ namespace MediTech.ViewModels
         {
             try
             {
-                var patientWellnessList = SelectPatientCheckupResult.Where(p => p.IsIdentityOnBLIFE == "N" && !string.IsNullOrEmpty(p.NationalID)).OrderBy(p => p.RowHandle);
+                var patientWellnessList = SelectPatientCheckupResult.OrderBy(p => p.RowHandle);
                 foreach (var patient in patientWellnessList)
                 {
                     DataService.UserManage.BLIFEVerifyPatientIdentity(patient.PatientUID, patient.NationalID, AppUtil.Current.UserID);

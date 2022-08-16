@@ -2579,7 +2579,8 @@ and GPRSTUID in (@GPRSTUID)";
         public static DataTable BLIFEGetUsersByNationalID(string nationalID)
         {
             DataTable dt = new DataTable();
-            SqlConnection con = new SqlConnection("BlifeDatabase");
+            var blifeConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["BlifeDatabase"].ToString();
+            SqlConnection con = new SqlConnection(blifeConnectionString);
             try
             {
                 if (con.State == ConnectionState.Closed)
@@ -2610,7 +2611,8 @@ and GPRSTUID in (@GPRSTUID)";
         public static bool BLIFEVerifyPatientIdentity(int userUID)
         {
             bool flag = false;
-            SqlConnection con = new SqlConnection("BlifeDatabase");
+            var blifeConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["BlifeDatabase"].ToString();
+            SqlConnection con = new SqlConnection(blifeConnectionString);
             try
             {
                 if (con.State == ConnectionState.Closed)
@@ -2618,9 +2620,9 @@ and GPRSTUID in (@GPRSTUID)";
                 SqlCommand command = new SqlCommand();
                 command.CommandType = CommandType.Text;
                 command.Connection = con;
-                command.CommandText = @"Update Set IsPatientIdentity = 'Y',Comments = 'Verify By MediTech' Patient Where UID = @UserUID";
+                command.CommandText = @"Update Users Set IsPatientIdentity = 'Y',Comments = 'Verify By MediTech'  Where UID = @UserUID";
                 command.Parameters.AddWithValue("@UserUID", userUID);
-
+                command.ExecuteNonQuery();
                 flag = true;
 
             }

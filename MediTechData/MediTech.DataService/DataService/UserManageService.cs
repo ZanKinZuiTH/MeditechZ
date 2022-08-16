@@ -191,7 +191,7 @@ namespace MediTech.DataService
 
             try
             {
-                string requestApi = string.Format("Api/UserManage/BLIFEVerifyPatientIdentity?patientUID={0}&natinalID={1}&userID={1}", patientUID,natinalID, userID);
+                string requestApi = string.Format("Api/UserManage/BLIFEVerifyPatientIdentity?patientUID={0}&natinalID={1}&userID={2}", patientUID,natinalID, userID);
                 MeditechApiHelper.Put(requestApi);
                 flag = true;
             }
