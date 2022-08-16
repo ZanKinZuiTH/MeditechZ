@@ -815,11 +815,29 @@
     <Compile Include="Reports\Operating\Patient\RehabPhysical.Designer.cs">
       <DependentUpon>RehabPhysical.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Operating\Pharmacy\DiagnosisDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Pharmacy\DiagnosisDetail.Designer.cs">
+      <DependentUpon>DiagnosisDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Pharmacy\DrugSticker.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Operating\Pharmacy\DrugSticker.Designer.cs">
       <DependentUpon>DrugSticker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Pharmacy\OPPrescription.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Pharmacy\OPPrescription.Designer.cs">
+      <DependentUpon>OPPrescription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Pharmacy\OPPrescriptionDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Pharmacy\OPPrescriptionDetail.Designer.cs">
+      <DependentUpon>OPPrescriptionDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Operating\Radiology\ImagingReport.cs">
       <SubType>Component</SubType>
@@ -3627,9 +3645,18 @@
     <EmbeddedResource Include="Reports\Operating\Patient\RehabPhysical.resx">
       <DependentUpon>RehabPhysical.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Pharmacy\DiagnosisDetail.resx">
+      <DependentUpon>DiagnosisDetail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Pharmacy\DrugSticker.resx">
       <DependentUpon>DrugSticker.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Pharmacy\OPPrescription.resx">
+      <DependentUpon>OPPrescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Pharmacy\OPPrescriptionDetail.resx">
+      <DependentUpon>OPPrescriptionDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Radiology\ImagingReport.resx">
       <DependentUpon>ImagingReport.cs</DependentUpon>

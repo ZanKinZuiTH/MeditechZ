@@ -18,7 +18,6 @@ namespace MediTech.DataBase
         public string OrderNumber { get; set; }
         public long PatientUID { get; set; }
         public long PatientVisitUID { get; set; }
-        public Nullable<int> PRSTYPUID { get; set; }
         public Nullable<System.DateTime> StartDttm { get; set; }
         public Nullable<System.DateTime> EndDttm { get; set; }
         public Nullable<int> PRSTYPUID { get; set; }

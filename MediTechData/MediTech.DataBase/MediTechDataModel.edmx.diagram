@@ -4,226 +4,226 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d850f0410533412480f33531c3f3ab40" Name="Diagram1" ZoomLevel="47">
-        <EntityTypeShape EntityType="MediTechModel.AdmissionEvent" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.ADTEventStatus" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.AEDischargeEvent" Width="1.5" PointX="4.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.AgreementAccountDiscount" Width="1.5" PointX="6.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.AgreementDetailDiscount" Width="1.5" PointX="0.75" PointY="6.75" />
-        <EntityTypeShape EntityType="MediTechModel.AgreementItemDiscount" Width="1.5" PointX="2.75" PointY="6.75" />
-        <EntityTypeShape EntityType="MediTechModel.Amphur" Width="1.5" PointX="4.75" PointY="6.75" />
-        <EntityTypeShape EntityType="MediTechModel.AppointmentRequest" Width="1.5" PointX="6.75" PointY="5.75" />
-        <EntityTypeShape EntityType="MediTechModel.BillableItem" Width="1.5" PointX="8.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.BillableItemDetail" Width="1.5" PointX="8.75" PointY="7.75" />
-        <EntityTypeShape EntityType="MediTechModel.BillConfiguration" Width="1.5" PointX="10.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.BillingGroup" Width="1.5" PointX="4.75" PointY="11.75" />
-        <EntityTypeShape EntityType="MediTechModel.BillingSubGroup" Width="1.5" PointX="12.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.BillPackage" Width="1.5" PointX="0.75" PointY="12.75" />
-        <EntityTypeShape EntityType="MediTechModel.BillPackageItem" Width="1.5" PointX="12.75" PointY="4.75" />
-        <EntityTypeShape EntityType="MediTechModel.BillPackagePrice" Width="1.5" PointX="6.75" PointY="12.75" />
-        <EntityTypeShape EntityType="MediTechModel.Booking" Width="1.5" PointX="12.75" PointY="10.75" />
-        <EntityTypeShape EntityType="MediTechModel.Careprovider" Width="1.5" PointX="14.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.CareproviderLocation" Width="1.5" PointX="14.75" PointY="8.75" />
-        <EntityTypeShape EntityType="MediTechModel.CareproviderOrganisation" Width="1.5" PointX="14.75" PointY="13.75" />
-        <EntityTypeShape EntityType="MediTechModel.CareproviderTransfer" Width="1.5" PointX="2.75" PointY="15.75" />
-        <EntityTypeShape EntityType="MediTechModel.CCHPI" Width="1.5" PointX="16.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.CCHPIMaster" Width="1.5" PointX="16.75" PointY="5.75" />
-        <EntityTypeShape EntityType="MediTechModel.CheckupGroupResult" Width="1.5" PointX="16.75" PointY="9.75" />
-        <EntityTypeShape EntityType="MediTechModel.CheckupJobContact" Width="1.5" PointX="16.75" PointY="14.75" />
-        <EntityTypeShape EntityType="MediTechModel.CheckupJobTask" Width="1.5" PointX="4.75" PointY="17.75" />
-        <EntityTypeShape EntityType="MediTechModel.CheckupRule" Width="1.5" PointX="6.75" PointY="17.75" />
-        <EntityTypeShape EntityType="MediTechModel.CheckupRuleDescription" Width="1.5" PointX="12.75" PointY="17.75" />
-        <EntityTypeShape EntityType="MediTechModel.CheckupRuleItem" Width="1.5" PointX="18.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.CheckupRuleRecommend" Width="1.5" PointX="18.75" PointY="5.75" />
-        <EntityTypeShape EntityType="MediTechModel.CheckupTextMaster" Width="1.5" PointX="18.75" PointY="9.75" />
-        <EntityTypeShape EntityType="MediTechModel.ContactAgreementAccount" Width="1.5" PointX="18.75" PointY="13.75" />
-        <EntityTypeShape EntityType="MediTechModel.ContactAgreementAccountDetail" Width="1.5" PointX="18.75" PointY="17.75" />
-        <EntityTypeShape EntityType="MediTechModel.ContactAgreementAccountItem" Width="1.5" PointX="20.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.DischargeEvent" Width="1.5" PointX="0.75" PointY="20.75" />
-        <EntityTypeShape EntityType="MediTechModel.DispensedItem" Width="1.5" PointX="20.75" PointY="4.75" />
-        <EntityTypeShape EntityType="MediTechModel.DisposeItemList" Width="1.5" PointX="20.75" PointY="11.75" />
-        <EntityTypeShape EntityType="MediTechModel.DisposeStock" Width="1.5" PointX="14.75" PointY="20.75" />
-        <EntityTypeShape EntityType="MediTechModel.District" Width="1.5" PointX="20.75" PointY="17.75" />
-        <EntityTypeShape EntityType="MediTechModel.DoctorFee" Width="1.5" PointX="2.75" PointY="21.75" />
-        <EntityTypeShape EntityType="MediTechModel.DrugGeneric" Width="1.5" PointX="16.75" PointY="21.75" />
-        <EntityTypeShape EntityType="MediTechModel.FavouriteItem" Width="1.5" PointX="18.75" PointY="21.75" />
-        <EntityTypeShape EntityType="MediTechModel.FrequencyDefinition" Width="1.5" PointX="20.75" PointY="21.75" />
-        <EntityTypeShape EntityType="MediTechModel.GRNDetail" Width="1.5" PointX="22.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.GRNItemList" Width="1.5" PointX="4.75" PointY="22.75" />
-        <EntityTypeShape EntityType="MediTechModel.GroupReceipt" Width="1.5" PointX="22.75" PointY="6.75" />
-        <EntityTypeShape EntityType="MediTechModel.GroupReceiptDetail" Width="1.5" PointX="6.75" PointY="22.75" />
-        <EntityTypeShape EntityType="MediTechModel.GroupReceiptPatientBill" Width="1.5" PointX="8.75" PointY="22.75" />
-        <EntityTypeShape EntityType="MediTechModel.HealthOrganisation" Width="1.5" PointX="10.75" PointY="22.75" />
-        <EntityTypeShape EntityType="MediTechModel.HealthOrganisationID" Width="1.5" PointX="22.75" PointY="13.75" />
-        <EntityTypeShape EntityType="MediTechModel.InsuranceCompany" Width="1.5" PointX="22.75" PointY="18.75" />
-        <EntityTypeShape EntityType="MediTechModel.InsurancePlan" Width="1.5" PointX="22.75" PointY="23.75" />
-        <EntityTypeShape EntityType="MediTechModel.IPBooking" Width="1.5" PointX="24.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.IPFillDetail" Width="1.5" PointX="24.75" PointY="8.75" />
-        <EntityTypeShape EntityType="MediTechModel.IPFillProcess" Width="1.5" PointX="24.75" PointY="14.75" />
-        <EntityTypeShape EntityType="MediTechModel.ItemAverageCost" Width="1.5" PointX="24.75" PointY="19.75" />
-        <EntityTypeShape EntityType="MediTechModel.ItemIssue" Width="1.5" PointX="12.75" PointY="25.75" />
-        <EntityTypeShape EntityType="MediTechModel.ItemIssueDetail" Width="1.5" PointX="14.75" PointY="25.75" />
-        <EntityTypeShape EntityType="MediTechModel.ItemMaster" Width="1.5" PointX="16.75" PointY="25.75" />
-        <EntityTypeShape EntityType="MediTechModel.ItemReceive" Width="1.5" PointX="24.75" PointY="25.75" />
-        <EntityTypeShape EntityType="MediTechModel.ItemReceiveDetail" Width="1.5" PointX="26.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.ItemRequest" Width="1.5" PointX="26.75" PointY="6.75" />
-        <EntityTypeShape EntityType="MediTechModel.ItemRequestDetail" Width="1.5" PointX="26.75" PointY="12.75" />
-        <EntityTypeShape EntityType="MediTechModel.ItemUOMConversion" Width="1.5" PointX="26.75" PointY="17.75" />
-        <EntityTypeShape EntityType="MediTechModel.ItemVendorDetail" Width="1.5" PointX="18.75" PointY="26.75" />
-        <EntityTypeShape EntityType="MediTechModel.Location" Width="1.5" PointX="26.75" PointY="21.75" />
-        <EntityTypeShape EntityType="MediTechModel.LocationTransfer" Width="1.5" PointX="0.75" PointY="27.75" />
-        <EntityTypeShape EntityType="MediTechModel.Login" Width="1.5" PointX="26.75" PointY="27.75" />
-        <EntityTypeShape EntityType="MediTechModel.MediTechInterface" Width="1.5" PointX="28.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.MediTechInterfaceDetail" Width="1.5" PointX="28.75" PointY="4.75" />
-        <EntityTypeShape EntityType="MediTechModel.meditechtestpatchInterface" Width="1.5" PointX="6.75" PointY="28.75" />
-        <EntityTypeShape EntityType="MediTechModel.meditechtestpatchInterfaceDetail" Width="1.5" PointX="28.75" PointY="8.75" />
-        <EntityTypeShape EntityType="MediTechModel.NotificationTaskResult" Width="1.5" PointX="28.75" PointY="12.75" />
-        <EntityTypeShape EntityType="MediTechModel.OrderCategory" Width="1.5" PointX="28.75" PointY="16.75" />
-        <EntityTypeShape EntityType="MediTechModel.OrderSet" Width="1.5" PointX="28.75" PointY="20.75" />
-        <EntityTypeShape EntityType="MediTechModel.OrderSetBillableItem" Width="1.5" PointX="20.75" PointY="28.75" />
-        <EntityTypeShape EntityType="MediTechModel.OrderSubCategory" Width="1.5" PointX="28.75" PointY="26.75" />
-        <EntityTypeShape EntityType="MediTechModel.PageView" Width="1.5" PointX="2.75" PointY="29.75" />
-        <EntityTypeShape EntityType="MediTechModel.PageViewModule" Width="1.5" PointX="8.75" PointY="29.75" />
-        <EntityTypeShape EntityType="MediTechModel.PageViewPermission" Width="1.5" PointX="30.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.PastMedicalHistory" Width="1.5" PointX="30.75" PointY="4.75" />
-        <EntityTypeShape EntityType="MediTechModel.Patient" Width="1.5" PointX="30.75" PointY="8.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientAddress" Width="1.5" PointX="30.75" PointY="18.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientAddressMerge" Width="1.5" PointX="30.75" PointY="24.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientADTEvent" Width="1.5" PointX="28.75" PointY="31.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientAEAdmission" Width="1.5" PointX="30.75" PointY="31.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientAllergy" Width="1.5" PointX="32.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientAudiogram" Width="1.5" PointX="4.75" PointY="32.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientBill" Width="1.5" PointX="32.75" PointY="5.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientBillableItem" Width="1.5" PointX="10.75" PointY="32.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientBilledItem" Width="1.5" PointX="12.75" PointY="32.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientBillEditHistory" Width="1.5" PointX="32.75" PointY="14.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientConsultation" Width="1.5" PointX="32.75" PointY="19.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientDeceasedDetail" Width="1.5" PointX="22.75" PointY="32.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientDemographicLog" Width="1.5" PointX="32.75" PointY="25.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientEKG" Width="1.5" PointX="32.75" PointY="30.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientExamination" Width="1.5" PointX="24.75" PointY="33.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientFixPrice" Width="1.5" PointX="34.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientFixPriceHistory" Width="1.5" PointX="34.75" PointY="5.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientImage" Width="1.5" PointX="6.75" PointY="34.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientInjury" Width="1.5" PointX="34.75" PointY="10.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientInsuranceDetail" Width="1.5" PointX="14.75" PointY="34.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientMedicalHistory" Width="1.5" PointX="34.75" PointY="15.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientMerge" Width="1.5" PointX="16.75" PointY="34.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientMergeDetail" Width="1.5" PointX="18.75" PointY="34.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientMergeEncounter" Width="1.5" PointX="34.75" PointY="22.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientMuscle" Width="1.5" PointX="34.75" PointY="26.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientOrder" Width="1.5" PointX="34.75" PointY="31.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientOrderAlert" Width="1.5" PointX="0.75" PointY="35.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientOrderDetail" Width="1.5" PointX="36.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientOrderDetailHistory" Width="1.5" PointX="36.75" PointY="13.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientPackage" Width="1.5" PointX="36.75" PointY="17.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientPackageItem" Width="1.5" PointX="36.75" PointY="23.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientPaymentDetail" Width="1.5" PointX="26.75" PointY="36.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientProblem" Width="1.5" PointX="36.75" PointY="29.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientScannedDocument" Width="1.5" PointX="36.75" PointY="36.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientServiceEvent" Width="1.5" PointX="38.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientSpirometry" Width="1.5" PointX="38.75" PointY="4.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientTitmus" Width="1.5" PointX="6.75" PointY="38.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientVisit" Width="1.5" PointX="38.75" PointY="10.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientVisitCareProvider" Width="1.5" PointX="18.75" PointY="38.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientVisitID" Width="1.5" PointX="38.75" PointY="19.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientVisitPayor" Width="1.5" PointX="20.75" PointY="38.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientVisualAcuity" Width="1.5" PointX="38.75" PointY="24.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientVitalSign" Width="1.5" PointX="38.75" PointY="31.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientWorkHistory" Width="1.5" PointX="32.75" PointY="38.75" />
-        <EntityTypeShape EntityType="MediTechModel.PayorAgreement" Width="1.5" PointX="38.75" PointY="38.75" />
-        <EntityTypeShape EntityType="MediTechModel.PayorAgreement_2" Width="1.5" PointX="40.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.PayorDetail" Width="1.5" PointX="0.75" PointY="40.75" />
-        <EntityTypeShape EntityType="MediTechModel.PayorDetail_2" Width="1.5" PointX="2.75" PointY="40.75" />
-        <EntityTypeShape EntityType="MediTechModel.Permission" Width="1.5" PointX="40.75" PointY="5.75" />
-        <EntityTypeShape EntityType="MediTechModel.PhysicalExam" Width="1.5" PointX="40.75" PointY="9.75" />
-        <EntityTypeShape EntityType="MediTechModel.PhysicalExamTemplate" Width="1.5" PointX="40.75" PointY="13.75" />
-        <EntityTypeShape EntityType="MediTechModel.PolicyMaster" Width="1.5" PointX="40.75" PointY="17.75" />
-        <EntityTypeShape EntityType="MediTechModel.PostalCode" Width="1.5" PointX="40.75" PointY="21.75" />
-        <EntityTypeShape EntityType="MediTechModel.Prescription" Width="1.5" PointX="22.75" PointY="40.75" />
-        <EntityTypeShape EntityType="MediTechModel.PrescriptionItem" Width="1.5" PointX="40.75" PointY="25.75" />
-        <EntityTypeShape EntityType="MediTechModel.Problem" Width="1.5" PointX="28.75" PointY="40.75" />
-        <EntityTypeShape EntityType="MediTechModel.ProgressNote" Width="1.5" PointX="40.75" PointY="33.75" />
-        <EntityTypeShape EntityType="MediTechModel.Province" Width="1.5" PointX="40.75" PointY="37.75" />
-        <EntityTypeShape EntityType="MediTechModel.PurchaseOrder" Width="1.5" PointX="34.75" PointY="41.75" />
-        <EntityTypeShape EntityType="MediTechModel.PurchaseOrderItemList" Width="1.5" PointX="40.75" PointY="41.75" />
-        <EntityTypeShape EntityType="MediTechModel.PurchaseOrderPayment" Width="1.5" PointX="42.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.ReferenceDomain" Width="1.5" PointX="42.75" PointY="5.75" />
-        <EntityTypeShape EntityType="MediTechModel.ReferenceRelationShip" Width="1.5" PointX="42.75" PointY="10.75" />
-        <EntityTypeShape EntityType="MediTechModel.ReferenceValue" Width="1.5" PointX="12.75" PointY="42.75" />
-        <EntityTypeShape EntityType="MediTechModel.ReportPermission" Width="1.5" PointX="14.75" PointY="42.75" />
-        <EntityTypeShape EntityType="MediTechModel.Reports" Width="1.5" PointX="42.75" PointY="15.75" />
-        <EntityTypeShape EntityType="MediTechModel.Request" Width="1.5" PointX="42.75" PointY="20.75" />
-        <EntityTypeShape EntityType="MediTechModel.RequestDetail" Width="1.5" PointX="42.75" PointY="26.75" />
-        <EntityTypeShape EntityType="MediTechModel.RequestDetailDocument" Width="1.5" PointX="42.75" PointY="35.75" />
-        <EntityTypeShape EntityType="MediTechModel.RequestDetailSpecimen" Width="1.5" PointX="42.75" PointY="39.75" />
-        <EntityTypeShape EntityType="MediTechModel.RequestItem" Width="1.5" PointX="30.75" PointY="43.75" />
-        <EntityTypeShape EntityType="MediTechModel.RequestItemGroupResult" Width="1.5" PointX="44.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.RequestItemSpecimen" Width="1.5" PointX="44.75" PointY="4.75" />
-        <EntityTypeShape EntityType="MediTechModel.RequestResultLink" Width="1.5" PointX="4.75" PointY="44.75" />
-        <EntityTypeShape EntityType="MediTechModel.Result" Width="1.5" PointX="6.75" PointY="44.75" />
-        <EntityTypeShape EntityType="MediTechModel.ResultComponent" Width="1.5" PointX="44.75" PointY="9.75" />
-        <EntityTypeShape EntityType="MediTechModel.ResultImage" Width="1.5" PointX="44.75" PointY="15.75" />
-        <EntityTypeShape EntityType="MediTechModel.ResultItem" Width="1.5" PointX="16.75" PointY="44.75" />
-        <EntityTypeShape EntityType="MediTechModel.ResultItemRange" Width="1.5" PointX="44.75" PointY="19.75" />
-        <EntityTypeShape EntityType="MediTechModel.ResultRadiology" Width="1.5" PointX="44.75" PointY="24.75" />
-        <EntityTypeShape EntityType="MediTechModel.ResultRadiologyHistory" Width="1.5" PointX="44.75" PointY="29.75" />
-        <EntityTypeShape EntityType="MediTechModel.ResultRadiologyTemplate" Width="1.5" PointX="44.75" PointY="33.75" />
-        <EntityTypeShape EntityType="MediTechModel.ResultTextual" Width="1.5" PointX="44.75" PointY="38.75" />
-        <EntityTypeShape EntityType="MediTechModel.Role" Width="1.5" PointX="44.75" PointY="42.75" />
-        <EntityTypeShape EntityType="MediTechModel.RoleProfile" Width="1.5" PointX="18.75" PointY="45.75" />
-        <EntityTypeShape EntityType="MediTechModel.RoleReportPermission" Width="1.5" PointX="24.75" PointY="45.75" />
-        <EntityTypeShape EntityType="MediTechModel.RoleViewPermission" Width="1.5" PointX="26.75" PointY="45.75" />
-        <EntityTypeShape EntityType="MediTechModel.SaleReturn" Width="1.5" PointX="46.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.SaleReturnList" Width="1.5" PointX="46.75" PointY="6.75" />
-        <EntityTypeShape EntityType="MediTechModel.ScheduleRadiologist" Width="1.5" PointX="46.75" PointY="12.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQAccessionNumber" Width="1.5" PointX="46.75" PointY="16.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQCheckupJobNumber" Width="1.5" PointX="46.75" PointY="19.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQConfiguration" Width="1.5" PointX="20.75" PointY="46.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQDISPOSEID" Width="1.5" PointX="46.75" PointY="22.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQERVisitID" Width="1.5" PointX="46.75" PointY="25.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQFILLDETAILID" Width="1.5" PointX="46.75" PointY="28.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQGRNID" Width="1.5" PointX="46.75" PointY="31.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQGroupReceipt" Width="1.5" PointX="46.75" PointY="34.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQIPDVisitID" Width="1.5" PointX="36.75" PointY="46.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQIPFILLID" Width="1.5" PointX="46.75" PointY="37.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQITCODE" Width="1.5" PointX="38.75" PointY="46.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQItemIssue" Width="1.5" PointX="46.75" PointY="40.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQItemReceive" Width="1.5" PointX="40.75" PointY="46.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQItemRequest" Width="1.5" PointX="42.75" PointY="46.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQLISRequest" Width="1.5" PointX="46.75" PointY="43.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQPatientBill" Width="1.5" PointX="44.75" PointY="46.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQPatientID" Width="1.5" PointX="46.75" PointY="46.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQPatientINVBill" Width="1.5" PointX="32.75" PointY="47.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQPatientOrder" Width="1.5" PointX="48.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQPrescription" Width="1.5" PointX="0.75" PointY="48.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQPROID" Width="1.5" PointX="48.75" PointY="3.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQResult" Width="1.5" PointX="48.75" PointY="6.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQRISRequest" Width="1.5" PointX="8.75" PointY="48.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQSaleReturn" Width="1.5" PointX="48.75" PointY="9.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQSTAID" Width="1.5" PointX="10.75" PointY="48.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQTestCodeID" Width="1.5" PointX="48.75" PointY="12.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQVisitID" Width="1.5" PointX="12.75" PointY="48.75" />
-        <EntityTypeShape EntityType="MediTechModel.SessionDefinition" Width="1.5" PointX="48.75" PointY="15.75" />
-        <EntityTypeShape EntityType="MediTechModel.SessionWithdrawnDetail" Width="1.5" PointX="48.75" PointY="21.75" />
-        <EntityTypeShape EntityType="MediTechModel.Speciality" Width="1.5" PointX="48.75" PointY="26.75" />
-        <EntityTypeShape EntityType="MediTechModel.Specimen" Width="1.5" PointX="28.75" PointY="48.75" />
-        <EntityTypeShape EntityType="MediTechModel.Stock" Width="1.5" PointX="48.75" PointY="31.75" />
-        <EntityTypeShape EntityType="MediTechModel.StockAdjustment" Width="1.5" PointX="48.75" PointY="38.75" />
-        <EntityTypeShape EntityType="MediTechModel.StockBalance" Width="1.5" PointX="48.75" PointY="44.75" />
-        <EntityTypeShape EntityType="MediTechModel.StockMovement" Width="1.5" PointX="48.75" PointY="48.75" />
-        <EntityTypeShape EntityType="MediTechModel.Store" Width="1.5" PointX="2.75" PointY="49.75" />
-        <EntityTypeShape EntityType="MediTechModel.StoreUOMConversion" Width="1.5" PointX="22.75" PointY="49.75" />
-        <EntityTypeShape EntityType="MediTechModel.sysdiagrams" Width="1.5" PointX="24.75" PointY="49.75" />
-        <EntityTypeShape EntityType="MediTechModel.VendorDetail" Width="1.5" PointX="34.75" PointY="49.75" />
-        <EntityTypeShape EntityType="MediTechModel.VIPPatient" Width="1.5" PointX="36.75" PointY="49.75" />
-        <EntityTypeShape EntityType="MediTechModel.WellnessData" Width="1.5" PointX="38.75" PointY="49.75" />
-        <EntityTypeShape EntityType="MediTechModel.XrayTranslateCondition" Width="1.5" PointX="40.75" PointY="49.75" />
-        <EntityTypeShape EntityType="MediTechModel.XrayTranslateConditionDetail" Width="1.5" PointX="42.75" PointY="49.75" />
-        <EntityTypeShape EntityType="MediTechModel.XrayTranslateMapping" Width="1.5" PointX="44.75" PointY="49.75" />
-        <EntityTypeShape EntityType="MediTechModel.vAllBillableItemRates" Width="1.5" PointX="50.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.vAllPayorAgreements" Width="1.5" PointX="50.75" PointY="3.75" />
-        <EntityTypeShape EntityType="MediTechModel.vAllPayorAgreementsDiscount" Width="1.5" PointX="4.75" PointY="50.75" />
+      <Diagram DiagramId="38f0495ebc614371871877bbb5dd7109" Name="Diagram1">
+        <EntityTypeShape EntityType="MediTechModel.AdmissionEvent" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ADTEventStatus" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.AEDischargeEvent" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.AgreementAccountDiscount" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.AgreementDetailDiscount" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.AgreementItemDiscount" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.Amphur" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.AppointmentRequest" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.BillableItem" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.BillableItemDetail" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.BillConfiguration" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.BillingGroup" Width="1.5" PointX="4.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.BillingSubGroup" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.BillPackage" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.BillPackageItem" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.BillPackagePrice" Width="1.5" PointX="6.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.Booking" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.Careprovider" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.CareproviderLocation" Width="1.5" PointX="14.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.CareproviderOrganisation" Width="1.5" PointX="14.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.CareproviderTransfer" Width="1.5" PointX="2.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.CCHPI" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.CCHPIMaster" Width="1.5" PointX="16.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.CheckupGroupResult" Width="1.5" PointX="16.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.CheckupJobContact" Width="1.5" PointX="16.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.CheckupJobTask" Width="1.5" PointX="4.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.CheckupRule" Width="1.5" PointX="6.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.CheckupRuleDescription" Width="1.5" PointX="12.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.CheckupRuleItem" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.CheckupRuleRecommend" Width="1.5" PointX="18.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.CheckupTextMaster" Width="1.5" PointX="18.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ContactAgreementAccount" Width="1.5" PointX="18.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ContactAgreementAccountDetail" Width="1.5" PointX="18.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ContactAgreementAccountItem" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.DischargeEvent" Width="1.5" PointX="0.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.DispensedItem" Width="1.5" PointX="20.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.DisposeItemList" Width="1.5" PointX="20.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.DisposeStock" Width="1.5" PointX="14.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.District" Width="1.5" PointX="20.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.DoctorFee" Width="1.5" PointX="2.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.DrugGeneric" Width="1.5" PointX="16.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.FavouriteItem" Width="1.5" PointX="18.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.FrequencyDefinition" Width="1.5" PointX="20.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.GRNDetail" Width="1.5" PointX="22.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.GRNItemList" Width="1.5" PointX="4.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.GroupReceipt" Width="1.5" PointX="22.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.GroupReceiptDetail" Width="1.5" PointX="6.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.GroupReceiptPatientBill" Width="1.5" PointX="8.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.HealthOrganisation" Width="1.5" PointX="10.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.HealthOrganisationID" Width="1.5" PointX="22.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.InsuranceCompany" Width="1.5" PointX="22.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.InsurancePlan" Width="1.5" PointX="22.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.IPBooking" Width="1.5" PointX="24.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.IPFillDetail" Width="1.5" PointX="24.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.IPFillProcess" Width="1.5" PointX="24.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ItemAverageCost" Width="1.5" PointX="24.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ItemIssue" Width="1.5" PointX="12.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ItemIssueDetail" Width="1.5" PointX="14.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ItemMaster" Width="1.5" PointX="16.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ItemReceive" Width="1.5" PointX="24.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ItemReceiveDetail" Width="1.5" PointX="26.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ItemRequest" Width="1.5" PointX="26.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ItemRequestDetail" Width="1.5" PointX="26.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ItemUOMConversion" Width="1.5" PointX="26.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ItemVendorDetail" Width="1.5" PointX="18.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.Location" Width="1.5" PointX="26.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.LocationTransfer" Width="1.5" PointX="0.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.Login" Width="1.5" PointX="26.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.MediTechInterface" Width="1.5" PointX="28.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.MediTechInterfaceDetail" Width="1.5" PointX="28.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.meditechtestpatchInterface" Width="1.5" PointX="6.75" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.meditechtestpatchInterfaceDetail" Width="1.5" PointX="28.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.NotificationTaskResult" Width="1.5" PointX="28.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.OrderCategory" Width="1.5" PointX="28.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.OrderSet" Width="1.5" PointX="28.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.OrderSetBillableItem" Width="1.5" PointX="20.75" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.OrderSubCategory" Width="1.5" PointX="28.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PageView" Width="1.5" PointX="2.75" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PageViewModule" Width="1.5" PointX="8.75" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PageViewPermission" Width="1.5" PointX="30.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PastMedicalHistory" Width="1.5" PointX="30.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.Patient" Width="1.5" PointX="30.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientAddress" Width="1.5" PointX="30.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientAddressMerge" Width="1.5" PointX="30.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientADTEvent" Width="1.5" PointX="28.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientAEAdmission" Width="1.5" PointX="30.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientAllergy" Width="1.5" PointX="32.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientAudiogram" Width="1.5" PointX="4.75" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientBill" Width="1.5" PointX="32.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientBillableItem" Width="1.5" PointX="10.75" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientBilledItem" Width="1.5" PointX="12.75" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientBillEditHistory" Width="1.5" PointX="32.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientConsultation" Width="1.5" PointX="32.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientDeceasedDetail" Width="1.5" PointX="22.75" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientDemographicLog" Width="1.5" PointX="32.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientEKG" Width="1.5" PointX="32.75" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientExamination" Width="1.5" PointX="24.75" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientFixPrice" Width="1.5" PointX="34.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientFixPriceHistory" Width="1.5" PointX="34.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientImage" Width="1.5" PointX="6.75" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientInjury" Width="1.5" PointX="34.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientInsuranceDetail" Width="1.5" PointX="14.75" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientMedicalHistory" Width="1.5" PointX="34.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientMerge" Width="1.5" PointX="16.75" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientMergeDetail" Width="1.5" PointX="18.75" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientMergeEncounter" Width="1.5" PointX="34.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientMuscle" Width="1.5" PointX="34.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientOrder" Width="1.5" PointX="34.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientOrderAlert" Width="1.5" PointX="0.75" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientOrderDetail" Width="1.5" PointX="36.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientOrderDetailHistory" Width="1.5" PointX="36.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientPackage" Width="1.5" PointX="36.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientPackageItem" Width="1.5" PointX="36.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientPaymentDetail" Width="1.5" PointX="26.75" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientProblem" Width="1.5" PointX="36.75" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientScannedDocument" Width="1.5" PointX="36.75" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientServiceEvent" Width="1.5" PointX="38.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientSpirometry" Width="1.5" PointX="38.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientTitmus" Width="1.5" PointX="6.75" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientVisit" Width="1.5" PointX="38.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientVisitCareProvider" Width="1.5" PointX="18.75" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientVisitID" Width="1.5" PointX="38.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientVisitPayor" Width="1.5" PointX="20.75" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientVisualAcuity" Width="1.5" PointX="38.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientVitalSign" Width="1.5" PointX="38.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PatientWorkHistory" Width="1.5" PointX="32.75" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PayorAgreement" Width="1.5" PointX="38.75" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PayorAgreement_2" Width="1.5" PointX="40.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PayorDetail" Width="1.5" PointX="0.75" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PayorDetail_2" Width="1.5" PointX="2.75" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.Permission" Width="1.5" PointX="40.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PhysicalExam" Width="1.5" PointX="40.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PhysicalExamTemplate" Width="1.5" PointX="40.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PolicyMaster" Width="1.5" PointX="40.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PostalCode" Width="1.5" PointX="40.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.Prescription" Width="1.5" PointX="22.75" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PrescriptionItem" Width="1.5" PointX="40.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.Problem" Width="1.5" PointX="28.75" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ProgressNote" Width="1.5" PointX="40.75" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.Province" Width="1.5" PointX="40.75" PointY="37.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PurchaseOrder" Width="1.5" PointX="34.75" PointY="41.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PurchaseOrderItemList" Width="1.5" PointX="40.75" PointY="41.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.PurchaseOrderPayment" Width="1.5" PointX="42.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ReferenceDomain" Width="1.5" PointX="42.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ReferenceRelationShip" Width="1.5" PointX="42.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ReferenceValue" Width="1.5" PointX="12.75" PointY="42.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ReportPermission" Width="1.5" PointX="14.75" PointY="42.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.Reports" Width="1.5" PointX="42.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.Request" Width="1.5" PointX="42.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.RequestDetail" Width="1.5" PointX="42.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.RequestDetailDocument" Width="1.5" PointX="42.75" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.RequestDetailSpecimen" Width="1.5" PointX="42.75" PointY="39.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.RequestItem" Width="1.5" PointX="30.75" PointY="43.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.RequestItemGroupResult" Width="1.5" PointX="44.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.RequestItemSpecimen" Width="1.5" PointX="44.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.RequestResultLink" Width="1.5" PointX="4.75" PointY="44.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.Result" Width="1.5" PointX="6.75" PointY="44.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ResultComponent" Width="1.5" PointX="44.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ResultImage" Width="1.5" PointX="44.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ResultItem" Width="1.5" PointX="16.75" PointY="44.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ResultItemRange" Width="1.5" PointX="44.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ResultRadiology" Width="1.5" PointX="44.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ResultRadiologyHistory" Width="1.5" PointX="44.75" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ResultRadiologyTemplate" Width="1.5" PointX="44.75" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ResultTextual" Width="1.5" PointX="44.75" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.Role" Width="1.5" PointX="44.75" PointY="42.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.RoleProfile" Width="1.5" PointX="18.75" PointY="45.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.RoleReportPermission" Width="1.5" PointX="24.75" PointY="45.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.RoleViewPermission" Width="1.5" PointX="26.75" PointY="45.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SaleReturn" Width="1.5" PointX="46.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SaleReturnList" Width="1.5" PointX="46.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.ScheduleRadiologist" Width="1.5" PointX="46.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQAccessionNumber" Width="1.5" PointX="46.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQCheckupJobNumber" Width="1.5" PointX="46.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQConfiguration" Width="1.5" PointX="20.75" PointY="46.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQDISPOSEID" Width="1.5" PointX="46.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQERVisitID" Width="1.5" PointX="46.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQFILLDETAILID" Width="1.5" PointX="46.75" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQGRNID" Width="1.5" PointX="46.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQGroupReceipt" Width="1.5" PointX="46.75" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQIPDVisitID" Width="1.5" PointX="36.75" PointY="46.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQIPFILLID" Width="1.5" PointX="46.75" PointY="37.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQITCODE" Width="1.5" PointX="38.75" PointY="46.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQItemIssue" Width="1.5" PointX="46.75" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQItemReceive" Width="1.5" PointX="40.75" PointY="46.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQItemRequest" Width="1.5" PointX="42.75" PointY="46.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQLISRequest" Width="1.5" PointX="46.75" PointY="43.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQPatientBill" Width="1.5" PointX="44.75" PointY="46.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQPatientID" Width="1.5" PointX="46.75" PointY="46.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQPatientINVBill" Width="1.5" PointX="32.75" PointY="47.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQPatientOrder" Width="1.5" PointX="48.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQPrescription" Width="1.5" PointX="0.75" PointY="48.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQPROID" Width="1.5" PointX="48.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQResult" Width="1.5" PointX="48.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQRISRequest" Width="1.5" PointX="8.75" PointY="48.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQSaleReturn" Width="1.5" PointX="48.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQSTAID" Width="1.5" PointX="10.75" PointY="48.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQTestCodeID" Width="1.5" PointX="48.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SEQVisitID" Width="1.5" PointX="12.75" PointY="48.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SessionDefinition" Width="1.5" PointX="48.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.SessionWithdrawnDetail" Width="1.5" PointX="48.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.Speciality" Width="1.5" PointX="48.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.Specimen" Width="1.5" PointX="28.75" PointY="48.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.Stock" Width="1.5" PointX="48.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.StockAdjustment" Width="1.5" PointX="48.75" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.StockBalance" Width="1.5" PointX="48.75" PointY="44.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.StockMovement" Width="1.5" PointX="48.75" PointY="48.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.Store" Width="1.5" PointX="2.75" PointY="49.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.StoreUOMConversion" Width="1.5" PointX="22.75" PointY="49.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.sysdiagrams" Width="1.5" PointX="24.75" PointY="49.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.VendorDetail" Width="1.5" PointX="34.75" PointY="49.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.VIPPatient" Width="1.5" PointX="36.75" PointY="49.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.WellnessData" Width="1.5" PointX="38.75" PointY="49.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.XrayTranslateCondition" Width="1.5" PointX="40.75" PointY="49.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.XrayTranslateConditionDetail" Width="1.5" PointX="42.75" PointY="49.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.XrayTranslateMapping" Width="1.5" PointX="44.75" PointY="49.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.vAllBillableItemRates" Width="1.5" PointX="50.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.vAllPayorAgreements" Width="1.5" PointX="50.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediTechModel.vAllPayorAgreementsDiscount" Width="1.5" PointX="4.75" PointY="50.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

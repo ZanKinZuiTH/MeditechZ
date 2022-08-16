@@ -467,15 +467,6 @@
     <Compile Include="Permission.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="pGetPatientBillableItemsAccount_Result.cs">
-      <DependentUpon>MediTechDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="pGetPatientBillableItemsBySA_Result.cs">
-      <DependentUpon>MediTechDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="pGetPatientBillableItemsSubAccount_Result.cs">
-      <DependentUpon>MediTechDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="PhysicalExam.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
@@ -486,9 +477,6 @@
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PostalCode.cs">
-      <DependentUpon>MediTechDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="pPrintStatementBill_Result.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Prescription.cs">
