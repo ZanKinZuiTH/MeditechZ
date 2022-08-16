@@ -3129,5 +3129,74 @@ and GPRSTUID in (@GPRSTUID)";
 
             return flag;
         }
+
+        #region Blife
+
+
+        public static DataTable BLIFEGetUsersByNationalID(string nationalID)
+        {
+            DataTable dt = new DataTable();
+            var blifeConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["BlifeDatabase"].ToString();
+            SqlConnection con = new SqlConnection(blifeConnectionString);
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+                SqlCommand command = new SqlCommand();
+                command.CommandType = CommandType.Text;
+                command.Connection = con;
+                command.CommandText = @"Select * From users Where StatusFlag = 'A' and CitizenID = @CitizenID";
+                command.Parameters.AddWithValue("@CitizenID", nationalID);
+
+                dt.Load(command.ExecuteReader());
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                con.Close();
+                con.Dispose();
+            }
+
+            return dt;
+        }
+
+        public static bool BLIFEVerifyPatientIdentity(int userUID)
+        {
+            bool flag = false;
+            var blifeConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["BlifeDatabase"].ToString();
+            SqlConnection con = new SqlConnection(blifeConnectionString);
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+                SqlCommand command = new SqlCommand();
+                command.CommandType = CommandType.Text;
+                command.Connection = con;
+                command.CommandText = @"Update Users Set IsPatientIdentity = 'Y',Comments = 'Verify By MediTech'  Where UID = @UserUID";
+                command.Parameters.AddWithValue("@UserUID", userUID);
+                command.ExecuteNonQuery();
+                flag = true;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                con.Close();
+                con.Dispose();
+            }
+
+            return flag;
+        }
+
+        #endregion
     }
 }

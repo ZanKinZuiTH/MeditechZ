@@ -990,6 +990,14 @@ namespace MediTech.ViewModels
 
                                 conclusion = "กลุ่มอาชีพ : " + timus1?.ResultValue + ", ตรวจขณะ : " + far + " " + near + ", " + Environment.NewLine + conclusion;
                             }
+                            else if (grpstUID == 4324) //ตรวจสายตาทั่วไป (Visual Acuity Test)
+                            {
+                                var visay12 = resultComponent.FirstOrDefault(p => p.ResultItemCode == "VISAY12");
+                                var visay13 = resultComponent.FirstOrDefault(p => p.ResultItemCode == "VISAY13");
+
+                                conclusion = visay12?.ResultValue + " " + visay13?.ResultValue;
+                                conclusion = conclusion.Trim();
+                            }
 
 
                             if (!string.IsNullOrEmpty(conclusion))

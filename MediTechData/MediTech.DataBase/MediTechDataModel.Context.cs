@@ -488,5 +488,18 @@ namespace MediTech.DataBase
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pFixPatientVisitPayorPayerofficeExpire", p_PatientVisitiUIDParameter, p_PatientUIDParameter);
         }
+    
+        public virtual ObjectResult<Nullable<System.DateTime>> pInvenTransferItemEcount(Nullable<int> p_ItemIssueUID, Nullable<int> p_UserUID)
+        {
+            var p_ItemIssueUIDParameter = p_ItemIssueUID.HasValue ?
+                new ObjectParameter("P_ItemIssueUID", p_ItemIssueUID) :
+                new ObjectParameter("P_ItemIssueUID", typeof(int));
+    
+            var p_UserUIDParameter = p_UserUID.HasValue ?
+                new ObjectParameter("P_UserUID", p_UserUID) :
+                new ObjectParameter("P_UserUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.DateTime>>("pInvenTransferItemEcount", p_ItemIssueUIDParameter, p_UserUIDParameter);
+        }
     }
 }

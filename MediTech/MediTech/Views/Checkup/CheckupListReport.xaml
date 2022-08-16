@@ -143,6 +143,8 @@
                     <dxg:GridColumn FieldName="LastName" Header="นามสกุล"/>
                     <dxg:GridColumn FieldName="Gender" Header="เพศ"/>
                     <dxg:GridColumn FieldName="Age" Header="อายุ"/>
+                    <dxg:GridColumn FieldName="NationalID" Header="รหัส ปชช."/>
+                    <dxg:GridColumn FieldName="IsIdentityOnBLIFE" Header="ยืนยันตัวตนบน B-Life"/>
                     <dxg:GridColumn FieldName="OnBLIFE" Header="ส่งขึ้น B-Life"/>
                     <dxg:GridColumn FieldName="CompanyName" Header="บริษัท"/>
                     <dxg:GridColumn FieldName="EmployeeID" Header="รหัสพนักงาน"/>
@@ -167,14 +169,8 @@
 
 
                 <dxlc:LayoutGroup Orientation="Horizontal">
-                    <dxlc:LayoutItem HorizontalAlignment="Left">
-                        <dx:SimpleButton Width="80" Height="30"  Command="{Binding SendToBLIFECommand}">
-                            <StackPanel Orientation="Horizontal">
-                                <!--<Image Source="/MediTech;component/Resources/Images/Document/Notes.png"/>-->
-                                <TextBlock Text="ส่งขึ้น BLIFE" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </dx:SimpleButton>
-                    </dxlc:LayoutItem>
+
+
                     <dxlc:LayoutItem Label="Printer" HorizontalAlignment="Left">
                         <dxe:ComboBoxEdit ItemsSource="{Binding PrinterLists}"
                                       SelectedItem="{Binding SelectPrinter}"
@@ -195,40 +191,62 @@
                                       DisplayMember="Name"
                         Width="250" Height="25"/>
                     </dxlc:LayoutItem>
-                    <dxlc:LayoutItem HorizontalAlignment="Right">
-                        <dx:SimpleButton Width="100" Height="30" Command="{Binding PrintAutoCommand}">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="/MediTech;component/Resources/Images/Print/Print_32x32.png"/>
-                                <TextBlock Text="Print" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </dx:SimpleButton>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem HorizontalAlignment="Right">
-                        <dx:SimpleButton Width="100" Height="30"  Command="{Binding PreviewCommand}">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="/MediTech;component/Resources/Images/Document/Notes.png"/>
-                                <TextBlock Text="Preview" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </dx:SimpleButton>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem HorizontalAlignment="Right">
-                        <dx:SimpleButton Width="110" Height="30"  Command="{Binding PrintToPDFCommand}">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="/MediTech;component/Resources/Images/Document/pdf.png"/>
-                                <TextBlock Text="PrintToPDF" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </dx:SimpleButton>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem HorizontalAlignment="Right">
-                        <dx:SimpleButton Width="110" Height="30"  Command="{Binding PrintToXLSXCommand}">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="/MediTech;component/Resources/Images/Document/xls.png"/>
-                                <TextBlock Text="PrintToExcel" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </dx:SimpleButton>
-                    </dxlc:LayoutItem>
-                </dxlc:LayoutGroup>
 
+                </dxlc:LayoutGroup>
+                
+
+
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem HorizontalAlignment="Left">
+                    <dx:SimpleButton Width="100" Height="35"  Command="{Binding VerifyPatientIdentityToBLIFECommand}">
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                            <TextBlock Text="ยืนยันตัวตนบน" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="BLIFE" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </dx:SimpleButton>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem HorizontalAlignment="Left">
+                    <dx:SimpleButton Width="100" Height="35"  Command="{Binding SendToBLIFECommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <!--<Image Source="/MediTech;component/Resources/Images/Document/Notes.png"/>-->
+                            <TextBlock Text="ส่งขึ้น BLIFE" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </dx:SimpleButton>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem HorizontalAlignment="Right">
+                    <dx:SimpleButton Width="100" Height="30" Command="{Binding PrintAutoCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/MediTech;component/Resources/Images/Print/Print_32x32.png"/>
+                            <TextBlock Text="Print" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </dx:SimpleButton>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem HorizontalAlignment="Right">
+                    <dx:SimpleButton Width="100" Height="30"  Command="{Binding PreviewCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/MediTech;component/Resources/Images/Document/Notes.png"/>
+                            <TextBlock Text="Preview" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </dx:SimpleButton>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem HorizontalAlignment="Right">
+                    <dx:SimpleButton Width="110" Height="30"  Command="{Binding PrintToPDFCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/MediTech;component/Resources/Images/Document/pdf.png"/>
+                            <TextBlock Text="PrintToPDF" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </dx:SimpleButton>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem HorizontalAlignment="Right">
+                    <dx:SimpleButton Width="110" Height="30"  Command="{Binding PrintToXLSXCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/MediTech;component/Resources/Images/Document/xls.png"/>
+                            <TextBlock Text="PrintToExcel" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </dx:SimpleButton>
+                </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
         </dxlc:LayoutControl>
     </Grid>

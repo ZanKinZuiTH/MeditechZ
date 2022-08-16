@@ -1835,6 +1835,7 @@
           <Property Name="EmployeeID" Type="nvarchar" MaxLength="30" />
           <Property Name="Department" Type="nvarchar" MaxLength="100" />
           <Property Name="Position" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsIdentityOnBLIFE" Type="nvarchar" MaxLength="1" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
           <Property Name="MUser" Type="int" Nullable="false" />
@@ -2505,6 +2506,7 @@
           <Property Name="OrderNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="PatientUID" Type="bigint" Nullable="false" />
           <Property Name="PatientVisitUID" Type="bigint" Nullable="false" />
+          <Property Name="PRSTYPUID" Type="int" />
           <Property Name="StartDttm" Type="datetime" />
           <Property Name="EndDttm" Type="datetime" />
           <Property Name="PRSTYPUID" Type="int" />
@@ -5291,6 +5293,10 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Parameter Name="P_ItemIssueUID" Type="int" Mode="In" />
           <Parameter Name="P_UserUID" Type="int" Mode="In" />
         </Function>
+        <Function Name="pInvenTransferItemEcount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_ItemIssueUID" Type="int" Mode="In" />
+          <Parameter Name="P_UserUID" Type="int" Mode="In" />
+        </Function>
         <Function Name="pItemConvertUOM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ItemMasterUID" Type="int" Mode="In" />
         </Function>
@@ -6403,6 +6409,10 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <EntitySet Name="vAllBillableItemRates" EntityType="MediTechModel.vAllBillableItemRates" />
           <EntitySet Name="vAllPayorAgreements" EntityType="MediTechModel.vAllPayorAgreements" />
           <EntitySet Name="vAllPayorAgreementsDiscount" EntityType="MediTechModel.vAllPayorAgreementsDiscount" />
+          <FunctionImport Name="pInvenTransferItemEcount" ReturnType="Collection(DateTime)">
+            <Parameter Name="P_ItemIssueUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_UserUID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pGetPatientBillableItemsAccount_Result">
           <Property Type="String" Name="SubAccountName" Nullable="true" MaxLength="500" />
@@ -8316,6 +8326,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Property Name="EmployeeID" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsIdentityOnBLIFE" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
@@ -8986,6 +8997,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Property Name="OrderNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PatientUID" Type="Int64" Nullable="false" />
           <Property Name="PatientVisitUID" Type="Int64" Nullable="false" />
+          <Property Name="PRSTYPUID" Type="Int32" />
           <Property Name="StartDttm" Type="DateTime" Precision="3" />
           <Property Name="EndDttm" Type="DateTime" Precision="3" />
           <Property Name="PRSTYPUID" Type="Int32" />
@@ -13082,6 +13094,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
                 <ScalarProperty Name="MUser" ColumnName="MUser" />
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="IsIdentityOnBLIFE" ColumnName="IsIdentityOnBLIFE" />
                 <ScalarProperty Name="Position" ColumnName="Position" />
                 <ScalarProperty Name="Department" ColumnName="Department" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -13818,6 +13831,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
                 <ScalarProperty Name="PRSTYPUID" ColumnName="PRSTYPUID" />
                 <ScalarProperty Name="EndDttm" ColumnName="EndDttm" />
                 <ScalarProperty Name="StartDttm" ColumnName="StartDttm" />
+                <ScalarProperty Name="PRSTYPUID" ColumnName="PRSTYPUID" />
                 <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
                 <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
                 <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
@@ -15913,68 +15927,6 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
                 <ScalarProperty Name="PBLCTUID" ColumnName="PBLCTUID" />
                 <ScalarProperty Name="ItemAmount" ColumnName="ItemAmount" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vAllPayorAgreements">
-            <EntityTypeMapping TypeName="MediTechModel.vAllPayorAgreements">
-              <MappingFragment StoreEntitySet="vAllPayorAgreements">
-                <ScalarProperty Name="IsPackage" ColumnName="IsPackage" />
-                <ScalarProperty Name="BillableItemCoverage" ColumnName="BillableItemCoverage" />
-                <ScalarProperty Name="BillableItemIsDiscountPerc" ColumnName="BillableItemIsDiscountPerc" />
-                <ScalarProperty Name="BillableItemDiscount" ColumnName="BillableItemDiscount" />
-                <ScalarProperty Name="BillableItemIsExcluded" ColumnName="BillableItemIsExcluded" />
-                <ScalarProperty Name="BillableItemUID" ColumnName="BillableItemUID" />
-                <ScalarProperty Name="SubGroupDiscount" ColumnName="SubGroupDiscount" />
-                <ScalarProperty Name="SubGroupIsExcluded" ColumnName="SubGroupIsExcluded" />
-                <ScalarProperty Name="SubGroupUID" ColumnName="SubGroupUID" />
-                <ScalarProperty Name="GroupMaxCoverage" ColumnName="GroupMaxCoverage" />
-                <ScalarProperty Name="GroupIsDiscountPerc" ColumnName="GroupIsDiscountPerc" />
-                <ScalarProperty Name="GroupDiscount" ColumnName="GroupDiscount" />
-                <ScalarProperty Name="GroupIsExcluded" ColumnName="GroupIsExcluded" />
-                <ScalarProperty Name="GroupUID" ColumnName="GroupUID" />
-                <ScalarProperty Name="ActiveTo" ColumnName="ActiveTo" />
-                <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
-                <ScalarProperty Name="TertiaryPBLCTUID" ColumnName="TertiaryPBLCTUID" />
-                <ScalarProperty Name="SecondaryPBLCTUID" ColumnName="SecondaryPBLCTUID" />
-                <ScalarProperty Name="PrimaryPBLCTUID" ColumnName="PrimaryPBLCTUID" />
-                <ScalarProperty Name="AGTYPUID" ColumnName="AGTYPUID" />
-                <ScalarProperty Name="AgreementUID" ColumnName="AgreementUID" />
-                <ScalarProperty Name="Polyuid" ColumnName="Polyuid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vAllPayorAgreementsDiscount">
-            <EntityTypeMapping TypeName="MediTechModel.vAllPayorAgreementsDiscount">
-              <MappingFragment StoreEntitySet="vAllPayorAgreementsDiscount">
-                <ScalarProperty Name="ItemDateTo" ColumnName="ItemDateTo" />
-                <ScalarProperty Name="ItemDateFrom" ColumnName="ItemDateFrom" />
-                <ScalarProperty Name="SubGroupDateTo" ColumnName="SubGroupDateTo" />
-                <ScalarProperty Name="SubGroupDateFrom" ColumnName="SubGroupDateFrom" />
-                <ScalarProperty Name="GroupDateTo" ColumnName="GroupDateTo" />
-                <ScalarProperty Name="GroupDateFrom" ColumnName="GroupDateFrom" />
-                <ScalarProperty Name="ItemALLDIUID" ColumnName="ItemALLDIUID" />
-                <ScalarProperty Name="SubGroupALLDIUID" ColumnName="SubGroupALLDIUID" />
-                <ScalarProperty Name="GroupALLDIUID" ColumnName="GroupALLDIUID" />
-                <ScalarProperty Name="ItemPBLCTUID" ColumnName="ItemPBLCTUID" />
-                <ScalarProperty Name="SubGroupPBLCTUID" ColumnName="SubGroupPBLCTUID" />
-                <ScalarProperty Name="GroupPBLCTUID" ColumnName="GroupPBLCTUID" />
-                <ScalarProperty Name="BillableItemIsDiscountPerc" ColumnName="BillableItemIsDiscountPerc" />
-                <ScalarProperty Name="BillableItemDiscount" ColumnName="BillableItemDiscount" />
-                <ScalarProperty Name="BillableItemUID" ColumnName="BillableItemUID" />
-                <ScalarProperty Name="SubGroupIsDiscountPerc" ColumnName="SubGroupIsDiscountPerc" />
-                <ScalarProperty Name="SubGroupDiscount" ColumnName="SubGroupDiscount" />
-                <ScalarProperty Name="SubGroupUID" ColumnName="SubGroupUID" />
-                <ScalarProperty Name="GroupIsDiscountPerc" ColumnName="GroupIsDiscountPerc" />
-                <ScalarProperty Name="GroupDiscount" ColumnName="GroupDiscount" />
-                <ScalarProperty Name="GroupUID" ColumnName="GroupUID" />
-                <ScalarProperty Name="ActiveTo" ColumnName="ActiveTo" />
-                <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
-                <ScalarProperty Name="TertiaryPBLCTUID" ColumnName="TertiaryPBLCTUID" />
-                <ScalarProperty Name="SecondaryPBLCTUID" ColumnName="SecondaryPBLCTUID" />
-                <ScalarProperty Name="PrimaryPBLCTUID" ColumnName="PrimaryPBLCTUID" />
-                <ScalarProperty Name="AGTYPUID" ColumnName="AGTYPUID" />
-                <ScalarProperty Name="AgreementUID" ColumnName="AgreementUID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
