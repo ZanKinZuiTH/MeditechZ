@@ -40,7 +40,7 @@ namespace MediTech.CustomControl.Banner
             tePayorName.Text = request.PayorName;
             lbWeight.Content = request.Weight;
             lbHeight.Content = request.Height;
-            lbBMI.Content = CalculateBMI(request.Weight.ToString(),request.Height.ToString());
+            lbBMI.Content = CalculateBMI(request.Height.ToString(),request.Weight.ToString());
         }
 
         string CalculateBMI(string h, string w)
