@@ -122,7 +122,14 @@ namespace MediTech.ViewModels
                 PatientVitalSignViewModel result = (PatientVitalSignViewModel)LaunchViewDialog(pageview, "PTVAT", false);
                 if (result != null && result.ResultDialog == ActionDialog.Save)
                 {
-                    SaveSuccessDialog();
+                    var vitalSign = DataService.PatientHistory.GetPatientVitalSignByVisitUID(RequestModel.PatientVisitUID);
+                    if (vitalSign != null)
+                    {
+                        this.RequestModel.Height = vitalSign.OrderByDescending(p => p.RecordedDttm).FirstOrDefault()?.Height ?? 0;
+                        this.RequestModel.Weight = vitalSign.OrderByDescending(p => p.RecordedDttm).FirstOrDefault()?.Weight ?? 0;
+                        OnLoaded();
+                    }
+                    //SaveSuccessDialog();
              
                 }
             }
