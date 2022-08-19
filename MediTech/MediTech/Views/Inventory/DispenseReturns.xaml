@@ -94,7 +94,7 @@
             <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
                 <dx:SimpleButton Width="100" Command="{Binding CreateDispenseCommand}"
                                      Height="25" Content="Create Dispense"/>
-                <dx:SimpleButton Width="100" Command="{Binding ClearCommand}"
+                <dx:SimpleButton Width="105" Command="{Binding ClearCommand}"
                                      Height="25" Content="Cancel"/>
             </dxlc:LayoutGroup>
         </dxlc:LayoutControl>

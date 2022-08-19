@@ -55,7 +55,7 @@ namespace MediTech.DataBase
         }
 
         [DbFunction("MediTechModel.Store", "fGetCareProviderLicenseNo")]
-        public static string fGetCareProviderLicenseNo(int careproviderUID)
+        public static string fGetCareProviderLicenseNo(int careproviderUID) 
         {
             throw new NotSupportedException("Direct calls are not supported.");
         }
@@ -1542,9 +1542,6 @@ namespace MediTech.DataBase
         }
 
 
-
-
-
         public static DataTable pSearchPatientMedicalDischarge(string hn, string firstName, string lastName, int? careproviderUID
             , DateTime? dateFrom, DateTime? dateTo, int? ownerOrganisationUID, int? PayorDetailUID)
         {
@@ -1642,6 +1639,21 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
+
+        public static DataTable pSearchListDispensedItemForReturn(long patientVisitUID,int? storeUID,string prescriptionNumber,string itemName)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pSearchListDispensedItemForReturn", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 3000;
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientVisitUid", patientVisitUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_StoreUID", storeUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_PrescriptionNumber", prescriptionNumber);
+            adp.SelectCommand.Parameters.AddWithValue("@P_ItemName", itemName);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
 
         public static DataTable pSearchStockBatch(int? ownerOrganisationUID, int? locationUID, int? storeUID, int? itemType, string itemCode, string itemName)
         {

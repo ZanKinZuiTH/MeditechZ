@@ -1025,6 +1025,43 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+
+        [Route("GetStoreDispensedByVisitUID")]
+        [HttpGet]
+        public List<StoreModel> GetStoreDispensedByVisitUID(long patientVisitUID)
+        {
+            var data = (from prs in db.Prescription
+                        join pit in db.PrescriptionItem on prs.UID equals pit.PrescriptionUID
+                        join dis in db.DispensedItem on pit.UID equals dis.PrescriptionItemUID
+                        join st in db.Store on dis.StoreUID equals st.UID
+                        where prs.PatientVisitUID == patientVisitUID
+                        where prs.StatusFlag == "A"
+                        && pit.StatusFlag == "A"
+                        && dis.StatusFlag == "A"
+                        && dis.ORDSTUID == 2861 //Dispensed
+                        select new StoreModel
+                        {
+                            StoreUID = st.UID,
+                            Name = st.Name,
+                            Description = st.Description,
+                            STDTPUID = st.STDTPUID,
+                            StorePolicyType = SqlFunction.fGetRfValDescription(st.STDTPUID ?? 0),
+                            OwnerOrganisationUID = st.OwnerOrganisationUID,
+                            OwnerOrganisationName = SqlFunction.fGetHealthOrganisationName(st.OwnerOrganisationUID),
+                            LocationUID = st.LocationUID ?? 0,
+                            LocationName = SqlFunction.fGetLocationName(st.LocationUID ?? 0),
+                            ActiveFrom = st.ActiveFrom,
+                            ActiveTo = st.ActiveTo,
+                            CUser = st.CUser,
+                            CWhen = st.CWhen,
+                            MUser = st.MUser,
+                            MWhen = st.MWhen,
+                            StatusFlag = st.StatusFlag
+                        });
+
+            return data.Distinct().ToList();
+        }
+
         [Route("ManageStore")]
         [HttpPost]
         public HttpResponseMessage ManageStore(StoreModel storeModel, int userID)
@@ -1376,6 +1413,17 @@ namespace MediTechWebApi.Controllers
 
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, er.Message, er);
             }
+        }
+
+
+        [Route("SearchListDispensedItemForReturn")]
+        [HttpGet]
+        public List<DispenseReturnModel> SearchListDispensedItemForReturn(long patientVisitUID, int? storeUID, string prescriptionNumber, string itemName)
+        {
+            DataTable data = SqlDirectStore.pSearchListDispensedItemForReturn(patientVisitUID, storeUID, prescriptionNumber, itemName);
+            List<DispenseReturnModel> returnData = data.ToList<DispenseReturnModel>();
+
+            return returnData;
         }
         #endregion
 

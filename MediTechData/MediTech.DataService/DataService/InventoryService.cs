@@ -325,6 +325,14 @@ namespace MediTech.DataService
             return dataRequest;
         }
 
+        public List<StoreModel> GetStoreDispensedByVisitUID(long patientVisitUID)
+        {
+            string requestApi = string.Format("Api/Inventory/GetStoreDispensedByVisitUID?patientVisitUID={0}", patientVisitUID);
+            List<StoreModel> dataRequest = MeditechApiHelper.Get<List<StoreModel>>(requestApi);
+
+            return dataRequest;
+        }
+
         public bool ManageStore(StoreModel storeModel, int userID)
         {
             bool flag = false;
@@ -475,6 +483,14 @@ namespace MediTech.DataService
                 throw;
             }
             return flag;
+        }
+
+        public List<DispenseReturnModel> SearchListDispensedItemForReturn(long patientVisitUID, int? storeUID, string prescriptionNumber, string itemName)
+        {
+            string requestApi = string.Format("Api/Inventory/SearchListDispensedItemForReturn?patientVisitUID={0}&storeUID={1}&prescriptionNumber={2}&itemName={3}", patientVisitUID, storeUID, prescriptionNumber, itemName);
+            List<DispenseReturnModel> data = MeditechApiHelper.Get<List<DispenseReturnModel>>(requestApi);
+
+            return data;
         }
 
         public List<StockWorkListModel> SearchStockWorkList(DateTime? dateFrom, DateTime? dateTo, int? organisationToUID,int? locationUID)

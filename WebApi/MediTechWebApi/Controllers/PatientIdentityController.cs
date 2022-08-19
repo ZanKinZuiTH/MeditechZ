@@ -2081,6 +2081,45 @@ namespace MediTechWebApi.Controllers
             return visitData;
         }
 
+        [Route("GetPatientVisitDispensed")]
+        [HttpGet]
+        public List<PatientVisitModel> GetPatientVisitDispensed(long patientUID)
+        {
+            List<PatientVisitModel> visitData = null;
+            visitData = (from pv in db.PatientVisit
+                         join prs in db.Prescription on pv.UID equals prs.PatientVisitUID
+                         join pit in db.PrescriptionItem on prs.UID equals pit.PrescriptionUID
+                         where pv.StatusFlag == "A"
+                         && prs.StatusFlag == "A"
+                         && pit.StatusFlag == "A"
+                         && pv.PatientUID == patientUID
+                         && pv.VISTSUID != 410
+                         && pit.ORDSTUID == 2861 //Dispensed
+                         select new PatientVisitModel
+                         {
+                             PatientUID = pv.PatientUID,
+                             PatientVisitUID = pv.UID,
+                             StartDttm = pv.StartDttm,
+                             EndDttm = pv.EndDttm,
+                             ArrivedDttm = pv.ArrivedDttm,
+                             CareProviderUID = pv.CareProviderUID,
+                             Comments = pv.Comments,
+                             VISTYUID = pv.VISTYUID,
+                             VISTSUID = pv.VISTSUID,
+                             ENTYPUID = pv.ENTYPUID,
+                             IsBillFinalized = pv.IsBillFinalized,
+                             VisitStatus = SqlFunction.fGetRfValDescription(pv.VISTYUID ?? 0),
+                             VisitType = SqlFunction.fGetRfValDescription(pv.VISTYUID ?? 0),
+                             OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(pv.OwnerOrganisationUID ?? 0),
+                             VisitID = pv.VisitID,
+                             PRITYUID = pv.PRITYUID,
+                             OwnerOrganisationUID = pv.OwnerOrganisationUID ?? 0,
+                             LocationUID = pv.LocationUID,
+                             LocationName = SqlFunction.fGetLocationName(pv.LocationUID ?? 0)
+                         }).OrderByDescending(p => p.StartDttm).ToList();
+
+            return visitData;
+        }
 
         [Route("GetLatestPatientVisit")]
         [HttpGet]

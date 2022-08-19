@@ -354,6 +354,14 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<PatientVisitModel> GetPatientVisitDispensed(long patientUID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetPatientVisitDispensed?patientUID={0}", patientUID);
+            List<PatientVisitModel> data = MeditechApiHelper.Get<List<PatientVisitModel>>(requestApi);
+
+            return data;
+        }
+
         public PatientVisitModel GetLatestPatientVisit(long patientUID)
         {
             string requestApi = string.Format("Api/PatientIdentity/GetLatestPatientVisit?patientUID={0}", patientUID);

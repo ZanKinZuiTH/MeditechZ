@@ -78,6 +78,7 @@
     <Compile Include="Icheckup\ORDER_HC.cs" />
     <Compile Include="Icheckup\VISIT_HC.cs" />
     <Compile Include="Inventory\CanTransactionInven.cs" />
+    <Compile Include="Inventory\DispenseReturnModel.cs" />
     <Compile Include="Inventory\IPFillDetailModel.cs" />
     <Compile Include="Inventory\IPFillProcessModel.cs" />
     <Compile Include="Inventory\ItemAverageCostModel.cs" />
