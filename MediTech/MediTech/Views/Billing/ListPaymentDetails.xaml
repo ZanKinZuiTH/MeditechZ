@@ -6,14 +6,22 @@
              xmlns:local="clr-namespace:MediTech.Views.Billing"
              mc:Ignorable="d" 
              DataContext="{Binding Path=ListPaymentDetailsViewModel, Source={StaticResource Locator}}"
+             xmlns:cv="clr-namespace:MediTech.Converter"
              Height="450" Width="800"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <cv:NumericN2Formatter x:Key="NumericN2Formatter" />
+    </UserControl.Resources>
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">
             <dxg:GridControl ItemsSource="{Binding PaymentDetailLists}">
                 <dxg:GridColumn FieldName="PaidDttm" Header="Paid Date"/>
                 <dxg:GridColumn FieldName="PaymentMode" Header="Payment Mode"/>
-                <dxg:GridColumn FieldName="Amount" Header="Amount"/>
+                <dxg:GridColumn FieldName="Amount" Header="Amount">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings DisplayTextConverter="{StaticResource NumericN2Formatter}"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
                 <dxg:GridColumn FieldName="Currency" Header="Currency"/>
                 <dxg:GridColumn FieldName="BankName" Header="BankName" ReadOnly="True"/>
                 <dxg:GridColumn FieldName="CardType" Header="Card Type" ReadOnly="True"/>

@@ -302,6 +302,15 @@ namespace MediTech.ViewModels
             }
         }
 
+        private List<PatientPaymentDetailModel> _DeletedPaymentDataLists;
+
+        public List<PatientPaymentDetailModel> DeletedPaymentDataLists
+        {
+            get { return _DeletedPaymentDataLists ?? (_DeletedPaymentDataLists = new List<PatientPaymentDetailModel>()); }
+            set { _DeletedPaymentDataLists = value; }
+        }
+
+
 
         #endregion
 
@@ -383,6 +392,7 @@ namespace MediTech.ViewModels
             newPayment.CRDTYUID = IsEnableCardType == Visibility.Visible ? SelectedCardType?.Key : null;
             newPayment.CardType = IsEnableCardType == Visibility.Visible ? SelectedCardType?.Display : null;
             newPayment.AuthorizationNumber = IsEnableCardType == Visibility.Visible ? AuthorizationNumber : null;
+            newPayment.StatusFlag = "A";
             PaymentDetailsList.Add(newPayment);
             CalculateNetAmount();
             SelectedPaymentDetail = null;
@@ -411,6 +421,7 @@ namespace MediTech.ViewModels
                 SelectedPaymentDetail.CRDTYUID = IsEnableCardType == Visibility.Visible ? SelectedCardType?.Key : null;
                 SelectedPaymentDetail.CardType = IsEnableCardType == Visibility.Visible ? SelectedCardType?.Display : null;
                 SelectedPaymentDetail.AuthorizationNumber = IsEnableCardType == Visibility.Visible ? AuthorizationNumber : null;
+                SelectedPaymentDetail.StatusFlag = "A";
                 (this.View as ListBillPayment).grdPaymentDetails.RefreshData();
                 CalculateNetAmount();
                 SelectedPaymentDetail = null;
@@ -421,6 +432,8 @@ namespace MediTech.ViewModels
         {
             if (SelectedPaymentDetail != null)
             {
+                SelectedPaymentDetail.StatusFlag = "D";
+                DeletedPaymentDataLists.Add(SelectedPaymentDetail);
                 PaymentDetailsList.Remove(SelectedPaymentDetail);
                 CalculateNetAmount();
             }

@@ -225,9 +225,42 @@ namespace MediTech.ViewModels
         {
             if (SelectPatientBill != null)
             {
-                ListPaymentDetails view = new ListPaymentDetails();
-                (view.DataContext as ListPaymentDetailsViewModel).PatientBillUID = SelectPatientBill.PatientBillUID;
-                LaunchViewDialogNonPermiss(view, true);
+                if (SelectPatientBill.IsCancel)
+                {
+                    ListPaymentDetails view = new ListPaymentDetails();
+                    (view.DataContext as ListPaymentDetailsViewModel).PatientBillUID = SelectPatientBill.PatientBillUID;
+                    LaunchViewDialogNonPermiss(view, true);
+                }
+                else
+                {
+                    ListBillPayment pageview = new ListBillPayment();
+                    var viewModel = (pageview.DataContext as ListBillPaymentViewModel);
+                    var paymentDetailsList = DataService.Billing.GetPatientPaymentDetailByBillUID(SelectPatientBill.PatientBillUID);
+                    var paidDttm = paymentDetailsList.FirstOrDefault()?.PaidDttm ?? DateTime.Now;
+                    viewModel.TotalAmount = SelectPatientBill.NetAmount ?? 0;
+                    viewModel.PaymentDetailsList = new ObservableCollection<PatientPaymentDetailModel>(paymentDetailsList);
+                    ListBillPaymentViewModel result = (ListBillPaymentViewModel)LaunchViewDialogNonPermiss(pageview, true);
+                    if (result.ResultDialog == ActionDialog.Save)
+                    {
+                        foreach (var item in result.PaymentDetailsList)
+                        {
+                            item.PatientBillUID = SelectPatientBill.PatientBillUID;
+                            item.PatientUID = SelectPatientBill.PatientUID;
+                            item.PatientVisitUID = SelectPatientBill.PatientVisitUID;
+                            item.PaidDttm = paidDttm;
+                        }
+
+                        List<PatientPaymentDetailModel> patientPaymentDetails = new List<PatientPaymentDetailModel>();
+                        patientPaymentDetails.AddRange(result.PaymentDetailsList);
+                        if (result.DeletedPaymentDataLists != null && result.DeletedPaymentDataLists.Count > 0)
+                        {
+                            patientPaymentDetails.AddRange(result.DeletedPaymentDataLists);
+                        }
+
+                        DataService.Billing.ManagePatientPaymentDetail(patientPaymentDetails, AppUtil.Current.UserID);
+                    }
+                }
+
             }
         }
         public void CancelBill()
