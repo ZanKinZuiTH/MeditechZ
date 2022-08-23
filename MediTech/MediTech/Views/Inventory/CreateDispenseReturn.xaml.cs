@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DevExpress.Xpf.Grid;
+using MediTech.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,26 @@ namespace MediTech.Views
         public CreateDispenseReturn()
         {
             InitializeComponent();
+            view.ValidateRow += view_ValidateRow;
+            view.InvalidRowException += view_InvalidRowException;
+        }
+
+        private void view_ValidateRow(object sender, DevExpress.Xpf.Grid.GridRowValidationEventArgs e)
+        {
+            if (e.Row == null) return;
+            DispenseReturnModel newItem = (DispenseReturnModel)e.Row;
+            if (newItem.ReturnQty > (newItem.DispensedQty - newItem.PreviousReturnQty))
+            {
+                e.IsValid = false;
+                MessageBox.Show("จำนวนคืนมากกว่าจำนวน Dispensed", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        void view_InvalidRowException(object sender, InvalidRowExceptionEventArgs e)
+        {
+            e.ExceptionMode = ExceptionMode.NoAction;
         }
     }
 }

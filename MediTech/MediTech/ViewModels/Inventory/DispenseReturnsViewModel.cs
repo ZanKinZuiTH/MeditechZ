@@ -128,10 +128,10 @@ namespace MediTech.ViewModels
             get { return _ClearCommand ?? (_ClearCommand = new RelayCommand(Clear)); }
         }
 
-        private RelayCommand _CreateDispenseCommand;
-        public RelayCommand CreateDispenseCommand
+        private RelayCommand _CreateDispenseReturnCommand;
+        public RelayCommand CreateDispenseReturnCommand
         {
-            get { return _CreateDispenseCommand ?? (_CreateDispenseCommand = new RelayCommand(CreateDispense)); }
+            get { return _CreateDispenseReturnCommand ?? (_CreateDispenseReturnCommand = new RelayCommand(CreateDispenseReturn)); }
         }
 
         private RelayCommand _CancelCommand;
@@ -166,13 +166,13 @@ namespace MediTech.ViewModels
 
         private void Clear()
         {
-            DateFrom = null;
+            DateFrom = DateTime.Now;
             DateTo = null;
             SelectedPateintSearch = null;
             SelectStore = null;
         }
 
-        private void CreateDispense()
+        private void CreateDispenseReturn()
         {
             CreateDispenseReturn createDispense = new CreateDispenseReturn();
             ChangeViewPermission(createDispense);

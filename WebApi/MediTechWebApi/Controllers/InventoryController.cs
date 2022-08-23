@@ -1416,15 +1416,7 @@ namespace MediTechWebApi.Controllers
         }
 
 
-        [Route("SearchListDispensedItemForReturn")]
-        [HttpGet]
-        public List<DispenseReturnModel> SearchListDispensedItemForReturn(long patientVisitUID, int? storeUID, string prescriptionNumber, string itemName)
-        {
-            DataTable data = SqlDirectStore.pSearchListDispensedItemForReturn(patientVisitUID, storeUID, prescriptionNumber, itemName);
-            List<DispenseReturnModel> returnData = data.ToList<DispenseReturnModel>();
 
-            return returnData;
-        }
         #endregion
 
         #region ItemRequest
@@ -3156,7 +3148,14 @@ namespace MediTechWebApi.Controllers
                 DateTime now = DateTime.Now;
 
                 IPFillProcess iPFill = new IPFillProcess();
+                var refValue = db.ReferenceValue.Where(p => (p.DomainCode == "BSMDD" || p.DomainCode == "ENTYP" || p.DomainCode == "PRSTYP") && p.StatusFlag == "A");
 
+                int BSMDD_LAB = refValue.FirstOrDefault(p => p.DomainCode == "BSMDD" && p.ValueCode == "LABBB").UID;
+                int BSMDD_RADIO = refValue.FirstOrDefault(p => p.DomainCode == "BSMDD" && p.ValueCode == "RADIO").UID;
+                int BSMDD_STORE = refValue.FirstOrDefault(p => p.DomainCode == "BSMDD" && p.ValueCode == "STORE").UID;
+                //int BSMDD_ORDITEM = 2839;
+                int BSMDD_MDSLP = refValue.FirstOrDefault(p => p.DomainCode == "BSMDD" && p.ValueCode == "MDSLP").UID;
+                int BSMDD_SULPY = refValue.FirstOrDefault(p => p.DomainCode == "BSMDD" && p.ValueCode == "SUPLY").UID;
                 int iPFillID;
                 string fillID = SEQHelper.GetSEQIDFormat("SEQIPFILLID", out iPFillID);
 
@@ -3228,7 +3227,7 @@ namespace MediTechWebApi.Controllers
                         patientOrder.StatusFlag = "A";
                         patientOrder.OrderLocationUID = item.LocationUID;
                         patientOrder.OwnerOrganisationUID = item.OwnerOrganisationUID;
-                        patientOrder.IdentifyingType = "PATIENTORDER";
+                        patientOrder.IdentifyingType = (BSMDDUID == BSMDD_STORE || BSMDDUID == BSMDD_MDSLP || BSMDDUID == BSMDD_SULPY) ? "PRESCRIPTION" : "PATIENTORDER";
                         db.PatientOrder.Add(patientOrder);
                         db.SaveChanges();
 
@@ -3237,6 +3236,7 @@ namespace MediTechWebApi.Controllers
                         #region PatientOrderDetail
 
                         PatientOrderDetail orderDetail = new PatientOrderDetail();
+                        string identifyingType = (BSMDDUID == BSMDD_LAB || BSMDDUID == BSMDD_RADIO) ? "REQUESTITEM" : BSMDDUID == BSMDD_STORE ? "DRUG" : BSMDDUID == BSMDD_MDSLP ? "MEDICALSUPPLIES" : BSMDDUID == BSMDD_SULPY ? "SUPPLY" : "ORDERITEM";
 
                         orderDetail.PatientOrderUID = patientOrder.UID;
                         orderDetail.ParentUID = item.ParentOrderDetalUID;
@@ -3276,7 +3276,8 @@ namespace MediTechWebApi.Controllers
                         orderDetail.Comments = item.Comments;
                         orderDetail.OrderSetUID = item.OrderSetUID;
                         orderDetail.OrderSetBillableItemUID = item.OrderSetBillableItemUID;
-                        orderDetail.IdentifyingType = "ORDERITEM";
+                        orderDetail.IdentifyingType = identifyingType;
+                        orderDetail.IdentifyingUID = item.ItemUID;
                         db.PatientOrderDetail.Add(orderDetail);
                         db.SaveChanges();
 
@@ -3367,9 +3368,9 @@ namespace MediTechWebApi.Controllers
                         db.Prescription.Add(presc);
                         db.SaveChanges();
 
-                        db.PatientOrderDetail.Attach(orderDetail);
-                        orderDetail.IdentifyingUID = presc.UID;
-                        orderDetail.IdentifyingType = "PRESCRIPTIONITEM";
+                        db.PatientOrder.Attach(patientOrder);
+                        patientOrder.IdentifyingUID = presc.UID;
+                        patientOrder.IdentifyingType = "PRESCRIPTION";
                         db.SaveChanges();
                         #endregion
 
@@ -3431,11 +3432,14 @@ namespace MediTechWebApi.Controllers
                         patBillableItem.PatientUID = patientOrder.PatientUID;
                         patBillableItem.PatientVisitUID = patientOrder.PatientVisitUID;
                         patBillableItem.BillableItemUID = orderDetail.BillableItemUID;
+
                         patBillableItem.IdentifyingUID = orderDetail.IdentifyingUID ?? 0;
                         patBillableItem.IdentifyingType = "STORE";
+
                         patBillableItem.OrderType = "PRESCRIPTIONITEM";
+                        patBillableItem.OrderTypeUID = prescritem.UID;
+
                         patBillableItem.IPFillProcessUID = iPFill.UID;
-                        patBillableItem.OrderTypeUID = orderDetail.PatientOrderUID;
                         patBillableItem.BSMDDUID = BSMDDUID;
                         patBillableItem.ORDSTUID = 2861;
                         patBillableItem.Amount = orderDetail.UnitPrice;
@@ -3663,6 +3667,8 @@ namespace MediTechWebApi.Controllers
             }
         }
 
+        #region DispenseReturn
+
         [Route("SearchDispenseReturn")]
         [HttpGet]
         public List<SaleReturnModel> SearchDispenseReturn(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? storeUID)
@@ -3678,6 +3684,7 @@ namespace MediTechWebApi.Controllers
                     StoreUID = p.StoreUID,
                     StoreName = SqlFunction.fGetStoreName(p.StoreUID),
                     PatientUID = p.PatientUID ?? 0,
+                    PatientID = SqlFunction.fGetPatientID(p.PatientUID ?? 0),
                     PatientName = SqlFunction.fGetPatientName(p.PatientUID ?? 0),
                     Comments = p.Comments,
                     PatientVisitUID = p.PatientVisitUID ?? 0,
@@ -3720,68 +3727,313 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
-        [Route("GetPrescriptionDispenseReturn")]
+
+        [Route("SearchListDispensedItemForReturn")]
         [HttpGet]
-        public List<PrescriptionItemModel> GetPrescriptionDispenseReturn(long? patientUID, int? storeUID)
+        public List<DispenseReturnModel> SearchListDispensedItemForReturn(long patientVisitUID, int? storeUID, string prescriptionNumber, string itemName)
         {
-            List<PrescriptionItemModel> data = (from ps in db.Prescription
-                                                join pst in db.PrescriptionItem on ps.UID equals pst.PrescriptionUID
-                                                join pa in db.Patient on ps.PatientUID equals pa.UID
-                                                join pv in db.PatientVisit on ps.PatientVisitUID equals pv.UID
-                                                where ps.StatusFlag == "A"
-                                                select new PrescriptionItemModel
-                                                {
-                                                    PrescriptionItemUID = pst.UID,
-                                                    PrescriptionUID = ps.UID,
-                                                    PrestionItemStatus = SqlFunction.fGetRfValDescription(ps.ORDSTUID ?? 0),
-                                                    ORDSTUID = ps.ORDSTUID,
-                                                    ItemCode = pst.ItemCode,
-                                                    ItemName = pst.ItemName,
-                                                    ItemMasterUID = pst.ItemMasterUID,
-                                                    Quantity = pst.Quantity,
-                                                    QuantityUnit = SqlFunction.fGetRfValDescription(pst.IMUOMUID ?? 0),
-                                                    IMUOMUID = pst.IMUOMUID,
-                                                    DFORMUID = pst.DFORMUID,
-                                                    DrugForm = SqlFunction.fGetRfValDescription(pst.DFORMUID ?? 0),
-                                                    StoreUID = pst.StoreUID,
-                                                    StoreName = SqlFunction.fGetStoreName(pst.StoreUID ?? 0),
-                                                    InstructionRoute = SqlFunction.fGetRfValDescription(pst.PDSTSUID ?? 0),
-                                                    Dosage = pst.Dosage,
-                                                    FRQNCUID = pst.FRQNCUID,
-                                                    Frequency = SqlFunction.fGetFrequencyDescription(pst.FRQNCUID ?? 0, "TH"),
-                                                    InstructionText = pst.InstructionText,
-                                                    LocalInstructionText = pst.LocalInstructionText,
-                                                    ClinicalComments = pst.ClinicalComments,
-                                                    DrugType = SqlFunction.fGetRfValDescription(pst.DFORMUID ?? 0)
-                                                }).ToList();
+            DataTable data = SqlDirectStore.pSearchListDispensedItemForReturn(patientVisitUID, storeUID, prescriptionNumber, itemName);
+            List<DispenseReturnModel> returnData = data.ToList<DispenseReturnModel>();
 
-            //foreach (var item in data)
-            //{
-
-            //    IEnumerable<Stock> stockItem = db.Stock
-            //    .Where(p => p.StatusFlag == "A"
-            //    && p.ItemMasterUID == item.ItemMasterUID
-            //    && p.StoreUID == item.StoreUID && p.Quantity > 0);
-            //    if (stockItem != null && stockItem.Count() > 0)
-            //    {
-            //        Store store = db.Store.Find(item.StoreUID);
-            //        if (store.STDTPUID == 2901)
-            //            stockItem = stockItem.OrderBy(p => p.ExpiryDttm).ThenBy(p => p.CWhen);
-            //        else if (store.STDTPUID == 2902)
-            //            stockItem = stockItem.OrderBy(p => p.CWhen).ThenBy(p => p.ExpiryDttm);
-
-            //        item.ExpiryDate = stockItem.FirstOrDefault().ExpiryDttm;
-
-            //    }
-
-            //    if (item.FRQNCUID != null && item.FRQNCUID != 0)
-            //    {
-            //        item.Frequency = db.FrequencyDefinition.Find(item.FRQNCUID).Comments;
-            //    }
-            //}
-            return data;
-
+            return returnData;
         }
+
+        [Route("DispensedReturn")]
+        [HttpPost]
+        public HttpResponseMessage DispensedReturn(List<DispenseReturnModel> dispenseReturnLists,string returnType)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+                    foreach (var dispenseitem in dispenseReturnLists)
+                    {
+                        var stockmovement = (from dis in db.DispensedItem
+                                             join pre in db.PrescriptionItem on dis.PrescriptionItemUID equals pre.UID
+                                             join stv in db.StockMovement on new { key1 = dis.UID, key2 = "DispensedItem" } equals new { key1 = stv.RefUID ?? 0, key2 = stv.RefTable }
+                                             where pre.StatusFlag == "A"
+                                             && dis.StatusFlag == "A"
+                                             && stv.StatusFlag == "A"
+                                             && dis.ORDSTUID == 2861 // Dispensed
+                                             && dis.UID == dispenseitem.DispensedItemUID
+                                             select new
+                                             {
+                                                 StockUID = stv.StockUID,
+                                                 OutQty = stv.OutQty,
+                                                 RefUID = stv.RefUID,
+                                                 StoreUID = stv.StoreUID,
+                                                 StockmovementUID = stv.UID,
+                                                 DispensedItemUID = dis.UID,
+                                                 PresciptionItemUID = pre.UID,
+                                                 PrescriptionUID = pre.PrescriptionUID
+                                             }).FirstOrDefault();
+
+                        Stock stock = db.Stock.Find(stockmovement.StockUID);
+
+                        double totalBFQty = SqlStatement.GetItemTotalQuantity(stock.ItemMasterUID, stock.StoreUID, stock.OwnerOrganisationUID);
+                        double bfQty = stock.Quantity;
+
+
+
+                        db.Stock.Attach(stock);
+                        stock.Quantity = stock.Quantity + (dispenseitem.ReturnQty ?? 0);
+                        stock.MUser = dispenseitem.MUser;
+                        stock.MWhen = now;
+                        stock.StatusFlag = "A";
+
+
+                        StockMovement stockMovement = db.StockMovement.Find(stockmovement.StockmovementUID);
+                        db.StockMovement.Attach(stockMovement);
+                        stockMovement.MUser = dispenseitem.MUser;
+                        stockMovement.MWhen = now;
+                        stockMovement.Note = "SaleReturn";
+
+
+                        db.SaveChanges();
+
+
+                        Prescription prescription = db.Prescription.Find(stockmovement.PrescriptionUID);
+                        long patientUID = prescription.PatientUID;
+                        long patientVisitUID = prescription.PatientVisitUID;
+
+                        SaleReturn saleReturn = new SaleReturn();
+
+                        int saleReturnID;
+                        string returnID = SEQHelper.GetSEQIDFormat("SEQSaleReturn", out saleReturnID);
+
+                        if (string.IsNullOrEmpty(returnID))
+                        {
+                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQSaleReturn in SEQCONFIGURATION");
+                        }
+
+                        if (saleReturnID == 0)
+                        {
+                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQSaleReturn is Fail");
+                        }
+
+                        saleReturn.ReturnID = returnID; ;
+                        saleReturn.ReturnedBy = dispenseitem.MUser;
+                        saleReturn.ReturnDttm = now;
+                        saleReturn.PatientUID = patientUID;
+                        saleReturn.PatientVisitUID = patientVisitUID;
+                        saleReturn.StoreUID = stockmovement.StoreUID ?? 0;
+                        saleReturn.OwnerOrganisationUID = stock.OwnerOrganisationUID;
+                        saleReturn.MUser = dispenseitem.MUser;
+                        saleReturn.MWhen = now;
+                        saleReturn.CUser = dispenseitem.MUser;
+                        saleReturn.CWhen = now;
+                        saleReturn.StatusFlag = "A";
+                        db.SaleReturn.Add(saleReturn);
+                        db.SaveChanges();
+
+                        SaleReturnList saleReturnList = new SaleReturnList();
+                        saleReturnList.SaleReturnUID = saleReturn.UID;
+                        saleReturnList.StockUID = stock.UID;
+                        saleReturnList.BatchID = stock.BatchID;
+                        saleReturnList.ItemMasterUID = stock.ItemMasterUID;
+                        saleReturnList.ItemName = stock.ItemName;
+                        saleReturnList.Quantity = dispenseitem.ReturnQty ?? 0;
+                        saleReturnList.IMUOMUID = stock.IMUOMUID;
+                        saleReturnList.ItemCost = stock.ItemCost;
+                        saleReturnList.DispensedItemUID = stockmovement.RefUID ?? 0;
+                        saleReturnList.PatientOrderDetailUID = dispenseitem.PatientOrderDetailUID;
+                        saleReturnList.PatientBilledItemUID = dispenseitem.PatientBilledItemUID_Is_Null;
+                        saleReturnList.OwnerOrganisationUID = stock.OwnerOrganisationUID;
+                        saleReturnList.MUser = dispenseitem.MUser;
+                        saleReturnList.MWhen = now;
+                        saleReturnList.CUser = dispenseitem.MUser;
+                        saleReturnList.CWhen = now;
+                        saleReturnList.StatusFlag = "A";
+                        db.SaleReturnList.Add(saleReturnList);
+                        db.SaveChanges();
+
+                        double totalBalQty = SqlStatement.GetItemTotalQuantity(saleReturnList.ItemMasterUID, stock.StoreUID, stock.OwnerOrganisationUID);
+                        double balQty = stock.Quantity;
+                        SqlDirectStore.pInvenInsertStockMovement(saleReturnList.StockUID, stock.StoreUID, null, saleReturnList.ItemMasterUID, saleReturnList.BatchID, now, totalBFQty, bfQty, saleReturnList.Quantity, 0, balQty, totalBalQty, stock.IMUOMUID, stock.ItemCost ?? 0, null, "SaleReturnList", saleReturnList.UID, null, null, dispenseitem.MUser);
+
+                        SqlDirectStore.pInvenInsertStockBalance(stock.StoreUID, stock.ItemMasterUID, dispenseitem.MUser);
+
+                        if (returnType.ToLower() == "dispensed return")
+                        {
+                            var routineOrder = db.ReferenceValue.FirstOrDefault(p => p.DomainCode == "PRSTYP" && p.ValueCode == "ROMED").UID;
+                            var dispensedReturnStatus = db.ReferenceValue.FirstOrDefault(p => p.DomainCode == "ORDST" && p.ValueCode == "DISPRET").UID;
+
+                            var parentOrderDetail = db.PatientOrderDetail.Find(dispenseitem.PatientOrderDetailUID);
+                            var parentOrder = db.PatientOrder.Find(parentOrderDetail.PatientOrderUID);
+
+                            PatientOrder patientOrder = new PatientOrder();
+                            patientOrder.CUser = dispenseitem.MUser;
+                            patientOrder.CWhen = now;
+
+                            int seqPatientOrderID;
+                            string patientOrderID = SEQHelper.GetSEQIDFormat("SEQPatientOrder", out seqPatientOrderID);
+
+                            if (string.IsNullOrEmpty(patientOrderID))
+                            {
+                                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientOrder in SEQCONFIGURATION");
+                            }
+
+                            if (seqPatientOrderID == 0)
+                            {
+                                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQPatientOrder is Fail");
+                            }
+
+                            patientOrder.OrderNumber = patientOrderID;
+                            patientOrder.StartDttm = now;
+                            patientOrder.EndDttm = now;
+                            patientOrder.PRSTYPUID = routineOrder;
+                            patientOrder.OrderRaisedBy = dispenseitem.MUser;
+                            patientOrder.IsContinuous = parentOrder.IsContinuous;
+                            patientOrder.MUser = dispenseitem.MUser;
+                            patientOrder.MWhen = now;
+                            patientOrder.StatusFlag = "A";
+                            patientOrder.PatientUID = patientUID;
+                            patientOrder.PatientVisitUID = patientVisitUID;
+                            patientOrder.OrderLocationUID = parentOrder.OrderLocationUID;
+                            patientOrder.OrderCategoryUID = parentOrder.OrderCategoryUID;
+                            patientOrder.OwnerOrganisationUID = parentOrder.OwnerOrganisationUID;
+                            patientOrder.IdentifyingType = "DISPENSE RETURN";
+                            patientOrder.IdentifyingUID = saleReturn.UID;
+                            patientOrder.Comments = "SALRETDIS^"+ prescription.PrescriptionNumber + "^";
+                            patientOrder.ParentUID = parentOrder.UID;
+                            db.PatientOrder.Add(patientOrder);
+
+                            db.SaveChanges();
+
+                            #region OrderDetail
+
+                            PatientOrderDetail orderDetail = new PatientOrderDetail();
+                            orderDetail.CUser = dispenseitem.MUser;
+                            orderDetail.CWhen = now;
+                            orderDetail.StartDttm = now;
+                            orderDetail.EndDttm = now;
+                            orderDetail.ORDSTUID = dispensedReturnStatus;
+
+
+                            orderDetail.PatientOrderUID = patientOrder.UID;
+                            orderDetail.MUser = dispenseitem.MUser;
+                            orderDetail.MWhen = now;
+                            orderDetail.StatusFlag = "A";
+                            orderDetail.OwnerOrganisationUID = parentOrderDetail.OwnerOrganisationUID;
+                            orderDetail.ItemCode = parentOrderDetail.ItemCode;
+                            orderDetail.ItemName = parentOrderDetail.ItemName;
+                            orderDetail.Dosage = parentOrderDetail.Dosage;
+                            orderDetail.Quantity = -dispenseitem.ReturnQty;
+                            orderDetail.QNUOMUID = parentOrderDetail.QNUOMUID;
+                            orderDetail.FRQNCUID = parentOrderDetail.FRQNCUID;
+                            orderDetail.UnitPrice = parentOrderDetail.UnitPrice;
+                            orderDetail.IsPriceOverwrite = parentOrderDetail.IsPriceOverwrite;
+                            orderDetail.OverwritePrice = parentOrderDetail.OverwritePrice;
+                            orderDetail.OriginalUnitPrice = parentOrderDetail.OriginalUnitPrice;
+                            orderDetail.DoctorFee = parentOrderDetail.DoctorFee;
+                            orderDetail.CareproviderUID = parentOrderDetail.CareproviderUID;
+                            orderDetail.NetAmount = -dispenseitem.ReturnQty * orderDetail.UnitPrice;
+                            orderDetail.ROUTEUID = parentOrderDetail.ROUTEUID;
+                            orderDetail.DFORMUID = parentOrderDetail.DFORMUID;
+                            orderDetail.PDSTSUID = parentOrderDetail.PDSTSUID;
+                            orderDetail.DrugDuration = parentOrderDetail.DrugDuration;
+                            orderDetail.InstructionText = parentOrderDetail.InstructionText;
+                            orderDetail.LocalInstructionText = parentOrderDetail.LocalInstructionText;
+                            orderDetail.BillableItemUID = parentOrderDetail.BillableItemUID;
+                            orderDetail.OrderCategoryUID = parentOrderDetail.OrderCategoryUID;
+                            orderDetail.OrderSubCategoryUID = parentOrderDetail.OrderSubCategoryUID;
+                            orderDetail.IsStockItem = parentOrderDetail.IsStockItem;
+                            orderDetail.StoreUID = parentOrderDetail.StoreUID;
+                            orderDetail.OrderSetUID = parentOrderDetail.OrderSetUID;
+                            orderDetail.OrderSetBillableItemUID = parentOrderDetail.OrderSetBillableItemUID;
+                            orderDetail.IdentifyingType = parentOrderDetail.IdentifyingType;
+                            orderDetail.IdentifyingUID = parentOrderDetail.IdentifyingUID;
+                            orderDetail.IsStandingOrder = parentOrderDetail.IsStandingOrder;
+                            orderDetail.ParentUID = parentOrderDetail.UID;
+                            db.PatientOrderDetail.Add(orderDetail);
+                            db.SaveChanges();
+
+
+
+                            #endregion
+
+                            #region SavePatinetOrderDetailHistory
+
+                            PatientOrderDetailHistory patientOrderDetailHistory = new PatientOrderDetailHistory();
+                            patientOrderDetailHistory.PatientOrderDetailUID = orderDetail.UID;
+                            patientOrderDetailHistory.ORDSTUID = orderDetail.ORDSTUID;
+                            patientOrderDetailHistory.EditedDttm = now;
+                            patientOrderDetailHistory.EditByUserID = dispenseitem.MUser;
+                            patientOrderDetailHistory.CUser = dispenseitem.MUser;
+                            patientOrderDetailHistory.CWhen = now;
+                            patientOrderDetailHistory.MUser = dispenseitem.MUser;
+                            patientOrderDetailHistory.MWhen = now;
+                            patientOrderDetailHistory.StatusFlag = "A";
+                            db.PatientOrderDetailHistory.Add(patientOrderDetailHistory);
+                            db.SaveChanges();
+
+                            #endregion
+
+                            #region SavePatientBillableItem
+
+                            BillableItem billableItem = db.BillableItem.Find(orderDetail.BillableItemUID);
+
+                            PatientBillableItem patBillableItem = new PatientBillableItem();
+                            patBillableItem.PatientUID = patientOrder.PatientUID;
+                            patBillableItem.PatientVisitUID = patientOrder.PatientVisitUID;
+                            patBillableItem.BillableItemUID = orderDetail.BillableItemUID;
+                            patBillableItem.IdentifyingType = "STORE RETURN";
+                            patBillableItem.IdentifyingUID = orderDetail.IdentifyingUID ?? 0;
+
+
+                            patBillableItem.OrderType = "PRESCRIPTIONITEM";
+                            patBillableItem.OrderTypeUID = stockmovement.PresciptionItemUID;
+
+                            patBillableItem.BSMDDUID = billableItem.BSMDDUID;
+
+                            patBillableItem.Amount = orderDetail.UnitPrice;
+                            patBillableItem.Discount = orderDetail.Discount;
+                            patBillableItem.NetAmount = -dispenseitem.ReturnQty * patBillableItem.Amount;
+                            patBillableItem.ItemMultiplier = -dispenseitem.ReturnQty;
+                            patBillableItem.SplitDiscount = -dispenseitem.ReturnQty;
+                            patBillableItem.StartDttm = orderDetail.StartDttm;
+                            patBillableItem.EndDttm = orderDetail.EndDttm;
+                            patBillableItem.ItemName = orderDetail.ItemName;
+                            patBillableItem.CareProviderUID = orderDetail.CareproviderUID;
+                            patBillableItem.EventOccuredDttm = orderDetail.StartDttm;
+                            patBillableItem.QNUOMUID = orderDetail.QNUOMUID;
+                            patBillableItem.PayorDetailUID = orderDetail.PayorDetailUID;
+                            patBillableItem.StoreUID = orderDetail.StoreUID;
+                            patBillableItem.BillPackageUID = orderDetail.BillPackageUID;
+                            patBillableItem.PatientOrderDetailUID = orderDetail.UID;
+                            patBillableItem.OrderSetUID = orderDetail.OrderSetUID;
+                            patBillableItem.OrderSetBillableItemUID = orderDetail.OrderSetBillableItemUID;
+                            patBillableItem.PatientFixPriceUID = orderDetail.PatientFixPriceUID;
+                            patBillableItem.Comments = patientOrder.Comments;
+                            patBillableItem.CUser = dispenseitem.MUser;
+                            patBillableItem.CWhen = now;
+                            patBillableItem.MUser = dispenseitem.MUser;
+                            patBillableItem.MWhen = now;
+                            patBillableItem.StatusFlag = "A";
+                            patBillableItem.OwnerOrganisationUID = orderDetail.OwnerOrganisationUID;
+                            patBillableItem.EducationCess = parentOrderDetail.UID;
+                            db.PatientBillableItem.Add(patBillableItem);
+                            db.SaveChanges();
+                            #endregion
+
+
+                        }
+                    }
+
+
+                    tran.Complete();
+                }
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+        #endregion
+
         #endregion
     }
 }

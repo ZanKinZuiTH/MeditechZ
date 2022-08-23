@@ -17,6 +17,7 @@ namespace MediTech.Model
         public DateTime ReturnDttm { get; set; }
         public string Comments { get; set; }
         public long PatientUID { get; set; }
+        public string PatientID { get; set; }
         public string PatientName { get; set; }
         public long PatientVisitUID { get; set; }
         public int StoreUID { get; set; }

@@ -65,7 +65,7 @@
                                  SelectedItem="{Binding SelectSaleReturn}">
                     <dxg:GridControl.Columns>
                         <dxg:GridColumn Header="Return ID" FieldName="ReturnID" ReadOnly="True"/>
-                        <dxg:GridColumn Header="Patient ID" FieldName="PatientUID" ReadOnly="True"/>
+                        <dxg:GridColumn Header="HN" FieldName="PatientID" ReadOnly="True"/>
                         <dxg:GridColumn Header="Patient Name" FieldName="PatientName" ReadOnly="True"/>
                         <dxg:GridColumn Header="Store Name" FieldName="StoreName" ReadOnly="True"/>
                         <dxg:GridColumn Header="Return Date" FieldName="ReturnDttm" ReadOnly="True"/>
@@ -92,8 +92,8 @@
                 </dxg:GridControl>
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
-                <dx:SimpleButton Width="100" Command="{Binding CreateDispenseCommand}"
-                                     Height="25" Content="Create Dispense"/>
+                <dx:SimpleButton Width="100" Command="{Binding CreateDispenseReturnCommand}"
+                                     Height="25" Content="Create Return"/>
                 <dx:SimpleButton Width="105" Command="{Binding ClearCommand}"
                                      Height="25" Content="Cancel"/>
             </dxlc:LayoutGroup>

@@ -9,8 +9,15 @@ using System.Threading.Tasks;
 
 namespace MediTech.ViewModels
 {
-    public class CreateDispenseReturnViewModel :MediTechViewModelBase
+    public class CreateDispenseReturnViewModel : MediTechViewModelBase
     {
+        #region Varibale
+
+        int BLINP = 423;
+        int FINDIS = 421;
+
+        #endregion
+
         #region Properties
 
         #region PatientSearch
@@ -47,25 +54,24 @@ namespace MediTech.ViewModels
                 if (SelectedPateintSearch != null)
                 {
                     SearchPatientVisit();
-                    //SearchPatientCriteria = string.Empty;
                 }
             }
         }
 
         #endregion
 
-        private List<PrescriptionItemModel> _PrescriptionItem;
-        public List<PrescriptionItemModel> PrescriptionItem
+        private List<DispenseReturnModel> _DispenseItems;
+        public List<DispenseReturnModel> DispenseItems
         {
-            get { return _PrescriptionItem; }
-            set { Set(ref _PrescriptionItem, value); }
+            get { return _DispenseItems; }
+            set { Set(ref _DispenseItems, value); }
         }
 
-        private PrescriptionItemModel _SelectPrescriptionItem;
-        public PrescriptionItemModel SelectPrescriptionItem
+        private DispenseReturnModel _SelectDispenseItem;
+        public DispenseReturnModel SelectDispenseItem
         {
-            get { return _SelectPrescriptionItem; }
-            set { Set(ref _SelectPrescriptionItem, value); }
+            get { return _SelectDispenseItem; }
+            set { Set(ref _SelectDispenseItem, value); }
         }
 
         private List<PatientVisitModel> _PatientVisitLists;
@@ -84,7 +90,21 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _SelectedPatientVisit, value);
-
+                if (_SelectedPatientVisit != null)
+                {
+                    ReturnType = "Dispensed Return (คืนยา คืนเงิน)";
+                    IsCanSave = true;
+                    if (_SelectedPatientVisit.VISTSUID == BLINP)
+                    {
+                        WarningDialog("ผู้ป่วยอยู่ในสถานะ Billing in Progress ไม่สามารถ คืนยา ได้");
+                        IsCanSave = false;
+                    }
+                    else if(_SelectedPatientVisit.VISTSUID == FINDIS)
+                    {
+                        WarningDialog("ผู้ป่วยอยู่ในสถานะ Financial Discharge การคืนยาไม่มีผลต่อค่าใช้จ่าย");
+                        ReturnType = "Sale Return (คืนยา แต่ ไม่คืนเงิน)";
+                    }
+                }
             }
         }
 
@@ -137,6 +157,41 @@ namespace MediTech.ViewModels
             set { Set(ref _Comments, value); }
         }
 
+        private bool? _SelectedAll;
+
+        public bool? SelectedAll
+        {
+            get { return _SelectedAll; }
+            set { Set(ref _SelectedAll, value);
+                if (DispenseItems != null && DispenseItems.Count > 0)
+                {
+                    var dispenseCanReturn = DispenseItems.Where(p => p.IsCanReturn);
+                    foreach (var item in dispenseCanReturn)
+                    {
+                        item.Selected = _SelectedAll ?? false;
+                    }
+                    (this.View as CreateDispenseReturn).grdItemReturn.RefreshData();
+                }
+            }
+        }
+
+
+        private bool _IsCanSave;
+
+        public bool IsCanSave
+        {
+            get { return _IsCanSave; }
+            set { Set(ref _IsCanSave, value); }
+        }
+
+        private string _ReturnType;
+
+        public string ReturnType
+        {
+            get { return _ReturnType; }
+            set { Set(ref _ReturnType, value); }
+        }
+
         #endregion
 
         #region Command
@@ -156,10 +211,10 @@ namespace MediTech.ViewModels
         }
 
 
-        private RelayCommand _SearchCommand;
-        public RelayCommand SearchCommand
+        private RelayCommand _SearchDispenseCommand;
+        public RelayCommand SearchDispenseCommand
         {
-            get { return _SearchCommand ?? (_SearchCommand = new RelayCommand(Search)); }
+            get { return _SearchDispenseCommand ?? (_SearchDispenseCommand = new RelayCommand(SearchDispense)); }
         }
 
         private RelayCommand _ClearCommand;
@@ -188,14 +243,66 @@ namespace MediTech.ViewModels
 
         }
 
-        private void Search()
+        private void SearchDispense()
         {
+            long? patientVisitUID = SelectedPatientVisit != null ? SelectedPatientVisit.PatientVisitUID : (long?)null;
+            int? storeUID = SelectStore != null ? SelectStore.StoreUID : (int?)null;
+            DispenseItems = null;
+            if (patientVisitUID != null)
+            {
+                DispenseItems = DataService.Inventory.SearchListDispensedItemForReturn(patientVisitUID.Value, storeUID, PrescriptionNumber, ItemName);
+            }
 
         }
 
+        private void Clear()
+        {
+            SelectedPateintSearch = null;
+            SearchPatientCriteria = string.Empty;
+            PatientVisitLists = null;
+            Stores = null;
+            ItemName = null;
+            PrescriptionNumber = null;
+            ReturnType = string.Empty;
+
+        }
         private void Save()
         {
+            try
+            {
+                if (DispenseItems?.Count(p => p.Selected) == 0)
+                {
+                    WarningDialog("กรุณาเลือกรายการที่จะคืน");
+                    return;
+                }
 
+                foreach (var item in DispenseItems)
+                {
+                    if (item.Selected && (item.ReturnQty ?? 0) == 0)
+                    {
+                        WarningDialog("กรุณาใส่จำนวนที่ต้องการคืน");
+                        return;
+                    }
+                }
+
+                var dispenseReturn = DispenseItems.Where(p => p.Selected);
+                string returnType = SelectedPatientVisit.VISTSUID == FINDIS ? "Sale Return" : "Dispensed Return";
+                foreach (var item in dispenseReturn)
+                {
+                    item.MUser = AppUtil.Current.UserID;
+                }
+                DataService.Inventory.DispensedReturn(dispenseReturn.ToList(), returnType);
+
+                SaveSuccessDialog();
+
+                DispenseReturns dispense = new DispenseReturns();
+                ChangeViewPermission(dispense);
+            }
+            catch (Exception ex)
+            {
+
+                ErrorDialog(ex.Message);
+            }
         }
 
         private void Close()
@@ -205,15 +312,12 @@ namespace MediTech.ViewModels
         }
 
 
-        private void Clear()
-        {
 
-        }
 
         void SearchPatientVisit()
         {
             long patientUID = 0;
-
+            Stores = null;
             if (!string.IsNullOrEmpty(SearchPatientCriteria))
             {
                 if (SelectedPateintSearch != null)
@@ -223,10 +327,28 @@ namespace MediTech.ViewModels
             }
 
             PatientVisitLists = DataService.PatientIdentity.GetPatientVisitDispensed(patientUID);
-            if (PatientVisitLists != null)
+
+
+            if (PatientVisitLists == null && PatientVisitLists.Count <= 0 && patientUID != 0)
             {
-                Stores = DataService.Inventory.GetStoreDispensedByVisitUID(PatientVisitLists.FirstOrDefault().PatientVisitUID);
+                WarningDialog("ไม่มีรายการ Dispense ใน HN : " + SelectedPateintSearch.PatientID);
             }
+
+            if (PatientVisitLists != null && PatientVisitLists.Count > 0)
+            {
+
+                foreach (var visit in PatientVisitLists)
+                {
+                    visit.Comments = visit.VisitID + "  " + visit.StartDttm?.ToString("dd/MM/yyyy HH:mm");
+                }
+                SelectedPatientVisit = PatientVisitLists.FirstOrDefault();
+                Stores = DataService.Inventory.GetStoreDispensedByVisitUID(SelectedPatientVisit.PatientVisitUID);
+                SelectStore = Stores.FirstOrDefault();
+
+
+            }
+
+            SearchDispense();
         }
 
         public void PatientSearch()

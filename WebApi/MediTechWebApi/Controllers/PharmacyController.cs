@@ -971,7 +971,6 @@ namespace MediTechWebApi.Controllers
                     SaleReturn saleReturn = new SaleReturn();
 
 
-                    db.SaleReturn.Add(saleReturn);
                     saleReturn.ReturnedBy = userUID;
                     saleReturn.ReturnDttm = now;
                     saleReturn.PatientUID = prescription.PatientUID;
@@ -983,6 +982,8 @@ namespace MediTechWebApi.Controllers
                     saleReturn.CUser = userUID;
                     saleReturn.CWhen = now;
                     saleReturn.StatusFlag = "A";
+
+                    db.SaleReturn.Add(saleReturn);
                     db.SaveChanges();
 
                     SaleReturnList saleReturnList = new SaleReturnList();
@@ -1135,9 +1136,11 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetPatientOrderStanding")]
         [HttpGet]
-        public List<PatientOrderStandingModel> GetPatientOrderStanding(int? wardUID, int storeUID)
+        public List<PatientOrderStandingModel> GetPatientOrderStanding(int? wardUID, int storeUID,int fillDays,DateTime? excludeTime)
         {
-            DateTime now = DateTime.Now.Date;
+            DateTime currentDate = DateTime.Now.Date;
+            DateTime currentDateEnd = currentDate.Date.AddSeconds(86399);
+            DateTime endDate = currentDate.AddDays(fillDays);
 
             List<PatientOrderStandingModel> data = (from ptod in db.PatientOrderDetail
                                                   join pto in db.PatientOrder on ptod.PatientOrderUID equals pto.UID
@@ -1155,7 +1158,9 @@ namespace MediTechWebApi.Controllers
                                                   && ptod.ORDSTUID != 2845 //complete
                                                   && ptod.IsStandingOrder == "Y"
                                                   && pto.IsContinuous == "Y"
-                                                  && (ptod.EndDttm == null || now <= DbFunctions.TruncateTime(ptod.EndDttm))
+                                                  && ptod.StartDttm <= endDate
+                                                  && (ptod.EndDttm == null || ptod.EndDttm >= endDate)
+                                                  && (excludeTime == null || ptod.StartDttm <= excludeTime)
                                                   && ptod.StoreUID == storeUID
                                                   && ( wardUID == null || pv.LocationUID == wardUID)
                                                   select new PatientOrderStandingModel
@@ -1197,8 +1202,6 @@ namespace MediTechWebApi.Controllers
 
             if (data.Count != 0)
             {
-                //DateTime now = DateTime.Now.Date;
-                //DateTime now = DateTime.Parse("2022-07-29");
                 foreach (var item in data.ToList())
                 {
                     var d = (from o in db.PatientOrder
@@ -1206,9 +1209,9 @@ namespace MediTechWebApi.Controllers
                              where o.IsIPFill == "Y"
                              && o.ParentUID == item.PatientOrderUID
                              && odd.ORDSTUID == 2861
-                             && DbFunctions.TruncateTime(o.StartDttm) == now select o).FirstOrDefault();
+                             && o.StartDttm >= currentDate
+                             && o.StartDttm <= currentDateEnd select o).FirstOrDefault();
 
-                    //var orderDetail = db.PatientOrder.Where(p => p.ParentUID == item.PatientOrderUID && p.StatusFlag == "A" && p.IsIPFill == "Y" && DbFunctions.TruncateTime(p.StartDttm) == now).FirstOrDefault();
                     if (d != null)
                     {
                         data.Remove(item);

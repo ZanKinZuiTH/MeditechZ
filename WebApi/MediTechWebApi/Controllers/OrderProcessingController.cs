@@ -1458,8 +1458,6 @@ namespace MediTechWebApi.Controllers
 
         #region OrderItem
 
-
-
         [Route("GetOrderItemByVisitUID")]
         public PatientOrderModel GetOrderItemByVisitUID(long visitUID)
         {

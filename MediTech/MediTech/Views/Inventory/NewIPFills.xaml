@@ -43,7 +43,7 @@
                     <dxe:DateEdit EditValue="{Binding ExcludeTime}"
                                   AllowNullInput="True"
                                   DisplayFormatString="HH:mm"
-                                  x:Name="editor" Mask="HH">
+                                  x:Name="editor" Mask="HH:mm">
                         <dxe:DateEdit.StyleSettings>
                             <dxe:DateEditTimePickerStyleSettings/>
                         </dxe:DateEdit.StyleSettings>

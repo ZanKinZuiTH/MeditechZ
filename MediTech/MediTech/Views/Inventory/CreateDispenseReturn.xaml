@@ -73,7 +73,7 @@
                 
                 <dxlc:LayoutItem>
                     <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
-                        <dx:SimpleButton Width="80" Command="{Binding SearchCommand}"
+                        <dx:SimpleButton Width="80" Command="{Binding SearchDispenseCommand}"
                                      Height="25" Content="ค้นหา"/>
                         <dx:SimpleButton Width="80" Command="{Binding ClearCommand}"
                                      Height="25" Content="Clear"/>
@@ -83,42 +83,59 @@
             </dxlc:LayoutGroup>
             
 
-            <dxg:GridControl AutoExpandAllGroups="True" Name="grdItemReturn" 
-                             ItemsSource="{Binding PrescriptionItem}"
-                             SelectedItem="{Binding SelectPrescriptionItem}"
-                             SelectionMode="MultipleRow">
+            <dxg:GridControl  AutoExpandAllGroups="True" Name="grdItemReturn" 
+                             ItemsSource="{Binding DispenseItems}"
+                             SelectedItem="{Binding SelectDispenseItem}"
+                             >
                 <dxg:GridControl.Columns>
+                    <dxg:GridColumn Header="" FieldName="Selected" ReadOnly="False" Width="35" >
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:CheckEditSettings IsEnabled="{Binding Row.IsCanReturn}"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
                     <dxg:GridColumn Header="Prescription No" FieldName="PrescriptionNumber" ReadOnly="True"/>
-                    <dxg:GridColumn Header="Drug Code" FieldName="ItemCode" ReadOnly="True"/>
-                    <dxg:GridColumn Header="Drug Name" FieldName="ItemName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Item Code" FieldName="ItemCode" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Item Name" FieldName="ItemName" ReadOnly="True"/>
                     <dxg:GridColumn Header="Dispensed Qty" FieldName="DispensedQty" ReadOnly="True" />
                     <dxg:GridColumn Header="Return Qty" FieldName="ReturnQty" ReadOnly="False" />
-                    <dxg:GridColumn Header="Previous Qty" FieldName="ReturnQty" ReadOnly="True" />
-                    <dxg:GridColumn Header="Unit" FieldName="Unit" ReadOnly="True" />
+                    <dxg:GridColumn Header="Previous Qty" FieldName="PreviousReturnQty" ReadOnly="True" />
+                    <dxg:GridColumn Header="Unit" FieldName="UOMDesc" ReadOnly="True" />
                     <dxg:GridColumn Header="Is Billed" FieldName="IsBilled" ReadOnly="True"/>
                     <dxg:GridColumn Header="Batch ID" FieldName="BatchID" ReadOnly="True"/>
                     <dxg:GridColumn Header="Expiry Date" FieldName="ExpiryDate" ReadOnly="True"/>
-                    <dxg:GridColumn Header="Dispense By" FieldName="DispenseBy" ReadOnly="True"/>
-                    <dxg:GridColumn Header="Dispense Date" FieldName="DispenseDate" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Dispense By" FieldName="DispensedUser" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Dispense Date" FieldName="DispensedDttm" ReadOnly="True">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
                     <dxg:GridColumn Header="Is Continuous" FieldName="IsContinuous" ReadOnly="True"/>
-                    <dxg:GridColumn Header="ItemCost" FieldName="ItemCost" ReadOnly="True"/>
                     <dxg:GridColumn Header="AvgCost" FieldName="AvgCost" ReadOnly="True"/>
                 </dxg:GridControl.Columns>
                 <dxg:GridControl.View>
-                    <dxg:TableView  ShowCheckBoxSelectorColumn="True" ShowGroupPanel="False" />
+                    <dxg:TableView x:Name="view"  ShowCheckBoxSelectorColumn="True" ShowGroupPanel="False" />
                 </dxg:GridControl.View>
             </dxg:GridControl>
 
-            <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
-                <dxlc:LayoutItem Label="Comments:">
-                    <dxe:TextEdit Text="{Binding Comments}" Height="25" Width="230"/>
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem HorizontalAlignment="Left">
+                    <dxe:CheckEdit Content="Select All" IsChecked="{Binding SelectedAll}"/>
                 </dxlc:LayoutItem>
- 
-                <dx:SimpleButton Width="80" Command="{Binding SaveCommand}"
-                                     Height="25" Content="Save"/>
-                <dx:SimpleButton Width="80" Command="{Binding CloseCommand}"
-                                     Height="25" Content="Close"/>
+                <dxlc:LayoutItem>
+                    <TextBlock Text="{Binding ReturnType}" FontSize="18" HorizontalAlignment="Center"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                    <dxlc:LayoutItem Label="Comments:">
+                        <dxe:TextEdit Text="{Binding Comments}" Height="25" Width="230"/>
+                    </dxlc:LayoutItem>
+
+                    <dx:SimpleButton Width="80" Command="{Binding SaveCommand}" 
+                                     Height="25" Content="บันทึก" IsEnabled="{Binding IsCanSave}"/>
+                    <dx:SimpleButton Width="80" Command="{Binding CloseCommand}"
+                                     Height="25" Content="ยกเลิก"/>
+                </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
+
         </dxlc:LayoutControl>
     </Grid>
 </UserControl>

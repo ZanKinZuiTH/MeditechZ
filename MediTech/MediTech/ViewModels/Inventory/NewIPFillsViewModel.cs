@@ -56,8 +56,8 @@ namespace MediTech.ViewModels
             set { Set(ref _PatientOrder, value); }
         }
 
-        private DateTime _ExcludeTime;
-        public DateTime ExcludeTime
+        private DateTime? _ExcludeTime;
+        public DateTime? ExcludeTime
         {
             get { return _ExcludeTime; }
             set { Set(ref _ExcludeTime, value); }
@@ -116,7 +116,11 @@ namespace MediTech.ViewModels
             if (SelectStore != null)
             {
                 int? wardid = SelectWard.LocationUID;
-                List<PatientOrderStandingModel> data = DataService.Pharmacy.GetPatientOrderStanding(wardid, SelectStore.StoreUID);
+                if (ExcludeTime != null)
+                {
+                    ExcludeTime = DateTime.Parse(DateTime.Now.Date.ToString("dd/MM/yyyy") + " " + ExcludeTime?.ToString("HH:mm"));
+                }
+                List<PatientOrderStandingModel> data = DataService.Pharmacy.GetPatientOrderStanding(wardid, SelectStore.StoreUID, ForDay, ExcludeTime);
                 if (data != null && data.Count != 0)
                 {
                     PatientOrder = new ObservableCollection<PatientOrderStandingModel>(data);

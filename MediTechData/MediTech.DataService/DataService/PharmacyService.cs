@@ -299,9 +299,9 @@ namespace MediTech.DataService
         }
         #endregion
 
-        public List<PatientOrderStandingModel> GetPatientOrderStanding(int? wardUID, int storeUID)
+        public List<PatientOrderStandingModel> GetPatientOrderStanding(int? wardUID, int storeUID, int fillDays, DateTime? excludeTime)
         {
-            string requestApi = string.Format("Api/Pharmacy/GetPatientOrderStanding?wardUID={0}&storeUID={1}", wardUID, storeUID);
+            string requestApi = string.Format("Api/Pharmacy/GetPatientOrderStanding?wardUID={0}&storeUID={1}&fillDays={2}&excludeTime={3:MM/dd/yyyy HH:mm}", wardUID, storeUID,fillDays,excludeTime);
             List<PatientOrderStandingModel> dataRequest = MeditechApiHelper.Get<List<PatientOrderStandingModel>>(requestApi);
 
             return dataRequest;

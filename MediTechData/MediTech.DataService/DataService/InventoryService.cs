@@ -485,13 +485,7 @@ namespace MediTech.DataService
             return flag;
         }
 
-        public List<DispenseReturnModel> SearchListDispensedItemForReturn(long patientVisitUID, int? storeUID, string prescriptionNumber, string itemName)
-        {
-            string requestApi = string.Format("Api/Inventory/SearchListDispensedItemForReturn?patientVisitUID={0}&storeUID={1}&prescriptionNumber={2}&itemName={3}", patientVisitUID, storeUID, prescriptionNumber, itemName);
-            List<DispenseReturnModel> data = MeditechApiHelper.Get<List<DispenseReturnModel>>(requestApi);
 
-            return data;
-        }
 
         public List<StockWorkListModel> SearchStockWorkList(DateTime? dateFrom, DateTime? dateTo, int? organisationToUID,int? locationUID)
         {
@@ -879,6 +873,12 @@ namespace MediTech.DataService
             return flag;
         }
 
+
+
+
+        #endregion
+
+        #region DispenseReturn
         public List<SaleReturnModel> SearchDispenseReturn(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? storeUID)
         {
             string requestApi = string.Format("Api/Inventory/SearchDispenseReturn?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&patientUID={2}&storeUID={3}", dateFrom, dateTo, patientUID, storeUID);
@@ -893,6 +893,33 @@ namespace MediTech.DataService
             List<SaleReturnListModel> returnData = MeditechApiHelper.Get<List<SaleReturnListModel>>(requestApi);
 
             return returnData;
+        }
+
+        public bool DispensedReturn(List<DispenseReturnModel> dispenseReturnLists,string returnType)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/Inventory/DispensedReturn?returnType={0}", returnType);
+                MeditechApiHelper.Post<List<DispenseReturnModel>>(requestApi, dispenseReturnLists);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+            return flag;
+        }
+
+        public List<DispenseReturnModel> SearchListDispensedItemForReturn(long patientVisitUID, int? storeUID, string prescriptionNumber, string itemName)
+        {
+            string requestApi = string.Format("Api/Inventory/SearchListDispensedItemForReturn?patientVisitUID={0}&storeUID={1}&prescriptionNumber={2}&itemName={3}", patientVisitUID, storeUID, prescriptionNumber, itemName);
+            List<DispenseReturnModel> data = MeditechApiHelper.Get<List<DispenseReturnModel>>(requestApi);
+
+            return data;
         }
 
         #endregion
