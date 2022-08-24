@@ -173,6 +173,7 @@ namespace MediTech.ViewModels
                     Name = string.Empty;
                     Description = string.Empty;
                     ItemAverageCost = null;
+                    ReferenceCode = null;
                     if (serviceType == "Order Item")
                     {
                         IsEnableCode = true;
@@ -181,87 +182,87 @@ namespace MediTech.ViewModels
 
                     if (serviceType == "Lab Test")
                     {
-                        var data = DataService.MasterData.GetRequestItemByCategory("LAB");
-                        ItemsServiceSource = data.Select(p => new ItemServiceModel
-                        {
-                            ItemUID = p.RequestItemUID,
-                            Code = p.Code,
-                            Name = p.ItemName,
-                            ActiveFrom = p.EffectiveFrom,
-                            ActiveTo = p.EffectiveTo
-                        }).ToList();
+                        //var data = DataService.MasterData.GetRequestItemByCategory("LAB");
+                        //ItemsServiceSource = data.Select(p => new ItemServiceModel
+                        //{
+                        //    ItemUID = p.RequestItemUID,
+                        //    Code = p.Code,
+                        //    Name = p.ItemName,
+                        //    ActiveFrom = p.EffectiveFrom,
+                        //    ActiveTo = p.EffectiveTo
+                        //}).ToList();
                         IsEnableCode = true;
                         IsVisibilityRefCode = Visibility.Visible;
                     }
                     else if (serviceType == "Radiology")
                     {
-                        var data = DataService.MasterData.GetRequestItemByCategory("RADIOLOGY");
-                        ItemsServiceSource = data.Select(p => new ItemServiceModel
-                        {
-                            ItemUID = p.RequestItemUID,
-                            Code = p.Code,
-                            Name = p.ItemName,
-                            ActiveFrom = p.EffectiveFrom,
-                            ActiveTo = p.EffectiveTo
-                        }).ToList();
+                        //var data = DataService.MasterData.GetRequestItemByCategory("RADIOLOGY");
+                        //ItemsServiceSource = data.Select(p => new ItemServiceModel
+                        //{
+                        //    ItemUID = p.RequestItemUID,
+                        //    Code = p.Code,
+                        //    Name = p.ItemName,
+                        //    ActiveFrom = p.EffectiveFrom,
+                        //    ActiveTo = p.EffectiveTo
+                        //}).ToList();
                         IsEnableCode = true;
                         IsVisibilityRefCode = Visibility.Visible;
                     }
                     else if (serviceType == "Mobile Checkup")
                     {
-                        var data = DataService.MasterData.GetRequestItemByCategory("Mobile Checkup");
-                        ItemsServiceSource = data.Select(p => new ItemServiceModel
-                        {
-                            ItemUID = p.RequestItemUID,
-                            Code = p.Code,
-                            Name = p.ItemName,
-                            ActiveFrom = p.EffectiveFrom,
-                            ActiveTo = p.EffectiveTo
-                        }).ToList();
+                        //var data = DataService.MasterData.GetRequestItemByCategory("Mobile Checkup");
+                        //ItemsServiceSource = data.Select(p => new ItemServiceModel
+                        //{
+                        //    ItemUID = p.RequestItemUID,
+                        //    Code = p.Code,
+                        //    Name = p.ItemName,
+                        //    ActiveFrom = p.EffectiveFrom,
+                        //    ActiveTo = p.EffectiveTo
+                        //}).ToList();
                         IsEnableCode = true;
                         IsVisibilityRefCode = Visibility.Visible;
                     }
                     else if (serviceType == "Drug")
                     {
-                        var data = DataService.Inventory.GetItemMasterByType("Drug");
-                        ItemsServiceSource = data.Select(p => new ItemServiceModel
-                        {
-                            ItemUID = p.ItemMasterUID,
-                            Code = p.Code,
-                            Name = p.Name,
-                            ActiveFrom = p.ActiveFrom,
-                            ActiveTo = p.ActiveTo
-                        }).ToList();
+                        //var data = DataService.Inventory.GetItemMasterByType("Drug");
+                        //ItemsServiceSource = data.Select(p => new ItemServiceModel
+                        //{
+                        //    ItemUID = p.ItemMasterUID,
+                        //    Code = p.Code,
+                        //    Name = p.Name,
+                        //    ActiveFrom = p.ActiveFrom,
+                        //    ActiveTo = p.ActiveTo
+                        //}).ToList();
                         IsVisibilityAvgCost = Visibility.Visible;
                         IsVisibilityCost = Visibility.Hidden;
                         VisibleCost = false;
                     }
                     else if (serviceType == "Medical Supplies")
                     {
-                        var data = DataService.Inventory.GetItemMasterByType("Medical Supplies");
-                        ItemsServiceSource = data.Select(p => new ItemServiceModel
-                        {
-                            ItemUID = p.ItemMasterUID,
-                            Code = p.Code,
-                            Name = p.Name,
-                            ActiveFrom = p.ActiveFrom,
-                            ActiveTo = p.ActiveTo
-                        }).ToList();
+                        //var data = DataService.Inventory.GetItemMasterByType("Medical Supplies");
+                        //ItemsServiceSource = data.Select(p => new ItemServiceModel
+                        //{
+                        //    ItemUID = p.ItemMasterUID,
+                        //    Code = p.Code,
+                        //    Name = p.Name,
+                        //    ActiveFrom = p.ActiveFrom,
+                        //    ActiveTo = p.ActiveTo
+                        //}).ToList();
                         IsVisibilityAvgCost = Visibility.Visible;
                         IsVisibilityCost = Visibility.Hidden;
                         VisibleCost = false;
                     }
                     else if (serviceType == "Supply")
                     {
-                        var data = DataService.Inventory.GetItemMasterByType("Supply");
-                        ItemsServiceSource = data.Select(p => new ItemServiceModel
-                        {
-                            ItemUID = p.ItemMasterUID,
-                            Code = p.Code,
-                            Name = p.Name,
-                            ActiveFrom = p.ActiveFrom,
-                            ActiveTo = p.ActiveTo
-                        }).ToList();
+                        //var data = DataService.Inventory.GetItemMasterByType("Supply");
+                        //ItemsServiceSource = data.Select(p => new ItemServiceModel
+                        //{
+                        //    ItemUID = p.ItemMasterUID,
+                        //    Code = p.Code,
+                        //    Name = p.Name,
+                        //    ActiveFrom = p.ActiveFrom,
+                        //    ActiveTo = p.ActiveTo
+                        //}).ToList();
                         IsVisibilityAvgCost = Visibility.Visible;
                         IsVisibilityCost = Visibility.Hidden;
                         VisibleCost = false;
@@ -287,7 +288,7 @@ namespace MediTech.ViewModels
 
         public ItemServiceModel SelectedItemService
         {
-            get { return _SelectItemService; }
+            get { return _SelectItemService ?? (_SelectItemService = new ItemServiceModel()); }
             set
             {
                 Set(ref _SelectItemService, value);
@@ -589,6 +590,12 @@ namespace MediTech.ViewModels
             get { return _ClearCommand ?? (_ClearCommand = new RelayCommand(ClearBillItmdetail)); }
         }
 
+        
+        private RelayCommand _SearchItemCommand;
+        public RelayCommand SearchItemCommand
+        {
+            get { return _SearchItemCommand ?? (_SearchItemCommand = new RelayCommand(SearchItem)); }
+        }
         #endregion
 
         #region Method
@@ -817,6 +824,34 @@ namespace MediTech.ViewModels
             AssingModelToProperties();
         }
 
+        public void AssingItemModel(ItemServiceModel data)
+        {
+            string serviceType = SelectServiceType.Display;
+
+            if (serviceType == "Lab Test" || serviceType == "Radiology" || serviceType == "Mobile Checkup")
+            {
+                ReferenceCode = data.Code;
+            }
+            else
+            {
+                Code = data.Code;
+            }
+            Name = data.Name;
+
+            if (serviceType == "Drug" || serviceType == "Medical Supplies" || serviceType == "Supply")
+            {
+                var roleOrgan = Organisations;
+                var itemAverageCost = DataService.Inventory.GetItemAverageCost(data.ItemUID, null);
+                ItemAverageCost = (from i in itemAverageCost
+                                   join j in roleOrgan on i.OwnerOrganisationUID equals j.HealthOrganisationUID
+                                   select i).ToList();
+            }
+            else
+            {
+                ItemAverageCost = null;
+            }
+        }
+
         void AssingModelToProperties()
         {
             SelectServiceType = ServiceTypes != null ? ServiceTypes.FirstOrDefault(p => p.Key == model.BSMDDUID) : null;
@@ -882,6 +917,25 @@ namespace MediTech.ViewModels
             model.OrderCategoryUID = SelectCategory.OrderCategoryUID;
             model.OrderSubCategoryUID = SelectOrderSubCategory.OrderSubCategoryUID;
             
+        }
+
+        private void SearchItem()
+        {
+            if(SelectServiceType != null)
+            {
+                SearchItem page = new SearchItem();
+                (page.DataContext as SearchItemViewModel).AssignModel(SelectServiceType.Key ?? 0);
+                SearchItemViewModel result = (SearchItemViewModel)LaunchViewDialog(page, "SCHITM", false, false);
+
+                if (result != null && result.ResultDialog == ActionDialog.Save)
+                {
+                    var d = result.SelectItemMaster;
+                    SelectServiceType = ServiceTypes.FirstOrDefault(p => p.Key == result.SelectServiceTypes.Key);
+                    SelectedItemService = d;
+                    //AssingItemModel(result.SelectItemMaster);
+                    //PayorAgreement = DataService.Billing.SearchPayorAgreementByINCO("", SelectInsranceCompany.InsuranceCompanyUID);
+                }
+            }
         }
 
         #endregion

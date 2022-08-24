@@ -36,6 +36,7 @@ namespace MediTech.Model
         public double? VATPercentage { get; set; }
         public string IsBatchIDMandatory { get; set; }
         public Nullable<int> ManufacturerByUID { get; set; }
+        public string Manufacturer { get; set; }
         public string CanDispenseWithOutStock { get; set; }
         public string IsStock { get; set; }
         public string IsNarcotic { get; set; }

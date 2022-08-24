@@ -47,6 +47,39 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("SearchRequestItemByCategory")]
+        [HttpGet]
+        public List<RequestItemModel> SearchRequestItemByCategory(int TSTTPUID, string code, string itemName)
+        {
+            DateTime now = DateTime.Now;
+            List<RequestItemModel> data = db.RequestItem.Where(p =>
+            p.TSTTPUID == TSTTPUID
+            && p.StatusFlag == "A"
+            && (code == null || p.Code.Contains(code) )
+            && (itemName == null || p.ItemName.Contains(itemName))
+            && (p.EffectiveFrom == null || DbFunctions.TruncateTime(p.EffectiveFrom) <= DbFunctions.TruncateTime(now))
+            && (p.EffectiveTo == null || DbFunctions.TruncateTime(p.EffectiveTo) >= DbFunctions.TruncateTime(now)))
+            .Select(p => new RequestItemModel()
+            {
+                RequestItemUID = p.UID,
+                Code = p.Code,
+                Description = p.Description,
+                EffectiveFrom = p.EffectiveFrom,
+                EffectiveTo = p.EffectiveTo,
+                ItemName = p.ItemName,
+                TSTTPUID = p.TSTTPUID,
+                PRTGPUID = p.PRTGPUID,
+                CUser = p.CUser,
+                CWhen = p.CWhen,
+                MUser = p.MUser,
+                MWhen = p.MWhen,
+                IsConfidential = p.IsConfidential,
+                StatusFlag = p.StatusFlag
+            }).ToList();
+
+            return data;
+        }
+
         [Route("GetRequestItemByCategory")]
         [HttpGet]
         public List<RequestItemModel> GetRequestItemByCategory(string category, bool queryResultLink = false)

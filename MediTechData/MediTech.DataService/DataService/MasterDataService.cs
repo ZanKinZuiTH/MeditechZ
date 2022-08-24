@@ -20,6 +20,14 @@ namespace MediTech.DataService
 
             return dataRequest;
         }
+        public List<RequestItemModel> SearchRequestItemByCategory(int TSTTPUID, string code, string itemName)
+        {
+            string requestApi = string.Format("Api/MasterData/SearchRequestItemByCategory?TSTTPUID={0}&code={1}&itemName={2}", TSTTPUID, code, itemName);
+            List<RequestItemModel> dataRequest = MeditechApiHelper.Get<List<RequestItemModel>>(requestApi);
+
+            return dataRequest;
+        }
+
         public List<RequestItemModel> GetRequestItemByCategory(string category, bool queryResultLink = false)
         {
             string requestApi = string.Format("Api/MasterData/GetRequestItemByCategory?category={0}&queryResultLink={1}", category, queryResultLink);

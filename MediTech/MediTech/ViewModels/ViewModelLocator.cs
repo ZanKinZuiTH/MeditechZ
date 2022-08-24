@@ -211,7 +211,7 @@ namespace MediTech.ViewModels
                     SimpleIoc.Default.Register<BillingPaymentModePopUpViewModel>();
 
                 return ServiceLocator.Current.GetInstance<BillingPaymentModePopUpViewModel>();
-            }
+            }                                                                                                                   
         }
 
         public MergeBillRecipetPopupViewModel MergeBillRecipetPopupViewModel
@@ -233,6 +233,17 @@ namespace MediTech.ViewModels
                     SimpleIoc.Default.Register<CancelBillPopupViewModel>();
 
                 return ServiceLocator.Current.GetInstance<CancelBillPopupViewModel>();
+            }
+        }
+
+        public SearchItemViewModel SearchItemViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<SearchItemViewModel>())
+                    SimpleIoc.Default.Register<SearchItemViewModel>();
+
+                return ServiceLocator.Current.GetInstance<SearchItemViewModel>();
             }
         }
 

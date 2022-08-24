@@ -11,6 +11,7 @@ namespace MediTech.Model
         public DateTime? ActiveFrom { get; set; }
         public DateTime? ActiveTo { get; set; }
         public string Code { get; set; }
+        public string  Manufacturer { get; set; }
         public int ItemUID { get; set; }
         public string Name { get; set; }
     }

@@ -876,7 +876,7 @@ namespace MediTech.ViewModels
                 {
                     aeAdmission.CareproviderUID = SelectedCareprovider.CareproviderUID;
                 }
-                aeAdmission.BedUID = SelectedBed.LocationUID;
+                aeAdmission.BedUID = SelectedBed != null ? SelectedBed.LocationUID : (int?)null;
                 
                 aeAdmission = DataService.PatientIdentity.ManageEmergencyAE(aeAdmission, AppUtil.Current.UserID);
 

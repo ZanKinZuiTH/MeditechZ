@@ -66,6 +66,7 @@ namespace MediTechWebApi.Controllers
                                               VATPercentage = p.VATPercentage,
                                               IsStock = p.IsStock,
                                               ManufacturerByUID = p.ManufacturerByUID,
+                                              Manufacturer = SqlFunction.fGetVendorName(p.ManufacturerByUID ?? 0),
                                               ItemCost = p.ItemCost,
                                               IsNarcotic = p.IsNarcotic,
                                               Comments = p.Comments,

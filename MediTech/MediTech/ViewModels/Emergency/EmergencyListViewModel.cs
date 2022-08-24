@@ -238,6 +238,7 @@ namespace MediTech.ViewModels
         int SNDDOC = 419;
         int FINDIS = 421;
         int CANCEL = 410;
+        int BILLING = 423;
 
         public EmergencyListViewModel()
         {
@@ -294,7 +295,7 @@ namespace MediTech.ViewModels
             if (SelectPatientVisit != null)
             {
                 var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPatientVisit.PatientVisitUID);
-                if (patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
+                if (patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL || patientVisit.VISTSUID == BILLING)
                 {
                     WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
                     SelectPatientVisit.VISTSUID = patientVisit.VISTSUID;
@@ -320,7 +321,7 @@ namespace MediTech.ViewModels
             if (SelectPatientVisit != null)
             {
                 var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPatientVisit.PatientVisitUID);
-                if (patientVisit.VISTSUID == CHKOUT || patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
+                if (patientVisit.VISTSUID == CHKOUT || patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL || patientVisit.VISTSUID == BILLING)
                 {
                     WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
                     SelectPatientVisit.VISTSUID = patientVisit.VISTSUID;
@@ -396,6 +397,15 @@ namespace MediTech.ViewModels
         {
             if (SelectPatientVisit != null)
             {
+                var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPatientVisit.PatientVisitUID);
+                if (patientVisit.VISTSUID == CHKOUT || patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL || patientVisit.VISTSUID == BILLING)
+                {
+                    WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
+                    SelectPatientVisit.VISTSUID = patientVisit.VISTSUID;
+                    SelectPatientVisit.VisitStatus = patientVisit.VisitStatus;
+                    OnUpdateEvent();
+                    return;
+                }
                 PatientOrderEntry pageview = new PatientOrderEntry();
                 (pageview.DataContext as PatientOrderEntryViewModel).AssingPatientVisit(SelectPatientVisit);
                 PatientOrderEntryViewModel result = (PatientOrderEntryViewModel)LaunchViewDialog(pageview, "ORDITM", false, true);
