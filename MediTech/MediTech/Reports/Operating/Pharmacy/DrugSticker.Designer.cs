@@ -85,7 +85,7 @@
             this.lbQuantity.CanGrow = false;
             this.lbQuantity.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "QuantityLabel")});
-            this.lbQuantity.Font = new System.Drawing.Font("Angsana New", 12F);
+            this.lbQuantity.Font = new System.Drawing.Font("Angsana New", 13F);
             this.lbQuantity.LocationFloat = new DevExpress.Utils.PointFloat(249.4167F, 57.5107F);
             this.lbQuantity.Name = "lbQuantity";
             this.lbQuantity.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 5, 0, 0, 100F);
@@ -98,9 +98,10 @@
             // xrLabel6
             // 
             this.xrLabel6.CanGrow = false;
+            this.xrLabel6.CanShrink = true;
             this.xrLabel6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "DrugLable")});
-            this.xrLabel6.Font = new System.Drawing.Font("Angsana New", 12F);
+            this.xrLabel6.Font = new System.Drawing.Font("Angsana New", 13F);
             this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(9.000001F, 73.04641F);
             this.xrLabel6.Name = "xrLabel6";
             this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -129,9 +130,10 @@
             // xrLabel11
             // 
             this.xrLabel11.CanGrow = false;
+            this.xrLabel11.CanShrink = true;
             this.xrLabel11.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "LocalInstructionText")});
-            this.xrLabel11.Font = new System.Drawing.Font("Angsana New", 12F);
+            this.xrLabel11.Font = new System.Drawing.Font("Angsana New", 13F);
             this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(8.999902F, 116.1358F);
             this.xrLabel11.Name = "xrLabel11";
             this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -195,9 +197,10 @@
             // xrLabel2
             // 
             this.xrLabel2.CanGrow = false;
+            this.xrLabel2.CanShrink = true;
             this.xrLabel2.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "FrequencyDefinition")});
-            this.xrLabel2.Font = new System.Drawing.Font("Angsana New", 12F);
+            this.xrLabel2.Font = new System.Drawing.Font("Angsana New", 13F);
             this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(8.750012F, 87.59412F);
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -210,9 +213,10 @@
             // xrLabel3
             // 
             this.xrLabel3.CanGrow = false;
+            this.xrLabel3.CanShrink = true;
             this.xrLabel3.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "PatientInstruction")});
-            this.xrLabel3.Font = new System.Drawing.Font("Angsana New", 12F);
+            this.xrLabel3.Font = new System.Drawing.Font("Angsana New", 13F);
             this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(9.000002F, 101.9691F);
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -227,11 +231,11 @@
             this.xrLabel1.CanGrow = false;
             this.xrLabel1.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "PatientName")});
-            this.xrLabel1.Font = new System.Drawing.Font("Angsana New", 12F);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(8.750011F, 42.26071F);
+            this.xrLabel1.Font = new System.Drawing.Font("Angsana New", 13F, System.Drawing.FontStyle.Bold);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(8.750012F, 42.26072F);
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(240.4166F, 18F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(240.6666F, 18F);
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.StylePriority.UsePadding = false;
             this.xrLabel1.StylePriority.UseTextAlignment = false;
@@ -240,13 +244,14 @@
             // xrLabel4
             // 
             this.xrLabel4.CanGrow = false;
+            this.xrLabel4.CanShrink = true;
             this.xrLabel4.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "DrugName")});
-            this.xrLabel4.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(8.750011F, 57.5107F);
+            this.xrLabel4.Font = new System.Drawing.Font("Angsana New", 13F, System.Drawing.FontStyle.Bold);
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(8.750012F, 57.51071F);
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
-            this.xrLabel4.SizeF = new System.Drawing.SizeF(240.4166F, 18F);
+            this.xrLabel4.SizeF = new System.Drawing.SizeF(240.6667F, 18F);
             this.xrLabel4.StylePriority.UseFont = false;
             this.xrLabel4.StylePriority.UsePadding = false;
             this.xrLabel4.StylePriority.UseTextAlignment = false;

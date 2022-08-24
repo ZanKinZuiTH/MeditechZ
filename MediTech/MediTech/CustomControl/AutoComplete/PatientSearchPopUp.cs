@@ -19,7 +19,7 @@ namespace MediTech.CustomControl
                 new Column() { FieldName = "FirstName", Header = "ชื่อ" },
                 new Column() { FieldName = "LastName", Header = "นามสกุล" },
                 new Column() { FieldName = "Gender", Header = "เพศ" },
-                new Column() { FieldName = "BirthDttm", Header = "วัน เดือน ปี เกิด" }
+                new Column() { FieldName = "BirthDttmString", Header = "วัน เดือน ปี เกิด" }
             };
         }
     }

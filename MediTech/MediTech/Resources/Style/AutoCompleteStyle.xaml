@@ -5,7 +5,7 @@
                     xmlns:mvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                     xmlns:helper="clr-namespace:MediTech.Helpers"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">   
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors">   
     <SolidColorBrush x:Key="ListBorder" Color="#FFA5ACB2"/>
     <DataTemplate x:Key="DefaultColumnTemplate">
         <ContentControl>
@@ -14,7 +14,12 @@
                             Visible="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Visible, RelativeSource={RelativeSource Self}}"
                             VisibleIndex="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).VisibleIndex, RelativeSource={RelativeSource Self}}"
                             Tag="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Tag, RelativeSource={RelativeSource Self}}"
-                            ReadOnly="True"/>
+                            MaxWidth="500"
+                            ReadOnly="True">
+                <dxg:GridColumn.EditSettings>
+                    <dxe:TextEditSettings TextWrapping="Wrap"/>
+                </dxg:GridColumn.EditSettings>
+            </dxg:GridColumn>
         </ContentControl>
     </DataTemplate>
     <Style TargetType="{x:Type local:AutoCompleteTextBox}">
@@ -61,7 +66,7 @@
                                     <helper:GridControlFitBehavior/>
                                 </mvvm:Interaction.Behaviors>
                                 <dxg:GridControl.View>
-                                    <dxg:TableView Name="View" 
+                                    <dxg:TableView Name="View"
                                                    ShowGroupPanel="False" >
                                     </dxg:TableView>
                                 </dxg:GridControl.View>

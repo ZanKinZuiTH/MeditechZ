@@ -19,7 +19,7 @@
             </dxlc:LayoutItem>
             <dxlc:LayoutGroup HorizontalAlignment="Left">
                 <dxlc:LayoutItem >
-                    <TextBlock Text="{Binding OrderName}" FontWeight="Bold" FontSize="16"/>
+                    <TextBlock Text="{Binding OrderName}" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" MaxWidth="700"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem VerticalAlignment="Bottom" >
                     <TextBlock Text="{Binding OrderCode}" FontSize="9"/>
@@ -33,7 +33,7 @@
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutGroup Orientation="Vertical">
                     <dxlc:LayoutItem Label="Order Name" LabelHorizontalAlignment="Right">
-                        <TextBlock Text="{Binding OrderName}" FontWeight="Bold"  FontSize="14"/>
+                        <TextBlock Text="{Binding OrderName}" FontWeight="Bold"  FontSize="14" TextTrimming="CharacterEllipsis" />
                     </dxlc:LayoutItem>
                     <dxlc:LayoutGroup Orientation="Horizontal">
                         <dxlc:LayoutItem Label="Type" LabelHorizontalAlignment="Right">
