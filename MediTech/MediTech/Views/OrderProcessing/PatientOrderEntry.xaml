@@ -136,10 +136,10 @@
                                     </dxg:GridColumn>
                                     <!--<dxg:GridColumn Header="รหัส" FieldName="ItemCode" ReadOnly="True" Width="50"/>-->
                                     <dxg:GridColumn Name="colItemName" FieldName="ItemName" Fixed="Left"
-                                                Header="ชื่อ"  ReadOnly="True"  Width="300" >
+                                                Header="ชื่อ"  ReadOnly="True"  Width="350" >
                                         <dxg:GridColumn.CellTemplate>
                                             <DataTemplate>
-                                                <dxe:HyperlinkEdit EditValue="{Binding RowData.Row.ItemName}">
+                                                <dxe:HyperlinkEdit EditValue="{Binding RowData.Row.ItemName}" TextWrapping="Wrap">
                                                     <i:Interaction.Triggers>
                                                         <i:EventTrigger  EventName="RequestNavigation">
                                                             <mvvm:EventToCommand Command="{Binding View.DataContext.EditCommand}" />

@@ -520,7 +520,7 @@ namespace MediTech.ViewModels
         {
             Doctors = DataService.UserManage.GetCareproviderDoctor();
             var refVal = DataService.Technical.GetReferenceValueList("VISTS,ENTYP,PRSTYP");
-            VisitStatus = new ObservableCollection<LookupReferenceValueModel>(refVal.Where(p => p.DomainCode == "VISTS"));
+            VisitStatus = new ObservableCollection<LookupReferenceValueModel>(refVal.Where(p => p.DomainCode == "VISTS" && p.ValueCode != "FINDIS"));
             EncounterType = new ObservableCollection<LookupReferenceValueModel>(refVal.Where(p => p.DomainCode == "ENTYP"));
             SelectEncounterType.Add(EncounterType.FirstOrDefault(p => p.ValueCode == "OUPAT").Key);
 

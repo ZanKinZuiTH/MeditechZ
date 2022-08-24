@@ -182,6 +182,24 @@ namespace MediTech.DataService
             return flag;
         }
 
+        public bool ManagePatientPaymentDetail(List<PatientPaymentDetailModel> paymentMethod, int userUID)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/Billing/ManagePatientPaymentDetail?userUID={0}", userUID);
+                MeditechApiHelper.Post<List<PatientPaymentDetailModel>>(requestApi,paymentMethod);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return flag;
+        }
+
+
         public List<PatientBillModel> PrintStatementBill(long patientBillUID)
         {
             string requestApi = string.Format("Api/Billing/PrintStatementBill?patientBillUID={0}", patientBillUID);

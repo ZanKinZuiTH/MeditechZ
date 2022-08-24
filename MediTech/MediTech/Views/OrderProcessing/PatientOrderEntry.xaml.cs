@@ -33,7 +33,7 @@ namespace MediTech.Views
         void OrderDetail_UpdateEvent(object sender, EventArgs e)
         {
             grdOrderDetail.RefreshData();
-            gvOrderDetail.BestFitColumn(colItemName);
+            //gvOrderDetail.BestFitColumn(colItemName);
         }
 
     }
