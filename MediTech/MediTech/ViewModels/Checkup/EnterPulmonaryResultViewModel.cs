@@ -47,13 +47,13 @@ namespace MediTech.ViewModels
             }
         }
 
-
+        private RelayCommand _ViewVitalSignCommand;
         public RelayCommand ViewVitalSignCommand
         {
             get
             {
-                return _SaveCommand
-                    ?? (_SaveCommand = new RelayCommand(Viewvitalsign));
+                return _ViewVitalSignCommand
+                    ?? (_ViewVitalSignCommand = new RelayCommand(Viewvitalsign));
             }
         }
 
