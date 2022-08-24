@@ -254,7 +254,7 @@
             // lbFooterOrganisation
             // 
             this.lbFooterOrganisation.CanGrow = false;
-            this.lbFooterOrganisation.Font = new System.Drawing.Font("Angsana New", 12F);
+            this.lbFooterOrganisation.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbFooterOrganisation.LocationFloat = new DevExpress.Utils.PointFloat(9.000003F, 141.886F);
             this.lbFooterOrganisation.Name = "lbFooterOrganisation";
             this.lbFooterOrganisation.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -267,7 +267,7 @@
             // lbAddress
             // 
             this.lbAddress.CanGrow = false;
-            this.lbAddress.Font = new System.Drawing.Font("Angsana New", 12F);
+            this.lbAddress.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbAddress.LocationFloat = new DevExpress.Utils.PointFloat(9F, 159.7077F);
             this.lbAddress.Multiline = true;
             this.lbAddress.Name = "lbAddress";
