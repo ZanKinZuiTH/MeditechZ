@@ -50,9 +50,9 @@
             this.PrescriptionItemUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.ExpiryDate = new DevExpress.XtraReports.Parameters.Parameter();
             this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
             this.DrugLabelF = new DevExpress.XtraReports.UI.CalculatedField();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -81,6 +81,7 @@
             // xrLabel6
             // 
             this.xrLabel6.CanGrow = false;
+            this.xrLabel6.CanShrink = true;
             this.xrLabel6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "DrugLabelF")});
             this.xrLabel6.Font = new System.Drawing.Font("Angsana New", 13F);
@@ -112,6 +113,7 @@
             // xrLabel11
             // 
             this.xrLabel11.CanGrow = false;
+            this.xrLabel11.CanShrink = true;
             this.xrLabel11.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "LocalInstructionText")});
             this.xrLabel11.Font = new System.Drawing.Font("Angsana New", 13F);
@@ -178,6 +180,7 @@
             // xrLabel2
             // 
             this.xrLabel2.CanGrow = false;
+            this.xrLabel2.CanShrink = true;
             this.xrLabel2.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "FrequencyDefinition")});
             this.xrLabel2.Font = new System.Drawing.Font("Angsana New", 13F);
@@ -193,6 +196,7 @@
             // xrLabel3
             // 
             this.xrLabel3.CanGrow = false;
+            this.xrLabel3.CanShrink = true;
             this.xrLabel3.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "PatientInstruction")});
             this.xrLabel3.Font = new System.Drawing.Font("Angsana New", 13F);
@@ -208,9 +212,10 @@
             // xrLabel1
             // 
             this.xrLabel1.CanGrow = false;
+            this.xrLabel1.CanShrink = true;
             this.xrLabel1.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "PatientName")});
-            this.xrLabel1.Font = new System.Drawing.Font("Angsana New", 13F, System.Drawing.FontStyle.Bold);
+            this.xrLabel1.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
             this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(8.750012F, 42.26072F);
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -223,6 +228,7 @@
             // xrLabel4
             // 
             this.xrLabel4.CanGrow = false;
+            this.xrLabel4.CanShrink = true;
             this.xrLabel4.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "DrugName")});
             this.xrLabel4.Font = new System.Drawing.Font("Angsana New", 13F, System.Drawing.FontStyle.Bold);
@@ -239,6 +245,7 @@
             // xrLabel5
             // 
             this.xrLabel5.CanGrow = false;
+            this.xrLabel5.CanShrink = true;
             this.xrLabel5.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "DoctorName")});
             this.xrLabel5.Font = new System.Drawing.Font("Angsana New", 12F);
@@ -254,11 +261,12 @@
             // lbFooterOrganisation
             // 
             this.lbFooterOrganisation.CanGrow = false;
-            this.lbFooterOrganisation.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.lbFooterOrganisation.LocationFloat = new DevExpress.Utils.PointFloat(9.000003F, 141.886F);
+            this.lbFooterOrganisation.CanShrink = true;
+            this.lbFooterOrganisation.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.lbFooterOrganisation.LocationFloat = new DevExpress.Utils.PointFloat(9.000002F, 146.5405F);
             this.lbFooterOrganisation.Name = "lbFooterOrganisation";
             this.lbFooterOrganisation.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
-            this.lbFooterOrganisation.SizeF = new System.Drawing.SizeF(321.4166F, 18.82166F);
+            this.lbFooterOrganisation.SizeF = new System.Drawing.SizeF(321.4166F, 12.76216F);
             this.lbFooterOrganisation.StylePriority.UseFont = false;
             this.lbFooterOrganisation.StylePriority.UsePadding = false;
             this.lbFooterOrganisation.StylePriority.UseTextAlignment = false;
@@ -267,12 +275,13 @@
             // lbAddress
             // 
             this.lbAddress.CanGrow = false;
-            this.lbAddress.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.lbAddress.LocationFloat = new DevExpress.Utils.PointFloat(9F, 159.7077F);
+            this.lbAddress.CanShrink = true;
+            this.lbAddress.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.lbAddress.LocationFloat = new DevExpress.Utils.PointFloat(9F, 159.3026F);
             this.lbAddress.Multiline = true;
             this.lbAddress.Name = "lbAddress";
             this.lbAddress.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
-            this.lbAddress.SizeF = new System.Drawing.SizeF(321.4166F, 15F);
+            this.lbAddress.SizeF = new System.Drawing.SizeF(321.4166F, 11.7262F);
             this.lbAddress.StylePriority.UseFont = false;
             this.lbAddress.StylePriority.UsePadding = false;
             this.lbAddress.StylePriority.UseTextAlignment = false;
@@ -322,11 +331,6 @@
             this.OrganisationUID.ValueInfo = "0";
             this.OrganisationUID.Visible = false;
             // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.DrugStickerModel);
-            this.objectDataSource1.Name = "objectDataSource1";
-            // 
             // formattingRule1
             // 
             this.formattingRule1.Condition = "IsNull([Quantity])";
@@ -337,6 +341,11 @@
             // 
             this.DrugLabelF.Expression = "[DrugLable] + \' #\' + [Quantity]";
             this.DrugLabelF.Name = "DrugLabelF";
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.DrugStickerModel);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // DrugSticker
             // 
