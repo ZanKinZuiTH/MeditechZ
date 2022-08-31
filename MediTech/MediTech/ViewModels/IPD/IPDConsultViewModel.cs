@@ -312,23 +312,23 @@ namespace MediTech.ViewModels
 
             if (StartDateConsult == null)
             {
-                WarningDialog("กรุณาเลือกเลือกวันและช่วงเวลาที่ต้องการ consult");
+                WarningDialog("กรุณาเลือกวันและช่วงเวลาที่ต้องการ consult");
                 return;
             }
             if (StartTimeConsult == null)
             {
-                WarningDialog("กรุณาเลือกเลือกวันและช่วงเวลาที่ต้องการ consult");
+                WarningDialog("กรุณาเลือกวันและช่วงเวลาที่ต้องการ consult");
                 return;
             }
             if (EndDateConsult == null)
             {
-                WarningDialog("กรุณาเลือกเลือกวันและช่วงเวลาที่ต้องการ consult");
+                WarningDialog("กรุณาเลือกวันและช่วงเวลาที่ต้องการ consult");
                 return;
             }
 
             if (EndTimeConsult == null)
             {
-                WarningDialog("กรุณาเลือกเลือกวันและช่วงเวลาที่ต้องการ consult");
+                WarningDialog("กรุณาเลือกวันและช่วงเวลาที่ต้องการ consult");
                 return;
             }
 

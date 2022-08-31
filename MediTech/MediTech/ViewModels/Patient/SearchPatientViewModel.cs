@@ -221,7 +221,7 @@ namespace MediTech.ViewModels
             SearchPatient(PatientID, FirstName, LastName, MiddleName, NickName, BirthDate, NationalID, LastVisitDate, gender, MobilePhone, PassportID);
             if (PatientSource == null || PatientSource.Count <= 0)
             {
-                InformationDialog("ไม่พบข้อมูลปู้ป่วย");
+                InformationDialog("ไม่พบข้อมูลผู้ป่วย");
                 SelectedPatient = null;
             }
             else

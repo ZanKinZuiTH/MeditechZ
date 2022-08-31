@@ -360,7 +360,7 @@ namespace MediTech.ViewModels
         {
             if (SelectBooking != null)
             {
-                MessageBoxResult result = QuestionDialog("คุณต้องการยกเลิกนัดนี้ ใช้หรือไม่");
+                MessageBoxResult result = QuestionDialog("คุณต้องการยกเลิกนัดนี้ ใช่หรือไม่");
                 if (result == MessageBoxResult.Yes)
                 {
                     DataService.PatientIdentity.CancelBooking(SelectBooking.BookingUID, AppUtil.Current.UserID);

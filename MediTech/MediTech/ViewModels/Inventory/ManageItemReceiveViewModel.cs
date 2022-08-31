@@ -312,7 +312,7 @@ namespace MediTech.ViewModels
                 }
                 if (ReceiveDate == null)
                 {
-                    WarningDialog("กรุณาใส่วันที่ สี่งออก");
+                    WarningDialog("กรุณาใส่วันที่ สั่งออก");
                     return;
                 }
 

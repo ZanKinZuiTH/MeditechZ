@@ -585,7 +585,7 @@ namespace MediTech.ViewModels
             {
                 try
                 {
-                    MessageBoxResult messResult = QuestionDialog(string.Format("คุณต้องการยกเลิกผลของ {0} ใช้หรือไม่ ?", SelectCheckupExam.PatientName));
+                    MessageBoxResult messResult = QuestionDialog(string.Format("คุณต้องการยกเลิกผลของ {0} ใช่หรือไม่ ?", SelectCheckupExam.PatientName));
                     if (messResult == MessageBoxResult.Yes)
                     {
                         DataService.Checkup.CancelOccmedResult(SelectCheckupExam.RequestDetailUID, AppUtil.Current.UserID);

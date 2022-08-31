@@ -67,7 +67,7 @@
                                      Command="{Binding SearchCommand}" IsDefault="True"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem >
-                            <dx:SimpleButton Content="คื่นค่า"
+                            <dx:SimpleButton Content="คืนค่า"
                                      Width="80"
                                      Height="25"
                                      Command="{Binding ResetCommand}"/>

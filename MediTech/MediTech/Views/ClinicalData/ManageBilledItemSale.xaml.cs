@@ -43,7 +43,7 @@ namespace MediTech.Views
                 if (view.FocusedRowHandle >= 0)
                 {
 
-                    System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("คุณต้องการลบข้อมูลที่เลือก ใช้หรือไม่ ?", "Question", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Question);
+                    System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("คุณต้องการลบข้อมูลที่เลือก ใช่หรือไม่ ?", "Question", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Question);
                     if (result == System.Windows.Forms.DialogResult.Yes)
                     {
                         view.DeleteRow(view.FocusedRowHandle);

@@ -207,7 +207,7 @@ namespace MediTech.ViewModels
             {
                 if (SelectSession != null)
                 {
-                    MessageBoxResult result = QuestionDialog("คุณต้องการลบ Session นี้ใช้หรือไม่ ?");
+                    MessageBoxResult result = QuestionDialog("คุณต้องการลบ Session นี้ใช่หรือไม่ ?");
                     if (result == MessageBoxResult.Yes)
                     {
                         DataService.Radiology.DeleteSession(SelectSession.SessionDefinitionUID, AppUtil.Current.UserID);

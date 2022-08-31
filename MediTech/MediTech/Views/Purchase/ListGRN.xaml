@@ -70,7 +70,7 @@
                         </dxg:LookUpEdit.StyleSettings>
                     </dxg:LookUpEdit>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="เลข Invoince">
+                <dxlc:LayoutItem Label="เลข Invoice">
                     <dxe:TextEdit Text="{Binding InvoinceNo}"/>
                 </dxlc:LayoutItem>
 
@@ -87,7 +87,7 @@
                 <dx:SimpleButton Width="80" Command="{Binding SearchCommand}"
                                      Height="25" Content="ค้นหา"/>
                 <dx:SimpleButton Width="80" Command="{Binding ClearCommand}"
-                                     Height="25" Content="คื่นค่า"/>
+                                     Height="25" Content="คืนค่า"/>
             </dxlc:LayoutGroup>
             <dxlc:LayoutItem></dxlc:LayoutItem>
             <dxlc:LayoutGroup Orientation="Horizontal">

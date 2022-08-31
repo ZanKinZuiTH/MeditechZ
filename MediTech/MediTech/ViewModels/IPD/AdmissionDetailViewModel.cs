@@ -507,18 +507,18 @@ namespace MediTech.ViewModels
 
                 if (SelectWard == null)
                 {
-                    WarningDialog("กรุณาใส่ Ward");
+                    WarningDialog("กรุณาเลือก Ward");
                     return;
                 }
 
                 if (SelectedListBed == null)
                 {
-                    WarningDialog("กรุณาใส่ เตียง");
+                    WarningDialog("กรุณาเลือก เตียง");
                     return;
                 }
                 if (SelectDoctor == null )
                 {
-                    WarningDialog("กรุณา เลือกแพทย์หลัก");
+                    WarningDialog("กรุณาเลือก แพทย์หลัก");
                     return;
                 }
 

@@ -118,7 +118,7 @@ namespace MediTech.ViewModels
             {
                 if (SelectSpecimen != null)
                 {
-                    MessageBoxResult result = QuestionDialog("คุณต้องการลบข้อมูล ใช้หรื่อไม่ ?");
+                    MessageBoxResult result = QuestionDialog("คุณต้องการลบข้อมูล ใช่หรือไม่ ?");
                     if (result == MessageBoxResult.Yes)
                     {
                         DataService.MasterData.DeleteSpecimen(SelectSpecimen.SpecimenUID, AppUtil.Current.UserID);

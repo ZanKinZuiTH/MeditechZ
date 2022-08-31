@@ -593,7 +593,7 @@ namespace MediTech.ViewModels
 
         private void DeleteProgressNote(int progressNoteUID)
         {
-            MessageBoxResult result = QuestionDialog("คุณต้องการลบ Note ใช้หรื่อไม่ ?");
+            MessageBoxResult result = QuestionDialog("คุณต้องการลบ Note ใช้หรือไม่ ?");
             if (result == MessageBoxResult.Yes)
             {
                 DataService.PatientHistory.DeleteProgressNote(progressNoteUID, AppUtil.Current.UserID);
@@ -644,7 +644,7 @@ namespace MediTech.ViewModels
         }
         private void DeleteWellness(int wellNessDataUID)
         {
-            MessageBoxResult result = QuestionDialog("คุณต้องการลบข้อมูล Wellness ใช้หรื่อไม่ ?");
+            MessageBoxResult result = QuestionDialog("คุณต้องการลบข้อมูล Wellness ใช่หรือไม่ ?");
             if (result == MessageBoxResult.Yes)
             {
                 DataService.PatientHistory.DeleteWellnessData(wellNessDataUID, AppUtil.Current.UserID);

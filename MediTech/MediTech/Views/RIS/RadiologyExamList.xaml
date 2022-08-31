@@ -212,7 +212,7 @@
                                                            Visibility="{Binding VisibilityAutuRefersh}"/>
                                             <dxlc:LayoutGroup HorizontalAlignment="Right">
                                                 <dx:SimpleButton Command="{Binding SearchCommand}" Content="ค้นหา" Height="25" Width="80"/>
-                                                <dx:SimpleButton Command="{Binding ClearCommand}" Content="คื่นค่า" Height="25" Width="80"/>
+                                                <dx:SimpleButton Command="{Binding ClearCommand}" Content="คืนค่า" Height="25" Width="80"/>
                                             </dxlc:LayoutGroup>
 
                                         </dxlc:LayoutGroup>

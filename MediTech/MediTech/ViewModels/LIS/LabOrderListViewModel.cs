@@ -737,7 +737,7 @@ namespace MediTech.ViewModels
             {
                 if (SelectRequestDetailLabs != null && SelectRequestDetailLabs.Count > 0)
                 {
-                    MessageBoxResult messResult = QuestionDialog(string.Format("คุณต้องการยกเลิกผลของ {0} ใช้หรือไม่ ?", SelectRequestLab.PatientName));
+                    MessageBoxResult messResult = QuestionDialog(string.Format("คุณต้องการยกเลิกผลของ {0} ใช่หรือไม่ ?", SelectRequestLab.PatientName));
 
                     if (messResult == MessageBoxResult.Yes)
                     {

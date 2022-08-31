@@ -557,18 +557,18 @@ namespace MediTech.ViewModels
 
         public void SaveSuccessDialog()
         {
-            DXMessageBox.Show((this.View as FrameworkElement),"บันทึกข้อมูลเรียบร้อย", "Sucess", MessageBoxButton.OK, MessageBoxImage.Information);
+            DXMessageBox.Show((this.View as FrameworkElement),"บันทึกข้อมูลเรียบร้อย", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
         }
 
         public void DeleteSuccessDialog()
         {
-            DXMessageBox.Show((this.View as FrameworkElement), "ลบข้อมูลเรียบร้อย", "Sucess", MessageBoxButton.OK, MessageBoxImage.Information);
+            DXMessageBox.Show((this.View as FrameworkElement), "ลบข้อมูลเรียบร้อย", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         public void SaveSuccessDialog(string message)
         {
-            DXMessageBox.Show((this.View as FrameworkElement),message, "Sucess", MessageBoxButton.OK, MessageBoxImage.Information);
+            DXMessageBox.Show((this.View as FrameworkElement),message, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
 
@@ -587,7 +587,7 @@ namespace MediTech.ViewModels
 
         public MessageBoxResult DeleteDialog()
         {
-            return DXMessageBox.Show((this.View as FrameworkElement), "คุณต้องการลบรายที่เลือก ใช้หรือไม่ ?", "Question", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+            return DXMessageBox.Show((this.View as FrameworkElement), "คุณต้องการลบรายที่เลือก ใช่หรือไม่ ?", "Question", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
         }
         public MessageBoxResult QuestionDialog(string massage)
         {

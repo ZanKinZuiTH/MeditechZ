@@ -268,7 +268,7 @@ namespace MediTech.ViewModels
         {
             if (SelectInsranceCompany == null)
             {
-                WarningDialog("กรุณาเลือก Insrance Company");
+                WarningDialog("กรุณาเลือก Insurance Company");
                 return;
             }
                 ManageInsuranceCompany mangaINCO = new ManageInsuranceCompany();

@@ -106,7 +106,7 @@ namespace MediTech.ViewModels
         {
             if (SelectResultTemplate != null)
             {
-                MessageBoxResult result = QuestionDialog("ต้องการลบ Template " + SelectResultTemplate.Name + " ใช้หรือไม่ ?");
+                MessageBoxResult result = QuestionDialog("ต้องการลบ Template " + SelectResultTemplate.Name + " ใช่หรือไม่ ?");
                 if (result == MessageBoxResult.Yes)
                 {
                     DataService.Radiology.DeleteResultRadiologyTemplate(SelectResultTemplate.ResultRadiologyTemplateUID, AppUtil.Current.UserID);

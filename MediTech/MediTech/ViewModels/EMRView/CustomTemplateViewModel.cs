@@ -217,7 +217,7 @@ namespace MediTech.ViewModels
             {
                 if (SelectCCHPIMaster != null)
                 {
-                    MessageBoxResult result = QuestionDialog("คุณต้องการลบข้อมูลนี้ ใช้หรือไม่");
+                    MessageBoxResult result = QuestionDialog("คุณต้องการลบข้อมูลนี้ ใช่หรือไม่");
                     if (result == MessageBoxResult.Yes)
                     {
                         if (SelectType.Display == "CC" || SelectType.Display == "PI")

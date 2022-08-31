@@ -133,7 +133,7 @@ namespace MediTech.ViewModels
             {
                 if (SelectTestParameter != null)
                 {
-                    MessageBoxResult result = QuestionDialog("คุณต้องการลบข้อมูล ใช้หรื่อไม่ ?");
+                    MessageBoxResult result = QuestionDialog("คุณต้องการลบข้อมูล ใช่หรือไม่ ?");
                     if (result == MessageBoxResult.Yes)
                     {
                         DataService.MasterData.DeleteResultItem(SelectTestParameter.ResultItemUID, AppUtil.Current.UserID);

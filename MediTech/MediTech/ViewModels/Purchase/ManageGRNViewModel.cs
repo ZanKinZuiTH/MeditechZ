@@ -493,7 +493,7 @@ namespace MediTech.ViewModels
                 {
                     if (string.IsNullOrEmpty(InvoinceNo))
                     {
-                        WarningDialog("กรุณาระบุ InvoinceNo");
+                        WarningDialog("กรุณาระบุ InvoiceNo");
                         return;
                     }
                 }

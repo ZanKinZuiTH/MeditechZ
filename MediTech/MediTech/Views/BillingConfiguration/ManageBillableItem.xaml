@@ -254,7 +254,7 @@
                             <dx:SimpleButton Width="80" Command="{Binding DeleteCommand}"
                                      Height="25" Content="ลบ"/>
                             <dx:SimpleButton Width="80" Command="{Binding ClearCommand}"
-                                     Height="25" Content="คื่นค่า"/>
+                                     Height="25" Content="คืนค่า"/>
                         </dxlc:LayoutGroup>
                     </dxlc:LayoutItem>
 

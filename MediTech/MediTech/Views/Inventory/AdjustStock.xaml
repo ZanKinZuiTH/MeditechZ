@@ -71,7 +71,7 @@
                     <dx:SimpleButton Width="80" Command="{Binding SearchCommand}"
                                      Height="25" Content="ค้นหา"/>
                     <dx:SimpleButton Width="80" Command="{Binding ClearCommand}"
-                                     Height="25" Content="คื่นค่า"/>
+                                     Height="25" Content="คืนค่า"/>
                 </dxlc:LayoutGroup>
             </dxlc:LayoutItem>
             <dxlc:LayoutGroup Orientation="Horizontal">
@@ -146,7 +146,7 @@
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
             <dxlc:LayoutItem>
-                <TextBlock Text="ปรับสต็อก" FontWeight="Bold"/>
+                <TextBlock Text="ปรับสต๊อก" FontWeight="Bold"/>
             </dxlc:LayoutItem>
             <dxg:GridControl ItemsSource="{Binding AdjustStock}"
                              SelectedItem="{Binding SelectAdjustStock}">

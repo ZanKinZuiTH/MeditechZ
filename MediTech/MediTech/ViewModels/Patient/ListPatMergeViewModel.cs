@@ -219,7 +219,7 @@ namespace MediTech.ViewModels
             {
                 if (SelectPatientMerge != null && SelectPatientMerge.MergeType == "Patient Merge" && SelectPatientMerge.IsUnMerge != "UNMERGE")
                 {
-                    var diagResult = QuestionDialog("คุณต้องการยกเลิกการ Merge ของคนไข้คนนี้ ใช้หรือไม่ ?");
+                    var diagResult = QuestionDialog("คุณต้องการยกเลิกการ Merge ของคนไข้คนนี้ ใช่หรือไม่ ?");
                     if (diagResult == MessageBoxResult.Yes)
                     {
                         DataService.PatientIdentity.UnMergePatient(SelectPatientMerge.PatientMergeUID, AppUtil.Current.UserID);

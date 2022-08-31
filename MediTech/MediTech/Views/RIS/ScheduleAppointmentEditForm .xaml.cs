@@ -192,7 +192,7 @@ namespace MediTech.Views
             {
                 if (appointment.Id != null)
                 {
-                    DialogResult result = System.Windows.Forms.MessageBox.Show("คุณต้องการยกเลิกตารางนี้ ใช้หรือไม่", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult result = System.Windows.Forms.MessageBox.Show("คุณต้องการยกเลิกตารางนี้ ใช่หรือไม่", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
                         int scheduleRadiologistUID = Convert.ToInt32(appointment.Id);
