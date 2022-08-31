@@ -1064,7 +1064,7 @@ namespace MediTech.ViewModels
                             PatientOrderDetailModel newOrder = new PatientOrderDetailModel();
                             BillableItemModel billItem = DataService.MasterData.GetBillableItemByUID(itemDrug.BillableItemUID);
 
-                            List<PatientOrderAlertModel> listOrderAlert = DataService.OrderProcessing.CriteriaOrderAlert(SelectVisitMedical.PatientUID, billItem);
+                            List<PatientOrderAlertModel> listOrderAlert = DataService.OrderProcessing.CriteriaOrderAlert(SelectVisitMedical.PatientUID, SelectVisitMedical.PatientVisitUID, billItem);
                             if (listOrderAlert != null && listOrderAlert.Count > 0)
                             {
                                 OrderAlertViewModel viewModel = (OrderAlertViewModel)ShowModalDialogUsingViewModel(new OrderAlert(), new OrderAlertViewModel(listOrderAlert), true);

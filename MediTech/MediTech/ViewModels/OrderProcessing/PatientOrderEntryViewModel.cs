@@ -652,7 +652,7 @@ namespace MediTech.ViewModels
                                     continue;
                             }
 
-                            List<PatientOrderAlertModel> listOrderAlert = DataService.OrderProcessing.CriteriaOrderAlert(PatientVisit.PatientUID, billItem);
+                            List<PatientOrderAlertModel> listOrderAlert = DataService.OrderProcessing.CriteriaOrderAlert(PatientVisit.PatientUID, PatientVisit.PatientVisitUID, billItem);
                             if (listOrderAlert != null && listOrderAlert.Count > 0)
                             {
                                 WarningDialog("รายการ " + billItem.ItemName + " นี้มีแจ้งเตือนการคีย์");
@@ -834,7 +834,7 @@ namespace MediTech.ViewModels
 
                 if (billItem != null)
                 {
-                    var listOrderAlert = DataService.OrderProcessing.CriteriaOrderAlert(PatientVisit.PatientUID, billItem);
+                    var listOrderAlert = DataService.OrderProcessing.CriteriaOrderAlert(PatientVisit.PatientUID, PatientVisit.PatientVisitUID, billItem);
                     if (listOrderAlert != null && listOrderAlert.Count > 0)
                     {
                         OrderAlert viewOrderAlert = new OrderAlert();

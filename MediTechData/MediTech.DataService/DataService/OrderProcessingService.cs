@@ -52,9 +52,9 @@ namespace MediTech.DataService
             return flag;
         }
 
-        public List<PatientOrderAlertModel> CriteriaOrderAlert(long patientUID, BillableItemModel billItemModel)
+        public List<PatientOrderAlertModel> CriteriaOrderAlert(long patientUID,long patientVisitUID, BillableItemModel billItemModel)
         {
-            string requestApi = string.Format("Api/OrderProcessing/CriteriaOrderAlert?patientUID={0}", patientUID);
+            string requestApi = string.Format("Api/OrderProcessing/CriteriaOrderAlert?patientUID={0}&patientVisitUID={1}", patientUID,patientVisitUID);
             List<PatientOrderAlertModel> data = MeditechApiHelper.Post<BillableItemModel, List<PatientOrderAlertModel>>(requestApi, billItemModel);
             return data;
         }

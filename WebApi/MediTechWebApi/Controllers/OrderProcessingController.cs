@@ -353,7 +353,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("CriteriaOrderAlert")]
         [HttpPost]
-        public HttpResponseMessage CriteriaOrderAlert(long patientUID, BillableItemModel billItemModel)
+        public HttpResponseMessage CriteriaOrderAlert(long patientUID,long patientVisitUID, BillableItemModel billItemModel)
         {
             try
             {
@@ -386,7 +386,7 @@ namespace MediTechWebApi.Controllers
                     }
                 }
 
-                DataTable dtDupicate = SqlDirectStore.pGetOrderDuplicate(patientUID);
+                DataTable dtDupicate = SqlDirectStore.pCheckOrderDuplicate(patientUID, patientVisitUID, billItemModel.BillableItemUID);
                 if (dtDupicate != null && dtDupicate.Rows.Count > 0)
                 {
                     DataRow[] rowDuplicate = dtDupicate.Select("BillableItemUID = " + billItemModel.BillableItemUID);
@@ -402,7 +402,7 @@ namespace MediTechWebApi.Controllers
                             }
                             else
                             {
-                                orderAlert.AlertType = "OrderDuplicate";
+                                orderAlert.AlertType = "DuplicateOrder";
                             }
 
                             orderAlert.AlertMessage = rowDuplicate[i]["ItemName"].ToString() + " => " + Convert.ToDateTime(rowDuplicate[i]["StartDttm"]).ToString("dd/MM/yyyy HH:mm") + " => " + "รายการนี้มีการคีย์ซ้ำภายใน 24 ชั่วโมง";

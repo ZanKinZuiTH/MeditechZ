@@ -510,7 +510,7 @@ namespace MediTech.ViewModels
             base.OnLoaded();
             DateTime now = DateTime.Now;
 
-            (this.View as CreateVisit).banner.SetPatientBanner(Patient.PatientUID, 0);
+
             var LocationSource = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
             Locations = LocationSource.Where(p => p.IsRegistrationAllowed == "Y").ToList();
             List<LookupReferenceValueModel> dataLookupSource = DataService.Technical.GetReferenceValueList("VISTY,RQPRT,PAYRTP,ENTYP");
@@ -529,14 +529,22 @@ namespace MediTech.ViewModels
             StartDate = now.Date;
             StartTime = now;
 
-            LoadPatientVisitPayors();
+            if (Patient != null)
+            {
+                (this.View as CreateVisit).banner.SetPatientBanner(Patient.PatientUID, 0);
+                LoadPatientVisitPayors();
+            }
+            else
+            {
+                SelectedVisitType = VisitTypeSource.FirstOrDefault(p => p.Display == "Mobile X-ray");
+            }
 
             if (PatientVisitPayorList != null && PatientVisitPayorList.Count() > 0 && PayorTypes != null)
                 SelectedPayorType = (from p in PayorTypes where (!(from q in PatientVisitPayorList select q.PAYRTPUID).Contains(p.Key)) select p).FirstOrDefault();
             else
                 SelectedPayorType = PayorTypes.FirstOrDefault(p => p.ValueCode == "PRIMARY");
 
-            if (IsUpdateVisit == false)
+            if (IsUpdateVisit == false && !IsMassRegister)
             {
                 #region CheckVisitDuplicate
 
@@ -680,7 +688,7 @@ namespace MediTech.ViewModels
             }
 
             PatientVisitPayorModel newPatientVisitPayor = new PatientVisitPayorModel();
-            newPatientVisitPayor.PatientUID = Patient.PatientUID;
+            newPatientVisitPayor.PatientUID = Patient != null ? Patient.PatientUID : 0;
             newPatientVisitPayor.PAYRTPUID = SelectedPayorType.Key;
             newPatientVisitPayor.PayorType = SelectedPayorType.Display;
             newPatientVisitPayor.InsuranceCompanyUID = SelectInsuranceCompany.InsuranceCompanyUID;
@@ -830,7 +838,7 @@ namespace MediTech.ViewModels
 
             PatientVisitModel visitInfo = new PatientVisitModel();
             visitInfo.StartDttm = DateTime.Parse(StartDate.ToString("dd/MM/yyyy") + " " + StartTime.ToString("HH:mm"));
-            visitInfo.PatientUID = Patient.PatientUID;
+            visitInfo.PatientUID = Patient != null ? Patient.PatientUID : 0;
             visitInfo.VISTYUID = SelectedVisitType.Key;
             switch (SelectedVisitType.ValueCode)
             {
