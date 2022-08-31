@@ -189,11 +189,11 @@ namespace MediTech.ViewModels
         {
             try
             {
-                if(SelectCareprovider == null)
-                {
-                    WarningDialog("กรุณาเลือกนักเทคนิคห้องปฏิบัติการ");
-                    return;
-                }
+                //if(SelectCareprovider == null)
+                //{
+                //    WarningDialog("กรุณาเลือกนักเทคนิคห้องปฏิบัติการ");
+                //    return;
+                //}
 
                 List<RequestDetailItemModel> reviewRequestDetails = new List<RequestDetailItemModel>();
                 reviewRequestDetails = RequestDetailLabs.Where(p => p.ResultComponents.Count(f => !string.IsNullOrEmpty(f.ResultValue)) > 0).ToList();
@@ -207,8 +207,8 @@ namespace MediTech.ViewModels
                     }
                 }
 
-
-                DataService.Lab.ReviewLabResult(reviewRequestDetails, SelectCareprovider.CareproviderUID, AppUtil.Current.UserID);
+                int careproviderUID = SelectCareprovider != null ? SelectCareprovider.CareproviderUID : 0;
+                DataService.Lab.ReviewLabResult(reviewRequestDetails, careproviderUID, AppUtil.Current.UserID);
                 SaveSuccessDialog();
                 CloseViewDialog(ActionDialog.Save);
             }

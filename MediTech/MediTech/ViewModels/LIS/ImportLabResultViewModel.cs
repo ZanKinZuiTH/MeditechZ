@@ -628,11 +628,11 @@ namespace MediTech.ViewModels
             string hn = string.Empty;
             try
             {
-                if (SelectCareprovider == null)
-                {
-                    WarningDialog("กรุณาเลือกนักเทคนิคห้องปฏิบัติการ");
-                    return;
-                }
+                //if (SelectCareprovider == null)
+                //{
+                //    WarningDialog("กรุณาเลือกนักเทคนิคห้องปฏิบัติการ");
+                //    return;
+                //}
 
                 ImportLabResult view = (ImportLabResult)this.View;
                 if (view.gcTestParameter.ItemsSource == null)
@@ -644,6 +644,7 @@ namespace MediTech.ViewModels
                 view.SetProgressBarLimits(0, upperlimit);
                 int pgBarCounter = 0;
                 var resultItemRange = DataService.Lab.GetResultItemRangeByRequestItemUID(SelectedRequestItem.RequestItemUID);
+                int careproviderUID = SelectCareprovider != null ? SelectCareprovider.CareproviderUID : 0;
                 foreach (DataRowView rowView in ResultlabDataView)
                 {
                     if (rowView.Row["PatientName"].ToString() != "ไม่พบข้อมูล")
@@ -654,7 +655,8 @@ namespace MediTech.ViewModels
                         {
                             List<RequestDetailItemModel> sendLabResult = new List<RequestDetailItemModel>();
                             sendLabResult.Add(labResult);
-                            DataService.Lab.ReviewLabResult(sendLabResult, SelectCareprovider.CareproviderUID, AppUtil.Current.UserID);
+
+                            DataService.Lab.ReviewLabResult(sendLabResult, careproviderUID, AppUtil.Current.UserID);
                         }
 
                         pgBarCounter = pgBarCounter + 1;

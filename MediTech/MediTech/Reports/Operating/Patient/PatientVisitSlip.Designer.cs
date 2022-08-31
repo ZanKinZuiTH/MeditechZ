@@ -118,9 +118,9 @@ namespace MediTech.Reports.Operating.Patient
             // 
             // xrLine2
             // 
-            this.xrLine2.LocationFloat = new DevExpress.Utils.PointFloat(0.6410256F, 9.929872F);
+            this.xrLine2.LocationFloat = new DevExpress.Utils.PointFloat(0.6410217F, 9.92986F);
             this.xrLine2.Name = "xrLine2";
-            this.xrLine2.SizeF = new System.Drawing.SizeF(784.1667F, 2F);
+            this.xrLine2.SizeF = new System.Drawing.SizeF(749.1667F, 5.333333F);
             // 
             // xrLabel26
             // 
@@ -493,9 +493,9 @@ namespace MediTech.Reports.Operating.Patient
             // 
             // xrLine1
             // 
-            this.xrLine1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 62.49999F);
+            this.xrLine1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 62.5F);
             this.xrLine1.Name = "xrLine1";
-            this.xrLine1.SizeF = new System.Drawing.SizeF(784.1667F, 2F);
+            this.xrLine1.SizeF = new System.Drawing.SizeF(748.3333F, 2.000023F);
             // 
             // xrCheckBox1
             // 
