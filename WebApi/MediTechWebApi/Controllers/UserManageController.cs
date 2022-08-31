@@ -814,7 +814,9 @@ namespace MediTechWebApi.Controllers
         {
             DateTime dateNow = DateTime.Now.Date;
             List<CareproviderOrganisationModel> data = (from j in db.CareproviderOrganisation
+                                                        join i in db.HealthOrganisation on j.HealthOrganisationUID equals i.UID
                                                         where j.StatusFlag == "A"
+                                                        && i.StatusFlag == "A"
                                                         && j.CareproviderUID == careproviderUID
                                                         select new CareproviderOrganisationModel
                                                         {

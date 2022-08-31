@@ -2241,6 +2241,8 @@ namespace MediTechWebApi.Controllers
                 data.CompanyName = insuranceCompany.CompanyName;
                 data.Code = insuranceCompany.Code;
                 data.CMPTPUID = insuranceCompany.CMPTPUID;
+                data.ActiveFrom = insuranceCompany.ActiveFrom;
+                data.ActiveTo = insuranceCompany.ActiveTo;
             }
 
             return data;

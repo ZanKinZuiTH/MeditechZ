@@ -193,7 +193,7 @@ namespace MediTech.ViewModels
             ActiveFrom = model.ActiveFrom;
             ActiveTo = model.ActiveTo;
             SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == model.OwnerOrganisationUID);
-            SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == model.LocationUID);
+            SelectLocation = Locations != null ? Locations.FirstOrDefault(p => p.LocationUID == model.LocationUID) : null;
         }
 
         void AssingPropertiesToModel()
