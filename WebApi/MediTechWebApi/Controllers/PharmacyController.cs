@@ -625,7 +625,9 @@ namespace MediTechWebApi.Controllers
                                                 LocationName = SqlFunction.fGetLocationName(pv.LocationUID ?? 0),
                                                 OrganisationName = SqlFunction.fGetHealthOrganisationName(ps.OwnerOrganisationUID ?? 0),
                                                 OwnerOrganisationUID = ps.OwnerOrganisationUID,
-                                                VisitID = pv.VisitID
+                                                VisitID = pv.VisitID,
+                                                VISTSUID = pv.VISTSUID ?? 0,
+                                                VisitStatus = SqlFunction.fGetRfValDescription(pv.VISTSUID ?? 0),
                                             }).ToList();
 
 
