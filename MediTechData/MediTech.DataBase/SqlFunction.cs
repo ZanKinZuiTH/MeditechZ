@@ -1330,12 +1330,15 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pGetOrderDuplicate(long patientUID)
+        public static DataTable pCheckOrderDuplicate(long patientUID,long patientVisitUID,int billableitemUID)
         {
             MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pGetOrderDuplicate", entities.Database.Connection.ConnectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("pCheckOrderDuplicate", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 5000;
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientVisitUID", patientVisitUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_BillableItemUID", billableitemUID);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];

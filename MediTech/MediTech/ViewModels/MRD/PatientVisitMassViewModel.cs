@@ -673,7 +673,7 @@ namespace MediTech.ViewModels
                                 foreach (var patientOrder in PatientOrders)
                                 {
                                     BillableItemModel billItem = DataService.MasterData.GetBillableItemByUID(patientOrder.BillableItemUID);
-                                    var listOrderAlert = DataService.OrderProcessing.CriteriaOrderAlert(patientVisit.PatientUID, billItem);
+                                    var listOrderAlert = DataService.OrderProcessing.CriteriaOrderAlert(patientVisit.PatientUID, patientVisit.PatientVisitUID, billItem);
                                     if (listOrderAlert != null && listOrderAlert.Count > 0)
                                     {
                                         WarningDialog("ผู้ป่วย " + patientVisit.PatientName + " รายการ " + billItem.ItemName + " นี้มีแจ้งเตือนการคีย์");

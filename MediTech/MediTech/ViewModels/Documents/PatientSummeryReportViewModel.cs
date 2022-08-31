@@ -107,6 +107,11 @@ namespace MediTech.ViewModels
         {
 
             string healthOrganisationList = "";
+            if (SelectOrganisations == null || SelectOrganisations.Count == 0)
+            {
+                WarningDialog("กรุณาเลือกสถานประกอบการ");
+                return;
+            }
             if (SelectOrganisations != null)
             {
                 foreach (object item in SelectOrganisations)

@@ -16,6 +16,9 @@ namespace MediTech.ViewModels
 {
     public class PrescriptionViewModel : MediTechViewModelBase
     {
+        int FINDIS = 421;
+        int BLINP = 423;
+        int CANCEL = 410;
 
         #region Properties
         public ReportsModel ReportTemplate { get; set; }
@@ -73,7 +76,7 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _SelectPrescription, value);
-                if(_SelectPrescription != null)
+                if (_SelectPrescription != null)
                 {
                     IsEnableCancelDispense = false;
                     IsEnableEditDispense = false;
@@ -273,7 +276,7 @@ namespace MediTech.ViewModels
 
         public PrescriptionViewModel()
         {
-            
+
             var refValues = DataService.Technical.GetReferenceValueMany("ORDST");
             PrescritionStatus = refValues.Where(p => p.ValueCode == "RAISED" || p.ValueCode == "DISPE" || p.ValueCode == "CANCLD"
             || p.ValueCode == "DISPCANCL" || p.ValueCode == "OPDISP"
@@ -316,7 +319,7 @@ namespace MediTech.ViewModels
             }
 
             Prescriptons = DataService.Pharmacy.Searchprescription(DateFrom, DateTo, statusList, patientUID, PrescriptionNumber, AppUtil.Current.OwnerOrganisationUID);
-           
+
         }
 
         private void PrintSticker()
@@ -411,16 +414,25 @@ namespace MediTech.ViewModels
 
         public void CancelDispense()
         {
-            if (SelectPrescription != null && SelectPrescription.IsBilled == "N")
+
+            if (SelectPrescription.PrescriptionStatus == "Dispensed" || SelectPrescription.PrescriptionStatus == "Partially Dispensed")
             {
-                if (SelectPrescription.PrescriptionStatus == "Dispensed" || SelectPrescription.PrescriptionStatus == "Partially Dispensed")
+                var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPrescription.PatientVisitUID);
+                if (patientVisit.VISTSUID == BLINP)
                 {
-                    var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPrescription.PatientVisitUID);
-                    CancelDispense cancelDispense = new CancelDispense();
-                    (cancelDispense.DataContext as CancelDispenseViewModel).AssignModel(SelectPrescription.PrescriptionItems, patientVisit);
-                    ChangeViewPermission(cancelDispense);
+                    WarningDialog("ผู้ป่วยอยู่ในสถานะ Billing in Progress ไม่สามารถทำการยกเลิกได้");
+                    return;
                 }
+                if (patientVisit.VISTSUID == FINDIS)
+                {
+                    WarningDialog("ผู้ป่วยอยู่ในสถานะ Financial Discharge ไม่สามารถทำการยกเลิกได้");
+                    return;
+                }
+                CancelDispense cancelDispense = new CancelDispense();
+                (cancelDispense.DataContext as CancelDispenseViewModel).AssignModel(SelectPrescription.PrescriptionItems, patientVisit);
+                ChangeViewPermission(cancelDispense);
             }
+
         }
 
         public void EditDispense()
@@ -477,7 +489,7 @@ namespace MediTech.ViewModels
                 {
                     var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPrescription.PatientVisitUID);
                     DispenseDrug dispense = new DispenseDrug();
-                    (dispense.DataContext as DispenseDrugViewModel).AssingModel(SelectPrescription,patientVisit);
+                    (dispense.DataContext as DispenseDrugViewModel).AssingModel(SelectPrescription, patientVisit);
                     ChangeViewPermission(dispense);
                 }
             }

@@ -1513,6 +1513,7 @@
     <Compile Include="ViewModels\BillingConfiguration\ManagePayorAgreementViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManagePayorDetailViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManagePolicyMasterViewModel.cs" />
+    <Compile Include="ViewModels\BillingConfiguration\SearchItemViewModel.cs" />
     <Compile Include="ViewModels\Billing\AllocateBillPopupViewModel.cs" />
     <Compile Include="ViewModels\Billing\BillingPaymentModePopUpViewModel.cs" />
     <Compile Include="ViewModels\Billing\BillSettlementIPViewModel.cs" />
@@ -1754,6 +1755,9 @@
     </Compile>
     <Compile Include="Views\BillingConfiguration\ManagePolicyMaster.xaml.cs">
       <DependentUpon>ManagePolicyMaster.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BillingConfiguration\SearchItem.xaml.cs">
+      <DependentUpon>SearchItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Billing\AllocateBillPopup.xaml.cs">
       <DependentUpon>AllocateBillPopup.xaml</DependentUpon>
@@ -2473,6 +2477,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\BillingConfiguration\ManagePolicyMaster.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\BillingConfiguration\SearchItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

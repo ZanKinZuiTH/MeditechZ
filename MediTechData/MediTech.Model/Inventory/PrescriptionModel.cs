@@ -17,6 +17,8 @@ namespace MediTech.Model
         public string PrescriptionStatus { get; set; }
         public string PatientID { get; set; }
         public string VisitID { get; set; }
+        public int VISTSUID { get; set; }
+        public string VisitStatus { get; set; }
         public string PatientName { get; set; }
         public string EncounterType { get; set; }
         public string LocationName { get; set; }
