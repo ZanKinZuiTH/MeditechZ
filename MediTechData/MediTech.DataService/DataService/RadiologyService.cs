@@ -83,10 +83,10 @@ namespace MediTech.DataService
             return listData;
         }
 
-        public List<PatientResultRadiology> SearchResultRadiologyForTranslate(DateTime? dateFrom, DateTime? dateTo, long? patientUID, string itemName, int? RABSTSUID, int? insuranceCompany)
+        public List<PatientResultRadiology> SearchResultRadiologyForTranslate(DateTime? dateFrom, DateTime? dateTo, long? patientUID, string itemName, int? RABSTSUID, int? insuranceCompanyUID)
         {
-            string requestApi = string.Format("Api/Radiology/SearchResultRadiologyForTranslate?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&patientUID={2}&itemName={3}&RABSTSUID={4}&insuranceCompany={5}",
-                dateFrom, dateTo, patientUID, itemName, RABSTSUID, insuranceCompany);
+            string requestApi = string.Format("Api/Radiology/SearchResultRadiologyForTranslate?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&patientUID={2}&itemName={3}&RABSTSUID={4}&insuranceCompanyUID={5}",
+                dateFrom, dateTo, patientUID, itemName, RABSTSUID, insuranceCompanyUID);
             List<PatientResultRadiology> listData = MeditechApiHelper.Get<List<PatientResultRadiology>>(requestApi);
             return listData;
 

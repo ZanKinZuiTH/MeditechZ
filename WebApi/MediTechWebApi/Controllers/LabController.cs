@@ -249,7 +249,8 @@ namespace MediTechWebApi.Controllers
                                                      PatientID = SqlFunction.fGetPatientID(re.PatientUID),
                                                      OrderStatus = SqlFunction.fGetRfValDescription(re.ORDSTUID ?? 0),
                                                      PatientUID = re.PatientUID,
-                                                     PatientVisitUID = re.PatientVisitUID
+                                                     PatientVisitUID = re.PatientVisitUID,
+                                                     OwnerOrganisationUID = re.OwnerOrganisationUID ?? 0,
                                                  }).ToList();
 
             if (dataRequest != null)
@@ -334,7 +335,8 @@ namespace MediTechWebApi.Controllers
                                                      PatientID = SqlFunction.fGetPatientID(re.PatientUID),
                                                      OrderStatus = SqlFunction.fGetRfValDescription(re.ORDSTUID ?? 0),
                                                      PatientUID = re.PatientUID,
-                                                     PatientVisitUID = re.PatientVisitUID
+                                                     PatientVisitUID = re.PatientVisitUID,
+                                                     OwnerOrganisationUID = pv.OwnerOrganisationUID ?? 0,
                                                  }).ToList();
 
             if (dataRequest != null)

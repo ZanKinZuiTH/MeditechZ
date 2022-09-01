@@ -697,7 +697,7 @@ namespace MediTech.ViewModels
                                     bool CanDispense = false;
                                     foreach (var store in stores)
                                     {
-                                        if (item.Quantity > store.Quantity)
+                                        if (store.Quantity >= item.Quantity)
                                         {
                                             CanDispense = true;
                                         }

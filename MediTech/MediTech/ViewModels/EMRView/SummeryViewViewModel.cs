@@ -1158,6 +1158,7 @@ namespace MediTech.ViewModels
 
             var resultLab = LabResultDetails.FirstOrDefault(p => p.LabNumber == labNumber);
 
+            rpt.Parameters["OrganisationUID"].Value = resultLab.OwnerOrganisationUID;
             rpt.Parameters["PatientVisitUID"].Value = resultLab.PatientVisitUID;
             rpt.Parameters["RequestNumber"].Value = resultLab.LabNumber;
             rpt.RequestParameters = false;
