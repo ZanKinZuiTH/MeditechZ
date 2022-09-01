@@ -557,7 +557,7 @@ namespace MediTech.ViewModels
             if (SelectPayorDetail != null)
             {
                 Address = SelectPayorDetail.Address1;
-                TaxNumber = SelectPayorDetail.TINNo;
+                TaxNumber = SelectPayorDetail.GovernmentNo;
             }
         }
 

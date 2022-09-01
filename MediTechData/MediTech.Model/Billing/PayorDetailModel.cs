@@ -13,7 +13,6 @@ namespace MediTech.Model
         public string PayorName { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }
-        public string TINNo { get; set; }
         public Nullable<int> DistrictUID { get; set; }
         public Nullable<int> AmphurUID { get; set; }
         public Nullable<int> ProvinceUID { get; set; }

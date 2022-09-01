@@ -12,6 +12,7 @@ using MediTech.Helpers;
 using MediTech.Reports.Operating.Radiology;
 using System.Windows.Input;
 using System.Windows;
+using DevExpress.Xpf.Core;
 
 namespace MediTech.ViewModels
 {
@@ -393,7 +394,7 @@ namespace MediTech.ViewModels
         {
             get
             {
-                    return _IsCheckedAutoRefersh;
+                return _IsCheckedAutoRefersh;
             }
             set
             {
@@ -1060,19 +1061,89 @@ namespace MediTech.ViewModels
             SelectPriority = null;
         }
 
-        private void ViewPACS()
+        internal void ViewPACS()
         {
-            if (SelectRequestExam != null)
+            string modlity;
+            if (SelectRequestExam.Modality == "MG")
+            {
+                modlity = "'MG','US'";
+            }
+            else if (SelectRequestExam.Modality == "DX")
+            {
+                modlity = "'DX','CR'";
+            }
+            else
+            {
+                modlity = "'" + SelectRequestExam.Modality + "'";
+            }
+
+            DateTime? dateFrom = SelectRequestExam.PreparedDttm != null ? SelectRequestExam.PreparedDttm : SelectRequestExam.RequestedDttm;
+            DateTime? dateTo = SelectRequestExam.PreparedDttm != null ? SelectRequestExam.PreparedDttm : SelectRequestExam.RequestedDttm;
+
+            var StudiesList = DataService.PACS.SearchPACSWorkList(dateFrom, dateTo,
+                modlity, null, SelectRequestExam.PatientID, null, null, null, null, null);
+
+            if (StudiesList != null && StudiesList.Count == 1)
+            {
+                string url = PACSHelper.GetPACSViewerStudyUrl(StudiesList.FirstOrDefault().StudyInstanceUID);
+                PACSHelper.OpenPACSViewer(url);
+            }
+            else if (StudiesList != null && StudiesList.Count > 1)
             {
                 PACSWorkList pacs = new PACSWorkList();
                 PACSWorkListViewModel pacsViewModel = (pacs.DataContext as PACSWorkListViewModel);
                 pacsViewModel.PatientID = SelectRequestExam.PatientID;
+                pacsViewModel.DateFrom = dateFrom;
+                pacsViewModel.DateTo = dateTo;
                 pacsViewModel.IsCheckedPeriod = true;
-                pacsViewModel.DateFrom = null;
-                pacsViewModel.DateTo = SelectRequestExam.PreparedDttm != null ? SelectRequestExam.PreparedDttm : SelectRequestExam.RequestedDttm;
-                pacsViewModel.IsOpenFromExam = true;
                 pacsViewModel.Modality = SelectRequestExam.Modality;
-                LaunchViewDialog(pacs, "PACS", false, true);
+                pacsViewModel.StudiesList = StudiesList;
+                DXWindow owner = (DXWindow)(this.View as RadiologyExamList).Parent;
+                LaunchViewShow(pacs, owner, "PACS", false, true);
+            }
+            else
+            {
+
+                dateFrom = dateTo?.AddDays(-15);
+
+                StudiesList = DataService.PACS.SearchPACSWorkList(dateFrom, dateTo,
+                    modlity, null, SelectRequestExam.PatientID, null, null, null, null, null);
+                if (StudiesList != null && StudiesList.Count == 1)
+                {
+                    string url = PACSHelper.GetPACSViewerStudyUrl(StudiesList.FirstOrDefault().StudyInstanceUID);
+                    PACSHelper.OpenPACSViewer(url);
+                }
+                else if (StudiesList != null && StudiesList.Count > 1)
+                {
+                    PACSWorkList pacs = new PACSWorkList();
+                    PACSWorkListViewModel pacsViewModel = (pacs.DataContext as PACSWorkListViewModel);
+                    pacsViewModel.PatientID = SelectRequestExam.PatientID;
+                    pacsViewModel.DateFrom = dateFrom;
+                    pacsViewModel.DateTo = dateTo;
+                    pacsViewModel.IsCheckedPeriod = true;
+                    pacsViewModel.Modality = SelectRequestExam.Modality;
+                    pacsViewModel.StudiesList = StudiesList;
+                    DXWindow owner = (DXWindow)(this.View as RadiologyExamList).Parent;
+                    LaunchViewShow(pacs, owner, "PACS", false, true);
+                }
+                else
+                {
+                    dateFrom = null;
+                    dateTo = null;
+                    StudiesList = DataService.PACS.SearchPACSWorkList(dateFrom, dateTo,
+                        modlity, null, SelectRequestExam.PatientID, null, null, null, null, null);
+
+                    PACSWorkList pacs = new PACSWorkList();
+                    PACSWorkListViewModel pacsViewModel = (pacs.DataContext as PACSWorkListViewModel);
+                    pacsViewModel.PatientID = SelectRequestExam.PatientID;
+                    pacsViewModel.DateFrom = dateFrom;
+                    pacsViewModel.DateTo = dateTo;
+                    pacsViewModel.IsCheckedPeriod = true;
+                    pacsViewModel.Modality = SelectRequestExam.Modality;
+                    pacsViewModel.StudiesList = StudiesList;
+                    DXWindow owner = (DXWindow)(this.View as RadiologyExamList).Parent;
+                    LaunchViewShow(pacs, owner, "PACS", false, true);
+                }
             }
         }
 
@@ -1128,7 +1199,7 @@ namespace MediTech.ViewModels
 
                                 List<string> listNoMapResult = new List<string>();
                                 ResultRadiologyModel result = DataService.Radiology.GetResultRadiologyByResultUID(item.ResultUID);
-                                string thairesult = TranslateResult.TranslateResultXray(result.PlainText, item.ResultStatus,item.RequestItemName, " ", dtResultMapping, ref listNoMapResult);
+                                string thairesult = TranslateResult.TranslateResultXray(result.PlainText, item.ResultStatus, item.RequestItemName, " ", dtResultMapping, ref listNoMapResult);
 
                                 rpt.Parameters["ResultUID"].Value = item.ResultUID;
                                 rpt.Parameters["ResultThai"].Value = thairesult;
@@ -1186,7 +1257,7 @@ namespace MediTech.ViewModels
                             List<string> listNoMapResult = new List<string>();
                             ResultRadiologyModel result = DataService.Radiology.GetResultRadiologyByResultUID(SelectRequestExam.ResultUID);
                             string thairesult = TranslateResult.TranslateResultXray(result.PlainText
-                                , SelectRequestExam.ResultStatus,SelectRequestExam.RequestItemName, " ", dtResultMapping, ref listNoMapResult);
+                                , SelectRequestExam.ResultStatus, SelectRequestExam.RequestItemName, " ", dtResultMapping, ref listNoMapResult);
 
                             rpt.Parameters["ResultUID"].Value = SelectRequestExam.ResultUID;
                             rpt.Parameters["ResultThai"].Value = thairesult;

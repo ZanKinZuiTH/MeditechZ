@@ -906,7 +906,7 @@ namespace MediTechWebApi.Controllers
                             {
                                 if (subAccountItem.AllocatedPatBillableItems != null && subAccountItem.AllocatedPatBillableItems.Count > 0)
                                 {
-                                    if(subAccountItem.IsPackage == "N")
+                                    if (subAccountItem.IsPackage == "N")
                                     {
                                         foreach (var patientbillableItemDetail in subAccountItem.AllocatedPatBillableItems)
                                         {
@@ -926,7 +926,7 @@ namespace MediTechWebApi.Controllers
                                             patientBilledItem.ItemName = patientbillableItemDetail.ItemName;
                                             patientBilledItem.CareproviderUID = patientbillableItemDetail.CareProviderUID;
                                             patientBilledItem.StatusFlag = "A";
-                                            patientBilledItem.PackageItemAmount = patientbillableItemDetail.AdjPackItemAmount;   
+                                            patientBilledItem.PackageItemAmount = patientbillableItemDetail.AdjPackItemAmount;
                                             if (patientBillableItem != null)
                                             {
                                                 patientBilledItem.BillingGroupUID = patientBillableItem.GroupUID;
@@ -1227,7 +1227,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchPatientBill")]
         [HttpGet]
-        public List<PatientBillModel> SearchPatientBill(DateTime? dateFrom, DateTime? dateTo, long? patientUID, string billNumber,string isIP, int? owerOrganisationUID)
+        public List<PatientBillModel> SearchPatientBill(DateTime? dateFrom, DateTime? dateTo, long? patientUID, string billNumber, string isIP, int? owerOrganisationUID)
         {
             List<PatientBillModel> data = new List<PatientBillModel>();
             DataTable dt = SqlDirectStore.pSearchPatientBill(dateFrom, dateTo, patientUID, billNumber, isIP, owerOrganisationUID);
@@ -1700,7 +1700,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("CheckPatientBillStatus")]
         [HttpGet]
-        public string CheckPatientBillStatus(long patientUID,long patientVisitUID)
+        public string CheckPatientBillStatus(long patientUID, long patientVisitUID)
         {
             string isBillComplete = SqlDirectStore.pCheckPatientBillStatus(patientUID, patientVisitUID);
             return isBillComplete;
@@ -1737,7 +1737,7 @@ namespace MediTechWebApi.Controllers
                     BankName = p.BankName,
                     PaymentMode = SqlFunction.fGetRfValDescription(p.PAYMDUID),
                     PAYMDUID = p.PAYMDUID,
-                    BLCATUID = p.BLCATUID     
+                    BLCATUID = p.BLCATUID
                 }).ToList();
 
             return paymentDetails;
@@ -2595,6 +2595,7 @@ namespace MediTechWebApi.Controllers
                     payorDetail.InsuranceCompanyUID = payorDetailModel.InsuranceCompanyUID;
                     payorDetail.Code = payorDetailModel.Code;
                     payorDetail.PayorName = payorDetailModel.PayorName;
+                    payorDetail.GovernmentNo = payorDetailModel.GovernmentNo;
                     payorDetail.Address1 = payorDetailModel.Address1;
                     payorDetail.Address2 = payorDetailModel.Address2;
                     payorDetail.DistrictUID = payorDetailModel.DistrictUID;
@@ -2865,6 +2866,7 @@ namespace MediTechWebApi.Controllers
                     PayorDetailUID = p.UID,
                     Code = p.Code,
                     PayorName = p.PayorName,
+                    GovernmentNo = p.GovernmentNo,
                     Address1 = p.Address1,
                     Address2 = p.Address2,
                     DistrictUID = p.DistrictUID,
@@ -3001,6 +3003,9 @@ namespace MediTechWebApi.Controllers
                     PayorName = p.PayorName,
                     AmphurUID = p.AmphurUID,
                     AddressFull = SqlFunction.fGetAddressPayorDetail(p.UID),
+                    GovernmentNo = p.GovernmentNo,
+                    Address1 = p.Address1,
+                    Address2 = p.Address2,
                     ProvinceUID = p.AmphurUID,
                     ContactPersonName = p.ContactPersonName,
                     PYRACATUID = p.PYRACATUID,
@@ -3030,6 +3035,9 @@ namespace MediTechWebApi.Controllers
                 PayorName = p.PayorName,
                 AmphurUID = p.AmphurUID,
                 AddressFull = SqlFunction.fGetAddressPayorDetail(p.UID),
+                GovernmentNo = p.GovernmentNo,
+                Address1 = p.Address1,
+                Address2 = p.Address2,
                 ProvinceUID = p.AmphurUID,
                 ContactPersonName = p.ContactPersonName,
                 PYRACATUID = p.PYRACATUID,
@@ -3066,6 +3074,9 @@ namespace MediTechWebApi.Controllers
                 data.PhoneNumber = PayorDetail.PhoneNumber;
                 data.MobileNumber = PayorDetail.MobileNumber;
                 data.FaxNumber = PayorDetail.FaxNumber;
+                data.GovernmentNo = PayorDetail.GovernmentNo;
+                data.Address1 = PayorDetail.Address1;
+                data.Address2 = PayorDetail.Address2;
                 data.PYRACATUID = PayorDetail.PYRACATUID;
                 data.ActiveFrom = PayorDetail.ActiveFrom;
                 data.ActiveTo = PayorDetail.ActiveTo;
@@ -3091,6 +3102,9 @@ namespace MediTechWebApi.Controllers
                 data.PayorDetailUID = PayorDetail.UID;
                 data.Code = PayorDetail.Code;
                 data.PayorName = PayorDetail.PayorName;
+                data.GovernmentNo = PayorDetail.GovernmentNo;
+                data.Address1 = PayorDetail.Address1;
+                data.Address2 = PayorDetail.Address2;
                 data.ProvinceUID = PayorDetail.ProvinceUID;
                 data.AmphurUID = PayorDetail.AmphurUID;
                 data.ContactPersonName = PayorDetail.ContactPersonName;

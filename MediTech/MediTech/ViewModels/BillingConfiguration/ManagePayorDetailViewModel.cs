@@ -794,7 +794,7 @@ namespace MediTech.ViewModels
             payorDetailModel.ContactPersonName = ContactPersonName;
             payorDetailModel.Address1 = Address1;
             payorDetailModel.Address2 = Address2;
-            payorDetailModel.TINNo = TINNo;
+            payorDetailModel.GovernmentNo = TINNo;
             payorDetailModel.ActiveFrom = ActiveFrom;
             payorDetailModel.ActiveTo = ActiveTo;
             payorDetailModel.CRDTRMUID = SelectPayorCredit != null ? SelectPayorCredit.Key : (int?)null;
@@ -831,7 +831,7 @@ namespace MediTech.ViewModels
             ContactPersonName = model.ContactPersonName;
             Address1 = model.Address1;
             Address2 = model.Address2;
-            TINNo = model.TINNo;
+            TINNo = model.GovernmentNo;
             ActiveFrom = model.ActiveFrom;
             ActiveTo = model.ActiveTo;
             SelectPayorCredit = CreditTerm.FirstOrDefault(p => p.Key == model.CRDTRMUID);
