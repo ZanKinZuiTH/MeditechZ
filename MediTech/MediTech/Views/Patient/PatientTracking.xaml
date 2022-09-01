@@ -24,7 +24,11 @@
                     <dxg:GridControl.Columns>
                         <dxg:GridColumn Header="Status" FieldName="VisitStatus" ReadOnly="True" Width="150"/>
                         <dxg:GridColumn Header="UserName" FieldName="UserName" ReadOnly="True" Width="150"/>
-                        <dxg:GridColumn Header="StartTime" FieldName="EventStartDttm" ReadOnly="True"/>
+                        <dxg:GridColumn Header="StartTime" FieldName="EventStartDttm" ReadOnly="True">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy HH:mm"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
                         <dxg:GridColumn Header="Location" FieldName="Location" ReadOnly="True" Width="180"/>
                     </dxg:GridControl.Columns>
                     <dxg:GridControl.View>

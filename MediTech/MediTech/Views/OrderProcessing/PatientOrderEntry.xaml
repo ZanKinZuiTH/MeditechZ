@@ -34,11 +34,11 @@
             <dx:DXTabControl SelectedIndex="{Binding SelectTabIndex}">
                 <dx:DXTabItem Header="เพิ่ม Order">
                     <dxlc:LayoutControl>
-                    <dxlc:LayoutGroup Orientation="Vertical">
-                        <dxlc:LayoutGroup>
-                            <dxlc:LayoutItem Label="ค้นหา Item :" >
-                                <dxlc:LayoutGroup>
-                                    <cc:AutoCompleteTextBox x:Name="txtOrder"   Text="{Binding SearchOrderCriteria,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                        <dxlc:LayoutGroup Orientation="Vertical">
+                            <dxlc:LayoutGroup>
+                                <dxlc:LayoutItem Label="ค้นหา Item :" >
+                                    <dxlc:LayoutGroup>
+                                        <cc:AutoCompleteTextBox x:Name="txtOrder"   Text="{Binding SearchOrderCriteria,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                                     ColumnsSource="{Binding Path=Columns,Source={StaticResource OrderItemColumn}}"
                                                     OnTextChangedEvent="True"
                                                     SuppressEvent="{Binding SuppressEvent,Mode=OneWayToSource}"
@@ -47,158 +47,158 @@
                                                     ItemsSource="{Binding OrderItems}"
                                                     SelectedItem="{Binding SelectOrderItem,Mode=OneWayToSource}"
                                                     >
-                                    </cc:AutoCompleteTextBox>
-                                </dxlc:LayoutGroup>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="ผู้คีย์ Order :">
-                                <dxe:ComboBoxEdit x:Name="cmbCareprovider"
+                                        </cc:AutoCompleteTextBox>
+                                    </dxlc:LayoutGroup>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="ผู้คีย์ Order :">
+                                    <dxe:ComboBoxEdit x:Name="cmbCareprovider"
                                               IsTextEditable="False"
                                               ItemsSource="{Binding Careproviders}"
                                               SelectedItem="{Binding SelectCareprovider}"
                                               DisplayMember="FullName"
                                               ValueMember="CareproviderUID"
                                               />
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="Order จาก :" IsEnabled="{Binding IsEnableOrderFrom}">
-                                <dxe:ComboBoxEdit x:Name="cmbLocation"
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Order จาก :" IsEnabled="{Binding IsEnableOrderFrom}">
+                                    <dxe:ComboBoxEdit x:Name="cmbLocation"
                                               IsTextEditable="False"
                                               ItemsSource="{Binding Locations}"
                                               SelectedItem="{Binding SelectLocation}"
                                               DisplayMember="Name"
                                               ValueMember="LocationUID"
                                               />
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem/>
-                        </dxlc:LayoutGroup>
-                        <dxlc:LayoutGroup>
-                            <dxlc:LayoutGroup Orientation="Horizontal">
-                                <dxlc:LayoutItem Label="วัน/เวลา สิ้นสุด :" >
-                                    <dxe:DateEdit EditValue="{Binding StartDate}"
-                                          DisplayFormatString="dd/MM/yyyy"/>
                                 </dxlc:LayoutItem>
-                                <dxlc:LayoutItem Width="70">
-                                    <dxe:DateEdit EditValue="{Binding StartTime}" x:Name="timeEditor2"
+                                <dxlc:LayoutItem/>
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup>
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem Label="วัน/เวลา สิ้นสุด :" >
+                                        <dxe:DateEdit EditValue="{Binding StartDate}"
+                                          DisplayFormatString="dd/MM/yyyy"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Width="70">
+                                        <dxe:DateEdit EditValue="{Binding StartTime}" x:Name="timeEditor2"
                                       DisplayFormatString="HH:mm"
                                       Mask="HH:mm">
-                                        <dxe:DateEdit.StyleSettings>
-                                            <dxe:DateEditPickerStyleSettings/>
-                                        </dxe:DateEdit.StyleSettings>
-                                    </dxe:DateEdit>
-                                </dxlc:LayoutItem>
+                                            <dxe:DateEdit.StyleSettings>
+                                                <dxe:DateEditTimePickerStyleSettings/>
+                                            </dxe:DateEdit.StyleSettings>
+                                        </dxe:DateEdit>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+                                <dxlc:LayoutItem/>
+                                <dxlc:LayoutItem/>
+                                <dxlc:LayoutItem/>
                             </dxlc:LayoutGroup>
-                            <dxlc:LayoutItem/>
-                            <dxlc:LayoutItem/>
-                            <dxlc:LayoutItem/>
-                        </dxlc:LayoutGroup>
-                        <dxlc:LayoutGroup >
-                            <dxlc:LayoutGroup.GroupBoxStyle >
-                                <Style  TargetType="{x:Type dxlc:GroupBox}">
-                                    <Setter Property="Padding" Value="0"/>
-                                </Style>
-                            </dxlc:LayoutGroup.GroupBoxStyle>
-                            <dxg:GridControl x:Name="grdOrderDetail" ItemsSource="{Binding PatientOrders}"
+                            <dxlc:LayoutGroup >
+                                <dxlc:LayoutGroup.GroupBoxStyle >
+                                    <Style  TargetType="{x:Type dxlc:GroupBox}">
+                                        <Setter Property="Padding" Value="0"/>
+                                    </Style>
+                                </dxlc:LayoutGroup.GroupBoxStyle>
+                                <dxg:GridControl x:Name="grdOrderDetail" ItemsSource="{Binding PatientOrders}"
                                          SelectedItem="{Binding SelectPatientOrder}">
-                                <dxg:GridControl.Columns>
-                                    <dxg:GridColumn Width="40" Fixed="Left">
-                                        <dxg:GridColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Image Width="25" Height="25" Stretch="UniformToFill"
+                                    <dxg:GridControl.Columns>
+                                        <dxg:GridColumn Width="40" Fixed="Left">
+                                            <dxg:GridColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Image Width="25" Height="25" Stretch="UniformToFill"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"                                  
                                    Cursor="Hand"
                                    ToolTip="ลบข้อมูล"
                                    Source="/MediTech;component/Resources/Images/Action/delete.png">
-                                                    <i:Interaction.Triggers>
-                                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                                            <mvvm:EventToCommand Command="{Binding View.DataContext.DeleteCommand}" />
-                                                        </i:EventTrigger>
-                                                    </i:Interaction.Triggers>
-                                                    <Image.Style>
-                                                        <Style TargetType="{x:Type Image}">
-                                                            <Style.Triggers>
-                                                                <Trigger Property="IsMouseOver" Value="True">
-                                                                    <Setter Property="OpacityMask" Value="#A2000000"/>
-                                                                </Trigger>
-                                                            </Style.Triggers>
-                                                        </Style>
-                                                    </Image.Style>
-                                                </Image>
-                                            </DataTemplate>
-                                        </dxg:GridColumn.CellTemplate>
-                                    </dxg:GridColumn>
-                                    <dxg:GridColumn FieldName="No" Width="30" ReadOnly="True" Fixed="Left">
-                                        <dxg:GridColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding RowData.RowHandle.Value
+                                                        <i:Interaction.Triggers>
+                                                            <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                                                <mvvm:EventToCommand Command="{Binding View.DataContext.DeleteCommand}" />
+                                                            </i:EventTrigger>
+                                                        </i:Interaction.Triggers>
+                                                        <Image.Style>
+                                                            <Style TargetType="{x:Type Image}">
+                                                                <Style.Triggers>
+                                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                                        <Setter Property="OpacityMask" Value="#A2000000"/>
+                                                                    </Trigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </Image.Style>
+                                                    </Image>
+                                                </DataTemplate>
+                                            </dxg:GridColumn.CellTemplate>
+                                        </dxg:GridColumn>
+                                        <dxg:GridColumn FieldName="No" Width="30" ReadOnly="True" Fixed="Left">
+                                            <dxg:GridColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding RowData.RowHandle.Value
                                 ,Converter={StaticResource AddValueConverter}
                                 ,ConverterParameter=1}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                            </DataTemplate>
-                                        </dxg:GridColumn.CellTemplate>
-                                    </dxg:GridColumn>
-                                    <!--<dxg:GridColumn Header="รหัส" FieldName="ItemCode" ReadOnly="True" Width="50"/>-->
-                                    <dxg:GridColumn Name="colItemName" FieldName="ItemName" Fixed="Left"
+                                                </DataTemplate>
+                                            </dxg:GridColumn.CellTemplate>
+                                        </dxg:GridColumn>
+                                        <!--<dxg:GridColumn Header="รหัส" FieldName="ItemCode" ReadOnly="True" Width="50"/>-->
+                                        <dxg:GridColumn Name="colItemName" FieldName="ItemName" Fixed="Left"
                                                 Header="ชื่อ"  ReadOnly="True"  Width="350" >
-                                        <dxg:GridColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <dxe:HyperlinkEdit EditValue="{Binding RowData.Row.ItemName}" TextWrapping="Wrap">
-                                                    <i:Interaction.Triggers>
-                                                        <i:EventTrigger  EventName="RequestNavigation">
-                                                            <mvvm:EventToCommand Command="{Binding View.DataContext.EditCommand}" />
-                                                        </i:EventTrigger>
-                                                    </i:Interaction.Triggers>
-                                                </dxe:HyperlinkEdit>
-                                            </DataTemplate>
-                                        </dxg:GridColumn.CellTemplate>
-                                    </dxg:GridColumn>
-                                    <dxg:GridColumn Header="ประเภท Order" FieldName="OrderType" ReadOnly="True" Fixed="Left"/>
+                                            <dxg:GridColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <dxe:HyperlinkEdit EditValue="{Binding RowData.Row.ItemName}" TextWrapping="Wrap">
+                                                        <i:Interaction.Triggers>
+                                                            <i:EventTrigger  EventName="RequestNavigation">
+                                                                <mvvm:EventToCommand Command="{Binding View.DataContext.EditCommand}" />
+                                                            </i:EventTrigger>
+                                                        </i:Interaction.Triggers>
+                                                    </dxe:HyperlinkEdit>
+                                                </DataTemplate>
+                                            </dxg:GridColumn.CellTemplate>
+                                        </dxg:GridColumn>
+                                        <dxg:GridColumn Header="ประเภท Order" FieldName="OrderType" ReadOnly="True" Fixed="Left"/>
 
-                                    <dxg:GridColumn Header="DosageQty" FieldName="Dosage" ReadOnly="True" Width="50"/>
-                                    <dxg:GridColumn Header="DosageUnit" FieldName="DosageUnit" ReadOnly="True" Width="50"/>
-                                    <dxg:GridColumn Header="Freq." FieldName="DrugFrequency" ReadOnly="True"/>
-                                    <dxg:GridColumn Header="จำนวน" FieldName="Quantity" ReadOnly="True" Width="50"/>
-                                    <dxg:GridColumn Header="ราคาต่อหน่วย" FieldName="DisplayPrice"  ReadOnly="True">
-                                        <dxg:GridColumn.EditSettings>
-                                            <dxe:TextEditSettings DisplayFormat="#,#.00"/>
-                                        </dxg:GridColumn.EditSettings>
-                                    </dxg:GridColumn>
-                                    <dxg:GridColumn Header="ราคารวม" FieldName="NetAmount" ReadOnly="True">
-                                        <dxg:GridColumn.EditSettings>
-                                            <dxe:TextEditSettings DisplayFormat="#,#.00"/>
-                                        </dxg:GridColumn.EditSettings>
-                                    </dxg:GridColumn>
-                                    <dxg:GridColumn Header="StartDate" FieldName="StartDttm"  ReadOnly="True">
-                                        <dxg:GridColumn.EditSettings>
-                                            <dxe:TextEditSettings MaskUseAsDisplayFormat="True" DisplayFormat="dd/MM/yyyy"/>
-                                        </dxg:GridColumn.EditSettings>
-                                    </dxg:GridColumn>
-                                    <dxg:GridColumn Header="EndDate" FieldName="EndDttm"  ReadOnly="True">
-                                        <dxg:GridColumn.EditSettings>
-                                            <dxe:TextEditSettings MaskUseAsDisplayFormat="True" DisplayFormat="dd/MM/yyyy"/>
-                                        </dxg:GridColumn.EditSettings>
-                                    </dxg:GridColumn>
-                                    <dxg:GridColumn Header="แพทย์" FieldName="CareproviderName"  ReadOnly="True"/>
-                                    <dxg:GridColumn Header="หมายเหตุ" FieldName="Comments" ReadOnly="True"/>
-                                </dxg:GridControl.Columns>
-                                <dxg:GridControl.View>
-                                    <dxg:TableView x:Name="gvOrderDetail"  ShowGroupPanel="False" AllowBestFit="True" 
+                                        <dxg:GridColumn Header="DosageQty" FieldName="Dosage" ReadOnly="True" Width="50"/>
+                                        <dxg:GridColumn Header="DosageUnit" FieldName="DosageUnit" ReadOnly="True" Width="50"/>
+                                        <dxg:GridColumn Header="Freq." FieldName="DrugFrequency" ReadOnly="True"/>
+                                        <dxg:GridColumn Header="จำนวน" FieldName="Quantity" ReadOnly="True" Width="50"/>
+                                        <dxg:GridColumn Header="ราคาต่อหน่วย" FieldName="DisplayPrice"  ReadOnly="True">
+                                            <dxg:GridColumn.EditSettings>
+                                                <dxe:TextEditSettings DisplayFormat="#,#.00"/>
+                                            </dxg:GridColumn.EditSettings>
+                                        </dxg:GridColumn>
+                                        <dxg:GridColumn Header="ราคารวม" FieldName="NetAmount" ReadOnly="True">
+                                            <dxg:GridColumn.EditSettings>
+                                                <dxe:TextEditSettings DisplayFormat="#,#.00"/>
+                                            </dxg:GridColumn.EditSettings>
+                                        </dxg:GridColumn>
+                                        <dxg:GridColumn Header="StartDate" FieldName="StartDttm"  ReadOnly="True">
+                                            <dxg:GridColumn.EditSettings>
+                                                <dxe:TextEditSettings MaskUseAsDisplayFormat="True" DisplayFormat="dd/MM/yyyy"/>
+                                            </dxg:GridColumn.EditSettings>
+                                        </dxg:GridColumn>
+                                        <dxg:GridColumn Header="EndDate" FieldName="EndDttm"  ReadOnly="True">
+                                            <dxg:GridColumn.EditSettings>
+                                                <dxe:TextEditSettings MaskUseAsDisplayFormat="True" DisplayFormat="dd/MM/yyyy"/>
+                                            </dxg:GridColumn.EditSettings>
+                                        </dxg:GridColumn>
+                                        <dxg:GridColumn Header="แพทย์" FieldName="CareproviderName"  ReadOnly="True"/>
+                                        <dxg:GridColumn Header="หมายเหตุ" FieldName="Comments" ReadOnly="True"/>
+                                    </dxg:GridControl.Columns>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView x:Name="gvOrderDetail"  ShowGroupPanel="False" AllowBestFit="True" 
                                                BestFitArea="All"
                                                BestFitMode="AllRows" 
                                                ShowTotalSummary="True" ShowIndicator="True"/>
-                                </dxg:GridControl.View>
-                                <dxg:GridControl.TotalSummary>
-                                    <dxg:GridSummaryItem x:Name="TotalAmount"  
+                                    </dxg:GridControl.View>
+                                    <dxg:GridControl.TotalSummary>
+                                        <dxg:GridSummaryItem x:Name="TotalAmount"  
                                                      FieldName="NetAmount" SummaryType="Sum"  DisplayFormat="#,#.00"/>
-                                </dxg:GridControl.TotalSummary>
-                            </dxg:GridControl>
-                        </dxlc:LayoutGroup>
+                                    </dxg:GridControl.TotalSummary>
+                                </dxg:GridControl>
+                            </dxlc:LayoutGroup>
 
-                        <dxlc:LayoutGroup HorizontalAlignment="Right">
-                            <dx:SimpleButton Width="80" Command="{Binding SaveCommand}"
+                            <dxlc:LayoutGroup HorizontalAlignment="Right">
+                                <dx:SimpleButton Width="80" Command="{Binding SaveCommand}"
                                              IsEnabled="{Binding EnableEnterOrder}"
                                      Height="25" Content="บันทึก"/>
-                            <dx:SimpleButton Width="85" Command="{Binding ClearOrderCommand}"
+                                <dx:SimpleButton Width="85" Command="{Binding ClearOrderCommand}"
                                      Height="25" Content="Clear Order"/>
+                            </dxlc:LayoutGroup>
                         </dxlc:LayoutGroup>
-                    </dxlc:LayoutGroup>
                     </dxlc:LayoutControl>
                 </dx:DXTabItem>
                 <dx:DXTabItem Header="รายการคีย์ Order" >

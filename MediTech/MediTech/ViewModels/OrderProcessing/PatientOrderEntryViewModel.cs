@@ -751,6 +751,9 @@ namespace MediTech.ViewModels
                             newOrder.ItemCode = billItem.Code;
                             newOrder.BillingService = billItem.BillingServiceMetaData;
                             newOrder.UnitPrice = item.Price;
+                            newOrder.OriginalUnitPrice = item.Price;
+                            newOrder.OrderCatagoryUID = billItem.OrderCategoryUID;
+                            newOrder.OrderSubCategoryUID = billItem.OrderSubCategoryUID;
 
                             newOrder.PRSTYPUID = OrderTypes.FirstOrDefault(p => p.ValueCode == "ROMED").Key;
                             newOrder.OrderType = OrderTypes.FirstOrDefault(p => p.ValueCode == "ROMED").Display;
