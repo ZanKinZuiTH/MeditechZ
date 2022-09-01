@@ -2870,7 +2870,7 @@ namespace MediTechWebApi.Controllers
                     DistrictUID = p.DistrictUID,
                     AmphurUID = p.AmphurUID,
                     AddressFull = SqlFunction.fGetAddressPayorDetail(p.UID),
-                    ProvinceUID = p.AmphurUID,
+                    ProvinceUID = p.ProvinceUID,
                     ZipCode = p.ZipCode,
                     ContactPersonName = p.ContactPersonName,
                     PYRACATUID = p.PYRACATUID,
