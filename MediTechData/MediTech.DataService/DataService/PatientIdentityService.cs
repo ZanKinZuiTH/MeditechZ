@@ -418,9 +418,9 @@ namespace MediTech.DataService
             return flag;
         }
 
-        public List<BedStatusModel> GetBedByPatientVisit(int parentLocationUID)
+        public List<BedStatusModel> GetBedByPatientVisit(int parentLocationUID, int ENTYPUID)
         {
-            string requestApi = string.Format("Api/PatientIdentity/GetBedByPatientVisit?parentLocationUID={0}", parentLocationUID);
+            string requestApi = string.Format("Api/PatientIdentity/GetBedByPatientVisit?parentLocationUID={0}&ENTYPUID={1}", parentLocationUID, ENTYPUID);
             List<BedStatusModel> data = MeditechApiHelper.Get<List<BedStatusModel>>(requestApi);
             return data;
         }
