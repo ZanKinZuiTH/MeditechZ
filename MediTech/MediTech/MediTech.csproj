@@ -1067,7 +1067,9 @@
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupChest.Designer.cs">
       <DependentUpon>CheckupGroupChest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Statistic\Checkup\CheckupGroupCholinesteraseBlood.cs" />
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupCholinesteraseBlood.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupCholinesteraseBlood.Designer.cs">
       <DependentUpon>CheckupGroupCholinesteraseBlood.cs</DependentUpon>
     </Compile>
@@ -4285,6 +4287,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Resources\Images\Module\IPDpatient.png" />
     <Resource Include="Resources\Images\Fincace\cashless-payment.png" />
     <Resource Include="Resources\Images\Menu\ProductReturn.png" />
     <Resource Include="Resources\Images\Fincace\lock.png" />
