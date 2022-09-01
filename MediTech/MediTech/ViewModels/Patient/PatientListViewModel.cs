@@ -333,7 +333,7 @@ namespace MediTech.ViewModels
         public PatientListViewModel()
         {
             EncounterType = new ObservableCollection<LookupReferenceValueModel>(DataService.Technical.GetReferenceValueMany("ENTYP"));
-            SelectEncounterType.Add(EncounterType.FirstOrDefault(p => p.ValueCode == "OUPAT").Key);
+            SelectEncounterType.AddRange(EncounterType.Where(p => p.ValueCode == "OUPAT" || p.ValueCode == "HEAL").Select(p => (object)p.Key.Value));
             Doctors = DataService.UserManage.GetCareproviderDoctor();
             VisitStatus = new ObservableCollection<LookupReferenceValueModel>(DataService.Technical.GetReferenceValueMany("VISTS"));
             //SelectVisitStatusList.Add(VisitStatus.FirstOrDefault(p => p.ValueCode == "REGST").Key);
