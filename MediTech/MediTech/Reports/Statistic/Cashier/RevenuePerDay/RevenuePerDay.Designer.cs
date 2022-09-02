@@ -130,6 +130,7 @@ namespace MediTech.Reports.Statistic.Cashier
             // 
             // Detail
             // 
+            this.Detail.Expanded = false;
             this.Detail.HeightF = 0F;
             this.Detail.Name = "Detail";
             // 
@@ -149,7 +150,7 @@ namespace MediTech.Reports.Statistic.Cashier
             // xrTable1
             // 
             this.xrTable1.Font = new System.Drawing.Font("Angsana New", 16F);
-            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(407.6663F, 8.125F);
+            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(713.5F, 10F);
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
@@ -509,7 +510,7 @@ namespace MediTech.Reports.Statistic.Cashier
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTable2.Font = new System.Drawing.Font("Angsana New", 16F);
-            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(885.4167F, 38.12502F);
+            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(1191.25F, 40F);
             this.xrTable2.Name = "xrTable2";
             this.xrTable2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
@@ -580,7 +581,7 @@ namespace MediTech.Reports.Statistic.Cashier
             this.xrSubreport1.LocationFloat = new DevExpress.Utils.PointFloat(42.04F, 101.6217F);
             this.xrSubreport1.Name = "xrSubreport1";
             this.xrSubreport1.ReportSource = new MediTech.Reports.Statistic.Cashier.PayorSummeryCount();
-            this.xrSubreport1.SizeF = new System.Drawing.SizeF(387.5F, 162.7469F);
+            this.xrSubreport1.SizeF = new System.Drawing.SizeF(480.2397F, 162.7469F);
             this.xrSubreport1.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrSubreport1_BeforePrint);
             // 
             // RevenuePerDay
@@ -597,9 +598,8 @@ namespace MediTech.Reports.Statistic.Cashier
             this.Font = new System.Drawing.Font("Arial", 9.75F);
             this.Landscape = true;
             this.Margins = new System.Drawing.Printing.Margins(0, 0, 0, 7);
-            this.PageHeight = 827;
-            this.PageWidth = 1169;
-            this.PaperKind = System.Drawing.Printing.PaperKind.A4;
+            this.PageWidth = 2000;
+            this.PaperKind = System.Drawing.Printing.PaperKind.Custom;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.OrganisationList,
             this.Date,
