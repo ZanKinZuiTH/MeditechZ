@@ -94,15 +94,9 @@ namespace MediTech.ViewModels
         #region Method
         public EmergencyBedStatusViewModel()
         {
-            //Triage.Add(new LookupReferenceValueModel { Key = 1, DomainCode = "TRIAGE", ValueCode = "TRIAGE1", Display = "สีแดง(emergency/immediate)" });
-            //Triage.Add(new LookupReferenceValueModel { Key = 2, DomainCode = "TRIAGE", ValueCode = "TRIAGE2", Display = "สีเหลือง(urgent)" });
-            //Triage.Add(new LookupReferenceValueModel { Key = 3, DomainCode = "TRIAGE", ValueCode = "TRIAGE3", Display = "สีเขียว(delayed)" });
-            //Triage.Add(new LookupReferenceValueModel { Key = 4, DomainCode = "TRIAGE", ValueCode = "TRIAGE4", Display = "สีฟ้า(expectant)" });
-            //Triage.Add(new LookupReferenceValueModel { Key = 5, DomainCode = "TRIAGE", ValueCode = "TRIAGE5", Display = "สีดำ(dead)" });  
             SelectedLocation = DataService.Technical.GetLocationByTypeUID(3160).FirstOrDefault();
-
-            Bed = DataService.PatientIdentity.GetBedByPatientVisit(SelectedLocation.LocationUID).ToList();
-
+            int? ENTYPUID = DataService.Technical.GetReferenceValueByCode("ENTYP", "AEPAT").Key;
+            Bed = DataService.PatientIdentity.GetBedByPatientVisit(SelectedLocation.LocationUID, ENTYPUID ?? 0).ToList();
         }
 
         private void PatientRecords()
@@ -147,7 +141,8 @@ namespace MediTech.ViewModels
                     SaveSuccessDialog();
                     //SearchPatientVisit();
                 }
-                Bed = DataService.PatientIdentity.GetBedByPatientVisit(SelectedLocation.LocationUID).ToList();
+                int? ENTYPUID = DataService.Technical.GetReferenceValueByCode("ENTYP", "AEPAT").Key;
+                Bed = DataService.PatientIdentity.GetBedByPatientVisit(SelectedLocation.LocationUID, ENTYPUID ?? 0).ToList();
             }
         }
 
@@ -206,8 +201,8 @@ namespace MediTech.ViewModels
                     SaveSuccessDialog();
                     //SearchPatientVisit();
                 }
-
-                Bed = DataService.PatientIdentity.GetBedByPatientVisit(SelectedLocation.LocationUID).ToList();
+                int? ENTYPUID = DataService.Technical.GetReferenceValueByCode("ENTYP", "AEPAT").Key;
+                Bed = DataService.PatientIdentity.GetBedByPatientVisit(SelectedLocation.LocationUID, ENTYPUID ?? 0).ToList();
             }
         }
 

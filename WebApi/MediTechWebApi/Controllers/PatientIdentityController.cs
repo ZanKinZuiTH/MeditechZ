@@ -2390,7 +2390,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetBedByPatientVisit")]
         [HttpGet]
-        public List<BedStatusModel> GetBedByPatientVisit(int parentLocationUID)
+        public List<BedStatusModel> GetBedByPatientVisit(int parentLocationUID, int ENTYPUID)
         {
             var bed = db.Location.Where(p => p.ParentLocationUID == parentLocationUID).Select(p => new BedStatusModel()
             {
@@ -2420,7 +2420,7 @@ namespace MediTechWebApi.Controllers
                         && b.StatusFlag == "A"
                         && pae.StatusFlag == "A"
                         && pt.StatusFlag == "A"
-                        && pv.ENTYPUID == 4339
+                        && pv.ENTYPUID == ENTYPUID
                         && pv.VISTSUID != 410
                         && pv.VISTSUID != 418
                         && pv.VISTSUID != 421
