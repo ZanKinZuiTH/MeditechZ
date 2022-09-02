@@ -317,6 +317,12 @@ namespace MediTech.ViewModels
                 return;
             }
 
+            if (ActiveFrom == null)
+            {
+                WarningDialog("กรุณาระบุวัน ActiveFrom");
+                return;
+            }
+
             PatientVisitPayorModel newPatientVisitPayor = new PatientVisitPayorModel();
             newPatientVisitPayor.PatientUID = PatientVisit.PatientUID;
             newPatientVisitPayor.PatientVisitUID = PatientVisit.PatientVisitUID;
@@ -368,6 +374,13 @@ namespace MediTech.ViewModels
                     WarningDialog("ClaimPercentage ไม่ถูกต้อง");
                     return;
                 }
+
+                if (ActiveFrom == null)
+                {
+                    WarningDialog("กรุณาระบุวัน ActiveFrom");
+                    return;
+                }
+
                 if (PatientVisitPayorList != null && PatientVisitPayorList.Count() > 0)
                 {
                     if (PatientVisitPayorList.Where(i => i.PAYRTPUID == SelectedPayorType.Key && !i.Equals(SelectedPatientVisitPayor)) != null

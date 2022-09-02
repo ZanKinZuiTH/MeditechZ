@@ -522,7 +522,7 @@ namespace MediTech.ViewModels
             var refVal = DataService.Technical.GetReferenceValueList("VISTS,ENTYP,PRSTYP");
             VisitStatus = new ObservableCollection<LookupReferenceValueModel>(refVal.Where(p => p.DomainCode == "VISTS" && p.ValueCode != "FINDIS"));
             EncounterType = new ObservableCollection<LookupReferenceValueModel>(refVal.Where(p => p.DomainCode == "ENTYP"));
-            SelectEncounterType.Add(EncounterType.FirstOrDefault(p => p.ValueCode == "OUPAT").Key);
+            SelectEncounterType.AddRange(EncounterType.Where(p => p.ValueCode == "OUPAT" || p.ValueCode == "HEAL").Select(p => (object)p.Key.Value));
 
             OrderTypes = refVal.Where(p => p.DomainCode == "PRSTYP").ToList();
             foreach (var item in VisitStatus)

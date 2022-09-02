@@ -194,6 +194,7 @@
                     <dxg:GridColumn Header="Payor" FieldName="PayorName" ReadOnly="True"/>
                     <dxg:GridColumn Header="Office Name" FieldName="PayorOffice" ReadOnly="True"/>
                     <dxg:GridColumn Header="Payor Agreement" FieldName="PayorAgreement" ReadOnly="True"/>
+                    <dxg:GridColumn Header="การชำระเงิน" FieldName="PaymentMethod" ReadOnly="True"/>
                     <dxg:GridColumn Header="แผนก" FieldName="LocationName" ReadOnly="True"/>
                     <dxg:GridColumn Header="เหตุผลในการยกเลิกบิล" FieldName="CancelReason" ReadOnly="True"/>
                 </dxg:GridControl.Columns>

@@ -529,6 +529,8 @@ namespace MediTech.ViewModels
             StartDate = now.Date;
             StartTime = now;
 
+            ActiveFrom = now;
+
             if (Patient != null)
             {
                 (this.View as CreateVisit).banner.SetPatientBanner(Patient.PatientUID, 0);
@@ -543,6 +545,7 @@ namespace MediTech.ViewModels
                 SelectedPayorType = (from p in PayorTypes where (!(from q in PatientVisitPayorList select q.PAYRTPUID).Contains(p.Key)) select p).FirstOrDefault();
             else
                 SelectedPayorType = PayorTypes.FirstOrDefault(p => p.ValueCode == "PRIMARY");
+
 
             if (IsUpdateVisit == false && !IsMassRegister)
             {
@@ -667,6 +670,12 @@ namespace MediTech.ViewModels
                 return;
             }
 
+            if (ActiveFrom == null)
+            {
+                WarningDialog("กรุณาระบุวัน ActiveFrom");
+                return;
+            }
+
             if (ClaimPercentage != null && ClaimPercentage > 100)
             {
                 WarningDialog("ClaimPercentage ไม่ถูกต้อง");
@@ -737,6 +746,13 @@ namespace MediTech.ViewModels
                     WarningDialog("ClaimPercentage ไม่ถูกต้อง");
                     return;
                 }
+
+                if (ActiveFrom == null)
+                {
+                    WarningDialog("กรุณาระบุวัน ActiveFrom");
+                    return;
+                }
+
                 if (PatientVisitPayorList != null && PatientVisitPayorList.Count() > 0)
                 {
                     if (PatientVisitPayorList.Where(i => i.PAYRTPUID == SelectedPayorType.Key && !i.Equals(SelectedPatientVisitPayor)) != null

@@ -154,8 +154,8 @@
                             <dxg:GridColumn Header="CreatedBy" FieldName="CreatedBy" ReadOnly="True"/>
                             <dxg:GridColumn Header="Comments" FieldName="Comments" ReadOnly="True"/>
                             <dxg:GridColumn Header="Eligibile Amount" FieldName="EligibileAmount" ReadOnly="True"/>
-                            <dxg:GridColumn Header="Active From" FieldName="Active From" ReadOnly="True"/>
-                            <dxg:GridColumn Header="Active To" FieldName="Active To" ReadOnly="True"/>
+                            <dxg:GridColumn Header="Active From" FieldName="ActiveFrom" ReadOnly="True"/>
+                            <dxg:GridColumn Header="Active To" FieldName="ActiveTo" ReadOnly="True"/>
                         <dxg:GridControl.View>
                                 <dxg:TableView Name="gvVisitPayor" ShowGroupPanel="False" 
                                            RowStyle="{Binding BackgroundExpireStyle}"
