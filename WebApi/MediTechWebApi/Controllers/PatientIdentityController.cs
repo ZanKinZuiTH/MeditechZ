@@ -2237,7 +2237,7 @@ namespace MediTechWebApi.Controllers
                     {
                         db.PatientVisit.Attach(patientvisit);
 
-                        patientvisit.CareProviderUID = careProviderUID;
+                        patientvisit.CareProviderUID = careProviderUID != null ? careProviderUID : patientvisit.CareProviderUID;
                         patientvisit.VISTSUID = VISTSUID;
                         patientvisit.ENSTAUID = ENSTAUID != null ? ENSTAUID : patientvisit.ENSTAUID;
                         patientvisit.EndDttm = VISTSUID == FINDIS ? DateTime.Now : (DateTime?)null;

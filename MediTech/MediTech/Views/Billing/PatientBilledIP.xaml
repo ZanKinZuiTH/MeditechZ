@@ -183,12 +183,12 @@
                                 <dxe:TextEditSettings DisplayTextConverter="{StaticResource NumericN2Formatter}"/>
                             </dxg:GridColumn.EditSettings>
                             </dxg:GridColumn>
-                            <dxg:GridColumn Header="ยอดส่วนลด" FieldName="DiscountAmount" ReadOnly="True">
+                        <dxg:GridColumn Header="ยอดส่วนลด" FieldName="DiscountAmount" ReadOnly="True">
                                 <dxg:GridColumn.EditSettings>
                                     <dxe:TextEditSettings DisplayTextConverter="{StaticResource NumericN2Formatter}"/>
                                 </dxg:GridColumn.EditSettings>
                             </dxg:GridColumn>
-                            <dxg:GridColumn Header="ราคาขายสุทธิ" FieldName="NetAmount" ReadOnly="True">
+                        <dxg:GridColumn Header="ราคาขายสุทธิ" FieldName="NetAmount" ReadOnly="True">
                                 <dxg:GridColumn.EditSettings>
                                     <dxe:TextEditSettings DisplayTextConverter="{StaticResource NumericN2Formatter}"/>
                                 </dxg:GridColumn.EditSettings>

@@ -105,10 +105,12 @@ namespace MediTech.CustomControl.Banner
             txtPhone.Text = "";
             imgAllergy.Visibility = System.Windows.Visibility.Collapsed;
             imgVIP.Visibility = Visibility.Collapsed;
-            Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/Other/Blue-Pictures-icon.png");
-            BitmapImage image = new BitmapImage(uri);
-            patientImage.Source = image;
-            patientImageTootip.Source = image;
+            //Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/Other/Blue-Pictures-icon.png");
+            //BitmapImage image = new BitmapImage(uri);
+            //patientImage.Source = image;
+            //patientImageTootip.Source = image;
+            patientImage.Source = null;
+            patientImageTootip.Source = null;
             txtVisitID.Text = "";
             //txtPastVisits.Text = "";
         }
@@ -168,13 +170,15 @@ namespace MediTech.CustomControl.Banner
                     patientImage.Source = image;
                     patientImageTootip.Source = image;
                 }
-                //else
-                //{
-                //    Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/Other/Blue-Pictures-icon.png");
-                //    BitmapImage image = new BitmapImage(uri);
-                //    patientImage.Source = image;
-                //    patientImageTootip.Source = image;
-                //}
+                else
+                {
+                    patientImage.Source = null;
+                    patientImageTootip.Source = null;
+                    //Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/Other/Blue-Pictures-icon.png");
+                    //BitmapImage image = new BitmapImage(uri);
+                    //patientImage.Source = image;
+                    //patientImageTootip.Source = image;
+                }
             }
             else
             {
