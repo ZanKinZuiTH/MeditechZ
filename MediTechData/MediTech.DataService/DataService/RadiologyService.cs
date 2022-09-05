@@ -27,9 +27,9 @@ namespace MediTech.DataService
             return listData;
         }
 
-        public List<RequestListModel> SearchRequestExamList(DateTime? requestDateFrom, DateTime? requestDateTo, string statusList, int? RQPRTUID, long? patientUID, string orderName, int? RIMTYPUID, int? radiologistUID, int? rduStaffUID, int? payorDetailUID, int? organisationUID)
+        public List<RequestListModel> SearchRequestExamList(DateTime? requestDateFrom, DateTime? requestDateTo, string statusList, int? RQPRTUID, long? patientUID, string orderName, int? RIMTYPUID, int? radiologistUID, int? rduStaffUID, int? payorDetailUID, int? orderLocationUID, int? organisationUID, int? userUID)
         {
-            string requestApi = string.Format("Api/Radiology/SearchRequestExamList?requestDateFrom={0:MM/dd/yyyy}&requestDateTo={1:MM/dd/yyyy}&statusList={2}&RQPRTUID={3}&patientUID={4}&orderName={5}&RIMTYPUID={6}&radiologistUID={7}&rduStaffUID={8}&payorDetailUID={9}&organisationUID={10}", requestDateFrom, requestDateTo, statusList, RQPRTUID, patientUID, orderName, RIMTYPUID, radiologistUID, rduStaffUID, payorDetailUID, organisationUID);
+            string requestApi = string.Format("Api/Radiology/SearchRequestExamList?requestDateFrom={0:MM/dd/yyyy}&requestDateTo={1:MM/dd/yyyy}&statusList={2}&RQPRTUID={3}&patientUID={4}&orderName={5}&RIMTYPUID={6}&radiologistUID={7}&rduStaffUID={8}&payorDetailUID={9}&orderLocationUID={10}&organisationUID={11}&userUID={12}", requestDateFrom, requestDateTo, statusList, RQPRTUID, patientUID, orderName, RIMTYPUID, radiologistUID, rduStaffUID, payorDetailUID,orderLocationUID, organisationUID,userUID);
             List<RequestListModel> listData = MeditechApiHelper.Get<List<RequestListModel>>(requestApi);
             return listData;
         }

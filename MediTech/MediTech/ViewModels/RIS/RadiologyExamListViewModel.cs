@@ -95,6 +95,15 @@ namespace MediTech.ViewModels
             set { Set(ref _RequestItemName, value); }
         }
 
+        private List<HealthOrganisationModel> _Organisations;
+
+        public List<HealthOrganisationModel> Organisations
+        {
+            get { return _Organisations; }
+            set { Set(ref _Organisations, value); }
+        }
+
+
         private List<LocationModel> _Location;
 
         public List<LocationModel> Location
@@ -153,6 +162,24 @@ namespace MediTech.ViewModels
             get { return _SelectRequestStatusList ?? (_SelectRequestStatusList = new List<object>()); }
             set { Set(ref _SelectRequestStatusList, value); }
         }
+
+        private HealthOrganisationModel _SelectOrganisation;
+
+        public HealthOrganisationModel SelectOrganisation
+        {
+            get { return _SelectOrganisation; }
+            set
+            {
+                Set(ref _SelectOrganisation, value);
+                Location = null;
+                if (SelectOrganisation != null)
+                {
+                    var loct = DataService.MasterData.GetLocationByOrganisationUID(SelectOrganisation.HealthOrganisationUID);
+                    Location = loct.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+                }
+            }
+        }
+
 
         private LocationModel _SelectLocation;
 
@@ -601,9 +628,19 @@ namespace MediTech.ViewModels
             var careprovider = DataService.UserManage.GetCareproviderAll();
             Radiologist = careprovider.Where(p => p.IsRadiologist).ToList();
             RDUStaffList = careprovider.Where(p => p.IsRDUStaff).ToList();
-            var org = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
-            Location = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
-            SelectLocation = Location.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
+
+            Organisations = GetHealthOrganisationRole();
+            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+
+            if (SelectOrganisation != null)
+            {
+                var loct = DataService.MasterData.GetLocationByOrganisationUID(SelectOrganisation.HealthOrganisationUID);
+                Location = loct.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+            }
+
+
+
+
             PayorDetails = DataService.Billing.GetInsuranceCompanyAll();
 
             CareproviderModel newCareprovider = new CareproviderModel();
@@ -1027,8 +1064,10 @@ namespace MediTech.ViewModels
                 payorDetailUID = SelectPayorDetail.InsuranceCompanyUID;
             }
 
-            int? organisationUID = AppUtil.Current.OwnerOrganisationUID;
-            var listResult = DataService.Radiology.SearchRequestExamList(DateFrom, DateTo, statusList, rqprtuid, patientUID, RequestItemName, rimtyp, radiologistUID, rduStaffUID, payorDetailUID, organisationUID);
+            int? organisationUID = SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : (int?)null;
+            int? locatioinUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
+            int userUID = AppUtil.Current.UserID;
+            var listResult = DataService.Radiology.SearchRequestExamList(DateFrom, DateTo, statusList, rqprtuid, patientUID, RequestItemName, rimtyp, radiologistUID, rduStaffUID, payorDetailUID, locatioinUID, organisationUID, userUID);
 
             if (SelectRDUStaff != null && SelectRDUStaff.CareproviderUID == 0)
                 listResult = listResult.Where(p => string.IsNullOrEmpty(p.RDUStaff)).ToList();

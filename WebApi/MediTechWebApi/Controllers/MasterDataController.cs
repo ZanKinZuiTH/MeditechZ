@@ -1017,11 +1017,11 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<BillableItemModel> SearchBillableItem(string code, string itemName, int? BSMDDUID, int? billingGroupUID, int? billingSubGroupUID, int? ownerUID)
         {
-           List<BillableItemModel> data = (from p in db.BillableItem
+            itemName =  !string.IsNullOrEmpty(itemName) ?  SetItemNameSearch(itemName) : itemName;
+            List<BillableItemModel> data = (from p in db.BillableItem
                                             where p.StatusFlag == "A"
                                             && (string.IsNullOrEmpty(code) || p.Code.ToLower().Contains(code.ToLower()))
                                             && (string.IsNullOrEmpty(itemName) || p.ItemNameSearch.ToLower().Contains(itemName.ToLower()))
-                                            && (string.IsNullOrEmpty(itemName) || p.ItemName.ToLower().Contains(itemName.ToLower()))
                                             && (BSMDDUID == null || p.BSMDDUID == BSMDDUID)
                                             && (billingGroupUID == null || p.BillingGroupUID == billingGroupUID)
                                             && (billingSubGroupUID == null || p.BillingSubGroupUID == billingSubGroupUID)
