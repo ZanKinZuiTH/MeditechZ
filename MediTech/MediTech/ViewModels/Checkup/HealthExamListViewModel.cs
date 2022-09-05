@@ -380,11 +380,6 @@ namespace MediTech.ViewModels
         }
         void Search()
         {
-            if (SelectInsuranceCompanyDetails == null)
-            {
-                WarningDialog("กรุณาเลือก Payor");
-                return;
-            }
 
             long? patientUID = null;
             int? insuranceCompanyUID = null;

@@ -60,7 +60,6 @@
                                       SelectedItem="{Binding SelectCheckupJobContact}"
                                       ValueMember="CheckupJobContactUID"
                                       DisplayMember="CompanyName"
-                                      NullValueButtonPlacement="EditBox"
                                       AllowNullInput="True"
                                       AutoComplete="True" 
                                       ImmediatePopup="True"

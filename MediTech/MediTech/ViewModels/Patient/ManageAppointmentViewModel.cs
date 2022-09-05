@@ -389,7 +389,7 @@ namespace MediTech.ViewModels
             {
                 model = new BookingModel();
             }
-            model.AppointmentDttm = AppointmentDate.Add(AppointmentTime.Value.TimeOfDay);
+            model.AppointmentDttm = AppointmentDate.Date.Add(AppointmentTime.Value.TimeOfDay);
             model.BKSTSUID = SelectAppointmentStatus != null ? SelectAppointmentStatus.Key.Value : 0;
             model.PatientUID = patientUID;
             model.PATMSGUID = SelectAppointmentMassage != null ? SelectAppointmentMassage.Key : (int?)null;
