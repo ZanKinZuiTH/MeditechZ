@@ -98,7 +98,7 @@
                             </dxlc:LayoutItem>
                             <dxlc:LayoutGroup Orientation="Horizontal">
                                 <dxlc:LayoutItem Label="จากวันที่">
-                                    <dxe:DateEdit EditValue="{Binding JobDateFrom}"/>
+                                    <dxe:DateEdit EditValue="{Binding JobDateFrom}" AllowNullInput="False"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="ถึงวันที่">
                                     <dxe:DateEdit EditValue="{Binding JobDateTo}"/>

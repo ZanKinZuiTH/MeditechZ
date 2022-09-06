@@ -235,7 +235,7 @@
                         </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup >
                             <dxlc:LayoutGroup Orientation="Horizontal">
-                                <dxlc:GroupBox Header="Groub">
+                                <dxlc:GroupBox Header="Group">
                                     <dxlc:LayoutControl Orientation="Vertical">
                                         <dxlc:LayoutGroup Orientation="Vertical" ItemSpace="5">
                                             <dxlc:LayoutItem  Label="Name">
@@ -334,7 +334,7 @@
                                 </dxlc:GroupBox>
                             </dxlc:LayoutGroup>
                             <dxlc:LayoutGroup Orientation="Horizontal">
-                                <dxlc:GroupBox Header="SubGroub">
+                                <dxlc:GroupBox Header="SubGroup">
                                     <dxlc:LayoutControl Orientation="Vertical">
                                         <dxlc:LayoutGroup Orientation="Vertical" ItemSpace="5">
                                             <dxlc:LayoutItem  Label="Name">

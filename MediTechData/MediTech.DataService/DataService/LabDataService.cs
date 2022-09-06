@@ -13,9 +13,9 @@ namespace MediTech.DataService
 {
     public class LabDataService
     {
-        public List<RequestLabModel> SearchRequestLabList(DateTime? requestDateFrom, DateTime? requestDateTo, string statusLis, long? patientUID, int? requestItemUID, string labNumber, int? insuranceCompanyUID, int? organisationUID, int? locationUID)
+        public List<RequestLabModel> SearchRequestLabList(DateTime? requestDateFrom, DateTime? requestDateTo, string statusLis, long? patientUID, int? requestItemUID, string labNumber, int? insuranceCompanyUID, int? organisationUID, int? locationUID,int? userUID)
         {
-            string requestApi = string.Format("Api/Lab/SearchRequestLabList?requestDateFrom={0:MM/dd/yyyy}&requestDateTo={1:MM/dd/yyyy}&statusLis={2}&patientUID={3}&requestItemUID={4}&labNumber={5}&insuranceCompanyUID={6}&organisationUID={7}&locationUID={8}", requestDateFrom, requestDateTo, statusLis, patientUID, requestItemUID, labNumber, insuranceCompanyUID, organisationUID, locationUID);
+            string requestApi = string.Format("Api/Lab/SearchRequestLabList?requestDateFrom={0:MM/dd/yyyy}&requestDateTo={1:MM/dd/yyyy}&statusLis={2}&patientUID={3}&requestItemUID={4}&labNumber={5}&insuranceCompanyUID={6}&organisationUID={7}&orderLocationUID={8}&userUID={9}", requestDateFrom, requestDateTo, statusLis, patientUID, requestItemUID, labNumber, insuranceCompanyUID, organisationUID, locationUID, userUID);
             List<RequestLabModel> listData = MeditechApiHelper.Get<List<RequestLabModel>>(requestApi);
             return listData;
         }

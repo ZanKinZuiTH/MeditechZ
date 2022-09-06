@@ -127,12 +127,38 @@ namespace MediTech.ViewModels
             set { Set(ref _LabNumber, value); }
         }
 
-        private List<LocationModel> _Location;
+        private List<HealthOrganisationModel> _Organisations;
 
-        public List<LocationModel> Location
+        public List<HealthOrganisationModel> Organisations
         {
-            get { return _Location; }
-            set { Set(ref _Location, value); }
+            get { return _Organisations; }
+            set { Set(ref _Organisations, value); }
+        }
+
+
+        private HealthOrganisationModel _SelectOrganisation;
+
+        public HealthOrganisationModel SelectOrganisation
+        {
+            get { return _SelectOrganisation; }
+            set
+            {
+                Set(ref _SelectOrganisation, value);
+                Locations = null;
+                if (SelectOrganisation != null)
+                {
+                    var loct = DataService.MasterData.GetLocationByOrganisationUID(SelectOrganisation.HealthOrganisationUID);
+                    Locations = loct.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+                }
+            }
+        }
+
+        private List<LocationModel> _Locations;
+
+        public List<LocationModel> Locations
+        {
+            get { return _Locations; }
+            set { Set(ref _Locations, value); }
         }
 
         private LocationModel _SelectLocation;
@@ -505,9 +531,15 @@ namespace MediTech.ViewModels
             var refValue = DataService.Technical.GetReferenceValueMany("ORDST");
             RequesItems = DataService.MasterData.GetRequestItemByCategory("LAB");
 
-            var org = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
-            Location = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
-            SelectLocation = Location.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
+
+            Organisations = GetHealthOrganisationRole();
+            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+
+            if (SelectOrganisation != null)
+            {
+                var loct = DataService.MasterData.GetLocationByOrganisationUID(SelectOrganisation.HealthOrganisationUID);
+                Locations = loct.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+            }
 
             InsuranceCompany = DataService.Billing.GetInsuranceCompanyAll();
 
@@ -540,8 +572,6 @@ namespace MediTech.ViewModels
             string statusOrder = SelectRequestStatus != null ? SelectRequestStatus.Key.ToString() : "";
             int? requestItemUID = SelectRequestItem != null ? SelectRequestItem.RequestItemUID : (int?)null;
             int? insuranceCompanyUID = SelectInsuranceCompany != null ? SelectInsuranceCompany.InsuranceCompanyUID : (int?)null;
-            int? locationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
-            int? organisationUID = AppUtil.Current.OwnerOrganisationUID;
             if (!string.IsNullOrEmpty(SearchPatientCriteria))
             {
                 if (SelectedPateintSearch != null)
@@ -550,7 +580,11 @@ namespace MediTech.ViewModels
                 }
             }
 
-            RequestLabs = DataService.Lab.SearchRequestLabList(DateFrom, DateTo, statusOrder, patientUID, requestItemUID, LabNumber, insuranceCompanyUID, organisationUID,locationUID);
+            int? organisationUID = SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : (int?)null;
+            int? orderLocationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
+            int userUID = AppUtil.Current.UserID;
+
+            RequestLabs = DataService.Lab.SearchRequestLabList(DateFrom, DateTo, statusOrder, patientUID, requestItemUID, LabNumber, insuranceCompanyUID, organisationUID, orderLocationUID, userUID);
 
             if (RequestLabs != null && RequestLabs.Count > 0)
             {
@@ -661,9 +695,8 @@ namespace MediTech.ViewModels
                 LabResultReport rpt = new LabResultReport();
                 ReportPrintTool printTool = new ReportPrintTool(rpt);
 
-                rpt.Parameters["LogoType"].Value = AppUtil.Current.OwnerOrganisationUID;
-                rpt.Parameters["OrganisationUID"].Value = AppUtil.Current.OwnerOrganisationUID;
                 rpt.Parameters["PatientVisitUID"].Value = SelectRequestLab.PatientVisitUID;
+                rpt.Parameters["OrganisationUID"].Value = SelectRequestLab.OwnerOrganisationUID;
                 rpt.Parameters["RequestNumber"].Value = SelectRequestLab.LabNumber;
                 rpt.RequestParameters = false;
                 rpt.ShowPrintMarginsWarning = false;
@@ -684,14 +717,14 @@ namespace MediTech.ViewModels
                 foreach (var item in requestLabSelected)
                 {
                     LabResultReport rpt = new LabResultReport();
-                    ReportPrintTool printTool = new ReportPrintTool(rpt);
-
 
                     rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
+                    rpt.Parameters["OrganisationUID"].Value = item.OwnerOrganisationUID;
                     rpt.Parameters["RequestNumber"].Value = item.LabNumber;
                     rpt.PrintAuto = true;
                     rpt.RequestParameters = false;
                     rpt.ShowPrintMarginsWarning = false;
+                    ReportPrintTool printTool = new ReportPrintTool(rpt);
                     printTool.Print(SelectPrinter.Display);
                 }
             }
@@ -716,14 +749,14 @@ namespace MediTech.ViewModels
                         string fileName = (string.IsNullOrEmpty(item.PatientID) ? "" : item.PatientID + " ") + item.PatientName + ".pdf";
 
                         LabResultReport rpt = new LabResultReport();
-                        ReportPrintTool printTool = new ReportPrintTool(rpt);
 
                         rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
+                        rpt.Parameters["OrganisationUID"].Value = item.OwnerOrganisationUID;
                         rpt.Parameters["RequestNumber"].Value = item.LabNumber;
                         rpt.PrintAuto = true;
                         rpt.RequestParameters = false;
                         rpt.ShowPrintMarginsWarning = false;
-
+                        ReportPrintTool printTool = new ReportPrintTool(rpt);
                         rpt.ExportToPdf(path + "\\" + fileName);
                     }
                 }

@@ -23,9 +23,9 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchRequestLabList")]
         [HttpGet]
-        public List<RequestLabModel> SearchRequestLabList(DateTime? requestDateFrom, DateTime? requestDateTo, string statusLis, long? patientUID, int? requestItemUID, string labNumber, int? insuranceCompanyUID, int? organisationUID, int? locationUID)
+        public List<RequestLabModel> SearchRequestLabList(DateTime? requestDateFrom, DateTime? requestDateTo, string statusLis, long? patientUID, int? requestItemUID, string labNumber, int? insuranceCompanyUID, int? organisationUID, int? orderLocationUID, int? userUID)
         {
-            DataTable dataTable = SqlDirectStore.pSearchRequestLabList(requestDateFrom, requestDateTo, statusLis, patientUID, requestItemUID, labNumber, insuranceCompanyUID, organisationUID, locationUID);
+            DataTable dataTable = SqlDirectStore.pSearchRequestLabList(requestDateFrom, requestDateTo, statusLis, patientUID, requestItemUID, labNumber, insuranceCompanyUID, organisationUID, orderLocationUID, userUID);
             List<RequestLabModel> listData = dataTable.ToList<RequestLabModel>();
             return listData;
         }

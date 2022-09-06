@@ -1762,7 +1762,7 @@ namespace MediTech.DataBase
         }
 
 
-        public static DataTable pSearchRequestLabList(DateTime? requestDateFrom, DateTime? requestDateTo, string statusList, long? patientUID, int? requestItemUID, string labNumber, int? insuranceCompanyUID, int? organisationUID, int? locationUID)
+        public static DataTable pSearchRequestLabList(DateTime? requestDateFrom, DateTime? requestDateTo, string statusList, long? patientUID, int? requestItemUID, string labNumber, int? insuranceCompanyUID, int? organisationUID, int? locationUID,int? userUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchRequestLabList", entities.Database.Connection.ConnectionString);
@@ -1776,7 +1776,8 @@ namespace MediTech.DataBase
             adp.SelectCommand.Parameters.AddWithValue("@P_LabNumber", labNumber ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_InsuranceCompanyUID", insuranceCompanyUID ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", organisationUID ?? (object)DBNull.Value);
-            adp.SelectCommand.Parameters.AddWithValue("@P_LocationUID", locationUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_Orderlocation", locationUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_UserUID", userUID ?? (object)DBNull.Value);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];

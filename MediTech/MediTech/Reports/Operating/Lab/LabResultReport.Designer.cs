@@ -411,7 +411,6 @@
             // 
             // xrLabel19
             // 
-            this.xrLabel19.CanPublish = false;
             this.xrLabel19.CanShrink = true;
             this.xrLabel19.Font = new System.Drawing.Font("Angsana New", 12F);
             this.xrLabel19.LocationFloat = new DevExpress.Utils.PointFloat(21.5001F, 102.6813F);

@@ -36,8 +36,8 @@ namespace MediTech.Reports.Operating.Lab
         {
             try
             {
-                int OrganisationUID = int.Parse(this.Parameters["OrganisationUID"].Value.ToString());
                 int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
+                int OrganisationUID = int.Parse(this.Parameters["OrganisationUID"].Value.ToString());
                 long patientVisitUID = Convert.ToInt64(this.Parameters["PatientVisitUID"].Value.ToString());
                 string requestNumber = this.Parameters["RequestNumber"].Value.ToString();
                 var labResults = (new ReportsService()).GetLabResultByRequestNumber(patientVisitUID, requestNumber);

@@ -58,7 +58,7 @@
                         </dxe:ComboBoxEdit>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="จากวัน">
-                        <dxe:DateEdit x:Name="dteFrom" EditValue="{Binding DateFrom}" />
+                        <dxe:DateEdit x:Name="dteFrom" EditValue="{Binding DateFrom}" AllowNullInput="False"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="ถึงวัน">
                         <dxe:DateEdit x:Name="dteTo" EditValue="{Binding DateTo}"/>
