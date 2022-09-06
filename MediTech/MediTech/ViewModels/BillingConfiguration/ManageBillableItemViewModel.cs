@@ -171,124 +171,33 @@ namespace MediTech.ViewModels
                     SelectedItemService = null;
                     Code = string.Empty;
                     Name = string.Empty;
-                    Description = string.Empty;
+                    //Description = string.Empty;
                     ItemAverageCost = null;
                     ReferenceCode = null;
+                    SelectedItemService = null;
                     if (serviceType == "Order Item")
                     {
                         IsEnableCode = true;
                         IsVisibilityItem = Visibility.Collapsed;
-                    }
 
-                    if (serviceType == "Lab Test")
-                    {
-                        //var data = DataService.MasterData.GetRequestItemByCategory("LAB");
-                        //ItemsServiceSource = data.Select(p => new ItemServiceModel
-                        //{
-                        //    ItemUID = p.RequestItemUID,
-                        //    Code = p.Code,
-                        //    Name = p.ItemName,
-                        //    ActiveFrom = p.EffectiveFrom,
-                        //    ActiveTo = p.EffectiveTo
-                        //}).ToList();
-                        IsEnableCode = true;
-                        IsVisibilityRefCode = Visibility.Visible;
-                    }
-                    else if (serviceType == "Radiology")
-                    {
-                        //var data = DataService.MasterData.GetRequestItemByCategory("RADIOLOGY");
-                        //ItemsServiceSource = data.Select(p => new ItemServiceModel
-                        //{
-                        //    ItemUID = p.RequestItemUID,
-                        //    Code = p.Code,
-                        //    Name = p.ItemName,
-                        //    ActiveFrom = p.EffectiveFrom,
-                        //    ActiveTo = p.EffectiveTo
-                        //}).ToList();
-                        IsEnableCode = true;
-                        IsVisibilityRefCode = Visibility.Visible;
-                    }
-                    else if (serviceType == "Mobile Checkup")
-                    {
-                        //var data = DataService.MasterData.GetRequestItemByCategory("Mobile Checkup");
-                        //ItemsServiceSource = data.Select(p => new ItemServiceModel
-                        //{
-                        //    ItemUID = p.RequestItemUID,
-                        //    Code = p.Code,
-                        //    Name = p.ItemName,
-                        //    ActiveFrom = p.EffectiveFrom,
-                        //    ActiveTo = p.EffectiveTo
-                        //}).ToList();
-                        IsEnableCode = true;
-                        IsVisibilityRefCode = Visibility.Visible;
-                    }
-                    else if (serviceType == "Drug")
-                    {
-                        //var data = DataService.Inventory.GetItemMasterByType("Drug");
-                        //ItemsServiceSource = data.Select(p => new ItemServiceModel
-                        //{
-                        //    ItemUID = p.ItemMasterUID,
-                        //    Code = p.Code,
-                        //    Name = p.Name,
-                        //    ActiveFrom = p.ActiveFrom,
-                        //    ActiveTo = p.ActiveTo
-                        //}).ToList();
-                        IsVisibilityAvgCost = Visibility.Visible;
-                        IsVisibilityCost = Visibility.Hidden;
-                        VisibleCost = false;
-                    }
-                    else if (serviceType == "Medical Supplies")
-                    {
-                        //var data = DataService.Inventory.GetItemMasterByType("Medical Supplies");
-                        //ItemsServiceSource = data.Select(p => new ItemServiceModel
-                        //{
-                        //    ItemUID = p.ItemMasterUID,
-                        //    Code = p.Code,
-                        //    Name = p.Name,
-                        //    ActiveFrom = p.ActiveFrom,
-                        //    ActiveTo = p.ActiveTo
-                        //}).ToList();
-                        IsVisibilityAvgCost = Visibility.Visible;
-                        IsVisibilityCost = Visibility.Hidden;
-                        VisibleCost = false;
-                    }
-                    else if (serviceType == "Supply")
-                    {
-                        //var data = DataService.Inventory.GetItemMasterByType("Supply");
-                        //ItemsServiceSource = data.Select(p => new ItemServiceModel
-                        //{
-                        //    ItemUID = p.ItemMasterUID,
-                        //    Code = p.Code,
-                        //    Name = p.Name,
-                        //    ActiveFrom = p.ActiveFrom,
-                        //    ActiveTo = p.ActiveTo
-                        //}).ToList();
-                        IsVisibilityAvgCost = Visibility.Visible;
-                        IsVisibilityCost = Visibility.Hidden;
-                        VisibleCost = false;
                     }
                     else
                     {
-                        ItemsServiceSource = null;
+                        IsEnableCode = true;
+                        IsVisibilityRefCode = Visibility.Visible;
                     }
 
                 }
             }
         }
 
-        private List<ItemServiceModel> _ItemsServiceSource;
 
-        public List<ItemServiceModel> ItemsServiceSource
-        {
-            get { return _ItemsServiceSource; }
-            set { Set(ref _ItemsServiceSource, value); }
-        }
 
         private ItemServiceModel _SelectItemService;
 
         public ItemServiceModel SelectedItemService
         {
-            get { return _SelectItemService ?? (_SelectItemService = new ItemServiceModel()); }
+            get { return _SelectItemService; }
             set
             {
                 Set(ref _SelectItemService, value);
@@ -321,6 +230,8 @@ namespace MediTech.ViewModels
                 }
             }
         }
+
+
 
         private List<HealthOrganisationModel> _Organisations;
 
@@ -422,7 +333,7 @@ namespace MediTech.ViewModels
 
         public ObservableCollection<BillableItemDetailModel> BillableItemDetail
         {
-            get { return _BillableItemDetail ?? (_BillableItemDetail = new ObservableCollection<BillableItemDetailModel>()) ; }
+            get { return _BillableItemDetail ?? (_BillableItemDetail = new ObservableCollection<BillableItemDetailModel>()); }
             set { Set(ref _BillableItemDetail, value); }
         }
 
@@ -431,7 +342,8 @@ namespace MediTech.ViewModels
         public BillableItemDetailModel SelectBillableItemDetail
         {
             get { return _SelectBillableItemDetail; }
-            set { 
+            set
+            {
                 Set(ref _SelectBillableItemDetail, value);
                 if (_SelectBillableItemDetail != null)
                 {
@@ -460,7 +372,8 @@ namespace MediTech.ViewModels
         public ItemAverageCostModel SelectItemAverageCost
         {
             get { return _SelectItemAverageCost; }
-            set {
+            set
+            {
                 _SelectItemAverageCost = value;
             }
         }
@@ -590,7 +503,7 @@ namespace MediTech.ViewModels
             get { return _ClearCommand ?? (_ClearCommand = new RelayCommand(ClearBillItmdetail)); }
         }
 
-        
+
         private RelayCommand _SearchItemCommand;
         public RelayCommand SearchItemCommand
         {
@@ -630,7 +543,7 @@ namespace MediTech.ViewModels
                     WarningDialog("กรุณาเลือก Service Type");
                     return;
                 }
-                if (ItemsServiceSource != null)
+                if (IsVisibilityItem == Visibility.Visible)
                 {
                     if (SelectedItemService == null)
                     {
@@ -682,7 +595,7 @@ namespace MediTech.ViewModels
                     return;
                 }
 
-                if ( BillableItemDetail == null || BillableItemDetail.Count() <= 0)
+                if (BillableItemDetail == null || BillableItemDetail.Count() <= 0)
                 {
                     WarningDialog("กรุณาใส่ราคา");
                     return;
@@ -855,9 +768,44 @@ namespace MediTech.ViewModels
         void AssingModelToProperties()
         {
             SelectServiceType = ServiceTypes != null ? ServiceTypes.FirstOrDefault(p => p.Key == model.BSMDDUID) : null;
-            SelectedItemService = ItemsServiceSource != null ? ItemsServiceSource.FirstOrDefault(p => p.ItemUID == model.ItemUID) : null;
             SelectBillingGroup = BillingGroup != null ? BillingGroup.FirstOrDefault(p => p.BillingGroupUID == model.BillingGroupUID) : null;
             SelectBillingSubGroup = BillingSubGroup != null ? BillingSubGroup.FirstOrDefault(p => p.BillingSubGroupUID == model.BillingSubGroupUID) : null;
+
+            if (SelectServiceType != null)
+            {
+                if (SelectServiceType.Display == "Drug" || SelectServiceType.Display == "Medical Supplies" || SelectServiceType.Display == "Supply")
+                {
+                    var data = DataService.Inventory.GetItemMasterByUID(model.ItemUID ?? 0);
+                    if (data != null)
+                    {
+                        SelectedItemService = new ItemServiceModel()
+                        {
+                            ItemUID = data.ItemMasterUID,
+                            Code = data.Code,
+                            Name = data.Name,
+                            ActiveFrom = data.ActiveFrom,
+                            ActiveTo = data.ActiveTo,
+                            Manufacturer = data.Manufacturer
+                        };
+                    }
+                }
+                else if (SelectServiceType.Display == "Lab Test" || SelectServiceType.Display == "Radiology" || SelectServiceType.Display == "Mobile Checkup")
+                {
+                    var data = DataService.MasterData.GetRequestItemByUID(model.ItemUID ?? 0);
+                    if (data != null)
+                    {
+                        SelectedItemService = new ItemServiceModel()
+                        {
+                            ItemUID = data.RequestItemUID,
+                            Code = data.Code,
+                            Name = data.ItemName,
+                            ActiveFrom = data.EffectiveFrom,
+                            ActiveTo = data.EffectiveTo
+                        };
+                    }
+                }
+
+            }
 
             if (SelectedItemService == null && (model.ItemUID ?? 0) != 0)
             {
@@ -882,6 +830,8 @@ namespace MediTech.ViewModels
                 );
             SelectCategory = model.OrderCategoryUID != null ? Category.FirstOrDefault(p => p.OrderCategoryUID == model.OrderCategoryUID) : null;
             SelectOrderSubCategory = model.OrderSubCategoryUID != null ? OrderSubCategory.FirstOrDefault(p => p.OrderSubCategoryUID == model.OrderSubCategoryUID) : null;
+
+ 
 
         }
 
@@ -916,12 +866,12 @@ namespace MediTech.ViewModels
             model.BillableItemDetails = BillableItemDetail.ToList();
             model.OrderCategoryUID = SelectCategory.OrderCategoryUID;
             model.OrderSubCategoryUID = SelectOrderSubCategory.OrderSubCategoryUID;
-            
+
         }
 
         private void SearchItem()
         {
-            if(SelectServiceType != null)
+            if (SelectServiceType != null)
             {
                 SearchItem page = new SearchItem();
                 (page.DataContext as SearchItemViewModel).AssignModel(SelectServiceType.Key ?? 0);

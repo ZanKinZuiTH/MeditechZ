@@ -26,21 +26,13 @@
                                           ValueMember="Key"
                                           SelectedItem="{Binding SelectServiceType}"/>
                         </dxlc:LayoutItem>
-                        <dxlc:LayoutItem HorizontalAlignment="Right">
-                            <dx:SimpleButton Width="40" Command="{Binding SearchItemCommand}">
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="/MediTech;component/Resources/Images/Action/Search.png" Width="20"/>
-                                </StackPanel>
-                                <dx:SimpleButton.ToolTip>
-                                    <TextBlock>ค้นหารายการ Item</TextBlock>
-                                </dx:SimpleButton.ToolTip>
-                            </dx:SimpleButton>
-                        </dxlc:LayoutItem>
+          
                     </dxlc:LayoutGroup>
-                    
-                    <!--<dxlc:LayoutGroup>
-                        <dxlc:LayoutItem Label="Service Item" Visibility="{Binding IsVisibilityItem}">
-                        <dxg:LookUpEdit DisplayMember="Name"
+
+                    <dxlc:LayoutGroup Visibility="{Binding IsVisibilityItem}">
+                        <dxlc:LayoutItem Label="Service Item" >
+                            <dxe:TextEdit Text="{Binding Path=SelectedItemService.Name,Mode=TwoWay}" IsReadOnly="True"/>
+                            <!--<dxg:LookUpEdit DisplayMember="Name"
                                         ItemsSource="{Binding ItemsServiceSource}"
                                         SelectedItem="{Binding SelectedItemService}"
                                         AutoPopulateColumns="False"
@@ -66,16 +58,19 @@
                             <dxg:LookUpEdit.StyleSettings>
                                 <dxg:SearchLookUpEditStyleSettings/>
                             </dxg:LookUpEdit.StyleSettings>
-                        </dxg:LookUpEdit>
+                        </dxg:LookUpEdit>-->
                     </dxlc:LayoutItem>
                         <dxlc:LayoutItem HorizontalAlignment="Right">
                             <dx:SimpleButton Width="40" Command="{Binding SearchItemCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/MediTech;component/Resources/Images/Action/Search.png" Width="20" Height="15"/>
                                 </StackPanel>
+                                <dx:SimpleButton.ToolTip>
+                                    <TextBlock>ค้นหารายการ Item</TextBlock>
+                                </dx:SimpleButton.ToolTip>
                             </dx:SimpleButton>
                         </dxlc:LayoutItem>
-                    </dxlc:LayoutGroup>-->
+                    </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup Orientation="Horizontal">
                         <dxlc:LayoutItem>
                             <dxlc:LayoutItem.Label>

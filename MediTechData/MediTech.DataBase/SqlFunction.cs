@@ -1782,7 +1782,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pSearchRequestExamList(DateTime? requestDateFrom, DateTime? requestDateTo, string statusList, int? RQPRTUID, long? patientUID, string orderName, int? RIMTYPUID, int? radiologistUID, int? rduStaffUID, int? payorDetailUID, int? organisationUID)
+        public static DataTable pSearchRequestExamList(DateTime? requestDateFrom, DateTime? requestDateTo, string statusList, int? RQPRTUID, long? patientUID, string orderName, int? RIMTYPUID, int? radiologistUID, int? rduStaffUID, int? payorDetailUID,int? orderLocationUID, int? organisationUID,int? userUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchRequestExamList", entities.Database.Connection.ConnectionString);
@@ -1798,7 +1798,9 @@ namespace MediTech.DataBase
             adp.SelectCommand.Parameters.AddWithValue("@P_RadiologistUID", radiologistUID ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_RDUStaffUID", rduStaffUID ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_PayorDetailUID", payorDetailUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_Orderlocation", orderLocationUID ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", organisationUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_UserUID", userUID ?? (object)DBNull.Value);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];

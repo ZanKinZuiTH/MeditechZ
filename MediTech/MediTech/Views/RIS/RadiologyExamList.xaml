@@ -130,16 +130,7 @@
                                     </dxlc:LayoutItem>
                                 </dxlc:LayoutGroup>
                                 <dxlc:LayoutGroup Orientation="Horizontal">
-                                    <dxlc:LayoutItem Label="แผนก">
-                                        <dxe:ComboBoxEdit Name="cmbOrganisation" 
-                                      ItemsSource="{Binding Location}" 
-                                      SelectedItem="{Binding SelectLocation}"
-                                      ValueMember="LocationUID"
-                                      DisplayMember="Name"
-                                      AutoComplete="True"
-                                      NullValueButtonPlacement="EditBox"
-                                      ImmediatePopup="True"/>
-                                    </dxlc:LayoutItem>
+              
                                     <dxlc:LayoutItem Label="Modality">
                                         <dxe:ComboBoxEdit ItemsSource="{Binding Modality}"
                                                           SelectedItem="{Binding SelectModality}"
@@ -154,8 +145,6 @@
                                                           NullValueButtonPlacement="EditBox"
                                                           ValueMember="Key"/>
                                     </dxlc:LayoutItem>
-                                </dxlc:LayoutGroup>
-                                <dxlc:LayoutGroup>
                                     <dxlc:LayoutItem Label="เจ้าหน้าที่ RDU">
                                         <dxe:ComboBoxEdit x:Name="cmbRDU"
                                               ItemsSource="{Binding RDUStaffList}"
@@ -166,6 +155,30 @@
                                               AllowNullInput="True"
                                               ValueMember="CareproviderUID"/>
                                     </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+                                <dxlc:LayoutGroup>
+                                    <dxlc:LayoutItem Label="สถานประกอบการ">
+                                        <dxe:ComboBoxEdit x:Name="cmbOrganisation"
+                                      ItemsSource="{Binding Organisations}" 
+                                      SelectedItem="{Binding SelectOrganisation}"
+                                      ValueMember="HealthOrganisationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True"
+                                      NullValueButtonPlacement="EditBox"
+                                      ImmediatePopup="True"/>
+                                    </dxlc:LayoutItem>
+                                    
+                                    <dxlc:LayoutItem Label="แผนก">
+                                        <dxe:ComboBoxEdit Name="cmbLocations" 
+                                      ItemsSource="{Binding Location}" 
+                                      SelectedItem="{Binding SelectLocation}"
+                                      ValueMember="LocationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True"
+                                      NullValueButtonPlacement="EditBox"
+                                      ImmediatePopup="True"/>
+                                    </dxlc:LayoutItem>
+                                    
                                     <dxlc:LayoutItem Label="Payor">
                                         <dxg:LookUpEdit Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
                                       SelectedItem="{Binding SelectPayorDetail}"
@@ -203,6 +216,15 @@
                                             </dxg:LookUpEdit.StyleSettings>
                                         </dxg:LookUpEdit>
                                     </dxlc:LayoutItem>
+              
+
+
+
+                                </dxlc:LayoutGroup>
+                                
+                                <dxlc:LayoutGroup>
+                                    <dxlc:LayoutItem/>
+                                    <dxlc:LayoutItem/>
                                     <dxlc:LayoutItem>
                                         <dxlc:LayoutGroup Orientation="Horizontal">
                                             <dxe:CheckEdit x:Name="chkAutoRefersh" Content="Auto Refersh" 
@@ -217,7 +239,6 @@
 
                                         </dxlc:LayoutGroup>
                                     </dxlc:LayoutItem>
-
                                 </dxlc:LayoutGroup>
 
                             </dxlc:LayoutGroup>

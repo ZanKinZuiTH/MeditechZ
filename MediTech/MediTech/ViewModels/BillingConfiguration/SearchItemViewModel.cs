@@ -92,6 +92,7 @@ namespace MediTech.ViewModels
         public SearchItemViewModel()
         {
             ServiceTypes = DataService.Technical.GetReferenceValueMany("BSMDD");
+            ServiceTypes = ServiceTypes.Where(p => p.Display != "Order Item").ToList();
         }
 
         public void AssignModel(int type)
@@ -189,11 +190,7 @@ namespace MediTech.ViewModels
                     }).ToList();
                 }
 
-
-                //GetItemMasterByType("Drug");
-                //GetItemMasterByType("Medical Supplies");
-                //GetItemMasterByType("Supply");
-                var fsd = DataService.Inventory.SearchItemMaster("", "", SelectServiceTypes.Key);
+                //var fsd = DataService.Inventory.SearchItemMaster("", "", SelectServiceTypes.Key);
             }
         }
 

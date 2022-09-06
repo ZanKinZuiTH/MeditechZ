@@ -561,8 +561,10 @@ namespace MediTechWebApi.Controllers
                                         request.PatientUID = patientUID;
                                         request.PatientVisitUID = patientVisitUID;
                                         request.PatientOrderUID = patientOrder.UID;
+    
                                         request.MUser = userUID;
                                         request.MWhen = now;
+                                        request.OrderLocationUID = locationUID;
                                         request.OwnerOrganisationUID = ownerOrganisationUID;
 
 
@@ -625,6 +627,7 @@ namespace MediTechWebApi.Controllers
                                         presc.PatientOrderUID = patientOrder.UID;
 
                                         presc.StatusFlag = "A";
+                                        presc.OrderLocationUID = locationUID;
                                         presc.OwnerOrganisationUID = ownerOrganisationUID;
 
                                         db.Prescription.Add(presc);
@@ -1016,6 +1019,7 @@ namespace MediTechWebApi.Controllers
                                         prescStading.PatientOrderUID = patientOrder.UID;
 
                                         prescStading.StatusFlag = "A";
+                                        prescStading.OrderLocationUID = locationUID;
                                         prescStading.OwnerOrganisationUID = ownerOrganisationUID;
 
                                         db.Prescription.Add(prescStading);

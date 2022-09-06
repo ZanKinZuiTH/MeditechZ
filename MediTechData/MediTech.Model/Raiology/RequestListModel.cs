@@ -76,6 +76,7 @@ namespace MediTech.Model
         public System.Nullable<int> RefNo { get; set; }
         public string DoctorName { get; set; }
         public string ExecuteBy { get; set; }
+        public string LocationName { get; set; }
         public string OrganisationName { get; set; }
         public string PayorName { get; set; }
         public string Comments { get; set; }

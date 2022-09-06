@@ -39,9 +39,9 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchRequestExamList")]
         [HttpGet]
-        public List<RequestListModel> SearchRequestExamList(DateTime? requestDateFrom, DateTime? requestDateTo, string statusList, int? RQPRTUID, long? patientUID, string orderName, int? RIMTYPUID, int? radiologistUID, int? rduStaffUID, int? payorDetailUID, int? organisationUID)
+        public List<RequestListModel> SearchRequestExamList(DateTime? requestDateFrom, DateTime? requestDateTo, string statusList, int? RQPRTUID, long? patientUID, string orderName, int? RIMTYPUID, int? radiologistUID, int? rduStaffUID, int? payorDetailUID, int? orderLocationUID, int? organisationUID, int? userUID)
         {
-            DataTable dataTable = SqlDirectStore.pSearchRequestExamList(requestDateFrom, requestDateTo, statusList, RQPRTUID, patientUID, orderName, RIMTYPUID, radiologistUID, rduStaffUID, payorDetailUID, organisationUID);
+            DataTable dataTable = SqlDirectStore.pSearchRequestExamList(requestDateFrom, requestDateTo, statusList, RQPRTUID, patientUID, orderName, RIMTYPUID, radiologistUID, rduStaffUID, payorDetailUID,orderLocationUID, organisationUID,userUID);
             List<RequestListModel> listData = dataTable.ToList<RequestListModel>();
 
             return listData;

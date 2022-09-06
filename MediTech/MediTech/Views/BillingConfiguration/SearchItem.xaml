@@ -7,6 +7,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d" 
              DataContext="{Binding Path=SearchItemViewModel,Source={StaticResource Locator}}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -40,6 +42,11 @@
             </dxlc:LayoutGroup>
             <dxg:GridControl x:Name="grdBillableItem" ItemsSource="{Binding ItemMaster}"
                              SelectedItem="{Binding SelectItemMaster}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <mvvm:EventToCommand Command="{Binding AddCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
                 <dxg:GridControl.Columns>
                     <dxg:GridColumn Header="Code" FieldName="Code"/>
                     <dxg:GridColumn Header="ชื่อ" FieldName="Name"/>
