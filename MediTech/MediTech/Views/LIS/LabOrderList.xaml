@@ -21,7 +21,7 @@
             <dxlc:LayoutGroup Orientation="Vertical">
                 <dxlc:LayoutGroup Orientation="Horizontal">
                     <dxlc:LayoutItem Label="จากวันที่">
-                        <dxe:DateEdit EditValue="{Binding DateFrom}"/>
+                        <dxe:DateEdit EditValue="{Binding DateFrom}" AllowNullInput="False"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="ถึงวันที่">
                         <dxe:DateEdit EditValue="{Binding DateTo}"/>
@@ -94,9 +94,20 @@
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup Orientation="Horizontal">
+
+                    <dxlc:LayoutItem Label="สถานประกอบการ">
+                        <dxe:ComboBoxEdit x:Name="cmbOrganisation"
+                                      ItemsSource="{Binding Organisations}" 
+                                      SelectedItem="{Binding SelectOrganisation}"
+                                      ValueMember="HealthOrganisationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True"
+                                      NullValueButtonPlacement="EditBox"
+                                      ImmediatePopup="True"/>
+                    </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="แผนก">
-                        <dxe:ComboBoxEdit Name="cmbOrganisation" 
-                                      ItemsSource="{Binding Location}" 
+                        <dxe:ComboBoxEdit Name="cmbLocations" 
+                                      ItemsSource="{Binding Locations}" 
                                       SelectedItem="{Binding SelectLocation}"
                                       ValueMember="LocationUID"
                                       DisplayMember="Name"
@@ -138,15 +149,16 @@
                             </dxg:LookUpEdit.StyleSettings>
                         </dxg:LookUpEdit>
                     </dxlc:LayoutItem>
-                    <dxlc:LayoutItem>
-                        <dxlc:LayoutGroup Orientation="Horizontal">
-                            <dxlc:LayoutGroup HorizontalAlignment="Right">
-                                <dx:SimpleButton Command="{Binding SearchCommand}" Content="ค้นหา" Height="25" Width="80"/>
-                                <dx:SimpleButton Command="{Binding ClearCommand}" Content="คืนค่า" Height="25" Width="80"/>
-                            </dxlc:LayoutGroup>
-                        </dxlc:LayoutGroup>
-                    </dxlc:LayoutItem>
+
                 </dxlc:LayoutGroup>
+                <dxlc:LayoutItem>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutGroup HorizontalAlignment="Right">
+                            <dx:SimpleButton Command="{Binding SearchCommand}" Content="ค้นหา" Height="25" Width="80"/>
+                            <dx:SimpleButton Command="{Binding ClearCommand}" Content="คืนค่า" Height="25" Width="80"/>
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxg:GridControl x:Name="grdRequestList" ItemsSource="{Binding RequestLabs}"  SelectedItem="{Binding SelectRequestLab}">

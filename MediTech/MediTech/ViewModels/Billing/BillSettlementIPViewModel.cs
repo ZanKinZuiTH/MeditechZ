@@ -238,6 +238,7 @@ namespace MediTech.ViewModels
                 if (result != null && result.ResultDialog == ActionDialog.Save)
                 {
                     ResultDialog = ActionDialog.Save;
+                    Reload();
                 }
             }
         }

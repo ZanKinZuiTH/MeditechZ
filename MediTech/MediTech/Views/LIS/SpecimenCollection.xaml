@@ -29,7 +29,7 @@
             <dxlc:LayoutGroup Orientation="Vertical">
                 <dxlc:LayoutGroup Orientation="Horizontal">
                     <dxlc:LayoutItem Label="จากวันที่">
-                        <dxe:DateEdit EditValue="{Binding DateFrom}"/>
+                        <dxe:DateEdit EditValue="{Binding DateFrom}" AllowNullInput="False"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="ถึงวันที่">
                         <dxe:DateEdit EditValue="{Binding DateTo}"/>
@@ -105,6 +105,26 @@
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup Orientation="Horizontal">
+                    <dxlc:LayoutItem Label="สถานประกอบการ">
+                        <dxe:ComboBoxEdit x:Name="cmbOrganisation"
+                                      ItemsSource="{Binding Organisations}" 
+                                      SelectedItem="{Binding SelectOrganisation}"
+                                      ValueMember="HealthOrganisationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True"
+                                      NullValueButtonPlacement="EditBox"
+                                      ImmediatePopup="True"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="แผนก">
+                        <dxe:ComboBoxEdit Name="cmbLocations" 
+                                      ItemsSource="{Binding Locations}" 
+                                      SelectedItem="{Binding SelectLocation}"
+                                      ValueMember="LocationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True"
+                                      NullValueButtonPlacement="EditBox"
+                                      ImmediatePopup="True"/>
+                    </dxlc:LayoutItem>
                     <dxlc:LayoutItem>
                         <dxlc:LayoutGroup Orientation="Horizontal">
                             <dxlc:LayoutGroup HorizontalAlignment="Right">
@@ -137,6 +157,7 @@
                     <dxg:GridColumn Header="ความสำคัญ" FieldName="PriorityStatus" ReadOnly="True"/>
                     <dxg:GridColumn Header="หมายเหตุ" FieldName="Comments" ReadOnly="True"/>
                     <dxg:GridColumn Header="สถานประกอบการ" FieldName="OrganisationName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="แผนก" FieldName="LocationName" ReadOnly="True"/>
                     <dxg:GridControl.View>
                         <dxg:TableView x:Name="grvRequestList" ShowGroupPanel="False" AllowEditing="False">
                         </dxg:TableView>

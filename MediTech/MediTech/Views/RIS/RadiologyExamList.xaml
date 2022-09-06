@@ -83,7 +83,7 @@
                             <dxlc:LayoutGroup Orientation="Vertical">
                                 <dxlc:LayoutGroup Orientation="Horizontal">
                                     <dxlc:LayoutItem Label="จากวันที่">
-                                        <dxe:DateEdit EditValue="{Binding DateFrom}"/>
+                                        <dxe:DateEdit AllowNullInput="False" EditValue="{Binding DateFrom}"/>
                                     </dxlc:LayoutItem>
                                     <dxlc:LayoutItem Label="ถึงวันที่">
                                         <dxe:DateEdit EditValue="{Binding DateTo}"/>
@@ -170,7 +170,7 @@
                                     
                                     <dxlc:LayoutItem Label="แผนก">
                                         <dxe:ComboBoxEdit Name="cmbLocations" 
-                                      ItemsSource="{Binding Location}" 
+                                      ItemsSource="{Binding Locations}" 
                                       SelectedItem="{Binding SelectLocation}"
                                       ValueMember="LocationUID"
                                       DisplayMember="Name"

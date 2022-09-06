@@ -104,12 +104,12 @@ namespace MediTech.ViewModels
         }
 
 
-        private List<LocationModel> _Location;
+        private List<LocationModel> _Locations;
 
-        public List<LocationModel> Location
+        public List<LocationModel> Locations
         {
-            get { return _Location; }
-            set { Set(ref _Location, value); }
+            get { return _Locations; }
+            set { Set(ref _Locations, value); }
         }
 
         private List<LookupReferenceValueModel> _Modality;
@@ -171,11 +171,11 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _SelectOrganisation, value);
-                Location = null;
+                Locations = null;
                 if (SelectOrganisation != null)
                 {
                     var loct = DataService.MasterData.GetLocationByOrganisationUID(SelectOrganisation.HealthOrganisationUID);
-                    Location = loct.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+                    Locations = loct.Where(p => p.IsRegistrationAllowed == "Y").ToList();
                 }
             }
         }
@@ -635,7 +635,7 @@ namespace MediTech.ViewModels
             if (SelectOrganisation != null)
             {
                 var loct = DataService.MasterData.GetLocationByOrganisationUID(SelectOrganisation.HealthOrganisationUID);
-                Location = loct.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+                Locations = loct.Where(p => p.IsRegistrationAllowed == "Y").ToList();
             }
 
 
@@ -1065,9 +1065,9 @@ namespace MediTech.ViewModels
             }
 
             int? organisationUID = SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : (int?)null;
-            int? locatioinUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
+            int? locationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
             int userUID = AppUtil.Current.UserID;
-            var listResult = DataService.Radiology.SearchRequestExamList(DateFrom, DateTo, statusList, rqprtuid, patientUID, RequestItemName, rimtyp, radiologistUID, rduStaffUID, payorDetailUID, locatioinUID, organisationUID, userUID);
+            var listResult = DataService.Radiology.SearchRequestExamList(DateFrom, DateTo, statusList, rqprtuid, patientUID, RequestItemName, rimtyp, radiologistUID, rduStaffUID, payorDetailUID, locationUID, organisationUID, userUID);
 
             if (SelectRDUStaff != null && SelectRDUStaff.CareproviderUID == 0)
                 listResult = listResult.Where(p => string.IsNullOrEmpty(p.RDUStaff)).ToList();

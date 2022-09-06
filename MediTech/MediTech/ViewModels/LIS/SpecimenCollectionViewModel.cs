@@ -168,6 +168,48 @@ namespace MediTech.ViewModels
             }
         }
 
+        private List<HealthOrganisationModel> _Organisations;
+
+        public List<HealthOrganisationModel> Organisations
+        {
+            get { return _Organisations; }
+            set { Set(ref _Organisations, value); }
+        }
+
+        private HealthOrganisationModel _SelectOrganisation;
+
+        public HealthOrganisationModel SelectOrganisation
+        {
+            get { return _SelectOrganisation; }
+            set
+            {
+                Set(ref _SelectOrganisation, value);
+                Locations = null;
+                if (SelectOrganisation != null)
+                {
+                    var loct = DataService.MasterData.GetLocationByOrganisationUID(SelectOrganisation.HealthOrganisationUID);
+                    Locations = loct.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+                }
+            }
+        }
+
+        private List<LocationModel> _Locations;
+
+        public List<LocationModel> Locations
+        {
+            get { return _Locations; }
+            set { Set(ref _Locations, value); }
+        }
+
+
+        private LocationModel _SelectLocation;
+
+        public LocationModel SelectLocation
+        {
+            get { return _SelectLocation; }
+            set { Set(ref _SelectLocation, value); }
+        }
+
         private bool _SurpassEventChecked = false;
 
         public bool SurpassEventChecked
@@ -366,6 +408,15 @@ namespace MediTech.ViewModels
             SelectRequestStatusList.Add(RequestStatus.FirstOrDefault(p => p.ValueCode == "RAISED").Key);
             RequesItems = DataService.MasterData.GetRequestItemByCategory("LAB");
 
+            Organisations = GetHealthOrganisationRole();
+            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+
+            if (SelectOrganisation != null)
+            {
+                var loct = DataService.MasterData.GetLocationByOrganisationUID(SelectOrganisation.HealthOrganisationUID);
+                Locations = loct.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+            }
+
             PrinterLists = new List<LookupItemModel>();
             int i = 1;
             foreach (string printer in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
@@ -415,7 +466,10 @@ namespace MediTech.ViewModels
             }
             int? requestItemUID = SelectRequestItem != null ? SelectRequestItem.RequestItemUID : (int?)null;
 
-            RequestLabs = DataService.Lab.SearchRequestLabList(DateFrom, DateTo, statusList, patientUID, requestItemUID, LabNumber, null, null,null);
+            int? organisationUID = SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : (int?)null;
+            int? locationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
+            int userUID = AppUtil.Current.UserID;
+            RequestLabs = DataService.Lab.SearchRequestLabList(DateFrom, DateTo, statusList, patientUID, requestItemUID, LabNumber, null, organisationUID, locationUID, userUID);
             if (SelectRequestLab != null)
                 SelectRequestLab = null;
         }

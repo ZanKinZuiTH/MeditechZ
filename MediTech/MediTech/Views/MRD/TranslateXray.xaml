@@ -32,7 +32,7 @@
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup>
                 <dxlc:LayoutItem Label="จากวันที่">
-                    <dxe:DateEdit EditValue="{Binding DateFrom}"/>
+                    <dxe:DateEdit EditValue="{Binding DateFrom}" AllowNullInput="False"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="ถึงวันที่">
                     <dxe:DateEdit EditValue="{Binding DateTo}"/>

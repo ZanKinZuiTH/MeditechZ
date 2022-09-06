@@ -225,6 +225,11 @@ namespace MediTech.ViewModels
         {
             if (SelectPatientBill != null)
             {
+                if (SelectPatientBill.BillType == "Invoice")
+                {
+                    WarningDialog("บิลนี้เป็นประเภทการชำระเงินแบบวางบิล ไม่สามารถทำการแก้ไขรูปแบบการชำระเงินได้");
+                    return;
+                }
                 if (SelectPatientBill.IsCancel)
                 {
                     ListPaymentDetails view = new ListPaymentDetails();
@@ -258,6 +263,7 @@ namespace MediTech.ViewModels
                         }
 
                         DataService.Billing.ManagePatientPaymentDetail(patientPaymentDetails, AppUtil.Current.UserID);
+                        SearchPatientBill();
                     }
                 }
 
