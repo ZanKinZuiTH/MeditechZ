@@ -999,6 +999,14 @@ namespace MediTech.ViewModels
                                 conclusion = conclusion.Trim();
                             }
 
+                            else if (grpstUID == 4272) //ยืดเหยียดกล้ามเนื้อ
+                            {
+                                var srmus3 = resultComponent.FirstOrDefault(p => p.ResultItemCode == "SRMUS3");
+
+                                conclusion = srmus3?.ResultValue;
+                                conclusion = conclusion.Trim();
+                            }
+
 
                             if (!string.IsNullOrEmpty(conclusion))
                             {

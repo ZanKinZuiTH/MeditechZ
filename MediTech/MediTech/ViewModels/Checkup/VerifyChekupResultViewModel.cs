@@ -225,9 +225,22 @@ namespace MediTech.ViewModels
                             }
                             groupResults = groupResults.OrderBy(p => p.DisplayOrder).ToList();
 
-                            var groupResultOther = groupResults.Where(p => !groupFitnessTest.Any(n => n == p.GPRSTUID));
+                            var groupFitnessUID = groupResults.Where(p => p.GPRSTUID == 4238).FirstOrDefault();
 
-                            var groupFitnessResult = groupResults.Where(p => groupFitnessTest.Any(n => n == p.GPRSTUID));
+                            List<CheckupGroupResultModel> groupFitnessResult = new List<CheckupGroupResultModel>();
+                            List<CheckupGroupResultModel> groupResultOther = groupResults;
+                            
+                            if (groupFitnessUID != null)
+                            {
+                                var data = groupResults.Where(p => groupFitnessTest.Any(n => n == p.GPRSTUID));
+                                groupFitnessResult = data.ToList();
+
+                                var resultOther = groupResults.Where(p => !groupFitnessTest.Any(n => n == p.GPRSTUID));
+                                groupResultOther = resultOther.ToList();
+                            }
+
+                            //var groupResultOther = groupResults.Where(p => !groupFitnessTest.Any(n => n == p.GPRSTUID));
+                            //var groupFitnessResult = groupResults.Where(p => groupFitnessTest.Any(n => n == p.GPRSTUID));
 
                             foreach (var groupResult in groupResultOther)
                             {
@@ -237,7 +250,7 @@ namespace MediTech.ViewModels
                                 }
                                 ListGroupResult.Add("O " + groupResult.GroupResult + " : " + groupResult.Conclusion);
                             }
-
+                            
                             foreach (var groupResult in groupFitnessResult)
                             {
                                 if (ListFitnessTestResult == null)

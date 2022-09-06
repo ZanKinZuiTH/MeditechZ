@@ -499,180 +499,185 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 #endregion
 
                 page8.lbEKGRecommend.Text = groupResult.FirstOrDefault(p => p.GroupCode == "GPRST23")?.Conclusion;
-
-                var labCompare = data.LabCompare.OrderByDescending(p=> p.Year);
-                if (labCompare != null)
+                
+                IOrderedEnumerable<PatientResultComponentModel> labCompare;
+                if (data.LabCompare != null)
                 {
-                    #region Complete Blood Count
+                    labCompare = data.LabCompare.OrderByDescending(p => p.Year);
 
-                    IEnumerable<PatientResultComponentModel> cbcTestSet = labCompare
-                    .Where(p => p.RequestItemName.Contains("CBC"))
-                    .OrderByDescending(p => p.Year);
-                    GenerateCompleteBloodCount(cbcTestSet);
-                    #endregion
+                    if(labCompare != null)
+                    {
+                        #region Complete Blood Count
 
-                    #region Urinalysis
-                    IEnumerable<PatientResultComponentModel> uaTestSet = labCompare
-                        .Where(p => p.RequestItemName.Contains("UA"))
+                        IEnumerable<PatientResultComponentModel> cbcTestSet = labCompare
+                        .Where(p => p.RequestItemName.Contains("CBC"))
                         .OrderByDescending(p => p.Year);
-                    GenerateUrinalysis(uaTestSet);
+                        GenerateCompleteBloodCount(cbcTestSet);
+                        #endregion
 
-                    #endregion
+                        #region Urinalysis
+                        IEnumerable<PatientResultComponentModel> uaTestSet = labCompare
+                            .Where(p => p.RequestItemName.Contains("UA"))
+                            .OrderByDescending(p => p.Year);
+                        GenerateUrinalysis(uaTestSet);
 
-                    #region Renal function
-                    IEnumerable<PatientResultComponentModel> RenalTestSet = labCompare
-                        .Where(p => p.RequestItemCode.Contains("LAB212")
-                        || p.RequestItemCode.Contains("LAB211")
-                        || p.RequestItemCode.Contains("LAB213"))
-                        .OrderByDescending(p => p.Year);
-                    GenerateRenalFunction(RenalTestSet);
+                        #endregion
 
-                    #endregion
+                        #region Renal function
+                        IEnumerable<PatientResultComponentModel> RenalTestSet = labCompare
+                            .Where(p => p.RequestItemCode.Contains("LAB212")
+                            || p.RequestItemCode.Contains("LAB211")
+                            || p.RequestItemCode.Contains("LAB213"))
+                            .OrderByDescending(p => p.Year);
+                        GenerateRenalFunction(RenalTestSet);
 
-                    #region Fasting Blood Sugar
-                    IEnumerable<PatientResultComponentModel> FbsTestSet = labCompare
-                        .Where(p => p.RequestItemCode.Contains("LAB231")
-                        || p.RequestItemCode.Contains("LAB232"))
+                        #endregion
+
+                        #region Fasting Blood Sugar
+                        IEnumerable<PatientResultComponentModel> FbsTestSet = labCompare
+                            .Where(p => p.RequestItemCode.Contains("LAB231")
+                            || p.RequestItemCode.Contains("LAB232"))
+                             .OrderByDescending(p => p.Year);
+                        GenerateFastingBloodSugar(FbsTestSet);
+
+                        #endregion
+
+                        #region Uric acid
+                        IEnumerable<PatientResultComponentModel> UricTestSet = labCompare
+                            .Where(p => p.RequestItemCode.Contains("LAB261"))
+                            .OrderByDescending(p => p.Year);
+                        GenerateUricAcid(UricTestSet);
+
+                        #endregion
+
+                        #region Lipid Profiles 
+                        IEnumerable<PatientResultComponentModel> LipidTestSet = labCompare
+                            .Where(p => p.RequestItemCode.Contains("LAB241")
+                            || p.RequestItemCode.Contains("LAB242")
+                            || p.RequestItemCode.Contains("LAB243")
+                            || p.RequestItemCode.Contains("LAB244"))
+                             .OrderByDescending(p => p.Year);
+                        GenerateLipidProfiles(LipidTestSet);
+
+                        #endregion
+
+                        #region Liver Function
+                        IEnumerable<PatientResultComponentModel> LiverTestSet = labCompare
+                            .Where(p => p.RequestItemCode.Contains("LAB221")
+                            || p.RequestItemCode.Contains("LAB222")
+                            || p.RequestItemCode.Contains("LAB223")
+                            || p.RequestItemCode.Contains("LAB474")
+                            || p.RequestItemCode.Contains("LAB475")
+                            || p.RequestItemCode.Contains("LAB503")
+                            || p.RequestItemCode.Contains("LAB225")
+                            || p.RequestItemCode.Contains("LAB226")
+                            || p.RequestItemCode.Contains("LAB227")
+                            )
+
+                             .OrderByDescending(p => p.Year);
+                        GenerateLiverFunction(LiverTestSet);
+                        #endregion
+
+                        #region Immunology and Virology
+                        IEnumerable<PatientResultComponentModel> ImmunologyTestSet = labCompare
+                            .Where(p => p.RequestItemCode.Contains("LAB451")
+                            || p.RequestItemCode.Contains("LAB441")
+                            || p.RequestItemCode.Contains("LAB512")
+                            || p.RequestItemCode.Contains("LAB554")
+                            || p.RequestItemCode.Contains("LAB595")
+                            || p.RequestItemCode.Contains("LAB596")
+                            || p.RequestItemCode.Contains("LAB582")
+                            )
+                             .OrderByDescending(p => p.Year);
+                        GenerateImmunology(ImmunologyTestSet);
+                        #endregion
+
+                        #region Stool Exam
+                        IEnumerable<PatientResultComponentModel> StoolTestSet = labCompare
+                            .Where(p => p.RequestItemName.Contains("Stool Examination"))
+                             .OrderByDescending(p => p.Year);
+                        GenerateStool(StoolTestSet);
+                        #endregion
+
+                        #region Stool Culture
+                        IEnumerable<PatientResultComponentModel> StoolCultureTestSet = labCompare
+                            .Where(p => p.RequestItemCode.Contains("LAB322"))
+                             .OrderByDescending(p => p.Year);
+                        GenerateStoolCulture(StoolCultureTestSet);
+                        #endregion
+
+                        #region tumor marker
+                        IEnumerable<PatientResultComponentModel> TumorMarker = labCompare
+                            .Where(p => p.RequestItemCode.Contains("LAB281") //afp
+                            || p.RequestItemCode.Contains("LAB282") //ca19-9
+                            || p.RequestItemCode.Contains("LAB283") //cea
+                            || p.RequestItemCode.Contains("LAB284") //psa
+                            || p.RequestItemCode.Contains("LAB285") //ca125
+                            || p.RequestItemCode.Contains("LAB286")) //ca153
                          .OrderByDescending(p => p.Year);
-                    GenerateFastingBloodSugar(FbsTestSet);
+                        GenerateTumorMarker(TumorMarker);
+                        #endregion
 
-                    #endregion
+                        #region Toxicology
+                        IEnumerable<PatientResultComponentModel> ToxicoTestSet = labCompare
+                            .Where(p => p.RequestItemCode.Contains("LAB508")
+                            || p.RequestItemCode.Contains("LAB517")
+                            || p.RequestItemCode.Contains("LAB516")
+                            || p.RequestItemCode.Contains("LAB314")
+                            || p.RequestItemCode.Contains("LAB319")
+                            || p.RequestItemCode.Contains("LAB414")
+                            || p.RequestItemCode.Contains("LAB510")
+                            || p.RequestItemCode.Contains("LAB477")
+                            || p.RequestItemCode.Contains("LAB510")
+                            || p.RequestItemCode.Contains("LAB315")
+                            || p.RequestItemCode.Contains("LAB317")
+                            || p.RequestItemCode.Contains("LAB325")
+                            || p.RequestItemCode.Contains("LAB323")
+                            || p.RequestItemCode.Contains("LAB324")
+                            || p.RequestItemCode.Contains("LAB519")
+                            || p.RequestItemCode.Contains("LAB558")
+                            || p.RequestItemCode.Contains("LAB518")
+                            || p.RequestItemCode.Contains("LAB560")
+                            || p.RequestItemCode.Contains("LAB561") //Arsenic 
+                            || p.RequestItemCode.Contains("LAB562") //Cyclohexanone
+                            || p.RequestItemCode.Contains("LAB316") //Phenol
+                            || p.RequestItemCode.Contains("LAB570") //MIBK
+                            || p.RequestItemCode.Contains("LAB571") //Cadmium in Urine
+                            || p.RequestItemCode.Contains("LAB572") //Ethylbenzene
+                            || p.RequestItemCode.Contains("LAB489") //Mercury
+                            || p.RequestItemCode.Contains("LAB573") //Methyrene chloride in Urine
+                            || p.RequestItemCode.Contains("LAB568") //Benzene (t,t-Muconic acid) in Urine
+                            || p.RequestItemCode.Contains("LAB488") //Mercury in blood
+                            || p.RequestItemCode.Contains("LAB584") //fluoride  in Urine
+                            || p.RequestItemCode.Contains("LAB513") //formadehyde in Urine
+                            || p.RequestItemCode.Contains("LAB276") //25hex
+                            || p.RequestItemCode.Contains("LAB588") //Manganes in blood
+                            || p.RequestItemCode.Contains("LAB587") //Cadmium in Blood
+                            || p.RequestItemCode.Contains("LAB547") // Zinc in zerum
+                            || p.RequestItemCode.Contains("LAB463") // Iron zerum
+                            || p.RequestItemCode.Contains("LAB542") // chro zerum
+                            || p.RequestItemCode.Contains("LAB575")// Ammo
+                            || p.RequestItemCode.Contains("LAB487") //Lead in Urin 
+                            || p.RequestItemCode.Contains("LAB511")
+                            || p.RequestItemCode.Contains("LAB606"))
+                             .OrderByDescending(p => p.Year);
+                        GenerateToxicology(ToxicoTestSet);
+                        #endregion
 
-                    #region Uric acid
-                    IEnumerable<PatientResultComponentModel> UricTestSet = labCompare
-                        .Where(p => p.RequestItemCode.Contains("LAB261"))
-                        .OrderByDescending(p => p.Year);
-                    GenerateUricAcid(UricTestSet);
+                        #region Other Lab Teat
+                        IEnumerable<PatientResultComponentModel> OtherTestSet = labCompare
+                            .Where(p => p.RequestItemCode.Contains("LAB411") //blood 
+                            || p.RequestItemCode.Contains("LAB251") //calcium
+                            || p.RequestItemCode.Contains("LAB271") //tsh
+                            || p.RequestItemCode.Contains("LAB272") //T3
+                            || p.RequestItemCode.Contains("LAB273") //T4
+                            || p.RequestItemCode.Contains("LAB274") //FreeT3
+                            || p.RequestItemCode.Contains("LAB275")) //FreeT4
+                             .OrderByDescending(p => p.Year);
+                        GenerateOther(OtherTestSet);
+                        #endregion
 
-                    #endregion
-
-                    #region Lipid Profiles 
-                    IEnumerable<PatientResultComponentModel> LipidTestSet = labCompare
-                        .Where(p => p.RequestItemCode.Contains("LAB241")
-                        || p.RequestItemCode.Contains("LAB242")
-                        || p.RequestItemCode.Contains("LAB243")
-                        || p.RequestItemCode.Contains("LAB244"))
-                         .OrderByDescending(p => p.Year);
-                    GenerateLipidProfiles(LipidTestSet);
-
-                    #endregion
-
-                    #region Liver Function
-                    IEnumerable<PatientResultComponentModel> LiverTestSet = labCompare
-                        .Where(p => p.RequestItemCode.Contains("LAB221")
-                        || p.RequestItemCode.Contains("LAB222")
-                        || p.RequestItemCode.Contains("LAB223")
-                        || p.RequestItemCode.Contains("LAB474")
-                        || p.RequestItemCode.Contains("LAB475")
-                        || p.RequestItemCode.Contains("LAB503")
-                        || p.RequestItemCode.Contains("LAB225")
-                        || p.RequestItemCode.Contains("LAB226")
-                        || p.RequestItemCode.Contains("LAB227")
-                        )
-
-                         .OrderByDescending(p => p.Year);
-                    GenerateLiverFunction(LiverTestSet);
-                    #endregion
-
-                    #region Immunology and Virology
-                    IEnumerable<PatientResultComponentModel> ImmunologyTestSet = labCompare
-                        .Where(p => p.RequestItemCode.Contains("LAB451")
-                        || p.RequestItemCode.Contains("LAB441")
-                        || p.RequestItemCode.Contains("LAB512")
-                        || p.RequestItemCode.Contains("LAB554")
-                        || p.RequestItemCode.Contains("LAB595")
-                        || p.RequestItemCode.Contains("LAB596")
-                        || p.RequestItemCode.Contains("LAB582")
-                        )
-                         .OrderByDescending(p => p.Year);
-                    GenerateImmunology(ImmunologyTestSet);
-                    #endregion
-
-                    #region Stool Exam
-                    IEnumerable<PatientResultComponentModel> StoolTestSet = labCompare
-                        .Where(p => p.RequestItemName.Contains("Stool Examination"))
-                         .OrderByDescending(p => p.Year);
-                    GenerateStool(StoolTestSet);
-                    #endregion
-
-                    #region Stool Culture
-                    IEnumerable<PatientResultComponentModel> StoolCultureTestSet = labCompare
-                        .Where(p => p.RequestItemCode.Contains("LAB322"))
-                         .OrderByDescending(p => p.Year);
-                    GenerateStoolCulture(StoolCultureTestSet);
-                    #endregion
-
-                    #region tumor marker
-                    IEnumerable<PatientResultComponentModel> TumorMarker = labCompare
-                        .Where(p => p.RequestItemCode.Contains("LAB281") //afp
-                        || p.RequestItemCode.Contains("LAB282") //ca19-9
-                        || p.RequestItemCode.Contains("LAB283") //cea
-                        || p.RequestItemCode.Contains("LAB284") //psa
-                        || p.RequestItemCode.Contains("LAB285") //ca125
-                        || p.RequestItemCode.Contains("LAB286")) //ca153
-                     .OrderByDescending(p => p.Year);
-                    GenerateTumorMarker(TumorMarker);
-                    #endregion
-
-                    #region Toxicology
-                    IEnumerable<PatientResultComponentModel> ToxicoTestSet = labCompare
-                        .Where(p => p.RequestItemCode.Contains("LAB508")
-                        || p.RequestItemCode.Contains("LAB517")
-                        || p.RequestItemCode.Contains("LAB516")
-                        || p.RequestItemCode.Contains("LAB314")
-                        || p.RequestItemCode.Contains("LAB319")
-                        || p.RequestItemCode.Contains("LAB414")
-                        || p.RequestItemCode.Contains("LAB510")
-                        || p.RequestItemCode.Contains("LAB477")
-                        || p.RequestItemCode.Contains("LAB510")
-                        || p.RequestItemCode.Contains("LAB315")
-                        || p.RequestItemCode.Contains("LAB317")
-                        || p.RequestItemCode.Contains("LAB325")
-                        || p.RequestItemCode.Contains("LAB323")
-                        || p.RequestItemCode.Contains("LAB324")
-                        || p.RequestItemCode.Contains("LAB519")
-                        || p.RequestItemCode.Contains("LAB558")
-                        || p.RequestItemCode.Contains("LAB518")
-                        || p.RequestItemCode.Contains("LAB560")
-                        || p.RequestItemCode.Contains("LAB561") //Arsenic 
-                        || p.RequestItemCode.Contains("LAB562") //Cyclohexanone
-                        || p.RequestItemCode.Contains("LAB316") //Phenol
-                        || p.RequestItemCode.Contains("LAB570") //MIBK
-                        || p.RequestItemCode.Contains("LAB571") //Cadmium in Urine
-                        || p.RequestItemCode.Contains("LAB572") //Ethylbenzene
-                        || p.RequestItemCode.Contains("LAB489") //Mercury
-                        || p.RequestItemCode.Contains("LAB573") //Methyrene chloride in Urine
-                        || p.RequestItemCode.Contains("LAB568") //Benzene (t,t-Muconic acid) in Urine
-                        || p.RequestItemCode.Contains("LAB488") //Mercury in blood
-                        || p.RequestItemCode.Contains("LAB584") //fluoride  in Urine
-                        || p.RequestItemCode.Contains("LAB513") //formadehyde in Urine
-                        || p.RequestItemCode.Contains("LAB276") //25hex
-                        || p.RequestItemCode.Contains("LAB588") //Manganes in blood
-                        || p.RequestItemCode.Contains("LAB587") //Cadmium in Blood
-                        || p.RequestItemCode.Contains("LAB547") // Zinc in zerum
-                        || p.RequestItemCode.Contains("LAB463") // Iron zerum
-                        || p.RequestItemCode.Contains("LAB542") // chro zerum
-                        || p.RequestItemCode.Contains("LAB575")// Ammo
-                        || p.RequestItemCode.Contains("LAB487") //Lead in Urin 
-                        || p.RequestItemCode.Contains("LAB511")
-                        || p.RequestItemCode.Contains("LAB606"))
-                         .OrderByDescending(p => p.Year);
-                    GenerateToxicology(ToxicoTestSet);
-                    #endregion
-
-                    #region Other Lab Teat
-                    IEnumerable<PatientResultComponentModel> OtherTestSet = labCompare
-                        .Where(p => p.RequestItemCode.Contains("LAB411") //blood 
-                        || p.RequestItemCode.Contains("LAB251") //calcium
-                        || p.RequestItemCode.Contains("LAB271") //tsh
-                        || p.RequestItemCode.Contains("LAB272") //T3
-                        || p.RequestItemCode.Contains("LAB273") //T4
-                        || p.RequestItemCode.Contains("LAB274") //FreeT3
-                        || p.RequestItemCode.Contains("LAB275")) //FreeT4
-                         .OrderByDescending(p => p.Year);
-                    GenerateOther(OtherTestSet);
-                    #endregion
-
+                    }
                 }
 
                 var occmed = data.MobileResult;
