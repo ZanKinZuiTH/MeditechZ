@@ -94,7 +94,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectOrganisationOnHand, value);
                 if (_SelectOrganisationOnHand != null)
                 {
-                    LocationOnHands = GetLocatioinRole(_SelectOrganisationOnHand.HealthOrganisationUID);
+                    LocationOnHands = DataService.MasterData.GetLocationByOrganisationUID(_SelectOrganisationOnHand.HealthOrganisationUID);
                    
                 }
             }
@@ -226,7 +226,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectOrganisationMovement, value);
                 if (_SelectOrganisationMovement != null)
                 {
-                    LocationMovements = GetLocatioinRole(_SelectOrganisationOnHand.HealthOrganisationUID);
+                    LocationMovements = DataService.MasterData.GetLocationByOrganisationUID(_SelectOrganisationOnHand.HealthOrganisationUID);
                 }
             }
         }
@@ -350,7 +350,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectOrganisationBalance, value);
                 if (_SelectOrganisationOnHand != null)
                 {
-                    LocationBalances = GetLocatioinRole(_SelectOrganisationOnHand.HealthOrganisationUID);
+                    LocationBalances = DataService.MasterData.GetLocationByOrganisationUID(_SelectOrganisationOnHand.HealthOrganisationUID);
                 }
             }
         }

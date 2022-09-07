@@ -65,7 +65,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectOrganisationFrom, value);
                 if (_SelectOrganisationFrom != null)
                 {
-                    LocationFormData = GetLocatioinRole(SelectOrganisationFrom.HealthOrganisationUID);
+                    LocationFormData = DataService.MasterData.GetLocationByOrganisationUID(SelectOrganisationFrom.HealthOrganisationUID);
 
                     LocationFrom = LocationFormData;
 
@@ -150,7 +150,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectOrganisationTo, value);
                 if (_SelectOrganisationTo != null)
                 {
-                    LocationToData = GetLocatioinRole(_SelectOrganisationTo.HealthOrganisationUID);
+                    LocationToData = DataService.MasterData.GetLocationByOrganisationUID(_SelectOrganisationTo.HealthOrganisationUID);
                     LocationTo = LocationToData;
                     if (SelectLocationFrom != null)
                         LocationTo = LocationToData?.Where(p => p.LocationUID != SelectLocationFrom.LocationUID).ToList();
