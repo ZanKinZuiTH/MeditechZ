@@ -750,8 +750,13 @@ namespace MediTechWebApi.Controllers
                 {
 
                     DateTime now = DateTime.Now;
-                    var refValue = db.ReferenceValue.Where(p => (p.DomainCode == "BLTYP" || p.DomainCode == "PBTYP") && p.StatusFlag == "A");
+                    var refValue = db.ReferenceValue.Where(p => (p.DomainCode == "BLTYP" || p.DomainCode == "PBTYP" || p.DomainCode == "BSMDD") && p.StatusFlag == "A");
 
+                    int BSMDD_LAB = refValue.FirstOrDefault(p => p.ValueCode == "LABBB" && p.DomainCode == "BSMDD").UID;
+                    int BSMDD_RADIO = refValue.FirstOrDefault(p => p.ValueCode == "RADIO" && p.DomainCode == "BSMDD").UID;
+                    int BSMDD_STORE = refValue.FirstOrDefault(p => p.ValueCode == "STORE" && p.DomainCode == "BSMDD").UID;
+                    int BSMDD_MDSLP = refValue.FirstOrDefault(p => p.ValueCode == "MDSLP" && p.DomainCode == "BSMDD").UID;
+                    int BSMDD_SULPY = refValue.FirstOrDefault(p => p.ValueCode == "SUPLY" && p.DomainCode == "BSMDD").UID;
 
                     int BLTYP_Cash = refValue.FirstOrDefault(p => p.ValueCode == "CASHBL" && p.DomainCode == "BLTYP").UID;
                     int BLTYP_Credit = refValue.FirstOrDefault(p => p.ValueCode == "CREDBL" && p.DomainCode == "BLTYP").UID;
@@ -911,7 +916,37 @@ namespace MediTechWebApi.Controllers
                                         foreach (var patientbillableItemDetail in subAccountItem.AllocatedPatBillableItems)
                                         {
                                             PatientBillableItem patientBillableItem = db.PatientBillableItem.Find(patientbillableItemDetail.PatientBillableItemUID);
+                                            double? itemCost = null;
+                                            if (patientbillableItemDetail.BSMDDUID == BSMDD_MDSLP || patientbillableItemDetail.BSMDDUID == BSMDD_STORE || patientbillableItemDetail.BSMDDUID == BSMDD_SULPY)
+                                            {
+                                                var dispensedItem = db.DispensedItem.Where(p => p.PatientOrderDetailUID == patientBillableItem.PatientOrderDetailUID);
 
+                                                if (dispensedItem != null)
+                                                {
+                                                    if (dispensedItem.Count() > 1)
+                                                    {
+                                                        double? sumCost = dispensedItem.AsEnumerable().Sum(x => x.ItemCost);
+                                                        double? sumQty = dispensedItem.AsEnumerable().Sum(x => x.Quantity);
+                                                        itemCost = sumCost / sumQty;
+                                                    }
+                                                    else
+                                                    {
+                                                        itemCost = dispensedItem.FirstOrDefault()?.ItemCost;
+                                                    }
+
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                BillableItemDetail billItemDetail = db.BillableItemDetail.FirstOrDefault(p => p.StatusFlag == "A"
+                                                && p.OwnerOrganisationUID == patientBillableItem.OwnerOrganisationUID
+                                                && p.BillableItemUID == patientbillableItemDetail.BillableItemUID
+                                                && (p.ActiveFrom == null || (DbFunctions.TruncateTime(p.ActiveFrom) <= DbFunctions.TruncateTime(DateTime.Now)))
+                                                && (p.ActiveTo == null || (p.ActiveTo.HasValue && DbFunctions.TruncateTime(p.ActiveTo) >= DbFunctions.TruncateTime(DateTime.Now))));
+
+                                                itemCost = billItemDetail?.Cost;
+                                            }
                                             PatientBilledItem patientBilledItem = new PatientBilledItem();
                                             patientBilledItem.PatientBillUID = patBill.UID;
                                             patientBilledItem.EventOccuredDttm = patientbillableItemDetail.EventOccuredDttm;
@@ -924,6 +959,7 @@ namespace MediTechWebApi.Controllers
                                             patientBilledItem.ItemMultiplier = patientbillableItemDetail.Quantity;
                                             patientBilledItem.BSMDDUID = patientbillableItemDetail.BSMDDUID;
                                             patientBilledItem.ItemName = patientbillableItemDetail.ItemName;
+                                            patientBilledItem.ItemCost = itemCost;
                                             patientBilledItem.CareproviderUID = patientbillableItemDetail.CareProviderUID;
                                             patientBilledItem.StatusFlag = "A";
                                             patientBilledItem.PackageItemAmount = patientbillableItemDetail.AdjPackItemAmount;
@@ -931,7 +967,7 @@ namespace MediTechWebApi.Controllers
                                             {
                                                 patientBilledItem.BillingGroupUID = patientBillableItem.GroupUID;
                                                 patientBilledItem.BillingSubGroupUID = patientBillableItem.SubGroupUID;
-                                                patientBilledItem.PatientOrderDetailUID = patientBillableItem.PatientOrderDetailUID;
+                                                patientBilledItem.PatientOrderDetailUID = patientBillableItem.PatientOrderDetailUID ?? 0;
                                             }
 
                                             patientBilledItem.CUser = generateBill.UserUID;
@@ -939,6 +975,7 @@ namespace MediTechWebApi.Controllers
                                             patientBilledItem.MUser = generateBill.UserUID;
                                             patientBilledItem.MWhen = DateTime.Now;
                                             patientBilledItem.StatusFlag = "A";
+                                            patientBilledItem.OwnerOrganisationUID = patpv.OwnerOrganisationUID;
                                             patientBilledItemList.Add(patientBilledItem);
                                         }
                                     }
@@ -964,6 +1001,37 @@ namespace MediTechWebApi.Controllers
                         foreach (var item in patbillableItemSAList)
                         {
                             PatientBillableItem patientBillableItem = db.PatientBillableItem.Find(item.PatientBillableItemUID);
+                            double? itemCost = null;
+                            if (item.BSMDDUID == BSMDD_MDSLP || item.BSMDDUID == BSMDD_STORE || item.BSMDDUID == BSMDD_SULPY)
+                            {
+                                var dispensedItem = db.DispensedItem.Where(p => p.PatientOrderDetailUID == patientBillableItem.PatientOrderDetailUID);
+
+                                if (dispensedItem != null)
+                                {
+                                    if (dispensedItem.Count() > 1)
+                                    {
+                                        double? sumCost = dispensedItem.AsEnumerable().Sum(x => (x.ItemCost * x.Quantity));
+                                        double? sumQty = dispensedItem.AsEnumerable().Sum(x => x.Quantity);
+                                        itemCost = sumCost / sumQty;
+                                    }
+                                    else
+                                    {
+                                        itemCost = dispensedItem.FirstOrDefault()?.ItemCost;
+                                    }
+
+                                }
+
+                            }
+                            else
+                            {
+                                BillableItemDetail billItemDetail = db.BillableItemDetail.FirstOrDefault(p => p.StatusFlag == "A"
+                                && p.OwnerOrganisationUID == patientBillableItem.OwnerOrganisationUID
+                                && p.BillableItemUID == item.BillableItemUID
+                                && (p.ActiveFrom == null || (DbFunctions.TruncateTime(p.ActiveFrom) <= DbFunctions.TruncateTime(DateTime.Now)))
+                                && (p.ActiveTo == null || (p.ActiveTo.HasValue && DbFunctions.TruncateTime(p.ActiveTo) >= DbFunctions.TruncateTime(DateTime.Now))));
+
+                                itemCost = billItemDetail?.Cost;
+                            }
 
                             PatientBilledItem patientBilledItem = new PatientBilledItem();
                             patientBilledItem.PatientBillUID = patBill.UID;
@@ -977,6 +1045,7 @@ namespace MediTechWebApi.Controllers
                             patientBilledItem.ItemMultiplier = item.Quantity;
                             patientBilledItem.BSMDDUID = item.BSMDDUID;
                             patientBilledItem.ItemName = item.ItemName;
+                            patientBilledItem.ItemCost = itemCost;
                             patientBilledItem.CareproviderUID = item.CareProviderUID;
                             patientBilledItem.StatusFlag = "A";
                             patientBilledItem.PackageItemAmount = item.AdjPackItemAmount;
@@ -995,7 +1064,7 @@ namespace MediTechWebApi.Controllers
                             {
                                 patientBilledItem.BillingGroupUID = patientBillableItem.GroupUID;
                                 patientBilledItem.BillingSubGroupUID = patientBillableItem.SubGroupUID;
-                                patientBilledItem.PatientOrderDetailUID = patientBillableItem.PatientOrderDetailUID;
+                                patientBilledItem.PatientOrderDetailUID = patientBillableItem.PatientOrderDetailUID ?? 0;
                             }
 
                             patientBilledItem.CUser = generateBill.UserUID;
@@ -1003,6 +1072,7 @@ namespace MediTechWebApi.Controllers
                             patientBilledItem.MUser = generateBill.UserUID;
                             patientBilledItem.MWhen = DateTime.Now;
                             patientBilledItem.StatusFlag = "A";
+                            patientBilledItem.OwnerOrganisationUID = patpv.OwnerOrganisationUID;
                             patientBilledItemList.Add(patientBilledItem);
                         }
 

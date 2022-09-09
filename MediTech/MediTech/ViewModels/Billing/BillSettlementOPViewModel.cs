@@ -393,6 +393,16 @@ namespace MediTech.ViewModels
         {
             if (SelectPatientVisit != null)
             {
+                if (AllocatedPatientBillableItems == null || AllocatedPatientBillableItems.Count <= 0)
+                {
+                    WarningDialog("ไม่มีค่าใช้จ่าย");
+                    return;
+                }
+                if (AllocatedPatientBillableItems.Count(p => p.PayorUID == 0 || p.PayorUID == null) > 0)
+                {
+                    WarningDialog("ค่าใช้จ่ายบางส่วนต้องจัดสรรให้กับผู้จ่าย");
+                    return;
+                }
                 GenerateBill pageview = new GenerateBill();
                 var viewModel = (pageview.DataContext as GenerateBillViewModel);
                 viewModel.AssingGenerateBill(SelectPatientVisit);

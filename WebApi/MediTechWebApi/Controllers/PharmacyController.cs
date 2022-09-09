@@ -621,7 +621,7 @@ namespace MediTechWebApi.Controllers
                                                 Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
                                                 EncounterType = SqlFunction.fGetRfValDescription(pv.ENTYPUID ?? 0),
                                                 PrescribedDttm = ps.PrescribedDttm,
-                                                IsBilled = pv.IsBillFinalized == null ? "N" : pv.IsBillFinalized,
+                                                IsBilled = SqlFunction.fCheckBillGeneratedForVisit(ps.PatientUID, ps.PatientVisitUID),
                                                 LocationName = SqlFunction.fGetLocationName(pv.LocationUID ?? 0),
                                                 OrganisationName = SqlFunction.fGetHealthOrganisationName(ps.OwnerOrganisationUID ?? 0),
                                                 OwnerOrganisationUID = ps.OwnerOrganisationUID,
@@ -644,6 +644,7 @@ namespace MediTechWebApi.Controllers
                         PrescriptionItemUID = p.UID,
                         PrescriptionUID = p.PrescriptionUID,
                         PrestionItemStatus = SqlFunction.fGetRfValDescription(p.ORDSTUID ?? 0),
+                        PatientOrderDetailUID = p.PatientOrderDetailUID,
                         ORDSTUID = p.ORDSTUID,
                         ItemCode = p.ItemCode,
                         ItemName = p.ItemName,
@@ -687,6 +688,7 @@ namespace MediTechWebApi.Controllers
                     PrescriptionItemUID = p.UID,
                     PrescriptionUID = p.PrescriptionUID,
                     PrestionItemStatus = SqlFunction.fGetRfValDescription(p.ORDSTUID ?? 0),
+                    PatientOrderDetailUID = p.PatientOrderDetailUID,
                     ORDSTUID = p.ORDSTUID,
                     ItemCode = p.ItemCode,
                     ItemName = p.ItemName,
@@ -762,7 +764,7 @@ namespace MediTechWebApi.Controllers
                                                 Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
                                                 EncounterType = SqlFunction.fGetRfValDescription(pv.ENTYPUID ?? 0),
                                                 PrescribedDttm = ps.PrescribedDttm,
-                                                IsBilled = pv.IsBillFinalized == null ? "N" : pv.IsBillFinalized,
+                                                IsBilled = SqlFunction.fCheckBillGeneratedForVisit(ps.PatientUID, ps.PatientVisitUID),
                                                 LocationName = SqlFunction.fGetLocationName(pv.LocationUID ?? 0),
                                                 OrganisationName = SqlFunction.fGetHealthOrganisationName(ps.OwnerOrganisationUID ?? 0),
                                                 OwnerOrganisationUID = ps.OwnerOrganisationUID,
@@ -784,6 +786,7 @@ namespace MediTechWebApi.Controllers
                         PrescriptionItemUID = p.UID,
                         PrescriptionUID = p.PrescriptionUID,
                         PrestionItemStatus = SqlFunction.fGetRfValDescription(p.ORDSTUID ?? 0),
+                        PatientOrderDetailUID = p.PatientOrderDetailUID,
                         ORDSTUID = p.ORDSTUID,
                         ItemCode = p.ItemCode,
                         ItemName = p.ItemName,
@@ -841,7 +844,7 @@ namespace MediTechWebApi.Controllers
                                                 Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
                                                 EncounterType = SqlFunction.fGetRfValDescription(pv.ENTYPUID ?? 0),
                                                 PrescribedDttm = ps.PrescribedDttm,
-                                                IsBilled = pv.IsBillFinalized == null ? "N" : pv.IsBillFinalized,
+                                                IsBilled = SqlFunction.fCheckBillGeneratedForVisit(ps.PatientUID, ps.PatientVisitUID),
                                                 LocationName = SqlFunction.fGetLocationName(pv.LocationUID ?? 0),
                                                 OrganisationName = SqlFunction.fGetHealthOrganisationName(ps.OwnerOrganisationUID ?? 0),
                                                 OwnerOrganisationUID = ps.OwnerOrganisationUID
@@ -1039,9 +1042,42 @@ namespace MediTechWebApi.Controllers
                 && p.ORDSTUID == RAISEDUID
                 );
                 DateTime now = DateTime.Now;
-                foreach (var item in prescriptionItems)
+                foreach (var presItem in prescriptionItems)
                 {
-                    DataTable dtStockUsed = SqlDirectStore.pDispensePrescriptionItem(item.UID, userUID);
+                    DataTable dtStockUsed = SqlDirectStore.pDispensePrescriptionItem(presItem.UID, userUID);
+
+                    double? itemCost;
+                    if (dtStockUsed.Rows.Count > 1)
+                    {
+                        double sumCost = dtStockUsed.AsEnumerable().Sum(x => x.Field<double>("ItemCost"));
+                        double sumQty = dtStockUsed.AsEnumerable().Sum(x => x.Field<double>("Qty"));
+                        itemCost = sumCost / sumQty;
+                    }
+                    else
+                    {
+                        itemCost = Convert.ToDouble(dtStockUsed.Rows[0]["UnitCost"]);
+                    }
+
+                    if (itemCost != null)
+                    {
+                        var patbilleditem = from pb in db.PatientBill
+                                            join pbi in db.PatientBilledItem on pb.UID equals pbi.PatientBillUID
+                                            where pb.StatusFlag == "A"
+                                            && pbi.StatusFlag == "A"
+                                            && pbi.PatientOrderDetailUID == presItem.PatientOrderDetailUID
+                                            && (pb.IsRefund == null || pb.IsRefund == "N")
+                                            && pbi.ItemCost == null
+                                            select pbi;
+                        if (patbilleditem != null && patbilleditem.Count() > 0)
+                        {
+                            foreach (var item in patbilleditem)
+                            {
+                                db.PatientBilledItem.Attach(item);
+                                item.ItemCost = itemCost;
+                            }
+                        }
+                    }
+
                 }
 
                 var prescription = db.Prescription.Find(prescriptionModel.PrescriptionUID);
@@ -1078,6 +1114,39 @@ namespace MediTechWebApi.Controllers
                 prescription.MWhen = now;
                 prescription.DispensedDttm = now;
                 prescription.ORDSTUID = (new PharmacyController()).CheckPrescriptionStatus(prescription.UID);
+
+                double? itemCost;
+                if (dtStockUsed.Rows.Count > 1)
+                {
+                    double sumCost = dtStockUsed.AsEnumerable().Sum(x => x.Field<double>("ItemCost"));
+                    double sumQty = dtStockUsed.AsEnumerable().Sum(x => x.Field<double>("Qty"));
+                    itemCost = sumCost / sumQty;
+                }
+                else
+                {
+                    itemCost = Convert.ToDouble(dtStockUsed.Rows[0]["UnitCost"]);
+                }
+
+                if (itemCost != null)
+                {
+                    var patbilleditem = from pb in db.PatientBill
+                                        join pbi in db.PatientBilledItem on pb.UID equals pbi.PatientBillUID
+                                        where pb.StatusFlag == "A"
+                                        && pbi.StatusFlag == "A"
+                                        && pbi.PatientOrderDetailUID == prescriptionItemModel.PatientOrderDetailUID
+                                        && (pb.IsRefund == null || pb.IsRefund == "N")
+                                        && pbi.ItemCost == null
+                                        select pbi;
+                    if (patbilleditem != null && patbilleditem.Count() > 0)
+                    {
+                        foreach (var item in patbilleditem)
+                        {
+                            db.PatientBilledItem.Attach(item);
+                            item.ItemCost = itemCost;
+                        }
+                    }
+                }
+
 
                 db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK);

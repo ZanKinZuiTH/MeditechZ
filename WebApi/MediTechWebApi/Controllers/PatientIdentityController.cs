@@ -2241,6 +2241,7 @@ namespace MediTechWebApi.Controllers
                         patientvisit.VISTSUID = VISTSUID;
                         patientvisit.ENSTAUID = ENSTAUID != null ? ENSTAUID : patientvisit.ENSTAUID;
                         patientvisit.EndDttm = VISTSUID == FINDIS ? DateTime.Now : (DateTime?)null;
+                        patientvisit.IsBillFinalized = VISTSUID == FINDIS ? "Y" : "N";
                         patientvisit.MUser = userID;
                         patientvisit.MWhen = now;
 
@@ -2454,7 +2455,7 @@ namespace MediTechWebApi.Controllers
                             AEAdmissionUID = pae.UID,
                             Gender = SqlFunction.fGetRfValDescription(pt.SEXXXUID ?? 0),
                             CareProviderName = SqlFunction.fGetCareProviderName(pv.CareProviderUID ?? 0),
-                            OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(b.OwnerOrganisationUID),
+                            OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(b.OwnerOrganisationUID ?? 0),
                         }).ToList();
 
             if (data != null)
@@ -2552,7 +2553,7 @@ namespace MediTechWebApi.Controllers
                             Gender = SqlFunction.fGetRfValDescription(pt.SEXXXUID ?? 0),
                             CareproviderUID = pv.CareProviderUID ?? 0,
                             CareProviderName = SqlFunction.fGetCareProviderName(pv.CareProviderUID ?? 0),
-                            OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(b.OwnerOrganisationUID)
+                            OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(b.OwnerOrganisationUID ?? 0)
                         }).ToList();
 
             if (data != null)
@@ -2625,7 +2626,7 @@ namespace MediTechWebApi.Controllers
                             MUser = b.MUser,
                             EMRZONUID = b.EMZONEUID,
                             OwnerOrganisationUID = b.OwnerOrganisationUID,
-                            OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(b.OwnerOrganisationUID),
+                            OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(b.OwnerOrganisationUID ?? 0),
                             IsTemporaryBed = b.IsTemporaryBed,
                             MWhen = b.MWhen,
                             StatusFlag = b.StatusFlag,

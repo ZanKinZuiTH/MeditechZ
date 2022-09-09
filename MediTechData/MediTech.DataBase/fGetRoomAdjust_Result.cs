@@ -10,14 +10,14 @@
 namespace MediTech.DataBase
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class fGetRoomAdjust_Result
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public Nullable<System.DateTime> DateOrder { get; set; }
+        public Nullable<int> BillableitemUID { get; set; }
+        public string Billcode { get; set; }
+        public Nullable<int> BillgroupUID { get; set; }
+        public Nullable<int> BillsubgroupUID { get; set; }
+        public Nullable<decimal> Amountref { get; set; }
     }
 }

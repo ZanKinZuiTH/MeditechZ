@@ -97,7 +97,7 @@ namespace MediTechWebApi.Controllers
                 DisplayOrder = p.DisplayOrder,
                 IsRegistrationAllowed = p.IsRegistrationAllowed,
                 OwnerOrganisationUID = p.OwnerOrganisationUID,
-                OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID),
+                OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID ?? 0),
                 MWhen = p.MWhen,
                 StatusFlag = p.StatusFlag,
                 LocationType = SqlFunction.fGetRfValDescription(p.LOTYPUID)

@@ -242,6 +242,12 @@ namespace MediTech.DataBase
         {
             throw new NotSupportedException("Direct calls are not supported.");
         }
+
+        [DbFunction("MediTechModel.Store", "fCheckBillGeneratedForVisit")]
+        public static string fCheckBillGeneratedForVisit(long patientUID, long patientVisitUID)
+        {
+            throw new NotSupportedException("Direct calls are not supported.");
+        }
     }
 
     public static class SqlDirectStore

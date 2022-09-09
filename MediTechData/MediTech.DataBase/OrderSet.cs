@@ -25,10 +25,10 @@ namespace MediTech.DataBase
         public Nullable<int> OrderSubCategoryUID { get; set; }
         public Nullable<int> NoOfDay { get; set; }
         public string IsFixPrice { get; set; }
-        public Nullable<System.DateTime> ActiveFrom { get; set; }
-        public Nullable<System.DateTime> ActiveTo { get; set; }
         public string NOTAllowDiscount { get; set; }
         public Nullable<int> PBLCTUID { get; set; }
+        public Nullable<System.DateTime> ActiveFrom { get; set; }
+        public Nullable<System.DateTime> ActiveTo { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }
