@@ -782,7 +782,13 @@ namespace MediTech.ViewModels
 
                 }
 
+                if (BillableItem == null)
+                {
+                    BillableItem = DataService.MasterData.GetBillableItemByUID(PatientOrderDetail.BillableItemUID);
+                }
+
                 PatientOrderDetail.DoctorFee = (BillableItem.DoctorFee / 100) * PatientOrderDetail.NetAmount;
+
                 if (PatientOrderDetail.OwnerOrganisationUID == 0)
                 {
                     PatientOrderDetail.OwnerOrganisationUID = OwnerOrgansitaionUID;
