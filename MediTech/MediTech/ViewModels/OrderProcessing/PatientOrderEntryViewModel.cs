@@ -451,7 +451,7 @@ namespace MediTech.ViewModels
             {
                 if (SelectExistingOrder != null)
                 {
-                    List<PatientOrderDetailModel> existingOrderNotCancel = SelectExistingOrder.Where(p => p.ORDSTUID != 2848 && p.ORDSTUID != 2861 && p.PaymentStatus == "Un Billed").ToList();
+                    List<PatientOrderDetailModel> existingOrderNotCancel = SelectExistingOrder.Where(p => p.ORDSTUID != 2848 && p.ORDSTUID != 2861 && p.PaymentStatus != "Ignore" && p.PaymentStatus != "Billed").ToList();
                     if (existingOrderNotCancel != null && existingOrderNotCancel.Count > 0)
                     {
                         CancelOrder cancelOrderView = new CancelOrder(existingOrderNotCancel);
