@@ -151,12 +151,41 @@
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup>
+            <dxlc:LayoutGroup >
 
                 <dxlc:LayoutItem Label="เลขที่ใบเสร็จ">
                     <dxe:TextEdit EditValue="{Binding BillNumber}"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem/>
+
+                <dxlc:LayoutItem >
+                    <dxlc:LayoutItem.Label>
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding VisibiltyOrganisations}">
+                            <TextBlock Text="สถานประกอบการ" />
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
+                    <dxg:LookUpEdit Name="lkeOrganisation"  
+                                    Visibility="{Binding VisibiltyOrganisations}"
+                                    ItemsSource="{Binding Organisations}" 
+                                      SelectedItem="{Binding SelectOrganisation}"
+                                      ValueMember="HealthOrganisationUID"
+                                      DisplayMember="Name"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="100"
+                                      PopupHeight="400" 
+                                      IsPopupAutoWidth="True"
+                                      PopupContentTemplate="{StaticResource HealthOrganisationTemplate}"
+                                      AutoPopulateColumns="False">
+                        <dxg:LookUpEdit.StyleSettings>
+                            <dxg:SearchLookUpEditStyleSettings/>
+                        </dxg:LookUpEdit.StyleSettings>
+                    </dxg:LookUpEdit>
+                </dxlc:LayoutItem>
+                
                 <dxlc:LayoutItem>
                     <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
                         <dx:SimpleButton Width="80" Command="{Binding SearchCommand}"

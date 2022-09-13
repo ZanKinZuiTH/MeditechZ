@@ -169,12 +169,12 @@ namespace MediTech.ViewModels
         public AdmissionRequestViewModel()
         {
             ExpectedAdmission = DateTime.Now;
-            WardSource = DataService.Technical.GetLocationByTypeUID(3152);
+            WardSource = DataService.Technical.GetLocationByTypeUID(3152, AppUtil.Current.OwnerOrganisationUID);
             AdmissionCareprovider = DataService.UserManage.GetCareproviderAll();
             SelectAdmissionCareprovider = AdmissionCareprovider.Find(p => p.CareproviderUID == AppUtil.Current.UserID);
             SpecialitySource = DataService.MasterData.GetSpecialityAll();
             RequestedDoctor = DataService.UserManage.GetCareproviderDoctor();
-            LocationDepartment = DataService.Technical.GetLocationByTypeUID(3159);
+            LocationDepartment = DataService.Technical.GetLocationByTypeUID(3159, AppUtil.Current.OwnerOrganisationUID);
             SelectedLocationDepartment = LocationDepartment.FirstOrDefault(p=> p.LocationUID == AppUtil.Current.LocationUID);
         
 

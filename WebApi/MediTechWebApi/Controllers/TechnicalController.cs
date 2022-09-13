@@ -50,9 +50,9 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetLocationByTypeUID")]
         [HttpGet]
-        public List<LocationModel> GetLocationByTypeUID(int locationTypeUID)
+        public List<LocationModel> GetLocationByTypeUID(int locationTypeUID, int ownerOrganisationUID)
         {
-            var data = db.Location.Where(p => p.StatusFlag == "A" && p.LOTYPUID == locationTypeUID).Select(p => new LocationModel()
+            var data = db.Location.Where(p => p.StatusFlag == "A" && p.LOTYPUID == locationTypeUID && p.OwnerOrganisationUID == ownerOrganisationUID).Select(p => new LocationModel()
             {
                 LocationUID = p.UID,
                 Name = p.Name,

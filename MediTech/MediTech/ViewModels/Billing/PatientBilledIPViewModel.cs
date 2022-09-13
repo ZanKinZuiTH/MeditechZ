@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MediTech.ViewModels
 {
@@ -18,6 +19,32 @@ namespace MediTech.ViewModels
         int? ipdbill;
 
         #region Properties
+        private List<HealthOrganisationModel> _Organisations;
+
+        public List<HealthOrganisationModel> Organisations
+        {
+            get { return _Organisations; }
+            set { Set(ref _Organisations, value); }
+        }
+
+        private HealthOrganisationModel _SelectOrganisation;
+
+        public HealthOrganisationModel SelectOrganisation
+        {
+            get { return _SelectOrganisation; }
+            set
+            {
+                Set(ref _SelectOrganisation, value);
+            }
+        }
+
+        private Visibility _VisibiltyOrganisations = Visibility.Collapsed;
+        public Visibility VisibiltyOrganisations
+        {
+            get { return _VisibiltyOrganisations; }
+            set { Set(ref _VisibiltyOrganisations, value); }
+        }
+
         private List<PatientInformationModel> _PatientsSearchSource;
 
         public List<PatientInformationModel> PatientsSearchSource
@@ -157,6 +184,15 @@ namespace MediTech.ViewModels
             BillingCategory = DataService.Technical.GetReferenceValueMany("BLCAT");
             opbill = BillingCategory.FirstOrDefault(p => p.ValueCode == "OPBILL").Key;
             ipdbill = BillingCategory.FirstOrDefault(p => p.ValueCode == "IPBILL").Key;
+            Organisations = DataService.MasterData.GetHealthOrganisation();
+            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+
+            int? cptUID = DataService.Technical.GetReferenceValueByCode("CPTYP", "FINCPT").Key;
+            var fin = DataService.UserManage.GetCareproviderByUID(AppUtil.Current.UserID);
+            if (fin.CPTYPUID == cptUID)
+            {
+                VisibiltyOrganisations = Visibility.Visible;
+            }
         }
 
         public override void OnLoaded()
@@ -172,8 +208,8 @@ namespace MediTech.ViewModels
             {
                 patientUID = SelectedPateintSearch.PatientUID;
             }
-            int? ownerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
-            PatientBillSource = new ObservableCollection<PatientBillModel>(DataService.Billing.SearchPatientBill(DateFrom, DateTo, patientUID, BillNumber,"Y", ownerOrganisationUID));
+            int? ownerOrganisationUID = SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : AppUtil.Current.OwnerOrganisationUID;
+            PatientBillSource = new ObservableCollection<PatientBillModel>(DataService.Billing.SearchPatientBill(DateFrom, DateTo, patientUID, BillNumber,"Y", ownerOrganisationUID, AppUtil.Current.UserID));
         }
 
         public void ViewPayment()
@@ -306,6 +342,7 @@ namespace MediTech.ViewModels
             DateTo = DateTime.Now;
             SearchPatientCriteria = string.Empty;
             PatientBillSource = null;
+            SelectOrganisation = null;
         }
         public void PatientSearch()
         {
