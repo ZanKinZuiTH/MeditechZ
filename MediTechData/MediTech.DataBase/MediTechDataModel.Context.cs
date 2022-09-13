@@ -97,8 +97,6 @@ namespace MediTech.DataBase
         public virtual DbSet<Login> Login { get; set; }
         public virtual DbSet<MediTechInterface> MediTechInterface { get; set; }
         public virtual DbSet<MediTechInterfaceDetail> MediTechInterfaceDetail { get; set; }
-        public virtual DbSet<meditechtestpatchInterface> meditechtestpatchInterface { get; set; }
-        public virtual DbSet<meditechtestpatchInterfaceDetail> meditechtestpatchInterfaceDetail { get; set; }
         public virtual DbSet<NotificationTaskResult> NotificationTaskResult { get; set; }
         public virtual DbSet<OrderCategory> OrderCategory { get; set; }
         public virtual DbSet<OrderSet> OrderSet { get; set; }
@@ -236,7 +234,6 @@ namespace MediTech.DataBase
         public virtual DbSet<StockMovement> StockMovement { get; set; }
         public virtual DbSet<Store> Store { get; set; }
         public virtual DbSet<StoreUOMConversion> StoreUOMConversion { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<VendorDetail> VendorDetail { get; set; }
         public virtual DbSet<VIPPatient> VIPPatient { get; set; }
         public virtual DbSet<WellnessData> WellnessData { get; set; }
@@ -287,6 +284,110 @@ namespace MediTech.DataBase
                 new ObjectParameter("stringToSplit", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<splitstring_Result>("[MediTechEntities].[splitstring](@stringToSplit)", stringToSplitParameter);
+        }
+    
+        [DbFunction("MediTechEntities", "fGetRoomAdjust")]
+        public virtual IQueryable<fGetRoomAdjust_Result> fGetRoomAdjust(Nullable<System.DateTime> dateOrder, Nullable<int> tariff, Nullable<int> refRoomcharge)
+        {
+            var dateOrderParameter = dateOrder.HasValue ?
+                new ObjectParameter("DateOrder", dateOrder) :
+                new ObjectParameter("DateOrder", typeof(System.DateTime));
+    
+            var tariffParameter = tariff.HasValue ?
+                new ObjectParameter("Tariff", tariff) :
+                new ObjectParameter("Tariff", typeof(int));
+    
+            var refRoomchargeParameter = refRoomcharge.HasValue ?
+                new ObjectParameter("RefRoomcharge", refRoomcharge) :
+                new ObjectParameter("RefRoomcharge", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<fGetRoomAdjust_Result>("[MediTechEntities].[fGetRoomAdjust](@DateOrder, @Tariff, @RefRoomcharge)", dateOrderParameter, tariffParameter, refRoomchargeParameter);
+        }
+    
+        public virtual ObjectResult<pCheckOrderDuplicate_Result> pCheckOrderDuplicate(Nullable<long> p_PatientUID, Nullable<long> p_PatientVisitUID, Nullable<int> p_BillableItemUID)
+        {
+            var p_PatientUIDParameter = p_PatientUID.HasValue ?
+                new ObjectParameter("P_PatientUID", p_PatientUID) :
+                new ObjectParameter("P_PatientUID", typeof(long));
+    
+            var p_PatientVisitUIDParameter = p_PatientVisitUID.HasValue ?
+                new ObjectParameter("P_PatientVisitUID", p_PatientVisitUID) :
+                new ObjectParameter("P_PatientVisitUID", typeof(long));
+    
+            var p_BillableItemUIDParameter = p_BillableItemUID.HasValue ?
+                new ObjectParameter("P_BillableItemUID", p_BillableItemUID) :
+                new ObjectParameter("P_BillableItemUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pCheckOrderDuplicate_Result>("pCheckOrderDuplicate", p_PatientUIDParameter, p_PatientVisitUIDParameter, p_BillableItemUIDParameter);
+        }
+    
+        public virtual ObjectResult<pGetCheckupRiskAudioTimus_Result> pGetCheckupRiskAudioTimus(Nullable<long> p_PatientUID, Nullable<long> p_PayorDetailUID)
+        {
+            var p_PatientUIDParameter = p_PatientUID.HasValue ?
+                new ObjectParameter("P_PatientUID", p_PatientUID) :
+                new ObjectParameter("P_PatientUID", typeof(long));
+    
+            var p_PayorDetailUIDParameter = p_PayorDetailUID.HasValue ?
+                new ObjectParameter("P_PayorDetailUID", p_PayorDetailUID) :
+                new ObjectParameter("P_PayorDetailUID", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetCheckupRiskAudioTimus_Result>("pGetCheckupRiskAudioTimus", p_PatientUIDParameter, p_PayorDetailUIDParameter);
+        }
+    
+        public virtual int pInvenClearItemReceiveDetail(Nullable<int> p_ItemReceiveUID, Nullable<int> p_UserUID)
+        {
+            var p_ItemReceiveUIDParameter = p_ItemReceiveUID.HasValue ?
+                new ObjectParameter("P_ItemReceiveUID", p_ItemReceiveUID) :
+                new ObjectParameter("P_ItemReceiveUID", typeof(int));
+    
+            var p_UserUIDParameter = p_UserUID.HasValue ?
+                new ObjectParameter("P_UserUID", p_UserUID) :
+                new ObjectParameter("P_UserUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pInvenClearItemReceiveDetail", p_ItemReceiveUIDParameter, p_UserUIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<System.DateTime>> pInvenTransferItemEcount(Nullable<int> p_ItemIssueUID, Nullable<int> p_UserUID)
+        {
+            var p_ItemIssueUIDParameter = p_ItemIssueUID.HasValue ?
+                new ObjectParameter("P_ItemIssueUID", p_ItemIssueUID) :
+                new ObjectParameter("P_ItemIssueUID", typeof(int));
+    
+            var p_UserUIDParameter = p_UserUID.HasValue ?
+                new ObjectParameter("P_UserUID", p_UserUID) :
+                new ObjectParameter("P_UserUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.DateTime>>("pInvenTransferItemEcount", p_ItemIssueUIDParameter, p_UserUIDParameter);
+        }
+    
+        public virtual ObjectResult<pRPTEcoutSumGroupReceipt_Result> pRPTEcoutSumGroupReceipt(Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, string p_OrganisationList, Nullable<int> p_VisitTypeUID)
+        {
+            var p_DateFromParameter = p_DateFrom.HasValue ?
+                new ObjectParameter("P_DateFrom", p_DateFrom) :
+                new ObjectParameter("P_DateFrom", typeof(System.DateTime));
+    
+            var p_DateToParameter = p_DateTo.HasValue ?
+                new ObjectParameter("P_DateTo", p_DateTo) :
+                new ObjectParameter("P_DateTo", typeof(System.DateTime));
+    
+            var p_OrganisationListParameter = p_OrganisationList != null ?
+                new ObjectParameter("P_OrganisationList", p_OrganisationList) :
+                new ObjectParameter("P_OrganisationList", typeof(string));
+    
+            var p_VisitTypeUIDParameter = p_VisitTypeUID.HasValue ?
+                new ObjectParameter("P_VisitTypeUID", p_VisitTypeUID) :
+                new ObjectParameter("P_VisitTypeUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTEcoutSumGroupReceipt_Result>("pRPTEcoutSumGroupReceipt", p_DateFromParameter, p_DateToParameter, p_OrganisationListParameter, p_VisitTypeUIDParameter);
+        }
+    
+        public virtual int pSearchItemMasterCriteria(string p_Text)
+        {
+            var p_TextParameter = p_Text != null ?
+                new ObjectParameter("P_Text", p_Text) :
+                new ObjectParameter("P_Text", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pSearchItemMasterCriteria", p_TextParameter);
         }
     }
 }

@@ -29,7 +29,7 @@ namespace MediTech.DataBase
         public Nullable<int> EMZONEUID { get; set; }
         public Nullable<System.DateTime> ActiveFrom { get; set; }
         public Nullable<System.DateTime> ActiveTo { get; set; }
-        public int OwnerOrganisationUID { get; set; }
+        public Nullable<int> OwnerOrganisationUID { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

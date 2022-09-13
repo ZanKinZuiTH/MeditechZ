@@ -17,7 +17,7 @@ namespace MediTech.DataBase
         public int UID { get; set; }
         public int BillableItemUID { get; set; }
         public Nullable<int> PBLCTUID { get; set; }
-        public System.DateTime ActiveFrom { get; set; }
+        public Nullable<System.DateTime> ActiveFrom { get; set; }
         public Nullable<System.DateTime> ActiveTo { get; set; }
         public Nullable<double> Cost { get; set; }
         public double Price { get; set; }

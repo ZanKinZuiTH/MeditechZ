@@ -55,7 +55,7 @@ namespace MediTechWebApi.Controllers
             List<RequestItemModel> data = db.RequestItem.Where(p =>
             p.TSTTPUID == TSTTPUID
             && p.StatusFlag == "A"
-            && (code == null || p.Code.Contains(code) )
+            && (code == null || p.Code.Contains(code))
             && (itemName == null || p.ItemName.Contains(itemName))
             && (p.EffectiveFrom == null || DbFunctions.TruncateTime(p.EffectiveFrom) <= DbFunctions.TruncateTime(now))
             && (p.EffectiveTo == null || DbFunctions.TruncateTime(p.EffectiveTo) >= DbFunctions.TruncateTime(now)))
@@ -1017,7 +1017,7 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<BillableItemModel> SearchBillableItem(string code, string itemName, int? BSMDDUID, int? billingGroupUID, int? billingSubGroupUID, int? ownerUID)
         {
-            itemName =  !string.IsNullOrEmpty(itemName) ?  SetItemNameSearch(itemName) : itemName;
+            itemName = !string.IsNullOrEmpty(itemName) ? SetItemNameSearch(itemName) : itemName;
             List<BillableItemModel> data = (from p in db.BillableItem
                                             where p.StatusFlag == "A"
                                             && (string.IsNullOrEmpty(code) || p.Code.ToLower().Contains(code.ToLower()))
@@ -1229,7 +1229,7 @@ namespace MediTechWebApi.Controllers
                     {
                         BillableItemDetailUID = p.UID,
                         BillableItemUID = p.BillableItemUID,
-                        ActiveFrom = p.ActiveFrom ,
+                        ActiveFrom = p.ActiveFrom ?? DateTime.Now,
                         ActiveTo = p.ActiveTo,
                         Price = p.Price,
                         Cost = p.Cost ?? 0,
@@ -1541,7 +1541,7 @@ namespace MediTechWebApi.Controllers
         public List<OrderSetModel> GetOrderSetByOrderSubCategoryUID(int orderSubCategoryUID)
         {
             List<OrderSetModel> data = (from p in db.OrderSet
-                                        where p.StatusFlag == "A" 
+                                        where p.StatusFlag == "A"
                                         && p.OrderSubCategoryUID == orderSubCategoryUID
                                         select new OrderSetModel
                                         {

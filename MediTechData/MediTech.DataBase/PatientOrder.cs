@@ -31,12 +31,12 @@ namespace MediTech.DataBase
         public Nullable<int> OrderToLocationUID { get; set; }
         public Nullable<long> ParentUID { get; set; }
         public string IsContinuous { get; set; }
+        public string IsIPFill { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
-        public string IsIPFill { get; set; }
         public int OwnerOrganisationUID { get; set; }
         public byte[] TIMESTAMP { get; set; }
     }

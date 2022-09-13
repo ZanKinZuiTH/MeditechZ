@@ -485,7 +485,7 @@ namespace MediTech.ViewModels
 
         void Cancel()
         {
-            CloseViewDialog(ActionDialog.Cancel);
+            CloseViewDialog(ResultDialog);
         }
 
 

@@ -686,7 +686,7 @@ namespace MediTech.ViewModels
                     PatientOrderDetail.BillingService = BillableItem.BillingServiceMetaData;
                     PatientOrderDetail.UnitPrice = BillableItem.Price;
                     PatientOrderDetail.OriginalUnitPrice = BillableItem.Price;
-                    PatientOrderDetail.DoctorFee = (BillableItem.DoctorFee / 100) * BillableItem.Price;
+
                     PatientOrderDetail.OrderCatagoryUID = BillableItem.OrderCategoryUID;
                     PatientOrderDetail.OrderSubCategoryUID = BillableItem.OrderSubCategoryUID;
                 }
@@ -782,6 +782,7 @@ namespace MediTech.ViewModels
 
                 }
 
+                PatientOrderDetail.DoctorFee = (BillableItem.DoctorFee / 100) * PatientOrderDetail.NetAmount;
                 if (PatientOrderDetail.OwnerOrganisationUID == 0)
                 {
                     PatientOrderDetail.OwnerOrganisationUID = OwnerOrgansitaionUID;
