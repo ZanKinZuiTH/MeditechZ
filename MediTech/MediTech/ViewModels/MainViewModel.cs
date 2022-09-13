@@ -238,6 +238,19 @@ namespace MediTech.ViewModels
             {
 
                 var pageViewModule = DataService.MainManage.GetPageViewModule().OrderBy(p => p.DisplayOrder).ToList();
+
+                var ward = DataService.Technical.GetLocationByTypeUID(3152, AppUtil.Current.OwnerOrganisationUID).FirstOrDefault();
+                var emergency = DataService.Technical.GetLocationByTypeUID(3160, AppUtil.Current.OwnerOrganisationUID).FirstOrDefault();
+                if (ward == null)
+                {
+                    pageViewModule = pageViewModule.Where(p => p.ModuleName != "IPD" && p.ModuleName != "IPD Billing").ToList();
+                }
+
+                if (emergency == null)
+                {
+                    pageViewModule = pageViewModule.Where(p => p.ModuleName != "Emergency").ToList();
+                }
+
                 List<PageViewModel> pageView = DataService.MainManage.GetPageView(AppUtil.Current.RoleUID,"win");
 
                 if (pageView != null)

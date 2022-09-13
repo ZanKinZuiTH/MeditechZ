@@ -180,7 +180,7 @@ namespace MediTech.ViewModels
 
         public WardViewModel()
         {
-            WardSource = DataService.Technical.GetLocationByTypeUID(3152);
+            WardSource = DataService.Technical.GetLocationByTypeUID(3152, AppUtil.Current.OwnerOrganisationUID);
             SelectedWard = WardSource.FirstOrDefault();
             AllBedStatus();
 

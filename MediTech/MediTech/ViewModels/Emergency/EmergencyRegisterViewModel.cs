@@ -716,7 +716,7 @@ namespace MediTech.ViewModels
 
             EncouterER = dataLookupSource.Where(p => p.DomainCode == "ENTYP").FirstOrDefault(p => p.ValueCode == "AEPAT");
             //Bed = DataService.Technical.GetLocationByLocationUID(SelectedLocation.LocationUID).ToList();
-            var bed = DataService.Technical.GetLocationByTypeUID(3160).FirstOrDefault();
+            var bed = DataService.Technical.GetLocationByTypeUID(3160, AppUtil.Current.OwnerOrganisationUID).FirstOrDefault();
             Bed = DataService.PatientIdentity.GetBedLocation(bed.LocationUID, EncouterER.Key).Where(p => p.BedIsUse == "N").ToList();
             
 

@@ -99,9 +99,9 @@ namespace MediTech.DataService
 
             return listPatBill;
         }
-        public List<PatientBillModel> SearchPatientBill(DateTime? dateFrom, DateTime? dateTo, long? patientUID, string billNumber, string isIP, int? owerOrganisationUID)
+        public List<PatientBillModel> SearchPatientBill(DateTime? dateFrom, DateTime? dateTo, long? patientUID, string billNumber, string isIP, int? owerOrganisationUID,int userUID)
         {
-            string requestApi = string.Format("Api/Billing/SearchPatientBill?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&patientUID={2}&billNumber={3}&isIP={4}&owerOrganisationUID={5}", dateFrom, dateTo, patientUID, billNumber, isIP, owerOrganisationUID);
+            string requestApi = string.Format("Api/Billing/SearchPatientBill?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&patientUID={2}&billNumber={3}&isIP={4}&owerOrganisationUID={5}&userUID={6}", dateFrom, dateTo, patientUID, billNumber, isIP, owerOrganisationUID,userUID);
             List<PatientBillModel> listPatBill = MeditechApiHelper.Get<List<PatientBillModel>>(requestApi);
 
             return listPatBill;

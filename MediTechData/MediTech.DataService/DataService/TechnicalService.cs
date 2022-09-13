@@ -19,9 +19,9 @@ namespace MediTech.DataService
             return data;
         }
 
-        public List<LocationModel> GetLocationByTypeUID(int locationTypeUID)
+        public List<LocationModel> GetLocationByTypeUID(int locationTypeUID, int ownerOrganisationUID)
         {
-            string requestApi = string.Format("Api/Technical/GetLocationByTypeUID?locationTypeUID={0}", locationTypeUID);
+            string requestApi = string.Format("Api/Technical/GetLocationByTypeUID?locationTypeUID={0}&ownerOrganisationUID={1}", locationTypeUID, ownerOrganisationUID);
             List<LocationModel> data = MeditechApiHelper.Get<List<LocationModel>>(requestApi);
             return data;
         }

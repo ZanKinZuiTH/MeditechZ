@@ -182,7 +182,7 @@ namespace MediTech.ViewModels
         public AdmissionRequestListViewModel()
         {
             DateFrom = DateTime.Now;
-            WardSource = DataService.Technical.GetLocationByTypeUID(3152);
+            WardSource = DataService.Technical.GetLocationByTypeUID(3152,AppUtil.Current.OwnerOrganisationUID);
             StatusSource = DataService.Technical.GetReferenceValueList("BKTYP");
             Search();
         }

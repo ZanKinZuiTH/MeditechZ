@@ -94,9 +94,13 @@ namespace MediTech.ViewModels
         #region Method
         public EmergencyBedStatusViewModel()
         {
-            SelectedLocation = DataService.Technical.GetLocationByTypeUID(3160).FirstOrDefault();
+
+            SelectedLocation = DataService.Technical.GetLocationByTypeUID(3160, AppUtil.Current.OwnerOrganisationUID).FirstOrDefault();
             int? ENTYPUID = DataService.Technical.GetReferenceValueByCode("ENTYP", "AEPAT").Key;
-            Bed = DataService.PatientIdentity.GetBedByPatientVisit(SelectedLocation.LocationUID, ENTYPUID ?? 0).ToList();
+            if(SelectedLocation != null)
+            {
+                Bed = DataService.PatientIdentity.GetBedByPatientVisit(SelectedLocation.LocationUID, ENTYPUID ?? 0).ToList();
+            }
         }
 
         private void PatientRecords()
