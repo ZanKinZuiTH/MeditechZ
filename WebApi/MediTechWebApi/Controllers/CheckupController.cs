@@ -31,6 +31,7 @@ namespace MediTechWebApi.Controllers
                     CheckupJobContactUID = p.UID,
                     JobContactID = p.JobContactID,
                     InsuranceCompanyUID = p.InsuranceCompanyUID,
+                    InsuranceCompanyName = SqlFunction.fGetInsuranceCompanyName(p.InsuranceCompanyUID),
                     CompanyName = p.CompanyName,
                     Description = p.Description,
                     JobNumber = p.JobNumber,
@@ -113,6 +114,42 @@ namespace MediTechWebApi.Controllers
                     EndDttm = p.EndDttm,
                     CollectDttm = p.CollectDttm
                 }).ToList();
+
+            return data;
+        }
+
+
+        [Route("SearchCheckupJobContactActive")]
+        [HttpGet]
+        public List<CheckupJobContactModel> SearchCheckupJobContactActive(int? payorDetailUID, DateTime? startDate, DateTime? endDate)
+        {
+            DateTime now = DateTime.Now;
+            List<CheckupJobContactModel> data = db.CheckupJobContact.Where(p =>
+            p.StatusFlag == "A" 
+            && (payorDetailUID == null || p.InsuranceCompanyUID == payorDetailUID )
+            && (startDate == null || DbFunctions.TruncateTime(p.StartDttm) >= DbFunctions.TruncateTime(startDate))
+            && (endDate == null || DbFunctions.TruncateTime(p.EndDttm) < DbFunctions.TruncateTime(endDate)))
+                .Select(p => new CheckupJobContactModel
+                {
+                    CheckupJobContactUID = p.UID,
+                    JobContactID = p.JobContactID,
+                    InsuranceCompanyUID = p.InsuranceCompanyUID,
+                    InsuranceCompanyName = SqlFunction.fGetInsuranceCompanyName(p.InsuranceCompanyUID),
+                    CompanyName = p.CompanyName,
+                    Description = p.Description,
+                    JobNumber = p.JobNumber,
+                    Location = p.Location,
+                    ContactPerson = p.ContactPerson,
+                    ContactEmail = p.ContactEmail,
+                    ContactPhone = p.ContactPhone,
+                    ServiceName = p.ServiceName,
+                    VisitCount = p.VisitCount,
+                    StartDttm = p.StartDttm,
+                    EndDttm = p.EndDttm,
+                    CollectDttm = p.CollectDttm
+                }).ToList();
+
+            data = data.OrderBy(p => p.CompanyName).ThenBy(p => p.StartDttm).ToList();
 
             return data;
         }

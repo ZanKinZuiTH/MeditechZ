@@ -30,6 +30,37 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectCheckupJob, value); }
         }
 
+        private List<InsuranceCompanyModel> _InsuranceCompany;
+        public List<InsuranceCompanyModel> InsuranceCompany
+        {
+            get { return _InsuranceCompany; }
+            set { Set(ref _InsuranceCompany, value); }
+        }
+
+        private InsuranceCompanyModel _SelectInsuranceCompany;
+        public InsuranceCompanyModel SelectInsuranceCompany
+        {
+            get { return _SelectInsuranceCompany; }
+            set
+            {
+                Set(ref _SelectInsuranceCompany, value);
+            }
+        }
+
+        private DateTime? _DateFrom;
+        public DateTime? DateFrom
+        {
+            get { return _DateFrom; }
+            set { Set(ref _DateFrom, value); }
+        }
+
+        private DateTime? _DateTo;
+        public DateTime? DateTo
+        {
+            get { return _DateTo; }
+            set { Set(ref _DateTo, value); }
+        }
+
         #endregion
 
         #region Command
@@ -69,6 +100,16 @@ namespace MediTech.ViewModels
                     ?? (_DeleteCommand = new RelayCommand(DeleteJob));
             }
         }
+        
+        private RelayCommand _SearchCommand;
+        public RelayCommand SearchCommand
+        {
+            get
+            {
+                return _SearchCommand
+                    ?? (_SearchCommand = new RelayCommand(Search));
+            }
+        }
 
         #endregion
 
@@ -76,7 +117,21 @@ namespace MediTech.ViewModels
 
         public ListCheckupJobViewModel()
         {
-            ListCheckupJob = DataService.Checkup.GetCheckupJobContactAll();
+            InsuranceCompany = DataService.Billing.GetInsuranceCompanyAll();
+            SelectInsuranceCompany = InsuranceCompany.FirstOrDefault();
+            Search();
+        }
+
+        void Search()
+        {
+            if(SelectInsuranceCompany == null)
+            {
+                WarningDialog("กรุณาเลือก Payor");
+                return;
+            }
+
+            int? insuranceUID = SelectInsuranceCompany != null ? SelectInsuranceCompany.InsuranceCompanyUID : (int?) null;
+            ListCheckupJob = DataService.Checkup.SearchCheckupJobContactActive(insuranceUID, DateFrom, DateTo);
         }
 
         void AddJob()
