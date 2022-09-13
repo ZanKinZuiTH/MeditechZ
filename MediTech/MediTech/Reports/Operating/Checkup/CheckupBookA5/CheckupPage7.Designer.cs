@@ -1296,7 +1296,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell56.StylePriority.UseFont = false;
             this.xrTableCell56.StylePriority.UsePadding = false;
             this.xrTableCell56.StylePriority.UseTextAlignment = false;
-            this.xrTableCell56.Text = "Carboxy";
+            this.xrTableCell56.Text = "Carboxyhemoglobin in Blood";
             this.xrTableCell56.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell56.Weight = 1.2913566084432759D;
             // 
@@ -2534,7 +2534,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell3.StylePriority.UseFont = false;
             this.xrTableCell3.StylePriority.UsePadding = false;
             this.xrTableCell3.StylePriority.UseTextAlignment = false;
-            this.xrTableCell3.Text = "Zine";
+            this.xrTableCell3.Text = "Zinc in Blood";
             this.xrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell3.Weight = 1.2913566084432759D;
             // 
@@ -2598,7 +2598,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell4.StylePriority.UseFont = false;
             this.xrTableCell4.StylePriority.UsePadding = false;
             this.xrTableCell4.StylePriority.UseTextAlignment = false;
-            this.xrTableCell4.Text = "Irom\r\n";
+            this.xrTableCell4.Text = "Iron in Blood";
             this.xrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell4.Weight = 1.2913566084432759D;
             // 
