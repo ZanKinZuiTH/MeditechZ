@@ -1572,6 +1572,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page7.RowIron.Visible = false;
                 page7.RowCadInb.Visible = false;
                 page7.RowChroinB.Visible = false;
+                page7.RowChroinS.Visible = false;
                 page7.RowAmmo.Visible = false;
                 page7.RowLeadInu.Visible = false;
                 page7.RowCholinesteraseBlood.Visible = false;
@@ -2001,11 +2002,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
 
                     if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171") != null)
                     {
-                        page7.RowChroinB.Visible = true;
-                        page7.ChroinBRang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171")?.ReferenceRange;
-                        page7.ChroinB1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171" && p.Year == year1)?.ResultValue;
-                        page7.ChroinB2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171" && p.Year == year2)?.ResultValue;
-                        page7.ChroinB3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171" && p.Year == year3)?.ResultValue;
+                        page7.RowChroinS.Visible = true;
+                        page7.ChroinSRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171")?.ReferenceRange;
+                        page7.ChroinS1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171" && p.Year == year1)?.ResultValue;
+                        page7.ChroinS2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171" && p.Year == year2)?.ResultValue;
+                        page7.ChroinS3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171" && p.Year == year3)?.ResultValue;
                     }
 
                     #endregion

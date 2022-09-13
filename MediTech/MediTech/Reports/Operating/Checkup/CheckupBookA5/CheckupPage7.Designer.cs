@@ -272,6 +272,18 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.LeadinU1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.LeadinU2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.LeadinU3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RowCholinesteraseBlood = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.CholinesterasebloodRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Cholinesteraseblood1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Cholinesteraseblood2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Cholinesteraseblood3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RowThinnerUrine = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell14 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.ThinnerUrineRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.ThinnerUrine1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.ThinnerUrine2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.ThinnerUrine3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrTable3 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow10 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -313,18 +325,12 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell63 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell66 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
-            this.RowCholinesteraseBlood = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.CholinesterasebloodRange = new DevExpress.XtraReports.UI.XRTableCell();
-            this.Cholinesteraseblood1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.Cholinesteraseblood2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.Cholinesteraseblood3 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.RowThinnerUrine = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell14 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.ThinnerUrineRange = new DevExpress.XtraReports.UI.XRTableCell();
-            this.ThinnerUrine1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.ThinnerUrine2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.ThinnerUrine3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RowChroinS = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.ChroinSRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.ChroinS1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.ChroinS2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.ChroinS3 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbToxicology)).BeginInit();
@@ -418,6 +424,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableRow23,
             this.RowNicinblood,
             this.xrTableRow42,
+            this.RowChroinS,
             this.xrTableRow43,
             this.xrTableRow26,
             this.RowBenzene,
@@ -455,7 +462,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.RowLeadInu,
             this.RowCholinesteraseBlood,
             this.RowThinnerUrine});
-            this.tbToxicology.SizeF = new System.Drawing.SizeF(498F, 941.3583F);
+            this.tbToxicology.SizeF = new System.Drawing.SizeF(498F, 964.5755F);
             this.tbToxicology.StylePriority.UseBorderColor = false;
             this.tbToxicology.StylePriority.UseBorders = false;
             this.tbToxicology.StylePriority.UseBorderWidth = false;
@@ -2892,6 +2899,134 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.LeadinU3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.LeadinU3.Weight = 0.44329635320818539D;
             // 
+            // RowCholinesteraseBlood
+            // 
+            this.RowCholinesteraseBlood.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell7,
+            this.CholinesterasebloodRange,
+            this.Cholinesteraseblood1,
+            this.Cholinesteraseblood2,
+            this.Cholinesteraseblood3});
+            this.RowCholinesteraseBlood.Name = "RowCholinesteraseBlood";
+            this.RowCholinesteraseBlood.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell7
+            // 
+            this.xrTableCell7.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell7.Multiline = true;
+            this.xrTableCell7.Name = "xrTableCell7";
+            this.xrTableCell7.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell7.StylePriority.UseFont = false;
+            this.xrTableCell7.StylePriority.UsePadding = false;
+            this.xrTableCell7.StylePriority.UseTextAlignment = false;
+            this.xrTableCell7.Text = "Cholinesterase in Blood";
+            this.xrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell7.Weight = 1.2913566084432759D;
+            // 
+            // CholinesterasebloodRange
+            // 
+            this.CholinesterasebloodRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.CholinesterasebloodRange.Multiline = true;
+            this.CholinesterasebloodRange.Name = "CholinesterasebloodRange";
+            this.CholinesterasebloodRange.StylePriority.UseFont = false;
+            this.CholinesterasebloodRange.StylePriority.UseTextAlignment = false;
+            this.CholinesterasebloodRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.CholinesterasebloodRange.Weight = 0.93906236153056333D;
+            // 
+            // Cholinesteraseblood1
+            // 
+            this.Cholinesteraseblood1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.Cholinesteraseblood1.Multiline = true;
+            this.Cholinesteraseblood1.Name = "Cholinesteraseblood1";
+            this.Cholinesteraseblood1.StylePriority.UseFont = false;
+            this.Cholinesteraseblood1.StylePriority.UseTextAlignment = false;
+            this.Cholinesteraseblood1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.Cholinesteraseblood1.Weight = 0.443296332132815D;
+            // 
+            // Cholinesteraseblood2
+            // 
+            this.Cholinesteraseblood2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.Cholinesteraseblood2.Multiline = true;
+            this.Cholinesteraseblood2.Name = "Cholinesteraseblood2";
+            this.Cholinesteraseblood2.StylePriority.UseFont = false;
+            this.Cholinesteraseblood2.StylePriority.UseTextAlignment = false;
+            this.Cholinesteraseblood2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.Cholinesteraseblood2.Weight = 0.44329633245297495D;
+            // 
+            // Cholinesteraseblood3
+            // 
+            this.Cholinesteraseblood3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.Cholinesteraseblood3.Multiline = true;
+            this.Cholinesteraseblood3.Name = "Cholinesteraseblood3";
+            this.Cholinesteraseblood3.StylePriority.UseFont = false;
+            this.Cholinesteraseblood3.StylePriority.UseTextAlignment = false;
+            this.Cholinesteraseblood3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.Cholinesteraseblood3.Weight = 0.44329635320818539D;
+            // 
+            // RowThinnerUrine
+            // 
+            this.RowThinnerUrine.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell14,
+            this.ThinnerUrineRange,
+            this.ThinnerUrine1,
+            this.ThinnerUrine2,
+            this.ThinnerUrine3});
+            this.RowThinnerUrine.Name = "RowThinnerUrine";
+            this.RowThinnerUrine.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell14
+            // 
+            this.xrTableCell14.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell14.Multiline = true;
+            this.xrTableCell14.Name = "xrTableCell14";
+            this.xrTableCell14.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell14.StylePriority.UseFont = false;
+            this.xrTableCell14.StylePriority.UsePadding = false;
+            this.xrTableCell14.StylePriority.UseTextAlignment = false;
+            this.xrTableCell14.Text = "Thinner in Urine";
+            this.xrTableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell14.Weight = 1.2913566084432759D;
+            // 
+            // ThinnerUrineRange
+            // 
+            this.ThinnerUrineRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.ThinnerUrineRange.Multiline = true;
+            this.ThinnerUrineRange.Name = "ThinnerUrineRange";
+            this.ThinnerUrineRange.StylePriority.UseFont = false;
+            this.ThinnerUrineRange.StylePriority.UseTextAlignment = false;
+            this.ThinnerUrineRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.ThinnerUrineRange.Weight = 0.93906236153056333D;
+            // 
+            // ThinnerUrine1
+            // 
+            this.ThinnerUrine1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.ThinnerUrine1.Multiline = true;
+            this.ThinnerUrine1.Name = "ThinnerUrine1";
+            this.ThinnerUrine1.StylePriority.UseFont = false;
+            this.ThinnerUrine1.StylePriority.UseTextAlignment = false;
+            this.ThinnerUrine1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.ThinnerUrine1.Weight = 0.443296332132815D;
+            // 
+            // ThinnerUrine2
+            // 
+            this.ThinnerUrine2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.ThinnerUrine2.Multiline = true;
+            this.ThinnerUrine2.Name = "ThinnerUrine2";
+            this.ThinnerUrine2.StylePriority.UseFont = false;
+            this.ThinnerUrine2.StylePriority.UseTextAlignment = false;
+            this.ThinnerUrine2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.ThinnerUrine2.Weight = 0.44329633245297495D;
+            // 
+            // ThinnerUrine3
+            // 
+            this.ThinnerUrine3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.ThinnerUrine3.Multiline = true;
+            this.ThinnerUrine3.Name = "ThinnerUrine3";
+            this.ThinnerUrine3.StylePriority.UseFont = false;
+            this.ThinnerUrine3.StylePriority.UseTextAlignment = false;
+            this.ThinnerUrine3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.ThinnerUrine3.Weight = 0.44329635320818539D;
+            // 
             // xrLabel7
             // 
             this.xrLabel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
@@ -3454,133 +3589,69 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel4.Text = "การเพาะเชื้อจากอุจจาระ (Stool Culture) ";
             this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
-            // RowCholinesteraseBlood
+            // RowChroinS
             // 
-            this.RowCholinesteraseBlood.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell7,
-            this.CholinesterasebloodRange,
-            this.Cholinesteraseblood1,
-            this.Cholinesteraseblood2,
-            this.Cholinesteraseblood3});
-            this.RowCholinesteraseBlood.Name = "RowCholinesteraseBlood";
-            this.RowCholinesteraseBlood.Weight = 0.92341768297675519D;
+            this.RowChroinS.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell8,
+            this.ChroinSRange,
+            this.ChroinS1,
+            this.ChroinS2,
+            this.ChroinS3});
+            this.RowChroinS.Name = "RowChroinS";
+            this.RowChroinS.Weight = 0.92341768297675519D;
             // 
-            // xrTableCell7
+            // xrTableCell8
             // 
-            this.xrTableCell7.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell7.Multiline = true;
-            this.xrTableCell7.Name = "xrTableCell7";
-            this.xrTableCell7.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
-            this.xrTableCell7.StylePriority.UseFont = false;
-            this.xrTableCell7.StylePriority.UsePadding = false;
-            this.xrTableCell7.StylePriority.UseTextAlignment = false;
-            this.xrTableCell7.Text = "Cholinesterase in Blood";
-            this.xrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell7.Weight = 1.2913566084432759D;
+            this.xrTableCell8.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell8.Multiline = true;
+            this.xrTableCell8.Name = "xrTableCell8";
+            this.xrTableCell8.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell8.StylePriority.UseFont = false;
+            this.xrTableCell8.StylePriority.UsePadding = false;
+            this.xrTableCell8.StylePriority.UseTextAlignment = false;
+            this.xrTableCell8.Text = "Chromium in Serum";
+            this.xrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell8.Weight = 1.2913566084432759D;
             // 
-            // CholinesterasebloodRange
+            // ChroinSRange
             // 
-            this.CholinesterasebloodRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.CholinesterasebloodRange.Multiline = true;
-            this.CholinesterasebloodRange.Name = "CholinesterasebloodRange";
-            this.CholinesterasebloodRange.StylePriority.UseFont = false;
-            this.CholinesterasebloodRange.StylePriority.UseTextAlignment = false;
-            this.CholinesterasebloodRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.CholinesterasebloodRange.Weight = 0.93906236153056333D;
+            this.ChroinSRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.ChroinSRange.Multiline = true;
+            this.ChroinSRange.Name = "ChroinSRange";
+            this.ChroinSRange.StylePriority.UseFont = false;
+            this.ChroinSRange.StylePriority.UseTextAlignment = false;
+            this.ChroinSRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.ChroinSRange.Weight = 0.93906236153056333D;
             // 
-            // Cholinesteraseblood1
+            // ChroinS1
             // 
-            this.Cholinesteraseblood1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.Cholinesteraseblood1.Multiline = true;
-            this.Cholinesteraseblood1.Name = "Cholinesteraseblood1";
-            this.Cholinesteraseblood1.StylePriority.UseFont = false;
-            this.Cholinesteraseblood1.StylePriority.UseTextAlignment = false;
-            this.Cholinesteraseblood1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.Cholinesteraseblood1.Weight = 0.443296332132815D;
+            this.ChroinS1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.ChroinS1.Multiline = true;
+            this.ChroinS1.Name = "ChroinS1";
+            this.ChroinS1.StylePriority.UseFont = false;
+            this.ChroinS1.StylePriority.UseTextAlignment = false;
+            this.ChroinS1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.ChroinS1.Weight = 0.443296332132815D;
             // 
-            // Cholinesteraseblood2
+            // ChroinS2
             // 
-            this.Cholinesteraseblood2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.Cholinesteraseblood2.Multiline = true;
-            this.Cholinesteraseblood2.Name = "Cholinesteraseblood2";
-            this.Cholinesteraseblood2.StylePriority.UseFont = false;
-            this.Cholinesteraseblood2.StylePriority.UseTextAlignment = false;
-            this.Cholinesteraseblood2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.Cholinesteraseblood2.Weight = 0.44329633245297495D;
+            this.ChroinS2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.ChroinS2.Multiline = true;
+            this.ChroinS2.Name = "ChroinS2";
+            this.ChroinS2.StylePriority.UseFont = false;
+            this.ChroinS2.StylePriority.UseTextAlignment = false;
+            this.ChroinS2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.ChroinS2.Weight = 0.44329633245297495D;
             // 
-            // Cholinesteraseblood3
+            // ChroinS3
             // 
-            this.Cholinesteraseblood3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.Cholinesteraseblood3.Multiline = true;
-            this.Cholinesteraseblood3.Name = "Cholinesteraseblood3";
-            this.Cholinesteraseblood3.StylePriority.UseFont = false;
-            this.Cholinesteraseblood3.StylePriority.UseTextAlignment = false;
-            this.Cholinesteraseblood3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.Cholinesteraseblood3.Weight = 0.44329635320818539D;
-            // 
-            // RowThinnerUrine
-            // 
-            this.RowThinnerUrine.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell14,
-            this.ThinnerUrineRange,
-            this.ThinnerUrine1,
-            this.ThinnerUrine2,
-            this.ThinnerUrine3});
-            this.RowThinnerUrine.Name = "RowThinnerUrine";
-            this.RowThinnerUrine.Weight = 0.92341768297675519D;
-            // 
-            // xrTableCell14
-            // 
-            this.xrTableCell14.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell14.Multiline = true;
-            this.xrTableCell14.Name = "xrTableCell14";
-            this.xrTableCell14.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
-            this.xrTableCell14.StylePriority.UseFont = false;
-            this.xrTableCell14.StylePriority.UsePadding = false;
-            this.xrTableCell14.StylePriority.UseTextAlignment = false;
-            this.xrTableCell14.Text = "Thinner in Urine";
-            this.xrTableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell14.Weight = 1.2913566084432759D;
-            // 
-            // ThinnerUrineRange
-            // 
-            this.ThinnerUrineRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.ThinnerUrineRange.Multiline = true;
-            this.ThinnerUrineRange.Name = "ThinnerUrineRange";
-            this.ThinnerUrineRange.StylePriority.UseFont = false;
-            this.ThinnerUrineRange.StylePriority.UseTextAlignment = false;
-            this.ThinnerUrineRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.ThinnerUrineRange.Weight = 0.93906236153056333D;
-            // 
-            // ThinnerUrine1
-            // 
-            this.ThinnerUrine1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.ThinnerUrine1.Multiline = true;
-            this.ThinnerUrine1.Name = "ThinnerUrine1";
-            this.ThinnerUrine1.StylePriority.UseFont = false;
-            this.ThinnerUrine1.StylePriority.UseTextAlignment = false;
-            this.ThinnerUrine1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.ThinnerUrine1.Weight = 0.443296332132815D;
-            // 
-            // ThinnerUrine2
-            // 
-            this.ThinnerUrine2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.ThinnerUrine2.Multiline = true;
-            this.ThinnerUrine2.Name = "ThinnerUrine2";
-            this.ThinnerUrine2.StylePriority.UseFont = false;
-            this.ThinnerUrine2.StylePriority.UseTextAlignment = false;
-            this.ThinnerUrine2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.ThinnerUrine2.Weight = 0.44329633245297495D;
-            // 
-            // ThinnerUrine3
-            // 
-            this.ThinnerUrine3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.ThinnerUrine3.Multiline = true;
-            this.ThinnerUrine3.Name = "ThinnerUrine3";
-            this.ThinnerUrine3.StylePriority.UseFont = false;
-            this.ThinnerUrine3.StylePriority.UseTextAlignment = false;
-            this.ThinnerUrine3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.ThinnerUrine3.Weight = 0.44329635320818539D;
+            this.ChroinS3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.ChroinS3.Multiline = true;
+            this.ChroinS3.Name = "ChroinS3";
+            this.ChroinS3.StylePriority.UseFont = false;
+            this.ChroinS3.StylePriority.UseTextAlignment = false;
+            this.ChroinS3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.ChroinS3.Weight = 0.44329635320818539D;
             // 
             // CheckupPage7
             // 
@@ -3899,5 +3970,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         public DevExpress.XtraReports.UI.XRTableCell ThinnerUrine3;
         public DevExpress.XtraReports.UI.XRTableRow RowCholinesteraseBlood;
         public DevExpress.XtraReports.UI.XRTableRow RowThinnerUrine;
+        public DevExpress.XtraReports.UI.XRTableRow RowChroinS;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell8;
+        public DevExpress.XtraReports.UI.XRTableCell ChroinSRange;
+        public DevExpress.XtraReports.UI.XRTableCell ChroinS1;
+        public DevExpress.XtraReports.UI.XRTableCell ChroinS2;
+        public DevExpress.XtraReports.UI.XRTableCell ChroinS3;
     }
 }
