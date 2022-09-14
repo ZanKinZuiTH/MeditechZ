@@ -30,6 +30,13 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<CheckupJobContactModel> SearchCheckupJobContactActive(int? payorDetailUID, DateTime? startDate, DateTime? endDate)
+        {
+            string requestApi = string.Format("Api/Checkup/SearchCheckupJobContactActive?payorDetailUID={0}&startDate={1:MM/dd/yyyy}&endDate={2:MM/dd/yyyy}", payorDetailUID, startDate, endDate);
+            List<CheckupJobContactModel> data = MeditechApiHelper.Get<List<CheckupJobContactModel>>(requestApi);
+            return data;
+        }
+
         public List<CheckupJobContactModel> GetCheckupJobContactAllActive()
         {
             string requestApi = string.Format("Api/Checkup/GetCheckupJobContactAllActive");
