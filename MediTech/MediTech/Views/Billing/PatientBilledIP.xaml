@@ -178,6 +178,7 @@
                                       PopupMinWidth="100"
                                       PopupHeight="400" 
                                       IsPopupAutoWidth="True"
+                                      NullValueButtonPlacement="EditBox"
                                       PopupContentTemplate="{StaticResource HealthOrganisationTemplate}"
                                       AutoPopulateColumns="False">
                         <dxg:LookUpEdit.StyleSettings>

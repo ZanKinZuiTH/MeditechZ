@@ -1441,7 +1441,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pSearchPatientBill(DateTime? dateFrom, DateTime? dateTo, long? patientUID, string billNumber,string isIP, int? owerOrganisationUID)
+        public static DataTable pSearchPatientBill(DateTime? dateFrom, DateTime? dateTo, long? patientUID, string billNumber,string isIP, int? owerOrganisationUID,int? userUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchPatientBill", entities.Database.Connection.ConnectionString);
@@ -1453,6 +1453,7 @@ namespace MediTech.DataBase
             adp.SelectCommand.Parameters.AddWithValue("@P_BillNumber", !string.IsNullOrEmpty(billNumber) ? billNumber : (Object)(DBNull.Value));
             adp.SelectCommand.Parameters.AddWithValue("@P_IsIP", isIP ?? (Object)(DBNull.Value));
             adp.SelectCommand.Parameters.AddWithValue("@P_OwnerOrganisatinUID", owerOrganisationUID != null ? owerOrganisationUID : (Object)(DBNull.Value));
+            adp.SelectCommand.Parameters.AddWithValue("@P_UserUID", owerOrganisationUID != null ? userUID : (Object)(DBNull.Value));
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
