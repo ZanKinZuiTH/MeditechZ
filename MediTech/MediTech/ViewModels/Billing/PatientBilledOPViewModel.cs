@@ -224,7 +224,7 @@ namespace MediTech.ViewModels
             {
                 patientUID = SelectedPateintSearch.PatientUID;
             }
-            int? ownerOrganisationUID = SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : AppUtil.Current.OwnerOrganisationUID;
+            int? ownerOrganisationUID = SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : (int?)null;
             PatientBillSource = new ObservableCollection<PatientBillModel>(DataService.Billing.SearchPatientBill(DateFrom, DateTo, patientUID, BillNumber,"N", ownerOrganisationUID, AppUtil.Current.UserID));
         }
 
