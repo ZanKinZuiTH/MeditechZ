@@ -69,7 +69,7 @@
                 <dxg:GridColumn Header="Orderset ที่ใช้" FieldName="OrderSet"/>
                 <dxg:GridColumn Header="Order แยกที่ใช้" FieldName="ItemName"/>
                 <dxg:GridColumn Header="ราคาขายออก" FieldName="NetAmount"/>
-                <dxg:GridColumn Header="ต้นทุนต่อหน่วย" FieldName="ItemCost"/>
+                <dxg:GridColumn Header="ต้นทุนต่อหน่วย" FieldName="ItemCost" Visible="{Binding VisibiltyCost}" />
                 <dxg:GridColumn Header="Note Cashier" FieldName="NoteCashier"/>
                 <dxg:GridColumn Header="เหตุผลในการยกเลิกบิล" FieldName="CancelBillReason"/>
                 <dxg:GridColumn Header="จำนวนที่ใช้" FieldName="ItemMutiplier"/>
