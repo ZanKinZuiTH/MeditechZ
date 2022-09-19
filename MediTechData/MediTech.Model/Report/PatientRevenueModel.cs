@@ -30,6 +30,7 @@ namespace MediTech.Model.Report
         public string Status { get; set; }
         public string BillNumber { get; set; }
         public string HealthOrganisationName { get; set; }
+        public string Location { get; set; }
         public string Comments { get; set; }
         public string CancelReason { get; set; }
         public string TypeOrder { get; set; }

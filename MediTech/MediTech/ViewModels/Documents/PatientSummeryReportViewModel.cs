@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using MediTech.Model.Report;
 using System.Windows.Forms;
 using MediTech.Views;
+using System.Windows;
 
 namespace MediTech.ViewModels
 {
@@ -56,6 +57,13 @@ namespace MediTech.ViewModels
             set { Set(ref _PatientSummaryDatas, value); }
         }
 
+        private bool _VisibiltyCost;
+        public bool VisibiltyCost
+        {
+            get { return _VisibiltyCost; }
+            set { Set(ref _VisibiltyCost, value); }
+        }
+
         #endregion
 
         #region Command
@@ -101,6 +109,7 @@ namespace MediTech.ViewModels
             Organisations = GetHealthOrganisationRole();
             var SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
             SelectOrganisations.Add(SelectOrganisation.HealthOrganisationUID);
+            IsPermission();
         }
 
         void Search()
@@ -151,6 +160,20 @@ namespace MediTech.ViewModels
         void Cancel()
         {
             ChangeViewPermission(this.BackwardView);
+        }
+
+        void IsPermission()
+        {
+            var permission = DataService.RoleManage.GetPageViewPermission(AppUtil.Current.RoleUID);
+            var Ispermission = permission.FirstOrDefault(p => p.Type == "PERMISSION" && p.PageViewCode == "ISCSTR");
+            if (Ispermission == null)
+            {
+                VisibiltyCost = false;
+            }
+            else
+            {
+                VisibiltyCost = true;
+            }
         }
 
         #endregion
