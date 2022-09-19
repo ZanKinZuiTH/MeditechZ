@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrPivotGrid1 = new DevExpress.XtraReports.UI.XRPivotGrid();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.pivotGridField4 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.xrPivotGridField22 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.xrPivotGridField23 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
@@ -40,6 +41,7 @@
             this.xrPivotGridField27 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField6 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField7 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.fieldTypeOrder = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField5 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField9 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField8 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
@@ -61,8 +63,6 @@
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.OrganisationList = new DevExpress.XtraReports.Parameters.Parameter();
             this.VISTYUID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.fieldTypeOrder = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.colPatientName = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.colVisitID = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.colVisitDttm = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
@@ -93,6 +93,7 @@
             this.xrPivotGridField18 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.xrPivotGridField19 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.xrPivotGridField20 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.xrPivotGridField31 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -136,13 +137,19 @@
             this.xrPivotGridField28,
             this.pivotGridField1,
             this.xrPivotGridField29,
-            this.xrPivotGridField30});
+            this.xrPivotGridField30,
+            this.xrPivotGridField31});
             this.xrPivotGrid1.LocationFloat = new DevExpress.Utils.PointFloat(53.91673F, 10F);
             this.xrPivotGrid1.Name = "xrPivotGrid1";
             this.xrPivotGrid1.OptionsPrint.FilterSeparatorBarPadding = 3;
             this.xrPivotGrid1.OptionsPrint.PrintColumnAreaOnEveryPage = true;
             this.xrPivotGrid1.OptionsView.ShowDataHeaders = false;
-            this.xrPivotGrid1.SizeF = new System.Drawing.SizeF(1232.333F, 67.70834F);
+            this.xrPivotGrid1.SizeF = new System.Drawing.SizeF(1586.083F, 67.70834F);
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.PatientRevenueModel);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // pivotGridField4
             // 
@@ -215,7 +222,7 @@
             this.xrPivotGridField27.FieldName = "ItemName";
             this.xrPivotGridField27.Name = "xrPivotGridField27";
             this.xrPivotGridField27.RowValueLineCount = 2;
-            this.xrPivotGridField27.Width = 175;
+            this.xrPivotGridField27.Width = 220;
             // 
             // pivotGridField6
             // 
@@ -229,16 +236,23 @@
             // pivotGridField7
             // 
             this.pivotGridField7.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField7.AreaIndex = 8;
+            this.pivotGridField7.AreaIndex = 9;
             this.pivotGridField7.Caption = "Store";
             this.pivotGridField7.FieldName = "Store";
             this.pivotGridField7.Name = "pivotGridField7";
             this.pivotGridField7.Width = 140;
             // 
+            // fieldTypeOrder
+            // 
+            this.fieldTypeOrder.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.fieldTypeOrder.AreaIndex = 13;
+            this.fieldTypeOrder.FieldName = "TypeOrder";
+            this.fieldTypeOrder.Name = "fieldTypeOrder";
+            // 
             // pivotGridField5
             // 
             this.pivotGridField5.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField5.AreaIndex = 9;
+            this.pivotGridField5.AreaIndex = 10;
             this.pivotGridField5.FieldName = "BatchID";
             this.pivotGridField5.Name = "pivotGridField5";
             this.pivotGridField5.TotalsVisibility = DevExpress.XtraPivotGrid.PivotTotalsVisibility.None;
@@ -247,7 +261,7 @@
             // pivotGridField9
             // 
             this.pivotGridField9.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField9.AreaIndex = 10;
+            this.pivotGridField9.AreaIndex = 11;
             this.pivotGridField9.Caption = "Note Cashier";
             this.pivotGridField9.FieldName = "Comments";
             this.pivotGridField9.Name = "pivotGridField9";
@@ -255,7 +269,7 @@
             // pivotGridField8
             // 
             this.pivotGridField8.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField8.AreaIndex = 11;
+            this.pivotGridField8.AreaIndex = 12;
             this.pivotGridField8.FieldName = "CancelReason";
             this.pivotGridField8.Name = "pivotGridField8";
             // 
@@ -402,7 +416,7 @@
             // 
             // BottomMargin
             // 
-            this.BottomMargin.HeightF = 0F;
+            this.BottomMargin.HeightF = 27.5F;
             this.BottomMargin.Name = "BottomMargin";
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -419,18 +433,6 @@
             this.VISTYUID.Type = typeof(int);
             this.VISTYUID.ValueInfo = "0";
             this.VISTYUID.Visible = false;
-            // 
-            // fieldTypeOrder
-            // 
-            this.fieldTypeOrder.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldTypeOrder.AreaIndex = 12;
-            this.fieldTypeOrder.FieldName = "TypeOrder";
-            this.fieldTypeOrder.Name = "fieldTypeOrder";
-            // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.PatientRevenueModel);
-            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // colPatientName
             // 
@@ -632,6 +634,14 @@
             this.xrPivotGridField20.FieldName = "Profit";
             this.xrPivotGridField20.Name = "xrPivotGridField20";
             // 
+            // xrPivotGridField31
+            // 
+            this.xrPivotGridField31.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.xrPivotGridField31.AreaIndex = 8;
+            this.xrPivotGridField31.FieldName = "Location";
+            this.xrPivotGridField31.Name = "xrPivotGridField31";
+            this.xrPivotGridField31.Width = 150;
+            // 
             // PatientNetProfit
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -642,10 +652,10 @@
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
             this.Landscape = true;
-            this.Margins = new System.Drawing.Printing.Margins(0, 0, 105, 0);
-            this.PageHeight = 1268;
-            this.PageWidth = 1752;
-            this.PaperKind = System.Drawing.Printing.PaperKind.A3Extra;
+            this.Margins = new System.Drawing.Printing.Margins(0, 0, 105, 28);
+            this.PageHeight = 800;
+            this.PageWidth = 2200;
+            this.PaperKind = System.Drawing.Printing.PaperKind.Custom;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.DateFrom,
             this.DateTo,
@@ -723,5 +733,6 @@
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField9;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField8;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldTypeOrder;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField31;
     }
 }
