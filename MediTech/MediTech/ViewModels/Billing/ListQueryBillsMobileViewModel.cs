@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MediTech.ViewModels
 {
-    public class BillSettlementMobileViewModel : MediTechViewModelBase
+    public class ListQueryBillsMobileViewModel : MediTechViewModelBase
     {
 
     }

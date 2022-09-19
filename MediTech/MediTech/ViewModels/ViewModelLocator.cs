@@ -247,14 +247,14 @@ namespace MediTech.ViewModels
             }
         }
 
-        public BillSettlementMobileViewModel BillSettlementMobileViewModel
+        public ListQueryBillsMobileViewModel BillSettlementMobileViewModel
         {
             get
             {
-                if (!SimpleIoc.Default.ContainsCreated<BillSettlementMobileViewModel>())
-                    SimpleIoc.Default.Register<BillSettlementMobileViewModel>();
+                if (!SimpleIoc.Default.ContainsCreated<ListQueryBillsMobileViewModel>())
+                    SimpleIoc.Default.Register<ListQueryBillsMobileViewModel>();
 
-                return ServiceLocator.Current.GetInstance<BillSettlementMobileViewModel>();
+                return ServiceLocator.Current.GetInstance<ListQueryBillsMobileViewModel>();
             }
         }
 

@@ -18,9 +18,9 @@ namespace MediTech.Views
     /// <summary>
     /// Interaction logic for BillSettlementMobile.xaml
     /// </summary>
-    public partial class BillSettlementMobile : UserControl
+    public partial class ListQueryBillsMobile : UserControl
     {
-        public BillSettlementMobile()
+        public ListQueryBillsMobile()
         {
             InitializeComponent();
         }
