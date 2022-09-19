@@ -247,6 +247,17 @@ namespace MediTech.ViewModels
             }
         }
 
+        public BillSettlementMobileViewModel BillSettlementMobileViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<BillSettlementMobileViewModel>())
+                    SimpleIoc.Default.Register<BillSettlementMobileViewModel>();
+
+                return ServiceLocator.Current.GetInstance<BillSettlementMobileViewModel>();
+            }
+        }
+
         #endregion
 
         #region BillingConfiguration
