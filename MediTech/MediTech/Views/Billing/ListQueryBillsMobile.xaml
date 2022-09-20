@@ -8,10 +8,123 @@
              xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
              xmlns:local="clr-namespace:MediTech.Views.Billing"
+             xmlns:cc="clr-namespace:MediTech.CustomControl"
              mc:Ignorable="d"
              DataContext="{Binding Path=ListQueryBillsMobileViewModel,Source={StaticResource Locator}}"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+    <UserControl.Resources>
+        <cc:PatientSearchPopUp x:Key="PatientColumn" d:IsDataSource="True" />
+    </UserControl.Resources>
+    <dxlc:LayoutControl Orientation="Vertical">
+        <dxlc:LayoutGroup>
+            <dxlc:LayoutItem Label="จากวันที่">
+                <dxe:DateEdit EditValue="{Binding DateFrom}" AllowNullInput="False"/>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="ถึงวันที่">
+                <dxe:DateEdit EditValue="{Binding DateTo}"/>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="ค้นหาผู้ป่วย">
+                <cc:AutoCompleteTextBox     Text="{Binding SearchPatientCriteria,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                    ColumnsSource="{Binding Path=Columns,Source={StaticResource PatientColumn}}"
+                                                    OnTextChangedEvent="False"
+                                                    Binding="{Binding PatientName}"
+                                                    MaxCompletions="30"
+                                                    ItemsSource="{Binding PatientsSearchSource}"
+                                                    SelectedItem="{Binding SelectedPateintSearch,Mode=OneWayToSource}">
+                    <cc:AutoCompleteTextBox.InputBindings>
+                        <KeyBinding Key="Enter" Command="{Binding PatientSearchCommand}" />
+                    </cc:AutoCompleteTextBox.InputBindings>
+                </cc:AutoCompleteTextBox>
+            </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>
+        <dxlc:LayoutGroup>
+            <dxlc:LayoutItem Label="Payor">
+                <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding InsuranceCompanyDetails}" 
+                                      SelectedItem="{Binding SelectInsuranceCompanyDetails}"
+                                      ValueMember="InsuranceCompanyUID"
+                                      DisplayMember="CompanyName"
+                                      NullValueButtonPlacement="EditBox"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="300"
+                                      PopupHeight="300" 
+                                      IsPopupAutoWidth="True"
+                                      AutoPopulateColumns="False">
+                    <dxg:LookUpEdit.PopupContentTemplate>
+                        <ControlTemplate>
+                            <dxg:GridControl x:Name="PART_GridControl"  >
+                                <dxg:GridControl.View>
+                                    <dxg:TableView
+                        x:Name="View"  ShowColumnHeaders="False"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" />
+                                </dxg:GridControl.View>
+                                <dxg:GridColumn x:Name="colPayorName" FieldName="CompanyName"/>
+                            </dxg:GridControl>
+                        </ControlTemplate>
+                    </dxg:LookUpEdit.PopupContentTemplate>
+                    <dxg:LookUpEdit.StyleSettings>
+                        <dxg:SearchLookUpEditStyleSettings/>
+                    </dxg:LookUpEdit.StyleSettings>
+                </dxg:LookUpEdit>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="Job">
+                <dxg:LookUpEdit x:Name="lkeCompanyName" ItemsSource="{Binding CheckupJobContactList}" 
+                                      SelectedItem="{Binding SelectCheckupJobContact}"
+                                      ValueMember="CheckupJobContactUID"
+                                      DisplayMember="CompanyName"
+                                      NullValueButtonPlacement="EditBox"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="300"
+                                      PopupHeight="300" 
+                                      IsPopupAutoWidth="True"
+                                      AutoPopulateColumns="False">
+                    <dxg:LookUpEdit.PopupContentTemplate>
+                        <ControlTemplate>
+                            <dxg:GridControl x:Name="PART_GridControl"  >
+                                <dxg:GridControl.View>
+                                    <dxg:TableView
+                        x:Name="View"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" />
+                                </dxg:GridControl.View>
+                                <dxg:GridColumn Header="JobNumber" FieldName="JobNumber"/>
+                                <dxg:GridColumn Header="บริษัท" FieldName="CompanyName"/>
+                                <dxg:GridColumn Header="การให้บริการ" FieldName="ServiceName"/>
+                                <dxg:GridColumn Header="วันที่ตรวจ" FieldName="StartDttm"/>
+                            </dxg:GridControl>
+                        </ControlTemplate>
+                    </dxg:LookUpEdit.PopupContentTemplate>
+                    <dxg:LookUpEdit.StyleSettings>
+                        <dxg:SearchLookUpEditStyleSettings/>
+                    </dxg:LookUpEdit.StyleSettings>
+                </dxg:LookUpEdit>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem>
+                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                    <dx:SimpleButton Width="80" Command="{Binding SearchCommand}"
+                                     Height="25" Content="ค้นหา"/>
+                    <dx:SimpleButton Width="80" Command="{Binding CleanCommand}"
+                                     Height="25" Content="Clear"/>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>
+        <dxg:GridControl>
+            <dxg:GridControl.View>
+                <dxg:TableView ShowGroupPanel="False"/>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+        <dxlc:LayoutGroup>
+
+        </dxlc:LayoutGroup>
+    </dxlc:LayoutControl>
 </UserControl>

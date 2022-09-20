@@ -688,6 +688,16 @@ namespace MediTech.ViewModels
                                         patientOrder.PatientOrderAlert = viewModel.OrderAlerts;
                                     }
 
+                                    if (patientOrder.DoctorFee != null && patientOrder.DoctorFee != 0)
+                                    {
+                                        if (patientOrder.CareproviderUID == null)
+                                        {
+                                            patientOrder.CareproviderUID = patientVisit.CareProviderUID;
+                                            patientOrder.CareproviderName = patientVisit.CareProviderName;
+                                        }
+                                    }
+                                    patientOrder.OwnerOrganisationUID = patientVisit.OwnerOrganisationUID ?? 0;
+
                                     saveOrders.Add(patientOrder);
                                 }
 
@@ -1031,10 +1041,14 @@ namespace MediTech.ViewModels
                             newOrder.ItemCode = billItem.Code;
                             newOrder.BillingService = billItem.BillingServiceMetaData;
                             newOrder.UnitPrice = item.Price;
-                            newOrder.DisplayPrice = item.Price;
+                            newOrder.OriginalUnitPrice = item.Price;
+                            newOrder.OrderCatagoryUID = billItem.OrderCategoryUID;
+                            newOrder.OrderSubCategoryUID = billItem.OrderSubCategoryUID;
 
                             newOrder.PRSTYPUID = OrderTypes.FirstOrDefault(p => p.ValueCode == "ROMED").Key;
                             newOrder.OrderType = OrderTypes.FirstOrDefault(p => p.ValueCode == "ROMED").Display;
+
+                            newOrder.DisplayPrice = item.Price;
 
                             newOrder.FRQNCUID = item.FRQNCUID;
                             newOrder.Quantity = item.Quantity;
@@ -1042,12 +1056,20 @@ namespace MediTech.ViewModels
                             newOrder.Comments = item.ProcessingNotes;
                             newOrder.IsPriceOverwrite = "N";
                             newOrder.StartDttm = DateTime.Now;
+                            newOrder.EndDttm = newOrder.StartDttm;
 
                             newOrder.NetAmount = ((item.Price) * item.Quantity);
                             newOrder.DoctorFeePer = item.DoctorFee;
                             newOrder.DoctorFee = (item.DoctorFee / 100) * newOrder.NetAmount;
-                            newOrder.CareproviderUID = item.CareproviderUID;
-                            newOrder.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+
+                            if (item.DoctorFee != null && item.DoctorFee != 0)
+                            {
+                                if (item.CareproviderUID != null)
+                                {
+                                    newOrder.CareproviderUID = item.CareproviderUID;
+                                    newOrder.CareproviderName = item.CareproviderName;
+                                }
+                            }
 
 
                             PatientOrders.Add(newOrder);
@@ -1134,6 +1156,7 @@ namespace MediTech.ViewModels
             {
                 case "Lab Test":
                 case "Radiology":
+                case "Mobile Checkup":
                 case "Order Item":
                     {
                         OrderWithOutStockItem ordRe = new OrderWithOutStockItem(selectPatientOrder);
