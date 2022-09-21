@@ -513,37 +513,41 @@ namespace MediTech.ViewModels
         {
             try
             {
-                if (SelectRequestLab.ORDSTUID != 2853 && SelectRequestLab.ORDSTUID != 2848 && SelectRequestLab.ORDSTUID != 2863)
+                if (SelectRequestLab.ORDSTUID == 2853 || SelectRequestLab.ORDSTUID == 2848 || SelectRequestLab.ORDSTUID == 2863)
                 {
+                    WarningDialog("สถานะของรายการที่เลือกไม่สามารถ Accept ได้");
+                    return;
 
-                    if (RequestDetailSpecimens != null)
+                }
+
+                if (RequestDetailSpecimens != null)
+                {
+                    var acceptDetailSpecimens = RequestDetailSpecimens.Where(p => p.Selected).ToList();
+                    int ACPSMP = 2865;
+                    if (acceptDetailSpecimens != null && acceptDetailSpecimens.Count > 0)
                     {
-                        var acceptDetailSpecimens = RequestDetailSpecimens.Where(p => p.Selected).ToList();
-                        int ACPSMP = 2865;
-                        if (acceptDetailSpecimens != null && acceptDetailSpecimens.Count > 0)
+                        foreach (var item in acceptDetailSpecimens)
                         {
-                            foreach (var item in acceptDetailSpecimens)
+                            if (item.EnableSelect)
                             {
-                                if (item.EnableSelect)
+                                if (item.Selected)
                                 {
-                                    if (item.Selected)
-                                    {
-                                        item.SPSTSUID = ACPSMP;
-                                    }
+                                    item.SPSTSUID = ACPSMP;
                                 }
                             }
-
-
-                            DataService.Lab.UpdateRequestDetailSpecimens(acceptDetailSpecimens, AppUtil.Current.UserID);
-                            //DataService.Icheckup.ichecktest();
-                            //WriteASTMOrderMessage(SelectRequestLab, acceptDetailSpecimens);
-                            if (acceptDetailSpecimens != null && acceptDetailSpecimens.Count > 0)
-                            {
-                                GetRequestDetailSpecimen(SelectRequestLab.RequestUID);
-                            }
-
                         }
+
+
+                        DataService.Lab.UpdateRequestDetailSpecimens(acceptDetailSpecimens, AppUtil.Current.UserID);
+                        //DataService.Icheckup.ichecktest();
+                        //WriteASTMOrderMessage(SelectRequestLab, acceptDetailSpecimens);
+                        if (acceptDetailSpecimens != null && acceptDetailSpecimens.Count > 0)
+                        {
+                            GetRequestDetailSpecimen(SelectRequestLab.RequestUID);
+                        }
+
                     }
+
 
                 }
             }
@@ -641,25 +645,28 @@ namespace MediTech.ViewModels
         {
             try
             {
-                if (SelectRequestLab.ORDSTUID != 2848 && SelectRequestLab.ORDSTUID != 2863)
+                if (SelectRequestLab.ORDSTUID == 2848 || SelectRequestLab.ORDSTUID == 2863)
                 {
-                    if (RequestDetailSpecimens != null && RequestDetailSpecimens.Count() > 0)
+                    WarningDialog("สถานะของรายการที่เลือกไม่สามารถ Reject ได้");
+                    return;
+                }
+                if (RequestDetailSpecimens != null && RequestDetailSpecimens.Count() > 0)
+                {
+                    int REJSMP = 2866;
+                    foreach (var item in RequestDetailSpecimens)
                     {
-                        int REJSMP = 2866;
-                        foreach (var item in RequestDetailSpecimens)
+                        if (item.EnableSelect)
                         {
-                            if (item.EnableSelect)
+                            if (item.Selected)
                             {
-                                if (item.Selected)
-                                {
-                                    item.SPSTSUID = REJSMP;
-                                }
+                                item.SPSTSUID = REJSMP;
                             }
                         }
-                        DataService.Lab.UpdateRequestDetailSpecimens(RequestDetailSpecimens.ToList(), AppUtil.Current.UserID);
-                        GetRequestDetailSpecimen(SelectRequestLab.RequestUID);
                     }
+                    DataService.Lab.UpdateRequestDetailSpecimens(RequestDetailSpecimens.ToList(), AppUtil.Current.UserID);
+                    GetRequestDetailSpecimen(SelectRequestLab.RequestUID);
                 }
+
             }
             catch (Exception ex)
             {

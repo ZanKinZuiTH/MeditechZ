@@ -525,14 +525,14 @@ namespace MediTech.ViewModels
                 if (requestDetailSpecimens != null && requestDetailSpecimens.Count() > 0 && SelectRequestLab != null
                     && RequestDetailSpecimens.Count(p => p.Selected) > 0)
                 {
-                    var specimenSticker = requestDetailSpecimens.GroupBy(p => new { p.SpecimenName, p.CollectionDttm,p.Suffix })
+                    var specimenSticker = requestDetailSpecimens.GroupBy(p => new { p.SpecimenName, p.CollectionDttm, p.Suffix })
                         .Select(g => new
                         {
                             SpecimenName = g.FirstOrDefault().SpecimenName,
                             CollectionDttm = g.FirstOrDefault().CollectionDttm,
                             Suffix = g.FirstOrDefault().Suffix
                         }).ToList();
-                    specimenSticker = specimenSticker.Where( p => RequestDetailSpecimens.FirstOrDefault(s => s.Selected && s.SpecimenName == p.SpecimenName) != null).ToList();
+                    specimenSticker = specimenSticker.Where(p => RequestDetailSpecimens.FirstOrDefault(s => s.Selected && s.SpecimenName == p.SpecimenName) != null).ToList();
                     if (specimenSticker != null)
                     {
                         string patientName = SelectRequestLab.PatientName;
@@ -588,31 +588,34 @@ namespace MediTech.ViewModels
         {
             try
             {
-                if (SelectRequestLab.ORDSTUID != 2853 && SelectRequestLab.ORDSTUID != 2848 && SelectRequestLab.ORDSTUID != 2863)
+                if (SelectRequestLab.ORDSTUID == 2853 || SelectRequestLab.ORDSTUID == 2848 || SelectRequestLab.ORDSTUID == 2863)
                 {
+                    WarningDialog("สถานะของรายการที่เลือกไม่สามารถ Collect ได้");
+                    return;
 
-                    if (RequestDetailSpecimens != null && RequestDetailSpecimens.Count() > 0)
+                }
+                if (RequestDetailSpecimens != null && RequestDetailSpecimens.Count() > 0)
+                {
+                    int SAMPLCOL = 2862;
+                    int RAISED = 2847;
+                    foreach (var item in RequestDetailSpecimens)
                     {
-                        int SAMPLCOL = 2862;
-                        int RAISED = 2847;
-                        foreach (var item in RequestDetailSpecimens)
+                        if (item.EnableSelect)
                         {
-                            if (item.EnableSelect)
+                            if (item.Selected)
                             {
-                                if (item.Selected)
-                                {
-                                    item.SPSTSUID = SAMPLCOL;
-                                }
-                                else
-                                {
-                                    item.SPSTSUID = RAISED;
-                                }
+                                item.SPSTSUID = SAMPLCOL;
+                            }
+                            else
+                            {
+                                item.SPSTSUID = RAISED;
                             }
                         }
-                        DataService.Lab.UpdateRequestDetailSpecimens(RequestDetailSpecimens.ToList(), AppUtil.Current.UserID);
-                        GetRequestDetailSpecimen(SelectRequestLab.RequestUID);
                     }
+                    DataService.Lab.UpdateRequestDetailSpecimens(RequestDetailSpecimens.ToList(), AppUtil.Current.UserID);
+                    GetRequestDetailSpecimen(SelectRequestLab.RequestUID);
                 }
+
             }
             catch (Exception ex)
             {
@@ -782,8 +785,8 @@ namespace MediTech.ViewModels
                 //model.EMPLOYEE_ID = userUID.ToString();
                 //model.POSITION = null;
 
-            
-              
+
+
             }
             catch (Exception)
             {
