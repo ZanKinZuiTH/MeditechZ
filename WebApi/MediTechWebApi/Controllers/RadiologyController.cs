@@ -1742,6 +1742,7 @@ namespace MediTechWebApi.Controllers
             ReferenceValue specimenAccept = listOrderStatus.Where(p => p.ValueCode == "ACPSMP").FirstOrDefault();
             ReferenceValue specimenRejected = listOrderStatus.Where(p => p.ValueCode == "REJSMP").FirstOrDefault();
             ReferenceValue cancel = listOrderStatus.Where(p => p.ValueCode == "CANCLD").FirstOrDefault();
+            ReferenceValue raised = listOrderStatus.Where(p => p.ValueCode == "RAISED").FirstOrDefault();
             ReferenceValue partiallyReview = listOrderStatus.Where(p => p.ValueCode == "PREVI").FirstOrDefault();
             ReferenceValue partiallycomplete = listOrderStatus.Where(p => p.ValueCode == "PARCMP").FirstOrDefault();
             ReferenceValue partiallycollect = listOrderStatus.Where(p => p.ValueCode == "PARCOLLEC").FirstOrDefault();
@@ -1751,6 +1752,7 @@ namespace MediTechWebApi.Controllers
             int collectCount = listRequestDetail.Where(p => p.ORDSTUID == specimenCollect.UID).Count();
             int acceptCount = listRequestDetail.Where(p => p.ORDSTUID == specimenAccept.UID).Count();
             int RejectCount = listRequestDetail.Where(p => p.ORDSTUID == specimenRejected.UID).Count();
+            int raisedCount = listRequestDetail.Where(p => p.ORDSTUID == raised.UID).Count();
             int cancelCount = listRequestDetail.Where(p => p.ORDSTUID == cancel.UID).Count();
             int RequestDetailCount = listRequestDetail.Count();
             if (listRequestDetail != null)
@@ -1778,6 +1780,10 @@ namespace MediTechWebApi.Controllers
                 else if(RejectCount == RequestDetailCount)
                 {
                     ORDSTUID = specimenRejected.UID;
+                }
+                else if (raisedCount == RequestDetailCount)
+                {
+                    ORDSTUID = raised.UID;
                 }
                 else if (reviewCount >= 1)
                 {

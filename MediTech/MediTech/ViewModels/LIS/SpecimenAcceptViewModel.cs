@@ -17,6 +17,10 @@ namespace MediTech.ViewModels
     {
         #region Properties
 
+        int reviewed = 2863;
+        int cancelled = 2848;
+        int accepted = 2853;
+
         #region PatientSearch
 
         private string _SearchPatientCriteria;
@@ -509,32 +513,36 @@ namespace MediTech.ViewModels
         {
             try
             {
-                if (RequestDetailSpecimens != null)
+                if (SelectRequestLab.ORDSTUID != 2853 && SelectRequestLab.ORDSTUID != 2848 && SelectRequestLab.ORDSTUID != 2863)
                 {
-                    var acceptDetailSpecimens = RequestDetailSpecimens.Where(p => p.Selected).ToList();
-                    int ACPSMP = 2865;
-                    if (acceptDetailSpecimens != null && acceptDetailSpecimens.Count > 0)
+
+                    if (RequestDetailSpecimens != null)
                     {
-                        foreach (var item in acceptDetailSpecimens)
-                        {
-                            if (item.EnableSelect)
-                            {
-                                if (item.Selected)
-                                {
-                                    item.SPSTSUID = ACPSMP;
-                                }
-                            }
-                        }
-
-
-                        DataService.Lab.UpdateRequestDetailSpecimens(acceptDetailSpecimens, AppUtil.Current.UserID);
-                        DataService.Icheckup.ichecktest();
-                        WriteASTMOrderMessage(SelectRequestLab, acceptDetailSpecimens);
+                        var acceptDetailSpecimens = RequestDetailSpecimens.Where(p => p.Selected).ToList();
+                        int ACPSMP = 2865;
                         if (acceptDetailSpecimens != null && acceptDetailSpecimens.Count > 0)
                         {
-                            GetRequestDetailSpecimen(SelectRequestLab.RequestUID);
-                        }
+                            foreach (var item in acceptDetailSpecimens)
+                            {
+                                if (item.EnableSelect)
+                                {
+                                    if (item.Selected)
+                                    {
+                                        item.SPSTSUID = ACPSMP;
+                                    }
+                                }
+                            }
 
+
+                            DataService.Lab.UpdateRequestDetailSpecimens(acceptDetailSpecimens, AppUtil.Current.UserID);
+                            //DataService.Icheckup.ichecktest();
+                            //WriteASTMOrderMessage(SelectRequestLab, acceptDetailSpecimens);
+                            if (acceptDetailSpecimens != null && acceptDetailSpecimens.Count > 0)
+                            {
+                                GetRequestDetailSpecimen(SelectRequestLab.RequestUID);
+                            }
+
+                        }
                     }
 
                 }
@@ -633,21 +641,24 @@ namespace MediTech.ViewModels
         {
             try
             {
-                if (RequestDetailSpecimens != null && RequestDetailSpecimens.Count() > 0)
+                if (SelectRequestLab.ORDSTUID != 2848 && SelectRequestLab.ORDSTUID != 2863)
                 {
-                    int REJSMP = 2866;
-                    foreach (var item in RequestDetailSpecimens)
+                    if (RequestDetailSpecimens != null && RequestDetailSpecimens.Count() > 0)
                     {
-                        if (item.EnableSelect)
+                        int REJSMP = 2866;
+                        foreach (var item in RequestDetailSpecimens)
                         {
-                            if (item.Selected)
+                            if (item.EnableSelect)
                             {
-                                item.SPSTSUID = REJSMP;
+                                if (item.Selected)
+                                {
+                                    item.SPSTSUID = REJSMP;
+                                }
                             }
                         }
+                        DataService.Lab.UpdateRequestDetailSpecimens(RequestDetailSpecimens.ToList(), AppUtil.Current.UserID);
+                        GetRequestDetailSpecimen(SelectRequestLab.RequestUID);
                     }
-                    DataService.Lab.UpdateRequestDetailSpecimens(RequestDetailSpecimens.ToList(), AppUtil.Current.UserID);
-                    GetRequestDetailSpecimen(SelectRequestLab.RequestUID);
                 }
             }
             catch (Exception ex)
@@ -812,7 +823,7 @@ namespace MediTech.ViewModels
         {
             //var test = DataService.Icheckup.ichecktest();
             var test = DataService.Icheckup.ichecktest();
-            WarningDialog("ไม่มี " +  " ในคลัง");
+            WarningDialog("ไม่มี " + " ในคลัง");
         }
 
         #endregion

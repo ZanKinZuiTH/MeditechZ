@@ -19,6 +19,10 @@ namespace MediTech.ViewModels
     {
         #region Properties
 
+        int reviewed = 2863;
+        int cancelled = 2848;
+        int accepted = 2853;
+
         #region PatientSearch
 
         private string _SearchPatientCriteria;
@@ -322,19 +326,19 @@ namespace MediTech.ViewModels
         }
 
 
-        private RelayCommand _SendDataBlabCommand;
+        //private RelayCommand _SendDataBlabCommand;
 
-        /// <summary>
-        /// Gets the PrintBarcodeCommand.
-        /// </summary>
-        public RelayCommand SendDataBlabCommand
-        {
-            get
-            {
-                return _SendDataBlabCommand
-                    ?? (_SendDataBlabCommand = new RelayCommand(sendBlab));
-            }
-        }
+        ///// <summary>
+        ///// Gets the PrintBarcodeCommand.
+        ///// </summary>
+        //public RelayCommand SendDataBlabCommand
+        //{
+        //    get
+        //    {
+        //        return _SendDataBlabCommand
+        //            ?? (_SendDataBlabCommand = new RelayCommand(sendBlab));
+        //    }
+        //}
 
 
         private RelayCommand _CollectAndPrintCommand;
@@ -486,16 +490,16 @@ namespace MediTech.ViewModels
             GenareateBarcode(RequestDetailSpecimens);
         }
 
-        void sendBlab()
-        {
-            if (SelectRequestLab != null)
-            {
-               // WarningDialog("sending data to blab");
-                List<RequestDetailSpecimenModel> modeltoicheck = RequestDetailSpecimens.ToList();
-                SendDataToIcheck(modeltoicheck, SelectRequestLab.PatientVisitUID, AppUtil.Current.UserID);
-            }
+        //void sendBlab()
+        //{
+        //    if (SelectRequestLab != null)
+        //    {
+        //       // WarningDialog("sending data to blab");
+        //        List<RequestDetailSpecimenModel> modeltoicheck = RequestDetailSpecimens.ToList();
+        //        SendDataToIcheck(modeltoicheck, SelectRequestLab.PatientVisitUID, AppUtil.Current.UserID);
+        //    }
 
-        }
+        //}
 
 
 
@@ -584,26 +588,30 @@ namespace MediTech.ViewModels
         {
             try
             {
-                if (RequestDetailSpecimens != null && RequestDetailSpecimens.Count() > 0)
+                if (SelectRequestLab.ORDSTUID != 2853 && SelectRequestLab.ORDSTUID != 2848 && SelectRequestLab.ORDSTUID != 2863)
                 {
-                    int SAMPLCOL = 2862;
-                    int RAISED = 2847;
-                    foreach (var item in RequestDetailSpecimens)
+
+                    if (RequestDetailSpecimens != null && RequestDetailSpecimens.Count() > 0)
                     {
-                        if (item.EnableSelect)
+                        int SAMPLCOL = 2862;
+                        int RAISED = 2847;
+                        foreach (var item in RequestDetailSpecimens)
                         {
-                            if (item.Selected)
+                            if (item.EnableSelect)
                             {
-                                item.SPSTSUID = SAMPLCOL;
-                            }
-                            else
-                            {
-                                item.SPSTSUID = RAISED;
+                                if (item.Selected)
+                                {
+                                    item.SPSTSUID = SAMPLCOL;
+                                }
+                                else
+                                {
+                                    item.SPSTSUID = RAISED;
+                                }
                             }
                         }
+                        DataService.Lab.UpdateRequestDetailSpecimens(RequestDetailSpecimens.ToList(), AppUtil.Current.UserID);
+                        GetRequestDetailSpecimen(SelectRequestLab.RequestUID);
                     }
-                    DataService.Lab.UpdateRequestDetailSpecimens(RequestDetailSpecimens.ToList(), AppUtil.Current.UserID);
-                    GetRequestDetailSpecimen(SelectRequestLab.RequestUID);
                 }
             }
             catch (Exception ex)
@@ -713,36 +721,36 @@ namespace MediTech.ViewModels
             }
         }
 
-        void SendDataToIcheck(List<RequestDetailSpecimenModel> models, long patientvisitUID, long userUID)
-        {
+        //void SendDataToIcheck(List<RequestDetailSpecimenModel> models, long patientvisitUID, long userUID)
+        //{
 
-            IcheckupModel sendmodel = new IcheckupModel();
+        //    IcheckupModel sendmodel = new IcheckupModel();
 
-            PatientVisitModel visitdata = DataService.PatientIdentity.GetPatientVisitByUID(patientvisitUID);
-            sendmodel.PatientData = visitdata;
-            sendmodel.PatientData.PatientName = SelectRequestLab.PatientName;
-            sendmodel.PatientData.PatientID = visitdata.PatientID;
-            sendmodel.PatientData.BirthDttm = SelectRequestLab.BirthDate;
-            sendmodel.PatientData.SEXXXUID = SelectRequestLab.SEXXXUID;
-            sendmodel.PatientData.OwnerOrganisation = SelectRequestLab.OrganisationName;
-            sendmodel.LabData = models;
-            // DataService.Icheckup.outbrouondcollrection(sendmodel, AppUtil.Current.UserID);
-           Gendatatoblab(sendmodel,AppUtil.Current.UserID);
+        //    PatientVisitModel visitdata = DataService.PatientIdentity.GetPatientVisitByUID(patientvisitUID);
+        //    sendmodel.PatientData = visitdata;
+        //    sendmodel.PatientData.PatientName = SelectRequestLab.PatientName;
+        //    sendmodel.PatientData.PatientID = visitdata.PatientID;
+        //    sendmodel.PatientData.BirthDttm = SelectRequestLab.BirthDate;
+        //    sendmodel.PatientData.SEXXXUID = SelectRequestLab.SEXXXUID;
+        //    sendmodel.PatientData.OwnerOrganisation = SelectRequestLab.OrganisationName;
+        //    sendmodel.LabData = models;
+        //    // DataService.Icheckup.outbrouondcollrection(sendmodel, AppUtil.Current.UserID);
+        //   Gendatatoblab(sendmodel,AppUtil.Current.UserID);
 
-        }
+        //}
 
-        void Gendatatoblab(IcheckupModel models, long userUID)
-        {
+        //void Gendatatoblab(IcheckupModel models, long userUID)
+        //{
 
-            foreach (var item in models.LabData)
-            {
-                //InsertOrderHC(item, models.PatientData, userUID);
-                InsertVisitHC(item, models.PatientData, userUID);
+        //    foreach (var item in models.LabData)
+        //    {
+        //        //InsertOrderHC(item, models.PatientData, userUID);
+        //        InsertVisitHC(item, models.PatientData, userUID);
 
-            }
+        //    }
 
 
-        }
+        //}
 
         private void InsertOrderHC(RequestDetailSpecimenModel labData, PatientVisitModel patientData, long userUID)
         {
