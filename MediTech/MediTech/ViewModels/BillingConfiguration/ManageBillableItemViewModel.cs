@@ -161,9 +161,8 @@ namespace MediTech.ViewModels
                 Set(ref _SelectServiceType, value);
                 if (_SelectServiceType != null)
                 {
-                    IsVisibilityAvgCost = Visibility.Collapsed;
+
                     IsVisibilityRefCode = Visibility.Collapsed;
-                    IsVisibilityCost = Visibility.Visible;
                     VisibleCost = true;
                     string serviceType = SelectServiceType.Display;
                     IsVisibilityItem = Visibility.Visible;
@@ -187,6 +186,16 @@ namespace MediTech.ViewModels
                         IsVisibilityRefCode = Visibility.Visible;
                     }
 
+                    if (serviceType == "Drug" || serviceType == "Medical Supplies" || serviceType == "Supply")
+                    {
+                        IsVisibilityAvgCost = Visibility.Visible;
+                        IsVisibilityCost = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        IsVisibilityAvgCost = Visibility.Collapsed;
+                        IsVisibilityCost = Visibility.Visible;
+                    }
                 }
             }
         }

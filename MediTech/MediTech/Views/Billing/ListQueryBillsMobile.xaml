@@ -118,12 +118,40 @@
                 </dxlc:LayoutGroup>
             </dxlc:LayoutItem>
         </dxlc:LayoutGroup>
-        <dxg:GridControl>
+        <dxlc:LayoutItem>
+            <ProgressBar Height="15"   Name="progressBar1"/>
+        </dxlc:LayoutItem>
+        <dxg:GridControl SelectionMode="Row"
+                        SelectedItems="{Binding SelectedPatientVisits}">
+            <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID" ReadOnly="True"/>
+            <dxg:GridColumn Header="ชื่อ-นามสกุล" FieldName="PatientName" ReadOnly="True"/>
+            <dxg:GridColumn Header="VisitID" FieldName="VisitID"  ReadOnly="True"/>
+            <dxg:GridColumn Header="Status" FieldName="VisitStatus"  ReadOnly="True"/>
+            <dxg:GridColumn Header="วันที่ลงทะเบียน" FieldName="StartDttm"  ReadOnly="True"/>
+            <dxg:GridColumn Header="แผนก" FieldName="LocationName"  ReadOnly="True"/>
+            <dxg:GridColumn Header="Allocate" FieldName="Allocate"  ReadOnly="True"/>
+            <dxg:GridColumn Header="DischargeDttm" FieldName="DischargeDttm"  ReadOnly="True">
+                <dxg:GridColumn.EditSettings>
+                    <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy HH:mm"  MaskType="DateTime"/>
+                </dxg:GridColumn.EditSettings>
+            </dxg:GridColumn>
+            <dxg:GridColumn Header="Discharge User" FieldName="DischargedUser"  ReadOnly="True"/>
             <dxg:GridControl.View>
-                <dxg:TableView ShowGroupPanel="False"/>
+                <dxg:TableView ShowGroupPanel="False" 
+                               ShowCheckBoxSelectorColumn="True" 
+                               ShowCheckBoxSelectorInGroupRow="True"/>
             </dxg:GridControl.View>
         </dxg:GridControl>
-        <dxlc:LayoutGroup>
+        <dxlc:LayoutGroup Orientation="Horizontal">
+            <dxlc:LayoutItem HorizontalAlignment="Left" Label="ปริ้นเตอร์">
+                <dxe:ComboBoxEdit ItemsSource="{Binding PrinterLists}"
+                                      SelectedItem="{Binding SelectPrinter}"
+                        Width="180" Height="25"/>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutGroup  HorizontalAlignment="Right">
+                <dx:SimpleButton Content="" Width="80" Height="25"/>
+                <dx:SimpleButton Content="" Width="80" Height="25"/>
+            </dxlc:LayoutGroup>
 
         </dxlc:LayoutGroup>
     </dxlc:LayoutControl>
