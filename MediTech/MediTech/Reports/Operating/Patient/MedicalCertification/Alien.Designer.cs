@@ -694,24 +694,24 @@ namespace MediTech.Reports.Operating.Patient
             // 
             this.xrLabel103.CanGrow = false;
             this.xrLabel103.Font = new System.Drawing.Font("Angsana New", 14F, System.Drawing.FontStyle.Bold);
-            this.xrLabel103.LocationFloat = new DevExpress.Utils.PointFloat(71.41664F, 317.9167F);
+            this.xrLabel103.LocationFloat = new DevExpress.Utils.PointFloat(76.41664F, 317.9167F);
             this.xrLabel103.Name = "xrLabel103";
             this.xrLabel103.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel103.SizeF = new System.Drawing.SizeF(632.1667F, 20.08334F);
             this.xrLabel103.StylePriority.UseFont = false;
-            this.xrLabel103.Text = "155/196 ม. 2 ต.ทับมา อำเภอเมืองระยอง จังหวัดระยอง 21000 โทรศัพท์ 033-060399 ";
+            this.xrLabel103.Text = "99/99 หมู่ 2 ต.หนองบัว อ.บ้านค่าย จ.ระยอง 21120 โทรศัพท์ 038-032432";
             this.xrLabel103.WordWrap = false;
             // 
             // xrLabel102
             // 
             this.xrLabel102.CanGrow = false;
             this.xrLabel102.Font = new System.Drawing.Font("Angsana New", 14F, System.Drawing.FontStyle.Bold);
-            this.xrLabel102.LocationFloat = new DevExpress.Utils.PointFloat(529F, 293.2501F);
+            this.xrLabel102.LocationFloat = new DevExpress.Utils.PointFloat(512F, 293.2501F);
             this.xrLabel102.Name = "xrLabel102";
             this.xrLabel102.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel102.SizeF = new System.Drawing.SizeF(268.2499F, 20.50003F);
             this.xrLabel102.StylePriority.UseFont = false;
-            this.xrLabel102.Text = "บีอาร์เอ็กซ์จีสหคลินิค (BRXG Polyclinic) ";
+            this.xrLabel102.Text = "โรงพยาบาลบูรพารักษ์ ( Burapharux Hospital )";
             this.xrLabel102.WordWrap = false;
             // 
             // xrLabel67
@@ -1312,8 +1312,8 @@ namespace MediTech.Reports.Operating.Patient
             this.xrLabel18.StylePriority.UseFont = false;
             this.xrLabel18.StylePriority.UseTextAlignment = false;
             this.xrLabel18.Text = "ใบอนุญาตประกอบวิชาชีพเวชกรรมเลขที่..............................................." +
-    "......สถานพยาบาลชื่อ............................................................" +
-    ".................";
+    "....สถานพยาบาลชื่อ.............................................................." +
+    "...............";
             this.xrLabel18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             this.xrLabel18.WordWrap = false;
             // 
