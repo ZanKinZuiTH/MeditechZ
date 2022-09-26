@@ -168,6 +168,7 @@ namespace MediTech.Reports.Operating.Patient
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel102,
             this.xrLabel75,
             this.xrLabel74,
             this.xrLabel73,
@@ -208,7 +209,6 @@ namespace MediTech.Reports.Operating.Patient
             this.xrLabel15,
             this.xrLabel8,
             this.xrLabel103,
-            this.xrLabel102,
             this.xrLabel67,
             this.xrLabel61,
             this.xrLabel62,
@@ -257,7 +257,6 @@ namespace MediTech.Reports.Operating.Patient
             this.xrLabel21,
             this.xrLabel20,
             this.xrLabel19,
-            this.xrLabel18,
             this.xrLabel17,
             this.xrLabel16,
             this.xrLabel14,
@@ -270,7 +269,8 @@ namespace MediTech.Reports.Operating.Patient
             this.xrLabel7,
             this.xrLabel5,
             this.xrLabel4,
-            this.imgTuberculosis1});
+            this.imgTuberculosis1,
+            this.xrLabel18});
             this.Detail.HeightF = 932.1667F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -338,7 +338,7 @@ namespace MediTech.Reports.Operating.Patient
             this.xrLabel71.Multiline = true;
             this.xrLabel71.Name = "xrLabel71";
             this.xrLabel71.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel71.SizeF = new System.Drawing.SizeF(153.1667F, 30.08337F);
+            this.xrLabel71.SizeF = new System.Drawing.SizeF(119.8334F, 30.08337F);
             this.xrLabel71.StylePriority.UseFont = false;
             this.xrLabel71.Text = "xrLabel71";
             // 
@@ -706,10 +706,10 @@ namespace MediTech.Reports.Operating.Patient
             // 
             this.xrLabel102.CanGrow = false;
             this.xrLabel102.Font = new System.Drawing.Font("Angsana New", 14F, System.Drawing.FontStyle.Bold);
-            this.xrLabel102.LocationFloat = new DevExpress.Utils.PointFloat(512F, 293.2501F);
+            this.xrLabel102.LocationFloat = new DevExpress.Utils.PointFloat(482.917F, 293.2501F);
             this.xrLabel102.Name = "xrLabel102";
             this.xrLabel102.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel102.SizeF = new System.Drawing.SizeF(268.2499F, 20.50003F);
+            this.xrLabel102.SizeF = new System.Drawing.SizeF(268.2499F, 26.75003F);
             this.xrLabel102.StylePriority.UseFont = false;
             this.xrLabel102.Text = "โรงพยาบาลบูรพารักษ์ ( Burapharux Hospital )";
             this.xrLabel102.WordWrap = false;
@@ -1311,9 +1311,9 @@ namespace MediTech.Reports.Operating.Patient
             this.xrLabel18.SizeF = new System.Drawing.SizeF(748.4167F, 23F);
             this.xrLabel18.StylePriority.UseFont = false;
             this.xrLabel18.StylePriority.UseTextAlignment = false;
-            this.xrLabel18.Text = "ใบอนุญาตประกอบวิชาชีพเวชกรรมเลขที่..............................................." +
-    "....สถานพยาบาลชื่อ.............................................................." +
-    "...............";
+            this.xrLabel18.Text = "ใบอนุญาตประกอบวิชาชีพเวชกรรมเลขที่..........................................สถานพ" +
+    "ยาบาลชื่อ......................................................................." +
+    "..............";
             this.xrLabel18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             this.xrLabel18.WordWrap = false;
             // 
