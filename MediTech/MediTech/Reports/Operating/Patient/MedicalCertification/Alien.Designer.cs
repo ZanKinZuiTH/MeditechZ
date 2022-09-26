@@ -1553,13 +1553,13 @@ namespace MediTech.Reports.Operating.Patient
             // 
             this.xrLabel2.CanGrow = false;
             this.xrLabel2.Font = new System.Drawing.Font("Angsana New", 14F, System.Drawing.FontStyle.Bold);
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(305.8333F, 58.59818F);
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(291.9444F, 58.59818F);
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel2.SizeF = new System.Drawing.SizeF(212.5F, 23F);
+            this.xrLabel2.SizeF = new System.Drawing.SizeF(226.3889F, 23F);
             this.xrLabel2.StylePriority.UseFont = false;
             this.xrLabel2.StylePriority.UseTextAlignment = false;
-            this.xrLabel2.Text = "ตรวจสุขภาพต่างด้าวแรงงานต่างด้าว";
+            this.xrLabel2.Text = "ตรวจสุขภาพคนต่างด้าว/แรงงานต่างด้าว";
             this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             this.xrLabel2.WordWrap = false;
             // 
