@@ -665,7 +665,7 @@ namespace MediTech.Reports.Operating.Patient
             // xrLabel3
             // 
             this.xrLabel3.Font = new System.Drawing.Font("EucrosiaUPC", 14F, System.Drawing.FontStyle.Underline);
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(86.55691F, 179.272F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(86.55691F, 68.83336F);
             this.xrLabel3.Multiline = true;
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
