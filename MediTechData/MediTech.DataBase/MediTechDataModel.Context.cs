@@ -111,6 +111,7 @@ namespace MediTech.DataBase
         public virtual DbSet<PatientAddressMerge> PatientAddressMerge { get; set; }
         public virtual DbSet<PatientADTEvent> PatientADTEvent { get; set; }
         public virtual DbSet<PatientAEAdmission> PatientAEAdmission { get; set; }
+        public virtual DbSet<PatientAlert> PatientAlert { get; set; }
         public virtual DbSet<PatientAllergy> PatientAllergy { get; set; }
         public virtual DbSet<PatientAudiogram> PatientAudiogram { get; set; }
         public virtual DbSet<PatientBill> PatientBill { get; set; }
@@ -388,6 +389,56 @@ namespace MediTech.DataBase
                 new ObjectParameter("P_Text", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pSearchItemMasterCriteria", p_TextParameter);
+        }
+    
+        public virtual ObjectResult<pSearchListDispensedItemForReturn_Result> pSearchListDispensedItemForReturn(Nullable<int> p_PatientVisitUid, Nullable<int> p_StoreUID, string p_PrescriptionNumber, string p_ItemName)
+        {
+            var p_PatientVisitUidParameter = p_PatientVisitUid.HasValue ?
+                new ObjectParameter("P_PatientVisitUid", p_PatientVisitUid) :
+                new ObjectParameter("P_PatientVisitUid", typeof(int));
+    
+            var p_StoreUIDParameter = p_StoreUID.HasValue ?
+                new ObjectParameter("P_StoreUID", p_StoreUID) :
+                new ObjectParameter("P_StoreUID", typeof(int));
+    
+            var p_PrescriptionNumberParameter = p_PrescriptionNumber != null ?
+                new ObjectParameter("P_PrescriptionNumber", p_PrescriptionNumber) :
+                new ObjectParameter("P_PrescriptionNumber", typeof(string));
+    
+            var p_ItemNameParameter = p_ItemName != null ?
+                new ObjectParameter("P_ItemName", p_ItemName) :
+                new ObjectParameter("P_ItemName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSearchListDispensedItemForReturn_Result>("pSearchListDispensedItemForReturn", p_PatientVisitUidParameter, p_StoreUIDParameter, p_PrescriptionNumberParameter, p_ItemNameParameter);
+        }
+    
+        public virtual ObjectResult<pSearchUnbilledPatientsForCheckup_Result> pSearchUnbilledPatientsForCheckup(Nullable<long> p_PatientUID, Nullable<System.DateTime> p_BillFromDTTM, Nullable<System.DateTime> p_BillToDTTM, Nullable<int> p_InsuranceCompanyUID, Nullable<int> p_CheckupjobUID, Nullable<int> p_OwnerOrganisationUID)
+        {
+            var p_PatientUIDParameter = p_PatientUID.HasValue ?
+                new ObjectParameter("P_PatientUID", p_PatientUID) :
+                new ObjectParameter("P_PatientUID", typeof(long));
+    
+            var p_BillFromDTTMParameter = p_BillFromDTTM.HasValue ?
+                new ObjectParameter("P_BillFromDTTM", p_BillFromDTTM) :
+                new ObjectParameter("P_BillFromDTTM", typeof(System.DateTime));
+    
+            var p_BillToDTTMParameter = p_BillToDTTM.HasValue ?
+                new ObjectParameter("P_BillToDTTM", p_BillToDTTM) :
+                new ObjectParameter("P_BillToDTTM", typeof(System.DateTime));
+    
+            var p_InsuranceCompanyUIDParameter = p_InsuranceCompanyUID.HasValue ?
+                new ObjectParameter("P_InsuranceCompanyUID", p_InsuranceCompanyUID) :
+                new ObjectParameter("P_InsuranceCompanyUID", typeof(int));
+    
+            var p_CheckupjobUIDParameter = p_CheckupjobUID.HasValue ?
+                new ObjectParameter("P_CheckupjobUID", p_CheckupjobUID) :
+                new ObjectParameter("P_CheckupjobUID", typeof(int));
+    
+            var p_OwnerOrganisationUIDParameter = p_OwnerOrganisationUID.HasValue ?
+                new ObjectParameter("P_OwnerOrganisationUID", p_OwnerOrganisationUID) :
+                new ObjectParameter("P_OwnerOrganisationUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSearchUnbilledPatientsForCheckup_Result>("pSearchUnbilledPatientsForCheckup", p_PatientUIDParameter, p_BillFromDTTMParameter, p_BillToDTTMParameter, p_InsuranceCompanyUIDParameter, p_CheckupjobUIDParameter, p_OwnerOrganisationUIDParameter);
         }
     }
 }

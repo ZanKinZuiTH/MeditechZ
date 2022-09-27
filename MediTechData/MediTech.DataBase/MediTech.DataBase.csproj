@@ -185,6 +185,9 @@
     <Compile Include="fGetPackagePriceROOMCharge_Result.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="fGetRoomAdjust_Result.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="FrequencyDefinition.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
@@ -284,12 +287,6 @@
     <Compile Include="MediTechInterfaceDetail.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="meditechtestpatchInterface.cs">
-      <DependentUpon>MediTechDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="meditechtestpatchInterfaceDetail.cs">
-      <DependentUpon>MediTechDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="NotificationTaskResult.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
@@ -330,6 +327,9 @@
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientAEAdmission.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientAlert.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientAllergy.cs">
@@ -464,7 +464,13 @@
     <Compile Include="PayorDetail_2.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="pCheckOrderDuplicate_Result.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Permission.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pGetCheckupRiskAudioTimus_Result.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PhysicalExam.cs">
@@ -493,6 +499,15 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Province.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pRPTEcoutSumGroupReceipt_Result.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pSearchListDispensedItemForReturn_Result.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pSearchUnbilledPatientsForCheckup_Result.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PurchaseOrder.cs">
@@ -704,9 +719,6 @@
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="StoreUOMConversion.cs">
-      <DependentUpon>MediTechDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagrams.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="vAllBillableItemRates.cs">
