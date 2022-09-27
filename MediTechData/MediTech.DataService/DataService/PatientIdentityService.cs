@@ -933,6 +933,33 @@ namespace MediTech.DataService
             }
         }
         #endregion
-        
+
+
+        #region Patient Alert
+        public List<PatientAlertModel> GetPatientAlertByPatientUID(long patientUID, long? patientVisitUID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetPatientAlertByPatientUID?patientUID={0}&patientVisitUID={1}", patientUID, patientVisitUID);
+            List<PatientAlertModel> data = MeditechApiHelper.Get<List<PatientAlertModel>>(requestApi);
+
+            return data;
+        }
+
+
+        public bool ManagePatientAlert(List<PatientAlertModel> alertModels, int userUID)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/PatientIdentity/ManagePatientAlert?userUID={0}", userUID);
+                MeditechApiHelper.Post<List<PatientAlertModel>>(requestApi, alertModels);
+                flag = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return flag;
+        }
+        #endregion
     }
 }

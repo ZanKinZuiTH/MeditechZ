@@ -2017,6 +2017,16 @@ namespace MediTech.ViewModels
             }
         }
 
+        public PatientAlertViewModel PatientAlertViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<PatientAlertViewModel>())
+                    SimpleIoc.Default.Register<PatientAlertViewModel>();
+
+                return ServiceLocator.Current.GetInstance<PatientAlertViewModel>();
+            }
+        }
 
         #endregion
 

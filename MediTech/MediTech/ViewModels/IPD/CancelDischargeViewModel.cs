@@ -86,6 +86,7 @@ namespace MediTech.ViewModels
             if(CancelType == "Discharge")
             {
                 PropertiesToDischargeModel();
+                DischargeEvent.VISTSUID = DataService.Technical.GetReferenceValueByCode("VISTS", "ARRVD").Key;
                 DataService.PatientIdentity.CancelDischargeEvent(DischargeEvent, AppUtil.Current.UserID);
             }
 

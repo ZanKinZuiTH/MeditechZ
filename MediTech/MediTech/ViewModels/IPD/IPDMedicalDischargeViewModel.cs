@@ -194,15 +194,21 @@ namespace MediTech.ViewModels
             dischargeModel = discharge;
             dischargeType = type;
 
+            //if (type == "DischargeAdvice")
+            //{
+            //    dischargeModel.ENSTAUID = DataService.Technical.GetReferenceValueByCode("ENSTA", "DSGADV").Key;
+            //}
+
             if (type == "MedicalDischarge")
             {
+                dischargeModel.VISTSUID = DataService.Technical.GetReferenceValueByCode("VISTS", "CHKOUT").Key ?? 0;
                 dischargeModel.ENSTAUID = DataService.Technical.GetReferenceValueByCode("ENSTA", "FTDSG").Key;
                 AssingModelToProperties();
             }
 
             if (type == "Discharge")
             {
-                dischargeModel.VISTSUID = DataService.Technical.GetReferenceValueByCode("VISTS","CHKOUT").Key ?? 0;
+                //dischargeModel.VISTSUID = DataService.Technical.GetReferenceValueByCode("VISTS","CHKOUT").Key ?? 0;
                 dischargeModel.ENSTAUID = DataService.Technical.GetReferenceValueByCode("ENSTA","DISCH").Key ?? 0;
                 AssingModelToProperties();
             }
