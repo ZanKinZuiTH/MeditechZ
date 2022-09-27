@@ -1405,7 +1405,7 @@ namespace MediTechWebApi.Controllers
                     {
                         patientVisit = new PatientVisit();
                         patientVisit.PatientUID = patientVisitInfo.PatientUID;
-                        patientVisit.VISTYUID = patientVisitInfo.VISTSUID;
+                        patientVisit.VISTYUID = patientVisitInfo.VISTYUID;
                         patientVisit.VISTSUID = patientVisitInfo.VISTSUID;
                         patientVisit.BedUID = patientVisitInfo.BedUID;
                         patientVisit.CUser = userID;
@@ -1423,8 +1423,8 @@ namespace MediTechWebApi.Controllers
                     patientVisit.VisitID = erseqVisitID;
                     patientVisit.CareProviderUID = patientVisitInfo.CareProviderUID;
                     patientVisit.BookingUID = patientVisitInfo.BookingUID;
-                    patientVisit.StartDttm = patientVisitInfo.StartDttm;
-                    patientVisit.ArrivedDttm = patientVisitInfo.StartDttm;
+                    patientVisit.StartDttm = patientVisitInfo.StartDttm ?? now;
+                    patientVisit.ArrivedDttm = patientVisitInfo.StartDttm ?? now;
                     patientVisit.SpecialityUID = patientVisitInfo.SpecialityUID;
                     patientVisit.IsReAdmisstion = patientVisitInfo.IsReAdmisstion;
                     patientVisit.MUser = userID;
@@ -2517,7 +2517,7 @@ namespace MediTechWebApi.Controllers
                         && (pv.ENSTAUID != 4421 || pv.ENSTAUID != null)
                         && pv.VISTSUID != 410
                         //&& pv.VISTSUID != 418
-                        //&& pv.VISTSUID != 421
+                        && pv.VISTSUID != 421
                         //&& pv.VISTSUID != 423
                         select new BedStatusModel
                         {
@@ -3629,6 +3629,7 @@ namespace MediTechWebApi.Controllers
                 {
                     db.PatientVisit.Attach(patientVisit);
                     patientVisit.ENSTAUID = model.ENSTAUID ?? 0;
+                    patientVisit.VISTSUID = model.VISTSUID != null ? model.VISTSUID : patientVisit.VISTSUID;
                     patientVisit.MUser = userUID;
                     patientVisit.MWhen = now;
                     db.SaveChanges();
@@ -4136,6 +4137,88 @@ namespace MediTechWebApi.Controllers
             }
         }
 
+        #endregion
+
+        #region Patient Alert
+
+        [Route("GetPatientAlertByPatientUID")]
+        [HttpGet]
+        public List<PatientAlertModel> GetPatientAlertByPatientUID(long patientUID, long? patientVisitUID)
+        {
+            List<PatientAlertModel> data = db.PatientAlert.Where(p => p.PatientUID == patientUID
+                                            && (patientVisitUID == null || p.PatientVisitUID == patientVisitUID)
+                                            && p.PatientUID == patientUID
+                                            && p.StatusFlag == "A")
+                                            .Select(p => new PatientAlertModel()
+                                            {
+                                                PatientAlertUID = p.UID,
+                                                PatientUID = p.PatientUID,
+                                                PatientVisitUID = p.PatientVisitUID,
+                                                AlertDescription = p.AlertDescription,
+                                                ALRTYUID = p.ALRTYUID,
+                                                AlertType = SqlFunction.fGetRfValDescription(p.ALRTYUID ?? 0),
+                                                ALTSTUID = p.ALTSTUID,
+                                                Alert = SqlFunction.fGetRfValDescription(p.ALTSTUID ?? 0),
+                                                SEVTYUID = p.SEVTYUID,
+                                                Severity = SqlFunction.fGetRfValDescription(p.SEVTYUID ?? 0),
+                                                OnsetDttm = p.OnsetDttm,
+                                                ClosureDttm = p.ClosureDttm,
+                                                ALRPRTUID = p.ALRPRTUID,
+                                                Priority = SqlFunction.fGetRfValDescription(p.ALRPRTUID ?? 0),
+                                                OwnerOrganisationUID = p.OwnerOrganisationUID,
+                                                OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID),
+                                                LocationUID = p.LocationUID ?? 0,
+                                                Location = SqlFunction.fGetLocationName(p.LocationUID ?? 0),
+                                                StatusFlag = p.StatusFlag
+                                            }).ToList();
+
+            return data;
+        }
+
+        [Route("ManagePatientAlert")]
+        [HttpPost]
+        public HttpResponseMessage ManagePatientAlert(List<PatientAlertModel> patientModel, int userUID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                foreach (var patientAlert in patientModel)
+                {
+                    PatientAlert detail = db.PatientAlert.Find(patientAlert.PatientAlertUID);
+                    if (detail == null)
+                    {
+                        detail = new PatientAlert();
+                        detail.CUser = userUID;
+                        detail.CWhen = now;
+                    }
+
+                    detail.PatientUID = patientAlert.PatientUID;
+                    detail.PatientVisitUID = patientAlert.PatientVisitUID != 0 ? patientAlert.PatientVisitUID : null;
+                    detail.AlertDescription = patientAlert.AlertDescription;
+                    detail.ALRPRTUID = patientAlert.ALRPRTUID;
+                    detail.ALRTYUID = patientAlert.ALRTYUID;
+                    detail.ALTSTUID = patientAlert.ALTSTUID;
+                    detail.SEVTYUID = patientAlert.SEVTYUID;
+                    detail.OnsetDttm = patientAlert.OnsetDttm;
+                    detail.ClosureDttm = patientAlert.ClosureDttm;
+                    detail.LocationUID = patientAlert.LocationUID != 0 ? patientAlert.LocationUID : null;
+                    detail.IsVisitSpecific = patientAlert.IsVisitSpecific;
+                    detail.OwnerOrganisationUID = patientAlert.OwnerOrganisationUID;
+                    detail.MUser = userUID;
+                    detail.MWhen = now;
+                    detail.StatusFlag = patientAlert.StatusFlag;
+
+                    db.PatientAlert.AddOrUpdate(detail);
+                    db.SaveChanges();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
         #endregion
 
         public static Dictionary<string, List<string>> GenerateAuditLogMessages(object originalObject, object changedObject)

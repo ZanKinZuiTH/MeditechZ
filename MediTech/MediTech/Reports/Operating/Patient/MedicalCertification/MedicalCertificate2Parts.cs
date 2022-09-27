@@ -45,6 +45,7 @@ namespace MediTech.Reports.Operating.Patient
                     lbOgenisation.Text = OrganisationDefault.Description?.ToString();
                     lbLicenseNo.Text = OrganisationDefault.LicenseNo != null ? "ใบอนุญาตเลขที่ " + OrganisationDefault.LicenseNo.ToString() : "";
                     lbFooterOrganisation.Text = lbOgenisation.Text + " " + lbLicenseNo.Text;
+                 
 
                     string mobile1 = OrganisationDefault.MobileNo != null ? "โทรศัพท์ " + OrganisationDefault.MobileNo.ToString() : "";
                     string mobile2 = OrganisationDefault.MobileNo != null ? "Tel. " + OrganisationDefault.MobileNo.ToString() : "";

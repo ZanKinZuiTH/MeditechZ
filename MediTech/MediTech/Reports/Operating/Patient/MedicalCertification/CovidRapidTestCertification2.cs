@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 
 namespace MediTech.Reports.Operating.Patient
 {
@@ -17,6 +18,10 @@ namespace MediTech.Reports.Operating.Patient
 
         private void CovidRapidTestCertification2_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
+            int OrganisationUID = int.Parse(this.Parameters["OrganisationUID"].Value.ToString());
+            int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
+            var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);
+            var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
             if (this.Parameters["PatientVisitUID"].Value != null)
             {
                 long PatientVisitUID = long.Parse(this.Parameters["PatientVisitUID"].Value.ToString());
@@ -32,6 +37,91 @@ namespace MediTech.Reports.Operating.Patient
                     lbPatientName.Text = model.PatientName;
                 }
             }
+
+            if (logoType == 0)
+            {
+                lbOgenisation.Text = OrganisationDefault.Description?.ToString();
+                //lbOrganisationPlace.Text = OrganisationDefault.Description.ToString() != null ? "สถานที่ตรวจ " + OrganisationDefault.Description.ToString() : "";
+                lbLicenseNo.Text = OrganisationDefault.LicenseNo != null ? "ใบอนุญาตเลขที่ " + OrganisationDefault.LicenseNo.ToString() : "";
+                lbFooterOrganisation.Text = lbOgenisation.Text + " " + lbLicenseNo.Text;
+
+                string mobile1 = OrganisationDefault.MobileNo != null ? "โทรศัพท์ " + OrganisationDefault.MobileNo.ToString() : "";
+                string mobile2 = OrganisationDefault.MobileNo != null ? "Tel. " + OrganisationDefault.MobileNo.ToString() : "";
+                string email = OrganisationDefault.Email != null ? "e-mail:" + OrganisationDefault.Email.ToString() : "";
+
+                lbHeadAddress1.Text = OrganisationDefault.Address?.ToString() + " " + mobile1 + " " + email;
+                lbAddress1.Text = OrganisationDefault.Address?.ToString() + " " + mobile1 + " " + email;
+                lbAddress2.Text = OrganisationDefault.Address2?.ToString() + " " + mobile2 + " " + email;
+                // infoOrganisation.Text = OrganisationDefault.Description?.ToString();
+
+                if (OrganisationDefault.LogoImage != null && OrganisationDefault.HealthOrganisationUID != 27)
+                {
+                    MemoryStream ms = new MemoryStream(OrganisationDefault.LogoImage);
+                    logo.Image = Image.FromStream(ms);
+                    logoFooter.Image = Image.FromStream(ms);
+
+                }
+                else if (OrganisationDefault.LogoImage != null && OrganisationDefault.HealthOrganisationUID == 27)
+                {
+                    MemoryStream ms = new MemoryStream(OrganisationBRXG.LogoImage);
+                    logo.Image = Image.FromStream(ms);
+                    logoFooter.Image = Image.FromStream(ms);
+
+                }
+                else
+                {
+                    MemoryStream ms = new MemoryStream(OrganisationBRXG.LogoImage);
+                    logo.Image = Image.FromStream(ms);
+                    logoFooter.Image = Image.FromStream(ms);
+
+                }
+            }
+            else
+            {
+                var SelectOrganisation = (new MasterDataService()).GetHealthOrganisationByUID(logoType);
+                if (SelectOrganisation != null)
+                {
+                    lbOgenisation.Text = SelectOrganisation.Description?.ToString();
+                    //lbOrganisationPlace.Text = SelectOrganisation.Description.ToString() != null ? "สถานที่ตรวจ " + SelectOrganisation.Description.ToString() : "";
+                    lbLicenseNo.Text = SelectOrganisation.LicenseNo != null ? "ใบอนุญาตเลขที่ " + SelectOrganisation.LicenseNo.ToString() : "";
+                    lbFooterOrganisation.Text = lbOgenisation.Text + " " + lbLicenseNo.Text;
+
+
+
+                    string mobile1 = SelectOrganisation.MobileNo != null ? "โทรศัพท์ " + SelectOrganisation.MobileNo.ToString() : "";
+                    string mobile2 = SelectOrganisation.MobileNo != null ? "Tel. " + SelectOrganisation.MobileNo.ToString() : "";
+                    string email = SelectOrganisation.Email != null ? "e-mail:" + SelectOrganisation.Email.ToString() : "";
+
+
+                    lbHeadAddress1.Text = OrganisationDefault.Address?.ToString() + " " + mobile1 + " " + email;
+                    lbAddress1.Text = OrganisationDefault.Address?.ToString() + " " + mobile1 + " " + email;
+                    lbAddress2.Text = OrganisationDefault.Address2?.ToString() + " " + mobile2 + " " + email;
+
+
+                    //infoOrganisation.Text = SelectOrganisation.Description?.ToString();
+                }
+                if (SelectOrganisation.LogoImage != null && SelectOrganisation.HealthOrganisationUID != 27)
+                {
+                    MemoryStream ms = new MemoryStream(SelectOrganisation.LogoImage);
+                    logo.Image = Image.FromStream(ms);
+                    logoFooter.Image = Image.FromStream(ms);
+
+                }
+                else if (SelectOrganisation.LogoImage != null && SelectOrganisation.HealthOrganisationUID == 27)
+                {
+                    MemoryStream ms = new MemoryStream(OrganisationBRXG.LogoImage);
+                    logo.Image = Image.FromStream(ms);
+                    logoFooter.Image = Image.FromStream(ms);
+                }
+                else
+                {
+                    MemoryStream ms = new MemoryStream(OrganisationBRXG.LogoImage);
+                    logo.Image = Image.FromStream(ms);
+                    logoFooter.Image = Image.FromStream(ms);
+
+                }
+            }
+
         }
     }
 }
