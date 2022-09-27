@@ -583,6 +583,7 @@ namespace MediTech.ViewModels
             visitModel.PatientUID = SelectPatientVisit.PatientUID != 0 ? SelectPatientVisit.PatientUID : SelectedPateintSearch.PatientUID;
             visitModel.PatientVisitUID = SelectPatientVisit.PatientVisitUID != 0 ? SelectPatientVisit.PatientVisitUID : 0;
             visitModel.VISTSUID = 417;
+            visitModel.VISTYUID = DataService.Technical.GetReferenceValueByCode("VISTY", "IPD").Key;
             //visitModel.PRITYUID = SelectBillCatagory.Key;
             visitModel.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
             visitModel.ENTYPUID = DataService.Technical.GetReferenceValueByCode("ENTYP", "INPAT").Key;
