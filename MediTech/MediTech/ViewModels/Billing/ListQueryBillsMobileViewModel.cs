@@ -49,19 +49,19 @@ namespace MediTech.ViewModels
             }
         }
 
-        private ObservableCollection<UnbilledPatientsResult> _UnBilledPatientLists;
-        public ObservableCollection<UnbilledPatientsResult> UnBilledPatientLists
+        private ObservableCollection<PatientVisitModel> _PatientAllocateLists;
+        public ObservableCollection<PatientVisitModel> PatientAllocateLists
         {
-            get { return _UnBilledPatientLists; }
-            set { Set(ref _UnBilledPatientLists, value); }
+            get { return _PatientAllocateLists; }
+            set { Set(ref _PatientAllocateLists, value); }
         }
 
-        private UnbilledPatientsResult _SelectUnBilledPatient;
+        private PatientVisitModel _SelectPatientAllocate;
 
-        public UnbilledPatientsResult SelectUnBilledPatient
+        public PatientVisitModel SelectPatientAllocate
         {
-            get { return _SelectUnBilledPatient; }
-            set { Set(ref _SelectUnBilledPatient, value); }
+            get { return _SelectPatientAllocate; }
+            set { Set(ref _SelectPatientAllocate, value); }
         }
 
         #endregion
@@ -86,6 +86,65 @@ namespace MediTech.ViewModels
             }
         }
 
+        private List<InsuranceCompanyModel> _InsuranceCompanyDetails;
+        public List<InsuranceCompanyModel> InsuranceCompanyDetails
+        {
+            get { return _InsuranceCompanyDetails; }
+            set { Set(ref _InsuranceCompanyDetails, value); }
+        }
+
+        private InsuranceCompanyModel _SelectInsuranceCompanyDetail;
+        public InsuranceCompanyModel SelectInsuranceCompanyDetail
+        {
+            get { return _SelectInsuranceCompanyDetail; }
+            set
+            {
+                Set(ref _SelectInsuranceCompanyDetail, value);
+                if (_SelectInsuranceCompanyDetail != null)
+                {
+                    CheckupJobContactList = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectInsuranceCompanyDetail.InsuranceCompanyUID);
+                    SelectCheckupJobContact = CheckupJobContactList.OrderByDescending(p => p.StartDttm).FirstOrDefault();
+                }
+            }
+        }
+
+        private List<CheckupJobContactModel> _CheckupJobContactList;
+        public List<CheckupJobContactModel> CheckupJobContactList
+        {
+            get { return _CheckupJobContactList; }
+            set { Set(ref _CheckupJobContactList, value); }
+        }
+
+        private CheckupJobContactModel _SelectCheckupJobContact;
+        public CheckupJobContactModel SelectCheckupJobContact
+        {
+            get { return _SelectCheckupJobContact; }
+            set
+            {
+                Set(ref _SelectCheckupJobContact, value);
+                if (_SelectCheckupJobContact != null)
+                {
+                    DateFrom = _SelectCheckupJobContact.StartDttm;
+                    DateTo = _SelectCheckupJobContact.EndDttm;
+                }
+            }
+        }
+
+        private List<string> _PrinterLists;
+
+        public List<string> PrinterLists
+        {
+            get { return _PrinterLists; }
+            set { Set(ref _PrinterLists, value); }
+        }
+
+        private string _SelectPrinter;
+
+        public string SelectPrinter
+        {
+            get { return _SelectPrinter; }
+            set { Set(ref _SelectPrinter, value); }
+        }
         #endregion
 
         #region Command
@@ -97,19 +156,46 @@ namespace MediTech.ViewModels
             get { return _SearchCommand ?? (_SearchCommand = new RelayCommand(Search)); }
         }
 
+        private RelayCommand _CleanCommand;
+
+        public RelayCommand CleanCommand
+        {
+            get { return _CleanCommand ?? (_CleanCommand = new RelayCommand(Clean)); }
+        }
+
         #endregion
 
         #region Method
 
+        public ListQueryBillsMobileViewModel()
+        {
+            PrinterLists = new List<string>();
+            foreach (string printer in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
+            {
+                PrinterLists.Add(printer);
+            }
+        }
+
         void Search()
         {
             long? patientUID = null;
+            int? insuranceCompanyUID = SelectInsuranceCompanyDetail != null ? SelectInsuranceCompanyDetail.InsuranceCompanyUID : (int?)null;
+            int? checkupJobUID = SelectInsuranceCompanyDetail != null ? SelectInsuranceCompanyDetail.InsuranceCompanyUID : (int?)null;
             if (SelectedPateintSearch != null && SearchPatientCriteria != "")
             {
                 patientUID = SelectedPateintSearch.PatientUID;
             }
-            UnBilledPatientLists = new ObservableCollection<UnbilledPatientsResult>();
-            var patientVisitList = DataService.Billing.SearchUnbilledPatients(patientUID, DateFrom, DateTo, AppUtil.Current.OwnerOrganisationUID, "N");
+            var patientVisitList = DataService.Billing.pSearchPatientCheckupForAllocateBill(patientUID, DateFrom, DateTo, insuranceCompanyUID, checkupJobUID, AppUtil.Current.OwnerOrganisationUID);
+            PatientAllocateLists = new ObservableCollection<PatientVisitModel>(patientVisitList.ToList());
+        }
+
+        void Clean()
+        {
+            DateFrom = DateTime.Now;
+            DateTo = null;
+            SearchPatientCriteria = string.Empty;
+            SelectInsuranceCompanyDetail = null;
+            SelectCheckupJobContact = null;
         }
 
         public void PatientSearch()

@@ -107,6 +107,15 @@ namespace MediTech.DataService
             return listPatBill;
         }
 
+        public List<PatientVisitModel> pSearchPatientCheckupForAllocateBill(long? patientUID, DateTime? billFromDTTM, DateTime? billToDTTM, int? insuranceComapnyUID, int? checkupJobUID
+                 , int? ownerOrganisationUID)
+        {
+            string requestApi = string.Format("Api/Billing/pSearchPatientCheckupForAllocateBill?patientUID={0}&billFromDTTM={1:MM/dd/yyyy}&billToDTTM={2:MM/dd/yyyy}&insuranceComapnyUID={3}&checkupJobUID={4}&ownerOrganisationUID={5}", patientUID, billFromDTTM, billToDTTM, insuranceComapnyUID, checkupJobUID, ownerOrganisationUID);
+            List<PatientVisitModel> listPatBill = MeditechApiHelper.Get<List<PatientVisitModel>>(requestApi);
+
+            return listPatBill;
+        }
+
         public bool CancelBill(long patientBillUID, string cancelReason, int userUID)
         {
             bool flag = false;

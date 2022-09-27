@@ -364,6 +364,7 @@ namespace MediTech.ViewModels
                     //Tariff = Tariff.FirstOrDefault(p => p.Key == _SelectBillableItemDetail.PBLCTUID);
                     SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == _SelectBillableItemDetail.OwnerOrganisationUID);
                     SelectUnit = Units.FirstOrDefault(p => p.Key == _SelectBillableItemDetail.CURNCUID);
+                    SelectTariff = Tariff.FirstOrDefault(p => p.Key == _SelectBillableItemDetail.PBLCTUID);
                 }
             }
         }
@@ -637,19 +638,21 @@ namespace MediTech.ViewModels
                 return;
             }
 
-            if (BillableItemDetail != null)
-            {
-                if (BillableItemDetail.Count(p => p.OwnerOrganisationUID == SelectOrganisation.HealthOrganisationUID) > 0)
-                {
-                    WarningDialog("สถานประกอบการซ้ำ กรุณาตรวจสอบ");
-                    return;
-                }
-            }
+
 
             if (SelectTariff == null)
             {
                 WarningDialog("กรุณาเลือก Tariff");
                 return;
+            }
+
+            if (BillableItemDetail != null)
+            {
+                if (BillableItemDetail.Count(p => p.OwnerOrganisationUID == SelectOrganisation.HealthOrganisationUID && p.PBLCTUID == SelectTariff.Key) > 0)
+                {
+                    WarningDialog("Tariff ซ้ำ กรุณาตรวจสอบ");
+                    return;
+                }
             }
 
             BillableItemDetailModel newBillItmDetail = new BillableItemDetailModel();
@@ -678,20 +681,22 @@ namespace MediTech.ViewModels
                 WarningDialog("กรุณาเลือก สถานประกอบการ");
                 return;
             }
-            if (BillableItemDetail != null)
-            {
-                if (BillableItemDetail.Count(p => !p.Equals(SelectBillableItemDetail)
-                    && p.OwnerOrganisationUID == SelectOrganisation.HealthOrganisationUID) > 0)
-                {
-                    WarningDialog("สถานประกอบการซ้ำ กรุณาตรวจสอบ");
-                    return;
-                }
-            }
+
             if (SelectTariff == null)
             {
                 WarningDialog("กรุณาเลือก Tariff");
                 return;
             }
+            if (BillableItemDetail != null)
+            {
+                if (BillableItemDetail.Count(p => !p.Equals(SelectBillableItemDetail)
+                    && p.OwnerOrganisationUID == SelectOrganisation.HealthOrganisationUID && p.PBLCTUID == SelectTariff.Key) > 0)
+                {
+                    WarningDialog("Tariff ซ้ำ กรุณาตรวจสอบ");
+                    return;
+                }
+            }
+
             if (SelectBillableItemDetail != null)
             {
                 SelectBillableItemDetail.ActiveFrom = ActiveFrom2;
@@ -731,6 +736,7 @@ namespace MediTech.ViewModels
             ActiveFrom2 = DateTime.Now;
             ActiveTo2 = null;
             SelectOrganisation = null;
+            SelectTariff = null;
             SelectBillableItemDetail = null;
         }
 

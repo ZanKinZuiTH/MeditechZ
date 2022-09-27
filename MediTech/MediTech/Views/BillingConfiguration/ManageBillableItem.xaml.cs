@@ -41,6 +41,7 @@ namespace MediTech.Views
         {
             grdBillDetail.ItemsSource = (viewModel as ManageBillableItemViewModel).BillableItemDetail.Where(p => p.StatusFlag == "A");
             grdBillDetail.RefreshData();
+            //grdBillDetail.ExpandAllGroups();
         }
 
         private void ComboBoxEdit_PreviewKeyDown(object sender, KeyEventArgs e)

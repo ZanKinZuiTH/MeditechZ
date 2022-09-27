@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MediTech.ViewModels
 {
-    public class ManageInsurancePlanViewModel :MediTechViewModelBase
+    public class ManageInsurancePlanViewModel : MediTechViewModelBase
     {
         #region Properties
 
@@ -16,8 +16,10 @@ namespace MediTech.ViewModels
         public int InsuranceCompanyID
         {
             get { return _InsuranceCompanyID; }
-            set { Set(ref _InsuranceCompanyID, value); 
-            if( InsuranceCompanyID != 0)
+            set
+            {
+                Set(ref _InsuranceCompanyID, value);
+                if (InsuranceCompanyID != 0)
                 {
                     AgreementSource = DataService.Billing.SearchPayorAgreementByINCO("", InsuranceCompanyID);
                     PayorOfficeSource = DataService.Billing.SearchPayorDetailByINCO("", InsuranceCompanyID);
@@ -76,29 +78,27 @@ namespace MediTech.ViewModels
         public PayorAgreementModel SelectAgreement
         {
             get { return _SelectAgreement; }
-            set { Set(ref _SelectAgreement, value);
+            set
+            {
+                Set(ref _SelectAgreement, value);
                 if (SelectAgreement != null)
                 {
-                    if(SelectAgreement.PolicyMasterUID != null)
+                    SelectPolicy = null;
+                    if (SelectAgreement.PolicyMasterUID != null)
                     {
-                        var policyMaster = DataService.Billing.GetPolicyMasterByUID(SelectAgreement.PolicyMasterUID ?? 0);
-                        PolicyName = (policyMaster != null && !String.IsNullOrEmpty(policyMaster.PolicyName)) ? policyMaster.PolicyName : "";
-                    }
-                    else
-                    {
-                        PolicyName = null;
+                        SelectPolicy = DataService.Billing.GetPolicyMasterByUID(SelectAgreement.PolicyMasterUID ?? 0);
                     }
 
-                }   
+                }
             }
         }
-  
 
-        private string _PolicyName;
-        public string PolicyName
+        private PolicyMasterModel _SelectPolicy;
+
+        public PolicyMasterModel SelectPolicy
         {
-            get { return _PolicyName; }
-            set { Set(ref _PolicyName, value); }
+            get { return _SelectPolicy; }
+            set { Set(ref _SelectPolicy, value); }
         }
 
         #endregion
@@ -136,12 +136,12 @@ namespace MediTech.ViewModels
 
         private void Save()
         {
-            if(SelectAgreement == null)
+            if (SelectAgreement == null)
             {
                 WarningDialog("กรุณาเลือก Agreement");
                 return;
             }
-            if (string.IsNullOrEmpty(PolicyName))
+            if (SelectPolicy == null)
             {
                 WarningDialog("ยังไม่ได้ทำการผูก Policy กับ Agreement กรุณาตรวจสอบ");
                 return;
@@ -169,14 +169,14 @@ namespace MediTech.ViewModels
 
         private void AssignPropertiesToModel()
         {
-            if(InsurancePlan == null)
+            if (InsurancePlan == null)
             {
                 InsurancePlan = new InsurancePlanModel();
             }
 
             InsurancePlan.PayorAgreementUID = SelectAgreement != null ? SelectAgreement.PayorAgreementUID : 0;
             InsurancePlan.PayorDetailUID = SelectPayorOffice != null ? SelectPayorOffice.PayorDetailUID : 0;
-            //InsurancePlan.PolicyMasterUID = SelectPolicy != null ? SelectPolicy.PolicyMasterUID : 0;
+            InsurancePlan.PolicyMasterUID = SelectPolicy != null ? SelectPolicy.PolicyMasterUID : 0;
             InsurancePlan.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
             InsurancePlan.ActiveFrom = ActiveFrom;
             InsurancePlan.ActiveTo = ActiveTo;
@@ -187,7 +187,7 @@ namespace MediTech.ViewModels
         {
             SelectAgreement = AgreementSource.FirstOrDefault(p => p.PayorAgreementUID == model.PayorAgreementUID);
             if (model.PayorDetailUID != 0)
-            SelectPayorOffice = PayorOfficeSource.FirstOrDefault(p => p.PayorDetailUID == model.PayorDetailUID);
+                SelectPayorOffice = PayorOfficeSource.FirstOrDefault(p => p.PayorDetailUID == model.PayorDetailUID);
             ActiveFrom = model.ActiveFrom;
             ActiveTo = model.ActiveTo;
         }

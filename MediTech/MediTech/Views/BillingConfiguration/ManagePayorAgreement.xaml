@@ -59,7 +59,7 @@
                                         <StackPanel Orientation="Horizontal">
                                             <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
-                                            <TextBlock Text="payor Bill Type" />
+                                            <TextBlock Text="Payor Bill Type" />
                                         </StackPanel>
                                     </dxlc:LayoutItem.Label>
                                     <dxe:ComboBoxEdit ItemsSource="{Binding PayorBillType}"

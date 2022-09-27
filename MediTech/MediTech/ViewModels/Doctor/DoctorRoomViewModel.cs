@@ -493,6 +493,15 @@ namespace MediTech.ViewModels
             set { Set(ref _ImageOxygenVisibility, value); }
         }
 
+        private List<LookupReferenceValueModel> _BillingCategory;
+
+        public List<LookupReferenceValueModel> BillingCategory
+        {
+            get { return _BillingCategory; }
+            set { _BillingCategory = value; }
+        }
+
+
         #endregion
 
 
@@ -605,9 +614,10 @@ namespace MediTech.ViewModels
         public DoctorRoomViewModel()
         {
             Doctors = DataService.UserManage.GetCareproviderDoctor();
-            var refData = DataService.Technical.GetReferenceValueList("VISTS,DIAGTYP,ENTYP");
+            var refData = DataService.Technical.GetReferenceValueList("VISTS,DIAGTYP,ENTYP,PBLCT");
             VisitStatus = new ObservableCollection<LookupReferenceValueModel>(refData.Where(p => p.DomainCode == "VISTS"));
             EncounterType = new ObservableCollection<LookupReferenceValueModel>(refData.Where(p => p.DomainCode == "ENTYP"));
+            BillingCategory = refData.Where(p => p.DomainCode == "PBLCT").ToList();
             SelectVisitStatus = VisitStatus.FirstOrDefault(p => p.ValueCode == "SNDDOC");
             SelectDoctor = Doctors.FirstOrDefault(p => p.CareproviderUID == AppUtil.Current.UserID);
             VisitDate = DateTime.Now;
@@ -1059,6 +1069,18 @@ namespace MediTech.ViewModels
                         else
                             ownerUID = SelectVisitMedical.OwnerOrganisationUID;
 
+                        var patientVisitPayors = DataService.PatientIdentity.GetPatientVisitPayorByVisitUID(SelectVisitMedical.PatientVisitUID);
+
+                        var firstVisitPayors = patientVisitPayors.FirstOrDefault();
+
+                        int? PBLCTUID = BillingCategory.FirstOrDefault(p => p.ValueCode == "OPDTRF")?.Key;
+
+                        if (firstVisitPayors != null)
+                        {
+                            PBLCTUID = firstVisitPayors.PrimaryPBLCTUID;
+                        }
+
+
                         foreach (var itemDrug in listDrugProfile)
                         {
                             PatientOrderDetailModel newOrder = new PatientOrderDetailModel();
@@ -1075,7 +1097,7 @@ namespace MediTech.ViewModels
                                 newOrder.PatientOrderAlert = viewModel.OrderAlerts;
                             }
 
-                            var billItemPrice = GetBillableItemPrice(billItem.BillableItemDetails, ownerUID ?? 0);
+                            var billItemPrice = GetBillableItemPrice(billItem.BillableItemDetails, PBLCTUID, ownerUID ?? 0);
 
                             if (billItemPrice == null)
                             {
@@ -1186,25 +1208,19 @@ namespace MediTech.ViewModels
             }
         }
 
-        public BillableItemDetailModel GetBillableItemPrice(List<BillableItemDetailModel> billItmDetail, int ownerOrganisationUID)
+        public BillableItemDetailModel GetBillableItemPrice(List<BillableItemDetailModel> billItmDetail, int? PBLCTUID, int ownerOrganisationUID)
         {
             BillableItemDetailModel selectBillItemDetail = null;
 
             if (billItmDetail.Count(p => p.OwnerOrganisationUID == ownerOrganisationUID) > 0)
             {
                 selectBillItemDetail = billItmDetail
-                    .FirstOrDefault(p => p.StatusFlag == "A" && p.OwnerOrganisationUID == ownerOrganisationUID
+                    .FirstOrDefault(p => p.StatusFlag == "A"
+                    && p.PBLCTUID == PBLCTUID
+                    && p.OwnerOrganisationUID == ownerOrganisationUID
                     && (p.ActiveFrom == null || (p.ActiveFrom.Date <= DateTime.Now.Date))
                     && (p.ActiveTo == null || (p.ActiveTo.HasValue && p.ActiveTo.Value.Date >= DateTime.Now.Date))
                     );
-            }
-            else
-            {
-                selectBillItemDetail = billItmDetail
-    .FirstOrDefault(p => p.StatusFlag == "A" && p.OwnerOrganisationUID == 0
-    && (p.ActiveFrom == null || (p.ActiveFrom.Date <= DateTime.Now.Date))
-    && (p.ActiveTo == null || (p.ActiveTo.HasValue && p.ActiveTo.Value.Date >= DateTime.Now.Date))
-    );
             }
 
             return selectBillItemDetail;

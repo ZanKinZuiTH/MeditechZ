@@ -421,6 +421,15 @@ namespace MediTech.ViewModels
             }
         }
 
+        private List<LookupReferenceValueModel> _BillingCategory;
+
+        public List<LookupReferenceValueModel> BillingCategory
+        {
+            get { return _BillingCategory; }
+            set { _BillingCategory = value; }
+        }
+
+
         #endregion
 
         #region Command
@@ -519,9 +528,10 @@ namespace MediTech.ViewModels
         public PatientVisitMassViewModel()
         {
             Doctors = DataService.UserManage.GetCareproviderDoctor();
-            var refVal = DataService.Technical.GetReferenceValueList("VISTS,ENTYP,PRSTYP");
+            var refVal = DataService.Technical.GetReferenceValueList("VISTS,ENTYP,PRSTYP,PBLCT");
             VisitStatus = new ObservableCollection<LookupReferenceValueModel>(refVal.Where(p => p.DomainCode == "VISTS" && p.ValueCode != "FINDIS"));
             EncounterType = new ObservableCollection<LookupReferenceValueModel>(refVal.Where(p => p.DomainCode == "ENTYP"));
+            BillingCategory = refVal.Where(p => p.DomainCode == "PBLCT").ToList();
             SelectEncounterType.AddRange(EncounterType.Where(p => p.ValueCode == "OUPAT" || p.ValueCode == "HEAL").Select(p => (object)p.Key.Value));
 
             OrderTypes = refVal.Where(p => p.DomainCode == "PRSTYP").ToList();
@@ -1096,8 +1106,8 @@ namespace MediTech.ViewModels
             }
             BillableItemModel billItem = DataService.MasterData.GetBillableItemByUID(billableItemUID);
 
-
-            var billItemPrice = GetBillableItemPrice(billItem.BillableItemDetails, AppUtil.Current.OwnerOrganisationUID);
+            int? PBLCTUID = BillingCategory.FirstOrDefault(p => p.ValueCode == "OPDTRF")?.Key;
+            var billItemPrice = GetBillableItemPrice(billItem.BillableItemDetails, PBLCTUID, AppUtil.Current.OwnerOrganisationUID);
 
             if (billItemPrice == null)
             {
@@ -1190,15 +1200,17 @@ namespace MediTech.ViewModels
             }
             OnUpdateEvent();
         }
-        public BillableItemDetailModel GetBillableItemPrice(List<BillableItemDetailModel> billItmDetail, int ownerOrganisationUID)
+        public BillableItemDetailModel GetBillableItemPrice(List<BillableItemDetailModel> billItmDetail, int? PBLCTUID, int ownerOrganisationUID)
         {
             BillableItemDetailModel selectBillItemDetail = null;
 
             if (billItmDetail.Count(p => p.OwnerOrganisationUID == ownerOrganisationUID) > 0)
             {
                 selectBillItemDetail = billItmDetail
-                    .FirstOrDefault(p => p.StatusFlag == "A" && p.OwnerOrganisationUID == ownerOrganisationUID
-                    && (p.ActiveFrom == null || ( p.ActiveFrom.Date <= DateTime.Now.Date))
+                    .FirstOrDefault(p => p.StatusFlag == "A"
+                    && p.PBLCTUID == PBLCTUID
+                    && p.OwnerOrganisationUID == ownerOrganisationUID
+                    && (p.ActiveFrom == null || (p.ActiveFrom.Date <= DateTime.Now.Date))
                     && (p.ActiveTo == null || (p.ActiveTo.HasValue && p.ActiveTo.Value.Date >= DateTime.Now.Date))
                     );
             }

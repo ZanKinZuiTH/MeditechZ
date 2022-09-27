@@ -312,6 +312,13 @@ namespace MediTech.ViewModels
             set { Set(ref _IsPrintReceipt, value); }
         }
 
+        private List<LookupReferenceValueModel> _BillingCategory;
+
+        public List<LookupReferenceValueModel> BillingCategory
+        {
+            get { return _BillingCategory; }
+            set { _BillingCategory = value; }
+        }
 
         #endregion
 
@@ -391,6 +398,7 @@ namespace MediTech.ViewModels
             DateTime now = DateTime.Now;
             Organisations = GetHealthOrganisationIsRoleStock();
             PayorDetails = DataService.Billing.GetPayorDetail();
+            var refVale = DataService.Technical.GetReferenceValueList("PBLCT");
             BillDate = now.Date;
             SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
 
@@ -407,7 +415,7 @@ namespace MediTech.ViewModels
                 new LookupReferenceValueModel { Key = 1, Display = "ยกเว้นภาษี",NumericValue = 0 }
             };
 
-
+            BillingCategory = refVale.Where(p => p.DomainCode == "PBLCT").ToList();
         }
 
         public void ChangeValue(DevExpress.Xpf.Grid.CellValueChangedEventArgs e)
@@ -736,7 +744,9 @@ namespace MediTech.ViewModels
             {
                 BillableItemModel billItem = DataService.MasterData.GetBillableItemByUID(billableItemUID);
                 int? ownerUID = SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : (int?)null;
-                var billItemPrice = GetBillableItemPrice(billItem.BillableItemDetails, ownerUID ?? 0);
+                int? PBLCTUID = BillingCategory.FirstOrDefault(p => p.ValueCode == "OPDTRF")?.Key;
+
+                var billItemPrice = GetBillableItemPrice(billItem.BillableItemDetails, PBLCTUID, ownerUID ?? 0);
                 if (billItemPrice == null)
                 {
                     WarningDialog("รายการ " + billItem.ItemName + " นี้ยังไม่ได้กำหนดราคาสำหรับขาย โปรดตรวจสอบ");
@@ -771,25 +781,19 @@ namespace MediTech.ViewModels
             }
         }
 
-        public BillableItemDetailModel GetBillableItemPrice(List<BillableItemDetailModel> billItmDetail, int ownerOrganisationUID)
+        public BillableItemDetailModel GetBillableItemPrice(List<BillableItemDetailModel> billItmDetail, int? PBLCTUID, int ownerOrganisationUID)
         {
             BillableItemDetailModel selectBillItemDetail = null;
 
             if (billItmDetail.Count(p => p.OwnerOrganisationUID == ownerOrganisationUID) > 0)
             {
                 selectBillItemDetail = billItmDetail
-                    .FirstOrDefault(p => p.StatusFlag == "A" && p.OwnerOrganisationUID == ownerOrganisationUID
+                    .FirstOrDefault(p => p.StatusFlag == "A"
+                    && p.PBLCTUID == PBLCTUID
+                    && p.OwnerOrganisationUID == ownerOrganisationUID
                     && (p.ActiveFrom == null || (p.ActiveFrom.Date <= DateTime.Now.Date))
                     && (p.ActiveTo == null || (p.ActiveTo.HasValue && p.ActiveTo.Value.Date >= DateTime.Now.Date))
                     );
-            }
-            else
-            {
-                selectBillItemDetail = billItmDetail
-                .FirstOrDefault(p => p.StatusFlag == "A" && p.OwnerOrganisationUID == 0
-                && (p.ActiveFrom == null || ( p.ActiveFrom.Date <= DateTime.Now.Date))
-                && (p.ActiveTo == null || (p.ActiveTo.HasValue && p.ActiveTo.Value.Date >= DateTime.Now.Date))
-                );
             }
 
             return selectBillItemDetail;

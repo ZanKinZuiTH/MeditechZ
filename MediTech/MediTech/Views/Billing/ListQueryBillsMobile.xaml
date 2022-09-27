@@ -121,10 +121,12 @@
         <dxlc:LayoutItem>
             <ProgressBar Height="15"   Name="progressBar1"/>
         </dxlc:LayoutItem>
-        <dxg:GridControl SelectionMode="Row"
-                        SelectedItems="{Binding SelectedPatientVisits}">
+        <dxg:GridControl x:Name="grdPatientList" SelectionMode="Row"
+                        ItemsSource="{Binding PatientAllocateLists}"
+                        SelectedItems="{Binding SelectPatientAllocate}">
             <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID" ReadOnly="True"/>
             <dxg:GridColumn Header="ชื่อ-นามสกุล" FieldName="PatientName" ReadOnly="True"/>
+            <dxg:GridColumn Header="IsBillFinalized" FieldName="IsBillFinalized" ReadOnly="True"/>
             <dxg:GridColumn Header="VisitID" FieldName="VisitID"  ReadOnly="True"/>
             <dxg:GridColumn Header="Status" FieldName="VisitStatus"  ReadOnly="True"/>
             <dxg:GridColumn Header="วันที่ลงทะเบียน" FieldName="StartDttm"  ReadOnly="True"/>
@@ -149,8 +151,8 @@
                         Width="180" Height="25"/>
             </dxlc:LayoutItem>
             <dxlc:LayoutGroup  HorizontalAlignment="Right">
-                <dx:SimpleButton Content="" Width="80" Height="25"/>
-                <dx:SimpleButton Content="" Width="80" Height="25"/>
+                <dx:SimpleButton Command="{Binding AutoCollocateCommand}" Content="Auto Allocate" Width="90" Height="25"/>
+                <dx:SimpleButton Command="{Binding PrintCommand}" Content="Print Invoice" Width="90" Height="25"/>
             </dxlc:LayoutGroup>
 
         </dxlc:LayoutGroup>

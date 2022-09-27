@@ -12,7 +12,6 @@ namespace MediTech.Models
     public class UnbilledPatientsResult : PatientVisitModel
     {
 
-
         private Visibility _UnlockVisibility;
 
         public Visibility UnlockVisibility

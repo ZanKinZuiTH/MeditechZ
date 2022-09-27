@@ -46,7 +46,7 @@
                     </dxlc:LayoutItem>
                     
                     <dxlc:LayoutItem Margin="5" Label="Policy Name">
-                        <dxe:TextEdit Text="{Binding PolicyName}" IsEnabled="False"/>
+                        <dxe:TextEdit Text="{Binding SelectPolicy.PolicyName}" IsEnabled="False"/>
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Margin="5" Label="เปิดใช้งาน">
