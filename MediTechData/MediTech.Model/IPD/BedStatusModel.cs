@@ -61,5 +61,6 @@ namespace MediTech.Model
         public bool IsExpectedDischarge { get; set; }
         public bool IsBillingProgress { get; set; }
         public bool IsFinancial { get; set; }
+        public bool IsVIP { get; set; }
     }
 }

@@ -46,6 +46,85 @@
 
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
+                <!--<Border BorderBrush="LightBlue" BorderThickness="1" CornerRadius="5" Background="#ECF2F1">
+                    <Grid Margin="3,3,3,3" Background="White" Width="150" Height="200" HorizontalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.Resources>
+                            <BooleanToVisibilityConverter x:Key="VisibilityConverter"/>
+                        </Grid.Resources>
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="12,10,12,0">
+                            <StackPanel Orientation="Horizontal" Margin="0,60,0,0">
+                                <Image x:Name="image" Width="120" Height="80">
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedLevel0.png" />
+                                            <Style.Triggers>
+                                                <DataTrigger Value="true" Binding="{Binding Isused}">
+                                                    <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedLevel1.png" />
+                                                </DataTrigger>
+                                                <DataTrigger Value="Arrived" Binding="{Binding EncounterStatus}">
+                                                    <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedArrived.png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Value="Discharged" Binding="{Binding EncounterStatus}">
+                                                    <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedDischarge.png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Value="Fit For Discharge" Binding="{Binding EncounterStatus}">
+                                                    <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedDischarge.png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Value="Discharge Advice" Binding="{Binding EncounterStatus}">
+                                                    <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedDischarge.png"/>
+                                                </DataTrigger>
+                                                
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </StackPanel>
+                            <WrapPanel Orientation="Horizontal" >
+                                <Image Margin="0.5" x:Name="imgContent" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/Alert.png" />
+                                <Image Margin="0.5" x:Name="imgContent2" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/Lab.png" />
+                                <Image Margin="0.5" x:Name="imgContent3" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/VIP.png" />
+                                <Image Margin="0.5" x:Name="imgContent4" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/x-rays.png" />
+                                <Image Margin="0.5" x:Name="imgContent5" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/Allergy.png" />
+                                <Image Margin="0.5" x:Name="imgContent6" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/HourlyCharges.png" />
+                                <Image Margin="0.5" x:Name="imgContent7" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/ExpectedDischarge.png" />
+                                <Image Margin="0.5" x:Name="imgContent8" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/dollar.png" />
+
+                            </WrapPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Column="0" VerticalAlignment="Top" Orientation="Vertical" Margin="10,10,10,10">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold" Margin="5,5,5,5" TextAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" Margin="0,0,0,4" Visibility="{Binding Isused, Converter={StaticResource VisibilityConverter}}">
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,4" >
+
+                                    <TextBlock FontWeight="SemiBold" Text="HN: "/>
+                                    <TextBlock Text="{Binding PatientName}"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" >
+
+                                    <TextBlock FontWeight="SemiBold" Text="ชื่อ: "/>
+                                    <TextBlock Text="{Binding PatientID}"/>
+
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Border>-->
 
                 <ListBox BorderThickness="0" ItemsSource="{Binding BedWardView}" Margin="50,10,50,10" HorizontalContentAlignment="Stretch" 
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled"  SelectedItem="{Binding SelectedBedWardView}" Name="ListBed">
@@ -59,15 +138,20 @@
                         <DataTemplate>
                             <Border BorderBrush="LightBlue" BorderThickness="1" CornerRadius="5" Background="#ECF2F1">
                                 <Grid Margin="3,3,3,3" Background="White" Width="150" Height="200" HorizontalAlignment="Stretch">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
                                 <Grid.Resources>
                                     <BooleanToVisibilityConverter x:Key="VisibilityConverter"/>
                                 </Grid.Resources>
                                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="12,10,12,0">
-                                        <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
-                                            <Image x:Name="image" Width="120" Height="100">
+                                        <StackPanel Orientation="Horizontal" Margin="0,60,0,0">
+                                            <Image x:Name="image" Width="120" Height="80">
                                                 <Image.Style>
                                                     <Style TargetType="{x:Type Image}">
-                                                        <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedLevel0.png" />
+                                                        <Setter Property="Source"  Value="/MediTech;component/Resources/Images/Ward/bedLevel0.png"/>
                                                         <Style.Triggers>
                                                             <DataTrigger Value="true" Binding="{Binding Isused}">
                                                                 <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedLevel1.png"/>
@@ -93,34 +177,109 @@
                                                             <DataTrigger Value="A" Binding="{Binding BedIsUse}">
                                                                 <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedLevel2.png"/>
                                                             </DataTrigger>
-                                                       
                                                         </Style.Triggers>-->
                                                     </Style>
                                                 </Image.Style>
                                             </Image>
                                         </StackPanel>
+                                        <WrapPanel Orientation="Horizontal" >
+                                            <Image Margin="0.5" Width="20" Height="20" Stretch="Fill" Source="/MediTech;component/Resources/Images/Ward/dollar.png">
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Setter Property="Visibility"  Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Value="true" Binding="{Binding IsBillingProgress}">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                                <Image.ToolTip>
+                                                    <ToolTip Content="Billing in Progress"/>
+                                                </Image.ToolTip>
+                                            </Image>
+
+                                            <Image Margin="0.5" Width="20" Height="20" Stretch="Fill" Source="/MediTech;component/Resources/Images/Ward/ExpectedDischarge.png">
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Setter Property="Visibility"  Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Value="true" Binding="{Binding IsExpectedDischarge}">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                                <Image.ToolTip>
+                                                    <ToolTip Content="Expected Discharge"/>
+                                                </Image.ToolTip>
+                                            </Image>
+
+                                            <Image Margin="0.5" Width="20" Height="20" Stretch="Fill" Source="/MediTech;component/Resources/Images/Ward/VIP.png">
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Setter Property="Visibility"  Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Value="true" Binding="{Binding IsVIP}">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                                <Image.ToolTip>
+                                                    <ToolTip Content="VIP Member"/>
+                                                </Image.ToolTip>
+                                            </Image>
+                                            
+                                            <Image Margin="0.5" Width="20" Height="20" Stretch="Fill" Source="/MediTech;component/Resources/Images/Ward/money-bag.png">
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Setter Property="Visibility"  Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Value="true" Binding="{Binding IsFinancial}">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                                <Image.ToolTip>
+                                                    <ToolTip Content="ชำระเงินสำเร็จ"/>
+                                                </Image.ToolTip>
+                                            </Image>
+
+                                            <!--<Image Margin="0.5" x:Name="imgContent" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/Alert.png" />
+                                            <Image Margin="0.5" x:Name="imgContent2" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/Lab.png" />
+                                            <Image Margin="0.5" x:Name="imgContent4" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/x-rays.png" />
+                                            <Image Margin="0.5" x:Name="imgContent5" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/Allergy.png" />
+                                            <Image Margin="0.5" x:Name="imgContent6" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/HourlyCharges.png" />-->
+
+                                        </WrapPanel>
                                     </StackPanel>
                                     <StackPanel Grid.Column="0" VerticalAlignment="Top" Orientation="Vertical" Margin="10,10,10,10">
                                     <StackPanel>
                                         <TextBlock Text="{Binding Name}" FontWeight="Bold" Margin="5,5,5,5" TextAlignment="Center" />
                                     </StackPanel>
-                                    <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" Margin="0,0,0,4" Visibility="{Binding Isused, Converter={StaticResource VisibilityConverter}}">
-                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,4" >
+                                        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" Margin="0,0,0,4" Visibility="{Binding Isused, Converter={StaticResource VisibilityConverter}}">
+                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,4" >
 
-                                            <TextBlock FontWeight="SemiBold" Text="HN: "/>
-                                            <TextBlock Text="{Binding PatientName}"/>
-                                        </StackPanel>
+                                                <TextBlock FontWeight="SemiBold" Text="HN: "/>
+                                                <TextBlock Text="{Binding PatientName}"/>
+                                            </StackPanel>
 
-                                        <StackPanel Orientation="Horizontal" >
+                                            <StackPanel Orientation="Horizontal" >
 
-                                            <TextBlock FontWeight="SemiBold" Text="ชื่อ: "/>
-                                            <TextBlock Text="{Binding PatientID}"/>
+                                                <TextBlock FontWeight="SemiBold" Text="ชื่อ: "/>
+                                                <TextBlock Text="{Binding PatientID}"/>
 
+                                            </StackPanel>
                                         </StackPanel>
                                     </StackPanel>
-                                    <!--<TextBlock Grid.Column="1" Grid.ColumnSpan="3" Text="2201254" TextAlignment="Center" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Column="1" Grid.ColumnSpan="3" Text="11111" TextAlignment="Center" VerticalAlignment="Center"/>-->
-                                </StackPanel>
+                                    
                                     <Grid.ToolTip>
                                         <ToolTip  Visibility="{Binding Isused, Converter={StaticResource VisibilityConverter}}" OverridesDefaultStyle="True" HasDropShadow="True">
                                             <ToolTip.Template>
