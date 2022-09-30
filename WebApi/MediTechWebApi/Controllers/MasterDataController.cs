@@ -2,14 +2,14 @@
 using MediTech.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Data;
-using System.Data.Entity.Migrations;
 using System.Transactions;
 using System.Web.Http;
-using System.Data.Entity;
 
 namespace MediTechWebApi.Controllers
 {
@@ -1019,6 +1019,10 @@ namespace MediTechWebApi.Controllers
         {
             itemName = !string.IsNullOrEmpty(itemName) ? SetItemNameSearch(itemName) : itemName;
             List<BillableItemModel> data = (from p in db.BillableItem
+                                            join bl in db.BillingGroup on p.BillingGroupUID equals bl.UID into billing
+                                            from b in billing.DefaultIfEmpty()
+                                            join bls in db.BillingSubGroup on p.BillingSubGroupUID equals bls.UID into billingsub
+                                            from bs in billingsub.DefaultIfEmpty()
                                             where p.StatusFlag == "A"
                                             && (string.IsNullOrEmpty(code) || p.Code.ToLower().Contains(code.ToLower()))
                                             && (string.IsNullOrEmpty(itemName) || p.ItemNameSearch.ToLower().Contains(itemName.ToLower()))
@@ -1039,9 +1043,13 @@ namespace MediTechWebApi.Controllers
                                                 BillingServiceMetaData = SqlFunction.fGetRfValDescription(p.BSMDDUID),
                                                 BillingGroupUID = p.BillingGroupUID,
                                                 BillingSubGroupUID = p.BillingSubGroupUID,
+                                                BillingGroup = b.Name,
+                                                BillingSubGroup = bs.Name,
                                                 IsShareDoctor = p.IsShareDoctor,
                                                 OrderCategoryUID = p.OrderCategeoryUID,
+                                                OrderCategory = SqlFunction.fGetRfValDescription(p.OrderCategeoryUID ?? 0),
                                                 OrderSubCategoryUID = p.OrderSubCategeoryUID,
+                                                OrderSubCategory = SqlFunction.fGetRfValDescription(p.OrderSubCategeoryUID ?? 0),
                                                 Comments = p.Comments,
                                                 ItemUID = p.ItemUID,
                                                 ActiveFrom = p.ActiveFrom,
@@ -1514,6 +1522,10 @@ namespace MediTechWebApi.Controllers
         public List<OrderSetModel> SearchOrderSet(string code, string name)
         {
             List<OrderSetModel> data = (from p in db.OrderSet
+                                        join od in db.OrderCategory on p.OrderCategoryUID equals od.UID into order
+                                        from o in order.DefaultIfEmpty()
+                                        join ods in db.OrderSubCategory on p.OrderSubCategoryUID equals ods.UID into ordersub
+                                        from os in ordersub.DefaultIfEmpty()
                                         where p.StatusFlag == "A"
                                         && (string.IsNullOrEmpty(code) || p.Code.ToLower().Contains(code.ToLower()))
                                         && (string.IsNullOrEmpty(name) || p.OrdersetNameSearch.ToLower().Contains(name.ToLower()))
@@ -1526,6 +1538,8 @@ namespace MediTechWebApi.Controllers
                                             OrdersetNameSearch = p.OrdersetNameSearch,
                                             ActiveFrom = p.ActiveFrom,
                                             ActiveTo = p.ActiveTo,
+                                            OrderSubCategory = os.Name,
+                                            OrderCategory = o.Name,
                                             CUser = p.CUser,
                                             CWhen = p.CWhen,
                                             MUser = p.MUser,

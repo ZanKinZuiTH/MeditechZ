@@ -134,7 +134,11 @@ namespace MediTech.ViewModels
             }
         }
 
-
+        private RelayCommand _ExportToXLSXCommand;
+        public RelayCommand ExportToXLSXCommand
+        {
+            get { return _ExportToXLSXCommand ?? (_ExportToXLSXCommand = new RelayCommand(ExportToXLSX)); }
+        }
 
         #endregion
 
@@ -198,6 +202,28 @@ namespace MediTech.ViewModels
 
             }
         }
+
+        private void ExportToXLSX()
+        {
+            try
+            {
+                if (OrderSets != null)
+                {
+                    string fileName = ShowSaveFileDialog("Microsoft Excel Document", "Microsoft Excel|*.xlsx");
+                    if (fileName != "")
+                    {
+                        ListOrderSet view = (ListOrderSet)this.View;
+                        view.gvOrderSet.ExportToXlsx(fileName);
+                        OpenFile(fileName);
+                    }
+                }
+            }
+            catch (Exception er)
+            {
+                ErrorDialog(er.Message);
+            }
+        }
+
         #endregion
     }
 }
