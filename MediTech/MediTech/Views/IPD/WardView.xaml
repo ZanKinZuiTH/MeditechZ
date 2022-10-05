@@ -24,13 +24,20 @@
                 </ListBox>
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup Background="White" Orientation="Vertical">
+                <dxlc:LayoutGroup Margin="10">
+                    <dxlc:LayoutItem Label="{Binding Today,StringFormat='{}{0:dd/MM/yyyy}'}" HorizontalAlignment="Right" Padding="0,0,20,0">
+                        <dx:SimpleButton Width="50" Command="{Binding RefershCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MediTech;component/Resources/Images/Action/Refersh.png" Width="15" Height="15"/>
+                            </StackPanel>
+                        </dx:SimpleButton>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem  HorizontalAlignment="Center" Margin="10,20,10,20">
-                    <TextBlock FontWeight="SemiBold" FontSize="20" Text="{Binding WardName}"/>
+                        <TextBlock FontWeight="SemiBold" FontSize="20" Text="{Binding WardName}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutGroup Margin="10,20,10,10" Orientation="Vertical" HorizontalAlignment="Right" Padding="10">
-                       
-                        
                         <dxlc:LayoutItem Label="ว่าง" HorizontalAlignment="Right">
                             <dxe:TextEdit Background="Gray" IsReadOnly="True" Width="50"/>
                         </dxlc:LayoutItem>

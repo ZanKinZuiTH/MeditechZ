@@ -33,6 +33,13 @@ namespace MediTech.ViewModels
             }
         }
 
+        private DateTime _Today;
+        public DateTime Today
+        {
+            get { return _Today; }
+            set { Set(ref _Today, value); }
+        }
+
         private String _WardName;
         public String WardName
         {
@@ -68,6 +75,12 @@ namespace MediTech.ViewModels
         #endregion
 
         #region Command
+        
+        private RelayCommand _RefershCommand;
+        public RelayCommand RefershCommand
+        {
+            get { return _RefershCommand ?? (_RefershCommand = new RelayCommand(AllBedStatus)); }
+        }
 
         private RelayCommand _EditExpDischargeCommand;
         public RelayCommand EditExpDischargeCommand
@@ -85,7 +98,8 @@ namespace MediTech.ViewModels
         public RelayCommand<string> DischargeCommand
         {
             get { return _DischargeCommand ?? (_DischargeCommand = new RelayCommand<string>(Discharge)); }
-        }
+        } 
+       
 
         private RelayCommand _TranferCommand;
         public RelayCommand TranferCommand
@@ -180,10 +194,10 @@ namespace MediTech.ViewModels
 
         public WardViewModel()
         {
+            Today = DateTime.Now;
             WardSource = DataService.Technical.GetLocationByTypeUID(3152, AppUtil.Current.OwnerOrganisationUID);
             SelectedWard = WardSource.FirstOrDefault();
             AllBedStatus();
-
         }
 
         private void PatientRecords()
