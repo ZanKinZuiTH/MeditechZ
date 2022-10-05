@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediTechWebApi", "..\WebApi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PACSWebApi", "..\WebApi\PACSWebApi\PACSWebApi.csproj", "{5C2B102C-FFF2-442B-A2AB-A291C5BB00FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediTech.DataBase", "..\MediTechData\MediTech.DataBase\MediTech.DataBase.csproj", "{1033F4F2-5443-4F48-8720-5C0A32D0FB11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{5C2B102C-FFF2-442B-A2AB-A291C5BB00FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C2B102C-FFF2-442B-A2AB-A291C5BB00FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C2B102C-FFF2-442B-A2AB-A291C5BB00FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1033F4F2-5443-4F48-8720-5C0A32D0FB11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1033F4F2-5443-4F48-8720-5C0A32D0FB11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1033F4F2-5443-4F48-8720-5C0A32D0FB11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1033F4F2-5443-4F48-8720-5C0A32D0FB11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

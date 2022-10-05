@@ -1295,13 +1295,13 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
-        [Route("pSearchPatientCheckupForAllocateBill")]
+        [Route("pSearchPatientInvoiceForAllocateBill")]
         [HttpGet]
-        public List<PatientVisitModel> pSearchPatientCheckupForAllocateBill(long? patientUID, DateTime? billFromDTTM, DateTime? billToDTTM, int? insuranceComapnyUID, int? checkupJobUID
+        public List<PatientVisitModel> pSearchPatientInvoiceForAllocateBill(long? patientUID, DateTime? billFromDTTM, DateTime? billToDTTM, int? insuranceComapnyUID, int? checkupJobUID
             , int? ownerOrganisationUID,int? userUID)
         {
             List<PatientVisitModel> data = new List<PatientVisitModel>();
-            DataTable dt = SqlDirectStore.pSearchPatientCheckupForAllocateBill(patientUID, billFromDTTM, billToDTTM, insuranceComapnyUID, checkupJobUID, ownerOrganisationUID, userUID);
+            DataTable dt = SqlDirectStore.pSearchPatientInvoiceForAllocateBill(patientUID, billFromDTTM, billToDTTM, insuranceComapnyUID, checkupJobUID, ownerOrganisationUID, userUID);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<PatientVisitModel>();

@@ -304,7 +304,7 @@ namespace MediTech.ViewModels
                 patientUID = SelectedPateintSearch.PatientUID;
             }
             var userUID = AppUtil.Current.UserID;
-            var patientVisitList = DataService.Billing.pSearchPatientCheckupForAllocateBill(patientUID, DateFrom, DateTo, insuranceCompanyUID, checkupJobUID, organisationUID, userUID);
+            var patientVisitList = DataService.Billing.pSearchPatientInvoiceForAllocateBill(patientUID, DateFrom, DateTo, insuranceCompanyUID, checkupJobUID, organisationUID, userUID);
             PatientAllocateLists = new ObservableCollection<PatientVisitModel>(patientVisitList.ToList());
         }
 
