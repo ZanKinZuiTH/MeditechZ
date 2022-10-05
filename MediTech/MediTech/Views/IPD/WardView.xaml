@@ -43,7 +43,6 @@
                         <dxlc:LayoutItem Label="Discharge" HorizontalAlignment="Right">
                             <dxe:TextEdit Background="#929BDC" IsReadOnly="True" Width="50"/>
                         </dxlc:LayoutItem>
-
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
                 <!--<Border BorderBrush="LightBlue" BorderThickness="1" CornerRadius="5" Background="#ECF2F1">
@@ -211,7 +210,7 @@
                                                     </Style>
                                                 </Image.Style>
                                                 <Image.ToolTip>
-                                                    <ToolTip Content="Expected Discharge"/>
+                                                    <ToolTip Content="ใกล้ครบกําหนด วันที่ Expected Discharge"/>
                                                 </Image.ToolTip>
                                             </Image>
 
@@ -230,7 +229,39 @@
                                                     <ToolTip Content="VIP Member"/>
                                                 </Image.ToolTip>
                                             </Image>
-                                            
+
+                                            <Image Margin="0.5" Width="20" Height="20" Stretch="Fill" Source="/MediTech;component/Resources/Images/Ward/Allergy.png">
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Setter Property="Visibility"  Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Value="true" Binding="{Binding IsAllergy}">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                                <Image.ToolTip>
+                                                    <ToolTip Content="มีการแพ้ยา"/>
+                                                </Image.ToolTip>
+                                            </Image>
+
+                                            <Image Margin="0.5" Width="20" Height="20" Stretch="Fill" Source="/MediTech;component/Resources/Images/Ward/HourlyCharges.png">
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Setter Property="Visibility"  Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Value="true" Binding="{Binding IsStandingOrder}">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                                <Image.ToolTip>
+                                                    <ToolTip Content="มีการใช้อุปกรณ์รายชั่วโมง"/>
+                                                </Image.ToolTip>
+                                            </Image>
+
                                             <Image Margin="0.5" Width="20" Height="20" Stretch="Fill" Source="/MediTech;component/Resources/Images/Ward/money-bag.png">
                                                 <Image.Style>
                                                     <Style TargetType="{x:Type Image}">
@@ -247,16 +278,37 @@
                                                 </Image.ToolTip>
                                             </Image>
 
-                                            <!--<Image Margin="0.5" x:Name="imgContent" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
-                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/Alert.png" />
-                                            <Image Margin="0.5" x:Name="imgContent2" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
-                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/Lab.png" />
-                                            <Image Margin="0.5" x:Name="imgContent4" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
-                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/x-rays.png" />
-                                            <Image Margin="0.5" x:Name="imgContent5" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
-                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/Allergy.png" />
-                                            <Image Margin="0.5" x:Name="imgContent6" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
-                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/HourlyCharges.png" />-->
+                                            <Image Margin="0.5" Width="20" Height="20" Stretch="Fill" Source="/MediTech;component/Resources/Images/Ward/lab.png">
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Setter Property="Visibility"  Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Value="true" Binding="{Binding IsLabResult}">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                                <Image.ToolTip>
+                                                    <ToolTip Content="มีผล Lab"/>
+                                                </Image.ToolTip>
+                                            </Image>
+
+                                            <Image Margin="0.5" Width="20" Height="20" Stretch="Fill" Source="/MediTech;component/Resources/Images/Ward/x-rays.png">
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Setter Property="Visibility"  Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Value="true" Binding="{Binding IsXrayResult}">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                                <Image.ToolTip>
+                                                    <ToolTip Content="มีผล X-ray"/>
+                                                </Image.ToolTip>
+                                            </Image>
 
                                         </WrapPanel>
                                     </StackPanel>
@@ -285,36 +337,36 @@
                                             <ToolTip.Template>
                                                 <ControlTemplate TargetType="ToolTip">
                                                     <Border BorderBrush="Blue" Margin="15" BorderThickness="1" Background="AliceBlue" CornerRadius="5">
-                                                        <StackPanel Orientation="Vertical" Width="250" Margin="5">
+                                                        <StackPanel Orientation="Vertical" Width="300" Margin="5">
                                                             <StackPanel Orientation="Horizontal" Margin="10">
-                                                                <TextBlock Width="60" FontWeight="Bold" Text="Name: "/>
+                                                                <TextBlock FontWeight="Bold" Text="Name : "/>
                                                                 <TextBlock/>
                                                                 <TextBlock Text="{Binding PatientName}"/>
                                                             </StackPanel>
                                                             <StackPanel Orientation="Horizontal" Margin="10">
-                                                                <TextBlock Width="60"  FontWeight="Bold" Text="HN: "/>
+                                                                <TextBlock FontWeight="Bold" Text="HN : "/>
                                                                 <TextBlock/>
                                                                 <TextBlock Text="{Binding PatientID}"/>
                                                             </StackPanel>
                                                             <StackPanel Orientation="Horizontal" Margin="10">
-                                                                <TextBlock Width="60"  FontWeight="Bold" Text="อายุ: "/>
+                                                                <TextBlock FontWeight="Bold" Text="อายุ : "/>
                                                                 <TextBlock/>
                                                                 <TextBlock Text="{Binding AgeString}"/>
                                                             </StackPanel>
                                                             <StackPanel Orientation="Horizontal" Margin="10">
-                                                                <TextBlock Width="60"  FontWeight="Bold" Text="เพศ: "/>
+                                                                <TextBlock FontWeight="Bold" Text="เพศ : "/>
                                                                 <TextBlock/>
                                                                 <TextBlock Text="{Binding Gender}"/>
                                                             </StackPanel>
                                                             <StackPanel Orientation="Horizontal" Margin="10">
-                                                                <TextBlock Width="60"  FontWeight="Bold" Text="Admission Date: "/>
+                                                                <TextBlock FontWeight="Bold" Text="Admit Date : "/>
                                                                 <TextBlock/>
-                                                                <TextBlock Text="{Binding AdmissionDate}"/>
+                                                                <TextBlock Text="{Binding AdmissionDate,StringFormat=dd/MM/yyy HH:mm}"/>
                                                             </StackPanel>
                                                             <StackPanel Orientation="Horizontal" Margin="10">
-                                                                <TextBlock Width="60"  FontWeight="Bold" Text="ExpDischarge Date: "/>
+                                                                <TextBlock FontWeight="Bold" Text="ExpDischarge Date : "/>
                                                                 <TextBlock/>
-                                                                <TextBlock Text="{Binding ExpDischargeDate}"/>
+                                                                <TextBlock Text="{Binding ExpDischargeDate,StringFormat=dd/MM/yyy HH:mm}"/>
                                                             </StackPanel>
                                                           </StackPanel>
                                                     </Border>

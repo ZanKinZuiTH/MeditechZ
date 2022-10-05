@@ -2480,6 +2480,17 @@ namespace MediTechWebApi.Controllers
             return bed;
         }
 
+        [Route("GetWardView")]
+        [HttpGet]
+        public List<BedStatusModel> GetWardView(int parentLocationUID)
+        {
+            DataTable dataTable = SqlDirectStore.pGetWardView(parentLocationUID);
+
+            List<BedStatusModel> data = dataTable.ToList<BedStatusModel>();
+
+            return data;
+        }
+
 
         [Route("GetBedWardView")]
         [HttpGet]

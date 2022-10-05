@@ -27,7 +27,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectedWard, value);
                 if (SelectedWard != null)
                 {
-                    BedWardView = DataService.PatientIdentity.GetBedWardView(SelectedWard.LocationUID);
+                    BedWardView = DataService.PatientIdentity.GetWardView(SelectedWard.LocationUID);
                     WardName = SelectedWard.Name;
                 }
             }
@@ -200,7 +200,7 @@ namespace MediTech.ViewModels
 
         private void AllBedStatus()
         {
-            BedWardView = DataService.PatientIdentity.GetBedWardView(SelectedWard.LocationUID);
+            BedWardView = DataService.PatientIdentity.GetWardView(SelectedWard.LocationUID);
         }
 
         private void VitalSign()
@@ -322,6 +322,11 @@ namespace MediTech.ViewModels
 
                     if (type == "MedicalDischarge")
                     {
+                        if(SelectedBedWardView.IsStandingOrder == true)
+                        {
+                            WarningDialog("มีการใช้ยา/อุปกรณ์รายชั่วโมงอยู่ \nกรุณาหยุดยา/อุปกรณ์รายชั่วโมง เพื่อทำรายการต่อไป");
+                            return;
+                        }
                         model = DataService.PatientIdentity.GetDischargeEventByAdmissionUID(SelectedBedWardView.AdmissionEventUID ?? 0); ;
                         
                         IPDMedicalDischarge pageview = new IPDMedicalDischarge();
@@ -335,6 +340,11 @@ namespace MediTech.ViewModels
 
                     if (type == "Discharge")
                     {
+                        if (SelectedBedWardView.IsBillingProgress == true)
+                        {
+                            WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
+                            return;
+                        }
                         model = DataService.PatientIdentity.GetDischargeEventByAdmissionUID(SelectedBedWardView.AdmissionEventUID ?? 0); ;
 
                         IPDMedicalDischarge pageview = new IPDMedicalDischarge();
