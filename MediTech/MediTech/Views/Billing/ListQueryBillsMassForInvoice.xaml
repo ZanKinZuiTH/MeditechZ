@@ -143,7 +143,7 @@
             <dxg:GridColumn Header="Status" FieldName="VisitStatus"  ReadOnly="True"/>
             <dxg:GridColumn Header="วันที่ลงทะเบียน" FieldName="StartDttm"  ReadOnly="True"/>
             <dxg:GridColumn Header="แผนก" FieldName="LocationName"  ReadOnly="True"/>
-            <dxg:GridColumn Header="DischargeDttm" FieldName="DischargeDttm"  ReadOnly="True">
+            <dxg:GridColumn Header="Discharge Dttm" FieldName="DischargeDttm"  ReadOnly="True">
                 <dxg:GridColumn.EditSettings>
                     <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy HH:mm"  MaskType="DateTime"/>
                 </dxg:GridColumn.EditSettings>

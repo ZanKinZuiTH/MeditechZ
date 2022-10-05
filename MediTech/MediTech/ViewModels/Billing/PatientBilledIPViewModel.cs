@@ -297,8 +297,10 @@ namespace MediTech.ViewModels
                 }
                 try
                 {
-                    CancelPopup cancelPopup = new CancelPopup();
-                    CancelPopupViewModel result = (CancelPopupViewModel)LaunchViewDialog(cancelPopup, "CANBILLOP", true);
+                    var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPatientBill.PatientVisitUID);
+                    CancelBillPopup cancelPopup = new CancelBillPopup();
+                    (cancelPopup.DataContext as CancelBillPopupViewModel).AssignPatientVisit(patientVisit);
+                    CancelBillPopupViewModel result = (CancelBillPopupViewModel)LaunchViewDialog(cancelPopup, "CANBILLIP", true);
                     if (result != null && result.ResultDialog == ActionDialog.Save)
                     {
                         if (String.IsNullOrEmpty(result.Comments))
