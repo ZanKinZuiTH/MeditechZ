@@ -3,10 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
              mc:Ignorable="d"
              DataContext="{Binding Path=ListOrderSetViewModel,Source={StaticResource Locator}}"
              d:DesignHeight="600" d:DesignWidth="900">
     <Grid>
+        <dxr:RibbonControl RibbonStyle="Office2010" x:Name="ribbon"
+                               IsMinimized="True" MinimizationButtonVisibility="Collapsed"                              
+                               AllowCustomization="False">
+            <dxr:RibbonDefaultPageCategory >
+                <dxr:RibbonPage Caption="มุมมอง" MergeOrder="99">
+                    <dxr:RibbonPageGroup Caption="Export" >
+                        <dxb:BarButtonItem Content="Export to XLSX" Command="{Binding ExportToXLSXCommand}" LargeGlyph="{dx:DXImage SvgImages/Export/ExportToXLSX.svg}"/>
+                    </dxr:RibbonPageGroup>
+                </dxr:RibbonPage>
+            </dxr:RibbonDefaultPageCategory>
+        </dxr:RibbonControl>
         <dxlc:LayoutControl Orientation="Vertical">
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutItem Label="รหัส">
@@ -28,6 +40,8 @@
                     <dxg:GridColumn Header="รหัส" FieldName="Code"/>
                     <dxg:GridColumn Header="ชื่อ" FieldName="Name"/>
                     <dxg:GridColumn Header="รายละเอียด" FieldName="Description"/>
+                    <dxg:GridColumn Header="OrderCategory" FieldName="OrderCategory" Width="120"/>
+                    <dxg:GridColumn Header="OrderSubCategory" FieldName="OrderSubCategory" Width="120"/>
                     <dxg:GridColumn Header="เปิดใช้งาน" FieldName="ActiveFrom"/>
                     <dxg:GridColumn Header="ปิดใช้งาน" FieldName="ActiveTo"/>
                 </dxg:GridControl.Columns>

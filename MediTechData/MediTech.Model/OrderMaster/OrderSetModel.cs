@@ -26,6 +26,8 @@ namespace MediTech.Model
         public List<OrderSetBillableItemModel> OrderSetBillableItems { get; set; }
         public int? OrderCategoryUID { get; set; }
         public int? OrderSubCategoryUID { get; set; }
+        public string OrderCategory { get; set; }
+        public string OrderSubCategory { get; set; }
         public int? ContactAgreementAccountItemUID { get; set; }
     }
 }

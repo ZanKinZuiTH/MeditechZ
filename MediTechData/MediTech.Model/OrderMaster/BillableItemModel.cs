@@ -25,6 +25,8 @@ namespace MediTech.Model
         public string BillingServiceMetaData { get; set; }
         public int? BillingGroupUID { get; set; }
         public int? BillingSubGroupUID { get; set; }
+        public string BillingGroup { get; set; }
+        public string BillingSubGroup { get; set; }
         public System.Nullable<DateTime> ActiveFrom { get; set; }
         public System.Nullable<DateTime> ActiveTo { get; set; }
 
@@ -35,7 +37,9 @@ namespace MediTech.Model
         public string StatusFlag { get; set; }
         public List<BillableItemDetailModel> BillableItemDetails { get; set; }
         public int? OrderCategoryUID { get; set; }
+        public string OrderCategory { get; set; }
         public int? OrderSubCategoryUID { get; set; }
+        public string OrderSubCategory { get; set; }
         public int? ContactAgreementAccountItemUID { get; set; }
     }
 }
