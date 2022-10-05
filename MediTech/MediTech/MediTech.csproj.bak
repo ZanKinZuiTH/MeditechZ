@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MediTech</RootNamespace>
     <AssemblyName>MediTech</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -69,47 +69,47 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Charts.v20.2.Core, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Data.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.DataAccess.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Images.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.Charts.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Images.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Mvvm.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.Mvvm.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Office.v20.2.Core, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Pdf.v20.2.Core, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.PivotGrid.v20.2.Core, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Printing.v20.2.Core, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.RichEdit.v20.2.Core, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.RichEdit.v20.2.Export, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Sparkline.v20.2.Core, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpf.Accordion.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpf.Charts.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpf.Controls.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpf.CodeView.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Data.Desktop.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Xpf.Core.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Xpf.Docking.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Xpf.Grid.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpf.Grid.v20.2.Core, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpf.Layout.v20.2.Core, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Xpf.LayoutControl.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Xpf.NavBar.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Xpf.PivotGrid.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpf.Printing.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpf.Ribbon.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Xpf.Office.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpf.RichEdit.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpf.Scheduler.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpo.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraCharts.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraGauges.v20.2.Core, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraPrinting.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraReports.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraScheduler.v20.2.Core.Desktop, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraScheduler.v20.2.Core, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Office.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v20.2.Export, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Accordion.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Charts.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Controls.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.CodeView.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.Desktop.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Core.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Docking.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Grid.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Grid.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Layout.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.LayoutControl.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.NavBar.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.PivotGrid.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Printing.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Ribbon.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Office.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.RichEdit.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Scheduler.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v20.2.Core.Desktop, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Dicom.Core, Version=4.0.4.0, Culture=neutral, PublicKeyToken=3a13f649e28eb09a, processorArchitecture=MSIL">
       <HintPath>..\packages\fo-dicom.Desktop.4.0.5\lib\net45\Dicom.Core.dll</HintPath>
     </Reference>
@@ -178,14 +178,19 @@
     </ApplicationDefinition>
     <Compile Include="AppUtil.cs" />
     <Compile Include="Converter\BitmapToBitmapImage.cs" />
+    <Compile Include="Converter\PercentageConverter.cs" />
+    <Compile Include="Converter\IndexConverter.cs" />
     <Compile Include="Converter\DateConverter.cs" />
     <Compile Include="Converter\DiscRecorderValueConverter.cs" />
     <Compile Include="Converter\ImageConverter.cs" />
     <Compile Include="Converter\ImageModuleConverter.cs" />
     <Compile Include="Converter\ImageMenuConverter.cs" />
+    <Compile Include="Converter\InverseBooleanConverter.cs" />
     <Compile Include="Converter\IsNullOrEmptyConverter.cs" />
+    <Compile Include="Converter\NumericN2Formatter.cs" />
     <Compile Include="Converter\VisibilityConverter.cs" />
     <Compile Include="CustomControl\AutoComplete\AutoCompleteTextBox.cs" />
+    <Compile Include="CustomControl\AutoComplete\ProblemSearchPopUp.cs" />
     <Compile Include="CustomControl\AutoComplete\ResultItemSearchPopUp.cs" />
     <Compile Include="CustomControl\AutoComplete\SpecimenSearchPopUp.cs" />
     <Compile Include="CustomControl\AutoComplete\OrderItemSearchPopUp.cs" />
@@ -202,6 +207,7 @@
     <Compile Include="CustomControl\Banner\PatientRequestBanner.xaml.cs">
       <DependentUpon>PatientRequestBanner.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControl\ImageButton.cs" />
     <Compile Include="Helpers\AutoClosingMessageBox.cs" />
     <Compile Include="Helpers\BindableSelectedItemBehavior.cs" />
     <Compile Include="Helpers\BurnData\Interop\BurnData.cs" />
@@ -210,6 +216,7 @@
     <Compile Include="Helpers\BurnData\MediaItem\FileItem.cs" />
     <Compile Include="Helpers\BurnData\MediaItem\IMediaItem.cs" />
     <Compile Include="Helpers\BurnData\MediaItem\Win32.cs" />
+    <Compile Include="Helpers\ConstantData.cs" />
     <Compile Include="Helpers\DeferredColumnFitBehavior.cs" />
     <Compile Include="Helpers\HtmlRichTextBoxHelper.cs" />
     <Compile Include="CustomControl\MyLookUpEdit\MyLookUpEdit.cs" />
@@ -233,15 +240,23 @@
     <Compile Include="Helpers\GridControlFitBehavior.cs" />
     <Compile Include="Helpers\LimitedListCollectionView.cs" />
     <Compile Include="Helpers\MemoryManagement.cs" />
+    <Compile Include="Interface\IPatientVisitViewModel.cs" />
     <Compile Include="LoginScreen.xaml.cs">
       <DependentUpon>LoginScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\UnbilledPatientsResult.cs" />
     <Compile Include="Models\ColumnSource.cs" />
     <Compile Include="Models\EnumerationTypes.cs" />
     <Compile Include="Models\LaunchPageMassage.cs" />
     <Compile Include="Models\ItemMasterList.cs" />
     <Compile Include="Models\PatientRegistrationBulkData.cs" />
     <Compile Include="Models\StoreItemList.cs" />
+    <Compile Include="Reports\Operating\Cashier\GroupReceipt.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Cashier\GroupReceipt.Designer.cs">
+      <DependentUpon>GroupReceipt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Cashier\PatientBill\PatientBill2.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -265,6 +280,210 @@
     </Compile>
     <Compile Include="Reports\Operating\Cashier\PatientBill\PatientBillDetail.Designer.cs">
       <DependentUpon>PatientBillDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage1.Designer.cs">
+      <DependentUpon>CheckupPage1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage10.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage10.Designer.cs">
+      <DependentUpon>CheckupPage10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage11.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage11.Designer.cs">
+      <DependentUpon>CheckupPage11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage12.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage12.Designer.cs">
+      <DependentUpon>CheckupPage12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage2.Designer.cs">
+      <DependentUpon>CheckupPage2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage3.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage3.Designer.cs">
+      <DependentUpon>CheckupPage3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage4.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage4.Designer.cs">
+      <DependentUpon>CheckupPage4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage5.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage5.Designer.cs">
+      <DependentUpon>CheckupPage5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage6.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage6.Designer.cs">
+      <DependentUpon>CheckupPage6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage7.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage7.Designer.cs">
+      <DependentUpon>CheckupPage7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage8.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage8.Designer.cs">
+      <DependentUpon>CheckupPage8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage9.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage9.Designer.cs">
+      <DependentUpon>CheckupPage9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabA.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabA.Designer.cs">
+      <DependentUpon>LabA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabB.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabB.Designer.cs">
+      <DependentUpon>LabB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabC.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabC.Designer.cs">
+      <DependentUpon>LabC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabD.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabD.Designer.cs">
+      <DependentUpon>LabD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabE.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabE.Designer.cs">
+      <DependentUpon>LabE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabF.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabF.Designer.cs">
+      <DependentUpon>LabF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabG.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabG.Designer.cs">
+      <DependentUpon>LabG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabH.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabH.Designer.cs">
+      <DependentUpon>LabH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge1.Designer.cs">
+      <DependentUpon>CheckupBookLarge1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge2.Designer.cs">
+      <DependentUpon>CheckupBookLarge2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge3.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge3.Designer.cs">
+      <DependentUpon>CheckupBookLarge3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge4.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge4.Designer.cs">
+      <DependentUpon>CheckupBookLarge4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge5.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge5.Designer.cs">
+      <DependentUpon>CheckupBookLarge5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge6.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge6.Designer.cs">
+      <DependentUpon>CheckupBookLarge6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition1.Designer.cs">
+      <DependentUpon>LabDefinition1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition2.Designer.cs">
+      <DependentUpon>LabDefinition2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition3.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition3.Designer.cs">
+      <DependentUpon>LabDefinition3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition4.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition4.Designer.cs">
+      <DependentUpon>LabDefinition4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupCSR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupCSR.Designer.cs">
+      <DependentUpon>CheckupCSR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\Papsmear.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\Papsmear.Designer.cs">
+      <DependentUpon>Papsmear.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\RiskMobileCheckup.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\RiskMobileCheckup.Designer.cs">
+      <DependentUpon>RiskMobileCheckup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\RiskMobileCheckup2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\RiskMobileCheckup2.Designer.cs">
+      <DependentUpon>RiskMobileCheckup2.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Operating\Inventory\GoodReceiveReport.cs">
       <SubType>Component</SubType>
@@ -398,6 +617,12 @@
     <Compile Include="Reports\Operating\Checkup\CheckupBook\CheckupPage8.Designer.cs">
       <DependentUpon>CheckupPage8.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\Alien.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\Alien.Designer.cs">
+      <DependentUpon>Alien.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate1 .cs">
       <SubType>Component</SubType>
     </Compile>
@@ -416,6 +641,12 @@
     <Compile Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertification.Designer.cs">
       <DependentUpon>CovidRapidTestCertification.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertification2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertification2.Designer.cs">
+      <DependentUpon>CovidRapidTestCertification2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificate2Parts.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -433,6 +664,18 @@
     </Compile>
     <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificateEng2Parts.Designer.cs">
       <DependentUpon>MedicalCertificateEng2Parts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCouncil10.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCouncil10.Designer.cs">
+      <DependentUpon>MedicalCouncil10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalFitness.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalFitness.Designer.cs">
+      <DependentUpon>MedicalFitness.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Operating\Patient\MedicalCertification\RadilogyCertificate.cs">
       <SubType>Component</SubType>
@@ -512,6 +755,12 @@
     <Compile Include="Reports\Operating\Patient\PatientLargSticker.Designer.cs">
       <DependentUpon>PatientLargSticker.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Operating\Patient\PatientPrescription.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\PatientPrescription.Designer.cs">
+      <DependentUpon>PatientPrescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Patient\PatientSticker.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -554,17 +803,41 @@
     <Compile Include="Reports\Operating\Checkup\RiskBook\RiskBook4.Designer.cs">
       <DependentUpon>RiskBook4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Operating\Patient\PatientVisitSlip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\PatientVisitSlip.Designer.cs">
+      <DependentUpon>PatientVisitSlip.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Patient\RehabPhysical.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Operating\Patient\RehabPhysical.Designer.cs">
       <DependentUpon>RehabPhysical.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Operating\Pharmacy\DiagnosisDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Pharmacy\DiagnosisDetail.Designer.cs">
+      <DependentUpon>DiagnosisDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Pharmacy\DrugSticker.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Operating\Pharmacy\DrugSticker.Designer.cs">
       <DependentUpon>DrugSticker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Pharmacy\OPPrescription.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Pharmacy\OPPrescription.Designer.cs">
+      <DependentUpon>OPPrescription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Pharmacy\OPPrescriptionDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Pharmacy\OPPrescriptionDetail.Designer.cs">
+      <DependentUpon>OPPrescriptionDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Operating\Radiology\ImagingReport.cs">
       <SubType>Component</SubType>
@@ -584,6 +857,12 @@
     <Compile Include="Reports\Operating\Radiology\ImagingReportV2.Designer.cs">
       <DependentUpon>ImagingReportV2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Cashier\DataStockToEcount.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\DataStockToEcount.Designer.cs">
+      <DependentUpon>DataStockToEcount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Cashier\DoctorFeeReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -595,6 +874,30 @@
     </Compile>
     <Compile Include="Reports\Statistic\Cashier\DrugStoreNetProfit.Designer.cs">
       <DependentUpon>DrugStoreNetProfit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\RevenuePerDay\PayorSummeryCount.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\RevenuePerDay\PayorSummeryCount.Designer.cs">
+      <DependentUpon>PayorSummeryCount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\RevenuePerDay\RevenuePerDayNewPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\RevenuePerDay\RevenuePerDayNewPage.Designer.cs">
+      <DependentUpon>RevenuePerDayNewPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\RevenuePerDay\RevenuePerDay.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\RevenuePerDay\RevenuePerDay.Designer.cs">
+      <DependentUpon>RevenuePerDay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\StockToEcount.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\StockToEcount.Designer.cs">
+      <DependentUpon>StockToEcount.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Cashier\UsedReport.cs">
       <SubType>Component</SubType>
@@ -625,6 +928,12 @@
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGrouopAudiogram.Designer.cs">
       <DependentUpon>CheckupGrouopAudiogram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroup25Hexan.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroup25Hexan.designer.cs">
+      <DependentUpon>CheckupGroup25Hexan.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupAcetone.cs">
       <SubType>Component</SubType>
@@ -668,6 +977,12 @@
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupBenzene.Designer.cs">
       <DependentUpon>CheckupGroupBenzene.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupBenzeneMuconicUrine.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupBenzeneMuconicUrine.Designer.cs">
+      <DependentUpon>CheckupGroupBenzeneMuconicUrine.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupBloodGroup.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -703,6 +1018,12 @@
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupCA19.Designer.cs">
       <DependentUpon>CheckupGroupCA19.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupCadmiumUrine.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupCadmiumUrine.Designer.cs">
+      <DependentUpon>CheckupGroupCadmiumUrine.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupCalciumBlood.cs">
       <SubType>Component</SubType>
@@ -746,6 +1067,12 @@
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupChest.Designer.cs">
       <DependentUpon>CheckupGroupChest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupCholinesteraseBlood.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupCholinesteraseBlood.Designer.cs">
+      <DependentUpon>CheckupGroupCholinesteraseBlood.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupChromiumUrine.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -764,11 +1091,35 @@
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupEKG.Designer.cs">
       <DependentUpon>CheckupGroupEKG.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupEthylBenzene.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupEthylBenzene.Designer.cs">
+      <DependentUpon>CheckupGroupEthylBenzene.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupEthylBenzeneUrine.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupEthylBenzeneUrine.Designer.cs">
+      <DependentUpon>CheckupGroupEthylBenzeneUrine.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupFBS.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupFBS.Designer.cs">
       <DependentUpon>CheckupGroupFBS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupFluorineUrine.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupFluorineUrine.Designer.cs">
+      <DependentUpon>CheckupGroupFluorineUrine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupFormadehyde.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupFormadehyde.Designer.cs">
+      <DependentUpon>CheckupGroupFormadehyde.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupHbA.cs">
       <SubType>Component</SubType>
@@ -788,6 +1139,18 @@
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupHexane.Designer.cs">
       <DependentUpon>CheckupGroupHexane.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupIron.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupIron.Designer.cs">
+      <DependentUpon>CheckupGroupIron.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupIsopropyl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupIsopropyl.Designer.cs">
+      <DependentUpon>CheckupGroupIsopropyl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupLeadBlood.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -806,11 +1169,23 @@
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupLiver.Designer.cs">
       <DependentUpon>CheckupGroupLiver.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupManganese.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupManganese.Designer.cs">
+      <DependentUpon>CheckupGroupManganese.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupMEK.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupMEK.Designer.cs">
       <DependentUpon>CheckupGroupMEK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupMercuryUrine.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupMercuryUrine.Designer.cs">
+      <DependentUpon>CheckupGroupMercuryUrine.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupMethanol.cs">
       <SubType>Component</SubType>
@@ -823,6 +1198,24 @@
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupMethyrene.Designer.cs">
       <DependentUpon>CheckupGroupMethyrene.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupMethyreneUrine.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupMethyreneUrine.Designer.cs">
+      <DependentUpon>CheckupGroupMethyreneUrine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupMIBK.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupMIBK.Designer.cs">
+      <DependentUpon>CheckupGroupMIBK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupNickinBlood.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupNickinBlood.Designer.cs">
+      <DependentUpon>CheckupGroupNickinBlood.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupOccVision.cs">
       <SubType>Component</SubType>
@@ -902,6 +1295,12 @@
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupXylene.Designer.cs">
       <DependentUpon>CheckupGroupXylene.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupZinc.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupZinc.Designer.cs">
+      <DependentUpon>CheckupGroupZinc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupOccMedCheckList.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -932,11 +1331,29 @@
     <Compile Include="Reports\Statistic\Checkup\CheckupSummary.Designer.cs">
       <DependentUpon>CheckupSummary.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupThinnerUrine.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupThinnerUrine.Designer.cs">
+      <DependentUpon>CheckupThinnerUrine.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheuckupGroupBackStrength.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheuckupGroupBackStrength.Designer.cs">
       <DependentUpon>CheuckupGroupBackStrength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Ecount\EcountGetPayorDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Ecount\EcountGetPayorDetail.Designer.cs">
+      <DependentUpon>EcountGetPayorDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Ecount\EcountSummaryGroupReceipt.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Ecount\EcountSummaryGroupReceipt.Designer.cs">
+      <DependentUpon>EcountSummaryGroupReceipt.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Inventory\StockAdjustmentIn.cs">
       <SubType>Component</SubType>
@@ -1088,12 +1505,36 @@
     <Compile Include="SplashScreen\SplashScreen.xaml.cs">
       <DependentUpon>SplashScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\BillingConfiguration\InsuranceCompanyViewModel.cs" />
+    <Compile Include="ViewModels\BillingConfiguration\ListPackageViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ListPayorDetailViewModel.cs" />
+    <Compile Include="ViewModels\BillingConfiguration\ListPolicyMasterViewModel.cs" />
+    <Compile Include="ViewModels\BillingConfiguration\ManageInsuranceCompanyViewModel.cs" />
+    <Compile Include="ViewModels\BillingConfiguration\ManageInsurancePlanViewModel.cs" />
+    <Compile Include="ViewModels\BillingConfiguration\ManagePackageViewModel.cs" />
+    <Compile Include="ViewModels\BillingConfiguration\ManagePayorAgreementViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManagePayorDetailViewModel.cs" />
+    <Compile Include="ViewModels\BillingConfiguration\ManagePolicyMasterViewModel.cs" />
+    <Compile Include="ViewModels\BillingConfiguration\SearchItemViewModel.cs" />
+    <Compile Include="ViewModels\Billing\AllocateBillPopupViewModel.cs" />
+    <Compile Include="ViewModels\Billing\BillingPaymentModePopUpViewModel.cs" />
+    <Compile Include="ViewModels\Billing\BillSettlementIPViewModel.cs" />
+    <Compile Include="ViewModels\Billing\ListQueryBillsMobileViewModel.cs" />
+    <Compile Include="ViewModels\Billing\BillSettlementOPViewModel.cs" />
+    <Compile Include="ViewModels\Billing\CancelBillPopupViewModel.cs" />
+    <Compile Include="ViewModels\Billing\ListBillPaymentViewModel.cs" />
+    <Compile Include="ViewModels\Billing\ListPaymentDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Billing\ListQueryBillsIPViewModel.cs" />
+    <Compile Include="ViewModels\Billing\ListQueryBillsOPViewModel.cs" />
+    <Compile Include="ViewModels\Billing\GenerateBillViewModel.cs" />
+    <Compile Include="ViewModels\Billing\MergeBillRecipetPopupViewModel.cs" />
+    <Compile Include="ViewModels\Billing\PatientBilledIPViewModel.cs" />
     <Compile Include="ViewModels\Checkup\CheckupListReportViewModel.cs" />
     <Compile Include="ViewModels\Checkup\CheckupSummaryViewmodel.cs" />
-    <Compile Include="ViewModels\Checkup\EnterPhysicalFitnessTestViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\EnterFitnessTestResultViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\EnterMuscleTestViewModel.cs" />
     <Compile Include="ViewModels\Checkup\ImportOccMedResultViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\ImportOldResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\VerifyChekupResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\TranslateCheckupResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\CheckupRuleViewModel.cs" />
@@ -1108,6 +1549,7 @@
     <Compile Include="ViewModels\Checkup\EnterPhysicalExamViewModel.cs" />
     <Compile Include="ViewModels\Documents\CashierReportViewModel.cs" />
     <Compile Include="ViewModels\Documents\CheckupJobSummeryReportViewModel.cs" />
+    <Compile Include="ViewModels\Documents\EcountReportViewModel.cs" />
     <Compile Include="ViewModels\Documents\PatientSummeryReportViewModel.cs" />
     <Compile Include="ViewModels\Documents\RadiologyReportViewModel.cs" />
     <Compile Include="ViewModels\Documents\ReportParameter7ViewModel.cs" />
@@ -1115,7 +1557,14 @@
     <Compile Include="ViewModels\Documents\ReportParameter4ViewModel.cs" />
     <Compile Include="ViewModels\Documents\ReportParameter3ViewModel.cs" />
     <Compile Include="ViewModels\Documents\ReportParameter2ViewModel.cs" />
+    <Compile Include="ViewModels\Documents\ReportParameter8ViewModel.cs" />
     <Compile Include="ViewModels\Documents\ReportViewModelBase.cs" />
+    <Compile Include="ViewModels\Ecount\EcountItemIssueViewModel.cs" />
+    <Compile Include="ViewModels\Ecount\EcountTranferViewModel.cs" />
+    <Compile Include="ViewModels\Emergency\AECheckoutViewModel.cs" />
+    <Compile Include="ViewModels\Emergency\EmergencyBedStatusViewModel.cs" />
+    <Compile Include="ViewModels\Emergency\EmergencyListViewModel.cs" />
+    <Compile Include="ViewModels\Emergency\EmergencyRegisterViewModel.cs" />
     <Compile Include="ViewModels\EMRView\CCHPIViewModel.cs" />
     <Compile Include="ViewModels\EMRView\CustomTemplateViewModel.cs" />
     <Compile Include="ViewModels\EMRView\EMRViewViewModel.cs" />
@@ -1126,11 +1575,32 @@
     <Compile Include="ViewModels\Documents\InventoryReportViewModel.cs" />
     <Compile Include="ViewModels\EMRView\VitalSignsChartViewModel.cs" />
     <Compile Include="ViewModels\EMRView\WellnessDataViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\CancelDispenseViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\CreateDispenseReturnViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\DispenseReturnsViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\IPFillsDetailViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\IPFillsViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\NewIPFillsViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\PrintDrugStickerViewModel.cs" />
     <Compile Include="ViewModels\Inventory\ConsumptionStockViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\DispenseDrugViewModel.cs" />
     <Compile Include="ViewModels\Inventory\DisposeStockReasonViewModel.cs" />
     <Compile Include="ViewModels\Inventory\DisposeStockViewModel.cs" />
     <Compile Include="ViewModels\Inventory\ListItemTransferViewModel.cs" />
     <Compile Include="ViewModels\Inventory\ManageItemTransferViewModel.cs" />
+    <Compile Include="ViewModels\IPD\AdmissionDetailViewModel.cs" />
+    <Compile Include="ViewModels\IPD\AdmissionRequestListViewModel.cs" />
+    <Compile Include="ViewModels\IPD\AdmissionRequestViewModel.cs" />
+    <Compile Include="ViewModels\IPD\BedBookingViewModel.cs" />
+    <Compile Include="ViewModels\IPD\BedChangedStatusViewModel.cs" />
+    <Compile Include="ViewModels\IPD\CancelDischargeViewModel.cs" />
+    <Compile Include="ViewModels\IPD\EditExpDischargeDateViewModel.cs" />
+    <Compile Include="ViewModels\IPD\IPDConsultViewModel.cs" />
+    <Compile Include="ViewModels\IPD\IPDMedicalDischargeViewModel.cs" />
+    <Compile Include="ViewModels\IPD\IPDSearchViewModel.cs" />
+    <Compile Include="ViewModels\IPD\TranferBedListViewModel.cs" />
+    <Compile Include="ViewModels\IPD\TranferBedViewModel.cs" />
+    <Compile Include="ViewModels\IPD\WardViewModel.cs" />
     <Compile Include="ViewModels\LIS\ImportLabResultViewModel.cs" />
     <Compile Include="ViewModels\LIS\SpecimenAcceptViewModel.cs" />
     <Compile Include="ViewModels\LIS\EnterResultsLabViewModel.cs" />
@@ -1143,7 +1613,14 @@
     <Compile Include="ViewModels\LIS_RIS Setting\MappingTranslateXrayViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ListOrderSetViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManageOrderSetViewModel.cs" />
+    <Compile Include="ViewModels\MRD\BulkAlertDialogViewModel.cs" />
+    <Compile Include="ViewModels\Ecount\EcountImportFileViewModel.cs" />
     <Compile Include="ViewModels\MRD\LabResultMassViewModel.cs" />
+    <Compile Include="ViewModels\OrderProcessing\CloseOrderPopUpViewModel.cs" />
+    <Compile Include="ViewModels\OrderProcessing\OrderGroupReceiptViewModel.cs" />
+    <Compile Include="ViewModels\OrderProcessing\OrderOtherTypeViewModel.cs" />
+    <Compile Include="ViewModels\Patient\ChangeLocationViewModel.cs" />
+    <Compile Include="ViewModels\Patient\ConsultRequestViewModel.cs" />
     <Compile Include="ViewModels\Patient\ListPatMergeViewModel.cs" />
     <Compile Include="ViewModels\MRD\PatientVisitMassViewModel.cs" />
     <Compile Include="ViewModels\OrderProcessing\CancelOrderViewModel.cs" />
@@ -1168,8 +1645,16 @@
     <Compile Include="ViewModels\ClinicalData\ManageBilledItemSaleViewModel.cs" />
     <Compile Include="ViewModels\Patient\ManageEncounterMergeViewModel.cs" />
     <Compile Include="ViewModels\Patient\ManagePatientMergeViewModel.cs" />
+    <Compile Include="ViewModels\Patient\ModifyVisitPayorViewModel.cs" />
     <Compile Include="ViewModels\Patient\ModifyVisitViewModel.cs" />
+    <Compile Include="ViewModels\Patient\PatientAlertViewModel.cs" />
+    <Compile Include="ViewModels\Patient\PatientArrivedViewModel.cs" />
+    <Compile Include="ViewModels\Patient\PatientTrackingViewModel.cs" />
     <Compile Include="ViewModels\Patient\ScannedDocumentViewModel.cs" />
+    <Compile Include="ViewModels\Patient\SendConsultViewModel.cs" />
+    <Compile Include="ViewModels\Purchase\ListGroupReceiptViewModel.cs" />
+    <Compile Include="ViewModels\Purchase\ManageReceiptViewModel.cs" />
+    <Compile Include="ViewModels\Purchase\SearchPatientBillViewModel.cs" />
     <Compile Include="ViewModels\RIS\AssignForRDUViewModel.cs" />
     <Compile Include="ViewModels\RIS\BurnImageViewModel.cs" />
     <Compile Include="ViewModels\RIS\EditStudyViewModel.cs" />
@@ -1181,7 +1666,7 @@
     <Compile Include="ViewModels\RIS\PACSWorkListViewModel.cs" />
     <Compile Include="ViewModels\Patient\ListAppointmentViewModel.cs" />
     <Compile Include="ViewModels\Patient\ManageAppointmentViewModel.cs" />
-    <Compile Include="ViewModels\Billing\PatientBilledViewModel.cs" />
+    <Compile Include="ViewModels\Billing\PatientBilledOPViewModel.cs" />
     <Compile Include="ViewModels\Billing\CashierWorklistViewModel.cs" />
     <Compile Include="ViewModels\ClinicalData\ListDrugFrequencyViewModel.cs" />
     <Compile Include="ViewModels\ClinicalData\ListDrugGenericViewModel.cs" />
@@ -1208,6 +1693,7 @@
     <Compile Include="ViewModels\RIS\ReviewRISResultViewModel.cs" />
     <Compile Include="ViewModels\RIS\ScheduleRadiologistViewModel.cs" />
     <Compile Include="ViewModels\Doctor\SessionWithdrawnViewModel.cs" />
+    <Compile Include="ViewModels\Setting\ListLocationViewModel.cs" />
     <Compile Include="ViewModels\Setting\ListOrganisationViewModel.cs" />
     <Compile Include="ViewModels\Purchase\ListPurchaseOrderViewModel.cs" />
     <Compile Include="ViewModels\ClinicalData\ListStoresViewModel.cs" />
@@ -1220,6 +1706,7 @@
     <Compile Include="ViewModels\ClinicalData\ManageItemMasterViewModel.cs" />
     <Compile Include="ViewModels\Inventory\ManageItemReceiveViewModel.cs" />
     <Compile Include="ViewModels\Inventory\ManageItemRequestViewModel.cs" />
+    <Compile Include="ViewModels\Setting\ManageLocationViewModel.cs" />
     <Compile Include="ViewModels\Setting\ManageOrganisationViewModel.cs" />
     <Compile Include="ViewModels\Patient\ManagePatientViewModel.cs" />
     <Compile Include="ViewModels\Base\MediTechViewModel.cs" />
@@ -1237,25 +1724,98 @@
     <Compile Include="ViewModels\Setting\ManageRoleViewModel.cs" />
     <Compile Include="ViewModels\Setting\ListRolesViewModel.cs" />
     <Compile Include="ViewModels\Patient\SearchPatientViewModel.cs" />
+    <Compile Include="ViewModels\Setting\ManageUserLocationViewModel.cs" />
     <Compile Include="ViewModels\Setting\ManageUserOrganisationViewModel.cs" />
     <Compile Include="ViewModels\Setting\ManageUserViewModel.cs" />
     <Compile Include="ViewModels\Setting\ListUsersViewModel.cs" />
     <Compile Include="ViewModels\MRD\TranslateXrayViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Views\BillingConfiguration\InsuranceCompany.xaml.cs">
+      <DependentUpon>InsuranceCompany.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BillingConfiguration\ListPackage.xaml.cs">
+      <DependentUpon>ListPackage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BillingConfiguration\ListPayorDetail.xaml.cs">
       <DependentUpon>ListPayorDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BillingConfiguration\ListPolicyMaster.xaml.cs">
+      <DependentUpon>ListPolicyMaster.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BillingConfiguration\ManageInsuranceCompany.xaml.cs">
+      <DependentUpon>ManageInsuranceCompany.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BillingConfiguration\ManageInsurancePlan.xaml.cs">
+      <DependentUpon>ManageInsurancePlan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BillingConfiguration\ManagePackage.xaml.cs">
+      <DependentUpon>ManagePackage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BillingConfiguration\ManagePayorAgreement.xaml.cs">
+      <DependentUpon>ManagePayorAgreement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BillingConfiguration\ManagePayorDetail.xaml.cs">
       <DependentUpon>ManagePayorDetail.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\BillingConfiguration\ManagePolicyMaster.xaml.cs">
+      <DependentUpon>ManagePolicyMaster.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BillingConfiguration\SearchItem.xaml.cs">
+      <DependentUpon>SearchItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\AllocateBillPopup.xaml.cs">
+      <DependentUpon>AllocateBillPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\BillingPaymentModePopUp.xaml.cs">
+      <DependentUpon>BillingPaymentModePopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\BillSettlementIP.xaml.cs">
+      <DependentUpon>BillSettlementIP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\ListQueryBillsMobile.xaml.cs">
+      <DependentUpon>ListQueryBillsMobile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\BillSettlementOP.xaml.cs">
+      <DependentUpon>BillSettlementOP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\CancelBillPopup.xaml.cs">
+      <DependentUpon>CancelBillPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\ListBillPayment.xaml.cs">
+      <DependentUpon>ListBillPayment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\ListPaymentDetails.xaml.cs">
+      <DependentUpon>ListPaymentDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\ListQueryBillsIP.xaml.cs">
+      <DependentUpon>ListQueryBillsIP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\ListQueryBillsOP.xaml.cs">
+      <DependentUpon>ListQueryBillsOP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\GenerateBill.xaml.cs">
+      <DependentUpon>GenerateBill.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\MergeBillRecipetPopup.xaml.cs">
+      <DependentUpon>MergeBillRecipetPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\PatientBilledIP.xaml.cs">
+      <DependentUpon>PatientBilledIP.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Checkup\CheckupListReport.xaml.cs">
       <DependentUpon>CheckupListReport.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Checkup\EnterPhysicalFitnessTest.xaml.cs">
-      <DependentUpon>EnterPhysicalFitnessTest.xaml</DependentUpon>
+    <Compile Include="Views\Checkup\EnterFitnessTestResult.xaml.cs">
+      <DependentUpon>EnterFitnessTestResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\EnterMuscleTest.xaml.cs">
+      <DependentUpon>EnterMuscleTest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Checkup\ImportOccMedResult.xaml.cs">
       <DependentUpon>ImportOccMedResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\ImportOldResult.xaml.cs">
+      <DependentUpon>ImportOldResult.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Checkup\TranslateCheckupResult.xaml.cs">
       <DependentUpon>TranslateCheckupResult.xaml</DependentUpon>
@@ -1302,6 +1862,9 @@
     <Compile Include="Views\Documents\CheckupJobSummeryReport.xaml.cs">
       <DependentUpon>CheckupJobSummeryReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Documents\EcountReport.xaml.cs">
+      <DependentUpon>EcountReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Documents\PatientSummeryReport.xaml.cs">
       <DependentUpon>PatientSummeryReport.xaml</DependentUpon>
     </Compile>
@@ -1323,6 +1886,27 @@
     </Compile>
     <Compile Include="Views\Documents\ReportParameter2.xaml.cs">
       <DependentUpon>ReportParameter2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Documents\ReportParameter8.xaml.cs">
+      <DependentUpon>ReportParameter8.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ecount\EcountItemIssue.xaml.cs">
+      <DependentUpon>EcountItemIssue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ecount\EcountTranfer.xaml.cs">
+      <DependentUpon>EcountTranfer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Emergency\AECheckout.xaml.cs">
+      <DependentUpon>AECheckout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Emergency\EmergencyBedStatus.xaml.cs">
+      <DependentUpon>EmergencyBedStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Emergency\EmergencyList.xaml.cs">
+      <DependentUpon>EmergencyList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Emergency\EmergencyRegister.xaml.cs">
+      <DependentUpon>EmergencyRegister.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EMRView\CCHPI.xaml.cs">
       <DependentUpon>CCHPI.xaml</DependentUpon>
@@ -1351,8 +1935,35 @@
     <Compile Include="Views\EMRView\WellnessData.xaml.cs">
       <DependentUpon>WellnessData.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Inventory\CancelDispense.xaml.cs">
+      <DependentUpon>CancelDispense.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\CreateDispenseReturn.xaml.cs">
+      <DependentUpon>CreateDispenseReturn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\DispenseReturns.xaml.cs">
+      <DependentUpon>DispenseReturns.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\IPFills.xaml.cs">
+      <DependentUpon>IPFills.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\IPFillsDetail.xaml.cs">
+      <DependentUpon>IPFillsDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\NewIPFills.xaml.cs">
+      <DependentUpon>NewIPFills.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\PrintDrugSticker.xaml.cs">
+      <DependentUpon>PrintDrugSticker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\ChangeStore.xaml.cs">
+      <DependentUpon>ChangeStore.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Inventory\ConsumptionStock.xaml.cs">
       <DependentUpon>ConsumptionStock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\DispenseDrug.xaml.cs">
+      <DependentUpon>DispenseDrug.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Inventory\DisposeStock.xaml.cs">
       <DependentUpon>DisposeStock.xaml</DependentUpon>
@@ -1365,6 +1976,45 @@
     </Compile>
     <Compile Include="Views\Inventory\ManageItemTransfer.xaml.cs">
       <DependentUpon>ManageItemTransfer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\AdmissionDetail.xaml.cs">
+      <DependentUpon>AdmissionDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\AdmissionRequest.xaml.cs">
+      <DependentUpon>AdmissionRequest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\AdmissionRequestList.xaml.cs">
+      <DependentUpon>AdmissionRequestList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\BedBooking.xaml.cs">
+      <DependentUpon>BedBooking.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\BedStatusChanged.xaml.cs">
+      <DependentUpon>BedStatusChanged.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\CancelDischarge.xaml.cs">
+      <DependentUpon>CancelDischarge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\EditExpDischargeDate.xaml.cs">
+      <DependentUpon>EditExpDischargeDate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\IPDConsult.xaml.cs">
+      <DependentUpon>IPDConsult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\IPDMedicalDischarge.xaml.cs">
+      <DependentUpon>IPDMedicalDischarge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\IPDSearch.xaml.cs">
+      <DependentUpon>IPDSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\TranferBed.xaml.cs">
+      <DependentUpon>TranferBed.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\TranferBedList.xaml.cs">
+      <DependentUpon>TranferBedList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\WardView.xaml.cs">
+      <DependentUpon>WardView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LIS\ImportLabResult.xaml.cs">
       <DependentUpon>ImportLabResult.xaml</DependentUpon>
@@ -1393,8 +2043,29 @@
     <Compile Include="Views\LIS_RIS Setting\ManageSpecimen.xaml.cs">
       <DependentUpon>ManageSpecimen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MRD\BulkAlertDialog.xaml.cs">
+      <DependentUpon>BulkAlertDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ecount\EcountImportFile.xaml.cs">
+      <DependentUpon>EcountImportFile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MRD\LabResultMass.xaml.cs">
       <DependentUpon>LabResultMass.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrderProcessing\CloseOrderPopUp.xaml.cs">
+      <DependentUpon>CloseOrderPopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrderProcessing\OrderGroupReceipt.xaml.cs">
+      <DependentUpon>OrderGroupReceipt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrderProcessing\OrderOtherType.xaml.cs">
+      <DependentUpon>OrderOtherType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\ChangeLocation.xaml.cs">
+      <DependentUpon>ChangeLocation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\ConsultRequest.xaml.cs">
+      <DependentUpon>ConsultRequest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Patient\ListPatMerge.xaml.cs">
       <DependentUpon>ListPatMerge.xaml</DependentUpon>
@@ -1465,14 +2136,23 @@
     <Compile Include="Views\Patient\ManageAppointment.xaml.cs">
       <DependentUpon>ManageAppointment.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Billing\PatientBilled.xaml.cs">
-      <DependentUpon>PatientBilled.xaml</DependentUpon>
+    <Compile Include="Views\Billing\PatientBilledOP.xaml.cs">
+      <DependentUpon>PatientBilledOP.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Patient\ManagePatientMerge.xaml.cs">
       <DependentUpon>ManagePatientMerge.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Patient\ModifyVisitPayor.xaml.cs">
+      <DependentUpon>ModifyVisitPayor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Patient\ModifyVisit.xaml.cs">
       <DependentUpon>ModifyVisit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\PatientAlert.xaml.cs">
+      <DependentUpon>PatientAlert.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\PatientArrived.xaml.cs">
+      <DependentUpon>PatientArrived.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Patient\PatientList.xaml.cs">
       <DependentUpon>PatientList.xaml</DependentUpon>
@@ -1501,8 +2181,14 @@
     <Compile Include="Views\ClinicalData\ListBilledItemSale.xaml.cs">
       <DependentUpon>ListBilledItemSale.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Patient\PatientTracking.xaml.cs">
+      <DependentUpon>PatientTracking.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Patient\ScannedDocument.xaml.cs">
       <DependentUpon>ScannedDocument.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\SendConsult.xaml.cs">
+      <DependentUpon>SendConsult.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Purchase\ListGRN.xaml.cs">
       <DependentUpon>ListGRN.xaml</DependentUpon>
@@ -1525,6 +2211,9 @@
     <Compile Include="Views\Inventory\ListStockWorkList.xaml.cs">
       <DependentUpon>ListStockWorkList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Purchase\ListGroupReceipt.xaml.cs">
+      <DependentUpon>ListGroupReceipt.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Purchase\ListVendors.xaml.cs">
       <DependentUpon>ListVendors.xaml</DependentUpon>
     </Compile>
@@ -1542,6 +2231,12 @@
     </Compile>
     <Compile Include="Views\ClinicalData\ManageBilledItemSale.xaml.cs">
       <DependentUpon>ManageBilledItemSale.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Purchase\ManageReceipt.xaml.cs">
+      <DependentUpon>ManageReceipt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Purchase\SearchPatientBill.xaml.cs">
+      <DependentUpon>SearchPatientBill.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RIS\AssignForRDU.xaml.cs">
       <DependentUpon>AssignForRDU.xaml</DependentUpon>
@@ -1600,6 +2295,9 @@
     <Compile Include="Views\Doctor\SessionWithdrawn.xaml.cs">
       <DependentUpon>SessionWithdrawn.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Setting\ListLocation.xaml.cs">
+      <DependentUpon>ListLocation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Setting\ListOrganisation.xaml.cs">
       <DependentUpon>ListOrganisation.xaml</DependentUpon>
     </Compile>
@@ -1633,6 +2331,9 @@
     </Compile>
     <Compile Include="Views\Inventory\ManageItemRequest.xaml.cs">
       <DependentUpon>ManageItemRequest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting\ManageLocation.xaml.cs">
+      <DependentUpon>ManageLocation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Setting\ManageOrganisation.xaml.cs">
       <DependentUpon>ManageOrganisation.xaml</DependentUpon>
@@ -1700,6 +2401,9 @@
     <Compile Include="Views\MRD\TranslateXrayPopup.xaml.cs">
       <DependentUpon>TranslateXrayPopup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Setting\ManageUserLocation.xaml.cs">
+      <DependentUpon>ManageUserLocation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Setting\ManageUserOrganisation.xaml.cs">
       <DependentUpon>ManageUserOrganisation.xaml</DependentUpon>
     </Compile>
@@ -1746,25 +2450,121 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\BillingConfiguration\InsuranceCompany.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\BillingConfiguration\ListPackage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\BillingConfiguration\ListPayorDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BillingConfiguration\ListPolicyMaster.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\BillingConfiguration\ManageInsuranceCompany.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\BillingConfiguration\ManageInsurancePlan.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\BillingConfiguration\ManagePackage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\BillingConfiguration\ManagePayorAgreement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\BillingConfiguration\ManagePayorDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\BillingConfiguration\ManagePolicyMaster.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\BillingConfiguration\SearchItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Billing\AllocateBillPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Billing\BillingPaymentModePopUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Billing\BillSettlementIP.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Billing\ListQueryBillsMobile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Billing\BillSettlementOP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Billing\CancelBillPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Billing\ListBillPayment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Billing\ListPaymentDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Billing\ListQueryBillsIP.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Billing\ListQueryBillsOP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Billing\GenerateBill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Billing\MergeBillRecipetPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Billing\PatientBilledIP.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Checkup\CheckupListReport.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Checkup\EnterPhysicalFitnessTest.xaml">
+    <Page Include="Views\Checkup\EnterFitnessTestResult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Checkup\EnterMuscleTest.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Checkup\ImportOccMedResult.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Checkup\ImportOldResult.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Checkup\TranslateCheckupResult.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -1826,6 +2626,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Documents\EcountReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Documents\PatientSummeryReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1851,6 +2655,34 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Documents\ReportParameter2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Documents\ReportParameter8.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ecount\EcountItemIssue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ecount\EcountTranfer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Emergency\AECheckout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Emergency\EmergencyBedStatus.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Emergency\EmergencyList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Emergency\EmergencyRegister.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -1890,7 +2722,43 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Inventory\CancelDispense.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Inventory\CreateDispenseReturn.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Inventory\DispenseReturns.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Inventory\IPFills.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Inventory\IPFillsDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Inventory\NewIPFills.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Inventory\PrintDrugSticker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Inventory\ChangeStore.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Inventory\ConsumptionStock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Inventory\DispenseDrug.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1907,6 +2775,58 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Inventory\ManageItemTransfer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\AdmissionDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\AdmissionRequest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\AdmissionRequestList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\BedBooking.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\BedStatusChanged.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\CancelDischarge.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\EditExpDischargeDate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\IPDConsult.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\IPDMedicalDischarge.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\IPDSearch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\TranferBed.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\TranferBedList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\WardView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -1946,9 +2866,37 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\MRD\BulkAlertDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ecount\EcountImportFile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MRD\LabResultMass.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OrderProcessing\CloseOrderPopUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OrderProcessing\OrderGroupReceipt.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OrderProcessing\OrderOtherType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Patient\ChangeLocation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Patient\ConsultRequest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Patient\ListPatMerge.xaml">
       <SubType>Designer</SubType>
@@ -2042,7 +2990,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Billing\PatientBilled.xaml">
+    <Page Include="Views\Billing\PatientBilledOP.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2050,9 +2998,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Patient\ModifyVisitPayor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Patient\ModifyVisit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Patient\PatientAlert.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Patient\PatientArrived.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Patient\PatientList.xaml">
       <SubType>Designer</SubType>
@@ -2090,9 +3050,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Patient\PatientTracking.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Patient\ScannedDocument.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Patient\SendConsult.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Purchase\ListGRN.xaml">
       <SubType>Designer</SubType>
@@ -2122,6 +3090,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Purchase\ListGroupReceipt.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Purchase\ListVendors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2143,6 +3115,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ClinicalData\ManageBilledItemSale.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Purchase\ManageReceipt.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Purchase\SearchPatientBill.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -2222,6 +3202,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Setting\ListLocation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Setting\ListOrganisation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2265,6 +3249,10 @@
     <Page Include="Views\Inventory\ManageItemRequest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Setting\ManageLocation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Setting\ManageOrganisation.xaml">
       <SubType>Designer</SubType>
@@ -2354,6 +3342,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Setting\ManageUserLocation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Setting\ManageUserOrganisation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -2377,11 +3369,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Properties\Licenses.licx" />
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Cashier\GroupReceipt.resx">
+      <DependentUpon>GroupReceipt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Cashier\PatientBill\PatientBill2.resx">
       <DependentUpon>PatientBill2.cs</DependentUpon>
@@ -2397,6 +3392,108 @@
     <EmbeddedResource Include="Reports\Operating\Cashier\PatientBill\PatientBillDetail.resx">
       <DependentUpon>PatientBillDetail.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage1.resx">
+      <DependentUpon>CheckupPage1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage10.resx">
+      <DependentUpon>CheckupPage10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage11.resx">
+      <DependentUpon>CheckupPage11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage12.resx">
+      <DependentUpon>CheckupPage12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage2.resx">
+      <DependentUpon>CheckupPage2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage3.resx">
+      <DependentUpon>CheckupPage3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage4.resx">
+      <DependentUpon>CheckupPage4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage5.resx">
+      <DependentUpon>CheckupPage5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage6.resx">
+      <DependentUpon>CheckupPage6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage7.resx">
+      <DependentUpon>CheckupPage7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage8.resx">
+      <DependentUpon>CheckupPage8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage9.resx">
+      <DependentUpon>CheckupPage9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\LabA.resx">
+      <DependentUpon>LabA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\LabB.resx">
+      <DependentUpon>LabB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\LabC.resx">
+      <DependentUpon>LabC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\LabD.resx">
+      <DependentUpon>LabD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\LabE.resx">
+      <DependentUpon>LabE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\LabF.resx">
+      <DependentUpon>LabF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\LabG.resx">
+      <DependentUpon>LabG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\LabH.resx">
+      <DependentUpon>LabH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge1.resx">
+      <DependentUpon>CheckupBookLarge1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge2.resx">
+      <DependentUpon>CheckupBookLarge2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge3.resx">
+      <DependentUpon>CheckupBookLarge3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge4.resx">
+      <DependentUpon>CheckupBookLarge4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge5.resx">
+      <DependentUpon>CheckupBookLarge5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge6.resx">
+      <DependentUpon>CheckupBookLarge6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition1.resx">
+      <DependentUpon>LabDefinition1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition2.resx">
+      <DependentUpon>LabDefinition2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition3.resx">
+      <DependentUpon>LabDefinition3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition4.resx">
+      <DependentUpon>LabDefinition4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupCSR.resx">
+      <DependentUpon>CheckupCSR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\Papsmear.resx">
+      <DependentUpon>Papsmear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\RiskMobileCheckup.resx">
+      <DependentUpon>RiskMobileCheckup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\RiskMobileCheckup2.resx">
+      <DependentUpon>RiskMobileCheckup2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Inventory\GoodReceiveReport.resx">
       <DependentUpon>GoodReceiveReport.cs</DependentUpon>
@@ -2418,6 +3515,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\AppointmentMobile.resx">
       <DependentUpon>AppointmentMobile.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage1.resx">
       <DependentUpon>CheckupPage1.cs</DependentUpon>
@@ -2467,14 +3565,22 @@
     <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBook\CheckupPage8.resx">
       <DependentUpon>CheckupPage8.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\Alien.resx">
+      <DependentUpon>Alien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate1 .resx">
       <DependentUpon>ConfinedSpaceCertificate1 .cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate2.resx">
       <DependentUpon>ConfinedSpaceCertificate2.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertification.resx">
       <DependentUpon>CovidRapidTestCertification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertification2.resx">
+      <DependentUpon>CovidRapidTestCertification2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificate2Parts.resx">
       <DependentUpon>MedicalCertificate2Parts.cs</DependentUpon>
@@ -2485,6 +3591,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificateEng2Parts.resx">
       <DependentUpon>MedicalCertificateEng2Parts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalCouncil10.resx">
+      <DependentUpon>MedicalCouncil10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalFitness.resx">
+      <DependentUpon>MedicalFitness.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\RadilogyCertificate.resx">
       <DependentUpon>RadilogyCertificate.cs</DependentUpon>
@@ -2529,6 +3641,9 @@
     <EmbeddedResource Include="Reports\Operating\Patient\PatientLargSticker.resx">
       <DependentUpon>PatientLargSticker.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\PatientPrescription.resx">
+      <DependentUpon>PatientPrescription.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\PatientSticker.resx">
       <DependentUpon>PatientSticker.cs</DependentUpon>
     </EmbeddedResource>
@@ -2550,11 +3665,24 @@
     <EmbeddedResource Include="Reports\Operating\Checkup\RiskBook\RiskBook4.resx">
       <DependentUpon>RiskBook4.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\PatientVisitSlip.resx">
+      <DependentUpon>PatientVisitSlip.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\RehabPhysical.resx">
       <DependentUpon>RehabPhysical.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Pharmacy\DiagnosisDetail.resx">
+      <DependentUpon>DiagnosisDetail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Pharmacy\DrugSticker.resx">
       <DependentUpon>DrugSticker.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Pharmacy\OPPrescription.resx">
+      <DependentUpon>OPPrescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Pharmacy\OPPrescriptionDetail.resx">
+      <DependentUpon>OPPrescriptionDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Radiology\ImagingReport.resx">
       <DependentUpon>ImagingReport.cs</DependentUpon>
@@ -2565,11 +3693,26 @@
     <EmbeddedResource Include="Reports\Operating\Radiology\ImagingReportV2.resx">
       <DependentUpon>ImagingReportV2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Cashier\DataStockToEcount.resx">
+      <DependentUpon>DataStockToEcount.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Cashier\DoctorFeeReport.resx">
       <DependentUpon>DoctorFeeReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Cashier\DrugStoreNetProfit.resx">
       <DependentUpon>DrugStoreNetProfit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Cashier\RevenuePerDay\PayorSummeryCount.resx">
+      <DependentUpon>PayorSummeryCount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Cashier\RevenuePerDay\RevenuePerDayNewPage.resx">
+      <DependentUpon>RevenuePerDayNewPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Cashier\RevenuePerDay\RevenuePerDay.resx">
+      <DependentUpon>RevenuePerDay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Cashier\StockToEcount.resx">
+      <DependentUpon>StockToEcount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Cashier\UsedReport.resx">
       <DependentUpon>UsedReport.cs</DependentUpon>
@@ -2585,6 +3728,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGrouopAudiogram.resx">
       <DependentUpon>CheckupGrouopAudiogram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroup25Hexan.resx">
+      <DependentUpon>CheckupGroup25Hexan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupAcetone.resx">
       <DependentUpon>CheckupGroupAcetone.cs</DependentUpon>
@@ -2607,6 +3753,9 @@
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupBenzene.resx">
       <DependentUpon>CheckupGroupBenzene.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupBenzeneMuconicUrine.resx">
+      <DependentUpon>CheckupGroupBenzeneMuconicUrine.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupBloodGroup.resx">
       <DependentUpon>CheckupGroupBloodGroup.cs</DependentUpon>
     </EmbeddedResource>
@@ -2624,6 +3773,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupCA19.resx">
       <DependentUpon>CheckupGroupCA19.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupCadmiumUrine.resx">
+      <DependentUpon>CheckupGroupCadmiumUrine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupCalciumBlood.resx">
       <DependentUpon>CheckupGroupCalciumBlood.cs</DependentUpon>
@@ -2646,6 +3798,9 @@
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupChest.resx">
       <DependentUpon>CheckupGroupChest.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupCholinesteraseBlood.resx">
+      <DependentUpon>CheckupGroupCholinesteraseBlood.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupChromiumUrine.resx">
       <DependentUpon>CheckupGroupChromiumUrine.cs</DependentUpon>
     </EmbeddedResource>
@@ -2655,8 +3810,20 @@
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupEKG.resx">
       <DependentUpon>CheckupGroupEKG.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupEthylBenzene.resx">
+      <DependentUpon>CheckupGroupEthylBenzene.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupEthylBenzeneUrine.resx">
+      <DependentUpon>CheckupGroupEthylBenzeneUrine.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupFBS.resx">
       <DependentUpon>CheckupGroupFBS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupFluorineUrine.resx">
+      <DependentUpon>CheckupGroupFluorineUrine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupFormadehyde.resx">
+      <DependentUpon>CheckupGroupFormadehyde.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupHbA.resx">
       <DependentUpon>CheckupGroupHbA.cs</DependentUpon>
@@ -2667,6 +3834,12 @@
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupHexane.resx">
       <DependentUpon>CheckupGroupHexane.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupIron.resx">
+      <DependentUpon>CheckupGroupIron.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupIsopropyl.resx">
+      <DependentUpon>CheckupGroupIsopropyl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupLeadBlood.resx">
       <DependentUpon>CheckupGroupLeadBlood.cs</DependentUpon>
     </EmbeddedResource>
@@ -2676,14 +3849,29 @@
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupLiver.resx">
       <DependentUpon>CheckupGroupLiver.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupManganese.resx">
+      <DependentUpon>CheckupGroupManganese.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupMEK.resx">
       <DependentUpon>CheckupGroupMEK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupMercuryUrine.resx">
+      <DependentUpon>CheckupGroupMercuryUrine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupMethanol.resx">
       <DependentUpon>CheckupGroupMethanol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupMethyrene.resx">
       <DependentUpon>CheckupGroupMethyrene.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupMethyreneUrine.resx">
+      <DependentUpon>CheckupGroupMethyreneUrine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupMIBK.resx">
+      <DependentUpon>CheckupGroupMIBK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupNickinBlood.resx">
+      <DependentUpon>CheckupGroupNickinBlood.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupOccVision.resx">
       <DependentUpon>CheckupGroupOccVision.cs</DependentUpon>
@@ -2724,6 +3912,9 @@
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupXylene.resx">
       <DependentUpon>CheckupGroupXylene.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupZinc.resx">
+      <DependentUpon>CheckupGroupZinc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupOccMedCheckList.resx">
       <DependentUpon>CheckupOccMedCheckList.cs</DependentUpon>
     </EmbeddedResource>
@@ -2739,8 +3930,17 @@
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupSummary.resx">
       <DependentUpon>CheckupSummary.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupThinnerUrine.resx">
+      <DependentUpon>CheckupThinnerUrine.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheuckupGroupBackStrength.resx">
       <DependentUpon>CheuckupGroupBackStrength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Ecount\EcountGetPayorDetail.resx">
+      <DependentUpon>EcountGetPayorDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Ecount\EcountSummaryGroupReceipt.resx">
+      <DependentUpon>EcountSummaryGroupReceipt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Inventory\StockAdjustmentIn.resx">
       <DependentUpon>StockAdjustmentIn.cs</DependentUpon>
@@ -2820,17 +4020,11 @@
       <DependentUpon>PatientSummaryPerMonth.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
-    <None Include="PacsViewer\run.bat" />
-    <None Include="PacsViewer\Win32\mDicom.chm" />
-    <None Include="PacsViewer\x64\mDicom.chm" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="RDNIDLib.DLD">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -2963,7 +4157,6 @@
     <Resource Include="Resources\Images\Other\PATEINTHISTORY.png" />
     <Resource Include="Resources\Images\Other\PatientListIcon.png" />
     <Resource Include="Resources\Images\Other\PatientRecords.png" />
-    <Resource Include="Resources\Images\Other\PatientTracking.png" />
     <Resource Include="Resources\Images\Other\People-Doctor-Male-icon.png" />
     <Resource Include="Resources\Images\Other\Voice-Blue.png" />
   </ItemGroup>
@@ -3108,11 +4301,54 @@
   <ItemGroup>
     <Resource Include="Resources\Images\Menu\PayorDetail.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Reports\Operating\Registration\" />
-    <Folder Include="Reports\Statistic\Pharmacy\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="Resources\Images\LogoBRXGHospital.jpg" />
+    <Resource Include="Resources\Images\Menu\Mobile Billing.png" />
+    <Resource Include="Resources\Images\Module\IPDpatient.png" />
+    <Resource Include="Resources\Images\Fincace\cashless-payment.png" />
+    <Resource Include="Resources\Images\Menu\ProductReturn.png" />
+    <Resource Include="Resources\Images\Fincace\lock.png" />
+    <Resource Include="Resources\Images\Fincace\unlock.png" />
+    <Resource Include="Resources\Images\Fincace\credit.png" />
+    <Resource Include="Resources\Images\Ward\bedArrived.png" />
+    <Resource Include="Resources\Images\Ward\bedDischarge.png" />
+    <Resource Include="Resources\Images\Menu\Medicine.png" />
+    <Resource Include="Resources\Images\Action\plus.png" />
+    <Resource Include="Resources\Images\Menu\DirectAdmit.png" />
+    <Resource Include="Resources\Images\Time\FutureAppointment.png" />
+    <Resource Include="Resources\Images\Time\PatientTracking.png" />
+    <Resource Include="Resources\Images\Fincace\money-bag.png" />
+    <Resource Include="Resources\Images\Fincace\Generatebill.png" />
+    <Resource Include="Resources\Images\Menu\Allocatebill.png" />
+    <Resource Include="Resources\Images\Menu\ViewBill.png" />
+    <Resource Include="Resources\Images\Module\IPD Billing.png" />
+    <Resource Include="Resources\Images\Module\OPD Billing.png" />
+    <Resource Include="Resources\Images\Fincace\modifypayor.png" />
+    <Resource Include="Resources\Images\Phamacy\Allocate.png" />
+    <Resource Include="Resources\Images\Phamacy\Prescription2.png" />
+    <Resource Include="Resources\Images\Other\ResultsIcon.png" />
+    <Resource Include="Resources\Images\Module\Emergency.png" />
+    <Resource Include="Resources\Images\Action\ModifyDemographics.png" />
+    <Resource Include="Resources\Images\Document\ConsentForm.png" />
+    <Resource Include="Resources\Images\Document\open.png" />
+    <Resource Include="Resources\Images\Document\File.png" />
+    <Resource Include="Resources\Images\Ward\bed.png" />
+    <Resource Include="Resources\Images\Ward\bedLevel0.png" />
+    <Resource Include="Resources\Images\Ward\BedLevel1.png" />
+    <Resource Include="Resources\Images\Ward\BedLevel2.png" />
+    <Resource Include="Resources\Images\Ward\BedLevel3.png" />
+    <Resource Include="Resources\Images\Menu\Rest.png" />
+    <Resource Include="Resources\Images\Menu\UsersLocation.png" />
+    <Resource Include="Resources\Images\Menu\Emergency.png" />
+    <Resource Include="Resources\Images\Other\Reheb.png" />
+    <Resource Include="Resources\Images\Menu\Import.png" />
+    <Resource Include="Resources\Images\logoBGH.png" />
+    <Resource Include="Resources\Images\logoThonburi.jpg" />
+    <Resource Include="Resources\Images\logoMFU.jpg" />
+    <Resource Include="Resources\Images\Document\xls.png" />
+    <Resource Include="Resources\Images\Action\Manage.png" />
+    <Resource Include="Resources\Images\Menu\Invoice.png" />
     <Resource Include="Resources\Images\LogoBRXG4.jpg" />
     <Resource Include="Resources\Images\Menu\Report lab.png" />
     <Resource Include="Resources\Images\Document\pdf.png" />
@@ -3139,6 +4375,9 @@
     <Resource Include="Resources\Images\Menu\Result Entry.png" />
     <Resource Include="Resources\Images\Module\LIS.png" />
     <Resource Include="Resources\Images\LogoBRXG.png" />
+    <None Include="RDNIDLib.DLD">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\soundforTERC.wav" />
     <Resource Include="Resources\Images\LogoBRXG2.png" />
     <Resource Include="Untitled-2.ico" />
@@ -3153,22 +4392,6 @@
     <Resource Include="Resources\Images\Menu\BulkRegister.png" />
     <Resource Include="Resources\Images\Menu\AssignForRDU.png" />
     <Resource Include="Untitled-1.ico" />
-    <Resource Include="PacsViewer\autorun.inf" />
-    <Resource Include="PacsViewer\licenses\EULA.txt" />
-    <Resource Include="PacsViewer\licenses\license.txt" />
-    <Resource Include="PacsViewer\readme.txt" />
-    <Resource Include="PacsViewer\settings\animations.xml" />
-    <Resource Include="PacsViewer\settings\annotation.xml" />
-    <Resource Include="PacsViewer\settings\application.xml" />
-    <Resource Include="PacsViewer\settings\exportDicom.xml" />
-    <Resource Include="PacsViewer\settings\exportImage.xml" />
-    <Resource Include="PacsViewer\settings\exportVideo.xml" />
-    <Resource Include="PacsViewer\settings\overlay.xml" />
-    <Resource Include="PacsViewer\settings\overlay_st.xml" />
-    <Resource Include="PacsViewer\settings\print.xml" />
-    <Resource Include="PacsViewer\settings\windowlevels.xml" />
-    <Content Include="PacsViewer\Win32\mDicom.exe" />
-    <Content Include="PacsViewer\x64\mDicom.exe" />
     <Content Include="RDNIDlibD.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

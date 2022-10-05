@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MediTech.Model</RootNamespace>
     <AssemblyName>MediTech.Model</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -33,8 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpo.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -164,6 +162,7 @@
     <Compile Include="Patient\BookingModel.cs" />
     <Compile Include="Patient\PatientAddressModel.cs" />
     <Compile Include="Patient\PatientAEAdmissionModel.cs" />
+    <Compile Include="Patient\PatientAlertModel.cs" />
     <Compile Include="Patient\PatientAllergyModel.cs" />
     <Compile Include="Patient\PatientBannerModel.cs" />
     <Compile Include="Patient\PatientDemographicLogModel.cs" />

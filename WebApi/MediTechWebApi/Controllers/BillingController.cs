@@ -1298,10 +1298,10 @@ namespace MediTechWebApi.Controllers
         [Route("pSearchPatientCheckupForAllocateBill")]
         [HttpGet]
         public List<PatientVisitModel> pSearchPatientCheckupForAllocateBill(long? patientUID, DateTime? billFromDTTM, DateTime? billToDTTM, int? insuranceComapnyUID, int? checkupJobUID
-            , int? ownerOrganisationUID)
+            , int? ownerOrganisationUID,int? userUID)
         {
             List<PatientVisitModel> data = new List<PatientVisitModel>();
-            DataTable dt = SqlDirectStore.pSearchPatientCheckupForAllocateBill(patientUID, billFromDTTM, billToDTTM, insuranceComapnyUID, checkupJobUID, ownerOrganisationUID);
+            DataTable dt = SqlDirectStore.pSearchPatientCheckupForAllocateBill(patientUID, billFromDTTM, billToDTTM, insuranceComapnyUID, checkupJobUID, ownerOrganisationUID, userUID);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<PatientVisitModel>();

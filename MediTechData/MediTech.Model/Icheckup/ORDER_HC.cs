@@ -1,5 +1,4 @@
-﻿using DevExpress.Xpo;
-using System;
+﻿using System;
 
 namespace MediTech.Model
 {

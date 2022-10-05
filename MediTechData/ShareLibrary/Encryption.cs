@@ -54,10 +54,12 @@ namespace ShareLibrary
                 MD5CryptoServiceProvider HashProvider = new MD5CryptoServiceProvider();
                 byte[] TDESKey = HashProvider.ComputeHash(UTF8.GetBytes("gqom01"));
 
-                TripleDESCryptoServiceProvider TDESAlgorithm = new TripleDESCryptoServiceProvider();
-                TDESAlgorithm.Key = TDESKey;
-                TDESAlgorithm.Mode = CipherMode.ECB;
-                TDESAlgorithm.Padding = PaddingMode.PKCS7;
+                TripleDESCryptoServiceProvider TDESAlgorithm = new TripleDESCryptoServiceProvider
+                {
+                    Key = TDESKey,
+                    Mode = CipherMode.ECB,
+                    Padding = PaddingMode.PKCS7
+                };
 
                 byte[] DataToDecrypt = Convert.FromBase64String(Message);
                 try

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31515.178
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediTech", "MediTech\MediTech.csproj", "{CDE24A24-2098-4844-9D55-083AF27A62FC}"
 EndProject
@@ -10,6 +10,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLibrary", "..\MediTechData\ShareLibrary\ShareLibrary.csproj", "{7E3E8142-2F36-42E4-A4A7-C1A1AF2899CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediTech.DataService", "..\MediTechData\MediTech.DataService\MediTech.DataService.csproj", "{589883CB-19B6-48D8-BEA9-985E2320CA0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediTechWebApi", "..\WebApi\MediTechWebApi\MediTechWebApi.csproj", "{9B04478D-936B-4760-BD44-1D91E7FD51BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PACSWebApi", "..\WebApi\PACSWebApi\PACSWebApi.csproj", "{5C2B102C-FFF2-442B-A2AB-A291C5BB00FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{589883CB-19B6-48D8-BEA9-985E2320CA0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{589883CB-19B6-48D8-BEA9-985E2320CA0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{589883CB-19B6-48D8-BEA9-985E2320CA0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B04478D-936B-4760-BD44-1D91E7FD51BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B04478D-936B-4760-BD44-1D91E7FD51BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B04478D-936B-4760-BD44-1D91E7FD51BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B04478D-936B-4760-BD44-1D91E7FD51BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C2B102C-FFF2-442B-A2AB-A291C5BB00FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C2B102C-FFF2-442B-A2AB-A291C5BB00FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C2B102C-FFF2-442B-A2AB-A291C5BB00FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C2B102C-FFF2-442B-A2AB-A291C5BB00FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

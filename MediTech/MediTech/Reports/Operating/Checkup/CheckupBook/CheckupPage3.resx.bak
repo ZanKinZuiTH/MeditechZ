@@ -121,7 +121,7 @@
   <data name="xrRichText3.Font" type="System.Drawing.Font, System.Drawing">
     <value>Angsana New, 10pt, style=Bold</value>
   </data>
-  <assembly alias="DevExpress.Data.v20.2" name="DevExpress.Data.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  <assembly alias="DevExpress.Data.v20.2" name="DevExpress.Data.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   <data name="xrRichText3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
     <value>25.83346, 199.213821</value>
   </data>
@@ -1531,10 +1531,10 @@
     <value>Angsana New, 8pt</value>
   </data>
   <data name="xrTable1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
-    <value>428.833374, 11.6664124</value>
+    <value>428.8334, 11.6700239</value>
   </data>
   <data name="xrTableCell1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Angsana New, 9pt</value>
+    <value>Angsana New, 8pt</value>
   </data>
   <data name="xrTableCell1.Text" xml:space="preserve">
     <value>HN</value>
@@ -1543,13 +1543,13 @@
     <value>0.15833343505859376</value>
   </data>
   <data name="lbHN3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Angsana New, 9pt</value>
+    <value>Angsana New, 8pt</value>
   </data>
   <data name="lbHN3.Weight" type="System.Double, mscorlib">
     <value>0.40000005660517463</value>
   </data>
   <data name="lbName3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Angsana New, 9pt</value>
+    <value>Angsana New, 8pt</value>
   </data>
   <data name="lbName3.Weight" type="System.Double, mscorlib">
     <value>1.5083327681018564</value>
@@ -1564,10 +1564,10 @@
     <value>Angsana New, 8pt</value>
   </data>
   <data name="xrTable4.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
-    <value>24.166666, 11.6664124</value>
+    <value>27.33, 11.67</value>
   </data>
   <data name="xrTableCell8.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Angsana New, 9pt</value>
+    <value>Angsana New, 8pt</value>
   </data>
   <data name="xrTableCell8.Text" xml:space="preserve">
     <value>HN</value>
@@ -1576,13 +1576,13 @@
     <value>0.15833343505859376</value>
   </data>
   <data name="lbHN14.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Angsana New, 9pt</value>
+    <value>Angsana New, 8pt</value>
   </data>
   <data name="lbHN14.Weight" type="System.Double, mscorlib">
     <value>0.40000005660517463</value>
   </data>
   <data name="lbName14.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Angsana New, 9pt</value>
+    <value>Angsana New, 8pt</value>
   </data>
   <data name="lbName14.Weight" type="System.Double, mscorlib">
     <value>1.5083327681018564</value>

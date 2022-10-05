@@ -1,6 +1,8 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using DevExpress.XtraReports.UI;
+using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
 using MediTech.Models;
+using MediTech.Reports.Operating.Cashier;
 using MediTech.Views;
 using System;
 using System.Collections.Generic;
@@ -11,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace MediTech.ViewModels
 {
-    public class ListQueryBillsMobileViewModel : MediTechViewModelBase
+    public class ListQueryBillsMassForInvoiceViewModel : MediTechViewModelBase
     {
 
         #region Preperites
@@ -56,12 +58,12 @@ namespace MediTech.ViewModels
             set { Set(ref _PatientAllocateLists, value); }
         }
 
-        private PatientVisitModel _SelectPatientAllocate;
+        private ObservableCollection<PatientVisitModel> _SelectPatientAllocates;
 
-        public PatientVisitModel SelectPatientAllocate
+        public ObservableCollection<PatientVisitModel> SelectPatientAllocates
         {
-            get { return _SelectPatientAllocate; }
-            set { Set(ref _SelectPatientAllocate, value); }
+            get { return _SelectPatientAllocates ?? (_SelectPatientAllocates = new ObservableCollection<PatientVisitModel>()); }
+            set { Set(ref _SelectPatientAllocates, value); }
         }
 
         #endregion
@@ -83,6 +85,25 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _DateTo, value);
+            }
+        }
+
+        private List<HealthOrganisationModel> _Organisations;
+
+        public List<HealthOrganisationModel> Organisations
+        {
+            get { return _Organisations; }
+            set { Set(ref _Organisations, value); }
+        }
+
+        private HealthOrganisationModel _SelectOrganisation;
+
+        public HealthOrganisationModel SelectOrganisation
+        {
+            get { return _SelectOrganisation; }
+            set
+            {
+                Set(ref _SelectOrganisation, value);
             }
         }
 
@@ -125,7 +146,7 @@ namespace MediTech.ViewModels
                 if (_SelectCheckupJobContact != null)
                 {
                     DateFrom = _SelectCheckupJobContact.StartDttm;
-                    DateTo = _SelectCheckupJobContact.EndDttm;
+                    //DateTo = _SelectCheckupJobContact.EndDttm;
                 }
             }
         }
@@ -149,6 +170,19 @@ namespace MediTech.ViewModels
 
         #region Command
 
+        private RelayCommand _PatientSearchCommand;
+        /// <summary>
+        /// Gets the PatientSearchCommand.
+        /// </summary>
+        public RelayCommand PatientSearchCommand
+        {
+            get
+            {
+                return _PatientSearchCommand
+                    ?? (_PatientSearchCommand = new RelayCommand(PatientSearch));
+            }
+        }
+
         private RelayCommand _SearchCommand;
 
         public RelayCommand SearchCommand
@@ -163,16 +197,98 @@ namespace MediTech.ViewModels
             get { return _CleanCommand ?? (_CleanCommand = new RelayCommand(Clean)); }
         }
 
+
+        private RelayCommand _AutoCollocateCommand;
+        public RelayCommand AutoCollocateCommand
+        {
+            get { return _AutoCollocateCommand ?? (_AutoCollocateCommand = new RelayCommand(AutoCollocate)); }
+        }
+
+        private RelayCommand _PrintInvoiceCommand;
+        public RelayCommand PrintInvoiceCommand
+        {
+            get { return _PrintInvoiceCommand ?? (_PrintInvoiceCommand = new RelayCommand(PrintInvoice)); }
+        }
+
         #endregion
 
         #region Method
 
-        public ListQueryBillsMobileViewModel()
+        public ListQueryBillsMassForInvoiceViewModel()
         {
+            DateTime baseDate = DateTime.Today;
+            DateFrom = baseDate.AddDays(1 - baseDate.Day);
+            DateTo = baseDate;
+            InsuranceCompanyDetails = DataService.Billing.GetInsuranceCompanyAll();
+            Organisations = GetHealthOrganisationRoleMedical();
+            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+
             PrinterLists = new List<string>();
             foreach (string printer in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
             {
                 PrinterLists.Add(printer);
+            }
+        }
+
+        void AutoCollocate()
+        {
+            var patienttUnBillFinalized = SelectPatientAllocates.Where(p => p.IsBillFinalized == "N");
+            foreach (var pateintAllocate in patienttUnBillFinalized)
+            {
+
+            }
+        }
+
+        void PrintInvoice()
+        {
+            if (string.IsNullOrEmpty(SelectPrinter))
+            {
+                WarningDialog("กรุณาเลือกปริ้นเตอร์");
+                return;
+            }
+            if (SelectPatientAllocates != null && SelectPatientAllocates.Count > 0)
+            {
+                var patienttUnBillFinalized = SelectPatientAllocates.Where(p => p.IsAllocated == "Y");
+
+                ListQueryBillsMassForInvoice view = (ListQueryBillsMassForInvoice)this.View;
+                int upperlimit = 0;
+                int loopCounter = 0;
+                foreach (var currentData in patienttUnBillFinalized)
+                {
+                    if (currentData.Select == true)
+                    {
+                        upperlimit++;
+                    }
+                }
+                view.SetProgressBarLimits(0, upperlimit);
+
+                foreach (var pateintAllocate in patienttUnBillFinalized)
+                {
+                    XtraReport report;
+                    //var selectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == SelectPatientCloseMed.OwnerOrganisationUID);
+                    if (pateintAllocate.VisitType != "Non Medical")
+                    {
+                        report = new PatientBill();
+                    }
+                    else
+                    {
+                        report = new PatientBill2();
+                    }
+
+                    report.RequestParameters = false;
+                    report.Parameters["OrganisationUID"].Value = pateintAllocate.OwnerOrganisationUID;
+                    report.Parameters["PatientBillUID"].Value = pateintAllocate.PatientBillUID;
+                    ReportPrintTool printTool = new ReportPrintTool(report);
+                    report.ShowPrintMarginsWarning = false;
+                    printTool.ShowPreviewDialog();
+
+                    SelectPatientAllocates.Remove(pateintAllocate);
+                    loopCounter = ++loopCounter;
+                    view.SetProgressBarValue(loopCounter);
+                }
+                view.SetProgressBarValue(upperlimit);
+                view.grdPatientList.RefreshData();
+                view.progressBar1.Value = 0;
             }
         }
 
@@ -181,11 +297,14 @@ namespace MediTech.ViewModels
             long? patientUID = null;
             int? insuranceCompanyUID = SelectInsuranceCompanyDetail != null ? SelectInsuranceCompanyDetail.InsuranceCompanyUID : (int?)null;
             int? checkupJobUID = SelectInsuranceCompanyDetail != null ? SelectInsuranceCompanyDetail.InsuranceCompanyUID : (int?)null;
+            int? organisationUID = SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : (int?)null;
+
             if (SelectedPateintSearch != null && SearchPatientCriteria != "")
             {
                 patientUID = SelectedPateintSearch.PatientUID;
             }
-            var patientVisitList = DataService.Billing.pSearchPatientCheckupForAllocateBill(patientUID, DateFrom, DateTo, insuranceCompanyUID, checkupJobUID, AppUtil.Current.OwnerOrganisationUID);
+            var userUID = AppUtil.Current.UserID;
+            var patientVisitList = DataService.Billing.pSearchPatientCheckupForAllocateBill(patientUID, DateFrom, DateTo, insuranceCompanyUID, checkupJobUID, organisationUID, userUID);
             PatientAllocateLists = new ObservableCollection<PatientVisitModel>(patientVisitList.ToList());
         }
 

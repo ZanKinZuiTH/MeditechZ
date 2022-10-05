@@ -19,18 +19,18 @@ namespace MediTech.Views
     /// <summary>
     /// Interaction logic for BillSettlementMobile.xaml
     /// </summary>
-    public partial class ListQueryBillsMobile : UserControl
+    public partial class ListQueryBillsMassForInvoice : UserControl
     {
         private UpdateProgressBarDelegate _updatePbDelegate;
 
         private delegate void UpdateProgressBarDelegate(System.Windows.DependencyProperty dp, Object value);
-        public ListQueryBillsMobile()
+        public ListQueryBillsMassForInvoice()
         {
             InitializeComponent();
             _updatePbDelegate = new UpdateProgressBarDelegate(progressBar1.SetValue);
-            if (this.DataContext is ListQueryBillsMobileViewModel)
+            if (this.DataContext is ListQueryBillsMassForInvoiceViewModel)
             {
-                (this.DataContext as ListQueryBillsMobileViewModel).UpdateEvent += PatientVisitMass_UpdateEvent;
+                (this.DataContext as ListQueryBillsMassForInvoiceViewModel).UpdateEvent += PatientVisitMass_UpdateEvent;
             }
         }
 

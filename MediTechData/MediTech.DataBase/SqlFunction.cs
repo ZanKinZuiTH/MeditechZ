@@ -1605,7 +1605,7 @@ namespace MediTech.DataBase
         }
 
         public static DataTable pSearchPatientCheckupForAllocateBill(long? patientUID, DateTime? billFromDTTM, DateTime? billToDTTM, int? insuranceComapnyUID, int? checkupJobUID
-            , int? ownerOrganisationUID)
+            , int? ownerOrganisationUID,int? userUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchPatientCheckupForAllocateBill", entities.Database.Connection.ConnectionString);
@@ -1617,6 +1617,7 @@ namespace MediTech.DataBase
             adp.SelectCommand.Parameters.AddWithValue("@P_InsuranceCompanyUID", insuranceComapnyUID ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_CheckupjobUID", checkupJobUID ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_OwnerOrganisationUID", ownerOrganisationUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_UserUID", userUID ?? (object)DBNull.Value);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];

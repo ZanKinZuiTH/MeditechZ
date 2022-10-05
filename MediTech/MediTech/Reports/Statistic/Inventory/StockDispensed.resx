@@ -121,8 +121,8 @@
   <data name="xrTable6.Font" type="System.Drawing.Font, System.Drawing">
     <value>Angsana New, 12pt</value>
   </data>
-  <assembly alias="DevExpress.Data.v20.2" name="DevExpress.Data.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-  <data name="xrTable6.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
+  <assembly alias="DevExpress.Data.v22.1" name="DevExpress.Data.v22.1, Version=22.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  <data name="xrTable6.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v22.1">
     <value>10, 0</value>
   </data>
   <data name="xrTableCell28.Text" xml:space="preserve">
@@ -201,31 +201,31 @@
   <data name="xrTable6.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>1141.77832, 25</value>
   </data>
-  <data name="xrTable6.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+  <data name="xrTable6.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v22.1">
     <value>TopCenter</value>
   </data>
   <data name="Detail.HeightF" type="System.Single, mscorlib">
     <value>25</value>
   </data>
-  <data name="Detail.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+  <data name="Detail.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v22.1">
     <value>TopLeft</value>
   </data>
   <data name="TopMargin.HeightF" type="System.Single, mscorlib">
     <value>0</value>
   </data>
-  <data name="TopMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+  <data name="TopMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v22.1">
     <value>TopLeft</value>
   </data>
   <data name="BottomMargin.HeightF" type="System.Single, mscorlib">
     <value>40.625</value>
   </data>
-  <data name="BottomMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+  <data name="BottomMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v22.1">
     <value>TopLeft</value>
   </data>
   <data name="lblReportHeader.Font" type="System.Drawing.Font, System.Drawing">
     <value>Angsana New, 18pt, style=Bold</value>
   </data>
-  <data name="lblReportHeader.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
+  <data name="lblReportHeader.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v22.1">
     <value>462.3332, 16</value>
   </data>
   <data name="lblReportHeader.SizeF" type="System.Drawing.SizeF, System.Drawing">
@@ -234,13 +234,13 @@
   <data name="lblReportHeader.Text" xml:space="preserve">
     <value>รายงานการใช้ยา</value>
   </data>
-  <data name="lblReportHeader.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+  <data name="lblReportHeader.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v22.1">
     <value>TopCenter</value>
   </data>
   <data name="xrLabel1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Angsana New, 16pt</value>
   </data>
-  <data name="xrLabel1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
+  <data name="xrLabel1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v22.1">
     <value>389.4165, 61.87498</value>
   </data>
   <data name="xrLabel1.SizeF" type="System.Drawing.SizeF, System.Drawing">
@@ -252,7 +252,7 @@
   <data name="xrLabel3.Font" type="System.Drawing.Font, System.Drawing">
     <value>Angsana New, 16pt</value>
   </data>
-  <data name="xrLabel3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
+  <data name="xrLabel3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v22.1">
     <value>646.2914, 63.62497</value>
   </data>
   <data name="xrLabel3.SizeF" type="System.Drawing.SizeF, System.Drawing">
@@ -268,7 +268,7 @@
   <data name="xrLabel4.Font" type="System.Drawing.Font, System.Drawing">
     <value>Angsana New, 16pt</value>
   </data>
-  <data name="xrLabel4.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
+  <data name="xrLabel4.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v22.1">
     <value>462.3332, 61.87498</value>
   </data>
   <data name="xrLabel4.SizeF" type="System.Drawing.SizeF, System.Drawing">
@@ -280,7 +280,7 @@
   <data name="xrLabel5.Font" type="System.Drawing.Font, System.Drawing">
     <value>Angsana New, 16pt</value>
   </data>
-  <data name="xrLabel5.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
+  <data name="xrLabel5.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v22.1">
     <value>702.5831, 63.62497</value>
   </data>
   <data name="xrLabel5.SizeF" type="System.Drawing.SizeF, System.Drawing">
@@ -295,7 +295,7 @@
   <data name="xrTable3.Font" type="System.Drawing.Font, System.Drawing">
     <value>Angsana New, 14pt, style=Bold</value>
   </data>
-  <data name="xrTable3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
+  <data name="xrTable3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v22.1">
     <value>853.4999, 24.58334</value>
   </data>
   <data name="xrTableCell17.Text" xml:space="preserve">
@@ -304,7 +304,7 @@
   <data name="xrTableCell17.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
-  <data name="xrCancel.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+  <data name="xrCancel.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v22.1">
     <value>TopRight</value>
   </data>
   <data name="xrCancel.Weight" type="System.Double, mscorlib">
@@ -319,7 +319,7 @@
   <data name="xrTableCell18.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
-  <data name="xrCost.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+  <data name="xrCost.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v22.1">
     <value>TopRight</value>
   </data>
   <data name="xrCost.Weight" type="System.Double, mscorlib">
@@ -334,7 +334,7 @@
   <data name="xrTableCell19.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
-  <data name="xrPrice.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+  <data name="xrPrice.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v22.1">
     <value>TopRight</value>
   </data>
   <data name="xrPrice.Weight" type="System.Double, mscorlib">
@@ -349,7 +349,7 @@
   <data name="xrTableCell21.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
-  <data name="xrNetProfit.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+  <data name="xrNetProfit.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v22.1">
     <value>TopRight</value>
   </data>
   <data name="xrNetProfit.Weight" type="System.Double, mscorlib">
@@ -361,7 +361,7 @@
   <data name="xrTable3.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>215.625, 100</value>
   </data>
-  <data name="xrLine1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
+  <data name="xrLine1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v22.1">
     <value>28.125, 6.25</value>
   </data>
   <data name="xrLine1.SizeF" type="System.Drawing.SizeF, System.Drawing">
@@ -376,7 +376,7 @@
   <data name="xrTable1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Angsana New, 12pt, style=Bold</value>
   </data>
-  <data name="xrTable1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
+  <data name="xrTable1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v22.1">
     <value>10, 65</value>
   </data>
   <data name="xrTableCell7.Text" xml:space="preserve">
@@ -457,13 +457,13 @@
   <data name="xrTable1.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>1141.77832, 25</value>
   </data>
-  <data name="xrTable1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+  <data name="xrTable1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v22.1">
     <value>TopCenter</value>
   </data>
   <data name="xrLabel2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Angsana New, 18pt</value>
   </data>
-  <data name="xrLabel2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
+  <data name="xrLabel2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v22.1">
     <value>28.125, 10.0000067</value>
   </data>
   <data name="xrLabel2.SizeF" type="System.Drawing.SizeF, System.Drawing">
