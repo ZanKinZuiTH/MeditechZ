@@ -39,6 +39,7 @@ namespace MediTech.Model.Report
         public string PatientPayor { get; set; }
         public string PatientEmail { get; set; }
         public List<string> Detail{ get; set; }
+        public string CompanyName { get; set; }
 
     }
 }

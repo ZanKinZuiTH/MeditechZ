@@ -578,7 +578,7 @@ namespace MediTechWebApi.Controllers
                                                 BPSys = j.BPSys,
                                                 BPDio = j.BPDio,
                                                 Temp = j.Temprature,
-
+                                                CompanyName = pv.CompanyName
                                             }).OrderByDescending(p => p.VitalSignRecordDttm).FirstOrDefault();
 
             return data;
