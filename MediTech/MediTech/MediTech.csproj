@@ -4304,6 +4304,16 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Resources\Images\Menu\Attention.png" />
+    <Resource Include="Resources\Images\Ward\Alert.png" />
+    <Resource Include="Resources\Images\Ward\Allergy.png" />
+    <Resource Include="Resources\Images\Ward\dollar.png" />
+    <Resource Include="Resources\Images\Ward\ExpectedDischarge.png" />
+    <Resource Include="Resources\Images\Ward\HourlyCharges.png" />
+    <Resource Include="Resources\Images\Ward\Lab.png" />
+    <Resource Include="Resources\Images\Ward\money-bag.png" />
+    <Resource Include="Resources\Images\Ward\VIP.png" />
+    <Resource Include="Resources\Images\Ward\x-rays.png" />
     <Resource Include="Resources\Images\LogoBRXGHospital.jpg" />
     <Resource Include="Resources\Images\Menu\Mobile Billing.png" />
     <Resource Include="Resources\Images\Module\IPDpatient.png" />

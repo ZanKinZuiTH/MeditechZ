@@ -241,12 +241,31 @@ namespace MediTech.ViewModels
             {
                 if (SelectPatientVisit != null)
                 {
+                    var orderLists = DataService.OrderProcessing.GetOrderAllByVisitUID(SelectPatientVisit.PatientVisitUID);
+                    if (orderLists != null)
+                    {
+                        var reviewOrder = orderLists.Where(p => p.OrderDetailStatus == "Reviewed");
+                        var dispensedOrder = orderLists.Where(p => p.OrderDetailStatus == "Dispensed");
+                        if (reviewOrder != null && reviewOrder.Count() > 0)
+                        {
+                            WarningDialog("มี Order สถานะ Reviewed กรุณาทำการ Cancel Order");
+                            return;
+                        }
+                        if (dispensedOrder != null && dispensedOrder.Count() > 0)
+                        {
+                            WarningDialog("มี Order สถานะ Dispensed กรุณาทำการ ยกเลิกการจ่ายยา ที่หน้าใบสั่งยา");
+                            return;
+                        }
+                    }
+
                     MessageBoxResult diagResult = QuestionDialog("คุณต้องการยกเลิกการละเบียนของผู้ป่วยคนนี้ใช้หรือไม่ ?");
                     if (diagResult == MessageBoxResult.Yes)
                     {
+           
                         DataService.PatientIdentity.CancelVisit(SelectPatientVisit.PatientVisitUID, AppUtil.Current.UserID);
+                        CloseViewDialog(ActionDialog.Save);
                     }
-                    CloseViewDialog(ActionDialog.Save);
+
                 }
             }
             catch (Exception ex)

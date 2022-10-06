@@ -12,6 +12,7 @@ using System.Net.Http;
 using System.Reflection;
 using System.Transactions;
 using System.Web.Http;
+using static Antlr.Runtime.Tree.TreeWizard;
 
 namespace MediTechWebApi.Controllers
 {
@@ -1087,6 +1088,25 @@ namespace MediTechWebApi.Controllers
                     db.PatientVisit.Add(patientVisit);
                     db.SaveChanges();
 
+                    if (patientVisit != null)
+                    {
+                        PatientVisitID patientVisitID = new PatientVisitID();
+                        patientVisitID.PatientVisitUID = patientVisit.UID;
+                        patientVisitID.VISIDUID = patientVisit.VISTYUID ?? 0;
+                        patientVisitID.MainIdentifier = "Y";
+                        patientVisitID.Identifier = patientVisit.VisitID;
+                        patientVisitID.ActiveFrom = patientVisit.StartDttm ?? now;
+                        patientVisitID.OwnerOrganisationUID = patientVisit.OwnerOrganisationUID ?? 0;
+                        patientVisitID.CUser = userID;
+                        patientVisitID.CWhen = now;
+                        patientVisitID.MUser = userID;
+                        patientVisitID.MWhen = now;
+                        patientVisitID.StatusFlag = "A";
+
+                        db.PatientVisitID.Add(patientVisitID);
+                        db.SaveChanges();
+                    }
+
                     #region PatientServiceEvent
                     PatientServiceEvent serviceEvent = new PatientServiceEvent();
                     serviceEvent.PatientVisitUID = patientVisit.UID;
@@ -1858,16 +1878,148 @@ namespace MediTechWebApi.Controllers
         {
             try
             {
-                PatientVisit patientVisit = db.PatientVisit.Find(patientVisitUID);
-                if (patientVisit != null)
+                using (var tran = new TransactionScope())
                 {
-                    db.PatientVisit.Attach(patientVisit);
-                    patientVisit.VISTSUID = 410; //Cancelled
-                    patientVisit.MUser = userID;
-                    patientVisit.MWhen = DateTime.Now;
-                    patientVisit.StatusFlag = "C";
+                    PatientVisit patientVisit = db.PatientVisit.Find(patientVisitUID);
+                    if (patientVisit != null)
+                    {
+                        db.PatientVisit.Attach(patientVisit);
+                        patientVisit.VISTSUID = 410; //Cancelled
+                        patientVisit.MUser = userID;
+                        patientVisit.MWhen = DateTime.Now;
+                        patientVisit.StatusFlag = "C";
 
-                    db.SaveChanges();
+                        db.SaveChanges();
+                    }
+                    var patientVisitIDs = db.PatientVisitID.Where(p => p.PatientVisitUID == patientVisit.UID);
+
+                    if (patientVisitIDs != null)
+                    {
+                        foreach (var visitID in patientVisitIDs)
+                        {
+                            db.PatientVisitID.Attach(visitID);
+                            visitID.MUser = userID;
+                            visitID.MWhen = DateTime.Now;
+                            visitID.StatusFlag = "D";
+                            db.SaveChanges();
+                        }
+
+                    }
+                    var patientOrders = db.PatientOrder.Where(p => p.PatientVisitUID == patientVisit.UID);
+                    if (patientOrders != null)
+                    {
+                        foreach (var patOrder in patientOrders)
+                        {
+                            var patientOrderDetails = db.PatientOrderDetail.Where(p => p.PatientOrderUID == patOrder.UID);
+                            if (patientOrderDetails != null)
+                            {
+                                foreach (var patOrderDetail in patientOrderDetails)
+                                {
+                                    var patientOrderDetail = db.PatientOrderDetail.Find(patOrderDetail.UID);
+                                    if (patientOrderDetail != null)
+                                    {
+                                        db.PatientOrderDetail.Attach(patientOrderDetail);
+                                        patientOrderDetail.MUser = userID;
+                                        patientOrderDetail.MWhen = DateTime.Now;
+                                        patientOrderDetail.StatusFlag = "D";
+                                        patientOrderDetail.Comments = "Cancel Visit";
+                                        db.SaveChanges();
+                                    }
+                                }
+      
+                            }
+
+                            var patientOrder = db.PatientOrder.Find(patOrder.UID);
+                            if (patientOrder != null)
+                            {
+                                db.PatientOrder.Attach(patientOrder);
+                                patientOrder.MUser = userID;
+                                patientOrder.MWhen = DateTime.Now;
+                                patientOrder.StatusFlag = "D";
+                                patientOrder.Comments = "Cancel Visit";
+                                db.SaveChanges();
+                            }
+                        }
+
+                    }
+
+                    var prescriptions = db.Prescription.Where(p => p.PatientVisitUID == patientVisit.UID);
+                    if (prescriptions != null)
+                    {
+                        foreach (var prescription in prescriptions)
+                        {
+                            var prescriptionItems = db.PrescriptionItem.Where(p => p.PrescriptionUID == prescription.UID);
+                            if (prescriptionItems != null)
+                            {
+                                foreach (var item in prescriptionItems)
+                                {
+                                    var prescriptionItem = db.PrescriptionItem.Find(item.UID);
+                                    if (prescriptionItem != null)
+                                    {
+                                        db.PrescriptionItem.Attach(prescriptionItem);
+                                        prescriptionItem.MUser = userID;
+                                        prescriptionItem.MWhen = DateTime.Now;
+                                        prescriptionItem.StatusFlag = "D";
+                                        prescriptionItem.Comments = "Cancel Visit";
+                                        db.SaveChanges();
+                                    }
+                                }
+
+                            }
+
+                            var presc = db.Prescription.Find(prescription.UID);
+                            if (presc != null)
+                            {
+                                db.Prescription.Attach(presc);
+                                presc.MUser = userID;
+                                presc.MWhen = DateTime.Now;
+                                presc.StatusFlag = "D";
+                                presc.Comments = "Cancel Visit";
+                                db.SaveChanges();
+                            }
+                        }
+
+                    }
+
+                    var requests = db.Request.Where(p => p.PatientVisitUID == patientVisit.UID);
+                    if (requests != null)
+                    {
+                        foreach (var request in requests)
+                        {
+                            var requestDetails = db.RequestDetail.Where(p => p.RequestUID == request.UID);
+                            if (requestDetails != null)
+                            {
+                                foreach (var requestDetail in requestDetails)
+                                {
+                                    var patientRequestDetail = db.RequestDetail.Find(requestDetail.UID);
+                                    if (patientRequestDetail != null)
+                                    {
+                                        db.RequestDetail.Attach(patientRequestDetail);
+                                        patientRequestDetail.MUser = userID;
+                                        patientRequestDetail.MWhen = DateTime.Now;
+                                        patientRequestDetail.StatusFlag = "D";
+                                        patientRequestDetail.Comments = "Cancel Visit";
+                                        db.SaveChanges();
+                                    }
+                                }
+
+                            }
+
+                            var patientRequest = db.Request.Find(request.UID);
+                            if (patientRequest != null)
+                            {
+                                db.Request.Attach(patientRequest);
+                                patientRequest.MUser = userID;
+                                patientRequest.MWhen = DateTime.Now;
+                                patientRequest.StatusFlag = "D";
+                                patientRequest.Comments = "Cancel Visit";
+                                db.SaveChanges();
+                            }
+                        }
+
+                    }
+
+                    tran.Complete();
                 }
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
@@ -2231,6 +2383,9 @@ namespace MediTechWebApi.Controllers
             try
             {
                 int FINDIS = 421;
+                int CHKOUT = 418;
+                int ARRVD = 408;
+                int INPAT = 4574;
                 DateTime now = DateTime.Now;
                 PatientVisit patientvisit = db.PatientVisit.Find(patientVisitUID);
                 using (var tran = new TransactionScope())
@@ -2246,6 +2401,18 @@ namespace MediTechWebApi.Controllers
                         patientvisit.IsBillFinalized = VISTSUID == FINDIS ? "Y" : "N";
                         patientvisit.MUser = userID;
                         patientvisit.MWhen = now;
+
+                        if (patientvisit.ENTYPUID == INPAT)
+                        {
+                            if (VISTSUID == ARRVD)
+                            {
+                                patientvisit.ENSTAUID = 4729;
+                            }
+                            else if(VISTSUID == CHKOUT)
+                            {
+                                patientvisit.ENSTAUID = 4732;
+                            }
+                        }
 
                         #region PatientServiceEvent
                         PatientServiceEvent serviceEvent = new PatientServiceEvent();
