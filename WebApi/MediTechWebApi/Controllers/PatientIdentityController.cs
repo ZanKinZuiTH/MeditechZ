@@ -1261,6 +1261,7 @@ namespace MediTechWebApi.Controllers
                         patientVisitID.MainIdentifier = "Y";
                         patientVisitID.Identifier = patientVisit.VisitID;
                         patientVisitID.ActiveFrom = patientVisit.StartDttm ?? now;
+                        patientVisitID.OwnerOrganisationUID = patientVisit.OwnerOrganisationUID ?? 0;
                         patientVisitID.CUser = userID;
                         patientVisitID.CWhen = now;
                         patientVisitID.MUser = userID;
@@ -1457,6 +1458,7 @@ namespace MediTechWebApi.Controllers
                         patientVisitID.MainIdentifier = "Y";
                         patientVisitID.Identifier = patientVisit.VisitID;
                         patientVisitID.ActiveFrom = patientVisit.StartDttm ?? now;
+                        patientVisitID.OwnerOrganisationUID = patientVisit.OwnerOrganisationUID ?? 0;
                         patientVisitID.CUser = userID;
                         patientVisitID.CWhen = now;
                         patientVisitID.MUser = userID;

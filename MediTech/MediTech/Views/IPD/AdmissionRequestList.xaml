@@ -70,6 +70,15 @@
                 
             </dxlc:LayoutGroup>
             
+            <dxlc:LayoutGroup  Orientation="Horizontal" HorizontalAlignment="Right" >
+                <dxlc:LayoutItem Label="Admitted" HorizontalAlignment="Right">
+                    <dxe:TextEdit Background="#9FFEB0" IsReadOnly="True" Width="60"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Dropped" HorizontalAlignment="Right">
+                    <dxe:TextEdit Background="#D5D5D5" IsReadOnly="True" Width="60"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxg:GridControl x:Name="grdAdmissionRequest" ItemsSource="{Binding IPBookingSource}"
                              SelectedItem="{Binding SelectedIPBooking}">
@@ -94,6 +103,14 @@
                     </dxg:GridControl.Columns>
                     <dxg:GridControl.View>
                         <dxg:TableView x:Name="viewAdmissionRequest" ShowGroupPanel="False">
+                            <dxg:TableView.FormatConditions>
+                                <dxg:FormatCondition FieldName="BedBookingRequest" Value1="Dropped" ValueRule="Equal" ApplyToRow="True">
+                                    <dx:Format Background="#D5D5D5"/>
+                                </dxg:FormatCondition>
+                                <dxg:FormatCondition FieldName="BedBookingRequest" Value1="Admitted" ValueRule="Equal" ApplyToRow="True">
+                                    <dx:Format Background="#9FFEB0"/>
+                                </dxg:FormatCondition>
+                            </dxg:TableView.FormatConditions>
                         </dxg:TableView>
                     </dxg:GridControl.View>
                 </dxg:GridControl>

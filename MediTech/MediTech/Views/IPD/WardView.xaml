@@ -390,16 +390,16 @@
                         <ContextMenu x:Key="ItemContextMenu">
                             <MenuItem Header="New Order" Command="{Binding DataContext.CreateOrderCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
                             <MenuItem Header="vital sign" Command="{Binding DataContext.VitalSignCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
-                            <MenuItem Header="Lab Result" Command="{Binding DataContext.LabResultCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <!--<MenuItem Header="Lab Result" Command="{Binding DataContext.LabResultCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>-->
                             <MenuItem Header="Print Document" Command="{Binding DataContext.PrintDocumentCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
                             <MenuItem Header="Patient Record" Command="{Binding DataContext.PatientRecordsCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
                             <MenuItem Header="Modify Payor" Command="{Binding DataContext.ModifyPayorCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
                             <Separator/>
-                            <MenuItem Header="Transfer">
+                            <!--<MenuItem Header="Transfer">
                                 <MenuItem Header="BedTarnfer" Command="{Binding DataContext.TranferCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
                                 <MenuItem Header="Release Bed"/>
                                 <MenuItem Header="Department Transfer"/>
-                            </MenuItem>
+                            </MenuItem>-->
                             <MenuItem Header="Discharge">
                                 <MenuItem Header="Discharge Advice"  CommandParameter="DischargeAdvice" Command="{Binding DataContext.DischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
                                 <MenuItem Header="Medical Discharge" CommandParameter="MedicalDischarge"  Command="{Binding DataContext.DischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
@@ -414,15 +414,15 @@
                         <ContextMenu x:Key="ItemMenuDischargeAdvice">
                             <MenuItem Header="New Order" Command="{Binding DataContext.CreateOrderCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
                             <MenuItem Header="vital sign" Command="{Binding DataContext.VitalSignCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
-                            <MenuItem Header="Lab Result" Command="{Binding DataContext.LabResultCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <!--<MenuItem Header="Lab Result" Command="{Binding DataContext.LabResultCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>-->
                             <MenuItem Header="Print Document" Command="{Binding DataContext.PrintDocumentCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
                             <MenuItem Header="Patient Record" Command="{Binding DataContext.PatientRecordsCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
                            <Separator />
-                            <MenuItem Header="Transfer">
+                            <!--<MenuItem Header="Transfer">
                                 <MenuItem Header="BedTarnfer" Command="{Binding DataContext.TranferCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
                                 <MenuItem Header="Release Bed"/>
                                 <MenuItem Header="Department Transfer"/>
-                            </MenuItem>
+                            </MenuItem>-->
                             <MenuItem Header="Discharge">
                                 <MenuItem Header="Medical Discharge" CommandParameter="MedicalDischarge"  Command="{Binding DataContext.DischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
                             </MenuItem>
@@ -436,15 +436,15 @@
                         
                         <ContextMenu x:Key="ItemMenuDischarge">
                             <MenuItem Header="vital sign" Command="{Binding DataContext.VitalSignCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
-                            <MenuItem Header="Lab Result" Command="{Binding DataContext.LabResultCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <!--<MenuItem Header="Lab Result" Command="{Binding DataContext.LabResultCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>-->
                             <MenuItem Header="Print Document" Command="{Binding DataContext.PrintDocumentCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
                             <MenuItem Header="Patient Record" Command="{Binding DataContext.PatientRecordsCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
                             <Separator />
-                            <MenuItem Header="Transfer">
+                            <!--<MenuItem Header="Transfer">
                                 <MenuItem Header="BedTarnfer" Command="{Binding DataContext.TranferCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
                                 <MenuItem Header="Release Bed"/>
                                 <MenuItem Header="Department Transfer"/>
-                            </MenuItem>
+                            </MenuItem>-->
                             <MenuItem Header="Discharge">
                                 <MenuItem Header="Discharge" CommandParameter="Discharge"  Command="{Binding DataContext.DischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
                             </MenuItem>
