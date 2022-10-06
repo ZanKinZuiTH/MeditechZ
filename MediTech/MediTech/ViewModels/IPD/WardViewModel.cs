@@ -27,10 +27,17 @@ namespace MediTech.ViewModels
                 Set(ref _SelectedWard, value);
                 if (SelectedWard != null)
                 {
-                    BedWardView = DataService.PatientIdentity.GetBedWardView(SelectedWard.LocationUID);
+                    BedWardView = DataService.PatientIdentity.GetWardView(SelectedWard.LocationUID);
                     WardName = SelectedWard.Name;
                 }
             }
+        }
+
+        private DateTime _Today;
+        public DateTime Today
+        {
+            get { return _Today; }
+            set { Set(ref _Today, value); }
         }
 
         private String _WardName;
@@ -68,6 +75,12 @@ namespace MediTech.ViewModels
         #endregion
 
         #region Command
+        
+        private RelayCommand _RefershCommand;
+        public RelayCommand RefershCommand
+        {
+            get { return _RefershCommand ?? (_RefershCommand = new RelayCommand(AllBedStatus)); }
+        }
 
         private RelayCommand _EditExpDischargeCommand;
         public RelayCommand EditExpDischargeCommand
@@ -85,7 +98,8 @@ namespace MediTech.ViewModels
         public RelayCommand<string> DischargeCommand
         {
             get { return _DischargeCommand ?? (_DischargeCommand = new RelayCommand<string>(Discharge)); }
-        }
+        } 
+       
 
         private RelayCommand _TranferCommand;
         public RelayCommand TranferCommand
@@ -180,10 +194,10 @@ namespace MediTech.ViewModels
 
         public WardViewModel()
         {
+            Today = DateTime.Now;
             WardSource = DataService.Technical.GetLocationByTypeUID(3152, AppUtil.Current.OwnerOrganisationUID);
             SelectedWard = WardSource.FirstOrDefault();
             AllBedStatus();
-
         }
 
         private void PatientRecords()
@@ -200,7 +214,7 @@ namespace MediTech.ViewModels
 
         private void AllBedStatus()
         {
-            BedWardView = DataService.PatientIdentity.GetBedWardView(SelectedWard.LocationUID);
+            BedWardView = DataService.PatientIdentity.GetWardView(SelectedWard.LocationUID);
         }
 
         private void VitalSign()
@@ -322,6 +336,11 @@ namespace MediTech.ViewModels
 
                     if (type == "MedicalDischarge")
                     {
+                        if(SelectedBedWardView.IsStandingOrder == true)
+                        {
+                            WarningDialog("มีการใช้ยา/อุปกรณ์รายชั่วโมงอยู่ \nกรุณาหยุดยา/อุปกรณ์รายชั่วโมง เพื่อทำรายการต่อไป");
+                            return;
+                        }
                         model = DataService.PatientIdentity.GetDischargeEventByAdmissionUID(SelectedBedWardView.AdmissionEventUID ?? 0); ;
                         
                         IPDMedicalDischarge pageview = new IPDMedicalDischarge();
@@ -335,6 +354,11 @@ namespace MediTech.ViewModels
 
                     if (type == "Discharge")
                     {
+                        if (SelectedBedWardView.IsBillingProgress == true)
+                        {
+                            WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
+                            return;
+                        }
                         model = DataService.PatientIdentity.GetDischargeEventByAdmissionUID(SelectedBedWardView.AdmissionEventUID ?? 0); ;
 
                         IPDMedicalDischarge pageview = new IPDMedicalDischarge();

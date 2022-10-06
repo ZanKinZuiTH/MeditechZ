@@ -1261,6 +1261,7 @@ namespace MediTechWebApi.Controllers
                         patientVisitID.MainIdentifier = "Y";
                         patientVisitID.Identifier = patientVisit.VisitID;
                         patientVisitID.ActiveFrom = patientVisit.StartDttm ?? now;
+                        patientVisitID.OwnerOrganisationUID = patientVisit.OwnerOrganisationUID ?? 0;
                         patientVisitID.CUser = userID;
                         patientVisitID.CWhen = now;
                         patientVisitID.MUser = userID;
@@ -1457,6 +1458,7 @@ namespace MediTechWebApi.Controllers
                         patientVisitID.MainIdentifier = "Y";
                         patientVisitID.Identifier = patientVisit.VisitID;
                         patientVisitID.ActiveFrom = patientVisit.StartDttm ?? now;
+                        patientVisitID.OwnerOrganisationUID = patientVisit.OwnerOrganisationUID ?? 0;
                         patientVisitID.CUser = userID;
                         patientVisitID.CWhen = now;
                         patientVisitID.MUser = userID;
@@ -2480,6 +2482,17 @@ namespace MediTechWebApi.Controllers
             return bed;
         }
 
+        [Route("GetWardView")]
+        [HttpGet]
+        public List<BedStatusModel> GetWardView(int parentLocationUID)
+        {
+            DataTable dataTable = SqlDirectStore.pGetWardView(parentLocationUID);
+
+            List<BedStatusModel> data = dataTable.ToList<BedStatusModel>();
+
+            return data;
+        }
+
 
         [Route("GetBedWardView")]
         [HttpGet]
@@ -2547,13 +2560,14 @@ namespace MediTechWebApi.Controllers
                             AgeString = SqlFunction.fGetAgeString(pt.DOBDttm.Value),
                             AdmissionDate = ad.AdmissionDttm,
                             ExpDischargeDate = ad.ExpectedDischargeDttm,
-                            //IsExpectedDischarge = (ad.ExpectedDischargeDttm.Value.Date == DateTime.Today.Date) ? true : false,
+                            IsExpectedDischarge = DbFunctions.TruncateTime(ad.ExpectedDischargeDttm.Value) == DbFunctions.TruncateTime(DateTime.Now) ? true : false,
                             IsBillingProgress = pv.VISTSUID == 423 ? true : false,
                             IsFinancial = pv.VISTSUID == 421 ? true : false,
                             Gender = SqlFunction.fGetRfValDescription(pt.SEXXXUID ?? 0),
                             CareproviderUID = pv.CareProviderUID ?? 0,
                             CareProviderName = SqlFunction.fGetCareProviderName(pv.CareProviderUID ?? 0),
-                            OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(b.OwnerOrganisationUID ?? 0)
+                            OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(b.OwnerOrganisationUID ?? 0),
+                            IsVIP = pt.IsVIP ?? false
                         }).ToList();
 
             if (data != null)

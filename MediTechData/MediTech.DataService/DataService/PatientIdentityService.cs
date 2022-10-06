@@ -836,6 +836,14 @@ namespace MediTech.DataService
             return returnData;
         }
 
+        public List<BedStatusModel> GetWardView(int parentLocationUID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetWardView?parentLocationUID={0}", parentLocationUID);
+            List<BedStatusModel> data = MeditechApiHelper.Get<List<BedStatusModel>>(requestApi);
+
+            return data;
+        }
+
         #endregion
 
         #region Patient DemographicLog
