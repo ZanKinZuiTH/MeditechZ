@@ -2042,7 +2042,16 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-
+        public static DataTable pGetWardView(int parentLocationUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetWardView", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_ParentLocationUID", parentLocationUID);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
 
 
         public static DataTable pRPTRevenuePerDay(DateTime billGeneratedDttm, string organisationList)

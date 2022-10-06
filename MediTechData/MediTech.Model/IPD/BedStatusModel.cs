@@ -61,5 +61,10 @@ namespace MediTech.Model
         public bool IsExpectedDischarge { get; set; }
         public bool IsBillingProgress { get; set; }
         public bool IsFinancial { get; set; }
+        public bool IsVIP { get; set; }
+        public bool IsAllergy { get; set; }
+        public bool IsStandingOrder { get; set; }
+        public bool IsLabResult { get; set; }
+        public bool IsXrayResult { get; set; }
     }
 }
