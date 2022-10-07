@@ -137,8 +137,11 @@
                         SelectedItems="{Binding SelectPatientAllocates}">
             <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID" ReadOnly="True"/>
             <dxg:GridColumn Header="ชื่อ-นามสกุล" FieldName="PatientName" ReadOnly="True"/>
-            <dxg:GridColumn Header="IsAllocated" FieldName="IsAllocated" ReadOnly="True"/>
+            <dxg:GridColumn Header="Allocated Billed" FieldName="IsAllocated" ReadOnly="True"/>
             <dxg:GridColumn Header="IsBillFinalized" FieldName="IsBillFinalized" ReadOnly="True"/>
+            <dxg:GridColumn Header="Payor" FieldName="PayorName" ReadOnly="True"/>
+            <dxg:GridColumn Header="Office Name" FieldName="PolicyName" ReadOnly="True"/>
+            <dxg:GridColumn Header="Payor Agreement" FieldName="PayorAgreementName" ReadOnly="True"/>
             <dxg:GridColumn Header="VisitID" FieldName="VisitID"  ReadOnly="True"/>
             <dxg:GridColumn Header="Status" FieldName="VisitStatus"  ReadOnly="True"/>
             <dxg:GridColumn Header="วันที่ลงทะเบียน" FieldName="StartDttm"  ReadOnly="True"/>
