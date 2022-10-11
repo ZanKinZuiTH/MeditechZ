@@ -62,10 +62,29 @@
                         <StackPanel Orientation="Horizontal">
                             <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
+                            <TextBlock Text="สถานประกอบการ" />
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
+                    <dxlc:LayoutItem>
+                        <dxe:ComboBoxEdit x:Name="cmbOrganisation"
+                                      ItemsSource="{Binding Organisations}" 
+                                      SelectedItem="{Binding SelectOrganisation}"
+                                      ValueMember="HealthOrganisationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True"
+                                      NullValueButtonPlacement="EditBox"
+                                      ImmediatePopup="True"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem >
+                    <dxlc:LayoutItem.Label>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
                             <TextBlock Text="แผนก" />
                         </StackPanel>
                     </dxlc:LayoutItem.Label>
-                    <dxe:ComboBoxEdit Name="cmbOrganisation" 
+                    <dxe:ComboBoxEdit Name="cmbLocation" 
                                       ItemsSource="{Binding Location}" 
                                       SelectedItem="{Binding SelectLocation}"
                                       ValueMember="LocationUID"
@@ -115,14 +134,12 @@
                         </dxg:LookUpEdit.StyleSettings>
                     </dxg:LookUpEdit>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem>
-                    <dxlc:LayoutGroup Orientation="Horizontal">
-                        <dxlc:LayoutGroup HorizontalAlignment="Right">
-                            <dx:SimpleButton Width="80" Height="25" Content="นำเข้าข้อมูล" Command="{Binding ImportCommand}"/>
-                        </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutGroup HorizontalAlignment="Right">
+                    <dx:SimpleButton Width="80" Height="25" Content="นำเข้าข้อมูล" Command="{Binding ImportCommand}"/>
+                </dxlc:LayoutGroup>
 
-                    </dxlc:LayoutGroup>
-                </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
             <dxlc:LayoutItem>
                 <ProgressBar Height="15"  Name="progressBar1"/>
