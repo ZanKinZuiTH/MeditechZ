@@ -19,6 +19,46 @@ namespace MediTech.ViewModels
     public class ImportOldResultViewModel : MediTechViewModelBase
     {
         #region Properties
+        private List<HealthOrganisationModel> _Organisations;
+
+        public List<HealthOrganisationModel> Organisations
+        {
+            get { return _Organisations; }
+            set { Set(ref _Organisations, value); }
+        }
+
+        private HealthOrganisationModel _SelectOrganisation;
+
+        public HealthOrganisationModel SelectOrganisation
+        {
+            get { return _SelectOrganisation; }
+            set
+            {
+                Set(ref _SelectOrganisation, value);
+                Location = null;
+                if (SelectOrganisation != null)
+                {
+                    var loct = DataService.MasterData.GetLocationByOrganisationUID(SelectOrganisation.HealthOrganisationUID);
+                    Location = loct.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+                }
+            }
+        }
+
+        private List<LocationModel> _Location;
+
+        public List<LocationModel> Location
+        {
+            get { return _Location; }
+            set { Set(ref _Location, value); }
+        }
+
+        private LocationModel _SelectLocation;
+
+        public LocationModel SelectLocation
+        {
+            get { return _SelectLocation; }
+            set { Set(ref _SelectLocation, value); }
+        }
 
         private string _FileLocation;
         public string FileLocation
@@ -340,13 +380,18 @@ namespace MediTech.ViewModels
             RequestItems = RequestItems?
                 .Where(p => p.RequestResultLinks.Count() > 0)
                 .Where(p => p.RequestResultLinks.FirstOrDefault(s => s.ResultValueType == "Image") == null).OrderBy(p => p.ItemName).ToList();
+            
+            Organisations = GetHealthOrganisationRole();
+            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
 
+            if (SelectOrganisation != null)
+            {
+                var loct = DataService.MasterData.GetLocationByOrganisationUID(SelectOrganisation.HealthOrganisationUID);
+                Location = loct.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+            }
+
+            SelectLocation = Location.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
             InsuranceCompany = DataService.Billing.GetInsuranceCompanyAll();
-            //DateTypes = new List<LookupItemModel>();
-            //DateTypes.Add(new LookupItemModel { Key = 30, Display = "30 วัน" });
-            //DateTypes.Add(new LookupItemModel { Key = 60, Display = "60 วัน" });
-            //DateTypes.Add(new LookupItemModel { Key = 90, Display = "90 วัน" });
-            //SelectDateType = DateTypes.FirstOrDefault();
         }
 
         private void ChooseFile()
@@ -598,8 +643,8 @@ namespace MediTech.ViewModels
             }
             try
             {
-                int? LocationUID = AppUtil.Current.LocationUID;
-                int OrganisationsUID = AppUtil.Current.OwnerOrganisationUID;
+                int OrganisationsUID = SelectOrganisation.HealthOrganisationUID;
+                int? LocationUID = SelectLocation != null ? SelectLocation.LocationUID: (int?)null;
                 string codeLab = SelectedRequestItem.Code;
                 int year = Convert.ToInt32(SelectYearSource);
                 int insuranceCompanyUID = SelectInsuranceCompany.InsuranceCompanyUID;

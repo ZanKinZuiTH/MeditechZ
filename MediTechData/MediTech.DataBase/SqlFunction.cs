@@ -1375,9 +1375,9 @@ namespace MediTech.DataBase
             adp.SelectCommand.CommandTimeout = 3000;
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_PatientID", patientID);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", ownerOrganisationUID);
-            adp.SelectCommand.Parameters.AddWithValue("@P_InsuranceCompanyUID", insuranceCompanyUID);
-            adp.SelectCommand.Parameters.AddWithValue("@P_LocationUID", locationUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", ownerOrganisationUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_InsuranceCompanyUID", insuranceCompanyUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_LocationUID", locationUID ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_RequestItemUID", requestItemUID);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);

@@ -18,6 +18,30 @@ namespace MediTech.ViewModels
     public class ImportOccMedResultViewModel : MediTechViewModelBase
     {
         #region Properties
+        private List<HealthOrganisationModel> _Organisations;
+
+        public List<HealthOrganisationModel> Organisations
+        {
+            get { return _Organisations; }
+            set { Set(ref _Organisations, value); }
+        }
+
+        private HealthOrganisationModel _SelectOrganisation;
+
+        public HealthOrganisationModel SelectOrganisation
+        {
+            get { return _SelectOrganisation; }
+            set
+            {
+                Set(ref _SelectOrganisation, value);
+                Location = null;
+                if (SelectOrganisation != null)
+                {
+                    var loct = DataService.MasterData.GetLocationByOrganisationUID(SelectOrganisation.HealthOrganisationUID);
+                    Location = loct.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+                }
+            }
+        }
 
         private string _FileLocation;
 
@@ -247,8 +271,15 @@ namespace MediTech.ViewModels
                 .Where(p => p.RequestResultLinks.Count() > 0)
                 .Where(p => p.RequestResultLinks.FirstOrDefault(s => s.ResultValueType == "Image") == null).OrderBy(p => p.ItemName).ToList();
 
-            var org = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
-            Location = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+            Organisations = GetHealthOrganisationRole();
+            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+
+            if (SelectOrganisation != null)
+            {
+                var loct = DataService.MasterData.GetLocationByOrganisationUID(SelectOrganisation.HealthOrganisationUID);
+                Location = loct.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+            }
+
             SelectLocation = Location.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
 
             InsuranceCompanyDetails = DataService.Billing.GetInsuranceCompanyAll();

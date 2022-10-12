@@ -18,6 +18,31 @@ namespace MediTech.ViewModels
     public class ImportLabResultViewModel : MediTechViewModelBase
     {
         #region Properties
+        private List<HealthOrganisationModel> _Organisations;
+
+        public List<HealthOrganisationModel> Organisations
+        {
+            get { return _Organisations; }
+            set { Set(ref _Organisations, value); }
+        }
+
+        private HealthOrganisationModel _SelectOrganisation;
+
+        public HealthOrganisationModel SelectOrganisation
+        {
+            get { return _SelectOrganisation; }
+            set
+            {
+                Set(ref _SelectOrganisation, value);
+                Location = null;
+                if (SelectOrganisation != null)
+                {
+                    var loct = DataService.MasterData.GetLocationByOrganisationUID(SelectOrganisation.HealthOrganisationUID);
+                    Location = loct.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+                }
+            }
+        }
+
         public List<CareproviderModel> Careprovider { get; set; }
         private CareproviderModel _SelectCareprovider;
 
@@ -407,14 +432,20 @@ namespace MediTech.ViewModels
         DataTable tempDt;
         public ImportLabResultViewModel()
         {
+
             RequestItems = DataService.MasterData.GetRequestItemByCategory("Lab", true);
             RequestItems = RequestItems?
                 .Where(p => p.RequestResultLinks.Count() > 0)
                 .Where(p => p.RequestResultLinks.FirstOrDefault(s => s.ResultValueType == "Image") == null).OrderBy(p => p.ItemName).ToList();
 
-            var org = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
-            Location = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
-            SelectLocation = Location.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
+            Organisations = GetHealthOrganisationRole();
+            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+
+            if (SelectOrganisation != null)
+            {
+                var loct = DataService.MasterData.GetLocationByOrganisationUID(SelectOrganisation.HealthOrganisationUID);
+                Location = loct.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+            }
 
             InsuranceCompany = DataService.Billing.GetInsuranceCompanyAll();
             DateTypes = new List<LookupItemModel>();
@@ -514,7 +545,7 @@ namespace MediTech.ViewModels
                     view.SetProgressBarLimits(0, upperlimit);
                     if (upperlimit > 0)
                     {
-                        int ownerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+                        int ownerOrganisationUID = SelectOrganisation.HealthOrganisationUID;
                         int? insuranceCompanyUID = SelectInsuranceCompany != null ? SelectInsuranceCompany.InsuranceCompanyUID : (int?)null;
                         int requestItemUID = SelectedRequestItem.RequestItemUID;
                         int? locationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
