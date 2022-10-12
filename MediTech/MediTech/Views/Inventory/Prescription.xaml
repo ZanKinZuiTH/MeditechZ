@@ -335,6 +335,17 @@
 
                 <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
                     <dxlc:LayoutItem>
+                        <dx:SimpleButton Width="85" Command="{Binding ChangeStoreCommand}"
+                                         IsEnabled="{Binding IsEnableChangeStore}"
+                                     Height="25" >
+                            <StackPanel  Orientation="Horizontal">
+                                <TextBlock Text="เปลี่ยน คลัง" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                        </dx:SimpleButton>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        
                         <dx:SimpleButton Width="85" Command="{Binding CancelDispenseCommand}"
                                          IsEnabled="{Binding IsEnableCancelDispense}"
                                      Height="25" >

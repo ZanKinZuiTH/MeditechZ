@@ -747,7 +747,7 @@ namespace MediTech.ViewModels
 
 
                                 newOrder.IsStock = itemMaster.IsStock;
-                                newOrder.StoreUID = stores.FirstOrDefault(p => p.Quantity > item.Quantity) != null ? stores.FirstOrDefault(p => p.Quantity > item.Quantity).StoreUID : (int?)null;
+                                newOrder.StoreUID = stores.Count(p => p.Quantity >= item.Quantity) > 0 ? stores.Where(p => p.Quantity >= item.Quantity)?.FirstOrDefault().StoreUID : (int?)null;
                                 newOrder.DFORMUID = itemMaster.FORMMUID;
                                 newOrder.PDSTSUID = itemMaster.PDSTSUID;
                                 newOrder.QNUOMUID = itemMaster.BaseUOM;
