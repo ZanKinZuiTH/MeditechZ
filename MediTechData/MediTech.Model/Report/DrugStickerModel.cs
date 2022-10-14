@@ -29,5 +29,9 @@ namespace MediTech.Model.Report
         public string OrganisationAddress { get; set; }
         public double? Quantity { get; set; }
         public string QuantityLabel { get; set; }
+        public string DrugLableEN { get; set; }
+        public string FrequencyDefinitionEn { get; set; }
+        public string PatientInstructionEn { get; set; }
+        public string DoctorNameEn { get; set; }
     }
 }
