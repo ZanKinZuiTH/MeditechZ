@@ -232,10 +232,57 @@ namespace MediTech.ViewModels
 
         void AutoCollocate()
         {
-            var patienttUnBillFinalized = SelectPatientAllocates.Where(p => p.IsBillFinalized == "N");
-            foreach (var pateintAllocate in patienttUnBillFinalized)
+            if (SelectPatientAllocates != null && SelectPatientAllocates.Count > 0)
             {
+                var patienttUnBillFinalized = SelectPatientAllocates.Where(p => p.IsBillFinalized == "N");
 
+                ListQueryBillsMassForInvoice view = (ListQueryBillsMassForInvoice)this.View;
+                int upperlimit = 0;
+                int loopCounter = 0;
+                foreach (var currentData in patienttUnBillFinalized)
+                {
+                    if (currentData.Select == true)
+                    {
+                        upperlimit++;
+                    }
+                }
+                view.SetProgressBarLimits(0, upperlimit);
+
+                foreach (var pateintAllocate in patienttUnBillFinalized.ToList())
+                {
+
+                    try
+                    {
+                        AllocatePatientBillableItemModel allocateModel = new AllocatePatientBillableItemModel();
+                        allocateModel.PatientUID = pateintAllocate.PatientUID;
+                        allocateModel.PatientVisitUID = pateintAllocate.PatientVisitUID;
+                        allocateModel.IsAutoAllocate = "Y";
+                        allocateModel.PatientVisitPayorUID = pateintAllocate.PatientVisitPayorUID;
+                        allocateModel.PayorAgreementUID = pateintAllocate.PayorAgreementUID;
+                        allocateModel.UserUID = AppUtil.Current.UserID;
+                        allocateModel.StartDate = DateFrom ?? pateintAllocate.StartDttm.Value;
+                        allocateModel.EndDate = DateTo ?? DateTime.Now;
+                        DataService.Billing.AllocateAndGenerateInvoiceOnly(allocateModel);
+
+
+                    }
+                    catch (Exception ex)
+                    {
+
+                        WarningDialog(ex.Message);
+                    }
+
+                    SelectPatientAllocates.Remove(pateintAllocate);
+                    loopCounter = ++loopCounter;
+                    view.SetProgressBarValue(loopCounter);
+
+                }
+
+                view.SetProgressBarValue(upperlimit);
+                view.grdPatientList.RefreshData();
+                view.progressBar1.Value = 0;
+
+                Search();
             }
         }
 
@@ -296,7 +343,7 @@ namespace MediTech.ViewModels
         {
             long? patientUID = null;
             int? insuranceCompanyUID = SelectInsuranceCompanyDetail != null ? SelectInsuranceCompanyDetail.InsuranceCompanyUID : (int?)null;
-            int? checkupJobUID = SelectInsuranceCompanyDetail != null ? SelectInsuranceCompanyDetail.InsuranceCompanyUID : (int?)null;
+            int? checkupJobUID = SelectCheckupJobContact != null ? SelectCheckupJobContact.CheckupJobContactUID : (int?)null;
             int? organisationUID = SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : (int?)null;
 
             if (SelectedPateintSearch != null && SearchPatientCriteria != "")

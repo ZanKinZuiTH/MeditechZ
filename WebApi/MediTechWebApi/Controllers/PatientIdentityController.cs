@@ -1906,6 +1906,7 @@ namespace MediTechWebApi.Controllers
 
                     }
                     var patientOrders = db.PatientOrder.Where(p => p.PatientVisitUID == patientVisit.UID);
+
                     if (patientOrders != null)
                     {
                         foreach (var patOrder in patientOrders)

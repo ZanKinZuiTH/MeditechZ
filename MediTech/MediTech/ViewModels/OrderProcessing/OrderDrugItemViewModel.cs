@@ -538,6 +538,7 @@ namespace MediTech.ViewModels
 
             SelectStore = Stores != null ? Stores.FirstOrDefault() : null;
             SelectDrugFORM = DrugFORM.FirstOrDefault(p => p.Key == ItemMaster.FORMMUID);
+            SelectDrugRoute = DrugRoute.FirstOrDefault(p => p.Key == ItemMaster.ROUTEUID);
             SelectDrugLabel = DrugLabel.FirstOrDefault(p => p.Key == ItemMaster.PDSTSUID);
             SelectUnit = Units.FirstOrDefault(p => p.ConversionUOMUID == ItemMaster.BaseUOM);
             SelectDrugFrequency = DrugFrequency.FirstOrDefault(p => p.FrequencyUID == ItemMaster.FRQNCUID);
@@ -592,6 +593,7 @@ namespace MediTech.ViewModels
             Duration = PatientOrderDetail.DrugDuration;
             SelectStore = Stores.FirstOrDefault(p => p.StoreUID == PatientOrderDetail.StoreUID);
             SelectDrugFORM = DrugFORM.FirstOrDefault(p => p.Key == PatientOrderDetail.DFORMUID);
+            SelectDrugRoute = DrugRoute.FirstOrDefault(p => p.Key == PatientOrderDetail.ROUTEUID);
             SelectDrugLabel = DrugLabel.FirstOrDefault(p => p.Key == PatientOrderDetail.PDSTSUID);
             SelectUnit = Units.FirstOrDefault(p => p.ConversionUOMUID == PatientOrderDetail.QNUOMUID);
 
@@ -731,6 +733,7 @@ namespace MediTech.ViewModels
                 PatientOrderDetail.IsStock = ItemMaster.IsStock;
                 PatientOrderDetail.DrugDuration = Duration ?? 1;
                 PatientOrderDetail.DFORMUID = SelectDrugFORM != null ? SelectDrugFORM.Key : (int?)null;
+                PatientOrderDetail.ROUTEUID = SelectDrugRoute != null ? SelectDrugRoute.Key : (int?)null;
                 PatientOrderDetail.StoreUID = SelectStore.StoreUID;
                 PatientOrderDetail.PRSTYPUID = SelectPrescriptionType.Key;
                 PatientOrderDetail.OrderType = SelectPrescriptionType.Display;
