@@ -170,6 +170,7 @@
                     <dxg:GridColumn Header="อายุ" FieldName="PatientAge" ReadOnly="True"/>
                     <dxg:GridColumn Header="เพศ" FieldName="Gender" ReadOnly="True" />
                     <dxg:GridColumn Header="สถานะ" FieldName="OrderStatus" ReadOnly="True"/>
+                    <dxg:GridColumn Header="ความสำคัญ" FieldName="PriorityStatus" ReadOnly="True"/>
                     <dxg:GridColumn Header="วันเวลาที่ Requested" FieldName="RequestedDttm"  ReadOnly="True">
                         <dxg:GridColumn.EditSettings>
                             <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy HH:mm" MaskType="DateTime"/>
