@@ -44,6 +44,7 @@ namespace MediTech.Model
         public Nullable<int> ROUTEUID { get; set; }
         public Nullable<int> DFORMUID { get; set; }
         public Nullable<int> PRSTYPUID { get; set; }
+        public Nullable<int> ORDPRUID { get; set; }
         public string OrderType { get; set; }
         public string TypeDrug { get; set; }
         public Nullable<int> PDSTSUID { get; set; }

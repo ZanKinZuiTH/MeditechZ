@@ -31,7 +31,19 @@
                     BorderBrush="Black"/>
             </dxlc:LayoutItem>
             <dxlc:LayoutGroup Orientation="Horizontal">
-                <dxlc:LayoutGroup Orientation="Vertical" ItemSpace="15">
+                <dxlc:LayoutGroup Orientation="Vertical" ItemSpace="5">
+                    <dxlc:LayoutItem Label="Priority" LabelHorizontalAlignment="Right" Visibility="{Binding PriorityVisibility}">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding Priorities}"
+                                      Name="cmbOrderType"
+                                      DisplayMember="Display"
+                                      AutoComplete="True"                                    
+                                      IsTextEditable="True"
+                                      ValidateOnTextInput="False"
+                                      IncrementalFiltering="True"
+                                      ImmediatePopup="True"
+                                      ValueMember="Key"
+                                      SelectedItem="{Binding SelectPriority}"/>
+                    </dxlc:LayoutItem>
                     <dxlc:LayoutGroup Orientation="Horizontal">
                         <dxlc:LayoutItem Label="วัน/เวลา">
                             <dxe:DateEdit EditValue="{Binding StartDate}" DisplayFormatString="dd/MM/yyyy"/>
@@ -63,7 +75,7 @@
                                               />
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
-                <dxlc:LayoutGroup Orientation="Vertical" ItemSpace="15">
+                <dxlc:LayoutGroup Orientation="Vertical" ItemSpace="5">
                     <dxlc:LayoutGroup Orientation="Horizontal">
                         <dxlc:LayoutItem Label="ราคา">
                             <TextBlock Text="{Binding UnitPrice}" HorizontalAlignment="Right" 

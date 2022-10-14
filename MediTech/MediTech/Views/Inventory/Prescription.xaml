@@ -312,6 +312,7 @@
                 <dxg:GridColumn Header="HN" FieldName="PatientID"/>
                 <dxg:GridColumn Header="ชื่อ-นามสกุล" FieldName="PatientName"/>
                 <dxg:GridColumn Header="แผนก" FieldName="LocationName"/>
+                <dxg:GridColumn Header="คลัง" FieldName="OrderToLocationStore"/>
                 <dxg:GridColumn Header="Encounter Type" FieldName="EncounterType"/>
                 <dxg:GridColumn Header="Order Type" FieldName="PrescriptionType"/>
                 <!--<dxg:GridColumn Header="สถานประกอบการ" FieldName="OrganisationName"/>-->

@@ -188,7 +188,8 @@ namespace MediTech
 
                 if (launchPageMassage.PageObject != null)
                 {
-                    ((launchPageMassage.PageObject as UserControl).DataContext as MediTechViewModelBase).View = launchPageMassage.PageObject;
+                    if (((launchPageMassage.PageObject as UserControl).DataContext as MediTechViewModelBase).View == null)
+                        ((launchPageMassage.PageObject as UserControl).DataContext as MediTechViewModelBase).View = launchPageMassage.PageObject;
 
                     if (launchPageMassage.BackwardView != null)
                     {

@@ -624,6 +624,8 @@ namespace MediTechWebApi.Controllers
                                                 IsBilled = SqlFunction.fCheckBillGeneratedForVisit(ps.PatientUID, ps.PatientVisitUID),
                                                 LocationName = SqlFunction.fGetLocationName(pv.LocationUID ?? 0),
                                                 OrganisationName = SqlFunction.fGetHealthOrganisationName(ps.OwnerOrganisationUID ?? 0),
+                                                OrderToLocationStore = SqlFunction.fGetStoreName(ps.OrderToLocationStoreUID ?? 0),
+                                                OrderToLocationStoreUID = ps.OrderToLocationStoreUID,
                                                 OwnerOrganisationUID = ps.OwnerOrganisationUID,
                                                 VisitID = pv.VisitID,
                                                 VISTSUID = pv.VISTSUID ?? 0,
@@ -1194,10 +1196,10 @@ namespace MediTechWebApi.Controllers
                 {
                     ORDSTUID = partiallyCancelDispensed.UID;
                 }
-                else if (cancelCount >= 1)
-                {
-                    ORDSTUID = partiallycancel.UID;
-                }
+                //else if (cancelCount >= 1)
+                //{
+                //    ORDSTUID = partiallycancel.UID;
+                //}
             }
             return ORDSTUID;
         }

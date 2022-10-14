@@ -57,7 +57,7 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectCareprovider, value); }
         }
 
-        private Visibility _CareproviderVisibility = Visibility.Hidden;
+        private Visibility _CareproviderVisibility = Visibility.Collapsed;
 
         public Visibility CareproviderVisibility
         {
@@ -65,6 +65,14 @@ namespace MediTech.ViewModels
             set { Set(ref _CareproviderVisibility, value); }
         }
 
+
+        private Visibility _PriorityVisibility = Visibility.Collapsed;
+
+        public Visibility PriorityVisibility
+        {
+            get { return _PriorityVisibility; }
+            set { Set(ref _PriorityVisibility, value); }
+        }
 
         private string _TypeOrder;
 
@@ -83,6 +91,21 @@ namespace MediTech.ViewModels
             set { Set(ref _OrderTypes, value); }
         }
 
+        private List<LookupReferenceValueModel> _Priorities;
+
+        public List<LookupReferenceValueModel> Priorities
+        {
+            get { return _Priorities; }
+            set { Set(ref _Priorities, value); }
+        }
+
+        private LookupReferenceValueModel _SelectPriority;
+
+        public LookupReferenceValueModel SelectPriority
+        {
+            get { return _SelectPriority; }
+            set { Set(ref _SelectPriority, value); }
+        }
 
         private string _OrderName;
 
@@ -182,8 +205,11 @@ namespace MediTech.ViewModels
             }
 
 
-            var refVale = DataService.Technical.GetReferenceValueList("PRSTYP");
+            var refVale = DataService.Technical.GetReferenceValueList("PRSTYP,RQPRT");
             OrderTypes = refVale.Where(p => p.DomainCode == "PRSTYP").ToList();
+            Priorities = refVale.Where(p => p.DomainCode == "RQPRT").ToList();
+
+            SelectPriority = Priorities.FirstOrDefault(p => p.ValueCode == "NORML");
         }
         public void BindingFromBillableItem()
         {
@@ -201,7 +227,16 @@ namespace MediTech.ViewModels
             }
             else
             {
-                CareproviderVisibility = Visibility.Hidden;
+                CareproviderVisibility = Visibility.Collapsed;
+            }
+
+            if (BillableItem.BSMDDUID == 2813 || BillableItem.BSMDDUID == 2841)
+            {
+                PriorityVisibility = Visibility.Visible;
+            }
+            else
+            {
+                PriorityVisibility = Visibility.Collapsed;
             }
         }
 
@@ -218,7 +253,17 @@ namespace MediTech.ViewModels
             Notes = PatientOrderDetail.Comments;
             OverwritePrice = PatientOrderDetail.OverwritePrice;
             SelectCareprovider = Careproviders != null ? Careproviders.FirstOrDefault(p => p.CareproviderUID == PatientOrderDetail.CareproviderUID) : null;
+            SelectPriority = Priorities != null ? Priorities.FirstOrDefault(p => p.Key == PatientOrderDetail.ORDPRUID) : null;
             if (PatientOrderDetail.DoctorFee != null && PatientOrderDetail.DoctorFee != 0 && PatientOrderDetail.BSMDDUID != 2841)
+            {
+                CareproviderVisibility = Visibility.Visible;
+            }
+            else
+            {
+                CareproviderVisibility = Visibility.Hidden;
+            }
+
+            if (PatientOrderDetail.BSMDDUID == 2813 || PatientOrderDetail.BSMDDUID == 2841)
             {
                 CareproviderVisibility = Visibility.Visible;
             }
@@ -274,8 +319,16 @@ namespace MediTech.ViewModels
 
                 PatientOrderDetail.StartDttm = StartDate.Add(StartTime.TimeOfDay);
                 PatientOrderDetail.EndDttm = StartDate.AddDays(1);
+
+                if (SelectPriority != null)
+                {
+                    PatientOrderDetail.ORDPRUID = SelectPriority.Key;
+                }
+
                 PatientOrderDetail.PRSTYPUID = OrderTypes.FirstOrDefault(p => p.ValueCode == "ROMED").Key;
                 PatientOrderDetail.OrderType = OrderTypes.FirstOrDefault(p => p.ValueCode == "ROMED").Display;
+
+          
 
                 if (OverwritePrice != null)
                 {

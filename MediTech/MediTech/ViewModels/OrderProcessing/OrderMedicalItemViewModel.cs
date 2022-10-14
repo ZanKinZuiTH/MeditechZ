@@ -138,6 +138,22 @@ namespace MediTech.ViewModels
         }
 
 
+        private List<LookupReferenceValueModel> _Priorities;
+
+        public List<LookupReferenceValueModel> Priorities
+        {
+            get { return _Priorities; }
+            set { Set(ref _Priorities, value); }
+        }
+
+        private LookupReferenceValueModel _SelectPriority;
+
+        public LookupReferenceValueModel SelectPriority
+        {
+            get { return _SelectPriority; }
+            set { Set(ref _SelectPriority, value); }
+        }
+
         private double _Quantity;
 
         public double Quantity
@@ -226,8 +242,9 @@ namespace MediTech.ViewModels
         {
             Units = DataService.Inventory.GetItemConvertUOM(ItemMaster.ItemMasterUID);
 
-            var refVale = DataService.Technical.GetReferenceValueList("PRSTYP");
+            var refVale = DataService.Technical.GetReferenceValueList("PRSTYP,RQPRT");
             OrderTypes = refVale.Where(p => p.DomainCode == "PRSTYP").ToList();
+            Priorities = refVale.Where(p => p.DomainCode == "RQPRT").ToList();
         }
 
         public void BindingFromBillableItem()
@@ -373,7 +390,7 @@ namespace MediTech.ViewModels
                 }
 
 
-
+                PatientOrderDetail.ORDPRUID = Priorities.FirstOrDefault(p => p.ValueCode == "NORML").Key;
                 PatientOrderDetail.PRSTYPUID = OrderTypes.FirstOrDefault(p => p.ValueCode == "ROMED").Key;
                 PatientOrderDetail.OrderType = OrderTypes.FirstOrDefault(p => p.ValueCode == "ROMED").Display;
                 PatientOrderDetail.LocalInstructionText = LabelSticker;

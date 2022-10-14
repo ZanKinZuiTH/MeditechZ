@@ -91,6 +91,7 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _SelectVisitMedical, value);
+                (this.View as DoctorRoom).electronicMedicalView.SetPatientVisit(_SelectVisitMedical);
                 if (_SelectVisitMedical != null)
                 {
                     IsEnableControl = true;
@@ -680,6 +681,12 @@ namespace MediTech.ViewModels
         }
         private void RefershPatient()
         {
+
+            if ((SelectedPateintSearch == null && SearchPatientCriteria == "") && VisitDate == null)
+            {
+                WarningDialog("กรูณาเลือกวันที่ที่คนไข้เข้ารับการตรวจ");
+                return;
+            }
             SearchPatientVisit();
         }
 
@@ -688,7 +695,7 @@ namespace MediTech.ViewModels
             if (SelectVisitMedical != null)
             {
                 var view = (this.View as DoctorRoom);
-                var summeryViewModel = (view.summeryView.DataContext as EMRViewViewModel);
+                var summeryViewModel = (view.electronicMedicalView.DataContext as EMRViewViewModel);
                 (summeryViewModel.View as EMRView).summeryView.RefershData();
                 GetLastVitalSign();
             }
@@ -1042,7 +1049,8 @@ namespace MediTech.ViewModels
                         {
                             if (this.View is DoctorRoom)
                             {
-                                ((this.View as DoctorRoom).summeryView.DataContext as SummeryViewViewModel).LoadDianosis();
+                                var emrViewModel = ((this.View as DoctorRoom).electronicMedicalView.DataContext as EMRViewViewModel);
+                                ((emrViewModel.View as EMRView).summeryView.DataContext as SummeryViewViewModel).LoadDianosis();
                             }
 
                         }
@@ -1165,8 +1173,9 @@ namespace MediTech.ViewModels
 
 
                                 newOrder.IsStock = itemMaster.IsStock;
-                                newOrder.StoreUID = stores.FirstOrDefault(p => p.Quantity > itemDrug.Quantity).StoreUID;
+                                newOrder.StoreUID = stores.Count(p => p.Quantity >= itemDrug.Quantity) > 0 ? stores.Where(p => p.Quantity >= itemDrug.Quantity)?.FirstOrDefault().StoreUID : (int?)null;
                                 newOrder.DFORMUID = itemMaster.FORMMUID;
+                                newOrder.ROUTEUID = itemMaster.ROUTEUID;
                                 newOrder.PDSTSUID = itemMaster.PDSTSUID;
                                 newOrder.QNUOMUID = itemMaster.BaseUOM;
 
@@ -1200,7 +1209,8 @@ namespace MediTech.ViewModels
                         {
                             if (this.View is DoctorRoom)
                             {
-                                ((this.View as DoctorRoom).summeryView.DataContext as SummeryViewViewModel).LoadPatientOrder();
+                                var emrViewModel = ((this.View as DoctorRoom).electronicMedicalView.DataContext as EMRViewViewModel);
+                                ((emrViewModel.View as EMRView).summeryView.DataContext as SummeryViewViewModel).LoadDianosis();
                             }
                         }
                     }

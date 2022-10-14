@@ -240,7 +240,7 @@ namespace MediTech.ViewModels
                 Model.PatientVisitUID = SelectPatientVisit.PatientVisitUID;
             }
 
-            Model.Complaint = SelectCCHPIMaster != null ? SelectCCHPIMaster.Name.Trim() : null;
+            Model.Complaint = (SelectCCHPIMaster != null && SelectCCHPIMaster.CCHPIMasterUID != 0) ? SelectCCHPIMaster.Name.Trim() : null;
             Model.CCHPIMasterUID = (SelectCCHPIMaster != null && SelectCCHPIMaster.CCHPIMasterUID != 0) ? SelectCCHPIMaster.CCHPIMasterUID : (int?)null;
             Model.Presentillness = Presentillness.Trim();
             Model.Period = Period;

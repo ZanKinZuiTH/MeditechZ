@@ -44,7 +44,7 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _SelectedPatientVisit, value);
-
+                (this.View as EMRView).summeryView.SetPatientVisit(_SelectedPatientVisit);
             }
         }
 

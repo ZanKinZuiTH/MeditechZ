@@ -79,9 +79,7 @@ PatientVisit="{Binding Path=DataContext.SelectedPatientVisit,UpdateSourceTrigger
 
             <dxlc:DockLayoutControl>
                 <dxwui:NavigationFrame dxlc:DockLayoutControl.Dock="Client"  x:Name="documentFrame" >
-                    <local:SummeryView  x:Name="summeryView" Height="Auto"
-                        PatientVisit="{Binding Path=DataContext.SelectedPatientVisit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay
-                        ,RelativeSource={RelativeSource Mode=FindAncestor,  AncestorType={x:Type local:EMRView}}}"/>
+                    <local:SummeryView  x:Name="summeryView" Height="Auto"/>
                 </dxwui:NavigationFrame>
 
                 <dxa:AccordionControl dxlc:DockLayoutControl.Dock="Right" x:Name="accordion" Width="170"

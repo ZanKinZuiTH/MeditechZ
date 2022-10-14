@@ -20,6 +20,7 @@ namespace MediTech.DataBase
         public long PatientVisitUID { get; set; }
         public Nullable<System.DateTime> StartDttm { get; set; }
         public Nullable<System.DateTime> EndDttm { get; set; }
+        public Nullable<int> ORDPRUID { get; set; }
         public Nullable<int> PRSTYPUID { get; set; }
         public Nullable<int> OrderCategoryUID { get; set; }
         public string Comments { get; set; }
@@ -29,6 +30,7 @@ namespace MediTech.DataBase
         public Nullable<int> RoomBillPackageUID { get; set; }
         public Nullable<int> OrderLocationUID { get; set; }
         public Nullable<int> OrderToLocationUID { get; set; }
+        public Nullable<int> OrderToLocationStoreUID { get; set; }
         public Nullable<long> ParentUID { get; set; }
         public string IsContinuous { get; set; }
         public string IsIPFill { get; set; }

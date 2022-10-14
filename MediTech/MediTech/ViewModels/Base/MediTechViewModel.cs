@@ -199,7 +199,8 @@ namespace MediTech.ViewModels
                 DXWindow window = new DXWindow();
                 window.Closed += window_Closed;
 
-                (usercontrol.DataContext as MediTechViewModelBase).View = pageView;
+                if ((usercontrol.DataContext as MediTechViewModelBase).View == null)
+                    (usercontrol.DataContext as MediTechViewModelBase).View = pageView;
 
                 window.Content = usercontrol;
                 window.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
@@ -248,7 +249,8 @@ namespace MediTech.ViewModels
                 DXWindow window = new DXWindow();
                 window.Closed += window_Closed;
 
-                (usercontrol.DataContext as MediTechViewModelBase).View = pageView;
+                if ((usercontrol.DataContext as MediTechViewModelBase).View == null)
+                    (usercontrol.DataContext as MediTechViewModelBase).View = pageView;
 
                 window.Content = usercontrol;
                 window.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
@@ -299,7 +301,8 @@ namespace MediTech.ViewModels
                 DXWindow window = new DXWindow();
                 window.Closed += window_Closed;
 
-                (usercontrol.DataContext as MediTechViewModelBase).View = pageView;
+                if ((usercontrol.DataContext as MediTechViewModelBase).View == null)
+                    (usercontrol.DataContext as MediTechViewModelBase).View = pageView;
 
                 window.Content = usercontrol;
                 window.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
@@ -350,7 +353,8 @@ namespace MediTech.ViewModels
                 DXWindow window = new DXWindow();
                 window.Closed += window_Closed;
 
-                (usercontrol.DataContext as MediTechViewModelBase).View = pageView;
+                if ((usercontrol.DataContext as MediTechViewModelBase).View == null)
+                    (usercontrol.DataContext as MediTechViewModelBase).View = pageView;
 
                 window.Content = usercontrol;
                 window.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
@@ -391,7 +395,8 @@ namespace MediTech.ViewModels
 
                 usercontrol.DataContext = viewModel;
 
-                (usercontrol.DataContext as MediTechViewModelBase).View = pageView; ;
+                if ((usercontrol.DataContext as MediTechViewModelBase).View == null)
+                    (usercontrol.DataContext as MediTechViewModelBase).View = pageView; ;
 
                 window.Content = usercontrol;
                 window.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
@@ -481,8 +486,8 @@ namespace MediTech.ViewModels
                     return;
                 }
                 usercontrol.DataContext = viewModel;
-
-                (usercontrol.DataContext as MediTechViewModelBase).View = pageView; ;
+                if ((usercontrol.DataContext as MediTechViewModelBase).View == null)
+                    (usercontrol.DataContext as MediTechViewModelBase).View = pageView; ;
                 GalaSoft.MvvmLight.Messaging.Messenger.Default.Send<LaunchPageMassage>(new LaunchPageMassage { PageObject = pageView, BackwardView = backwardView, PageView = permission });
             }
             else
@@ -557,7 +562,7 @@ namespace MediTech.ViewModels
 
         public void SaveSuccessDialog()
         {
-            DXMessageBox.Show((this.View as FrameworkElement),"บันทึกข้อมูลเรียบร้อย", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            DXMessageBox.Show((this.View as FrameworkElement), "บันทึกข้อมูลเรียบร้อย", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
         }
 
@@ -568,7 +573,7 @@ namespace MediTech.ViewModels
 
         public void SaveSuccessDialog(string message)
         {
-            DXMessageBox.Show((this.View as FrameworkElement),message, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            DXMessageBox.Show((this.View as FrameworkElement), message, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
 
@@ -582,7 +587,7 @@ namespace MediTech.ViewModels
         }
         public void ErrorDialog(string errorMessage)
         {
-            DXMessageBox.Show((this.View as FrameworkElement),errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            DXMessageBox.Show((this.View as FrameworkElement), errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         public MessageBoxResult DeleteDialog()

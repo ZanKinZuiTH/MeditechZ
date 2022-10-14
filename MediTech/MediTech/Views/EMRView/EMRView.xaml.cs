@@ -83,7 +83,16 @@ namespace MediTech.Views
             documentFrame.Navigating += DocumentFrame_Navigating;
             if (this.DataContext is EMRViewViewModel)
             {
-                (this.DataContext as EMRViewViewModel).PatientBannerVisibilityChanged += EMRView_PatientBannerVisibilityChanged; ;
+                (this.DataContext as EMRViewViewModel).PatientBannerVisibilityChanged += EMRView_PatientBannerVisibilityChanged;
+                (this.DataContext as EMRViewViewModel).View = this;
+            }
+        }
+
+        public void SetPatientVisit(PatientVisitModel source)
+        {
+            if (this.DataContext is EMRViewViewModel)
+            {
+                (this.DataContext as EMRViewViewModel).SelectedPatientVisit = source;
             }
         }
 

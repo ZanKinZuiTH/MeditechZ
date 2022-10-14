@@ -200,6 +200,22 @@ namespace MediTech.ViewModels
             }
         }
 
+        private List<LookupReferenceValueModel> _Priorities;
+
+        public List<LookupReferenceValueModel> Priorities
+        {
+            get { return _Priorities; }
+            set { Set(ref _Priorities, value); }
+        }
+
+        private LookupReferenceValueModel _SelectPriority;
+
+        public LookupReferenceValueModel SelectPriority
+        {
+            get { return _SelectPriority; }
+            set { Set(ref _SelectPriority, value); }
+        }
+
         private List<LookupReferenceValueModel> _DrugLabel;
 
         public List<LookupReferenceValueModel> DrugLabel
@@ -504,7 +520,7 @@ namespace MediTech.ViewModels
         private void BindingData()
         {
 
-            var refVale = DataService.Technical.GetReferenceValueList("PDSTS,FORMM,ROUTE,PRSTYP,ENTYP");
+            var refVale = DataService.Technical.GetReferenceValueList("PDSTS,FORMM,ROUTE,PRSTYP,ENTYP,RQPRT");
 
             var EncounterTypeList = refVale.Where(p => p.DomainCode == "ENTYP").ToList();
 
@@ -516,8 +532,8 @@ namespace MediTech.ViewModels
                 PrescriptionTypes = refVale.Where(p => p.DomainCode == "PRSTYP").ToList();
             }
 
+            Priorities = refVale.Where(p => p.DomainCode == "RQPRT").ToList();
 
- 
             DrugFORM = refVale.Where(p => p.DomainCode == "FORMM").ToList();
             DrugLabel = refVale.Where(p => p.DomainCode == "PDSTS").ToList();
             DrugRoute = refVale.Where(p => p.DomainCode == "ROUTE").ToList();
@@ -727,6 +743,7 @@ namespace MediTech.ViewModels
                 {
                     PatientOrderDetail.PDSTSUID = null;
                 }
+                PatientOrderDetail.ORDPRUID = Priorities.FirstOrDefault(p => p.ValueCode == "NORML").Key;
                 //PatientOrderDetail.InstructionText = LabelSticker;
                 PatientOrderDetail.LocalInstructionText = LabelSticker;
                 PatientOrderDetail.ClinicalComments = NoteToPharmacy;

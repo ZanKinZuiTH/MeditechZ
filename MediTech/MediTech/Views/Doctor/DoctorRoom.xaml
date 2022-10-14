@@ -538,11 +538,8 @@
                 </dxlc:LayoutItem>
             </dxlc:LayoutControl>
             <dxlc:LayoutControl Padding="10,0" Grid.Row="1">
-                <vm:EMRView  x:Name="summeryView" Height="Auto"
-                        PatientBannerVisibility="Collapsed"
-                        PatientVisit="{Binding Path=DataContext.SelectVisitMedical
-                    ,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay
-                        ,RelativeSource={RelativeSource AncestorType={x:Type vm:DoctorRoom}}}"/>
+                <vm:EMRView  x:Name="electronicMedicalView" Height="Auto"
+                        PatientBannerVisibility="Collapsed"/>
             </dxlc:LayoutControl>
         </Grid>
 

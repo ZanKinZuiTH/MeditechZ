@@ -55,6 +55,14 @@ namespace MediTech.Views
             InitializeComponent();
         }
 
+        public void SetPatientVisit(PatientVisitModel source)
+        {
+            if (this.DataContext is SummeryViewViewModel)
+            {
+                (this.DataContext as SummeryViewViewModel).AssignPatientVisit(source);
+            }
+        }
+
         public void RefershData()
         {
             if (this.DataContext is SummeryViewViewModel)

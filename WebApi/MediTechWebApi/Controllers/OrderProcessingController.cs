@@ -353,7 +353,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("CriteriaOrderAlert")]
         [HttpPost]
-        public HttpResponseMessage CriteriaOrderAlert(long patientUID,long patientVisitUID, BillableItemModel billItemModel)
+        public HttpResponseMessage CriteriaOrderAlert(long patientUID, long patientVisitUID, BillableItemModel billItemModel)
         {
             try
             {
@@ -449,790 +449,799 @@ namespace MediTechWebApi.Controllers
 
                 int RQPRTUID = 440; //Priority Normal
                 int statusOrder;
-     
+
                 var patientVisit = db.PatientVisit.Find(patientVisitUID);
                 using (var tran = new TransactionScope())
                 {
                     IEnumerable<int> groupBSMDD = orderDetails.Select(p => p.BSMDDUID).Distinct();
+                    IEnumerable<int> groupPriority = orderDetails.Select(p => p.ORDPRUID ?? RQPRTUID).Distinct();
                     IEnumerable<int> groupOrderType = orderDetails.Select(p => p.PRSTYPUID ?? 0).Distinct();
+                    IEnumerable<int> groupRouteToStore = orderDetails.Select(p => p.StoreUID ?? 0).Distinct();
                     IEnumerable<string> isContinuousTypes = orderDetails.Select(p => p.IsContinuous ?? "N").Distinct();
-                    foreach (var OrderType in groupOrderType)
+                    foreach (var priority in groupPriority)
                     {
-                        foreach (int BSMDDUID in groupBSMDD)
+                        foreach (var OrderType in groupOrderType)
                         {
-                            foreach (string isContinuous in isContinuousTypes)
+                            foreach (int BSMDDUID in groupBSMDD)
                             {
-                                var dataInOrderDetail = orderDetails.Where(p => p.BSMDDUID == BSMDDUID && p.PRSTYPUID == OrderType && (p.IsContinuous ?? "N") == isContinuous);
-                                List<PatientOrderDetailModel> stadingOrderLists = new List<PatientOrderDetailModel>();
-                                if (dataInOrderDetail != null && dataInOrderDetail.Count() > 0)
+                                foreach (var store in groupRouteToStore)
                                 {
 
-                                    #region PatientOrder
-
-                                    PatientOrder patientOrder = new PatientOrder();
-                                    patientOrder.CUser = userUID;
-                                    patientOrder.CWhen = now;
-
-                                    int seqPatientOrderID;
-                                    string patientOrderID = SEQHelper.GetSEQIDFormat("SEQPatientOrder", out seqPatientOrderID);
-
-                                    if (string.IsNullOrEmpty(patientOrderID))
+                                    foreach (string isContinuous in isContinuousTypes)
                                     {
-                                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientOrder in SEQCONFIGURATION");
-                                    }
-
-                                    if (seqPatientOrderID == 0)
-                                    {
-                                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQPatientOrder is Fail");
-                                    }
-
-                                    patientOrder.OrderNumber = patientOrderID;
-                                    patientOrder.StartDttm = now;
-                                    patientOrder.EndDttm = isContinuous == "Y" ? dataInOrderDetail.Max(p => p.EndDttm) : now;
-
-                                    if (BSMDDUID == 2841) //Radiology
-                                    {
-                                        statusOrder = REGISTUID;
-                                    }
-                                    else
-                                    {
-                                        statusOrder = RAISEDUID;
-                                    }
-                                    patientOrder.PRSTYPUID = OrderType;
-                                    patientOrder.OrderRaisedBy = userUID;
-                                    patientOrder.IsContinuous = OrderType == PRST_STAN ? "Y" : "N";
-                                    patientOrder.MUser = userUID;
-                                    patientOrder.MWhen = now;
-                                    patientOrder.StatusFlag = "A";
-                                    patientOrder.PatientUID = patientUID;
-                                    patientOrder.PatientVisitUID = patientVisitUID;
-                                    patientOrder.OrderLocationUID = locationUID;
-                                    patientOrder.OrderCategoryUID = dataInOrderDetail.FirstOrDefault()?.OrderCatagoryUID;
-                                    patientOrder.OwnerOrganisationUID = ownerOrganisationUID;
-                                    patientOrder.IdentifyingType = (BSMDDUID == BSMDD_STORE || BSMDDUID == BSMDD_MDSLP || BSMDDUID == BSMDD_SULPY) ? "PRESCRIPTION" : "PATIENTORDER";
-                                    db.PatientOrder.Add(patientOrder);
-
-                                    db.SaveChanges();
-
-                                    #endregion
-
-                                    #region Request
-
-                                    if (BSMDDUID == BSMDD_LAB || BSMDDUID == BSMDD_RADIO || BSMDDUID == BSMDD_MBCUP)
-                                    {
-                                        Request request = new Request();
-                                        request.CUser = userUID;
-                                        request.CWhen = now;
-                                        request.StatusFlag = "A";
-                                        int outrequestUID;
-                                        string seqRequestID;
-
-                                        if (BSMDDUID == BSMDD_LAB)
+                                        var dataInOrderDetail = orderDetails.Where(p => p.BSMDDUID == BSMDDUID && p.ORDPRUID == priority && p.PRSTYPUID == OrderType && (p.StoreUID ?? 0) == store && (p.IsContinuous ?? "N") == isContinuous);
+                                        List<PatientOrderDetailModel> stadingOrderLists = new List<PatientOrderDetailModel>();
+                                        if (dataInOrderDetail != null && dataInOrderDetail.Count() > 0)
                                         {
-                                            seqRequestID = SEQHelper.GetSEQIDFormat("SEQLISRequest", out outrequestUID);
-                                        }
-                                        else
-                                        {
-                                            seqRequestID = SEQHelper.GetSEQIDFormat("SEQRISRequest", out outrequestUID);
-                                        }
 
+                                            #region PatientOrder
 
-                                        if (string.IsNullOrEmpty(seqRequestID))
-                                        {
-                                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQRequest in SEQCONFIGURATION");
-                                        }
+                                            PatientOrder patientOrder = new PatientOrder();
+                                            patientOrder.CUser = userUID;
+                                            patientOrder.CWhen = now;
 
-                                        if (outrequestUID == 0)
-                                        {
-                                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQRequest is Fail");
-                                        }
+                                            int seqPatientOrderID;
+                                            string patientOrderID = SEQHelper.GetSEQIDFormat("SEQPatientOrder", out seqPatientOrderID);
 
-
-                                        request.RequestNumber = seqRequestID;
-                                        request.RequestedDttm = now;
-                                        request.RequestedUserUID = userUID;
-                                        request.BSMDDUID = BSMDDUID;
-                                        request.ORDSTUID = statusOrder;
-
-
-                                        request.RQPRTUID = RQPRTUID;
-
-
-                                        request.PatientUID = patientUID;
-                                        request.PatientVisitUID = patientVisitUID;
-                                        request.PatientOrderUID = patientOrder.UID;
-    
-                                        request.MUser = userUID;
-                                        request.MWhen = now;
-                                        request.OrderLocationUID = locationUID;
-                                        request.OwnerOrganisationUID = ownerOrganisationUID;
-
-
-                                        db.Request.Add(request);
-                                        db.SaveChanges();
-
-
-                                        db.PatientOrder.Attach(patientOrder);
-                                        patientOrder.IdentifyingType = "REQUEST";
-                                        patientOrder.IdentifyingUID = request.UID;
-                                        db.SaveChanges();
-                                    }
-
-                                    #endregion
-
-                                    #region Store
-                                    if ((BSMDDUID == BSMDD_STORE || BSMDDUID == BSMDD_MDSLP || BSMDDUID == BSMDD_SULPY) && isContinuous != "Y")
-                                    {
-                                        MediTech.DataBase.Prescription presc = new MediTech.DataBase.Prescription();
-                                        presc.CUser = userUID;
-                                        presc.CWhen = now;
-
-                                        int seqPrescriptionID;
-                                        string prescriptionID = SEQHelper.GetSEQIDFormat("SEQPrescription", out seqPrescriptionID);
-
-                                        if (string.IsNullOrEmpty(prescriptionID))
-                                        {
-                                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPrescription in SEQCONFIGURATION");
-                                        }
-
-                                        if (seqPrescriptionID == 0)
-                                        {
-                                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQPrescription is Fail");
-                                        }
-
-                                        if (seqPrescriptionID != 0)
-                                        {
-                                            if (patientVisit.ENTYPUID == ENTYP_INPAT)
+                                            if (string.IsNullOrEmpty(patientOrderID))
                                             {
-                                                prescriptionID = "I" + prescriptionID;
+                                                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientOrder in SEQCONFIGURATION");
+                                            }
+
+                                            if (seqPatientOrderID == 0)
+                                            {
+                                                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQPatientOrder is Fail");
+                                            }
+
+                                            patientOrder.OrderNumber = patientOrderID;
+                                            patientOrder.StartDttm = now;
+                                            patientOrder.EndDttm = isContinuous == "Y" ? dataInOrderDetail.Max(p => p.EndDttm) : now;
+
+                                            if (BSMDDUID == 2841) //Radiology
+                                            {
+                                                statusOrder = REGISTUID;
                                             }
                                             else
                                             {
-                                                prescriptionID = "O" + prescriptionID;
+                                                statusOrder = RAISEDUID;
                                             }
+                                            patientOrder.PRSTYPUID = OrderType;
+                                            patientOrder.OrderRaisedBy = userUID;
+                                            patientOrder.IsContinuous = OrderType == PRST_STAN ? "Y" : "N";
+                                            patientOrder.MUser = userUID;
+                                            patientOrder.MWhen = now;
+                                            patientOrder.StatusFlag = "A";
+                                            patientOrder.PatientUID = patientUID;
+                                            patientOrder.PatientVisitUID = patientVisitUID;
+                                            patientOrder.OrderLocationUID = locationUID;
+                                            patientOrder.OrderToLocationStoreUID = store != 0 ? store : (int?)null;
+                                            patientOrder.OrderCategoryUID = dataInOrderDetail.FirstOrDefault()?.OrderCatagoryUID;
+                                            patientOrder.OwnerOrganisationUID = ownerOrganisationUID;
+                                            patientOrder.IdentifyingType = (BSMDDUID == BSMDD_STORE || BSMDDUID == BSMDD_MDSLP || BSMDDUID == BSMDD_SULPY) ? "PRESCRIPTION" : "PATIENTORDER";
+                                            db.PatientOrder.Add(patientOrder);
+
+                                            db.SaveChanges();
+
+                                            #endregion
+
+                                            #region Request
+
+                                            if (BSMDDUID == BSMDD_LAB || BSMDDUID == BSMDD_RADIO || BSMDDUID == BSMDD_MBCUP)
+                                            {
+                                                Request request = new Request();
+                                                request.CUser = userUID;
+                                                request.CWhen = now;
+                                                request.StatusFlag = "A";
+                                                int outrequestUID;
+                                                string seqRequestID;
+
+                                                if (BSMDDUID == BSMDD_LAB)
+                                                {
+                                                    seqRequestID = SEQHelper.GetSEQIDFormat("SEQLISRequest", out outrequestUID);
+                                                }
+                                                else
+                                                {
+                                                    seqRequestID = SEQHelper.GetSEQIDFormat("SEQRISRequest", out outrequestUID);
+                                                }
+
+
+                                                if (string.IsNullOrEmpty(seqRequestID))
+                                                {
+                                                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQRequest in SEQCONFIGURATION");
+                                                }
+
+                                                if (outrequestUID == 0)
+                                                {
+                                                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQRequest is Fail");
+                                                }
+
+
+                                                request.RequestNumber = seqRequestID;
+                                                request.RequestedDttm = now;
+                                                request.RequestedUserUID = userUID;
+                                                request.BSMDDUID = BSMDDUID;
+                                                request.ORDSTUID = statusOrder;
+
+
+                                                request.RQPRTUID = priority;
+
+
+                                                request.PatientUID = patientUID;
+                                                request.PatientVisitUID = patientVisitUID;
+                                                request.PatientOrderUID = patientOrder.UID;
+
+                                                request.MUser = userUID;
+                                                request.MWhen = now;
+                                                request.OrderLocationUID = locationUID;
+                                                request.OwnerOrganisationUID = ownerOrganisationUID;
+
+
+                                                db.Request.Add(request);
+                                                db.SaveChanges();
+
+
+                                                db.PatientOrder.Attach(patientOrder);
+                                                patientOrder.IdentifyingType = "REQUEST";
+                                                patientOrder.IdentifyingUID = request.UID;
+                                                db.SaveChanges();
+                                            }
+
+                                            #endregion
+
+                                            #region Store
+                                            if ((BSMDDUID == BSMDD_STORE || BSMDDUID == BSMDD_MDSLP || BSMDDUID == BSMDD_SULPY) && isContinuous != "Y")
+                                            {
+                                                MediTech.DataBase.Prescription presc = new MediTech.DataBase.Prescription();
+                                                presc.CUser = userUID;
+                                                presc.CWhen = now;
+
+                                                int seqPrescriptionID;
+                                                string prescriptionID = SEQHelper.GetSEQIDFormat("SEQPrescription", out seqPrescriptionID);
+
+                                                if (string.IsNullOrEmpty(prescriptionID))
+                                                {
+                                                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPrescription in SEQCONFIGURATION");
+                                                }
+
+                                                if (seqPrescriptionID == 0)
+                                                {
+                                                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQPrescription is Fail");
+                                                }
+
+                                                if (seqPrescriptionID != 0)
+                                                {
+                                                    if (patientVisit.ENTYPUID == ENTYP_INPAT)
+                                                    {
+                                                        prescriptionID = "I" + prescriptionID;
+                                                    }
+                                                    else
+                                                    {
+                                                        prescriptionID = "O" + prescriptionID;
+                                                    }
+                                                }
+
+                                                presc.PrescriptionNumber = prescriptionID;
+                                                presc.PrescribedDttm = now;
+                                                presc.PrescribedBy = userUID;
+                                                presc.BSMDDUID = BSMDDUID;
+
+                                                presc.ORDSTUID = statusOrder;
+                                                presc.PatientUID = patientUID;
+                                                presc.PatientVisitUID = patientVisitUID;
+
+                                                presc.PRSTYPUID = OrderType;
+                                                presc.MUser = userUID;
+                                                presc.MWhen = now;
+                                                presc.PatientOrderUID = patientOrder.UID;
+
+                                                presc.StatusFlag = "A";
+                                                presc.OrderLocationUID = locationUID;
+                                                presc.OrderToLocationStoreUID = store;
+                                                presc.OwnerOrganisationUID = ownerOrganisationUID;
+
+                                                db.Prescription.Add(presc);
+                                                db.SaveChanges();
+
+                                                db.PatientOrder.Attach(patientOrder);
+                                                patientOrder.IdentifyingUID = presc.UID;
+                                                patientOrder.IdentifyingType = "PRESCRIPTION";
+                                                db.SaveChanges();
+                                            }
+                                            #endregion
+
+
+                                            foreach (var item in dataInOrderDetail)
+                                            {
+                                                #region OrderDetail
+                                                string identifyingType = (BSMDDUID == BSMDD_LAB || BSMDDUID == BSMDD_RADIO) ? "REQUESTITEM" : BSMDDUID == BSMDD_STORE ? "DRUG" : BSMDDUID == BSMDD_MDSLP ? "MEDICALSUPPLIES" : BSMDDUID == BSMDD_SULPY ? "SUPPLY" : "ORDERITEM";
+
+                                                PatientOrderDetail orderDetail = new PatientOrderDetail();
+                                                orderDetail.CUser = userUID;
+                                                orderDetail.CWhen = now;
+                                                orderDetail.StartDttm = item.StartDttm;
+                                                orderDetail.EndDttm = item.EndDttm;
+                                                orderDetail.ORDSTUID = statusOrder;
+
+
+                                                orderDetail.PatientOrderUID = patientOrder.UID;
+                                                orderDetail.MUser = userUID;
+                                                orderDetail.MWhen = now;
+                                                orderDetail.StatusFlag = "A";
+                                                orderDetail.OwnerOrganisationUID = item.OwnerOrganisationUID;
+                                                orderDetail.ItemCode = item.ItemCode;
+                                                orderDetail.ItemName = item.ItemName;
+                                                orderDetail.Dosage = item.Dosage;
+                                                orderDetail.Quantity = item.Quantity;
+                                                orderDetail.QNUOMUID = item.QNUOMUID;
+                                                orderDetail.FRQNCUID = item.FRQNCUID;
+                                                orderDetail.UnitPrice = item.UnitPrice;
+                                                orderDetail.IsPriceOverwrite = item.IsPriceOverwrite;
+                                                orderDetail.OverwritePrice = item.OverwritePrice;
+                                                orderDetail.OriginalUnitPrice = item.OriginalUnitPrice;
+                                                orderDetail.DoctorFee = item.DoctorFee;
+                                                orderDetail.CareproviderUID = item.CareproviderUID;
+                                                orderDetail.NetAmount = item.NetAmount;
+                                                orderDetail.ROUTEUID = item.ROUTEUID;
+                                                orderDetail.DFORMUID = item.DFORMUID;
+                                                orderDetail.PDSTSUID = item.PDSTSUID;
+                                                orderDetail.DrugDuration = item.DrugDuration;
+                                                orderDetail.InstructionText = item.InstructionText;
+                                                orderDetail.LocalInstructionText = item.LocalInstructionText;
+                                                orderDetail.BillableItemUID = item.BillableItemUID;
+                                                orderDetail.OrderCategoryUID = item.OrderCatagoryUID;
+                                                orderDetail.OrderSubCategoryUID = item.OrderSubCategoryUID;
+                                                orderDetail.IsStockItem = item.IsStock;
+                                                orderDetail.StoreUID = item.StoreUID;
+                                                orderDetail.Comments = item.Comments;
+                                                orderDetail.OrderSetUID = item.OrderSetUID;
+                                                orderDetail.OrderSetBillableItemUID = item.OrderSetBillableItemUID;
+                                                orderDetail.IdentifyingType = identifyingType;
+                                                orderDetail.IdentifyingUID = item.ItemUID;
+                                                orderDetail.IsStandingOrder = item.IsStandingOrder;
+                                                db.PatientOrderDetail.Add(orderDetail);
+                                                db.SaveChanges();
+
+
+
+                                                #endregion
+
+                                                #region SavePatinetOrderDetailHistory
+
+                                                PatientOrderDetailHistory patientOrderDetailHistory = new PatientOrderDetailHistory();
+                                                patientOrderDetailHistory.PatientOrderDetailUID = orderDetail.UID;
+                                                patientOrderDetailHistory.ORDSTUID = orderDetail.ORDSTUID;
+                                                patientOrderDetailHistory.EditedDttm = now;
+                                                patientOrderDetailHistory.EditByUserID = userUID;
+                                                patientOrderDetailHistory.CUser = userUID;
+                                                patientOrderDetailHistory.CWhen = now;
+                                                patientOrderDetailHistory.MUser = userUID;
+                                                patientOrderDetailHistory.MWhen = now;
+                                                patientOrderDetailHistory.StatusFlag = "A";
+                                                db.PatientOrderDetailHistory.Add(patientOrderDetailHistory);
+                                                db.SaveChanges();
+
+                                                #endregion
+
+                                                #region SaveOrderAlert
+
+                                                if (item.PatientOrderAlert != null)
+                                                {
+                                                    foreach (var itemOrderAlert in item.PatientOrderAlert)
+                                                    {
+                                                        PatientOrderAlert patOrderAlert = new PatientOrderAlert();
+                                                        patOrderAlert.PatientOrderDetailUID = orderDetail.UID;
+                                                        patOrderAlert.AlertType = itemOrderAlert.AlertType;
+                                                        patOrderAlert.AlertMessage = itemOrderAlert.AlertMessage;
+                                                        patOrderAlert.AlertMessage = itemOrderAlert.AlertMessage;
+                                                        patOrderAlert.OverrideByUserUID = userUID;
+                                                        patOrderAlert.OverrideRemarks = itemOrderAlert.OverrideRemarks;
+                                                        patOrderAlert.OverrideRSNUID = itemOrderAlert.OverrideRSNUID;
+                                                        patOrderAlert.CUser = userUID;
+                                                        patOrderAlert.MUser = userUID;
+                                                        patOrderAlert.CWhen = now;
+                                                        patOrderAlert.MWhen = now;
+                                                        patOrderAlert.StatusFlag = "A";
+                                                        db.PatientOrderAlert.Add(patOrderAlert);
+                                                    }
+
+                                                    db.SaveChanges();
+                                                }
+
+                                                #endregion
+
+                                                #region RequestDetail
+
+                                                long? requestDetailUID = null;
+                                                if (BSMDDUID == BSMDD_LAB || BSMDDUID == BSMDD_RADIO || BSMDDUID == BSMDD_MBCUP)
+                                                {
+                                                    MediTech.DataBase.RequestItem requestItem = db.RequestItem.Find(item.ItemUID ?? 0);
+                                                    RequestDetail requestDetail = new RequestDetail();
+                                                    requestDetail.CUser = userUID;
+                                                    requestDetail.CWhen = now;
+                                                    requestDetail.StatusFlag = "A";
+
+                                                    if (item.BSMDDUID == BSMDD_RADIO) //Radiology
+                                                    {
+                                                        requestDetail.AccessionNumber = (new TechnicalController()).GetAccessionNumber(item.OwnerOrganisationUID);
+                                                        requestDetail.RIMTYPUID = requestItem.RIMTYPUID;
+                                                    }
+
+
+
+
+                                                    requestDetail.RequestUID = patientOrder.IdentifyingUID.Value;
+                                                    requestDetail.RequestitemUID = item.ItemUID ?? 0;
+                                                    requestDetail.RequestedDttm = item.StartDttm ?? now;
+                                                    requestDetail.ResultRequiredDttm = now;
+                                                    requestDetail.PatientOrderDetailUID = orderDetail.UID;
+
+
+
+                                                    requestDetail.ORDSTUID = statusOrder;
+                                                    requestDetail.RQPRTUID = priority;
+                                                    requestDetail.ORDSTUID = orderDetail.ORDSTUID;
+                                                    requestDetail.Comments = orderDetail.Comments;
+                                                    requestDetail.RequestedUserUID = item.CUser;
+                                                    requestDetail.RequestItemCode = requestItem.Code;
+                                                    requestDetail.RequestItemName = requestItem.ItemName;
+                                                    requestDetail.MUser = userUID;
+                                                    requestDetail.MWhen = now;
+
+                                                    requestDetail.OwnerOrganisationUID = item.OwnerOrganisationUID;
+
+                                                    db.RequestDetail.Add(requestDetail);
+                                                    db.SaveChanges();
+
+                                                    //db.PatientOrderDetail.Attach(orderDetail);
+                                                    //orderDetail.IdentifyingType = "REQUESTITEM";
+                                                    //orderDetail.IdentifyingUID = requestItem.UID;
+                                                    //db.SaveChanges();
+
+                                                    requestDetailUID = requestDetail.UID;
+                                                }
+
+                                                #endregion
+
+                                                #region PrescrtionItem
+
+                                                long? prescrtionItemUID = null;
+                                                if ((BSMDDUID == BSMDD_STORE || BSMDDUID == BSMDD_MDSLP || BSMDDUID == BSMDD_SULPY) && isContinuous != "Y")
+                                                {
+                                                    //string identifyingType = BSMDDUID == BSMDD_STORE ? "DRUG" : BSMDDUID == BSMDD_MDSLP ? "MEDICALSUPPLIES" : BSMDDUID == BSMDD_SULPY ? "SUPPLY" : "ORDERITEM";
+
+                                                    PrescriptionItem prescrItem = new PrescriptionItem();
+                                                    prescrItem.CUser = userUID;
+                                                    prescrItem.CWhen = now;
+                                                    prescrItem.StartDttm = item.StartDttm;
+                                                    prescrItem.ORDSTUID = RAISEDUID;
+
+                                                    prescrItem.PrescriptionUID = patientOrder.IdentifyingUID.Value;
+                                                    prescrItem.PatientOrderDetailUID = orderDetail.UID;
+                                                    prescrItem.MUser = userUID;
+                                                    prescrItem.MWhen = now;
+                                                    prescrItem.StatusFlag = "A";
+                                                    prescrItem.OwnerOrganisationUID = item.OwnerOrganisationUID;
+                                                    prescrItem.ItemCode = item.ItemCode;
+                                                    prescrItem.ItemName = item.ItemName;
+                                                    prescrItem.ROUTEUID = item.ROUTEUID;
+                                                    prescrItem.FRQNCUID = item.FRQNCUID;
+                                                    prescrItem.DFORMUID = item.DFORMUID;
+                                                    prescrItem.DrugDuration = item.DrugDuration;
+                                                    prescrItem.Dosage = item.Dosage;
+                                                    prescrItem.Quantity = item.Quantity;
+                                                    prescrItem.IMUOMUID = item.QNUOMUID;
+                                                    prescrItem.PDSTSUID = item.PDSTSUID;
+                                                    prescrItem.ItemMasterUID = item.ItemUID;
+                                                    prescrItem.BillableItemUID = item.BillableItemUID;
+                                                    prescrItem.StoreUID = item.StoreUID;
+                                                    prescrItem.ClinicalComments = item.ClinicalComments;
+                                                    prescrItem.InstructionText = item.InstructionText;
+                                                    prescrItem.LocalInstructionText = item.LocalInstructionText;
+                                                    prescrItem.Dosage = item.Dosage;
+                                                    prescrItem.Comments = orderDetail.Comments;
+                                                    db.PrescriptionItem.Add(prescrItem);
+                                                    db.SaveChanges();
+
+                                                    //db.PatientOrderDetail.Attach(orderDetail);
+                                                    //orderDetail.IdentifyingUID = item.ItemUID;
+                                                    //orderDetail.IdentifyingType = identifyingType;
+                                                    //db.SaveChanges();
+
+                                                    prescrtionItemUID = prescrItem.UID;
+                                                }
+
+                                                #endregion
+
+                                                #region SavePatientBillableItem
+
+                                                PatientBillableItem patBillableItem = new PatientBillableItem();
+                                                patBillableItem.PatientUID = patientOrder.PatientUID;
+                                                patBillableItem.PatientVisitUID = patientOrder.PatientVisitUID;
+                                                patBillableItem.BillableItemUID = orderDetail.BillableItemUID;
+                                                patBillableItem.IdentifyingUID = orderDetail.IdentifyingUID ?? 0;
+                                                switch (orderDetail.IdentifyingType)
+                                                {
+                                                    case "DRUG":
+                                                    case "MEDICALSUPPLIES":
+                                                    case "SUPPLY":
+                                                        patBillableItem.IdentifyingType = "STORE";
+                                                        break;
+                                                    default:
+                                                        patBillableItem.IdentifyingType = orderDetail.IdentifyingType;
+                                                        break;
+
+                                                }
+
+                                                switch (orderDetail.IdentifyingType)
+                                                {
+                                                    case "ORDERITEM":
+                                                        patBillableItem.OrderType = "PATIENTORDER";
+                                                        patBillableItem.OrderTypeUID = orderDetail.PatientOrderUID;
+                                                        break;
+                                                    case "DRUG":
+                                                    case "MEDICALSUPPLIES":
+                                                    case "SUPPLY":
+                                                        patBillableItem.OrderType = "PRESCRIPTIONITEM";
+                                                        patBillableItem.OrderTypeUID = prescrtionItemUID;
+                                                        break;
+                                                    case "REQUESTITEM":
+                                                        patBillableItem.OrderType = "REQUESTDETAIL";
+                                                        patBillableItem.OrderTypeUID = requestDetailUID;
+                                                        break;
+                                                    default:
+                                                        patBillableItem.OrderType = "PATIENTORDER";
+                                                        patBillableItem.OrderTypeUID = orderDetail.PatientOrderUID;
+                                                        break;
+
+                                                }
+
+                                                patBillableItem.BSMDDUID = BSMDDUID;
+                                                //patBillableItem.ORDSTUID = orderDetail.ORDSTUID;
+                                                patBillableItem.Amount = orderDetail.UnitPrice;
+                                                patBillableItem.Discount = orderDetail.Discount;
+                                                patBillableItem.NetAmount = orderDetail.NetAmount;
+                                                patBillableItem.ItemMultiplier = orderDetail.Quantity;
+                                                patBillableItem.StartDttm = orderDetail.StartDttm;
+                                                patBillableItem.EndDttm = orderDetail.EndDttm;
+                                                patBillableItem.ItemName = orderDetail.ItemName;
+                                                patBillableItem.CareProviderUID = orderDetail.CareproviderUID;
+                                                patBillableItem.EventOccuredDttm = orderDetail.StartDttm;
+                                                patBillableItem.QNUOMUID = orderDetail.QNUOMUID;
+                                                patBillableItem.PayorDetailUID = orderDetail.PayorDetailUID;
+                                                patBillableItem.StoreUID = orderDetail.StoreUID;
+                                                patBillableItem.BillPackageUID = orderDetail.BillPackageUID;
+                                                patBillableItem.PatientOrderDetailUID = orderDetail.UID;
+                                                patBillableItem.OrderSetUID = orderDetail.OrderSetUID;
+                                                patBillableItem.OrderSetBillableItemUID = orderDetail.OrderSetBillableItemUID;
+                                                patBillableItem.PatientFixPriceUID = orderDetail.PatientFixPriceUID;
+                                                patBillableItem.CUser = userUID;
+                                                patBillableItem.CWhen = now;
+                                                patBillableItem.MUser = userUID;
+                                                patBillableItem.MWhen = now;
+                                                patBillableItem.StatusFlag = "A";
+                                                patBillableItem.OwnerOrganisationUID = orderDetail.OwnerOrganisationUID;
+                                                db.PatientBillableItem.Add(patBillableItem);
+                                                db.SaveChanges();
+                                                #endregion
+
+
+                                                #region AddStadingOrderChild
+
+                                                if (item.StandingPatientOrder != null && isContinuous == "Y")
+                                                {
+                                                    item.StandingPatientOrder.ParentUID = orderDetail.UID;
+                                                    item.StandingPatientOrder.ORDSTUID = orderDetail.ORDSTUID;
+                                                    stadingOrderLists.Add(item.StandingPatientOrder);
+                                                }
+
+                                                #endregion
+                                            }
+
+
+                                            #region GenStadingOrder
+                                            if (stadingOrderLists != null && stadingOrderLists.Count > 0)
+                                            {
+                                                #region PatientOrderStading
+                                                PatientOrder patientOrderStading = new PatientOrder();
+                                                patientOrderStading.CUser = userUID;
+                                                patientOrderStading.CWhen = now;
+
+                                                int seqPatientOrderStadingID;
+                                                string patientOrderStadingID = SEQHelper.GetSEQIDFormat("SEQPatientOrder", out seqPatientOrderStadingID);
+
+                                                if (string.IsNullOrEmpty(patientOrderStadingID))
+                                                {
+                                                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientOrder in SEQCONFIGURATION");
+                                                }
+
+                                                if (seqPatientOrderID == 0)
+                                                {
+                                                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQPatientOrder is Fail");
+                                                }
+
+                                                patientOrderStading.ParentUID = patientOrder.UID;
+                                                patientOrderStading.OrderNumber = patientOrderStadingID;
+                                                patientOrderStading.StartDttm = now;
+                                                patientOrderStading.EndDttm = now;
+
+                                                patientOrderStading.PRSTYPUID = OrderType;
+                                                patientOrderStading.OrderRaisedBy = userUID;
+                                                patientOrderStading.IsContinuous = "N";
+                                                patientOrderStading.MUser = userUID;
+                                                patientOrderStading.MWhen = now;
+                                                patientOrderStading.StatusFlag = "A";
+                                                patientOrderStading.PatientUID = patientUID;
+                                                patientOrderStading.PatientVisitUID = patientVisitUID;
+                                                patientOrderStading.OrderLocationUID = locationUID;
+                                                patientOrderStading.OrderCategoryUID = stadingOrderLists.FirstOrDefault()?.OrderCatagoryUID;
+                                                patientOrderStading.OwnerOrganisationUID = ownerOrganisationUID;
+                                                patientOrderStading.IdentifyingType = (BSMDDUID == BSMDD_STORE || BSMDDUID == BSMDD_MDSLP || BSMDDUID == BSMDD_SULPY) ? "PRESCRIPTION" : "PATIENTORDER";
+                                                db.PatientOrder.Add(patientOrderStading);
+
+                                                db.SaveChanges();
+
+                                                #endregion
+
+                                                #region Presction
+                                                MediTech.DataBase.Prescription prescStading = new MediTech.DataBase.Prescription();
+                                                prescStading.CUser = userUID;
+                                                prescStading.CWhen = now;
+
+                                                int seqPrescriptionStadingID;
+                                                string prescriptionStadingID = SEQHelper.GetSEQIDFormat("SEQPrescription", out seqPrescriptionStadingID);
+
+                                                if (string.IsNullOrEmpty(prescriptionStadingID))
+                                                {
+                                                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPrescription in SEQCONFIGURATION");
+                                                }
+
+                                                if (seqPrescriptionStadingID == 0)
+                                                {
+                                                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQPrescription is Fail");
+                                                }
+
+                                                if (seqPrescriptionStadingID != 0)
+                                                {
+                                                    if (patientVisit.ENTYPUID == ENTYP_INPAT)
+                                                    {
+                                                        prescriptionStadingID = "I" + prescriptionStadingID;
+                                                    }
+                                                    else
+                                                    {
+                                                        prescriptionStadingID = "O" + prescriptionStadingID;
+                                                    }
+                                                }
+
+                                                prescStading.PrescriptionNumber = prescriptionStadingID;
+                                                prescStading.PrescribedDttm = now;
+                                                prescStading.PrescribedBy = userUID;
+                                                prescStading.BSMDDUID = BSMDDUID;
+
+                                                prescStading.ORDSTUID = statusOrder;
+                                                prescStading.PatientUID = patientUID;
+                                                prescStading.PatientVisitUID = patientVisitUID;
+
+                                                prescStading.PRSTYPUID = OrderType;
+                                                prescStading.MUser = userUID;
+                                                prescStading.MWhen = now;
+                                                prescStading.PatientOrderUID = patientOrder.UID;
+
+                                                prescStading.StatusFlag = "A";
+                                                prescStading.OrderLocationUID = locationUID;
+                                                prescStading.OwnerOrganisationUID = ownerOrganisationUID;
+
+                                                db.Prescription.Add(prescStading);
+                                                db.SaveChanges();
+
+                                                db.PatientOrder.Attach(patientOrderStading);
+                                                patientOrderStading.IdentifyingUID = prescStading.UID;
+                                                patientOrderStading.IdentifyingType = "PRESCRIPTION";
+                                                db.SaveChanges();
+                                                #endregion
+
+                                                foreach (var orderStadingDetail in stadingOrderLists)
+                                                {
+                                                    #region PatientOrderDetailStading
+                                                    string identifyingType = (BSMDDUID == BSMDD_LAB || BSMDDUID == BSMDD_RADIO) ? "REQUESTITEM" : BSMDDUID == BSMDD_STORE ? "DRUG" : BSMDDUID == BSMDD_MDSLP ? "MEDICALSUPPLIES" : BSMDDUID == BSMDD_SULPY ? "SUPPLY" : "ORDERITEM";
+
+                                                    PatientOrderDetail orderDetailStading = new PatientOrderDetail();
+                                                    orderDetailStading.ParentUID = orderStadingDetail.ParentUID;
+                                                    orderDetailStading.PatientOrderUID = patientOrderStading.UID;
+
+                                                    orderDetailStading.CUser = userUID;
+                                                    orderDetailStading.CWhen = now;
+                                                    orderDetailStading.StartDttm = orderStadingDetail.StartDttm;
+                                                    orderDetailStading.EndDttm = orderStadingDetail.EndDttm;
+
+                                                    orderDetailStading.ORDSTUID = orderStadingDetail.ORDSTUID;
+
+                                                    orderDetailStading.MUser = userUID;
+                                                    orderDetailStading.MWhen = now;
+                                                    orderDetailStading.StatusFlag = "A";
+                                                    orderDetailStading.OwnerOrganisationUID = orderStadingDetail.OwnerOrganisationUID;
+                                                    orderDetailStading.ItemCode = orderStadingDetail.ItemCode;
+                                                    orderDetailStading.ItemName = orderStadingDetail.ItemName;
+                                                    orderDetailStading.Dosage = orderStadingDetail.Dosage;
+                                                    orderDetailStading.Quantity = orderStadingDetail.Quantity;
+                                                    orderDetailStading.QNUOMUID = orderStadingDetail.QNUOMUID;
+                                                    orderDetailStading.FRQNCUID = orderStadingDetail.FRQNCUID;
+                                                    orderDetailStading.UnitPrice = orderStadingDetail.UnitPrice;
+                                                    orderDetailStading.IsPriceOverwrite = orderStadingDetail.IsPriceOverwrite;
+                                                    orderDetailStading.OverwritePrice = orderStadingDetail.OverwritePrice;
+                                                    orderDetailStading.OriginalUnitPrice = orderStadingDetail.OriginalUnitPrice;
+                                                    orderDetailStading.DoctorFee = orderStadingDetail.DoctorFee;
+                                                    orderDetailStading.CareproviderUID = orderStadingDetail.CareproviderUID;
+                                                    orderDetailStading.NetAmount = orderStadingDetail.NetAmount;
+                                                    orderDetailStading.ROUTEUID = orderStadingDetail.ROUTEUID;
+                                                    orderDetailStading.DFORMUID = orderStadingDetail.DFORMUID;
+                                                    orderDetailStading.PDSTSUID = orderStadingDetail.PDSTSUID;
+                                                    orderDetailStading.DrugDuration = orderStadingDetail.DrugDuration;
+                                                    orderDetailStading.InstructionText = orderStadingDetail.InstructionText;
+                                                    orderDetailStading.LocalInstructionText = orderStadingDetail.LocalInstructionText;
+                                                    orderDetailStading.BillableItemUID = orderStadingDetail.BillableItemUID;
+                                                    orderDetailStading.OrderCategoryUID = orderStadingDetail.OrderCatagoryUID;
+                                                    orderDetailStading.OrderSubCategoryUID = orderStadingDetail.OrderSubCategoryUID;
+                                                    orderDetailStading.IsStockItem = orderStadingDetail.IsStock;
+                                                    orderDetailStading.StoreUID = orderStadingDetail.StoreUID;
+                                                    orderDetailStading.Comments = orderStadingDetail.Comments;
+                                                    orderDetailStading.OrderSetUID = orderStadingDetail.OrderSetUID;
+                                                    orderDetailStading.OrderSetBillableItemUID = orderStadingDetail.OrderSetBillableItemUID;
+                                                    orderDetailStading.IdentifyingType = identifyingType;
+                                                    orderDetailStading.IdentifyingUID = orderStadingDetail.ItemUID;
+                                                    orderDetailStading.IsStandingOrder = orderStadingDetail.IsStandingOrder;
+                                                    db.PatientOrderDetail.Add(orderDetailStading);
+                                                    db.SaveChanges();
+                                                    #endregion
+
+                                                    #region SavePatinetOrderDetailHistory
+
+                                                    PatientOrderDetailHistory patientOrderStadingDetailHistory = new PatientOrderDetailHistory();
+                                                    patientOrderStadingDetailHistory.PatientOrderDetailUID = orderDetailStading.UID;
+                                                    patientOrderStadingDetailHistory.ORDSTUID = orderDetailStading.ORDSTUID;
+                                                    patientOrderStadingDetailHistory.EditedDttm = now;
+                                                    patientOrderStadingDetailHistory.EditByUserID = userUID;
+                                                    patientOrderStadingDetailHistory.CUser = userUID;
+                                                    patientOrderStadingDetailHistory.CWhen = now;
+                                                    patientOrderStadingDetailHistory.MUser = userUID;
+                                                    patientOrderStadingDetailHistory.MWhen = now;
+                                                    patientOrderStadingDetailHistory.StatusFlag = "A";
+                                                    db.PatientOrderDetailHistory.Add(patientOrderStadingDetailHistory);
+                                                    db.SaveChanges();
+
+                                                    #endregion
+
+
+
+                                                    #region PrescrtionItem
+
+                                                    long? prescrtionItemStadingUID = null;
+                                                    //string identifyingType = BSMDDUID == BSMDD_STORE ? "DRUG" : BSMDDUID == BSMDD_MDSLP ? "MEDICALSUPPLIES" : BSMDDUID == BSMDD_SULPY ? "SUPPLY" : "ORDERITEM";
+
+                                                    PrescriptionItem prescrItemStading = new PrescriptionItem();
+                                                    prescrItemStading.CUser = userUID;
+                                                    prescrItemStading.CWhen = now;
+                                                    prescrItemStading.StartDttm = orderStadingDetail.StartDttm;
+                                                    prescrItemStading.ORDSTUID = RAISEDUID;
+
+                                                    prescrItemStading.PrescriptionUID = patientOrderStading.IdentifyingUID.Value;
+                                                    prescrItemStading.PatientOrderDetailUID = orderDetailStading.UID;
+                                                    prescrItemStading.MUser = userUID;
+                                                    prescrItemStading.MWhen = now;
+                                                    prescrItemStading.StatusFlag = "A";
+                                                    prescrItemStading.OwnerOrganisationUID = orderStadingDetail.OwnerOrganisationUID;
+                                                    prescrItemStading.ItemCode = orderStadingDetail.ItemCode;
+                                                    prescrItemStading.ItemName = orderStadingDetail.ItemName;
+                                                    prescrItemStading.ROUTEUID = orderStadingDetail.ROUTEUID;
+                                                    prescrItemStading.FRQNCUID = orderStadingDetail.FRQNCUID;
+                                                    prescrItemStading.DFORMUID = orderStadingDetail.DFORMUID;
+                                                    prescrItemStading.DrugDuration = orderStadingDetail.DrugDuration;
+                                                    prescrItemStading.Dosage = orderStadingDetail.Dosage;
+                                                    prescrItemStading.Quantity = orderStadingDetail.Quantity;
+                                                    prescrItemStading.IMUOMUID = orderStadingDetail.QNUOMUID;
+                                                    prescrItemStading.PDSTSUID = orderStadingDetail.PDSTSUID;
+                                                    prescrItemStading.ItemMasterUID = orderStadingDetail.ItemUID;
+                                                    prescrItemStading.BillableItemUID = orderStadingDetail.BillableItemUID;
+                                                    prescrItemStading.StoreUID = orderStadingDetail.StoreUID;
+                                                    prescrItemStading.ClinicalComments = orderStadingDetail.ClinicalComments;
+                                                    prescrItemStading.InstructionText = orderStadingDetail.InstructionText;
+                                                    prescrItemStading.LocalInstructionText = orderStadingDetail.LocalInstructionText;
+                                                    prescrItemStading.Dosage = orderStadingDetail.Dosage;
+                                                    prescrItemStading.Comments = orderStadingDetail.Comments;
+                                                    db.PrescriptionItem.Add(prescrItemStading);
+                                                    db.SaveChanges();
+
+                                                    //db.PatientOrderDetail.Attach(orderDetailStading);
+                                                    //orderDetailStading.IdentifyingUID = orderStadingDetail.ItemUID;
+                                                    //orderDetailStading.IdentifyingType = identifyingType;
+                                                    //db.SaveChanges();
+
+                                                    prescrtionItemStadingUID = prescrItemStading.UID;
+
+
+                                                    #endregion
+
+                                                    #region SavePatientBillableItem
+
+                                                    PatientBillableItem patBillableItemStading = new PatientBillableItem();
+                                                    patBillableItemStading.PatientUID = patientOrderStading.PatientUID;
+                                                    patBillableItemStading.PatientVisitUID = patientOrderStading.PatientVisitUID;
+                                                    patBillableItemStading.BillableItemUID = orderDetailStading.BillableItemUID;
+                                                    patBillableItemStading.IdentifyingUID = orderDetailStading.IdentifyingUID ?? 0;
+                                                    switch (orderDetailStading.IdentifyingType)
+                                                    {
+                                                        case "DRUG":
+                                                        case "MEDICALSUPPLIES":
+                                                        case "SUPPLY":
+                                                            patBillableItemStading.IdentifyingType = "STORE";
+                                                            break;
+                                                        default:
+                                                            patBillableItemStading.IdentifyingType = orderDetailStading.IdentifyingType;
+                                                            break;
+
+                                                    }
+
+                                                    switch (orderDetailStading.IdentifyingType)
+                                                    {
+                                                        case "ORDERITEM":
+                                                            patBillableItemStading.OrderType = "PATIENTORDER";
+                                                            patBillableItemStading.OrderTypeUID = orderDetailStading.PatientOrderUID;
+                                                            break;
+                                                        case "DRUG":
+                                                        case "MEDICALSUPPLIES":
+                                                        case "SUPPLY":
+                                                            patBillableItemStading.OrderType = "PRESCRIPTIONITEM";
+                                                            patBillableItemStading.OrderTypeUID = prescrtionItemStadingUID;
+                                                            break;
+                                                        default:
+                                                            patBillableItemStading.OrderType = "PATIENTORDER";
+                                                            patBillableItemStading.OrderTypeUID = orderDetailStading.PatientOrderUID;
+                                                            break;
+
+                                                    }
+
+                                                    patBillableItemStading.BSMDDUID = BSMDDUID;
+                                                    patBillableItemStading.Amount = orderDetailStading.UnitPrice;
+                                                    patBillableItemStading.Discount = orderDetailStading.Discount;
+                                                    patBillableItemStading.NetAmount = orderDetailStading.NetAmount;
+                                                    patBillableItemStading.ItemMultiplier = orderDetailStading.Quantity;
+                                                    patBillableItemStading.StartDttm = orderDetailStading.StartDttm;
+                                                    patBillableItemStading.EndDttm = orderDetailStading.EndDttm;
+                                                    patBillableItemStading.ItemName = orderDetailStading.ItemName;
+                                                    patBillableItemStading.CareProviderUID = orderDetailStading.CareproviderUID;
+                                                    patBillableItemStading.EventOccuredDttm = orderDetailStading.StartDttm;
+                                                    patBillableItemStading.QNUOMUID = orderDetailStading.QNUOMUID;
+                                                    patBillableItemStading.PayorDetailUID = orderDetailStading.PayorDetailUID;
+                                                    patBillableItemStading.StoreUID = orderDetailStading.StoreUID;
+                                                    patBillableItemStading.BillPackageUID = orderDetailStading.BillPackageUID;
+                                                    patBillableItemStading.PatientOrderDetailUID = orderDetailStading.UID;
+                                                    patBillableItemStading.OrderSetUID = orderDetailStading.OrderSetUID;
+                                                    patBillableItemStading.OrderSetBillableItemUID = orderDetailStading.OrderSetBillableItemUID;
+                                                    patBillableItemStading.PatientFixPriceUID = orderDetailStading.PatientFixPriceUID;
+                                                    patBillableItemStading.CUser = userUID;
+                                                    patBillableItemStading.CWhen = now;
+                                                    patBillableItemStading.MUser = userUID;
+                                                    patBillableItemStading.MWhen = now;
+                                                    patBillableItemStading.StatusFlag = "A";
+                                                    patBillableItemStading.OwnerOrganisationUID = orderDetailStading.OwnerOrganisationUID;
+                                                    db.PatientBillableItem.Add(patBillableItemStading);
+                                                    db.SaveChanges();
+
+                                                    #endregion
+                                                }
+                                            }
+
+                                            #endregion
+
                                         }
-
-                                        presc.PrescriptionNumber = prescriptionID;
-                                        presc.PrescribedDttm = now;
-                                        presc.PrescribedBy = userUID;
-                                        presc.BSMDDUID = BSMDDUID;
-
-                                        presc.ORDSTUID = statusOrder;
-                                        presc.PatientUID = patientUID;
-                                        presc.PatientVisitUID = patientVisitUID;
-
-                                        presc.PRSTYPUID = OrderType;
-                                        presc.MUser = userUID;
-                                        presc.MWhen = now;
-                                        presc.PatientOrderUID = patientOrder.UID;
-
-                                        presc.StatusFlag = "A";
-                                        presc.OrderLocationUID = locationUID;
-                                        presc.OwnerOrganisationUID = ownerOrganisationUID;
-
-                                        db.Prescription.Add(presc);
-                                        db.SaveChanges();
-
-                                        db.PatientOrder.Attach(patientOrder);
-                                        patientOrder.IdentifyingUID = presc.UID;
-                                        patientOrder.IdentifyingType = "PRESCRIPTION";
-                                        db.SaveChanges();
                                     }
-                                    #endregion
-
-
-
-                                    foreach (var item in dataInOrderDetail)
-                                    {
-                                        #region OrderDetail
-                                        string identifyingType = (BSMDDUID == BSMDD_LAB || BSMDDUID == BSMDD_RADIO) ? "REQUESTITEM" : BSMDDUID == BSMDD_STORE ? "DRUG" : BSMDDUID == BSMDD_MDSLP ? "MEDICALSUPPLIES" : BSMDDUID == BSMDD_SULPY ? "SUPPLY" : "ORDERITEM";
-
-                                        PatientOrderDetail orderDetail = new PatientOrderDetail();
-                                        orderDetail.CUser = userUID;
-                                        orderDetail.CWhen = now;
-                                        orderDetail.StartDttm = item.StartDttm;
-                                        orderDetail.EndDttm = item.EndDttm;
-                                        orderDetail.ORDSTUID = statusOrder;
-
-
-                                        orderDetail.PatientOrderUID = patientOrder.UID;
-                                        orderDetail.MUser = userUID;
-                                        orderDetail.MWhen = now;
-                                        orderDetail.StatusFlag = "A";
-                                        orderDetail.OwnerOrganisationUID = item.OwnerOrganisationUID;
-                                        orderDetail.ItemCode = item.ItemCode;
-                                        orderDetail.ItemName = item.ItemName;
-                                        orderDetail.Dosage = item.Dosage;
-                                        orderDetail.Quantity = item.Quantity;
-                                        orderDetail.QNUOMUID = item.QNUOMUID;
-                                        orderDetail.FRQNCUID = item.FRQNCUID;
-                                        orderDetail.UnitPrice = item.UnitPrice;
-                                        orderDetail.IsPriceOverwrite = item.IsPriceOverwrite;
-                                        orderDetail.OverwritePrice = item.OverwritePrice;
-                                        orderDetail.OriginalUnitPrice = item.OriginalUnitPrice;
-                                        orderDetail.DoctorFee = item.DoctorFee;
-                                        orderDetail.CareproviderUID = item.CareproviderUID;
-                                        orderDetail.NetAmount = item.NetAmount;
-                                        orderDetail.ROUTEUID = item.ROUTEUID;
-                                        orderDetail.DFORMUID = item.DFORMUID;
-                                        orderDetail.PDSTSUID = item.PDSTSUID;
-                                        orderDetail.DrugDuration = item.DrugDuration;
-                                        orderDetail.InstructionText = item.InstructionText;
-                                        orderDetail.LocalInstructionText = item.LocalInstructionText;
-                                        orderDetail.BillableItemUID = item.BillableItemUID;
-                                        orderDetail.OrderCategoryUID = item.OrderCatagoryUID;
-                                        orderDetail.OrderSubCategoryUID = item.OrderSubCategoryUID;
-                                        orderDetail.IsStockItem = item.IsStock;
-                                        orderDetail.StoreUID = item.StoreUID;
-                                        orderDetail.Comments = item.Comments;
-                                        orderDetail.OrderSetUID = item.OrderSetUID;
-                                        orderDetail.OrderSetBillableItemUID = item.OrderSetBillableItemUID;
-                                        orderDetail.IdentifyingType = identifyingType;
-                                        orderDetail.IdentifyingUID = item.ItemUID;
-                                        orderDetail.IsStandingOrder = item.IsStandingOrder;
-                                        db.PatientOrderDetail.Add(orderDetail);
-                                        db.SaveChanges();
-
-
-
-                                        #endregion
-
-                                        #region SavePatinetOrderDetailHistory
-
-                                        PatientOrderDetailHistory patientOrderDetailHistory = new PatientOrderDetailHistory();
-                                        patientOrderDetailHistory.PatientOrderDetailUID = orderDetail.UID;
-                                        patientOrderDetailHistory.ORDSTUID = orderDetail.ORDSTUID;
-                                        patientOrderDetailHistory.EditedDttm = now;
-                                        patientOrderDetailHistory.EditByUserID = userUID;
-                                        patientOrderDetailHistory.CUser = userUID;
-                                        patientOrderDetailHistory.CWhen = now;
-                                        patientOrderDetailHistory.MUser = userUID;
-                                        patientOrderDetailHistory.MWhen = now;
-                                        patientOrderDetailHistory.StatusFlag = "A";
-                                        db.PatientOrderDetailHistory.Add(patientOrderDetailHistory);
-                                        db.SaveChanges();
-
-                                        #endregion
-
-                                        #region SaveOrderAlert
-
-                                        if (item.PatientOrderAlert != null)
-                                        {
-                                            foreach (var itemOrderAlert in item.PatientOrderAlert)
-                                            {
-                                                PatientOrderAlert patOrderAlert = new PatientOrderAlert();
-                                                patOrderAlert.PatientOrderDetailUID = orderDetail.UID;
-                                                patOrderAlert.AlertType = itemOrderAlert.AlertType;
-                                                patOrderAlert.AlertMessage = itemOrderAlert.AlertMessage;
-                                                patOrderAlert.AlertMessage = itemOrderAlert.AlertMessage;
-                                                patOrderAlert.OverrideByUserUID = userUID;
-                                                patOrderAlert.OverrideRemarks = itemOrderAlert.OverrideRemarks;
-                                                patOrderAlert.OverrideRSNUID = itemOrderAlert.OverrideRSNUID;
-                                                patOrderAlert.CUser = userUID;
-                                                patOrderAlert.MUser = userUID;
-                                                patOrderAlert.CWhen = now;
-                                                patOrderAlert.MWhen = now;
-                                                patOrderAlert.StatusFlag = "A";
-                                                db.PatientOrderAlert.Add(patOrderAlert);
-                                            }
-
-                                            db.SaveChanges();
-                                        }
-
-                                        #endregion
-
-                                        #region RequestDetail
-
-                                        long? requestDetailUID = null;
-                                        if (BSMDDUID == BSMDD_LAB || BSMDDUID == BSMDD_RADIO || BSMDDUID == BSMDD_MBCUP)
-                                        {
-                                            MediTech.DataBase.RequestItem requestItem = db.RequestItem.Find(item.ItemUID ?? 0);
-                                            RequestDetail requestDetail = new RequestDetail();
-                                            requestDetail.CUser = userUID;
-                                            requestDetail.CWhen = now;
-                                            requestDetail.StatusFlag = "A";
-
-                                            if (item.BSMDDUID == BSMDD_RADIO) //Radiology
-                                            {
-                                                requestDetail.AccessionNumber = (new TechnicalController()).GetAccessionNumber(item.OwnerOrganisationUID);
-                                                requestDetail.RIMTYPUID = requestItem.RIMTYPUID;
-                                            }
-
-
-
-
-                                            requestDetail.RequestUID = patientOrder.IdentifyingUID.Value;
-                                            requestDetail.RequestitemUID = item.ItemUID ?? 0;
-                                            requestDetail.RequestedDttm = item.StartDttm ?? now;
-                                            requestDetail.ResultRequiredDttm = now;
-                                            requestDetail.PatientOrderDetailUID = orderDetail.UID;
-
-
-
-                                            requestDetail.ORDSTUID = statusOrder;
-                                            requestDetail.RQPRTUID = RQPRTUID;
-                                            requestDetail.ORDSTUID = orderDetail.ORDSTUID;
-                                            requestDetail.Comments = orderDetail.Comments;
-                                            requestDetail.RequestedUserUID = item.CUser;
-                                            requestDetail.RequestItemCode = requestItem.Code;
-                                            requestDetail.RequestItemName = requestItem.ItemName;
-                                            requestDetail.MUser = userUID;
-                                            requestDetail.MWhen = now;
-
-                                            requestDetail.OwnerOrganisationUID = item.OwnerOrganisationUID;
-
-                                            db.RequestDetail.Add(requestDetail);
-                                            db.SaveChanges();
-
-                                            //db.PatientOrderDetail.Attach(orderDetail);
-                                            //orderDetail.IdentifyingType = "REQUESTITEM";
-                                            //orderDetail.IdentifyingUID = requestItem.UID;
-                                            //db.SaveChanges();
-
-                                            requestDetailUID = requestDetail.UID;
-                                        }
-
-                                        #endregion
-
-                                        #region PrescrtionItem
-
-                                        long? prescrtionItemUID = null;
-                                        if ((BSMDDUID == BSMDD_STORE || BSMDDUID == BSMDD_MDSLP || BSMDDUID == BSMDD_SULPY) && isContinuous != "Y")
-                                        {
-                                            //string identifyingType = BSMDDUID == BSMDD_STORE ? "DRUG" : BSMDDUID == BSMDD_MDSLP ? "MEDICALSUPPLIES" : BSMDDUID == BSMDD_SULPY ? "SUPPLY" : "ORDERITEM";
-
-                                            PrescriptionItem prescrItem = new PrescriptionItem();
-                                            prescrItem.CUser = userUID;
-                                            prescrItem.CWhen = now;
-                                            prescrItem.StartDttm = item.StartDttm;
-                                            prescrItem.ORDSTUID = RAISEDUID;
-
-                                            prescrItem.PrescriptionUID = patientOrder.IdentifyingUID.Value;
-                                            prescrItem.PatientOrderDetailUID = orderDetail.UID;
-                                            prescrItem.MUser = userUID;
-                                            prescrItem.MWhen = now;
-                                            prescrItem.StatusFlag = "A";
-                                            prescrItem.OwnerOrganisationUID = item.OwnerOrganisationUID;
-                                            prescrItem.ItemCode = item.ItemCode;
-                                            prescrItem.ItemName = item.ItemName;
-                                            prescrItem.ROUTEUID = item.ROUTEUID;
-                                            prescrItem.FRQNCUID = item.FRQNCUID;
-                                            prescrItem.DFORMUID = item.DFORMUID;
-                                            prescrItem.DrugDuration = item.DrugDuration;
-                                            prescrItem.Dosage = item.Dosage;
-                                            prescrItem.Quantity = item.Quantity;
-                                            prescrItem.IMUOMUID = item.QNUOMUID;
-                                            prescrItem.PDSTSUID = item.PDSTSUID;
-                                            prescrItem.ItemMasterUID = item.ItemUID;
-                                            prescrItem.BillableItemUID = item.BillableItemUID;
-                                            prescrItem.StoreUID = item.StoreUID;
-                                            prescrItem.ClinicalComments = item.ClinicalComments;
-                                            prescrItem.InstructionText = item.InstructionText;
-                                            prescrItem.LocalInstructionText = item.LocalInstructionText;
-                                            prescrItem.Dosage = item.Dosage;
-                                            prescrItem.Comments = orderDetail.Comments;
-                                            db.PrescriptionItem.Add(prescrItem);
-                                            db.SaveChanges();
-
-                                            //db.PatientOrderDetail.Attach(orderDetail);
-                                            //orderDetail.IdentifyingUID = item.ItemUID;
-                                            //orderDetail.IdentifyingType = identifyingType;
-                                            //db.SaveChanges();
-
-                                            prescrtionItemUID = prescrItem.UID;
-                                        }
-
-                                        #endregion
-
-                                        #region SavePatientBillableItem
-
-                                        PatientBillableItem patBillableItem = new PatientBillableItem();
-                                        patBillableItem.PatientUID = patientOrder.PatientUID;
-                                        patBillableItem.PatientVisitUID = patientOrder.PatientVisitUID;
-                                        patBillableItem.BillableItemUID = orderDetail.BillableItemUID;
-                                        patBillableItem.IdentifyingUID = orderDetail.IdentifyingUID ?? 0;
-                                        switch (orderDetail.IdentifyingType)
-                                        {
-                                            case "DRUG":
-                                            case "MEDICALSUPPLIES":
-                                            case "SUPPLY":
-                                                patBillableItem.IdentifyingType = "STORE";
-                                                break;
-                                            default:
-                                                patBillableItem.IdentifyingType = orderDetail.IdentifyingType;
-                                                break;
-
-                                        }
-
-                                        switch (orderDetail.IdentifyingType)
-                                        {
-                                            case "ORDERITEM":
-                                                patBillableItem.OrderType = "PATIENTORDER";
-                                                patBillableItem.OrderTypeUID = orderDetail.PatientOrderUID;
-                                                break;
-                                            case "DRUG":
-                                            case "MEDICALSUPPLIES":
-                                            case "SUPPLY":
-                                                patBillableItem.OrderType = "PRESCRIPTIONITEM";
-                                                patBillableItem.OrderTypeUID = prescrtionItemUID;
-                                                break;
-                                            case "REQUESTITEM":
-                                                patBillableItem.OrderType = "REQUESTDETAIL";
-                                                patBillableItem.OrderTypeUID = requestDetailUID;
-                                                break;
-                                            default:
-                                                patBillableItem.OrderType = "PATIENTORDER";
-                                                patBillableItem.OrderTypeUID = orderDetail.PatientOrderUID;
-                                                break;
-
-                                        }
-
-                                        patBillableItem.BSMDDUID = BSMDDUID;
-                                        //patBillableItem.ORDSTUID = orderDetail.ORDSTUID;
-                                        patBillableItem.Amount = orderDetail.UnitPrice;
-                                        patBillableItem.Discount = orderDetail.Discount;
-                                        patBillableItem.NetAmount = orderDetail.NetAmount;
-                                        patBillableItem.ItemMultiplier = orderDetail.Quantity;
-                                        patBillableItem.StartDttm = orderDetail.StartDttm;
-                                        patBillableItem.EndDttm = orderDetail.EndDttm;
-                                        patBillableItem.ItemName = orderDetail.ItemName;
-                                        patBillableItem.CareProviderUID = orderDetail.CareproviderUID;
-                                        patBillableItem.EventOccuredDttm = orderDetail.StartDttm;
-                                        patBillableItem.QNUOMUID = orderDetail.QNUOMUID;
-                                        patBillableItem.PayorDetailUID = orderDetail.PayorDetailUID;
-                                        patBillableItem.StoreUID = orderDetail.StoreUID;
-                                        patBillableItem.BillPackageUID = orderDetail.BillPackageUID;
-                                        patBillableItem.PatientOrderDetailUID = orderDetail.UID;
-                                        patBillableItem.OrderSetUID = orderDetail.OrderSetUID;
-                                        patBillableItem.OrderSetBillableItemUID = orderDetail.OrderSetBillableItemUID;
-                                        patBillableItem.PatientFixPriceUID = orderDetail.PatientFixPriceUID;
-                                        patBillableItem.CUser = userUID;
-                                        patBillableItem.CWhen = now;
-                                        patBillableItem.MUser = userUID;
-                                        patBillableItem.MWhen = now;
-                                        patBillableItem.StatusFlag = "A";
-                                        patBillableItem.OwnerOrganisationUID = orderDetail.OwnerOrganisationUID;
-                                        db.PatientBillableItem.Add(patBillableItem);
-                                        db.SaveChanges();
-                                        #endregion
-
-
-                                        #region AddStadingOrderChild
-
-                                        if (item.StandingPatientOrder != null && isContinuous == "Y")
-                                        {
-                                            item.StandingPatientOrder.ParentUID = orderDetail.UID;
-                                            item.StandingPatientOrder.ORDSTUID = orderDetail.ORDSTUID;
-                                            stadingOrderLists.Add(item.StandingPatientOrder);
-                                        }
-
-                                        #endregion
-                                    }
-
-
-                                    #region GenStadingOrder
-                                    if (stadingOrderLists != null && stadingOrderLists.Count > 0)
-                                    {
-                                        #region PatientOrderStading
-                                        PatientOrder patientOrderStading = new PatientOrder();
-                                        patientOrderStading.CUser = userUID;
-                                        patientOrderStading.CWhen = now;
-
-                                        int seqPatientOrderStadingID;
-                                        string patientOrderStadingID = SEQHelper.GetSEQIDFormat("SEQPatientOrder", out seqPatientOrderStadingID);
-
-                                        if (string.IsNullOrEmpty(patientOrderStadingID))
-                                        {
-                                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientOrder in SEQCONFIGURATION");
-                                        }
-
-                                        if (seqPatientOrderID == 0)
-                                        {
-                                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQPatientOrder is Fail");
-                                        }
-
-                                        patientOrderStading.ParentUID = patientOrder.UID;
-                                        patientOrderStading.OrderNumber = patientOrderStadingID;
-                                        patientOrderStading.StartDttm = now;
-                                        patientOrderStading.EndDttm = now;
-
-                                        patientOrderStading.PRSTYPUID = OrderType;
-                                        patientOrderStading.OrderRaisedBy = userUID;
-                                        patientOrderStading.IsContinuous = "N";
-                                        patientOrderStading.MUser = userUID;
-                                        patientOrderStading.MWhen = now;
-                                        patientOrderStading.StatusFlag = "A";
-                                        patientOrderStading.PatientUID = patientUID;
-                                        patientOrderStading.PatientVisitUID = patientVisitUID;
-                                        patientOrderStading.OrderLocationUID = locationUID;
-                                        patientOrderStading.OrderCategoryUID = stadingOrderLists.FirstOrDefault()?.OrderCatagoryUID;
-                                        patientOrderStading.OwnerOrganisationUID = ownerOrganisationUID;
-                                        patientOrderStading.IdentifyingType = (BSMDDUID == BSMDD_STORE || BSMDDUID == BSMDD_MDSLP || BSMDDUID == BSMDD_SULPY) ? "PRESCRIPTION" : "PATIENTORDER";
-                                        db.PatientOrder.Add(patientOrderStading);
-
-                                        db.SaveChanges();
-
-                                        #endregion
-
-                                        #region Presction
-                                        MediTech.DataBase.Prescription prescStading = new MediTech.DataBase.Prescription();
-                                        prescStading.CUser = userUID;
-                                        prescStading.CWhen = now;
-
-                                        int seqPrescriptionStadingID;
-                                        string prescriptionStadingID = SEQHelper.GetSEQIDFormat("SEQPrescription", out seqPrescriptionStadingID);
-
-                                        if (string.IsNullOrEmpty(prescriptionStadingID))
-                                        {
-                                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPrescription in SEQCONFIGURATION");
-                                        }
-
-                                        if (seqPrescriptionStadingID == 0)
-                                        {
-                                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQPrescription is Fail");
-                                        }
-
-                                        if (seqPrescriptionStadingID != 0)
-                                        {
-                                            if (patientVisit.ENTYPUID == ENTYP_INPAT)
-                                            {
-                                                prescriptionStadingID = "I" + prescriptionStadingID;
-                                            }
-                                            else
-                                            {
-                                                prescriptionStadingID = "O" + prescriptionStadingID;
-                                            }
-                                        }
-
-                                        prescStading.PrescriptionNumber = prescriptionStadingID;
-                                        prescStading.PrescribedDttm = now;
-                                        prescStading.PrescribedBy = userUID;
-                                        prescStading.BSMDDUID = BSMDDUID;
-
-                                        prescStading.ORDSTUID = statusOrder;
-                                        prescStading.PatientUID = patientUID;
-                                        prescStading.PatientVisitUID = patientVisitUID;
-
-                                        prescStading.PRSTYPUID = OrderType;
-                                        prescStading.MUser = userUID;
-                                        prescStading.MWhen = now;
-                                        prescStading.PatientOrderUID = patientOrder.UID;
-
-                                        prescStading.StatusFlag = "A";
-                                        prescStading.OrderLocationUID = locationUID;
-                                        prescStading.OwnerOrganisationUID = ownerOrganisationUID;
-
-                                        db.Prescription.Add(prescStading);
-                                        db.SaveChanges();
-
-                                        db.PatientOrder.Attach(patientOrderStading);
-                                        patientOrderStading.IdentifyingUID = prescStading.UID;
-                                        patientOrderStading.IdentifyingType = "PRESCRIPTION";
-                                        db.SaveChanges();
-                                        #endregion
-
-                                        foreach (var orderStadingDetail in stadingOrderLists)
-                                        {
-                                            #region PatientOrderDetailStading
-                                            string identifyingType = (BSMDDUID == BSMDD_LAB || BSMDDUID == BSMDD_RADIO) ? "REQUESTITEM" : BSMDDUID == BSMDD_STORE ? "DRUG" : BSMDDUID == BSMDD_MDSLP ? "MEDICALSUPPLIES" : BSMDDUID == BSMDD_SULPY ? "SUPPLY" : "ORDERITEM";
-
-                                            PatientOrderDetail orderDetailStading = new PatientOrderDetail();
-                                            orderDetailStading.ParentUID = orderStadingDetail.ParentUID;
-                                            orderDetailStading.PatientOrderUID = patientOrderStading.UID;
-
-                                            orderDetailStading.CUser = userUID;
-                                            orderDetailStading.CWhen = now;
-                                            orderDetailStading.StartDttm = orderStadingDetail.StartDttm;
-                                            orderDetailStading.EndDttm = orderStadingDetail.EndDttm;
-
-                                            orderDetailStading.ORDSTUID = orderStadingDetail.ORDSTUID;
-
-                                            orderDetailStading.MUser = userUID;
-                                            orderDetailStading.MWhen = now;
-                                            orderDetailStading.StatusFlag = "A";
-                                            orderDetailStading.OwnerOrganisationUID = orderStadingDetail.OwnerOrganisationUID;
-                                            orderDetailStading.ItemCode = orderStadingDetail.ItemCode;
-                                            orderDetailStading.ItemName = orderStadingDetail.ItemName;
-                                            orderDetailStading.Dosage = orderStadingDetail.Dosage;
-                                            orderDetailStading.Quantity = orderStadingDetail.Quantity;
-                                            orderDetailStading.QNUOMUID = orderStadingDetail.QNUOMUID;
-                                            orderDetailStading.FRQNCUID = orderStadingDetail.FRQNCUID;
-                                            orderDetailStading.UnitPrice = orderStadingDetail.UnitPrice;
-                                            orderDetailStading.IsPriceOverwrite = orderStadingDetail.IsPriceOverwrite;
-                                            orderDetailStading.OverwritePrice = orderStadingDetail.OverwritePrice;
-                                            orderDetailStading.OriginalUnitPrice = orderStadingDetail.OriginalUnitPrice;
-                                            orderDetailStading.DoctorFee = orderStadingDetail.DoctorFee;
-                                            orderDetailStading.CareproviderUID = orderStadingDetail.CareproviderUID;
-                                            orderDetailStading.NetAmount = orderStadingDetail.NetAmount;
-                                            orderDetailStading.ROUTEUID = orderStadingDetail.ROUTEUID;
-                                            orderDetailStading.DFORMUID = orderStadingDetail.DFORMUID;
-                                            orderDetailStading.PDSTSUID = orderStadingDetail.PDSTSUID;
-                                            orderDetailStading.DrugDuration = orderStadingDetail.DrugDuration;
-                                            orderDetailStading.InstructionText = orderStadingDetail.InstructionText;
-                                            orderDetailStading.LocalInstructionText = orderStadingDetail.LocalInstructionText;
-                                            orderDetailStading.BillableItemUID = orderStadingDetail.BillableItemUID;
-                                            orderDetailStading.OrderCategoryUID = orderStadingDetail.OrderCatagoryUID;
-                                            orderDetailStading.OrderSubCategoryUID = orderStadingDetail.OrderSubCategoryUID;
-                                            orderDetailStading.IsStockItem = orderStadingDetail.IsStock;
-                                            orderDetailStading.StoreUID = orderStadingDetail.StoreUID;
-                                            orderDetailStading.Comments = orderStadingDetail.Comments;
-                                            orderDetailStading.OrderSetUID = orderStadingDetail.OrderSetUID;
-                                            orderDetailStading.OrderSetBillableItemUID = orderStadingDetail.OrderSetBillableItemUID;
-                                            orderDetailStading.IdentifyingType = identifyingType;
-                                            orderDetailStading.IdentifyingUID = orderStadingDetail.ItemUID;
-                                            orderDetailStading.IsStandingOrder = orderStadingDetail.IsStandingOrder;
-                                            db.PatientOrderDetail.Add(orderDetailStading);
-                                            db.SaveChanges();
-                                            #endregion
-
-                                            #region SavePatinetOrderDetailHistory
-
-                                            PatientOrderDetailHistory patientOrderStadingDetailHistory = new PatientOrderDetailHistory();
-                                            patientOrderStadingDetailHistory.PatientOrderDetailUID = orderDetailStading.UID;
-                                            patientOrderStadingDetailHistory.ORDSTUID = orderDetailStading.ORDSTUID;
-                                            patientOrderStadingDetailHistory.EditedDttm = now;
-                                            patientOrderStadingDetailHistory.EditByUserID = userUID;
-                                            patientOrderStadingDetailHistory.CUser = userUID;
-                                            patientOrderStadingDetailHistory.CWhen = now;
-                                            patientOrderStadingDetailHistory.MUser = userUID;
-                                            patientOrderStadingDetailHistory.MWhen = now;
-                                            patientOrderStadingDetailHistory.StatusFlag = "A";
-                                            db.PatientOrderDetailHistory.Add(patientOrderStadingDetailHistory);
-                                            db.SaveChanges();
-
-                                            #endregion
-
-
-
-                                            #region PrescrtionItem
-
-                                            long? prescrtionItemStadingUID = null;
-                                            //string identifyingType = BSMDDUID == BSMDD_STORE ? "DRUG" : BSMDDUID == BSMDD_MDSLP ? "MEDICALSUPPLIES" : BSMDDUID == BSMDD_SULPY ? "SUPPLY" : "ORDERITEM";
-
-                                            PrescriptionItem prescrItemStading = new PrescriptionItem();
-                                            prescrItemStading.CUser = userUID;
-                                            prescrItemStading.CWhen = now;
-                                            prescrItemStading.StartDttm = orderStadingDetail.StartDttm;
-                                            prescrItemStading.ORDSTUID = RAISEDUID;
-
-                                            prescrItemStading.PrescriptionUID = patientOrderStading.IdentifyingUID.Value;
-                                            prescrItemStading.PatientOrderDetailUID = orderDetailStading.UID;
-                                            prescrItemStading.MUser = userUID;
-                                            prescrItemStading.MWhen = now;
-                                            prescrItemStading.StatusFlag = "A";
-                                            prescrItemStading.OwnerOrganisationUID = orderStadingDetail.OwnerOrganisationUID;
-                                            prescrItemStading.ItemCode = orderStadingDetail.ItemCode;
-                                            prescrItemStading.ItemName = orderStadingDetail.ItemName;
-                                            prescrItemStading.ROUTEUID = orderStadingDetail.ROUTEUID;
-                                            prescrItemStading.FRQNCUID = orderStadingDetail.FRQNCUID;
-                                            prescrItemStading.DFORMUID = orderStadingDetail.DFORMUID;
-                                            prescrItemStading.DrugDuration = orderStadingDetail.DrugDuration;
-                                            prescrItemStading.Dosage = orderStadingDetail.Dosage;
-                                            prescrItemStading.Quantity = orderStadingDetail.Quantity;
-                                            prescrItemStading.IMUOMUID = orderStadingDetail.QNUOMUID;
-                                            prescrItemStading.PDSTSUID = orderStadingDetail.PDSTSUID;
-                                            prescrItemStading.ItemMasterUID = orderStadingDetail.ItemUID;
-                                            prescrItemStading.BillableItemUID = orderStadingDetail.BillableItemUID;
-                                            prescrItemStading.StoreUID = orderStadingDetail.StoreUID;
-                                            prescrItemStading.ClinicalComments = orderStadingDetail.ClinicalComments;
-                                            prescrItemStading.InstructionText = orderStadingDetail.InstructionText;
-                                            prescrItemStading.LocalInstructionText = orderStadingDetail.LocalInstructionText;
-                                            prescrItemStading.Dosage = orderStadingDetail.Dosage;
-                                            prescrItemStading.Comments = orderStadingDetail.Comments;
-                                            db.PrescriptionItem.Add(prescrItemStading);
-                                            db.SaveChanges();
-
-                                            //db.PatientOrderDetail.Attach(orderDetailStading);
-                                            //orderDetailStading.IdentifyingUID = orderStadingDetail.ItemUID;
-                                            //orderDetailStading.IdentifyingType = identifyingType;
-                                            //db.SaveChanges();
-
-                                            prescrtionItemStadingUID = prescrItemStading.UID;
-
-
-                                            #endregion
-
-                                            #region SavePatientBillableItem
-
-                                            PatientBillableItem patBillableItemStading = new PatientBillableItem();
-                                            patBillableItemStading.PatientUID = patientOrderStading.PatientUID;
-                                            patBillableItemStading.PatientVisitUID = patientOrderStading.PatientVisitUID;
-                                            patBillableItemStading.BillableItemUID = orderDetailStading.BillableItemUID;
-                                            patBillableItemStading.IdentifyingUID = orderDetailStading.IdentifyingUID ?? 0;
-                                            switch (orderDetailStading.IdentifyingType)
-                                            {
-                                                case "DRUG":
-                                                case "MEDICALSUPPLIES":
-                                                case "SUPPLY":
-                                                    patBillableItemStading.IdentifyingType = "STORE";
-                                                    break;
-                                                default:
-                                                    patBillableItemStading.IdentifyingType = orderDetailStading.IdentifyingType;
-                                                    break;
-
-                                            }
-
-                                            switch (orderDetailStading.IdentifyingType)
-                                            {
-                                                case "ORDERITEM":
-                                                    patBillableItemStading.OrderType = "PATIENTORDER";
-                                                    patBillableItemStading.OrderTypeUID = orderDetailStading.PatientOrderUID;
-                                                    break;
-                                                case "DRUG":
-                                                case "MEDICALSUPPLIES":
-                                                case "SUPPLY":
-                                                    patBillableItemStading.OrderType = "PRESCRIPTIONITEM";
-                                                    patBillableItemStading.OrderTypeUID = prescrtionItemStadingUID;
-                                                    break;
-                                                default:
-                                                    patBillableItemStading.OrderType = "PATIENTORDER";
-                                                    patBillableItemStading.OrderTypeUID = orderDetailStading.PatientOrderUID;
-                                                    break;
-
-                                            }
-
-                                            patBillableItemStading.BSMDDUID = BSMDDUID;
-                                            patBillableItemStading.Amount = orderDetailStading.UnitPrice;
-                                            patBillableItemStading.Discount = orderDetailStading.Discount;
-                                            patBillableItemStading.NetAmount = orderDetailStading.NetAmount;
-                                            patBillableItemStading.ItemMultiplier = orderDetailStading.Quantity;
-                                            patBillableItemStading.StartDttm = orderDetailStading.StartDttm;
-                                            patBillableItemStading.EndDttm = orderDetailStading.EndDttm;
-                                            patBillableItemStading.ItemName = orderDetailStading.ItemName;
-                                            patBillableItemStading.CareProviderUID = orderDetailStading.CareproviderUID;
-                                            patBillableItemStading.EventOccuredDttm = orderDetailStading.StartDttm;
-                                            patBillableItemStading.QNUOMUID = orderDetailStading.QNUOMUID;
-                                            patBillableItemStading.PayorDetailUID = orderDetailStading.PayorDetailUID;
-                                            patBillableItemStading.StoreUID = orderDetailStading.StoreUID;
-                                            patBillableItemStading.BillPackageUID = orderDetailStading.BillPackageUID;
-                                            patBillableItemStading.PatientOrderDetailUID = orderDetailStading.UID;
-                                            patBillableItemStading.OrderSetUID = orderDetailStading.OrderSetUID;
-                                            patBillableItemStading.OrderSetBillableItemUID = orderDetailStading.OrderSetBillableItemUID;
-                                            patBillableItemStading.PatientFixPriceUID = orderDetailStading.PatientFixPriceUID;
-                                            patBillableItemStading.CUser = userUID;
-                                            patBillableItemStading.CWhen = now;
-                                            patBillableItemStading.MUser = userUID;
-                                            patBillableItemStading.MWhen = now;
-                                            patBillableItemStading.StatusFlag = "A";
-                                            patBillableItemStading.OwnerOrganisationUID = orderDetailStading.OwnerOrganisationUID;
-                                            db.PatientBillableItem.Add(patBillableItemStading);
-                                            db.SaveChanges();
-
-                                            #endregion
-                                        }
-                                    }
-
-                                    #endregion
-
                                 }
+
+
+
                             }
-    
-
-
                         }
+
                     }
-
-
 
 
                     tran.Complete();

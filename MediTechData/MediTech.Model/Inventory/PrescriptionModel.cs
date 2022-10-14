@@ -38,6 +38,9 @@ namespace MediTech.Model
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
         public Nullable<int> OwnerOrganisationUID { get; set; }
+
+        public Nullable<int> OrderToLocationStoreUID { get; set; }
+        public string OrderToLocationStore { get; set; }
         public string Gender { get; set; }
 
         public string AgeString { get; set; }

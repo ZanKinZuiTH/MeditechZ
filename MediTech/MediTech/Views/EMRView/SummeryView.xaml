@@ -290,6 +290,16 @@
                                      SelectedItem="{Binding SelectCCHPI}"
                                      HorizontalContentAlignment="Stretch"
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <dxe:ListBoxEdit.Style>
+                        <Style TargetType="dxe:ListBoxEdit">
+                            <Style.Triggers>
+                                <!--Detect desync-->
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter Property="Background" Value="#f2f3f5" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </dxe:ListBoxEdit.Style>
                     <i:Interaction.Triggers>
                         <i:EventTrigger  EventName="MouseDoubleClick">
                             <mvvm:EventToCommand Command="{Binding DataContext.EditCCHPICommand
@@ -299,7 +309,7 @@
                     <dxe:ListBoxEdit.ItemTemplate>
                         <DataTemplate>
                             <Border BorderThickness="0,0,0,1" BorderBrush="LightGray" Padding="0,0,0,3">
-                                <Grid>
+                                <Grid >
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Margin="5,1,0,0"
                                            FontSize="13"
@@ -413,6 +423,16 @@
                                  SelectedItem="{Binding SelectPhysicalExam}"
                                  HorizontalContentAlignment="Stretch" 
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <dxe:ListBoxEdit.Style>
+                    <Style TargetType="dxe:ListBoxEdit">
+                        <Style.Triggers>
+                            <!--Detect desync-->
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" Value="#f2f3f5" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </dxe:ListBoxEdit.Style>
                 <i:Interaction.Triggers>
                     <i:EventTrigger  EventName="MouseDoubleClick">
                         <mvvm:EventToCommand Command="{Binding DataContext.EditPhysicalCommand
@@ -841,13 +861,13 @@
                             <dxe:TextEditSettings AcceptsReturn="True" TextWrapping="Wrap"/>
                         </dxg:GridColumn.EditSettings>
                     </dxg:GridColumn>
-                    <dxg:GridColumn FieldName="BillingService" Header="หมวดหมู่"/>
-                    <dxg:GridColumn FieldName="OrderDttm" Header="วันที่">
+                    <dxg:GridColumn FieldName="BillingService" Header="หมวดหมู่" Width="100"/>
+                    <dxg:GridColumn FieldName="OrderDttm" Header="วันที่" Width="100">
                         <dxg:GridColumn.EditSettings>
                             <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy"/>
                         </dxg:GridColumn.EditSettings>
                     </dxg:GridColumn>
-                    <dxg:GridColumn FieldName="OrderDetailStatus" Header="สถานะ"/>
+                    <dxg:GridColumn FieldName="OrderDetailStatus" Header="สถานะ" Width="80"/>
                 </dxg:GridControl.Columns>
                 <dxg:GridControl.View>
                     <dxg:TableView  ShowGroupPanel="False"
@@ -1328,10 +1348,20 @@
                 </DataTemplate>
             </dxlc:GroupBox.MaximizedContentTemplate>
             <dxe:ListBoxEdit x:Name="listWellNess"
-                                     ItemsSource="{Binding ListWellnessData}"
-                                     SelectedItem="{Binding SelectWellnessData}"
-                                     HorizontalContentAlignment="Stretch" 
-                         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                             ItemsSource="{Binding ListWellnessData}"
+                             SelectedItem="{Binding SelectWellnessData}"
+                             HorizontalContentAlignment="Stretch" 
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <dxe:ListBoxEdit.Style>
+                    <Style TargetType="dxe:ListBoxEdit">
+                        <Style.Triggers>
+                            <!--Detect desync-->
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" Value="#f2f3f5" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </dxe:ListBoxEdit.Style>
                 <i:Interaction.Triggers>
                     <i:EventTrigger  EventName="MouseDoubleClick">
                         <mvvm:EventToCommand Command="{Binding DataContext.EditWellnessDataCommand

@@ -399,6 +399,7 @@ namespace MediTech.ViewModels
 
         List<LookupReferenceValueModel> OrderTypes;
 
+        List<LookupReferenceValueModel> Priorities;
         #endregion
 
         #region Method
@@ -406,8 +407,9 @@ namespace MediTech.ViewModels
 
         public PatientOrderEntryViewModel()
         {
-            var refVale = DataService.Technical.GetReferenceValueList("PRSTYP,PBLCT");
+            var refVale = DataService.Technical.GetReferenceValueList("PRSTYP,PBLCT,RQPRT");
             OrderTypes = refVale.Where(p => p.DomainCode == "PRSTYP").ToList();
+            Priorities = refVale.Where(p => p.DomainCode == "RQPRT").ToList();
             BillingCategory = refVale.Where(p => p.DomainCode == "PBLCT").ToList();
         }
 
@@ -749,8 +751,10 @@ namespace MediTech.ViewModels
                                 newOrder.IsStock = itemMaster.IsStock;
                                 newOrder.StoreUID = stores.Count(p => p.Quantity >= item.Quantity) > 0 ? stores.Where(p => p.Quantity >= item.Quantity)?.FirstOrDefault().StoreUID : (int?)null;
                                 newOrder.DFORMUID = itemMaster.FORMMUID;
+                                newOrder.ROUTEUID = itemMaster.ROUTEUID;
                                 newOrder.PDSTSUID = itemMaster.PDSTSUID;
                                 newOrder.QNUOMUID = itemMaster.BaseUOM;
+
 
                             }
 
@@ -767,6 +771,7 @@ namespace MediTech.ViewModels
                             newOrder.OrderCatagoryUID = billItem.OrderCategoryUID;
                             newOrder.OrderSubCategoryUID = billItem.OrderSubCategoryUID;
 
+                            newOrder.ORDPRUID = Priorities.FirstOrDefault(p => p.ValueCode == "NORML").Key;
                             newOrder.PRSTYPUID = OrderTypes.FirstOrDefault(p => p.ValueCode == "ROMED").Key;
                             newOrder.OrderType = OrderTypes.FirstOrDefault(p => p.ValueCode == "ROMED").Display;
 

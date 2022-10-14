@@ -11,6 +11,7 @@ using DevExpress.XtraPrinting;
 using System.Collections.ObjectModel;
 using MediTech.Views;
 using MediTech.Reports.Operating.Patient;
+using MediTech.Views.Inventory;
 
 namespace MediTech.ViewModels
 {
@@ -81,6 +82,7 @@ namespace MediTech.ViewModels
                     IsEnableCancelDispense = false;
                     IsEnableEditDispense = false;
                     IsEnableDispense = false;
+                    IsEnableChangeStore = false;
                     if (_SelectPrescription.IsBilled == "N")
                     {
                         if (_SelectPrescription.PrescriptionStatus == "Dispensed" || _SelectPrescription.PrescriptionStatus == "Partially Dispensed")
@@ -97,6 +99,7 @@ namespace MediTech.ViewModels
                     if (_SelectPrescription.PrescriptionStatus == "Raised")
                     {
                         IsEnableDispense = true;
+                        IsEnableChangeStore = true;
                     }
                 }
             }
@@ -196,6 +199,14 @@ namespace MediTech.ViewModels
             set { Set(ref _IsEnableDispense, value); }
         }
 
+        private bool _IsEnableChangeStore = false;
+
+        public bool IsEnableChangeStore
+        {
+            get { return _IsEnableChangeStore; }
+            set { Set(ref _IsEnableChangeStore, value); }
+        }
+
         #endregion
 
         #region Command
@@ -249,6 +260,13 @@ namespace MediTech.ViewModels
             get { return _EditDispenseCommand ?? (_EditDispenseCommand = new RelayCommand(EditDispense)); }
         }
 
+        private RelayCommand _ChangeStoreCommand;
+
+        public RelayCommand ChangeStoreCommand
+        {
+            get { return _ChangeStoreCommand ?? (_ChangeStoreCommand = new RelayCommand(ChangeStore)); }
+        }
+
 
         private RelayCommand _CancelDispenseCommand;
 
@@ -280,14 +298,24 @@ namespace MediTech.ViewModels
             var refValues = DataService.Technical.GetReferenceValueMany("ORDST");
             PrescritionStatus = refValues.Where(p => p.ValueCode == "RAISED" || p.ValueCode == "DISPE" || p.ValueCode == "CANCLD"
             || p.ValueCode == "DISPCANCL" || p.ValueCode == "OPDISP"
-            || p.ValueCode == "OPCANDISP" || p.ValueCode == "PRCAN").ToList();
+            || p.ValueCode == "OPCANDISP").ToList();
 
             DefaultControl();
             SearchPrescrition();
         }
 
 
-
+        void ChangeStore()
+        {
+            if (SelectPrescription != null)
+            {
+                if (SelectPrescription.PrescriptionStatus == "Raised")
+                {
+                    ChangeStore changeStore = new ChangeStore();
+                    LaunchViewDialogNonPermiss(changeStore,true);
+                }
+            }
+        }
 
         void SearchPrescrition()
         {
@@ -353,7 +381,6 @@ namespace MediTech.ViewModels
                 LaunchViewDialog(pageview, "EMRVE", false, true);
             }
         }
-
 
 
         void DefaultControl()

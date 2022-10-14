@@ -27,7 +27,7 @@ namespace MediTech.Views
             InitializeComponent();
             cmbDoctor.PreviewKeyDown += ComboBoxEdit_PreviewKeyDown;
             cmbStatus.PreviewKeyDown += ComboBoxEdit_PreviewKeyDown;
-            (summeryView.DataContext as EMRViewViewModel).View = summeryView;
+            (electronicMedicalView.DataContext as EMRViewViewModel).View = electronicMedicalView;
         }
 
         private void ComboBoxEdit_PreviewKeyDown(object sender, KeyEventArgs e)

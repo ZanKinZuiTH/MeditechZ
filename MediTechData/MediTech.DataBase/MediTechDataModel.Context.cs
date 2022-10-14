@@ -440,5 +440,14 @@ namespace MediTech.DataBase
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSearchUnbilledPatientsForCheckup_Result>("pSearchUnbilledPatientsForCheckup", p_PatientUIDParameter, p_BillFromDTTMParameter, p_BillToDTTMParameter, p_InsuranceCompanyUIDParameter, p_CheckupjobUIDParameter, p_OwnerOrganisationUIDParameter);
         }
+    
+        public virtual ObjectResult<pGetWardView_Result> pGetWardView(Nullable<int> p_ParentLocationUID)
+        {
+            var p_ParentLocationUIDParameter = p_ParentLocationUID.HasValue ?
+                new ObjectParameter("P_ParentLocationUID", p_ParentLocationUID) :
+                new ObjectParameter("P_ParentLocationUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetWardView_Result>("pGetWardView", p_ParentLocationUIDParameter);
+        }
     }
 }

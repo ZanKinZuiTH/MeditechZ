@@ -474,6 +474,9 @@
     <Compile Include="pGetCheckupRiskAudioTimus_Result.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="pGetWardView_Result.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="PhysicalExam.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>

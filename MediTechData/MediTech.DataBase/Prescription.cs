@@ -27,6 +27,7 @@ namespace MediTech.DataBase
         public Nullable<System.DateTime> DispensedDttm { get; set; }
         public Nullable<int> OrderLocationUID { get; set; }
         public Nullable<int> OrderToLocationUID { get; set; }
+        public Nullable<int> OrderToLocationStoreUID { get; set; }
         public long PatientOrderUID { get; set; }
         public string IsIPFill { get; set; }
         public int CUser { get; set; }
