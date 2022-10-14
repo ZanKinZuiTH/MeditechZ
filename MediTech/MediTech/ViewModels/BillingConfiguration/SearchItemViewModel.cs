@@ -139,7 +139,7 @@ namespace MediTech.ViewModels
                 }
                 else if (SelectServiceTypes.Display == "Supply")
                 {
-                    ITMTYPUID = ITMTYP.FirstOrDefault(p => p.ValueCode.Contains("MDITM")).Key;
+                    ITMTYPUID = ITMTYP.FirstOrDefault(p => p.ValueCode.Contains("CNSBL")).Key;
                     var data = DataService.Inventory.SearchItemMaster(ItemName, ItemCode, ITMTYPUID);
                     ItemMaster = data.Select(p => new ItemServiceModel
                     {
@@ -178,7 +178,7 @@ namespace MediTech.ViewModels
                 }
                 else if (SelectServiceTypes.Display == "Mobile Checkup")
                 {
-                    TSTTPUID = TSTTP.FirstOrDefault(p => p.ValueCode.Contains("RADTP")).Key ?? 0;
+                    TSTTPUID = TSTTP.FirstOrDefault(p => p.ValueCode.Contains("MOBTP")).Key ?? 0;
                     var data = DataService.MasterData.SearchRequestItemByCategory(TSTTPUID, ItemCode, ItemName);
                     ItemMaster = data.Select(p => new ItemServiceModel
                     {

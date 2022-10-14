@@ -890,7 +890,7 @@ namespace MediTech.ViewModels
             {
                 SearchItem page = new SearchItem();
                 (page.DataContext as SearchItemViewModel).AssignModel(SelectServiceType.Key ?? 0);
-                SearchItemViewModel result = (SearchItemViewModel)LaunchViewDialog(page, "SCHITM", false, false);
+                SearchItemViewModel result = (SearchItemViewModel)LaunchViewDialogNonPermiss(page, false);
 
                 if (result != null && result.ResultDialog == ActionDialog.Save)
                 {
