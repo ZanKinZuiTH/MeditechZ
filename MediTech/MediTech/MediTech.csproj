@@ -1577,6 +1577,7 @@
     <Compile Include="ViewModels\EMRView\VitalSignsChartViewModel.cs" />
     <Compile Include="ViewModels\EMRView\WellnessDataViewModel.cs" />
     <Compile Include="ViewModels\Inventory\CancelDispenseViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\ChangeStorePopupViewmodel.cs" />
     <Compile Include="ViewModels\Inventory\CreateDispenseReturnViewModel.cs" />
     <Compile Include="ViewModels\Inventory\DispenseReturnsViewModel.cs" />
     <Compile Include="ViewModels\Inventory\IPFillsDetailViewModel.cs" />
@@ -1957,8 +1958,8 @@
     <Compile Include="Views\Inventory\PrintDrugSticker.xaml.cs">
       <DependentUpon>PrintDrugSticker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Inventory\ChangeStore.xaml.cs">
-      <DependentUpon>ChangeStore.xaml</DependentUpon>
+    <Compile Include="Views\Inventory\ChangeStorePopup.xaml.cs">
+      <DependentUpon>ChangeStorePopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Inventory\ConsumptionStock.xaml.cs">
       <DependentUpon>ConsumptionStock.xaml</DependentUpon>
@@ -2751,7 +2752,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Inventory\ChangeStore.xaml">
+    <Page Include="Views\Inventory\ChangeStorePopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

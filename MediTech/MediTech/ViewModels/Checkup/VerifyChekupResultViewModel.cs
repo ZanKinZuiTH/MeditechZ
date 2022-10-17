@@ -478,7 +478,7 @@ namespace MediTech.ViewModels
             {
                 if (SelectPatientVisit == null)
                 {
-                    WarningDialog("กรุณาเลือกคนไข้");
+                    WarningDialog("กรุณาเลือกผู้ป่วย");
                     return;
                 }
                 if (SelectGroupResult == null)
@@ -604,7 +604,7 @@ namespace MediTech.ViewModels
             {
                 if (SelectPatientVisit == null)
                 {
-                    WarningDialog("กรุณาเลือกคนไข้");
+                    WarningDialog("กรุณาเลือกผู้ป่วย");
                     return;
                 }
                 if (string.IsNullOrEmpty(WellnessResult))

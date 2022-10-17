@@ -902,7 +902,7 @@ namespace MediTech.ViewModels
                 PatientVisitModel returnData = DataService.PatientIdentity.SavePatientVisit(visitInfo, AppUtil.Current.UserID);
                 if (string.IsNullOrEmpty(returnData.VisitID))
                 {
-                    ErrorDialog("ไม่สามารถบันทึกข้อมูล Visit คนไข้ได้ ติดต่อ Admin");
+                    ErrorDialog("ไม่สามารถบันทึกข้อมูล Visit ผู้ป่วยได้ ติดต่อ Admin");
                     return;
                 }
                 else
@@ -992,7 +992,7 @@ namespace MediTech.ViewModels
                 PatientVisitModel returnData = DataService.PatientIdentity.SavePatientVisit(visitInfo, AppUtil.Current.UserID);
                 if (string.IsNullOrEmpty(returnData.VisitID))
                 {
-                    ErrorDialog("ไม่สามารถบันทึกข้อมูล Visit คนไข้ได้ ติดต่อ Admin");
+                    ErrorDialog("ไม่สามารถบันทึกข้อมูล Visit ผู้ป่วยได้ ติดต่อ Admin");
                     return;
                 }
                 else

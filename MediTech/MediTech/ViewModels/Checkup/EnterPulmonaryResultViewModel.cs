@@ -80,15 +80,15 @@ namespace MediTech.ViewModels
 
             if (string.IsNullOrEmpty(this.RequestModel.Gender))
             {
-                warningMessage = "* คนไข้ไม่ได้ระบุเพศ กรุณาตรวจสอบ";
+                warningMessage = "* ผู้ป่วยไม่ได้ระบุเพศ กรุณาตรวจสอบ";
             }
             if (string.IsNullOrEmpty(this.RequestModel.PatientAge))
             {
-                warningMessage += string.IsNullOrEmpty(warningMessage) ? "* คนไข้ไม่ได้ระบุอายุ กรุณาตรวจสอบ" : "\r\n* คนไข้ไม่ได้ระบุอายุ กรุณาตรวจสอบ";
+                warningMessage += string.IsNullOrEmpty(warningMessage) ? "* ผู้ป่วยไม่ได้ระบุอายุ กรุณาตรวจสอบ" : "\r\n* ผู้ป่วยไม่ได้ระบุอายุ กรุณาตรวจสอบ";
             }
             if (this.RequestModel.Height == 0)
             {
-                warningMessage += string.IsNullOrEmpty(warningMessage) ? "* คนไข้ไม่ได้ระบุส่วนสูง กรุณาตรวจสอบ" : "\r\n* คนไข้ไม่ได้ระบุส่วนสูง กรุณาตรวจสอบ";
+                warningMessage += string.IsNullOrEmpty(warningMessage) ? "* ผู้ป่วยไม่ได้ระบุส่วนสูง กรุณาตรวจสอบ" : "\r\n* ผู้ป่วยไม่ได้ระบุส่วนสูง กรุณาตรวจสอบ";
             }
 
             if (!string.IsNullOrEmpty(warningMessage))

@@ -935,7 +935,7 @@ namespace MediTech.ViewModels
 
                 if (resultPatient == null)
                 {
-                    ErrorDialog("ไม่สามารถบันทึกข้อมูลคนไข้ได้ ติดต่อ Admin");
+                    ErrorDialog("ไม่สามารถบันทึกข้อมูลผู้ป่วยได้ ติดต่อ Admin");
                     return;
                 }
 
@@ -997,7 +997,7 @@ namespace MediTech.ViewModels
 
                 if (resultPatient == null)
                 {
-                    ErrorDialog("ไม่สามารถบันทึกข้อมูลคนไข้ได้ ติดต่อ Admin");
+                    ErrorDialog("ไม่สามารถบันทึกข้อมูลผู้ป่วยได้ ติดต่อ Admin");
                     return null;
                 }
                 #endregion

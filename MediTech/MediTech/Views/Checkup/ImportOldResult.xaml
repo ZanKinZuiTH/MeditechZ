@@ -116,7 +116,7 @@
                 <ProgressBar Height="15"  Name="progressBar1"/>
             </dxlc:LayoutItem>
             <dxlc:LayoutGroup Orientation="Horizontal" >
-                <dxlc:LayoutItem Label="คนไข้ที่มี HN มากกว่า 1 กรุณาจัดการ merge HN ก่อน" HorizontalAlignment="Right">
+                <dxlc:LayoutItem Label="ผู้ป่วยที่มี HN มากกว่า 1 กรุณาจัดการ merge HN ก่อน" HorizontalAlignment="Right">
                     <dxe:TextEdit Background="Yellow" IsReadOnly="True" Width="50"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="คนไม่มีรายชื่อลงทะเบียนในระบบ" HorizontalAlignment="Right">
@@ -167,7 +167,7 @@
                                     <dxg:FormatCondition ApplyToRow="True" Expression="[PatientID] = 'ไม่พบข้อมูล'" FieldName="PatientID">
                                         <dx:Format Background="#FFEE8D3D"/>
                                     </dxg:FormatCondition>
-                                    <dxg:FormatCondition ApplyToRow="True" Expression="[PatientID] = 'คนไข้มี HN มากกว่า 1 HN'" FieldName="PatientID">
+                                    <dxg:FormatCondition ApplyToRow="True" Expression="[PatientID] = 'ผู้ป่วยมี HN มากกว่า 1 HN'" FieldName="PatientID">
                                         <dx:Format Background="Yellow"/>
                                     </dxg:FormatCondition>
                                     <dxg:FormatCondition ApplyToRow="True" Expression="[IsSave] = 'Success'" FieldName="IsSave">

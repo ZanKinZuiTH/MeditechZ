@@ -684,7 +684,7 @@ namespace MediTech.ViewModels
 
             if ((SelectedPateintSearch == null && SearchPatientCriteria == "") && VisitDate == null)
             {
-                WarningDialog("กรูณาเลือกวันที่ที่คนไข้เข้ารับการตรวจ");
+                WarningDialog("กรูณาเลือกวันที่ที่ผู้ป่วยเข้ารับการตรวจ");
                 return;
             }
             SearchPatientVisit();
@@ -1011,7 +1011,7 @@ namespace MediTech.ViewModels
                         List<PatientProblemModel> listReDiagnosis = result.ListDiagnosis;
                         if (viewModelDiag.PatientProblemList != null && viewModelDiag.PatientProblemList.Count > 0)
                         {
-                            WarningDialog("มีการลงข้อมูลวินิจฉัยคนไข้แล้วไม่สามารถทำการ Remed ได้");
+                            WarningDialog("มีการลงข้อมูลวินิจฉัยผู้ป่วยแล้วไม่สามารถทำการ Remed ได้");
                         }
                         else
                         {

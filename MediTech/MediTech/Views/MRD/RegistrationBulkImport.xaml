@@ -40,22 +40,22 @@
                 <dxlc:LayoutItem  HorizontalAlignment="Left">
                     <dxe:CheckEdit Content="อัพเดทข้อมูลขนไข้ไม่สนใจ HN ซ้ำ" IsChecked="{Binding NonCheckHNDuplicate}"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="คนไข้ที่มี BN" HorizontalAlignment="Right">
+                <dxlc:LayoutItem Label="ผู้ป่วยที่มี BN" HorizontalAlignment="Right">
                     <dxe:TextEdit Background="BlueViolet" IsReadOnly="True" Width="50"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="คนไข้ที่ไม่มี BN" HorizontalAlignment="Right">
+                <dxlc:LayoutItem Label="ผู้ป่วยที่ไม่มี BN" HorizontalAlignment="Right">
                     <dxe:TextEdit Background="DarkBlue" IsReadOnly="True" Width="50"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="คนไข้ที่ข้อมูลไม่ครบ" HorizontalAlignment="Right">
+                <dxlc:LayoutItem Label="ผู้ป่วยที่ข้อมูลไม่ครบ" HorizontalAlignment="Right">
                     <dxe:TextEdit Background="Green" IsReadOnly="True" Width="50"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="คนไข้ที่ข้อมูลซับซ้อน" HorizontalAlignment="Right">
+                <dxlc:LayoutItem Label="ผู้ป่วยที่ข้อมูลซับซ้อน" HorizontalAlignment="Right">
                     <dxe:TextEdit Background="Yellow" IsReadOnly="True" Width="50"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="ID Card ไม่ถูกต้อง" HorizontalAlignment="Right">
                     <dxe:TextEdit Background="Red" IsReadOnly="True" Width="50"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="คนไข้ที่มีการสร้าง Visit วันนี้" HorizontalAlignment="Right">
+                <dxlc:LayoutItem Label="ผู้ป่วยที่มีการสร้าง Visit วันนี้" HorizontalAlignment="Right">
                     <dxe:TextEdit Background="Orange" IsReadOnly="True" Width="50"/>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
@@ -106,10 +106,10 @@
                 <dxlc:LayoutItem HorizontalAlignment="Left"  Label="Select All" >
                     <CheckBox VerticalAlignment="Center" HorizontalAlignment="Left" Name="SelectAll" IsChecked="{Binding Path=SelectAll,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="50"></CheckBox>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="จำนวนคนไข้ที่ลงทะเบียนเพิ่ม" >
+                <dxlc:LayoutItem Label="จำนวนผู้ป่วยที่ลงทะเบียนเพิ่ม" >
                     <TextBox  HorizontalAlignment="Stretch" IsReadOnly="True" Text="{Binding Path = RegisteredCount, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="จำนวนคนไข้ที่มี BN แล้ว" >
+                <dxlc:LayoutItem Label="จำนวนผู้ป่วยที่มี HN แล้ว" >
                     <TextBox  HorizontalAlignment="Stretch" IsReadOnly="True" Text="{Binding Path = UpdateCount, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="จำนวน Vist ที่สร้าง">

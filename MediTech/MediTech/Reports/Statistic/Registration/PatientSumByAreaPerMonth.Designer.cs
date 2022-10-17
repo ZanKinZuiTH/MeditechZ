@@ -243,7 +243,7 @@
             this.lblReportHeader.SizeF = new System.Drawing.SizeF(310.4167F, 29.25F);
             this.lblReportHeader.StylePriority.UseFont = false;
             this.lblReportHeader.StylePriority.UseTextAlignment = false;
-            this.lblReportHeader.Text = "รายงานคนไข้ตามเขต";
+            this.lblReportHeader.Text = "รายงานผู้ป่วยตามเขต";
             this.lblReportHeader.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // OrganisationList

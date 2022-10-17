@@ -224,7 +224,7 @@ namespace MediTech.Reports.Statistic.Ecount
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "PatientID")});
             this.xrTableCell34.Multiline = true;
             this.xrTableCell34.Name = "xrTableCell34";
-            this.xrTableCell34.Text = "HN คนไข้";
+            this.xrTableCell34.Text = "HN ผู้ป่วย";
             this.xrTableCell34.Weight = 1D;
             // 
             // xrTableCell35
@@ -266,7 +266,7 @@ namespace MediTech.Reports.Statistic.Ecount
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "PatientName")});
             this.xrTableCell39.Multiline = true;
             this.xrTableCell39.Name = "xrTableCell39";
-            this.xrTableCell39.Text = "ชื่อคนไข้/ลูกค้า";
+            this.xrTableCell39.Text = "ชื่อผู้ป่วย/ลูกค้า";
             this.xrTableCell39.Weight = 1.1578942871093751D;
             // 
             // xrTableCell40
@@ -516,7 +516,7 @@ namespace MediTech.Reports.Statistic.Ecount
             // 
             this.xrTableCell6.Multiline = true;
             this.xrTableCell6.Name = "xrTableCell6";
-            this.xrTableCell6.Text = "HN คนไข้";
+            this.xrTableCell6.Text = "HN ผู้ป่วย";
             this.xrTableCell6.Weight = 1D;
             // 
             // xrTableCell7
@@ -551,7 +551,7 @@ namespace MediTech.Reports.Statistic.Ecount
             // 
             this.xrTableCell11.Multiline = true;
             this.xrTableCell11.Name = "xrTableCell11";
-            this.xrTableCell11.Text = "ชื่อคนไข้/ลูกค้า";
+            this.xrTableCell11.Text = "ชื่อผู้ป่วย/ลูกค้า";
             this.xrTableCell11.Weight = 1.1578942871093751D;
             // 
             // xrTableCell12

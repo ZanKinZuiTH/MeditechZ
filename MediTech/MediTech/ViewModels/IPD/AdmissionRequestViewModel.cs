@@ -218,7 +218,7 @@ namespace MediTech.ViewModels
 
                 if (data != null)
                 {
-                    WarningDialog("คนไข้มีรายการ Request Admit แล้ว");
+                    WarningDialog("ผู้ป่วยมีรายการ Request Admit แล้ว");
                     return;
                 }
 

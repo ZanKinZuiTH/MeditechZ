@@ -79,7 +79,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <dxlc:LayoutControl   Padding="0">
-            <dxlc:LayoutGroup Grid.Column="0" MaxWidth="300" Orientation="Vertical" Header="คนไข้รอคิดเงิน"  View="GroupBox" >
+            <dxlc:LayoutGroup Grid.Column="0" MaxWidth="300" Orientation="Vertical" Header="ผู้ป่วยรอคิดเงิน"  View="GroupBox" >
                 <dxlc:LayoutGroup.HeaderTemplate>
                     <DataTemplate >
                         <Grid>

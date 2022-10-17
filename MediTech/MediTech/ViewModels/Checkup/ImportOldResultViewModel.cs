@@ -538,7 +538,7 @@ namespace MediTech.ViewModels
 
                             if (isPatientDuplicate == true)
                             {
-                                view.gcTestParameter.SetCellValue(newRowHandle, "PatientID", "คนไข้มี HN มากกว่า 1 HN");
+                                view.gcTestParameter.SetCellValue(newRowHandle, "PatientID", "ผู้ป่วยมี HN มากกว่า 1 HN");
                             }
 
                             if (patient != null && isPatientDuplicate == false)
@@ -664,7 +664,7 @@ namespace MediTech.ViewModels
                     return;
                 }
                 DataView ResultlabDataView = (DataView)view.gcTestParameter.ItemsSource;
-                int upperlimit = ResultlabDataView.ToTable().AsEnumerable().Count(p => p["PatientID"].ToString() != "คนไข้มี HN มากกว่า 1 HN" || p["PatientID"].ToString() != "ไม่พบข้อมูล");
+                int upperlimit = ResultlabDataView.ToTable().AsEnumerable().Count(p => p["PatientID"].ToString() != "ผู้ป่วยมี HN มากกว่า 1 HN" || p["PatientID"].ToString() != "ไม่พบข้อมูล");
                
                 int pgBarCounter = 0;
 
@@ -672,7 +672,7 @@ namespace MediTech.ViewModels
                 {
                     string hn =  rowView.Row["PatientID"].ToString();
                    
-                    if (hn != "คนไข้มี HN มากกว่า 1 HN" && hn != "ไม่พบข้อมูล")
+                    if (hn != "ผู้ป่วยมี HN มากกว่า 1 HN" && hn != "ไม่พบข้อมูล")
                     {
                         //ResultComponentModel resultComponent = new ResultComponentModel();
                         // resultComponent.ResultValue = rowView.Row[]

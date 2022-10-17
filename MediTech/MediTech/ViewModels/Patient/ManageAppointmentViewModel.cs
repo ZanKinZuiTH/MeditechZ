@@ -275,7 +275,7 @@ namespace MediTech.ViewModels
                 }
                 else
                 {
-                    WarningDialog("กรุณาเลือกคนไข้ทำนัด");
+                    WarningDialog("กรุณาเลือกผู้ป่วยทำนัด");
                     return;
                 }
 

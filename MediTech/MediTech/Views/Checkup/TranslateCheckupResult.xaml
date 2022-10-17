@@ -307,7 +307,7 @@
                                 <dxe:DateEditSettings DisplayFormat="dd/MM/yyyy HH:mm" />
                             </dxg:GridColumn.EditSettings>
                         </dxg:GridColumn>
-                        <dxg:GridColumn Header="แพทย์เจ้าของคนไข้" FieldName="CareProviderName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="แพทย์เจ้าของผู้ป่วย" FieldName="CareProviderName" ReadOnly="True"/>
                         <dxg:GridColumn Header="VisitID" FieldName="VisitID" ReadOnly="True"/>
                         <dxg:GridColumn Header="สถานประกอบการ" FieldName="OwnerOrganisation" ReadOnly="True"/>
                         <dxg:GridColumn Header="Payor" FieldName="PayorName" ReadOnly="True"/>

@@ -130,7 +130,7 @@
             this.xrLabel1.SizeF = new System.Drawing.SizeF(282.2917F, 29.25F);
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.StylePriority.UseTextAlignment = false;
-            this.xrLabel1.Text = "ตารางแสดงช่วงเวลาที่คนไข้เข้ามารับบริการ";
+            this.xrLabel1.Text = "ตารางแสดงช่วงเวลาที่ผู้ป่วยเข้ามารับบริการ";
             this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // VISTYUID

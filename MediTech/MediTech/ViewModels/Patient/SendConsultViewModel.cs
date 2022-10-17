@@ -163,7 +163,7 @@ namespace MediTech.ViewModels
             
             if (SelectLocations.LocationUID == SelectedPatientVisit.LocationUID)
             {
-                WarningDialog("ปัจุบันคนไข้อยู่แผนก "+ SelectLocations.Name + "\r\nกรุณาเลือกแผนกใหม่");
+                WarningDialog("ปัจุบันผู้ป่วยอยู่แผนก "+ SelectLocations.Name + "\r\nกรุณาเลือกแผนกใหม่");
                 return;
             }
 
