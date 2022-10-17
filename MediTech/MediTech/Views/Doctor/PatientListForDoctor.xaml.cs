@@ -1,4 +1,5 @@
 ﻿using MediTech.ViewModels;
+using MediTech.ViewModels.Doctor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace MediTech.Views
         public PatientListForDoctor()
         {
             InitializeComponent();
-            (this.DataContext as PatientListViewModel).UpdateEvent += PatientListForDoctor_UpdateEvent;
+            (this.DataContext as PatientListForDoctorViewModel).UpdateEvent += PatientListForDoctor_UpdateEvent;
         }
 
         private void PatientListForDoctor_UpdateEvent(object sender, EventArgs e)

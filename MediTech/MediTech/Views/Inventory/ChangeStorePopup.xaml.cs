@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MediTech.Views.Inventory
+namespace MediTech.Views
 {
     /// <summary>
     /// Interaction logic for ChangeStore.xaml

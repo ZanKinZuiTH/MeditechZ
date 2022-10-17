@@ -1548,6 +1548,7 @@
     <Compile Include="ViewModels\Checkup\ListCheckupJobViewModel.cs" />
     <Compile Include="ViewModels\Checkup\HealthExamListViewModel.cs" />
     <Compile Include="ViewModels\Checkup\EnterPhysicalExamViewModel.cs" />
+    <Compile Include="ViewModels\Doctor\PatientListForDoctorViewModel.cs" />
     <Compile Include="ViewModels\Documents\CashierReportViewModel.cs" />
     <Compile Include="ViewModels\Documents\CheckupJobSummeryReportViewModel.cs" />
     <Compile Include="ViewModels\Documents\EcountReportViewModel.cs" />
@@ -1857,6 +1858,9 @@
     </Compile>
     <Compile Include="Views\Checkup\HealthExamList.xaml.cs">
       <DependentUpon>HealthExamList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Doctor\PatientListForDoctor.xaml.cs">
+      <DependentUpon>PatientListForDoctor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Documents\CashierReport.xaml.cs">
       <DependentUpon>CashierReport.xaml</DependentUpon>
@@ -2619,6 +2623,10 @@
     <Page Include="Views\Checkup\HealthExamList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Doctor\PatientListForDoctor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Documents\CashierReport.xaml">
       <SubType>Designer</SubType>

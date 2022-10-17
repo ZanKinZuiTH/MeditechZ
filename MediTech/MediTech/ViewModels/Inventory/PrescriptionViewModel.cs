@@ -11,7 +11,6 @@ using DevExpress.XtraPrinting;
 using System.Collections.ObjectModel;
 using MediTech.Views;
 using MediTech.Reports.Operating.Patient;
-using MediTech.Views.Inventory;
 
 namespace MediTech.ViewModels
 {

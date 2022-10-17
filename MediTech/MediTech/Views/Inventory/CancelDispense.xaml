@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-             xmlns:local="clr-namespace:MediTech.Views.Inventory"
+             xmlns:local="clr-namespace:MediTech.Views"
              mc:Ignorable="d"
              xmlns:uc="clr-namespace:MediTech.CustomControl.Banner"
              xmlns:cc="clr-namespace:MediTech.CustomControl"

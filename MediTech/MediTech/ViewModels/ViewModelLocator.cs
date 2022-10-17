@@ -14,6 +14,7 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using MediTech.ViewModels.Doctor;
 using Microsoft.Practices.ServiceLocation;
 
 namespace MediTech.ViewModels
@@ -634,6 +635,17 @@ namespace MediTech.ViewModels
                     SimpleIoc.Default.Register<SessionWithdrawnViewModel>();
 
                 return ServiceLocator.Current.GetInstance<SessionWithdrawnViewModel>();
+            }
+        }
+
+        public PatientListForDoctorViewModel PatientListForDoctorViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<PatientListForDoctorViewModel>())
+                    SimpleIoc.Default.Register<PatientListForDoctorViewModel>();
+
+                return ServiceLocator.Current.GetInstance<PatientListForDoctorViewModel>();
             }
         }
 
