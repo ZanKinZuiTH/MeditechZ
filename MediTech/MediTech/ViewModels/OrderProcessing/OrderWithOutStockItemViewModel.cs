@@ -265,11 +265,11 @@ namespace MediTech.ViewModels
 
             if (PatientOrderDetail.BSMDDUID == 2813 || PatientOrderDetail.BSMDDUID == 2841)
             {
-                CareproviderVisibility = Visibility.Visible;
+                PriorityVisibility = Visibility.Visible;
             }
             else
             {
-                CareproviderVisibility = Visibility.Hidden;
+                PriorityVisibility = Visibility.Hidden;
             }
         }
 

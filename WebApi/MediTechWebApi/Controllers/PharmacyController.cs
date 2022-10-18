@@ -700,7 +700,7 @@ namespace MediTechWebApi.Controllers
                     IMUOMUID = p.IMUOMUID,
                     DFORMUID = p.DFORMUID,
                     DrugForm = SqlFunction.fGetRfValDescription(p.DFORMUID ?? 0),
-                    StoreUID = p.StoreUID,
+                    StoreUID = p.StoreUID ?? 0,
                     StoreName = SqlFunction.fGetStoreName(p.StoreUID ?? 0),
                     InstructionRoute = SqlFunction.fGetRfValDescription(p.PDSTSUID ?? 0),
                     Dosage = p.Dosage,
@@ -714,22 +714,26 @@ namespace MediTechWebApi.Controllers
 
             foreach (var item in data)
             {
-
-                IEnumerable<Stock> stockItem = db.Stock
-                .Where(p => p.StatusFlag == "A"
-                && p.ItemMasterUID == item.ItemMasterUID
-                && p.StoreUID == item.StoreUID && p.Quantity > 0);
-                if (stockItem != null && stockItem.Count() > 0)
+                if (item.StoreUID != null)
                 {
-                    Store store = db.Store.Find(item.StoreUID);
-                    if (store.STDTPUID == 2901)
-                        stockItem = stockItem.OrderBy(p => p.ExpiryDttm).ThenBy(p => p.CWhen);
-                    else if (store.STDTPUID == 2902)
-                        stockItem = stockItem.OrderBy(p => p.CWhen).ThenBy(p => p.ExpiryDttm);
+                    IEnumerable<Stock> stockItem = db.Stock
+                    .Where(p => p.StatusFlag == "A"
+                    && p.ItemMasterUID == item.ItemMasterUID
+                    && p.StoreUID == item.StoreUID && p.Quantity > 0);
+                    if (stockItem != null && stockItem.Count() > 0)
+                    {
+                        Store store = db.Store.Find(item.StoreUID ?? 0);
+                        if (store.STDTPUID == 2901)
+                            stockItem = stockItem.OrderBy(p => p.ExpiryDttm).ThenBy(p => p.CWhen);
+                        else if (store.STDTPUID == 2902)
+                            stockItem = stockItem.OrderBy(p => p.CWhen).ThenBy(p => p.ExpiryDttm);
 
-                    item.ExpiryDate = stockItem.FirstOrDefault().ExpiryDttm;
+                        item.ExpiryDate = stockItem.FirstOrDefault().ExpiryDttm;
 
+                    }
                 }
+
+
 
                 if (item.FRQNCUID != null && item.FRQNCUID != 0)
                 {
@@ -750,7 +754,7 @@ namespace MediTechWebApi.Controllers
             List<PrescriptionModel> data = (from ps in db.Prescription
                                             join pa in db.Patient on ps.PatientUID equals pa.UID
                                             join pv in db.PatientVisit on ps.PatientVisitUID equals pv.UID
-                                            where ps.StatusFlag == "A" &&  ps.UID  == prescriptionUID
+                                            where ps.StatusFlag == "A" && ps.UID == prescriptionUID
                                             select new PrescriptionModel
                                             {
                                                 PrescriptionUID = ps.UID,
@@ -828,29 +832,29 @@ namespace MediTechWebApi.Controllers
         {
 
             PrescriptionModel data = (from ps in db.Prescription
-                                            join pa in db.Patient on ps.PatientUID equals pa.UID
-                                            join pv in db.PatientVisit on ps.PatientVisitUID equals pv.UID
-                                            where ps.StatusFlag == "A" && ps.UID == prescriptionUID
-                                            select new PrescriptionModel
-                                            {
-                                                PrescriptionUID = ps.UID,
-                                                PrescriptionNumber = ps.PrescriptionNumber,
-                                                PrescriptionStatus = SqlFunction.fGetRfValDescription(ps.ORDSTUID ?? 0),
-                                                PatientID = pa.PatientID,
-                                                PRSTYPUID = ps.PRSTYPUID,
-                                                PrescriptionType = SqlFunction.fGetRfValDescription(ps.PRSTYPUID ?? 0),
-                                                PatientName = SqlFunction.fGetPatientName(ps.PatientUID),
-                                                PatientVisitUID = ps.PatientVisitUID,
-                                                AgeString = pa.DOBDttm.HasValue ? SqlFunction.fGetAgeString(pa.DOBDttm.Value) : "",
-                                                DOBDttm = pa.DOBDttm.HasValue ? pa.DOBDttm : null,
-                                                Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
-                                                EncounterType = SqlFunction.fGetRfValDescription(pv.ENTYPUID ?? 0),
-                                                PrescribedDttm = ps.PrescribedDttm,
-                                                IsBilled = SqlFunction.fCheckBillGeneratedForVisit(ps.PatientUID, ps.PatientVisitUID),
-                                                LocationName = SqlFunction.fGetLocationName(pv.LocationUID ?? 0),
-                                                OrganisationName = SqlFunction.fGetHealthOrganisationName(ps.OwnerOrganisationUID ?? 0),
-                                                OwnerOrganisationUID = ps.OwnerOrganisationUID
-                                            }).FirstOrDefault();
+                                      join pa in db.Patient on ps.PatientUID equals pa.UID
+                                      join pv in db.PatientVisit on ps.PatientVisitUID equals pv.UID
+                                      where ps.StatusFlag == "A" && ps.UID == prescriptionUID
+                                      select new PrescriptionModel
+                                      {
+                                          PrescriptionUID = ps.UID,
+                                          PrescriptionNumber = ps.PrescriptionNumber,
+                                          PrescriptionStatus = SqlFunction.fGetRfValDescription(ps.ORDSTUID ?? 0),
+                                          PatientID = pa.PatientID,
+                                          PRSTYPUID = ps.PRSTYPUID,
+                                          PrescriptionType = SqlFunction.fGetRfValDescription(ps.PRSTYPUID ?? 0),
+                                          PatientName = SqlFunction.fGetPatientName(ps.PatientUID),
+                                          PatientVisitUID = ps.PatientVisitUID,
+                                          AgeString = pa.DOBDttm.HasValue ? SqlFunction.fGetAgeString(pa.DOBDttm.Value) : "",
+                                          DOBDttm = pa.DOBDttm.HasValue ? pa.DOBDttm : null,
+                                          Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
+                                          EncounterType = SqlFunction.fGetRfValDescription(pv.ENTYPUID ?? 0),
+                                          PrescribedDttm = ps.PrescribedDttm,
+                                          IsBilled = SqlFunction.fCheckBillGeneratedForVisit(ps.PatientUID, ps.PatientVisitUID),
+                                          LocationName = SqlFunction.fGetLocationName(pv.LocationUID ?? 0),
+                                          OrganisationName = SqlFunction.fGetHealthOrganisationName(ps.OwnerOrganisationUID ?? 0),
+                                          OwnerOrganisationUID = ps.OwnerOrganisationUID
+                                      }).FirstOrDefault();
 
             return data;
         }
@@ -1209,69 +1213,69 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetPatientOrderStanding")]
         [HttpGet]
-        public List<PatientOrderStandingModel> GetPatientOrderStanding(int? wardUID, int storeUID,int fillDays,DateTime? excludeTime)
+        public List<PatientOrderStandingModel> GetPatientOrderStanding(int? wardUID, int storeUID, int fillDays, DateTime? excludeTime)
         {
             DateTime currentDate = DateTime.Now.Date;
             DateTime currentDateEnd = currentDate.Date.AddSeconds(86399);
             DateTime endDate = currentDate.AddDays(fillDays);
 
             List<PatientOrderStandingModel> data = (from ptod in db.PatientOrderDetail
-                                                  join pto in db.PatientOrder on ptod.PatientOrderUID equals pto.UID
-                                                  join pv in db.PatientVisit on pto.PatientVisitUID equals pv.UID
-                                                  join b in db.BillableItem on ptod.BillableItemUID equals b.UID
-                                                  where pv.StatusFlag == "A"
-                                                  && pto.StatusFlag == "A"
-                                                  && ptod.StatusFlag == "A"
-                                                  && b.StatusFlag == "A"
-                                                  && pv.VISTSUID != 423 //Billing Inprogress
-                                                  && ptod.ORDSTUID != 2848 // cancel
-                                                  && pv.ENSTAUID != 4423 //fit for discharge
-                                                  && pto.PRSTYPUID == 4416 //Standing Order
-                                                  //&& ptod.ORDSTUID == 2847 //Raised
-                                                  && ptod.ORDSTUID != 2845 //complete
-                                                  && ptod.IsStandingOrder == "Y"
-                                                  && pto.IsContinuous == "Y"
-                                                  && ptod.StartDttm <= endDate
-                                                  && (ptod.EndDttm == null || ptod.EndDttm >= endDate)
-                                                  && (excludeTime == null || ptod.StartDttm <= excludeTime)
-                                                  && ptod.StoreUID == storeUID
-                                                  && ( wardUID == null || pv.LocationUID == wardUID)
-                                                  select new PatientOrderStandingModel
-                                                  {
-                                                      PatientOrderUID = pto.UID,
-                                                      PatientUID = pv.PatientUID,
-                                                      PatientVisitUID = pv.UID,
-                                                      PatientOrderDetailUID = ptod.UID,
-                                                      IdentifyingUID = pto.IdentifyingUID,
-                                                      PatientID = SqlFunction.fGetPatientID(pv.PatientUID),
-                                                      PatientName = SqlFunction.fGetPatientName(pv.PatientUID),
-                                                      ItemUID = b.ItemUID,
-                                                      Dosage = ptod.Dosage,
-                                                      DrugDuration = ptod.DrugDuration,
-                                                      BSMDDUID = b.BSMDDUID,
-                                                      DFORMUID = ptod.DFORMUID,
-                                                      PDSTSUID = ptod.PDSTSUID,
-                                                      FRQNCUID = ptod.FRQNCUID,
-                                                      StoreUID = ptod.StoreUID,
-                                                      QNUOMUID = ptod.QNUOMUID,
-                                                      Quantity = ptod.Quantity,
-                                                      UnitPrice = ptod.UnitPrice,
-                                                      NetAmount = ptod.NetAmount,
-                                                      OverwritePrice = ptod.OverwritePrice,
-                                                      OriginalUnitPrice = ptod.OriginalUnitPrice,
-                                                      ROUTEUID = ptod.ROUTEUID,
-                                                      BedUID = pv.BedUID ?? 0,
-                                                      BedName = SqlFunction.fGetLocationName(pv.BedUID ?? 0),
-                                                      WardUID = pv.LocationUID ?? 0,
-                                                      WardName = SqlFunction.fGetLocationName(pv.LocationUID ?? 0),
-                                                      OrderNumber = pto.OrderNumber,
-                                                      StartDttm = pto.StartDttm,
-                                                      ItemName = ptod.ItemName,
-                                                      ItemCode = ptod.ItemCode,
-                                                      BillableItemUID = b.UID,
-                                                      PRSTYPUID = pto.PRSTYPUID,
-                                                      DrugFrequency = SqlFunction.fGetFrequencyDescription(ptod.FRQNCUID ?? 0, "TH")
-                                                  }).ToList();
+                                                    join pto in db.PatientOrder on ptod.PatientOrderUID equals pto.UID
+                                                    join pv in db.PatientVisit on pto.PatientVisitUID equals pv.UID
+                                                    join b in db.BillableItem on ptod.BillableItemUID equals b.UID
+                                                    where pv.StatusFlag == "A"
+                                                    && pto.StatusFlag == "A"
+                                                    && ptod.StatusFlag == "A"
+                                                    && b.StatusFlag == "A"
+                                                    && pv.VISTSUID != 423 //Billing Inprogress
+                                                    && ptod.ORDSTUID != 2848 // cancel
+                                                    && pv.ENSTAUID != 4423 //fit for discharge
+                                                    && pto.PRSTYPUID == 4416 //Standing Order
+                                                                             //&& ptod.ORDSTUID == 2847 //Raised
+                                                    && ptod.ORDSTUID != 2845 //complete
+                                                    && ptod.IsStandingOrder == "Y"
+                                                    && pto.IsContinuous == "Y"
+                                                    && ptod.StartDttm <= endDate
+                                                    && (ptod.EndDttm == null || ptod.EndDttm >= endDate)
+                                                    && (excludeTime == null || ptod.StartDttm <= excludeTime)
+                                                    && ptod.StoreUID == storeUID
+                                                    && (wardUID == null || pv.LocationUID == wardUID)
+                                                    select new PatientOrderStandingModel
+                                                    {
+                                                        PatientOrderUID = pto.UID,
+                                                        PatientUID = pv.PatientUID,
+                                                        PatientVisitUID = pv.UID,
+                                                        PatientOrderDetailUID = ptod.UID,
+                                                        IdentifyingUID = pto.IdentifyingUID,
+                                                        PatientID = SqlFunction.fGetPatientID(pv.PatientUID),
+                                                        PatientName = SqlFunction.fGetPatientName(pv.PatientUID),
+                                                        ItemUID = b.ItemUID,
+                                                        Dosage = ptod.Dosage,
+                                                        DrugDuration = ptod.DrugDuration,
+                                                        BSMDDUID = b.BSMDDUID,
+                                                        DFORMUID = ptod.DFORMUID,
+                                                        PDSTSUID = ptod.PDSTSUID,
+                                                        FRQNCUID = ptod.FRQNCUID,
+                                                        StoreUID = ptod.StoreUID,
+                                                        QNUOMUID = ptod.QNUOMUID,
+                                                        Quantity = ptod.Quantity,
+                                                        UnitPrice = ptod.UnitPrice,
+                                                        NetAmount = ptod.NetAmount,
+                                                        OverwritePrice = ptod.OverwritePrice,
+                                                        OriginalUnitPrice = ptod.OriginalUnitPrice,
+                                                        ROUTEUID = ptod.ROUTEUID,
+                                                        BedUID = pv.BedUID ?? 0,
+                                                        BedName = SqlFunction.fGetLocationName(pv.BedUID ?? 0),
+                                                        WardUID = pv.LocationUID ?? 0,
+                                                        WardName = SqlFunction.fGetLocationName(pv.LocationUID ?? 0),
+                                                        OrderNumber = pto.OrderNumber,
+                                                        StartDttm = pto.StartDttm,
+                                                        ItemName = ptod.ItemName,
+                                                        ItemCode = ptod.ItemCode,
+                                                        BillableItemUID = b.UID,
+                                                        PRSTYPUID = pto.PRSTYPUID,
+                                                        DrugFrequency = SqlFunction.fGetFrequencyDescription(ptod.FRQNCUID ?? 0, "TH")
+                                                    }).ToList();
 
             if (data.Count != 0)
             {
@@ -1283,7 +1287,8 @@ namespace MediTechWebApi.Controllers
                              && o.ParentUID == item.PatientOrderUID
                              && odd.ORDSTUID == 2861
                              && o.StartDttm >= currentDate
-                             && o.StartDttm <= currentDateEnd select o).FirstOrDefault();
+                             && o.StartDttm <= currentDateEnd
+                             select o).FirstOrDefault();
 
                     if (d != null)
                     {
