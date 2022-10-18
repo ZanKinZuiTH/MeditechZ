@@ -62,10 +62,10 @@
                                           SelectedItem="{Binding SelectItemTypeOnHand}"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="รหัสรายการ">
-                                    <dxe:TextEdit Text="{Binding ItemCodeOnHand}"/>
+                                    <dxe:TextEdit Text="{Binding ItemCodeOnHand,UpdateSourceTrigger=PropertyChanged}"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="ชื่อรายการ">
-                                    <dxe:TextEdit Text="{Binding ItemNameOnHand}"/>
+                                    <dxe:TextEdit Text="{Binding ItemNameOnHand,UpdateSourceTrigger=PropertyChanged}"/>
                                 </dxlc:LayoutItem>
 
                             </dxlc:LayoutGroup>
@@ -176,10 +176,10 @@
 
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="รหัสรายการ">
-                                    <dxe:TextEdit Text="{Binding ItemCodeMovement}"/>
+                                    <dxe:TextEdit Text="{Binding ItemCodeMovement,UpdateSourceTrigger=PropertyChanged}"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="ชื่อรายการ">
-                                    <dxe:TextEdit Text="{Binding ItemNameMovement}"/>
+                                    <dxe:TextEdit Text="{Binding ItemNameMovement,UpdateSourceTrigger=PropertyChanged}"/>
                                 </dxlc:LayoutItem>
 
                             </dxlc:LayoutGroup>
@@ -225,7 +225,9 @@
                             </dxg:GridControl>
                         </dxlc:LayoutGroup>
                     </dxlc:LayoutControl>
-
+                    <dx:DXTabItem.InputBindings>
+                        <KeyBinding Command="{Binding Path=SearchMovementCommand}" Key="Enter"/>
+                    </dx:DXTabItem.InputBindings>
                 </dx:DXTabItem>
                 <dx:DXTabItem Header="ยอด Stock ในแต่ละวัน">
                     <dxlc:LayoutControl>
@@ -274,10 +276,10 @@
                             </dxlc:LayoutGroup>
                             <dxlc:LayoutGroup Orientation="Horizontal">
                                 <dxlc:LayoutItem Label="รหัสรายการ">
-                                    <dxe:TextEdit Text="{Binding ItemCodeBalance}" />
+                                    <dxe:TextEdit Text="{Binding ItemCodeBalance,UpdateSourceTrigger=PropertyChanged}" />
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="ชื่อรายการ">
-                                    <dxe:TextEdit Text="{Binding ItemNameBalance}"/>
+                                    <dxe:TextEdit Text="{Binding ItemNameBalance,UpdateSourceTrigger=PropertyChanged}"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="จาก วันที่">
                                     <dxe:DateEdit EditValue="{Binding DateFromBalance}"/>
@@ -317,7 +319,9 @@
                             </dxg:GridControl>
                         </dxlc:LayoutGroup>
                     </dxlc:LayoutControl>
-
+                    <dx:DXTabItem.InputBindings>
+                        <KeyBinding Command="{Binding Path=SearchStockBalanceCommand}" Key="Enter"/>
+                    </dx:DXTabItem.InputBindings>
                 </dx:DXTabItem>
             </dx:DXTabControl>
         </dxlc:LayoutControl>
