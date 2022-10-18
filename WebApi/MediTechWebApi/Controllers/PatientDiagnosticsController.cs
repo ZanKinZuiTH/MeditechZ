@@ -328,15 +328,16 @@ namespace MediTechWebApi.Controllers
                 DateTime now = DateTime.Now;
                 using (var tran = new TransactionScope())
                 {
+                    var patientVisitUIDs = model.Select(p => p.PatientVisitUID).Distinct();
 
-                    foreach (var item in model)
+                    foreach (var visitID in patientVisitUIDs)
                     {
-                        List<PatientProblem> oldProblem = db.PatientProblem.Where(p => p.PatientVisitUID == item.PatientVisitUID).ToList();
-                        foreach (var oldData in oldProblem)
+                        List<PatientProblem> oldProblem = db.PatientProblem.Where(p => p.PatientVisitUID == visitID).ToList();
+                        foreach (var item in oldProblem)
                         {
-                            if (model.FirstOrDefault(p => p.PatientProblemUID == oldData.UID) == null)
+                            if (model.FirstOrDefault(p => p.PatientProblemUID == item.UID) == null)
                             {
-                                db.PatientProblem.Attach(oldData);
+                                db.PatientProblem.Attach(item);
                                 item.StatusFlag = "D";
                                 item.MWhen = now;
                                 item.MUser = userUID;
@@ -344,7 +345,11 @@ namespace MediTechWebApi.Controllers
                                 db.SaveChanges();
                             }
                         }
+                    }
 
+
+                    foreach (var item in model)
+                    {
                         PatientProblem patProblem = db.PatientProblem.Find(item.PatientProblemUID);
                         if (patProblem == null)
                         {
