@@ -15,6 +15,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using MediTech.ViewModels.Doctor;
+using MediTech.ViewModels.Inventory;
 using Microsoft.Practices.ServiceLocation;
 
 namespace MediTech.ViewModels
@@ -1095,6 +1096,18 @@ namespace MediTech.ViewModels
                 return ServiceLocator.Current.GetInstance<CreateDispenseReturnViewModel>();
             }
         }
+
+        public ChangeStorePopupViewmodel ChangeStorePopupViewmodel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ChangeStorePopupViewmodel>())
+                    SimpleIoc.Default.Register<ChangeStorePopupViewmodel>();
+
+                return ServiceLocator.Current.GetInstance<ChangeStorePopupViewmodel>();
+            }
+        }
+
         #endregion
 
         #region LIS_RIS Setting

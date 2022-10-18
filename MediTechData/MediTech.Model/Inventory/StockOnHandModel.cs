@@ -18,6 +18,7 @@ namespace MediTech.Model
         public int ItemMasterUID { get; set; }
         public string ItemCode { get; set; }
         public string ItemName { get; set; }
+        public string ItemsType { get; set; }
         public double Quantity { get; set; }
         public int IMUOMUID { get; set; }
         public string Unit { get; set; }

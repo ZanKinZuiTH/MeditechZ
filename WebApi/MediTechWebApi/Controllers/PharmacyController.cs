@@ -1294,5 +1294,44 @@ namespace MediTechWebApi.Controllers
 
             return data;
         }
+
+        [Route("UpdatePrescriptionStore")]
+        [HttpPost]
+        public HttpResponseMessage UpdatePrescriptionStore(PrescriptionModel prescriptionModel, int userUID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                foreach (var item in prescriptionModel.PrescriptionItems)
+                {
+                    var prescriptionitem = db.PrescriptionItem.Find(item.PrescriptionItemUID);
+                    if (prescriptionitem != null)
+                    {
+                        db.PrescriptionItem.Attach(prescriptionitem);
+                        prescriptionitem.MUser = userUID;
+                        prescriptionitem.MWhen = now;
+                        prescriptionitem.StoreUID = item.StoreUID;
+                        db.SaveChanges();
+                    }
+                }
+
+                var prescription = db.Prescription.Find(prescriptionModel.PrescriptionUID);
+                if (prescription != null)
+                {
+                    db.Prescription.Attach(prescription);
+                    prescription.MUser = userUID;
+                    prescription.MWhen = now;
+                    prescription.OrderToLocationStoreUID = prescriptionModel.OrderToLocationStoreUID;
+                    db.SaveChanges();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
     }
 }
