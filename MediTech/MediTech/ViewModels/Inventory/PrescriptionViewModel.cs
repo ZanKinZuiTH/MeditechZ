@@ -11,6 +11,7 @@ using DevExpress.XtraPrinting;
 using System.Collections.ObjectModel;
 using MediTech.Views;
 using MediTech.Reports.Operating.Patient;
+using MediTech.ViewModels.Inventory;
 
 namespace MediTech.ViewModels
 {
@@ -311,7 +312,10 @@ namespace MediTech.ViewModels
                 if (SelectPrescription.PrescriptionStatus == "Raised")
                 {
                     ChangeStore changeStore = new ChangeStore();
+                    var dataContext = (changeStore.DataContext as ChangeStorePopupViewmodel);
+                    dataContext.AssingModel(SelectPrescription);
                     LaunchViewDialogNonPermiss(changeStore,true);
+                    SearchPrescrition();
                 }
             }
         }

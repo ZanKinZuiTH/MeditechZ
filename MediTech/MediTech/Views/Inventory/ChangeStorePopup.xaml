@@ -6,6 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:MediTech.Views"
              mc:Ignorable="d" 
+             DataContext="{Binding Path=ChangeStorePopupViewmodel, Source={StaticResource Locator}}"
              d:DesignHeight="120" d:DesignWidth="300" Width="300">
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">
@@ -14,7 +15,7 @@
             </dxlc:LayoutItem>
             <dxlc:LayoutItem Label="Store" VerticalAlignment="Center">
                 <dxe:ComboBoxEdit ItemsSource="{Binding Stores}"
-                                          DisplayMember="StoreName"
+                                          DisplayMember="Name"
                                           ValueMember="StoreUID"
                                           SelectedItem="{Binding SelectStore}"/>
             </dxlc:LayoutItem>

@@ -306,5 +306,21 @@ namespace MediTech.DataService
 
             return dataRequest;
         }
+
+        public bool UpdatePrescriptionStore(PrescriptionModel prescriptionModel, int userUID)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/Pharmacy/UpdatePrescriptionStore?userUID={0}", userUID);
+                MeditechApiHelper.Post<PrescriptionModel>(requestApi, prescriptionModel);
+                flag = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return flag;
+        }
     }
 }

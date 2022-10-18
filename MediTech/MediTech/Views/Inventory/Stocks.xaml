@@ -86,6 +86,7 @@
                                     <dxg:GridColumn Header="Store" FieldName="StoreName" ReadOnly="True"/>
                                     <dxg:GridColumn Header="รหัสรายการ" FieldName="ItemCode" ReadOnly="True"/>
                                     <dxg:GridColumn Header="ชื่อรายการ" FieldName="ItemName" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="ประเภทรายการ" FieldName="ItemsType" ReadOnly="True"/>
                                     <dxg:GridColumn Header="จำนวนคงคลัง" FieldName="Quantity" ReadOnly="True"/>
                                     <dxg:GridColumn Header="หน่วย" FieldName="Unit" ReadOnly="True"/>
                                 </dxg:GridControl.Columns>
@@ -93,7 +94,7 @@
                                     <dxg:TableView ShowGroupPanel="False"/>
                                 </dxg:GridControl.View>
                             </dxg:GridControl>
-                            <dxg:GridControl ItemsSource="{Binding StockOnHandBatch}"
+                            <dxg:GridControl ItemsSource="{Binding StockOnHandBatch}" Height="150"
                                      SelectedItem="{Binding SelectStockOnHandBatch}">
                                 <dxg:GridControl.Columns>
                                     <dxg:GridColumn Header="Store" FieldName="StoreName" ReadOnly="True"/>
@@ -116,7 +117,9 @@
                             </dxg:GridControl>
                         </dxlc:LayoutGroup>
                     </dxlc:LayoutControl>
-
+                    <dx:DXTabItem.InputBindings>
+                        <KeyBinding Command="{Binding Path=SearchStockOnHandCommand}" Key="Enter"/>
+                    </dx:DXTabItem.InputBindings>
                 </dx:DXTabItem>
                 <dx:DXTabItem Header="การเคลื่อนไหว Stock" >
                     <dxlc:LayoutControl>
