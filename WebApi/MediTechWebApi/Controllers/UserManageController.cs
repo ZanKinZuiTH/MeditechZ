@@ -756,6 +756,50 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("GetCareProviderDoctorByOrganisation")]
+        [HttpGet]
+        public List<CareproviderModel> GetCareProviderDoctorByOrganisation(int organisationUID)
+        {
+
+
+            List<CareproviderModel> data = (from ca in db.Careprovider
+                                            join og in db.CareproviderOrganisation on ca.UID equals og.CareproviderUID
+                                            where ca.StatusFlag == "A"
+                                            && og.StatusFlag == "A"
+                                            && ca.IsDoctor == true
+                                            && og.HealthOrganisationUID == organisationUID
+                                            select new CareproviderModel
+                                            {
+                                                CareproviderUID = ca.UID,
+                                                Code = ca.Code,
+                                                TITLEUID = ca.TITLEUID,
+                                                TitleDesc = ca.TITLEUID != null ? SqlFunction.fGetRfValDescription(ca.TITLEUID.Value) : "",
+                                                FirstName = ca.FirstName,
+                                                MiddleName = ca.MiddleName,
+                                                LastName = ca.LastName,
+                                                FullName = SqlFunction.fGetCareProviderName(ca.UID),
+                                                SEXXXUID = ca.SEXXXUID,
+                                                SexDesc = ca.SEXXXUID != null ? SqlFunction.fGetRfValDescription(ca.SEXXXUID.Value) : "",
+                                                EnglishName = ca.EnglishName,
+                                                ImgPath = ca.ImgPath,
+                                                LicenseNo = ca.LicenseNo,
+                                                LicenseIssueDttm = ca.LicenseIssueDttm,
+                                                LicenseExpiryDttm = ca.LicenseExpiryDttm,
+                                                DOBDttm = ca.DOBDttm,
+                                                IsDoctor = ca.IsDoctor ?? false,
+                                                IsRadiologist = ca.IsRadiologist ?? false,
+                                                IsAdminRadread = ca.IsAdminRadread ?? false,
+                                                Tel = ca.Tel,
+                                                Email = ca.Email,
+                                                LineID = ca.LineID,
+                                                ActiveFrom = ca.ActiveFrom,
+                                                ActiveTo = ca.ActiveTo,
+                                                MWhen = ca.MWhen,
+                                            }).ToList();
+
+            return data;
+        }
+
         [Route("GetCareProviderOrganisation")]
         [HttpGet]
         public List<CareproviderOrganisationModel> GetCareProviderOrganisation()

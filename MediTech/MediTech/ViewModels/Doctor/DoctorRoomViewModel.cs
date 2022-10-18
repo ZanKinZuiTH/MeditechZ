@@ -614,7 +614,7 @@ namespace MediTech.ViewModels
         int FINDIS = 421;
         public DoctorRoomViewModel()
         {
-            Doctors = DataService.UserManage.GetCareproviderDoctor();
+            Doctors = DataService.UserManage.GetCareProviderDoctorByOrganisation(AppUtil.Current.OwnerOrganisationUID);
             var refData = DataService.Technical.GetReferenceValueList("VISTS,DIAGTYP,ENTYP,PBLCT");
             VisitStatus = new ObservableCollection<LookupReferenceValueModel>(refData.Where(p => p.DomainCode == "VISTS"));
             EncounterType = new ObservableCollection<LookupReferenceValueModel>(refData.Where(p => p.DomainCode == "ENTYP"));

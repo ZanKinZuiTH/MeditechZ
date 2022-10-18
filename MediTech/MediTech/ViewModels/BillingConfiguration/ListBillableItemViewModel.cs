@@ -88,6 +88,16 @@ namespace MediTech.ViewModels
 
         #region Command
 
+        private RelayCommand<System.Windows.Input.KeyEventArgs> _KeyDownCommand;
+        public RelayCommand<System.Windows.Input.KeyEventArgs> KeyDownCommand
+        {
+            get
+            {
+                return _KeyDownCommand
+                    ?? (_KeyDownCommand = new RelayCommand<System.Windows.Input.KeyEventArgs>(KeyDownEvent));
+            }
+        }
+
         private RelayCommand _SearchCommand;
         public RelayCommand SearchCommand
         {
@@ -157,6 +167,14 @@ namespace MediTech.ViewModels
                 , (SelectBillingGroup != null && SelectBillingGroup.BillingGroupUID != 0) ? SelectBillingGroup.BillingGroupUID : (int?)null
                 , (SelectBillingSubGroup != null && SelectBillingSubGroup.BillingSubGroupUID != 0) ? SelectBillingSubGroup.BillingSubGroupUID : (int?)null
                 ,ownerOrganisationUID);
+        }
+
+        private void KeyDownEvent(System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                Search();
+            }
         }
         private void Add()
         {

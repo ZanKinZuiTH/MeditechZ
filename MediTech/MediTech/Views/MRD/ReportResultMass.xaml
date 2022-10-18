@@ -117,7 +117,7 @@
                         SelectedItems="{Binding SelectPatientXrays}">
             <dxg:GridColumn x:Name="colNoSequnce" Header="No" FieldName="No" Width="30" Visible="False"/>
             <dxg:GridColumn x:Name="colNoExcel" Header="No" FieldName="No" Width="30" Visible="False" />
-            <dxg:GridColumn Header="BN" FieldName="HN"/>
+            <dxg:GridColumn Header="HN" FieldName="HN"/>
             <dxg:GridColumn Header="OtherID" FieldName="OtherID"/>
             <dxg:GridColumn Header="EmployeeID" FieldName="EmployeeID"/>
             <dxg:GridColumn Header="คำนำหน้า" FieldName="Title" ReadOnly="True"/>

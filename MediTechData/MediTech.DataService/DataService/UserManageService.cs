@@ -137,6 +137,12 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<CareproviderModel> GetCareProviderDoctorByOrganisation(int organisationUID)
+        {
+            string requestApi = string.Format("Api/UserManage/GetCareProviderDoctorByOrganisation?organisationUID={0}", organisationUID);
+            List<CareproviderModel> data = MeditechApiHelper.Get<List<CareproviderModel>>(requestApi);
+            return data;
+        }
 
         public List<CareproviderOrganisationModel> GetCareProviderOrganisation()
         {

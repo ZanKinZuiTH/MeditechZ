@@ -39,5 +39,14 @@ namespace MediTech.Views
             grdBillableItem.RefreshData();
             gvBillableItem.BestFitColumns();
         }
+
+        private void UserControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (true)
+            {
+
+            }
+        }
     }
 }
+

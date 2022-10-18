@@ -89,7 +89,7 @@
                                    ToolTip="Arrive">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.ArrivedCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientList}}}" />
+                                            <mvvm:EventToCommand Command="{Binding DataContext.ArrivedCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientListForDoctor}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
@@ -99,7 +99,7 @@
                                    ToolTip="ส่งตรวจ">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.SendToDoctorCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientList}}}" />
+                                            <mvvm:EventToCommand Command="{Binding DataContext.SendToDoctorCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientListForDoctor}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>-->
@@ -109,7 +109,7 @@
                                    ToolTip="Vital Sign">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.VitalSignCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientList}}}" />
+                                            <mvvm:EventToCommand Command="{Binding DataContext.VitalSignCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientListForDoctor}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
@@ -119,7 +119,7 @@
                                    ToolTip="แพ้ยา">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.AllergyCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientList}}}" />
+                                            <mvvm:EventToCommand Command="{Binding DataContext.AllergyCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientListForDoctor}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
@@ -129,7 +129,7 @@
                                    ToolTip="แก้ไข Payor">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.ModifyVisitPayorCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientList}}}" />
+                                            <mvvm:EventToCommand Command="{Binding DataContext.ModifyVisitPayorCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientListForDoctor}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
@@ -139,7 +139,7 @@
                                    ToolTip="คีย์ Order">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.CreateOrderCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientList}}}" />
+                                            <mvvm:EventToCommand Command="{Binding DataContext.CreateOrderCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientListForDoctor}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
@@ -149,7 +149,7 @@
                                    ToolTip="จบการรักษา">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.MedicalDischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientList}}}" />
+                                            <mvvm:EventToCommand Command="{Binding DataContext.MedicalDischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientListForDoctor}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
@@ -162,7 +162,7 @@
                                    ToolTip="พิมพ์ เอกสาร">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.RunPatientReportCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientList}}}" />
+                                            <mvvm:EventToCommand Command="{Binding DataContext.RunPatientReportCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientListForDoctor}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
@@ -172,7 +172,7 @@
                                    ToolTip="แก้ไข Visit">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.ModifyVisitCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientList}}}" />
+                                            <mvvm:EventToCommand Command="{Binding DataContext.ModifyVisitCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientListForDoctor}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
@@ -182,7 +182,7 @@
                                    ToolTip="Scanned Document">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.ScannedDocumentCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientList}}}" />
+                                            <mvvm:EventToCommand Command="{Binding DataContext.ScannedDocumentCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientListForDoctor}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
@@ -192,7 +192,7 @@
                                    ToolTip="ข้อมูลผู้ป่วย">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.PatientRecordsCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientList}}}" />
+                                            <mvvm:EventToCommand Command="{Binding DataContext.PatientRecordsCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientListForDoctor}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
@@ -202,20 +202,10 @@
                                    ToolTip="Patient Tracking">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.PatientTrackingCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientList}}}" />
+                                            <mvvm:EventToCommand Command="{Binding DataContext.PatientTrackingCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientListForDoctor}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
-                                <!--<Image Source="/MediTech;component/Resources/Images/Menu/ViewSales.png" 
-                                   Width="30" Height="30"
-                                   Cursor="Hand"
-                                   ToolTip="ขายสินค้า">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding Path=DataContext.SalesItemCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:PatientList}}}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </Image>-->
                             </StackPanel>
                         </StackPanel>
                     </Grid>
@@ -232,7 +222,7 @@
                 <dx:MeasurePixelSnapper>
                     <ContentPresenter x:Name="defaultRowPresenter" Content="{Binding}" ContentTemplate="{Binding View.DefaultDataRowTemplate}" />
                 </dx:MeasurePixelSnapper>
-                <dx:DXExpander IsExpanded="{Binding IsSelected}" HorizontalExpand="None" VerticalExpand="FromTopToBottom">
+                <dx:DXExpander IsExpanded="{Binding IsFocused}" HorizontalExpand="None" VerticalExpand="FromTopToBottom">
                     <dxg:RowDetailContainerControl Template="{StaticResource detailContainerTemplate}" Content="{Binding}" ContentTemplate="{DynamicResource DetailCoreTemplate}" />
                 </dx:DXExpander>
             </StackPanel>
@@ -250,7 +240,6 @@
                                 <dxlc:LayoutItem Label="รหัสผู้ป่วย" >
                                     <dxe:TextEdit x:Name="txtHN" Text="{Binding LN}"/>
                                 </dxlc:LayoutItem>
-                               
                                 <dxlc:LayoutItem Label="ชื่อ">
                                     <dxe:TextEdit x:Name="txtFirstName" Text="{Binding FirstName}"/>
                                 </dxlc:LayoutItem>
@@ -341,7 +330,7 @@
                                                         <dxg:TableView
                                                             x:Name="View"  ShowColumnHeaders="False"
                                                             AutoWidth="True"
-                                                            ShowGroupedColumns="False" />   
+                                                            ShowGroupedColumns="False" />
                                                     </dxg:GridControl.View>
                                                     <dxg:GridColumn x:Name="colPayorName" FieldName="CompanyName"/>
                                                 </dxg:GridControl>
@@ -394,12 +383,16 @@
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup>
                 <dxg:GridControl x:Name="grdVisitList"
-                         ItemsSource="{Binding PatientVisits}"
-                         SelectedItem="{Binding SelectPatientVisit}">
+                                 SelectionMode="Row"
+                                 SelectedItems="{Binding SelectPatientVisits}"
+                         ItemsSource="{Binding PatientVisits}">
                     <dxg:GridControl.View>
-                        <dxg:TableView x:Name="tableViewVisitList" AllowScrollAnimation="True" 
-                                       UseLightweightTemplates="None"
+                        <dxg:TableView x:Name="tableViewVisitList"
+                                       ShowCheckBoxSelectorColumn="True"
+                                       FocusedRow="{Binding SelectPatientVisit, Mode=TwoWay}"
                                        NavigationStyle="Row"
+                                       AllowScrollAnimation="True"                                     
+                                       UseLightweightTemplates="None"
                                        DataRowTemplate="{StaticResource expandableRowDetailTemplate}">
                             <dxg:TableView.ColumnMenuCustomizations>
                                 <dxb:BarButtonItem Name="exportItem1" Content="Export To Excel"
@@ -410,6 +403,7 @@
                             </dxg:TableView.ColumnMenuCustomizations>
                         </dxg:TableView>
                     </dxg:GridControl.View>
+
                     <dxg:GridColumn FieldName="No" Width="30" ReadOnly="True">
                         <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
@@ -441,6 +435,11 @@
                     <dxg:GridColumn Header="RefNo" FieldName="RefNo" ReadOnly="True"/>
                     <dxg:GridColumn Header="หมายเหตุ" FieldName="Note" ReadOnly="True"/>
                 </dxg:GridControl>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <dxlc:LayoutItem>
+                    <dx:SimpleButton Command="{Binding DiagnosisCommand}" Content="ICD 10 แบบกลุ่ม" Width="120" Height="30"/>
+                </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
         </dxlc:LayoutControl>
     </Grid>

@@ -164,7 +164,7 @@
                                        ItemsSource="{Binding Path=PageViewModule}" AllowSelectItem="True"
                                        SelectedItem="{Binding Path=SelectedPage}">
                         <dxn:NavBarControl.View>
-                            <dxn:NavigationPaneView Width="Auto" MaxWidth="230"  Name="navPanelView" />
+                            <dxn:NavigationPaneView Width="Auto" MaxWidth="230"   Name="navPanelView" MaxVisibleGroupCount="7" />
                         </dxn:NavBarControl.View>
                     </dxn:NavBarControl>
                 </dxdo:LayoutPanel>

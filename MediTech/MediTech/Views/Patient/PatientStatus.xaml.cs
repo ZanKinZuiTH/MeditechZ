@@ -95,7 +95,7 @@ namespace MediTech.Views
                 {
                     txtTitle.Text = "Send To Doctor";
                     cmbStatus.SelectedItem = ((List<LookupReferenceValueModel>)cmbStatus.ItemsSource).FirstOrDefault(p => p.ValueCode == "SNDDOC");
-                    cmbDoctor.ItemsSource = (new UserManageService()).GetCareproviderDoctor();
+                    cmbDoctor.ItemsSource = (new UserManageService()).GetCareProviderDoctorByOrganisation(model.OwnerOrganisationUID ?? 0);
                     cmbLocations.SelectedItem = ((List<LocationModel>)cmbLocations.ItemsSource).FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
 
                 }
@@ -119,7 +119,7 @@ namespace MediTech.Views
                 else if (type == PatientStatusType.Arrive)
                 {
                     txtTitle.Text = "Change Status";
-                    cmbDoctor.ItemsSource = (new UserManageService()).GetCareproviderDoctor();
+                    cmbDoctor.ItemsSource = (new UserManageService()).GetCareProviderDoctorByOrganisation(model.OwnerOrganisationUID ?? 0);
                     cmbStatus.SelectedItem = ((List<LookupReferenceValueModel>)cmbStatus.ItemsSource).FirstOrDefault(p => p.Key == model.VISTSUID);
                     if (model.LocationUID != null && model.LocationUID != 0)
                     {

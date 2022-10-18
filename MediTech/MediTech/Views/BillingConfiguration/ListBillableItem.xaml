@@ -4,8 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
              mc:Ignorable="d"
+             xmlns:vm="clr-namespace:MediTech.Views"
+             xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              DataContext="{Binding Path=ListBillableItemViewModel,Source={StaticResource Locator}}"
              d:DesignHeight="600" d:DesignWidth="900">
+    <i:Interaction.Triggers>
+        <i:EventTrigger  EventName="KeyDown">
+            <mvvm:EventToCommand PassEventArgsToCommand="True" Command="{Binding KeyDownCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <dxr:RibbonControl RibbonStyle="Office2010" x:Name="ribbon"
                                IsMinimized="True" MinimizationButtonVisibility="Collapsed"                              
@@ -18,14 +26,15 @@
                 </dxr:RibbonPage>
             </dxr:RibbonDefaultPageCategory>
         </dxr:RibbonControl>
-        
-        <dxlc:LayoutControl Orientation="Vertical">
+
+        <dxlc:LayoutControl  Orientation="Vertical">
+
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutItem Label="รหัส">
-                    <dxe:TextEdit Text="{Binding ItemCode}"/>
+                    <dxe:TextEdit Text="{Binding ItemCode,UpdateSourceTrigger=PropertyChanged}"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="ชื่อ">
-                    <dxe:TextEdit Text="{Binding ItemName}"/>
+                    <dxe:TextEdit Text="{Binding ItemName,UpdateSourceTrigger=PropertyChanged}"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="ประเภท">
                     <dxe:ComboBoxEdit ItemsSource="{Binding BillItemTypes}"

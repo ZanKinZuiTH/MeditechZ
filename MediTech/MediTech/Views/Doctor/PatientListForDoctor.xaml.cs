@@ -1,4 +1,5 @@
-﻿using MediTech.ViewModels;
+﻿using DevExpress.Xpf.Grid;
+using MediTech.ViewModels;
 using MediTech.ViewModels.Doctor;
 using System;
 using System.Collections.Generic;
@@ -32,5 +33,6 @@ namespace MediTech.Views
         {
             grdVisitList.RefreshData();
         }
+
     }
 }

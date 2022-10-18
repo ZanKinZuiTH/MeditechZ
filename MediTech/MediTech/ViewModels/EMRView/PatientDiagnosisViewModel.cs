@@ -231,7 +231,7 @@ namespace MediTech.ViewModels
 
         public ObservableCollection<PatientProblemModel> PatientProblemList
         {
-            get { return _PatientProblemList; }
+            get { return _PatientProblemList ?? (_PatientProblemList = new ObservableCollection<PatientProblemModel>()); }
             set { Set(ref _PatientProblemList, value); }
         }
 
@@ -287,6 +287,14 @@ namespace MediTech.ViewModels
                 Set(ref _SelectIndexDiasHis, value);
                 LoadPatientHistoryProblem();
             }
+        }
+
+        private bool _IsVisitMass = false;
+
+        public bool IsVisitMass
+        {
+            get { return _IsVisitMass; }
+            set { _IsVisitMass = value; }
         }
 
         #endregion
@@ -408,7 +416,11 @@ namespace MediTech.ViewModels
 
         public override void OnLoaded()
         {
-            LoadPatientHistoryProblem();
+            if (!IsVisitMass)
+            {
+                LoadPatientHistoryProblem();
+            }
+
             AutoSelectPrincipaltype();
         }
  
@@ -588,7 +600,7 @@ namespace MediTech.ViewModels
 
         private void AddProblem()
         {
-            if (SelectedPatientVisit == null)
+            if (SelectedPatientVisit == null && !IsVisitMass)
             {
                 WarningDialog("กรุณาเลือกผู้ป่วย");
                 return;
@@ -622,8 +634,8 @@ namespace MediTech.ViewModels
             //}
 
             PatientProblemModel patProblem = new PatientProblemModel();
-            patProblem.PatientUID = SelectedPatientVisit.PatientUID;
-            patProblem.PatientVisitUID = SelectedPatientVisit.PatientVisitUID;
+            patProblem.PatientUID = !IsVisitMass ? SelectedPatientVisit.PatientUID : 0;
+            patProblem.PatientVisitUID = !IsVisitMass ? SelectedPatientVisit.PatientVisitUID: 0;
             patProblem.ProblemUID = SelectedProblem.ProblemUID;
             patProblem.ProblemCode = SelectedProblem.Code;
             patProblem.ProblemName = SelectedProblem.Name;
@@ -652,7 +664,7 @@ namespace MediTech.ViewModels
 
         private void EditProblem()
         {
-            if (SelectedPatientVisit == null)
+            if (SelectedPatientVisit == null && !IsVisitMass)
             {
                 WarningDialog("กรุณาเลือกผู้ป่วย");
                 return;
@@ -728,22 +740,36 @@ namespace MediTech.ViewModels
         {
             try
             {
-                if (SelectedPatientVisit != null)
+                if (!IsVisitMass)
+                {
+                    if (SelectedPatientVisit != null)
+                    {
+                        if (PatientProblemList == null || PatientProblemList.Count <= 0)
+                        {
+                            MessageBoxResult resultDaig = QuestionDialog("ไม่มีข้อมูลการวินิจฉัย คุณต้องการบันทึก หรื่อไม่ ?");
+                            if (resultDaig != MessageBoxResult.Yes)
+                            {
+                                return;
+                            }
+                        }
+                        AssignPropertiesModel();
+                        DataService.PatientDiagnosis.ManagePatientProblem(model, SelectedPatientVisit.PatientVisitUID, AppUtil.Current.UserID);
+                        SaveSuccessDialog();
+                        CloseViewDialog(ActionDialog.Save);
+                    }
+                }
+                else
                 {
                     if (PatientProblemList == null || PatientProblemList.Count <= 0)
                     {
-                        MessageBoxResult resultDaig = QuestionDialog("ไม่มีข้อมูลการวินิจฉัย คุณต้องการบันทึก หรืไม่ ?");
+                        MessageBoxResult resultDaig = QuestionDialog("ไม่มีข้อมูลการวินิจฉัย คุณต้องการบันทึก หรื่อไม่ ?");
                         if (resultDaig != MessageBoxResult.Yes)
                         {
                             return;
                         }
                     }
                     AssignPropertiesModel();
-                    DataService.PatientDiagnosis.ManagePatientProblem(model, SelectedPatientVisit.PatientVisitUID, AppUtil.Current.UserID);
-                    SaveSuccessDialog();
                     CloseViewDialog(ActionDialog.Save);
-
-
                 }
 
             }
@@ -806,7 +832,6 @@ namespace MediTech.ViewModels
         }
         public void AssignModelToProperties()
         {
-            PatientProblemList = new ObservableCollection<PatientProblemModel>();
             foreach (var item in model)
             {
                 PatientProblemList.Add(item);

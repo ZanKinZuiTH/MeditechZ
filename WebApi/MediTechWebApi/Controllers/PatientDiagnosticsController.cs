@@ -319,6 +319,79 @@ namespace MediTechWebApi.Controllers
             }
         }
 
+        [Route("ManagePatientProblemMass")]
+        [HttpPost]
+        public HttpResponseMessage ManagePatientProblemMass(List<PatientProblemModel> model, int userUID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+
+                    foreach (var item in model)
+                    {
+                        List<PatientProblem> oldProblem = db.PatientProblem.Where(p => p.PatientVisitUID == item.PatientVisitUID).ToList();
+                        foreach (var oldData in oldProblem)
+                        {
+                            if (model.FirstOrDefault(p => p.PatientProblemUID == oldData.UID) == null)
+                            {
+                                db.PatientProblem.Attach(oldData);
+                                item.StatusFlag = "D";
+                                item.MWhen = now;
+                                item.MUser = userUID;
+
+                                db.SaveChanges();
+                            }
+                        }
+
+                        PatientProblem patProblem = db.PatientProblem.Find(item.PatientProblemUID);
+                        if (patProblem == null)
+                        {
+                            patProblem = new PatientProblem();
+                            patProblem.CUser = userUID;
+                            patProblem.CWhen = now;
+                        }
+
+                        patProblem.MUser = userUID;
+                        patProblem.MWhen = now;
+                        patProblem.StatusFlag = "A";
+                        patProblem.PatientUID = item.PatientUID;
+                        patProblem.PatientVisitUID = item.PatientVisitUID;
+                        patProblem.ProblemUID = item.ProblemUID;
+                        patProblem.ProblemCode = item.ProblemCode;
+                        patProblem.ProblemName = item.ProblemName;
+                        patProblem.ProblemDescription = item.ProblemDescription;
+                        patProblem.RecordedBy = userUID;
+                        patProblem.RecordedDttm = now;
+                        patProblem.IsPrimary = item.IsPrimary;
+                        patProblem.IsUnderline = item.IsUnderline;
+                        patProblem.OnsetDttm = item.OnsetDttm;
+                        patProblem.ClosureDttm = item.ClosureDttm;
+                        patProblem.ClosureComments = item.ClosureComments;
+                        patProblem.SEVRTUID = item.SEVRTUID;
+                        patProblem.PBMTYUID = item.PBMTYUID;
+                        patProblem.DIAGTYPUID = item.DIAGTYPUID;
+                        patProblem.CERNTUID = item.CERNTUID;
+                        patProblem.BDLOCUID = item.BDLOCUID;
+
+                        db.PatientProblem.AddOrUpdate(patProblem);
+                        db.SaveChanges();
+                    }
+
+
+                    tran.Complete();
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
         [Route("DeletePatientProblem")]
         [HttpDelete]
         public HttpResponseMessage DeletePatientProblem(int patientProblemUID, int userUID)

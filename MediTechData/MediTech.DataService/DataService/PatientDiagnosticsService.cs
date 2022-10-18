@@ -117,7 +117,23 @@ namespace MediTech.DataService
              return flag;
          }
 
-         public bool DeletePatientProblem(int patientProblemUID,int userUID)
+        public bool ManagePatientProblemMass(List<PatientProblemModel> model, int userUID)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/PatientDiagnosis/ManagePatientProblemMass?userUID={0}", userUID);
+                MeditechApiHelper.Post<List<PatientProblemModel>>(requestApi, model);
+                flag = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return flag;
+        }
+
+        public bool DeletePatientProblem(int patientProblemUID,int userUID)
          {
              bool flag = false;
              try
