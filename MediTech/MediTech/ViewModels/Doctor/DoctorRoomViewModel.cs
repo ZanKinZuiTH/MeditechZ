@@ -682,7 +682,7 @@ namespace MediTech.ViewModels
         private void RefershPatient()
         {
 
-            if ((SelectedPateintSearch == null && SearchPatientCriteria == "") && VisitDate == null)
+            if ((SelectedPateintSearch == null && string.IsNullOrEmpty(SearchPatientCriteria))  && VisitDate == null)
             {
                 WarningDialog("กรูณาเลือกวันที่ที่ผู้ป่วยเข้ารับการตรวจ");
                 return;

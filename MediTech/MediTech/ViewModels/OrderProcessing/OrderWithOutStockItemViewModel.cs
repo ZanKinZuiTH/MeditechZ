@@ -260,7 +260,7 @@ namespace MediTech.ViewModels
             }
             else
             {
-                CareproviderVisibility = Visibility.Hidden;
+                CareproviderVisibility = Visibility.Collapsed;
             }
 
             if (PatientOrderDetail.BSMDDUID == 2813 || PatientOrderDetail.BSMDDUID == 2841)
@@ -269,7 +269,7 @@ namespace MediTech.ViewModels
             }
             else
             {
-                PriorityVisibility = Visibility.Hidden;
+                PriorityVisibility = Visibility.Collapsed;
             }
         }
 

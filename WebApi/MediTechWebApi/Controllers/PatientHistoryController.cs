@@ -285,7 +285,23 @@ namespace MediTechWebApi.Controllers
             try
             {
                 DateTime now = DateTime.Now;
+                //int? cchpiMasterUID = model.CCHPIMasterUID;
 
+                //if (cchpiMasterUID == null || cchpiMasterUID == 0)
+                //{
+                //    CCHPIMaster cchpiMaster = new CCHPIMaster();
+                //    cchpiMaster.Name = model.Complaint;
+                //    cchpiMaster.Description = model.Complaint;
+                //    cchpiMaster.Type = "CC";
+                //    cchpiMaster.CUser = userID;
+                //    cchpiMaster.CWhen = now;
+                //    cchpiMaster.StatusFlag = "A";
+                //    cchpiMaster.MUser = userID;
+                //    cchpiMaster.MWhen = now;
+                //    db.CCHPIMaster.AddOrUpdate(cchpiMaster);
+
+                //    cchpiMasterUID = cchpiMaster.UID;
+                //}
 
                 CCHPI patCCHPI = db.CCHPI.Find(model.CCHPIUID);
                 if (patCCHPI == null)
@@ -300,7 +316,7 @@ namespace MediTechWebApi.Controllers
                 patCCHPI.PatientUID = model.PatientUID;
                 patCCHPI.PatientVisitUID = model.PatientVisitUID;
                 patCCHPI.Complaint = model.Complaint;
-                patCCHPI.CCHPIMasterUID = model.CCHPIMasterUID;
+                patCCHPI.CCHPIMasterUID = model.CCHPIMasterUID == 0 ? null : model.CCHPIMasterUID;
                 patCCHPI.Presentillness = model.Presentillness;
                 patCCHPI.Period = model.Period;
                 patCCHPI.AGUOMUID = model.AGUOMUID;

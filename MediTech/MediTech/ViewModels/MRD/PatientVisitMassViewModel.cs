@@ -525,15 +525,18 @@ namespace MediTech.ViewModels
         int CANCEL = 410;
         List<LookupReferenceValueModel> OrderTypes;
 
+        List<LookupReferenceValueModel> Priorities;
+
         public PatientVisitMassViewModel()
         {
             Doctors = DataService.UserManage.GetCareproviderDoctor();
-            var refVal = DataService.Technical.GetReferenceValueList("VISTS,ENTYP,PRSTYP,PBLCT");
+            var refVal = DataService.Technical.GetReferenceValueList("VISTS,ENTYP,PRSTYP,PBLCT,RQPRT");
             VisitStatus = new ObservableCollection<LookupReferenceValueModel>(refVal.Where(p => p.DomainCode == "VISTS" && p.ValueCode != "FINDIS"));
             EncounterType = new ObservableCollection<LookupReferenceValueModel>(refVal.Where(p => p.DomainCode == "ENTYP"));
             BillingCategory = refVal.Where(p => p.DomainCode == "PBLCT").ToList();
             SelectEncounterType.AddRange(EncounterType.Where(p => p.ValueCode == "OUPAT" || p.ValueCode == "HEAL").Select(p => (object)p.Key.Value));
 
+            Priorities = refVal.Where(p => p.DomainCode == "RQPRT").ToList();
             OrderTypes = refVal.Where(p => p.DomainCode == "PRSTYP").ToList();
             foreach (var item in VisitStatus)
             {
@@ -1055,6 +1058,7 @@ namespace MediTech.ViewModels
                             newOrder.OrderCatagoryUID = billItem.OrderCategoryUID;
                             newOrder.OrderSubCategoryUID = billItem.OrderSubCategoryUID;
 
+                            newOrder.ORDPRUID = Priorities.FirstOrDefault(p => p.ValueCode == "NORML").Key;
                             newOrder.PRSTYPUID = OrderTypes.FirstOrDefault(p => p.ValueCode == "ROMED").Key;
                             newOrder.OrderType = OrderTypes.FirstOrDefault(p => p.ValueCode == "ROMED").Display;
 

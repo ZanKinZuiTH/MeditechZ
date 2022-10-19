@@ -150,7 +150,7 @@ namespace MediTech.ViewModels
             {
                 if (type == "CC")
                 {
-                    if (SelectCCHPIMaster == null)
+                    if (SelectCCHPIMaster == null || string.IsNullOrEmpty(SelectCCHPIMaster?.Name))
                     {
                         WarningDialog("กรุณาใส่ Chief Complaint");
                         return;
@@ -240,9 +240,9 @@ namespace MediTech.ViewModels
                 Model.PatientVisitUID = SelectPatientVisit.PatientVisitUID;
             }
 
-            Model.Complaint = (SelectCCHPIMaster != null && SelectCCHPIMaster.CCHPIMasterUID != 0) ? SelectCCHPIMaster.Name.Trim() : null;
-            Model.CCHPIMasterUID = (SelectCCHPIMaster != null && SelectCCHPIMaster.CCHPIMasterUID != 0) ? SelectCCHPIMaster.CCHPIMasterUID : (int?)null;
-            Model.Presentillness = Presentillness.Trim();
+            Model.Complaint = SelectCCHPIMaster != null ? SelectCCHPIMaster.Name?.Trim() : null;
+            Model.CCHPIMasterUID = SelectCCHPIMaster != null  ? SelectCCHPIMaster.CCHPIMasterUID : (int?)null;
+            Model.Presentillness = Presentillness?.Trim();
             Model.Period = Period;
             Model.CCHPIMasterUID = SelectCCHPIMaster != null ? SelectCCHPIMaster.CCHPIMasterUID : (int?)null;
             Model.AGUOMUID = SelectUnitMeasure != null ? SelectUnitMeasure.Key : (int?)null;
