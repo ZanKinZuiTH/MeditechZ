@@ -1169,6 +1169,7 @@ namespace MediTechWebApi.Controllers
             List<PrescriptionItem> listPrescriptionItem = db.PrescriptionItem.Where(p => p.PrescriptionUID == prescriptionUID).ToList();
             List<ReferenceValue> listOrderStatus = db.ReferenceValue.Where(p => p.DomainCode == "ORDST").ToList();
             ReferenceValue dispensed = listOrderStatus.Where(p => p.ValueCode == "DISPE").FirstOrDefault();
+            ReferenceValue raised = listOrderStatus.Where(p => p.ValueCode == "RAISED").FirstOrDefault();
             ReferenceValue cancel = listOrderStatus.Where(p => p.ValueCode == "CANCLD").FirstOrDefault();
             ReferenceValue cancelDispensed = listOrderStatus.Where(p => p.ValueCode == "DISPCANCL").FirstOrDefault();
             ReferenceValue partiallyDispensed = listOrderStatus.Where(p => p.ValueCode == "OPDISP").FirstOrDefault();
@@ -1200,10 +1201,10 @@ namespace MediTechWebApi.Controllers
                 {
                     ORDSTUID = partiallyCancelDispensed.UID;
                 }
-                //else if (cancelCount >= 1)
-                //{
-                //    ORDSTUID = partiallycancel.UID;
-                //}
+                else if (cancelCount >= 1 && dispensedCount >= 1)
+                {
+                    ORDSTUID = raised.UID;
+                }
             }
             return ORDSTUID;
         }
