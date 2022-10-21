@@ -1003,6 +1003,7 @@ namespace MediTechWebApi.Controllers
                         {
                             PatientBillableItem patientBillableItem = db.PatientBillableItem.Find(item.PatientBillableItemUID);
                             double? itemCost = null;
+                            double? doctorFee = null;
                             if (item.BSMDDUID == BSMDD_MDSLP || item.BSMDDUID == BSMDD_STORE || item.BSMDDUID == BSMDD_SULPY)
                             {
                                 var dispensedItem = db.DispensedItem.Where(p => p.PatientOrderDetailUID == patientBillableItem.PatientOrderDetailUID);
@@ -1034,6 +1035,10 @@ namespace MediTechWebApi.Controllers
                                 itemCost = billItemDetail?.Cost;
                             }
 
+                            BillableItem billableItem = db.BillableItem.Find(item.BillableItemUID);
+
+                            doctorFee = (billableItem.DoctorFee / 100) * item.NetAmount;
+
                             PatientBilledItem patientBilledItem = new PatientBilledItem();
                             patientBilledItem.PatientBillUID = patBill.UID;
                             patientBilledItem.EventOccuredDttm = item.EventOccuredDttm;
@@ -1043,6 +1048,7 @@ namespace MediTechWebApi.Controllers
                             patientBilledItem.PatientBillableItemUID = item.PatientBillableItemUID;
                             patientBilledItem.Discount = item.Discount;
                             patientBilledItem.NetAmount = item.NetAmount;
+                            patientBilledItem.DoctorFee = doctorFee;
                             patientBilledItem.ItemMultiplier = item.Quantity;
                             patientBilledItem.BSMDDUID = item.BSMDDUID;
                             patientBilledItem.ItemName = item.ItemName;
