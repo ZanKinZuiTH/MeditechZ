@@ -50,7 +50,9 @@
             this.xrLabel38 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel39 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel25 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrSubreport1 = new DevExpress.XtraReports.UI.XRSubreport();
             this.xrLabel40 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrSubreport2 = new DevExpress.XtraReports.UI.XRSubreport();
             this.xrLabel37 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
@@ -124,8 +126,6 @@
             this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.xrSubreport1 = new DevExpress.XtraReports.UI.XRSubreport();
-            this.xrSubreport2 = new DevExpress.XtraReports.UI.XRSubreport();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -430,6 +430,13 @@
             this.xrLabel25.StylePriority.UseForeColor = false;
             this.xrLabel25.Text = "อาการ";
             // 
+            // xrSubreport1
+            // 
+            this.xrSubreport1.LocationFloat = new DevExpress.Utils.PointFloat(15F, 246.4167F);
+            this.xrSubreport1.Name = "xrSubreport1";
+            this.xrSubreport1.ReportSource = new MediTech.Reports.Operating.Patient.OPDCardSubReport.SubReport1();
+            this.xrSubreport1.SizeF = new System.Drawing.SizeF(345.9043F, 195.7082F);
+            // 
             // xrLabel40
             // 
             this.xrLabel40.BorderColor = System.Drawing.Color.DarkGray;
@@ -448,6 +455,13 @@
             this.xrLabel40.StylePriority.UseForeColor = false;
             this.xrLabel40.StylePriority.UsePadding = false;
             this.xrLabel40.Text = "การวินิจฉัยโรค";
+            // 
+            // xrSubreport2
+            // 
+            this.xrSubreport2.LocationFloat = new DevExpress.Utils.PointFloat(404.2556F, 62.5F);
+            this.xrSubreport2.Name = "xrSubreport2";
+            this.xrSubreport2.ReportSource = new MediTech.Reports.Operating.Patient.OPDCardSubReport.SubReport2();
+            this.xrSubreport2.SizeF = new System.Drawing.SizeF(348.1335F, 139.8749F);
             // 
             // xrLabel37
             // 
@@ -1276,7 +1290,7 @@
             this.xrLabel48.SizeF = new System.Drawing.SizeF(78.3784F, 21.64864F);
             this.xrLabel48.StylePriority.UseFont = false;
             this.xrLabel48.StylePriority.UseTextAlignment = false;
-            this.xrLabel48.Text = "NH";
+            this.xrLabel48.Text = "HN";
             this.xrLabel48.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
             // xrLabel56
@@ -1372,20 +1386,6 @@
             this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.OPDCardModel);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
-            // xrSubreport1
-            // 
-            this.xrSubreport1.LocationFloat = new DevExpress.Utils.PointFloat(15F, 246.4167F);
-            this.xrSubreport1.Name = "xrSubreport1";
-            this.xrSubreport1.ReportSource = new MediTech.Reports.Operating.Patient.OPDCardSubReport.SubReport1();
-            this.xrSubreport1.SizeF = new System.Drawing.SizeF(345.9043F, 195.7082F);
-            // 
-            // xrSubreport2
-            // 
-            this.xrSubreport2.LocationFloat = new DevExpress.Utils.PointFloat(404.2556F, 62.5F);
-            this.xrSubreport2.Name = "xrSubreport2";
-            this.xrSubreport2.ReportSource = new MediTech.Reports.Operating.Patient.OPDCardSubReport.SubReport2();
-            this.xrSubreport2.SizeF = new System.Drawing.SizeF(348.1335F, 139.8749F);
-            // 
             // OPDCard
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1405,7 +1405,7 @@
             this.PatientVisitUID,
             this.OrganisationUID,
             this.LogoType});
-            this.Version = "20.2";
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
