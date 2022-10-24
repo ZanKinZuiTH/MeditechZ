@@ -423,6 +423,7 @@
                     <dxg:GridColumn Header="ชื่อ-นามสกุล" FieldName="PatientName" ReadOnly="True"/>
                     <dxg:GridColumn Header="เพศ" FieldName="Gender" ReadOnly="True"/>
                     <dxg:GridColumn Header="อายุ" FieldName="Age" ReadOnly="True"/>
+                    <dxg:GridColumn Header="ICD10" FieldName="ICD10" ReadOnly="True"/>
                     <dxg:GridColumn Header="สถานะ" FieldName="VisitStatus" ReadOnly="True"/>
                     <dxg:GridColumn Header="แผนก" FieldName="LocationName" ReadOnly="True"/>
                     <dxg:GridColumn Header="วันเดือนปีเกิด" FieldName="BirthDttm" ReadOnly="True"/>

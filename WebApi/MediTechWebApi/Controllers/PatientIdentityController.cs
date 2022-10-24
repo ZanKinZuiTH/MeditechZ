@@ -1927,7 +1927,7 @@ namespace MediTechWebApi.Controllers
                                         db.SaveChanges();
                                     }
                                 }
-      
+
                             }
 
                             var patientOrder = db.PatientOrder.Find(patOrder.UID);
@@ -2074,7 +2074,7 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<PatientVisitModel> GetPatientVisitToChangeLocation(long? patientUID, string visitID, DateTime? dateFrom, DateTime? dateTo)
         {
-            List<PatientVisitModel> visitData = db.PatientVisit.Where(p => p.VISTSUID != 423 && p.VISTSUID != 418 
+            List<PatientVisitModel> visitData = db.PatientVisit.Where(p => p.VISTSUID != 423 && p.VISTSUID != 418
                                         && p.VISTSUID != 410 && p.VISTSUID != 421
                                         && (visitID == null || p.VisitID == visitID)
                                         && (patientUID == null || p.PatientUID == patientUID)
@@ -2409,7 +2409,7 @@ namespace MediTechWebApi.Controllers
                             {
                                 patientvisit.ENSTAUID = 4729;
                             }
-                            else if(VISTSUID == CHKOUT)
+                            else if (VISTSUID == CHKOUT)
                             {
                                 patientvisit.ENSTAUID = 4732;
                             }
@@ -4160,36 +4160,36 @@ namespace MediTechWebApi.Controllers
             }
             else
             {
-                 data = (from app in db.AppointmentRequest
-                         join pa in db.Patient on app.PatientUID equals pa.UID
-                         join p in db.PatientVisitCareProvider on app.PatientVisitUID equals p.PatientVisitUID into pvc
-                         from p in pvc.DefaultIfEmpty()
-                         where app.StatusFlag == "A"
-                            && (dateFrom == null || DbFunctions.TruncateTime(app.AppointmentDttm) >= DbFunctions.TruncateTime(dateFrom))
-                            && (dateTo == null || DbFunctions.TruncateTime(app.AppointmentDttm) < DbFunctions.TruncateTime(dateTo))
-                            && (careproviderUID == null || app.CareproviderUID == careproviderUID)
-                            && (bookStatus == null || app.BKSTSUID == bookStatus)
-                            && (ownerOrganisationUID == null || app.OwnerOrganisationUID == ownerOrganisationUID)
-                            && (locationUID == null || app.LocationUID == locationUID)
-                            && (p.LocationUID != locationUID)
-                         select new AppointmentRequestModel
-                         {
-                             AppointmentRequestUID = app.UID,
-                             PatientUID = app.PatientUID,
-                             PatientVisitUID = app.PatientVisitUID ?? 0,
-                             PatientName = SqlFunction.fGetPatientName(app.PatientUID),
-                             AppointmentDttm = app.AppointmentDttm,
-                             Comments = app.Comments,
-                             CareProviderUID = app.CareproviderUID,
-                             CareProviderName = SqlFunction.fGetCareProviderName(app.CareproviderUID ?? 0),
-                             BKSTSUID = app.BKSTSUID ?? 0,
-                             RequestStatus = SqlFunction.fGetRfValDescription(app.BKSTSUID ?? 0),
-                             OwnerOrganisationUID = app.OwnerOrganisationUID,
-                             OwnerOrganisationName = SqlFunction.fGetHealthOrganisationName(app.OwnerOrganisationUID),
-                             LocationUID = app.LocationUID ?? 0,
-                             LocationName = SqlFunction.fGetLocationName(app.LocationUID ?? 0),
-                             IsCheckin = app.BKSTSUID != requestStatus ? true : false
-                         }).ToList();
+                data = (from app in db.AppointmentRequest
+                        join pa in db.Patient on app.PatientUID equals pa.UID
+                        join p in db.PatientVisitCareProvider on app.PatientVisitUID equals p.PatientVisitUID into pvc
+                        from p in pvc.DefaultIfEmpty()
+                        where app.StatusFlag == "A"
+                           && (dateFrom == null || DbFunctions.TruncateTime(app.AppointmentDttm) >= DbFunctions.TruncateTime(dateFrom))
+                           && (dateTo == null || DbFunctions.TruncateTime(app.AppointmentDttm) < DbFunctions.TruncateTime(dateTo))
+                           && (careproviderUID == null || app.CareproviderUID == careproviderUID)
+                           && (bookStatus == null || app.BKSTSUID == bookStatus)
+                           && (ownerOrganisationUID == null || app.OwnerOrganisationUID == ownerOrganisationUID)
+                           && (locationUID == null || app.LocationUID == locationUID)
+                           && (p.LocationUID != locationUID)
+                        select new AppointmentRequestModel
+                        {
+                            AppointmentRequestUID = app.UID,
+                            PatientUID = app.PatientUID,
+                            PatientVisitUID = app.PatientVisitUID ?? 0,
+                            PatientName = SqlFunction.fGetPatientName(app.PatientUID),
+                            AppointmentDttm = app.AppointmentDttm,
+                            Comments = app.Comments,
+                            CareProviderUID = app.CareproviderUID,
+                            CareProviderName = SqlFunction.fGetCareProviderName(app.CareproviderUID ?? 0),
+                            BKSTSUID = app.BKSTSUID ?? 0,
+                            RequestStatus = SqlFunction.fGetRfValDescription(app.BKSTSUID ?? 0),
+                            OwnerOrganisationUID = app.OwnerOrganisationUID,
+                            OwnerOrganisationName = SqlFunction.fGetHealthOrganisationName(app.OwnerOrganisationUID),
+                            LocationUID = app.LocationUID ?? 0,
+                            LocationName = SqlFunction.fGetLocationName(app.LocationUID ?? 0),
+                            IsCheckin = app.BKSTSUID != requestStatus ? true : false
+                        }).ToList();
             }
 
             return data;
@@ -4357,6 +4357,42 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("GetPatientAlertActiveByPatientUID")]
+        [HttpGet]
+        public List<PatientAlertModel> GetPatientAlertActiveByPatientUID(long patientUID, long? patientVisitUID)
+        {
+            DateTime now = DateTime.Now;
+            List<PatientAlertModel> data = db.PatientAlert.Where(p => p.PatientUID == patientUID
+                                            && p.PatientUID == patientUID
+                                            && (patientVisitUID == null || p.PatientVisitUID == patientVisitUID)
+                                            && (p.ClosureDttm == null || DbFunctions.TruncateTime(p.ClosureDttm) >= DbFunctions.TruncateTime(now))
+                                            && p.StatusFlag == "A")
+                                            .Select(p => new PatientAlertModel()
+                                            {
+                                                PatientAlertUID = p.UID,
+                                                PatientUID = p.PatientUID,
+                                                PatientVisitUID = p.PatientVisitUID,
+                                                AlertDescription = p.AlertDescription,
+                                                ALRTYUID = p.ALRTYUID,
+                                                AlertType = SqlFunction.fGetRfValDescription(p.ALRTYUID ?? 0),
+                                                ALTSTUID = p.ALTSTUID,
+                                                Alert = SqlFunction.fGetRfValDescription(p.ALTSTUID ?? 0),
+                                                SEVTYUID = p.SEVTYUID,
+                                                Severity = SqlFunction.fGetRfValDescription(p.SEVTYUID ?? 0),
+                                                OnsetDttm = p.OnsetDttm,
+                                                ClosureDttm = p.ClosureDttm,
+                                                ALRPRTUID = p.ALRPRTUID,
+                                                Priority = SqlFunction.fGetRfValDescription(p.ALRPRTUID ?? 0),
+                                                OwnerOrganisationUID = p.OwnerOrganisationUID,
+                                                OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID),
+                                                LocationUID = p.LocationUID ?? 0,
+                                                Location = SqlFunction.fGetLocationName(p.LocationUID ?? 0),
+                                                StatusFlag = p.StatusFlag
+                                            }).OrderByDescending(p => p.PatientAlertUID).ToList();
+
+            return data;
+        }
+
         [Route("ManagePatientAlert")]
         [HttpPost]
         public HttpResponseMessage ManagePatientAlert(List<PatientAlertModel> patientModel, int userUID)
@@ -4401,6 +4437,8 @@ namespace MediTechWebApi.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
             }
         }
+
+
         #endregion
 
         public static Dictionary<string, List<string>> GenerateAuditLogMessages(object originalObject, object changedObject)

@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
+using MediTech.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -449,7 +450,8 @@ namespace MediTech.ViewModels
 
         private void Cancel()
         {
-            CloseViewDialog(ActionDialog.Cancel);
+            PatientList patList = new PatientList();
+            ChangeView_CloseViewDialog(patList, ActionDialog.Cancel);
         }
 
         public void PatientSearch()

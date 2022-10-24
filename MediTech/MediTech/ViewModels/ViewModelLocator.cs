@@ -2053,6 +2053,18 @@ namespace MediTech.ViewModels
             }
         }
 
+        public PatientAlertPopupViewModel PatientAlertPopupViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<PatientAlertPopupViewModel>())
+                    SimpleIoc.Default.Register<PatientAlertPopupViewModel>();
+
+                return ServiceLocator.Current.GetInstance<PatientAlertPopupViewModel>();
+            }
+        }
+
+
         #endregion
 
         #region Phamacy

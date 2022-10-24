@@ -227,6 +227,47 @@ namespace MediTech.ViewModels
             }
         }
 
+        public object LaunchViewDialogNonPermiss(object pageView, DXWindow owner, bool IsSizeToContent, bool IsMaximized = false)
+        {
+            try
+            {
+                System.Windows.Controls.UserControl usercontrol = (System.Windows.Controls.UserControl)pageView;
+                string className = usercontrol.GetType().Name;
+                string Namespace = usercontrol.GetType().Namespace;
+
+                usercontrol.Loaded += usercontrol_Loaded;
+
+                DXWindow window = new DXWindow();
+                window.Closed += window_Closed;
+
+                if ((usercontrol.DataContext as MediTechViewModelBase).View == null)
+                    (usercontrol.DataContext as MediTechViewModelBase).View = pageView;
+
+                window.Content = usercontrol;
+                window.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+                if (IsSizeToContent == true)
+                    window.SizeToContent = System.Windows.SizeToContent.WidthAndHeight;
+
+                if (IsMaximized)
+                    window.WindowState = System.Windows.WindowState.Maximized;
+
+                window.ShowInTaskbar = false;
+                window.Owner = owner;
+                window.ShowDialog();
+                return usercontrol.DataContext;
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+                return null;
+            }
+            finally
+            {
+                MediTech.Helpers.MemoryManagement.FlushMemory();
+            }
+        }
+
         public object LaunchViewDialog(object pageView, string viewCode, bool IsSizeToContent, bool IsMaximized = false)
         {
             try

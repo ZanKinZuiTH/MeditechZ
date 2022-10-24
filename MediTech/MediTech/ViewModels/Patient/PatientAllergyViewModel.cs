@@ -11,20 +11,21 @@ using MediTech.DataService;
 using MediTech.Views;
 using System.Windows.Forms;
 using System.Windows.Media;
+using MediTech.Interface;
 
 namespace MediTech.ViewModels
 {
-    public class PatientAllergyViewModel : MediTechViewModelBase
+    public class PatientAllergyViewModel : MediTechViewModelBase, IPatientVisitViewModel
     {
 
         #region Properties
 
-        private PatientVisitModel _SelectPatientVisit;
+        private PatientVisitModel _SelectedPatientVisit;
 
-        public PatientVisitModel SelectPatientVisit
+        public PatientVisitModel SelectedPatientVisit
         {
-            get { return _SelectPatientVisit; }
-            set { Set(ref _SelectPatientVisit, value); }
+            get { return _SelectedPatientVisit; }
+            set { Set(ref _SelectedPatientVisit, value); }
         }
 
         private List<DrugGenericModel> _GenericSearchSource;
@@ -482,14 +483,14 @@ namespace MediTech.ViewModels
         }
         private void Add()
         {
-            if (SelectPatientVisit != null)
+            if (SelectedPatientVisit != null)
             {
                 if (!Validate())
                     return;
 
                 PatientAllergyModel patAllergy = new PatientAllergyModel();
-                patAllergy.PatientUID = SelectPatientVisit.PatientUID;
-                patAllergy.PatientVisitUID = SelectPatientVisit.PatientVisitUID;
+                patAllergy.PatientUID = SelectedPatientVisit.PatientUID;
+                patAllergy.PatientVisitUID = SelectedPatientVisit.PatientVisitUID;
                 patAllergy.ALRCLUID = SelectAllergyClass.Key;
                 patAllergy.AllergyClass = SelectAllergyClass.Display;
                 patAllergy.AllergyDescription = AllergyDescription;
@@ -541,15 +542,15 @@ namespace MediTech.ViewModels
 
         private void Edit()
         {
-            if (SelectPatientVisit != null)
+            if (SelectedPatientVisit != null)
             {
                 if (SelectPatientAllergy != null)
                 {
                     if (!Validate())
                         return;
 
-                    SelectPatientAllergy.PatientUID = SelectPatientVisit.PatientUID;
-                    SelectPatientAllergy.PatientVisitUID = SelectPatientVisit.PatientVisitUID;
+                    SelectPatientAllergy.PatientUID = SelectedPatientVisit.PatientUID;
+                    SelectPatientAllergy.PatientVisitUID = SelectedPatientVisit.PatientVisitUID;
                     SelectPatientAllergy.ALRCLUID = SelectAllergyClass.Key;
                     SelectPatientAllergy.AllergyClass = SelectAllergyClass.Display;
                     SelectPatientAllergy.AllergyDescription = AllergyDescription;
@@ -625,10 +626,10 @@ namespace MediTech.ViewModels
         {
             try
             {
-                if (SelectPatientVisit != null)
+                if (SelectedPatientVisit != null)
                 {
                     AssignPropertiesToModel();
-                    long patientUID = SelectPatientVisit.PatientUID;
+                    long patientUID = SelectedPatientVisit.PatientUID;
                     DataService.PatientIdentity.ManagePatientAllergy(patientUID, model, AppUtil.Current.UserID);
                     CloseViewDialog(ActionDialog.Save);
                 }
@@ -697,10 +698,10 @@ namespace MediTech.ViewModels
             CloseViewDialog(ActionDialog.Cancel);
         }
 
-        public void AssingPatientVisit(PatientVisitModel visitModel)
+        public void AssignPatientVisit(PatientVisitModel visitModel)
         {
-            SelectPatientVisit = visitModel;
-            var data = DataService.PatientIdentity.GetPatientAllergyByPatientUID(SelectPatientVisit.PatientUID);
+            SelectedPatientVisit = visitModel;
+            var data = DataService.PatientIdentity.GetPatientAllergyByPatientUID(SelectedPatientVisit.PatientUID);
             AssignModel(data);
         }
         public void AssignModel(List<PatientAllergyModel> model)
@@ -727,6 +728,7 @@ namespace MediTech.ViewModels
                 model.Add(item);
             }
         }
+
 
         #endregion
 

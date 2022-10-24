@@ -12,7 +12,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              DataContext="{Binding Path=PatientAlertViewModel, Source={StaticResource Locator}}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="500" d:DesignWidth="800">
     <UserControl.Resources>
         <cv:DateConverter x:Key="DateConvert" />
         <cc:ProblemSearchPopUp x:Key="ProblemColum" d:IsDataSource="True" />
@@ -97,12 +97,14 @@
                                       ItemsSource="{Binding Locations}"
                                       SelectedItem="{Binding SelectLocation}"/>
                     </dxlc:LayoutItem>
-                    <dxlc:LayoutItem HorizontalAlignment="Right">
-                        <DockPanel>
+                    <dxlc:LayoutGroup>
+                        <dxlc:LayoutItem>
                             <RadioButton Width="100" VerticalAlignment="Center" Content="Current Visits" GroupName="PaymdModeCombo" IsChecked="{Binding Path =IsCurrentVisit, UpdateSourceTrigger = PropertyChanged}" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem>
                             <RadioButton Width="100" VerticalAlignment="Center" Content="Across Visit" GroupName="PaymdModeCombo" IsChecked="{Binding Path =IsAcrossVisit, UpdateSourceTrigger = PropertyChanged}" />
-                        </DockPanel>
-                    </dxlc:LayoutItem>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
                 
                 <dxlc:LayoutGroup Orientation="Vertical">
@@ -132,17 +134,21 @@
                 <dxlc:LayoutGroup Orientation="Vertical">
                     <dxg:GridControl Name="grdListAlert" ItemsSource="{Binding PatientAlertSource}"
                                  AutoGenerateColumns="None"
+                                 SelectionMode="Row"
                                  EnableSmartColumnsGeneration="False"
-                                 SelectedItem="{Binding SelectPatientAlert}" 
-                                 Margin="-7,0,0,0">
+                                 SelectedItem="{Binding SelectPatientAlert}">
                         <dxg:GridControl.View>
-                            <dxg:TableView ShowGroupPanel="False"/>
+                            <dxg:TableView ShowGroupPanel="False" />
                         </dxg:GridControl.View>
                         <dxg:GridControl.Columns>
                             <dxg:GridColumn Header="Alert Type" FieldName="AlertType" ReadOnly="True"/>
                             <dxg:GridColumn Header="Alert" FieldName="Alert"  ReadOnly="True"/>
                             <dxg:GridColumn Header="Servity" FieldName="Severity" ReadOnly="True"/>
-                            <dxg:GridColumn Header="Description" FieldName="AlertDescription" ReadOnly="True"/>
+                            <dxg:GridColumn Header="Description" FieldName="AlertDescription"  ReadOnly="True">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:TextEditSettings TextWrapping="NoWrap" AcceptsReturn="False" />
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
                             <dxg:GridColumn Header="Priority" FieldName="Priority"  ReadOnly="True"/>
                             <dxg:GridColumn Header="Onset Date" FieldName="OnsetDttm" ReadOnly="True"/>
                             <dxg:GridColumn Header="Closure Date" FieldName="ClosureDttm" ReadOnly="True"/>

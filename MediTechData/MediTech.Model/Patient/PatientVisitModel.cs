@@ -86,6 +86,7 @@ namespace MediTech.Model
         public string BedName { get; set; }
         public List<CareproviderModel> SecondCareprovider { get; set; }
         public AdmissionEventModel AdmissionEvent { get; set; }
+        public string ICD10 { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyRaised(string propertyname)

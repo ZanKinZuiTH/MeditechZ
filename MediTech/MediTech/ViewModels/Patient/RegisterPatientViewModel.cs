@@ -4,6 +4,7 @@ using MediTech.Helpers;
 using MediTech.Helpers.RDNIDWRAPPER;
 using MediTech.Model;
 using MediTech.Views;
+using MediTech.Views.Patient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,7 @@ namespace MediTech.ViewModels
             get { return _SelectPageIndex; }
             set { _SelectPageIndex = value; RaisePropertyChanged("SelectPageIndex"); }
         }
+
 
         #endregion
 
@@ -427,6 +429,7 @@ namespace MediTech.ViewModels
                     if (patientData != null)
                     {
                         managePatViewModel.AssingModel(patientData);
+
                     }
                     else
                     {
@@ -444,6 +447,22 @@ namespace MediTech.ViewModels
 
                 }
                 SelectPageIndex = 1;
+
+                if (managePatient.DataContext is ManagePatientViewModel)
+                {
+                    if (patientData != null)
+                    {
+                        var PatientAlertLists = DataService.PatientIdentity.GetPatientAlertActiveByPatientUID(patientData.PatientUID);
+                        PatientAlertLists = PatientAlertLists.Where(p => p.AlertType != "Financial").ToList();
+                        if (PatientAlertLists != null && PatientAlertLists.Count > 0)
+                        {
+                            PatientAlertPopup alertPopup = new PatientAlertPopup();
+                            (alertPopup.DataContext as PatientAlertPopupViewModel).AssignModel(PatientAlertLists);
+                            LaunchViewDialogNonPermiss(alertPopup, true);
+                        }
+                    }
+                }
+
             }
             else if (page == PageRegister.CreateVisit)
             {

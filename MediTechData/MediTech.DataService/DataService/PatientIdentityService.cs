@@ -944,7 +944,7 @@ namespace MediTech.DataService
 
 
         #region Patient Alert
-        public List<PatientAlertModel> GetPatientAlertByPatientUID(long patientUID, long? patientVisitUID)
+        public List<PatientAlertModel> GetPatientAlertByPatientUID(long patientUID, long? patientVisitUID = null)
         {
             string requestApi = string.Format("Api/PatientIdentity/GetPatientAlertByPatientUID?patientUID={0}&patientVisitUID={1}", patientUID, patientVisitUID);
             List<PatientAlertModel> data = MeditechApiHelper.Get<List<PatientAlertModel>>(requestApi);
@@ -952,7 +952,13 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<PatientAlertModel> GetPatientAlertActiveByPatientUID(long patientUID, long? patientVisitUID = null)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetPatientAlertActiveByPatientUID?patientUID={0}&patientVisitUID={1}", patientUID, patientVisitUID);
+            List<PatientAlertModel> data = MeditechApiHelper.Get<List<PatientAlertModel>>(requestApi);
 
+            return data;
+        }
         public bool ManagePatientAlert(List<PatientAlertModel> alertModels, int userUID)
         {
             bool flag = false;

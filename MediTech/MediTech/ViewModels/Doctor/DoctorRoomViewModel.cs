@@ -926,7 +926,7 @@ namespace MediTech.ViewModels
             if (SelectVisitMedical != null)
             {
                 PatientAllergy pageview = new PatientAllergy();
-                (pageview.DataContext as PatientAllergyViewModel).AssingPatientVisit(SelectVisitMedical);
+                (pageview.DataContext as PatientAllergyViewModel).AssignPatientVisit(SelectVisitMedical);
                 PatientAllergyViewModel result = (PatientAllergyViewModel)LaunchViewDialog(pageview, "LIARGY", false);
                 if (result != null && result.ResultDialog == ActionDialog.Save)
                 {

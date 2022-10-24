@@ -854,6 +854,7 @@ namespace MediTechWebApi.Controllers
 
                                                 #region SavePatientBillableItem
 
+                                                BillableItem billableItem = db.BillableItem.Find(orderDetail.BillableItemUID);
                                                 PatientBillableItem patBillableItem = new PatientBillableItem();
                                                 patBillableItem.PatientUID = patientOrder.PatientUID;
                                                 patBillableItem.PatientVisitUID = patientOrder.PatientVisitUID;
@@ -896,6 +897,8 @@ namespace MediTechWebApi.Controllers
                                                 }
 
                                                 patBillableItem.BSMDDUID = BSMDDUID;
+                                                patBillableItem.GroupUID = billableItem?.BillingGroupUID;
+                                                patBillableItem.SubGroupUID = billableItem?.BillingSubGroupUID;
                                                 //patBillableItem.ORDSTUID = orderDetail.ORDSTUID;
                                                 patBillableItem.Amount = orderDetail.UnitPrice;
                                                 patBillableItem.Discount = orderDetail.Discount;

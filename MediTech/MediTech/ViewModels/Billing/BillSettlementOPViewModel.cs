@@ -1,7 +1,9 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using DevExpress.Xpf.Core;
+using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
 using MediTech.Views;
 using MediTech.Views.Billing;
+using MediTech.Views.Patient;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -53,6 +55,7 @@ namespace MediTech.ViewModels
                     if (visitInfoNonClose != null)
                     {
                         SelectPatientVisit = visitInfoNonClose;
+                        OnLoaded();
                     }
                 }
             }
@@ -79,6 +82,7 @@ namespace MediTech.ViewModels
                 if (_SelectPatientVisit != null)
                 {
                     DateFrom = _SelectPatientVisit.StartDttm;
+
                 }
             }
 
@@ -215,6 +219,19 @@ namespace MediTech.ViewModels
                 GetVisitPayors(SelectPatientVisit.PatientVisitUID);
             }
             Search();
+
+            if (SelectPatientVisit != null)
+            {
+                var PatientAlertLists = DataService.PatientIdentity.GetPatientAlertActiveByPatientUID(SelectPatientVisit.PatientUID);
+                PatientAlertLists = PatientAlertLists.Where(p => p.AlertType == "Financial").ToList();
+                if (PatientAlertLists != null && PatientAlertLists.Count > 0)
+                {
+                    PatientAlertPopup alertPopup = new PatientAlertPopup();
+                    (alertPopup.DataContext as PatientAlertPopupViewModel).AssignModel(PatientAlertLists);
+                    DXWindow owner = (DXWindow)(this.View as BillSettlementOP).Parent;
+                    LaunchViewDialogNonPermiss(alertPopup, owner, true);
+                }
+            }
         }
 
         private void Search()
