@@ -1650,6 +1650,7 @@
     <Compile Include="ViewModels\Patient\ManagePatientMergeViewModel.cs" />
     <Compile Include="ViewModels\Patient\ModifyVisitPayorViewModel.cs" />
     <Compile Include="ViewModels\Patient\ModifyVisitViewModel.cs" />
+    <Compile Include="ViewModels\Patient\PatientAlertPopupViewModel.cs" />
     <Compile Include="ViewModels\Patient\PatientAlertViewModel.cs" />
     <Compile Include="ViewModels\Patient\PatientArrivedViewModel.cs" />
     <Compile Include="ViewModels\Patient\PatientTrackingViewModel.cs" />
@@ -2156,6 +2157,9 @@
     </Compile>
     <Compile Include="Views\Patient\PatientAlert.xaml.cs">
       <DependentUpon>PatientAlert.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\PatientAlertPopup.xaml.cs">
+      <DependentUpon>PatientAlertPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Patient\PatientArrived.xaml.cs">
       <DependentUpon>PatientArrived.xaml</DependentUpon>
@@ -3017,6 +3021,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Patient\PatientAlert.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Patient\PatientAlertPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

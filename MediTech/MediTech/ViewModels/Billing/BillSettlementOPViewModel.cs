@@ -3,7 +3,6 @@ using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
 using MediTech.Views;
 using MediTech.Views.Billing;
-using MediTech.Views.Patient;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

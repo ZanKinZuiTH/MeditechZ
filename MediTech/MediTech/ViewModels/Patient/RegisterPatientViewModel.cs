@@ -4,7 +4,6 @@ using MediTech.Helpers;
 using MediTech.Helpers.RDNIDWRAPPER;
 using MediTech.Model;
 using MediTech.Views;
-using MediTech.Views.Patient;
 using System;
 using System.Collections.Generic;
 using System.Linq;

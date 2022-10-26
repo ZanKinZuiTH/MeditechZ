@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MediTech.Views.Patient
+namespace MediTech.Views
 {
     /// <summary>
     /// Interaction logic for PatientAlertPopup.xaml
