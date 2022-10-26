@@ -1455,10 +1455,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page6.cellStColor2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR69" && p.Year == year2)?.ResultValue;
                 page6.cellStColor3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR69" && p.Year == year3)?.ResultValue;
 
-                page6.cellStappearRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR21")?.ReferenceRange;
-                page6.cellStappear1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR21" && p.Year == year1)?.ResultValue;
-                page6.cellStappear2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR21" && p.Year == year2)?.ResultValue;
-                page6.cellStappear2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR21" && p.Year == year3)?.ResultValue;
+                page6.cellStappearRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR70")?.ReferenceRange;
+                page6.cellStappear1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR70" && p.Year == year1)?.ResultValue;
+                page6.cellStappear2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR70" && p.Year == year2)?.ResultValue;
+                page6.cellStappear2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR70" && p.Year == year3)?.ResultValue;
 
                 page6.stoolOvaRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR73")?.ReferenceRange;
                 page6.stoolOva1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR73" && p.Year == year1)?.ResultValue;
