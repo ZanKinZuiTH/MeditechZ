@@ -983,7 +983,7 @@ namespace MediTechWebApi.Controllers
 
             List<PatientVisitModel> data = dataTable.ToList<PatientVisitModel>();
 
-            return data;
+            return data?.OrderByDescending(p => p.StartDttm).ToList(); ;
         }
 
         [Route("SearchERPatientVisit")]
