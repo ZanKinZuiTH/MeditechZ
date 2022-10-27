@@ -713,8 +713,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             || p.RequestItemCode.Contains("LAB272") //T3
                             || p.RequestItemCode.Contains("LAB273") //T4
                             || p.RequestItemCode.Contains("LAB274") //FreeT3
-                            || p.RequestItemCode.Contains("LAB275")) //FreeT4
-                             .OrderByDescending(p => p.Year);
+                            || p.RequestItemCode.Contains("LAB275") //FreeT4
+                            || p.RequestItemCode.Contains("LAB618") 
+                             ).OrderByDescending(p => p.Year);
                         GenerateOther(OtherTestSet);
                         #endregion
 
@@ -2287,6 +2288,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page6.FreeT4_1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR23" && p.Year == year1)?.ResultValue;
                 page6.FreeT4_2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR23" && p.Year == year2)?.ResultValue;
                 page6.FreeT4_3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR23" && p.Year == year3)?.ResultValue;
+
+                page6.cellHpyloriRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1297")?.ReferenceRange;
+                page6.cellHpylori1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1297" && p.Year == year1)?.ResultValue;
+                page6.cellHpylori2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1297" && p.Year == year3)?.ResultValue;
+                page6.cellHpylori3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1297" && p.Year == year3)?.ResultValue;
             }
             else
             {
