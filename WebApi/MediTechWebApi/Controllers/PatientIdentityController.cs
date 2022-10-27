@@ -4351,7 +4351,8 @@ namespace MediTechWebApi.Controllers
                                                 OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID),
                                                 LocationUID = p.LocationUID ?? 0,
                                                 Location = SqlFunction.fGetLocationName(p.LocationUID ?? 0),
-                                                StatusFlag = p.StatusFlag
+                                                StatusFlag = p.StatusFlag,
+                                                IsVisitSpecific = p.IsVisitSpecific
                                             }).ToList();
 
             return data;
@@ -4387,7 +4388,8 @@ namespace MediTechWebApi.Controllers
                                                 OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID),
                                                 LocationUID = p.LocationUID ?? 0,
                                                 Location = SqlFunction.fGetLocationName(p.LocationUID ?? 0),
-                                                StatusFlag = p.StatusFlag
+                                                StatusFlag = p.StatusFlag,
+                                                IsVisitSpecific = p.IsVisitSpecific
                                             }).OrderByDescending(p => p.PatientAlertUID).ToList();
 
             return data;
