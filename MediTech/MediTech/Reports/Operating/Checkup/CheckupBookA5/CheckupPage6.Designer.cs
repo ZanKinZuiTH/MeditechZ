@@ -1150,7 +1150,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.tbStool.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tbStool.LocationFloat = new DevExpress.Utils.PointFloat(0F, 619.8454F);
+            this.tbStool.LocationFloat = new DevExpress.Utils.PointFloat(2.825701E-05F, 603.8528F);
             this.tbStool.Name = "tbStool";
             this.tbStool.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow7,
@@ -1612,7 +1612,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // 
             this.xrLabel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel5.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(110.9438F, 594.3455F);
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(110.9438F, 578.7F);
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel5.SizeF = new System.Drawing.SizeF(276.3788F, 25.15277F);
@@ -1641,7 +1641,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableRow20,
             this.xrTableRow21,
             this.xrTableRow10});
-            this.xrTable2.SizeF = new System.Drawing.SizeF(498F, 246.1466F);
+            this.xrTable2.SizeF = new System.Drawing.SizeF(498F, 240.1281F);
             this.xrTable2.StylePriority.UseBorders = false;
             this.xrTable2.StylePriority.UseBorderWidth = false;
             this.xrTable2.StylePriority.UseFont = false;

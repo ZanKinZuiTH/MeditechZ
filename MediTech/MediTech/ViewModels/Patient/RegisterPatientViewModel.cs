@@ -35,6 +35,14 @@ namespace MediTech.ViewModels
             set { _SelectedBooking = value; RaisePropertyChanged("SelectedBooking"); }
         }
 
+        private BookingModel _Booking;
+
+        public BookingModel Booking
+        {
+            get { return _Booking; }
+            set { _Booking = value; }
+        }
+
         private int _SelectPageIndex;
 
         public int SelectPageIndex
@@ -409,6 +417,11 @@ namespace MediTech.ViewModels
 
         public void OpenPage(PageRegister page, PatientInformationModel patientData, BookingModel booking = null, bool userCardRead = false)
         {
+            if(booking != null)
+            {
+                Booking = booking;
+            }
+
             if (page == PageRegister.Search)
             {
                 SelectPageIndex = 0;
@@ -472,7 +485,11 @@ namespace MediTech.ViewModels
                     CreateVisitViewModel createVisitViewModel = (createVisit.DataContext as CreateVisitViewModel);
                     createVisitViewModel.View = createVisit;
                     createVisitViewModel.Patient = patientData;
+                    if (Booking != null)
+                        createVisitViewModel.Booking = Booking;
+
                     createVisitViewModel.OnLoaded();
+                    
                 }
                 SelectPageIndex = 2;
             }
