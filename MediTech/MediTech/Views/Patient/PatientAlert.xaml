@@ -20,9 +20,11 @@
     </UserControl.Resources>
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">
-            <dxlc:LayoutGroup Orientation="Horizontal" >
-                <dxlc:LayoutItem Name="layoutSearchPatient" Label="ผู้ป่วย">
-                    <cc:AutoCompleteTextBox     Text="{Binding SearchPatientCriteria,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+
+            <dxlc:LayoutGroup Orientation="Vertical">
+                <dxlc:LayoutGroup  Name="PatientSearch" Orientation="Horizontal"  Visibility="{Binding PatientSearchVisibility}">
+                    <dxlc:LayoutItem  Label="ผู้ป่วย">
+                        <cc:AutoCompleteTextBox     Text="{Binding SearchPatientCriteria,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                                     ColumnsSource="{Binding Path=Columns,Source={StaticResource PatientColumn}}"
                                                     OnTextChangedEvent="False"
                                                     Binding="{Binding PatientName}"
@@ -30,37 +32,32 @@
                                                     ItemsSource="{Binding PatientsSearchSource}"
                                                     SelectedItem="{Binding SelectedPateintSearch,Mode=OneWayToSource}"
                                                     >
-                        <cc:AutoCompleteTextBox.InputBindings>
-                            <KeyBinding Key="Enter" Command="{Binding PatientSearchCommand}" />
-                        </cc:AutoCompleteTextBox.InputBindings>
-                    </cc:AutoCompleteTextBox>
-                </dxlc:LayoutItem>
-                <dxlc:LayoutItem/>
-                <!--<dxlc:LayoutItem>
-                    <dxlc:LayoutItem>
-                        <dxlc:LayoutGroup HorizontalAlignment="Left">
-                            <dxe:CheckEdit Content="Search All" IsChecked="{Binding IsSearchAll}"/>
-                        </dxlc:LayoutGroup>
+                            <cc:AutoCompleteTextBox.InputBindings>
+                                <KeyBinding Key="Enter" Command="{Binding PatientSearchCommand}" />
+                            </cc:AutoCompleteTextBox.InputBindings>
+                        </cc:AutoCompleteTextBox>
                     </dxlc:LayoutItem>
-                </dxlc:LayoutItem>-->
-                <dxlc:LayoutGroup.Style>
-                    <Style TargetType="dxlc:LayoutGroup">
-                        <Setter Property="Visibility" Value="Visible"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsRequestAdmit}" Value="true">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </dxlc:LayoutGroup.Style>
-            </dxlc:LayoutGroup>
-            
-            <dxlc:LayoutGroup>
-                <dxlc:LayoutItem Name="Banner" Visibility="{Binding IsBanner}">
-                    <uc:PatientBanner x:Name="patientBanner"
+                    <dxlc:LayoutItem/>
+                    <dxlc:LayoutGroup.Style>
+                        <Style TargetType="dxlc:LayoutGroup">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsRequestAdmit}" Value="true">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </dxlc:LayoutGroup.Style>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup  Visibility="{Binding PatientBannerVisibility}">
+                    <dxlc:LayoutItem Name="PatientBanner" Visibility="{Binding IsBanner}">
+                        <uc:PatientBanner 
                                       PatientVisit="{Binding SelectPatientVisit}"/>
-                </dxlc:LayoutItem>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
+
+            
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutGroup Orientation="Vertical">
                     <dxlc:LayoutItem Label ="Alert Type">

@@ -265,25 +265,25 @@ namespace MediTech.ViewModels
 
 
 
-        public void AssignData(PatientVisitModel model)
-        {
+        //public void AssignData(PatientVisitModel model)
+        //{
 
            
-            SelectedPatientVisit = model;
-            StartDateConsult = DateTime.Today;
-            EndDateConsult = DateTime.Today;
-            //int patientUID = Convert.ToInt32(model.PatientUID);
-            //int bkstsUID = DataService.Technical.GetReferenceValueByCode("VISTS", "REGST").Key ?? 0;
+        //    SelectedPatientVisit = model;
+        //    StartDateConsult = DateTime.Today;
+        //    EndDateConsult = DateTime.Today;
+        //    //int patientUID = Convert.ToInt32(model.PatientUID);
+        //    //int bkstsUID = DataService.Technical.GetReferenceValueByCode("VISTS", "REGST").Key ?? 0;
 
-            int patientVisitUID = Convert.ToInt32(model.PatientVisitUID);
-            var listvisitdata = DataService.InPatientService.GetPatientVisitConsult(patientVisitUID);
-             IPDConsultList = new ObservableCollection<IPDConsultModel>(listvisitdata);
-
-
+        //    int patientVisitUID = Convert.ToInt32(model.PatientVisitUID);
+        //    var listvisitdata = DataService.InPatientService.GetPatientVisitConsult(patientVisitUID);
+        //     IPDConsultList = new ObservableCollection<IPDConsultModel>(listvisitdata);
 
 
 
-        }
+
+
+        //}
 
 
 
@@ -441,6 +441,9 @@ namespace MediTech.ViewModels
             SelectedPatientVisit = patVisitData;
             StartDateConsult = DateTime.Today;
             EndDateConsult = DateTime.Today;
+
+            var listvisitdata = DataService.InPatientService.GetPatientVisitConsult(SelectedPatientVisit.PatientVisitUID);
+            IPDConsultList = new ObservableCollection<IPDConsultModel>(listvisitdata);
         }
         #endregion
     }

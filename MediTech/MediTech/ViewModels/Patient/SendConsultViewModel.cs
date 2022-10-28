@@ -303,9 +303,9 @@ namespace MediTech.ViewModels
             patientVisitModel = patVisitData;
             int patientUID = Convert.ToInt32(patVisitData.PatientUID);
             int patientVisitUID = Convert.ToInt32(patVisitData.PatientVisitUID);
-            int bkstsUID = DataService.Technical.GetReferenceValueByCode("VISTS", "REGST").Key ?? 0;
+            //int bkstsUID = DataService.Technical.GetReferenceValueByCode("VISTS", "REGST").Key ?? 0;
 
-            var requestData = DataService.PatientIdentity.GetAppointmentRequestbyUID(patientUID, patientVisitUID, bkstsUID);
+            var requestData = DataService.PatientIdentity.GetAppointmentRequestbyUID(patientUID, patientVisitUID);
             AppointmentRequest = new ObservableCollection<AppointmentRequestModel>(requestData);
         }
 

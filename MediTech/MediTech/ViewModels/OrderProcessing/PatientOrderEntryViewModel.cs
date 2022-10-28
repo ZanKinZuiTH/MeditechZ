@@ -465,7 +465,9 @@ namespace MediTech.ViewModels
                     {
                         WarningDialog("รายที่เลือก มีสถานะ Dispensed กรุณาไปทำการยกเลิกที่หน้า ใบสั่งยา");
                     }
-                    List<PatientOrderDetailModel> existingOrderNotCancel = SelectExistingOrder.Where(p => p.ORDSTUID != 2848 && p.ORDSTUID != 2861 && p.PaymentStatus != "Ignore" && p.PaymentStatus != "Billed").ToList();
+                    List<PatientOrderDetailModel> existingOrderNotCancel = SelectExistingOrder.Where(p => p.ORDSTUID != 2848
+                    && p.ORDSTUID != 2861 && p.PaymentStatus != "Ignore" && p.PaymentStatus != "Billed").ToList();
+
                     if (existingOrderNotCancel != null && existingOrderNotCancel.Count > 0)
                     {
                         CancelOrder cancelOrderView = new CancelOrder(existingOrderNotCancel);

@@ -35,17 +35,20 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _SelectedPatientVisit, value);
+                PatientProblemList = null;
+                SearchProblemList = null;
                 if (SelectedPatientVisit != null)
                 {
                     List<PatientProblemModel> data = DataService.PatientDiagnosis.GetPatientProblemByVisitUID(SelectedPatientVisit.PatientVisitUID);
                     AssignModel(data);
                 }
-                else
-                {
-                    ClearControl();
-                    PatientProblemList = null;
-                    SearchProblemList = null;
-                }
+                ClearControl();
+                //else
+                //{
+                //    ClearControl();
+                //    PatientProblemList = null;
+                //    SearchProblemList = null;
+                //}
 
             }
         }

@@ -572,7 +572,16 @@ namespace MediTech.ViewModels
             {
                 if (BackwardView == null)
                 {
-                    ChangeViewPermission(pageView);
+                    var viewUserControl = (View as System.Windows.Controls.UserControl);
+                    if (viewUserControl.Tag != null && viewUserControl.Tag is MediTech.Views.EMRView)
+                    {
+                        (viewUserControl.Tag as MediTech.Views.EMRView).DefaultPage();
+                    }
+                    else
+                    {
+                        ChangeViewPermission(pageView);
+                    }
+
                 }
                 else
                 {

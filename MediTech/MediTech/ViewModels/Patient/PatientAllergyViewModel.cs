@@ -12,6 +12,7 @@ using MediTech.Views;
 using System.Windows.Forms;
 using System.Windows.Media;
 using MediTech.Interface;
+using System.ComponentModel;
 
 namespace MediTech.ViewModels
 {
@@ -19,6 +20,25 @@ namespace MediTech.ViewModels
     {
 
         #region Properties
+
+        public event PropertyChangedEventHandler PatientBannerVisibilityChanged;
+        protected void OnPatientBannerVisibilityChanged()
+        {
+            PropertyChangedEventHandler handler = PatientBannerVisibilityChanged;
+            if (handler != null)
+            {
+                handler(PatientBannerVisibility, new PropertyChangedEventArgs("PatientBannerVisibility"));
+            }
+        }
+
+
+        private Visibility _PatientBannerVisibility;
+
+        public Visibility PatientBannerVisibility
+        {
+            get { return _PatientBannerVisibility; }
+            set { Set(ref _PatientBannerVisibility, value); OnPatientBannerVisibilityChanged(); }
+        }
 
         private PatientVisitModel _SelectedPatientVisit;
 
@@ -297,6 +317,7 @@ namespace MediTech.ViewModels
             get { return _IsCheckOther; }
             set { Set(ref _IsCheckOther, value); }
         }
+
 
 
         private ObservableCollection<PatientAllergyModel> _PatientAllergyList;

@@ -1,18 +1,59 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using MediTech.Interface;
 using MediTech.Model;
 using MediTech.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MediTech.ViewModels
 {
-    public class PatientAlertViewModel : MediTechViewModelBase
+    public class PatientAlertViewModel : MediTechViewModelBase , IPatientVisitViewModel
     {
         #region Properties
+
+        public event PropertyChangedEventHandler PatientSearchVisibilityChanged;
+        protected void OnPatientSearchVisibilityChanged()
+        {
+            PropertyChangedEventHandler handler = PatientSearchVisibilityChanged;
+            if (handler != null)
+            {
+                handler(PatientSearchVisibility, new PropertyChangedEventArgs("PatientSearchVisibility"));
+            }
+        }
+
+
+        private Visibility _PatientSearchVisibility;
+
+        public Visibility PatientSearchVisibility
+        {
+            get { return _PatientSearchVisibility; }
+            set { Set(ref _PatientSearchVisibility, value); OnPatientSearchVisibilityChanged(); }
+        }
+
+        public event PropertyChangedEventHandler PatientBannerVisibilityChanged;
+        protected void OnPatientBannerVisibilityChanged()
+        {
+            PropertyChangedEventHandler handler = PatientBannerVisibilityChanged;
+            if (handler != null)
+            {
+                handler(PatientBannerVisibility, new PropertyChangedEventArgs("PatientBannerVisibility"));
+            }
+        }
+
+
+        private Visibility _PatientBannerVisibility;
+
+        public Visibility PatientBannerVisibility
+        {
+            get { return _PatientBannerVisibility; }
+            set { Set(ref _PatientBannerVisibility, value); OnPatientBannerVisibilityChanged(); }
+        }
 
         private List<LookupReferenceValueModel> _AlertType;
         public List<LookupReferenceValueModel> AlertType
@@ -201,7 +242,7 @@ namespace MediTech.ViewModels
                     
                     if (visitInfoNonClose != null)
                     {
-                        SelectPatientVisit = visitInfoNonClose;
+                        SelectedPatientVisit = visitInfoNonClose;
                     }
                     else
                     {
@@ -209,7 +250,7 @@ namespace MediTech.ViewModels
                         patientVisit.PatientID = SelectedPateintSearch != null ? SelectedPateintSearch.PatientID : null;
                         patientVisit.PatientUID = SelectedPateintSearch.PatientUID;
 
-                        SelectPatientVisit = patientVisit;
+                        SelectedPatientVisit = patientVisit;
                     }
                 }
             }
@@ -222,17 +263,17 @@ namespace MediTech.ViewModels
             set { _IsSearchAll = value; }
         }
 
-        private PatientVisitModel _SelectPatientVisit;
-        public PatientVisitModel SelectPatientVisit
+        private PatientVisitModel _SelectedPatientVisit;
+        public PatientVisitModel SelectedPatientVisit
         {
-            get { return _SelectPatientVisit; }
+            get { return _SelectedPatientVisit; }
             set
             {
-                Set(ref _SelectPatientVisit, value);
-                if(SelectPatientVisit != null)
+                Set(ref _SelectedPatientVisit, value);
+                if(_SelectedPatientVisit != null)
                 {
-                    var patientVisit = SelectPatientVisit.PatientVisitUID != 0 ? SelectPatientVisit.PatientVisitUID : (long?)null;
-                    var listData = DataService.PatientIdentity.GetPatientAlertByPatientUID(SelectPatientVisit.PatientUID, patientVisit);
+                    var patientVisit = _SelectedPatientVisit.PatientVisitUID != 0 ? _SelectedPatientVisit.PatientVisitUID : (long?)null;
+                    var listData = DataService.PatientIdentity.GetPatientAlertByPatientUID(_SelectedPatientVisit.PatientUID, patientVisit);
                     
                     if(listData.Count != 0)
                     {
@@ -290,6 +331,7 @@ namespace MediTech.ViewModels
             get { return _ClearCommand ?? (_ClearCommand = new RelayCommand(Clear)); }
         }
 
+
         #endregion
 
         #region Method
@@ -328,8 +370,8 @@ namespace MediTech.ViewModels
             if(alertModel == null)
             alertModel = new PatientAlertModel();
 
-            alertModel.PatientUID = SelectPatientVisit.PatientUID;
-            alertModel.PatientVisitUID = SelectPatientVisit.PatientVisitUID;
+            alertModel.PatientUID = SelectedPatientVisit.PatientUID;
+            alertModel.PatientVisitUID = SelectedPatientVisit.PatientVisitUID;
             alertModel.AlertDescription = AlertDescription;
             alertModel.ALRTYUID = SelectedAlertType != null ? SelectedAlertType.Key : (int?)null;
             alertModel.AlertType = SelectedAlertType?.Display;
@@ -359,7 +401,7 @@ namespace MediTech.ViewModels
 
         private void Add()
         {
-            if (SelectPatientVisit == null)
+            if (SelectedPatientVisit == null)
             {
                 WarningDialog("กรุณาค้นหาผู้ป่วย");
                 return;
@@ -452,6 +494,7 @@ namespace MediTech.ViewModels
         {
             PatientList patList = new PatientList();
             ChangeView_CloseViewDialog(patList, ActionDialog.Cancel);
+
         }
 
         public void PatientSearch()
@@ -494,6 +537,11 @@ namespace MediTech.ViewModels
             {
                 PatientsSearchSource = null;
             }
+        }
+
+        public void AssignPatientVisit(PatientVisitModel patVisitData)
+        {
+            
         }
 
         #endregion

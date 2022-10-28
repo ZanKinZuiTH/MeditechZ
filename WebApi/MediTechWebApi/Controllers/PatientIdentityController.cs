@@ -4035,11 +4035,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetAppointmentRequestbyUID")]
         [HttpGet]
-        public List<AppointmentRequestModel> GetAppointmentRequestbyUID(int patientUID, int patientVisitUID, int BKSTSUID)
+        public List<AppointmentRequestModel> GetAppointmentRequestbyUID(int patientUID, int patientVisitUID)
         {
             List<AppointmentRequestModel> data = db.AppointmentRequest.Where(p => p.PatientUID == patientUID
                                             && p.PatientVisitUID == patientVisitUID
-                                            && p.BKSTSUID == BKSTSUID
                                             && p.StatusFlag == "A")
                                             .Select(p => new AppointmentRequestModel()
                                             {

@@ -1,3 +1,4 @@
+using DevExpress.Xpf.Core;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediTech.DataService;

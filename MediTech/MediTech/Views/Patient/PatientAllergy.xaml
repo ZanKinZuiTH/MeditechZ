@@ -14,8 +14,8 @@
     </UserControl.Resources>
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">
-            <dxlc:LayoutItem Name="Banner" Visibility="{Binding IsBanner}">
-                <uc:PatientBanner PatientVisit="{Binding SelectPatientVisit}" />
+            <dxlc:LayoutItem Name="PatientBanner" Visibility="{Binding PatientBannerVisibility}">
+                <uc:PatientBanner PatientVisit="{Binding SelectPatientVisit}"/>
             </dxlc:LayoutItem>
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutItem>
@@ -111,8 +111,8 @@
                         </dxlc:LayoutGroup>
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="อารการที่แพ้" LabelVerticalAlignment="Top">
-                    <dxe:TextEdit Text="{Binding AllergyDescription}" Height="70"  AcceptsReturn="True"/>
+                <dxlc:LayoutItem Label="อาการที่แพ้" LabelVerticalAlignment="Top">
+                    <dxe:TextEdit Text="{Binding AllergyDescription}" Height="70"  AcceptsReturn="True" VerticalContentAlignment="Top"/>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
 

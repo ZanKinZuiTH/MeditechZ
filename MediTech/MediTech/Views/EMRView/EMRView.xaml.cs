@@ -1,4 +1,5 @@
-﻿using MediTech.Model;
+﻿using DevExpress.Xpf.Core;
+using MediTech.Model;
 using MediTech.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -114,8 +115,11 @@ namespace MediTech.Views
 
         public void DefaultPage()
         {
-            (this.DataContext as EMRViewViewModel).SelectedPage = null;
-            documentFrame.Navigate(summeryView);
+            if ((this as EMRView).Parent is DXWindow)
+            {
+                layoutVisit.Visibility = Visibility.Visible;
+            }
+            (this.DataContext as EMRViewViewModel).DefaultPage();
         }
     }
 }

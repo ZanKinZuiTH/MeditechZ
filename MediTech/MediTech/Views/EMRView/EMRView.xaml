@@ -24,7 +24,7 @@
             </ContentControl>
         </DataTemplate>
     </UserControl.Resources>
-    <Grid>
+    <AdornerDecorator>
         <dxlc:LayoutControl Orientation="Vertical">
             <dxlc:LayoutItem >
                 <uc:PatientBanner x:Name="PatientBanner"
@@ -32,7 +32,7 @@ PatientVisit="{Binding Path=DataContext.SelectedPatientVisit,UpdateSourceTrigger
                         ,RelativeSource={RelativeSource AncestorType={x:Type local:EMRView}}}"
                                   Visibility="Collapsed"/>
             </dxlc:LayoutItem>
-            <dxlc:LayoutGroup x:Name="layoutVisit" Orientation="Horizontal" Visibility="Collapsed">
+            <dxlc:LayoutGroup x:Name="layoutVisit" Orientation="Horizontal" Visibility="{Binding PatientVisitListVisibility,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
                 <dxlc:LayoutItem x:Name="layVisit" Label="Select Visit" 
                              HorizontalAlignment="Left">
 
@@ -78,14 +78,14 @@ PatientVisit="{Binding Path=DataContext.SelectedPatientVisit,UpdateSourceTrigger
             </dxlc:LayoutGroup>
 
             <dxlc:DockLayoutControl>
-                <dxwui:NavigationFrame dxlc:DockLayoutControl.Dock="Client"  x:Name="documentFrame" >
+                <dxwui:NavigationFrame dxlc:DockLayoutControl.Dock="Client" NavigationCacheMode="Disabled"   x:Name="documentFrame" >
                     <local:SummeryView  x:Name="summeryView" Height="Auto"/>
                 </dxwui:NavigationFrame>
 
                 <dxa:AccordionControl dxlc:DockLayoutControl.Dock="Right" x:Name="accordion" Width="170"
                                   HorizontalAlignment="Stretch"
                                   ExpandMode="SingleOrNone"
-                                  SelectedItem="{Binding SelectedPage,UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding SelectedPage,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
                                   SelectionUnit="SubItem"
                                   ItemsSource="{Binding PageViewModule,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
                                   ChildrenPath="PageViews"
@@ -96,5 +96,5 @@ PatientVisit="{Binding Path=DataContext.SelectedPatientVisit,UpdateSourceTrigger
             </dxlc:DockLayoutControl>
 
         </dxlc:LayoutControl>
-    </Grid>
+    </AdornerDecorator>
 </UserControl>

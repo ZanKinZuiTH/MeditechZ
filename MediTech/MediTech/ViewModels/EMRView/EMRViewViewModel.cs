@@ -1,7 +1,10 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using DevExpress.Utils.About;
+using DevExpress.Xpf.Core;
+using GalaSoft.MvvmLight.Command;
 using MediTech.Interface;
 using MediTech.Model;
 using MediTech.Views;
+using ShareLibrary;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -44,7 +47,16 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _SelectedPatientVisit, value);
-                (this.View as EMRView).summeryView.SetPatientVisit(_SelectedPatientVisit);
+                var emrSource = (this.View as EMRView).documentFrame.Content;
+                if (emrSource != null)
+                {
+                    var dataContext = (emrSource as UserControl).DataContext;
+                    if (dataContext is IPatientVisitViewModel)
+                    {
+                        (dataContext as IPatientVisitViewModel).AssignPatientVisit(_SelectedPatientVisit);
+                    }
+                }
+                //(this.View as EMRView).summeryView.SetPatientVisit(_SelectedPatientVisit);
             }
         }
 
@@ -54,6 +66,14 @@ namespace MediTech.ViewModels
         {
             get { return _PatientBannerVisibility; }
             set { Set(ref _PatientBannerVisibility, value); OnPatientBannerVisibilityChanged(); }
+        }
+
+        private Visibility _PatientVisitListVisibility = Visibility.Collapsed;
+
+        public Visibility PatientVisitListVisibility
+        {
+            get { return _PatientVisitListVisibility; }
+            set { Set(ref _PatientVisitListVisibility, value); }
         }
 
 
@@ -72,11 +92,82 @@ namespace MediTech.ViewModels
             get { return _SelectedPage; }
             set
             {
-                Set(ref _SelectedPage, value);
-                if (_SelectedPage != null)
+                if (value != null)
                 {
-                    ChangeView(_SelectedPage);
+
+                    object viewSource;
+                    if (value.Name == "EMR View")
+                    {
+                        viewSource = (this.View as EMRView).summeryView;
+                        if ((this.View as EMRView).Parent is DXWindow)
+                        {
+                            PatientVisitListVisibility = Visibility.Visible;
+                        }
+                    }
+                    else
+                    {
+                        viewSource = Activator.CreateInstance(Type.GetType(value.NamespaceName + "." + value.ClassName));
+                        PatientVisitListVisibility = Visibility.Collapsed;
+                    }
+
+                    ((UserControl)viewSource).Tag = this.View;
+
+                    if (viewSource is UserControl)
+                    {
+
+                        var viewModel = ((UserControl)viewSource).DataContext;
+                        if (viewModel is IPatientVisitViewModel)
+                        {
+
+                            if (SelectedPatientVisit == null || (SelectedPatientVisit.PatientVisitUID == 0 && value.Name != "EMR View"
+                                && value.Name != "Allergies" && value.Name != "Alert"
+                                ))
+                            {
+
+                                WarningDialog("กรุณาเลือก Visit");
+                                return;
+                            }
+
+                            if (viewModel.HasProperty("PatientBannerVisibility"))
+                            {
+                                var propInfo = viewModel.GetType().GetProperty("PatientBannerVisibility");
+                                if (propInfo != null)
+                                {
+                                    propInfo.SetValue(viewModel, Visibility.Collapsed, null);
+                                }
+                            }
+
+                            if (viewModel.HasProperty("PatientSearchVisibility"))
+                            {
+                                var propInfo = viewModel.GetType().GetProperty("PatientSearchVisibility");
+                                if (propInfo != null)
+                                {
+                                    propInfo.SetValue(viewModel, Visibility.Collapsed, null);
+                                }
+                            }
+
+
+                            (viewModel as IPatientVisitViewModel).AssignPatientVisit(SelectedPatientVisit);
+                        }
+
+                        if (value.Name == "EMR View")
+                        {
+                            if ((this.View as EMRView).Parent is DXWindow)
+                            {
+                                PatientVisitListVisibility = Visibility.Visible;
+                            }
+                        }
+                        else
+                        {
+                            PatientVisitListVisibility = Visibility.Collapsed;
+                        }
+                        ViewModelLocator.Cleanup();
+                        (this.View as EMRView).documentFrame.Navigate(viewSource);
+                    }
+
                 }
+                Set(ref _SelectedPage, value);
+
             }
         }
 
@@ -118,6 +209,10 @@ namespace MediTech.ViewModels
                     new PageViewModel() {Name = "Admission Request", NamespaceName = "MediTech.Views", ClassName = "AdmissionRequest"  }
                     ,new PageViewModel() { Name = "Consult", NamespaceName = "MediTech.Views", ClassName = "SendConsult" }
                     ,new PageViewModel() {Name = "IPD Consult", NamespaceName = "MediTech.Views", ClassName = "IPDConsult"  } } }
+            ,new PageViewModuleModel() { ModuleName = "History"
+                ,PageViews = new ObservableCollection<PageViewModel>(){
+                    new PageViewModel() { Name = "Allergies", NamespaceName = "MediTech.Views", ClassName = "PatientAllergy" }
+                    ,new PageViewModel() {Name = "Alert", NamespaceName = "MediTech.Views", ClassName = "PatientAlert"  } } }
             }));
 
 
@@ -135,42 +230,15 @@ namespace MediTech.ViewModels
             PatientVisitLists.Add(new PatientVisitModel { PatientUID = patVisitData.PatientUID, PatientVisitUID = 0, Comments = "All" });
             PatientBannerVisibility = Visibility.Visible;
             SelectedPatientVisit = PatientVisitLists.FirstOrDefault(p => p.PatientVisitUID == patVisitData.PatientVisitUID);
-
+            DefaultPage();
         }
 
 
         public void DefaultPage()
         {
+            (this.View as EMRView).summeryView.SetPatientVisit(_SelectedPatientVisit);
             (this.View as EMRView).documentFrame.Navigate((this.View as EMRView).summeryView);
             SelectedPage = null;
-        }
-        public void ChangeView(PageViewModel pageView)
-        {
-            object viewSource;
-            if (pageView.Name == "EMR View")
-            {
-                viewSource = (this.View as EMRView).summeryView;
-            }
-            else
-            {
-                viewSource = Activator.CreateInstance(Type.GetType(pageView.NamespaceName + "." + pageView.ClassName));
-            }
-
-            if (viewSource is UserControl)
-            {
-                ((UserControl)viewSource).Tag = this.View;
-                var viewModel = ((UserControl)viewSource).DataContext;
-                if (viewModel is IPatientVisitViewModel)
-                {
-                    if (SelectedPatientVisit == null || (SelectedPatientVisit.PatientVisitUID == 0 && pageView.Name != "EMR View"))
-                    {
-                        WarningDialog("กรุณาเลือก Visit");
-                        return;
-                    }
-                    (viewModel as IPatientVisitViewModel).AssignPatientVisit(SelectedPatientVisit);
-                }
-            }
-            (this.View as EMRView).documentFrame.Navigate(viewSource);
         }
 
         void OpenVitalSignsChart()

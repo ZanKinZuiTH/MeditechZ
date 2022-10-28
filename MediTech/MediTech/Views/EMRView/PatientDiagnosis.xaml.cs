@@ -1,4 +1,5 @@
-﻿using MediTech.Model;
+﻿using MediTech.Interface;
+using MediTech.Model;
 using MediTech.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,11 @@ namespace MediTech.Views
             {
                 (this.DataContext as PatientDiagnosisViewModel).UpdateEvent += PatientDiagnosisViewModel_UpdateEvent;
             }
+        }
+
+        public void RefershData()
+        {
+            
         }
 
         void PatientDiagnosisViewModel_UpdateEvent(object sender, EventArgs e)

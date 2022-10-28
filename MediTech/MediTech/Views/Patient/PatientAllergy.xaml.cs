@@ -21,13 +21,45 @@ namespace MediTech.Views
     /// </summary>
     public partial class PatientAllergy : UserControl
     {
+        #region PatientBannerVisibilitySource Dependency Property
+
+        public Visibility PatientBannerVisibility
+        {
+            get { return (Visibility)GetValue(PatientBannerVisibilityProperty); }
+            set { SetValue(PatientBannerVisibilityProperty, value); }
+        }
+
+        public static readonly DependencyProperty PatientBannerVisibilityProperty = DependencyProperty.Register("PatientBannerVisibility", typeof(Visibility)
+    , typeof(PatientAllergy), new UIPropertyMetadata(Visibility.Collapsed, OnPatientBannerVisibilityChanged));
+
+        private static void OnPatientBannerVisibilityChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            PatientAllergy actb = d as PatientAllergy;
+            if (actb == null) return;
+            actb.OnItemsSourceChanged(e.NewValue);
+
+        }
+
+        protected void OnItemsSourceChanged(object source)
+        {
+            this.PatientBanner.Visibility = (Visibility)source;
+        }
+
+        #endregion
         public PatientAllergy()
         {
             InitializeComponent();
             if (this.DataContext is PatientAllergyViewModel)
             {
                 (this.DataContext as PatientAllergyViewModel).UpdateEvent += PatientAllergyViewModel_UpdateEvent;
+                (this.DataContext as PatientAllergyViewModel).PatientBannerVisibilityChanged += PatientAllergy_PatientBannerVisibilityChanged;
             }
+        }
+
+        private void PatientAllergy_PatientBannerVisibilityChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            Visibility bannerVisibilty = (Visibility)(sender);
+            OnItemsSourceChanged(bannerVisibilty);
         }
 
         void PatientAllergyViewModel_UpdateEvent(object sender, EventArgs e)

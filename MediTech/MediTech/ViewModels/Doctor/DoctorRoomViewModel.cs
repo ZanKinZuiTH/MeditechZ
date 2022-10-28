@@ -696,6 +696,7 @@ namespace MediTech.ViewModels
             {
                 var view = (this.View as DoctorRoom);
                 var summeryViewModel = (view.electronicMedicalView.DataContext as EMRViewViewModel);
+                var emrSource = (summeryViewModel.View as EMRView).documentFrame.Source;
                 (summeryViewModel.View as EMRView).summeryView.RefershData();
                 GetLastVitalSign();
             }

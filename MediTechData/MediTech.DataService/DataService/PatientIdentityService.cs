@@ -867,9 +867,9 @@ namespace MediTech.DataService
         #endregion
 
         #region Consult
-        public List<AppointmentRequestModel> GetAppointmentRequestbyUID(int patientUID, int patientVisitUID, int BKSTSUID)
+        public List<AppointmentRequestModel> GetAppointmentRequestbyUID(int patientUID, int patientVisitUID)
         {
-            string requestApi = string.Format("Api/PatientIdentity/GetAppointmentRequestbyUID?patientUID={0}&patientVisitUID={1}&BKSTSUID={2}", patientUID, patientVisitUID, BKSTSUID);
+            string requestApi = string.Format("Api/PatientIdentity/GetAppointmentRequestbyUID?patientUID={0}&patientVisitUID={1}", patientUID, patientVisitUID);
             List<AppointmentRequestModel> data = MeditechApiHelper.Get<List<AppointmentRequestModel>>(requestApi);
 
             return data;
