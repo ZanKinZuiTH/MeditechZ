@@ -213,7 +213,8 @@ namespace MediTech.Model.Report
         public string PAR1259 { get; set; }
         public string PAR1260 { get; set; }
         public string PAR1285 { get; set; } //Thinner in urine
-        public string PAR126 { get; set; } 
+        public string PAR126 { get; set; }
+        public string PAR1297 { get; set; }
 
         public string Conclusion { get; set; }
         public string ResultStatus { get; set; }

@@ -499,7 +499,48 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 #endregion
 
                 page8.lbEKGRecommend.Text = groupResult.FirstOrDefault(p => p.GroupCode == "GPRST23")?.Conclusion;
-                
+
+                #region Hide Toxico
+
+                page7.RowIsopropanol.Visible = false;
+                page7.RowStyreneUrine.Visible = false;
+                page7.RowAluminiumBlood.Visible = false;
+                page7.RowArsenic.Visible = false;
+                page7.CyclohexanoneRow.Visible = false;
+                page7.RowPhenol.Visible = false;
+                page7.RowMibkUrine.Visible = false;
+                page7.RowCadmiumUrine.Visible = false;
+                page7.RowEthylbenzeneUrine.Visible = false;
+                page7.RowMercuryUrine.Visible = false;
+                page7.RowMEK.Visible = false;
+                page7.RowCarboxy.Visible = false;
+                page7.RowBenzene.Visible = false;
+                page7.RowMethanol.Visible = false;
+                page7.RowMethyrene.Visible = false;
+                page7.RowHexane.Visible = false;
+                page7.RowNickelUrine.Visible = false;
+                page7.RowMibkUrine.Visible = false;
+                page7.RowEthylbenzeneUrine.Visible = false;
+                page7.RowMercuryUrine.Visible = false;
+                page7.RowMethyreneUrine.Visible = false;
+                page7.RowBenzenettUrine.Visible = false;
+                page7.RowMercuryBlood.Visible = false;
+                page7.Rowfluoride.Visible = false;
+                page7.RowFormadehyde.Visible = false;
+                page7.Row25Hexan.Visible = false;
+                page7.RowManganese.Visible = false;
+                page7.RowZinc.Visible = false;
+                page7.RowIron.Visible = false;
+                page7.RowCadInb.Visible = false;
+                page7.RowChroinB.Visible = false;
+                page7.RowChroinS.Visible = false;
+                page7.RowAmmo.Visible = false;
+                page7.RowLeadInu.Visible = false;
+                page7.RowCholinesteraseBlood.Visible = false;
+                page7.RowThinnerUrine.Visible = false;
+
+                #endregion
+
                 IOrderedEnumerable<PatientResultComponentModel> labCompare;
                 if (data.LabCompare != null)
                 {
@@ -672,8 +713,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             || p.RequestItemCode.Contains("LAB272") //T3
                             || p.RequestItemCode.Contains("LAB273") //T4
                             || p.RequestItemCode.Contains("LAB274") //FreeT3
-                            || p.RequestItemCode.Contains("LAB275")) //FreeT4
-                             .OrderByDescending(p => p.Year);
+                            || p.RequestItemCode.Contains("LAB275") //FreeT4
+                            || p.RequestItemCode.Contains("LAB618") 
+                             ).OrderByDescending(p => p.Year);
                         GenerateOther(OtherTestSet);
                         #endregion
 
@@ -1541,43 +1583,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
 
             if (labTestSet != null)
             {
-                page7.RowIsopropanol.Visible = false;
-                page7.RowStyreneUrine.Visible = false;
-                page7.RowAluminiumBlood.Visible = false;
-                page7.RowArsenic.Visible = false;
-                page7.CyclohexanoneRow.Visible = false;
-                page7.RowPhenol.Visible = false;
-                page7.RowMibkUrine.Visible = false;
-                page7.RowCadmiumUrine.Visible = false;
-                page7.RowEthylbenzeneUrine.Visible = false;
-                page7.RowMercuryUrine.Visible = false;
-                page7.RowMEK.Visible = false;
-                page7.RowCarboxy.Visible = false;
-                page7.RowBenzene.Visible = false;
-                page7.RowMethanol.Visible = false;
-                page7.RowMethyrene.Visible = false;
-                page7.RowHexane.Visible = false;
-                page7.RowNickelUrine.Visible = false;
-                page7.RowMibkUrine.Visible = false;
-                page7.RowEthylbenzeneUrine.Visible = false;
-                page7.RowMercuryUrine.Visible = false;
-                page7.RowMethyreneUrine.Visible = false;
-                page7.RowBenzenettUrine.Visible = false;
-                page7.RowMercuryBlood.Visible = false;
-                page7.Rowfluoride.Visible = false;
-                page7.RowFormadehyde.Visible = false;
-                page7.Row25Hexan.Visible = false;
-                page7.RowManganese.Visible = false;
-                page7.RowZinc.Visible = false;
-                page7.RowIron.Visible = false;
-                page7.RowCadInb.Visible = false;
-                page7.RowChroinB.Visible = false;
-                page7.RowChroinS.Visible = false;
-                page7.RowAmmo.Visible = false;
-                page7.RowLeadInu.Visible = false;
-                page7.RowCholinesteraseBlood.Visible = false;
-                page7.RowThinnerUrine.Visible = false;
-
 
                 if (labTestSet != null && labTestSet.Count() > 0)
                 {
@@ -2283,6 +2288,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page6.FreeT4_1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR23" && p.Year == year1)?.ResultValue;
                 page6.FreeT4_2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR23" && p.Year == year2)?.ResultValue;
                 page6.FreeT4_3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR23" && p.Year == year3)?.ResultValue;
+
+                page6.cellHpyloriRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1297")?.ReferenceRange;
+                page6.cellHpylori1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1297" && p.Year == year1)?.ResultValue;
+                page6.cellHpylori2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1297" && p.Year == year3)?.ResultValue;
+                page6.cellHpylori3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1297" && p.Year == year3)?.ResultValue;
             }
             else
             {
