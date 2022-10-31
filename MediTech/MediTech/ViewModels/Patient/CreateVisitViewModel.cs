@@ -422,10 +422,7 @@ namespace MediTech.ViewModels
             set
             {
                 _Booking = value;
-                if (_Booking != null)
-                {
-                    SelectedCareprovider = CareproviderSource.FirstOrDefault(p => p.CareproviderUID == Booking.CareProviderUID);
-                }
+
             }
         }
 
@@ -567,6 +564,11 @@ namespace MediTech.ViewModels
 
 
                 #endregion
+            }
+
+            if (Booking != null)
+            {
+                SelectedCareprovider = CareproviderSource?.FirstOrDefault(p => p.CareproviderUID == Booking.CareProviderUID);
             }
         }
 
