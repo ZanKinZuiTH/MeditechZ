@@ -19,5 +19,7 @@ namespace MediTech.Model.Report
         public double DoctorFee { get; set; }
         public string IsICD10 { get; set; }
         public DateTime StartDttm { set; get; }
+        public int OwnerOrganisationUID { get; set; }
+        public string OwnerOrganisation { get; set; }
     }
 }

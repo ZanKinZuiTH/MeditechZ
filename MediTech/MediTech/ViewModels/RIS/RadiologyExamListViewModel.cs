@@ -1238,7 +1238,7 @@ namespace MediTech.ViewModels
 
                                 List<string> listNoMapResult = new List<string>();
                                 ResultRadiologyModel result = DataService.Radiology.GetResultRadiologyByResultUID(item.ResultUID);
-                                string thairesult = TranslateResult.TranslateResultXray(result.PlainText, item.ResultStatus, item.RequestItemName, " ", dtResultMapping, ref listNoMapResult);
+                                string thairesult = TranslateResult.TranslateResultXray(result.PlainText, item.ResultStatus, item.RequestItemName, " // ", dtResultMapping, ref listNoMapResult);
 
                                 rpt.Parameters["ResultUID"].Value = item.ResultUID;
                                 rpt.Parameters["ResultThai"].Value = thairesult;
@@ -1296,7 +1296,7 @@ namespace MediTech.ViewModels
                             List<string> listNoMapResult = new List<string>();
                             ResultRadiologyModel result = DataService.Radiology.GetResultRadiologyByResultUID(SelectRequestExam.ResultUID);
                             string thairesult = TranslateResult.TranslateResultXray(result.PlainText
-                                , SelectRequestExam.ResultStatus, SelectRequestExam.RequestItemName, " ", dtResultMapping, ref listNoMapResult);
+                                , SelectRequestExam.ResultStatus, SelectRequestExam.RequestItemName, " // ", dtResultMapping, ref listNoMapResult);
 
                             rpt.Parameters["ResultUID"].Value = SelectRequestExam.ResultUID;
                             rpt.Parameters["ResultThai"].Value = thairesult;

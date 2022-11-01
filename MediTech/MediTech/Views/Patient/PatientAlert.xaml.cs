@@ -77,6 +77,12 @@ namespace MediTech.Views
             InitializeComponent();
             (this.DataContext as PatientAlertViewModel).PatientSearchVisibilityChanged += PatientAlert_PatientSearchVisibilityChanged ;
             (this.DataContext as PatientAlertViewModel).PatientBannerVisibilityChanged += PatientAlert_PatientBannerVisibilityChanged;
+            (this.DataContext as PatientAlertViewModel).UpdateEvent += PatientAlert_UpdateEvent;
+        }
+
+        private void PatientAlert_UpdateEvent(object sender, EventArgs e)
+        {
+            grdListAlert.RefreshData();
         }
 
         private void PatientAlert_PatientSearchVisibilityChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

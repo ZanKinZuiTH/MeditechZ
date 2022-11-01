@@ -2149,7 +2149,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
             }
 
             List<string> listNoMapResult = new List<string>();
-            string thairesult = TranslateResult.TranslateResultXray(resultValue, resultStatus, requestItemName, ",", dtResultMapping, ref listNoMapResult);
+            string thairesult = TranslateResult.TranslateResultXray(resultValue, resultStatus, requestItemName, " // ", dtResultMapping, ref listNoMapResult);
 
             return thairesult;
         }

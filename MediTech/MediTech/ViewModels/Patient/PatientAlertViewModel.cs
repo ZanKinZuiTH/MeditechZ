@@ -187,6 +187,7 @@ namespace MediTech.ViewModels
             set { Set(ref _IsAcrossVisit, value); }
         }
 
+
         private ObservableCollection<PatientAlertModel> _PatientAlertSource;
         public ObservableCollection<PatientAlertModel> PatientAlertSource
         {
@@ -272,8 +273,8 @@ namespace MediTech.ViewModels
                 Set(ref _SelectedPatientVisit, value);
                 if(_SelectedPatientVisit != null)
                 {
-                    var patientVisit = _SelectedPatientVisit.PatientVisitUID != 0 ? _SelectedPatientVisit.PatientVisitUID : (long?)null;
-                    var listData = DataService.PatientIdentity.GetPatientAlertByPatientUID(_SelectedPatientVisit.PatientUID, patientVisit);
+                    //var patientVisit = _SelectedPatientVisit.PatientVisitUID != 0 ? _SelectedPatientVisit.PatientVisitUID : (long?)null;
+                    var listData = DataService.PatientIdentity.GetPatientAlertByPatientUID(_SelectedPatientVisit.PatientUID, null);
                     
                     if(listData.Count != 0)
                     {
@@ -445,10 +446,11 @@ namespace MediTech.ViewModels
             {
                 alertModel = SelectPatientAlert;
                 AssignModel();
-                PatientAlertSource.Remove(SelectPatientAlert);
-                PatientAlertSource.Add(alertModel);
+                //PatientAlertSource.Remove(SelectPatientAlert);
+                //PatientAlertSource.Add(alertModel);
 
                 Clear();
+                OnUpdateEvent();
             }
         }
 
@@ -541,7 +543,7 @@ namespace MediTech.ViewModels
 
         public void AssignPatientVisit(PatientVisitModel patVisitData)
         {
-            
+            SelectedPatientVisit = patVisitData;
         }
 
         #endregion
