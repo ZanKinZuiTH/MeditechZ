@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraReports.Parameters.StaticListLookUpSettings staticListLookUpSettings1 = new DevExpress.XtraReports.Parameters.StaticListLookUpSettings();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MedicalCouncil5));
+            DevExpress.XtraReports.Parameters.StaticListLookUpSettings staticListLookUpSettings1 = new DevExpress.XtraReports.Parameters.StaticListLookUpSettings();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.forMobile = new DevExpress.XtraReports.UI.XRRichText();
             this.xrLabel18 = new DevExpress.XtraReports.UI.XRLabel();
             this.lbOrganisationPlace = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel79 = new DevExpress.XtraReports.UI.XRLabel();
@@ -108,15 +109,16 @@
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
-            this.forMobile = new DevExpress.XtraReports.UI.XRRichText();
             this.ReportName = new DevExpress.XtraReports.Parameters.Parameter();
-            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
+            this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.forMobile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel3,
             this.forMobile,
             this.xrLabel18,
             this.lbOrganisationPlace,
@@ -177,10 +179,20 @@
             this.xrLabel31,
             this.xrLabel64,
             this.xrLabel30});
-            this.Detail.HeightF = 726.9168F;
+            this.Detail.HeightF = 805.6246F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // forMobile
+            // 
+            this.forMobile.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.forMobile.LocationFloat = new DevExpress.Utils.PointFloat(218.6546F, 538.6309F);
+            this.forMobile.Name = "forMobile";
+            this.forMobile.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.forMobile.SerializableRtfString = resources.GetString("forMobile.SerializableRtfString");
+            this.forMobile.SizeF = new System.Drawing.SizeF(402.762F, 24.78571F);
+            this.forMobile.StylePriority.UseFont = false;
             // 
             // xrLabel18
             // 
@@ -1011,20 +1023,21 @@
             this.LogoType.ValueInfo = "0";
             this.LogoType.ValueSourceSettings = staticListLookUpSettings1;
             // 
-            // forMobile
-            // 
-            this.forMobile.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.forMobile.LocationFloat = new DevExpress.Utils.PointFloat(218.6546F, 538.6309F);
-            this.forMobile.Name = "forMobile";
-            this.forMobile.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.forMobile.SerializableRtfString = resources.GetString("forMobile.SerializableRtfString");
-            this.forMobile.SizeF = new System.Drawing.SizeF(402.762F, 24.78571F);
-            this.forMobile.StylePriority.UseFont = false;
-            // 
             // ReportName
             // 
             this.ReportName.Name = "ReportName";
             this.ReportName.Visible = false;
+            // 
+            // xrLabel3
+            // 
+            this.xrLabel3.Font = new System.Drawing.Font("Angsana New", 12F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(33.88097F, 753.0832F);
+            this.xrLabel3.Multiline = true;
+            this.xrLabel3.Name = "xrLabel3";
+            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel3.SizeF = new System.Drawing.SizeF(423.6188F, 26.70825F);
+            this.xrLabel3.StylePriority.UseFont = false;
+            this.xrLabel3.Text = "หมายเหตุ ใบรับรองแพทย์ฉบับนี้ ให้ใช้ได้ 1 เดือน นับตั้งแต่วันที่ตรวจร่างกาย";
             // 
             // MedicalCouncil5
             // 
@@ -1048,9 +1061,9 @@
             this.OrganisationUID,
             this.LogoType,
             this.ReportName});
-            this.Version = "20.2";
-            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.forMobile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -1136,5 +1149,6 @@
         private DevExpress.XtraReports.Parameters.Parameter LogoType;
         private DevExpress.XtraReports.Parameters.Parameter ReportName;
         public DevExpress.XtraReports.UI.XRRichText forMobile;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel3;
     }
 }

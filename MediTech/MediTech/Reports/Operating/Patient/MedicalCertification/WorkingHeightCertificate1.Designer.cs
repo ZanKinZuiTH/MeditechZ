@@ -129,12 +129,14 @@
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrLabel37 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel37,
             this.xrCheckBox45,
             this.xrCheckBox46,
             this.xrCheckBox37,
@@ -219,7 +221,7 @@
             this.lbPatientName,
             this.lbIdCard});
             this.Detail.Font = new System.Drawing.Font("Angsana New", 12F);
-            this.Detail.HeightF = 828.3333F;
+            this.Detail.HeightF = 878.1667F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.StylePriority.UseFont = false;
@@ -971,6 +973,18 @@
             this.LogoType.ValueInfo = "0";
             this.LogoType.ValueSourceSettings = staticListLookUpSettings1;
             // 
+            // xrLabel37
+            // 
+            this.xrLabel37.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.xrLabel37.LocationFloat = new DevExpress.Utils.PointFloat(27.15711F, 845.1667F);
+            this.xrLabel37.Name = "xrLabel37";
+            this.xrLabel37.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel37.SizeF = new System.Drawing.SizeF(413.0535F, 23F);
+            this.xrLabel37.StylePriority.UseFont = false;
+            this.xrLabel37.StylePriority.UseTextAlignment = false;
+            this.xrLabel37.Text = "หมายเหตุ ใบรับรองแพทย์ฉบับนี้ ให้ใช้ได้ 1 เดือน นับตั้งแต่วันที่ตรวจร่างกาย";
+            this.xrLabel37.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
             // WorkingHeightCertificate1
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -991,7 +1005,7 @@
             this.PatientVisitUID,
             this.OrganisationUID,
             this.LogoType});
-            this.Version = "20.2";
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
@@ -1097,5 +1111,6 @@
         private DevExpress.XtraReports.UI.XRLabel lbAddressPage1;
         private DevExpress.XtraReports.Parameters.Parameter OrganisationUID;
         private DevExpress.XtraReports.Parameters.Parameter LogoType;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel37;
     }
 }

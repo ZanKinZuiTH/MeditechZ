@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfinedSpaceCertificate1));
             DevExpress.XtraReports.Parameters.StaticListLookUpSettings staticListLookUpSettings1 = new DevExpress.XtraReports.Parameters.StaticListLookUpSettings();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.xrLabel34 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrCheckBox39 = new DevExpress.XtraReports.UI.XRCheckBox();
             this.xrCheckBox40 = new DevExpress.XtraReports.UI.XRCheckBox();
             this.xrCheckBox37 = new DevExpress.XtraReports.UI.XRCheckBox();
@@ -126,6 +127,7 @@
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel34,
             this.xrCheckBox39,
             this.xrCheckBox40,
             this.xrCheckBox37,
@@ -201,11 +203,22 @@
             this.lbPatientName,
             this.lbIdCard});
             this.Detail.Font = new System.Drawing.Font("Angsana New", 12F);
-            this.Detail.HeightF = 836.6667F;
+            this.Detail.HeightF = 854.8146F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.StylePriority.UseFont = false;
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // xrLabel34
+            // 
+            this.xrLabel34.Font = new System.Drawing.Font("Angsana New", 12F);
+            this.xrLabel34.LocationFloat = new DevExpress.Utils.PointFloat(27.99993F, 805.6063F);
+            this.xrLabel34.Multiline = true;
+            this.xrLabel34.Name = "xrLabel34";
+            this.xrLabel34.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel34.SizeF = new System.Drawing.SizeF(383.3334F, 26.70825F);
+            this.xrLabel34.StylePriority.UseFont = false;
+            this.xrLabel34.Text = "หมายเหตุ ใบรับรองแพทย์ฉบับนี้ ให้ใช้ได้ 1 เดือน นับตั้งแต่วันที่ตรวจร่างกาย";
             // 
             // xrCheckBox39
             // 
@@ -489,15 +502,17 @@
             // 
             // xrLabel33
             // 
-            this.xrLabel33.LocationFloat = new DevExpress.Utils.PointFloat(505.6665F, 799.6666F);
+            this.xrLabel33.LocationFloat = new DevExpress.Utils.PointFloat(429F, 783.8333F);
             this.xrLabel33.Name = "xrLabel33";
             this.xrLabel33.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel33.SizeF = new System.Drawing.SizeF(123.3333F, 23F);
+            this.xrLabel33.SizeF = new System.Drawing.SizeF(240.6665F, 23.00006F);
+            this.xrLabel33.StylePriority.UseTextAlignment = false;
             this.xrLabel33.Text = "ผู้เข้ารับการตรวจสุขภาพ";
+            this.xrLabel33.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // xrLabel32
             // 
-            this.xrLabel32.LocationFloat = new DevExpress.Utils.PointFloat(429.8333F, 776.6667F);
+            this.xrLabel32.LocationFloat = new DevExpress.Utils.PointFloat(429F, 760.8334F);
             this.xrLabel32.Name = "xrLabel32";
             this.xrLabel32.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel32.SizeF = new System.Drawing.SizeF(251.4999F, 23F);
@@ -506,7 +521,7 @@
             // 
             // xrLabel31
             // 
-            this.xrLabel31.LocationFloat = new DevExpress.Utils.PointFloat(28.33346F, 700F);
+            this.xrLabel31.LocationFloat = new DevExpress.Utils.PointFloat(28.33346F, 682F);
             this.xrLabel31.Name = "xrLabel31";
             this.xrLabel31.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel31.SizeF = new System.Drawing.SizeF(641.3331F, 51.33331F);
@@ -912,7 +927,7 @@
             this.PatientVisitUID,
             this.OrganisationUID,
             this.LogoType});
-            this.Version = "20.2";
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
@@ -1009,5 +1024,6 @@
         private DevExpress.XtraReports.UI.XRLabel lbAddressPage1;
         private DevExpress.XtraReports.Parameters.Parameter OrganisationUID;
         private DevExpress.XtraReports.Parameters.Parameter LogoType;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel34;
     }
 }
