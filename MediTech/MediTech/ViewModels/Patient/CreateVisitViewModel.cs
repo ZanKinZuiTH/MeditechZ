@@ -311,6 +311,14 @@ namespace MediTech.ViewModels
             set { Set(ref _Comments, value); }
         }
 
+        private string _Company;
+
+        public string Company
+        {
+            get { return _Company; }
+            set { Set(ref _Company, value); }
+        }
+
         private double? _OPDCoverPerDay;
 
         public double? OPDCoverPerDay
@@ -880,6 +888,7 @@ namespace MediTech.ViewModels
                 visitInfo.CareProviderUID = SelectedCareprovider.CareproviderUID;
             visitInfo.LocationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
             visitInfo.PatientVisitPayors = PatientVisitPayorList.ToList();
+            visitInfo.CompanyName = Company;
             if (!IsMassRegister)
             {
 
@@ -970,6 +979,7 @@ namespace MediTech.ViewModels
                 visitInfo.CareProviderUID = SelectedCareprovider.CareproviderUID;
             visitInfo.LocationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
             visitInfo.PatientVisitPayors = PatientVisitPayorList.ToList();
+            visitInfo.CompanyName = Company;
             if (!IsMassRegister)
             {
 
