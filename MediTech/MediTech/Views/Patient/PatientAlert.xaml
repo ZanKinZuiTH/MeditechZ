@@ -52,7 +52,7 @@
                 <dxlc:LayoutGroup  Visibility="{Binding PatientBannerVisibility}">
                     <dxlc:LayoutItem Name="PatientBanner" Visibility="{Binding IsBanner}">
                         <uc:PatientBanner 
-                                      PatientVisit="{Binding SelectPatientVisit}"/>
+                                      PatientVisit="{Binding SelectedPatientVisit}"/>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
@@ -94,7 +94,7 @@
                                       ItemsSource="{Binding Locations}"
                                       SelectedItem="{Binding SelectLocation}"/>
                     </dxlc:LayoutItem>
-                    <dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup >
                         <dxlc:LayoutItem>
                             <RadioButton Width="100" VerticalAlignment="Center" Content="Current Visits" GroupName="PaymdModeCombo" IsChecked="{Binding Path =IsCurrentVisit, UpdateSourceTrigger = PropertyChanged}" />
                         </dxlc:LayoutItem>
@@ -135,7 +135,7 @@
                                  EnableSmartColumnsGeneration="False"
                                  SelectedItem="{Binding SelectPatientAlert}">
                         <dxg:GridControl.View>
-                            <dxg:TableView ShowGroupPanel="False" />
+                            <dxg:TableView ShowGroupPanel="False" NavigationStyle="Row"/>
                         </dxg:GridControl.View>
                         <dxg:GridControl.Columns>
                             <dxg:GridColumn Header="Alert Type" FieldName="AlertType" ReadOnly="True"/>

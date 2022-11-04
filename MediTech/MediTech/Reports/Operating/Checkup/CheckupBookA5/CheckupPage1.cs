@@ -2367,13 +2367,14 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 var waterCheck = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM15")?.ResultValue;
                 if (waterCheck != null)
                 {
-                    if (waterCheck == "ใช่" || waterCheck == "YES" || waterCheck == "Yes")
+                    if (waterCheck == "ไม่งด" || waterCheck == "NO")
                     {
-                        page2.waterY.Checked = true;
+                        page2.WaterN.Checked = true;
+
                     }
                     else
                     {
-                        page2.WaterN.Checked = true;
+                        page2.waterY.Checked = true;
                     }
                 }
             }
@@ -2509,7 +2510,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             }
 
             List<string> listNoMapResult = new List<string>();
-            string thairesult = TranslateResult.TranslateResultXray(resultValue, resultStatus, requestItemName, ",", dtResultMapping, ref listNoMapResult);
+            string thairesult = TranslateResult.TranslateResultXray(resultValue, resultStatus, requestItemName, " // ", dtResultMapping, ref listNoMapResult);
 
             return thairesult;
         }

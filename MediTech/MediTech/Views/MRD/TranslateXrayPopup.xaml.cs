@@ -112,7 +112,7 @@ namespace MediTech.Views
                     List<XrayTranslateMappingModel> dtResultMapping = dataService.Radiology.GetXrayTranslateMapping();
                     ResultRadiologyModel dataResultLast = dataService.Radiology.GetResultRadiologyByResultUID(patientResultRadioloty.ResultUID);
 
-                    TranslateResult.TranslateResultXray(dataResultLast.PlainText, dataResultLast.ResultStatus,dataResultLast.RequestItemName," ", dtResultMapping, ref wordnomap);
+                    TranslateResult.TranslateResultXray(dataResultLast.PlainText, dataResultLast.ResultStatus,dataResultLast.RequestItemName, " // ", dtResultMapping, ref wordnomap);
                     ListMapping = new ObservableCollection<XrayMappingEdit>();
 
                     foreach (string word in wordnomap)
