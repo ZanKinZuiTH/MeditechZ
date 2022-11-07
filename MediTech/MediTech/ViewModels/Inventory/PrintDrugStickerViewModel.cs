@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraReports.UI;
 using GalaSoft.MvvmLight.Command;
+using MediTech.DataService;
 using MediTech.Model;
 using MediTech.Reports.Operating.Pharmacy;
 using System;
@@ -52,6 +53,20 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectPrinter, value); }
         }
 
+        private List<LookupReferenceValueModel> _language;
+        public List<LookupReferenceValueModel> language
+        {
+            get { return _language; }
+            set { Set(ref _language, value); }
+        }
+
+        private LookupReferenceValueModel _Selectlanguage;
+
+        public LookupReferenceValueModel Selectlanguage
+        {
+            get { return _Selectlanguage; }
+            set { Set(ref _Selectlanguage, value); }
+        }
         #endregion
 
         #region Command
@@ -94,6 +109,8 @@ namespace MediTech.ViewModels
             }
 
             SelectPrinter = PrinterLists.FirstOrDefault(p => p.Contains("sticker"));
+            language = DataService.Technical.GetReferenceValueMany("SPOKL");
+            Selectlanguage = language.FirstOrDefault(p => p.ValueCode == "TH");
         }
 
         private void RowUpdated(DevExpress.Xpf.Grid.RowEventArgs e)
@@ -136,6 +153,7 @@ namespace MediTech.ViewModels
                 rpt.Parameters["OrganisationUID"].Value = item.OwnerOrganisationUID;
                 rpt.Parameters["PrescriptionItemUID"].Value = item.PrescriptionItemUID;
                 rpt.Parameters["ExpiryDate"].Value = item.ExpiryDate;
+                rpt.Parameters["LangType"].Value = Selectlanguage.ValueCode;
                 rpt.RequestParameters = false;
                 rpt.ShowPrintMarginsWarning = false;
                 printTool.Print(SelectPrinter);
