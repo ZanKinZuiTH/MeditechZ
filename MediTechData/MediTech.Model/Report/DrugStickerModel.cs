@@ -23,6 +23,7 @@ namespace MediTech.Model.Report
         public string PatientInstruction { get; set; }
         public double? Dosage { get; set; }
         public string ItemUnit { get; set; }
+        public string ItemUnitEn { get; set; }
         public string OrganisationCode { get; set; }
         public string OrganisationName { get; set; }
         public string LicenseNo { get; set; }

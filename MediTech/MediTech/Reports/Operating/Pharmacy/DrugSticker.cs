@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.IO;
 using System.Linq;
 using DevExpress.XtraReports.Parameters;
+using DevExpress.Mvvm.Native;
 
 namespace MediTech.Reports.Operating.Pharmacy
 {
@@ -34,6 +35,11 @@ namespace MediTech.Reports.Operating.Pharmacy
                 {
                     if (languageType.ToUpper() == "EN")
                     {
+                        if(!string.IsNullOrEmpty(item.ItemUnitEn))
+                        {
+                            item.ItemUnit = item.ItemUnitEn;
+                        }
+
                         if (item.NumericValue == null || item.NumericValue == 0)
                         {
                             item.DrugLable = item.DrugLableEN + " " + item.Dosage + " " + item.ItemUnit;
