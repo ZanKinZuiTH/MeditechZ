@@ -31,6 +31,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CheckupPage8));
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
+            this.xrRichText2 = new DevExpress.XtraReports.UI.XRRichText();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.xrTable4 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow20 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -46,7 +47,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
             this.lbEKGResult = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbEKGRecommend = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrRichText2 = new DevExpress.XtraReports.UI.XRRichText();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.tbRediology = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow18 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -149,9 +149,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell94 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell95 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
+            ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbEKG)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbRediology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
@@ -163,6 +163,14 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrRichText2});
             this.TopMargin.HeightF = 40F;
             this.TopMargin.Name = "TopMargin";
+            // 
+            // xrRichText2
+            // 
+            this.xrRichText2.Font = new System.Drawing.Font("Times New Roman", 9.75F);
+            this.xrRichText2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 20F);
+            this.xrRichText2.Name = "xrRichText2";
+            this.xrRichText2.SerializableRtfString = resources.GetString("xrRichText2.SerializableRtfString");
+            this.xrRichText2.SizeF = new System.Drawing.SizeF(12F, 20F);
             // 
             // BottomMargin
             // 
@@ -253,7 +261,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.tbEKG.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow1,
             this.xrTableRow2});
-            this.tbEKG.SizeF = new System.Drawing.SizeF(498F, 90.86682F);
+            this.tbEKG.SizeF = new System.Drawing.SizeF(498F, 75.24182F);
             this.tbEKG.StylePriority.UseBorderColor = false;
             this.tbEKG.StylePriority.UseBorderDashStyle = false;
             this.tbEKG.StylePriority.UseBorders = false;
@@ -320,14 +328,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbEKGRecommend.StylePriority.UseTextAlignment = false;
             this.lbEKGRecommend.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.lbEKGRecommend.Weight = 1.9278064855484867D;
-            // 
-            // xrRichText2
-            // 
-            this.xrRichText2.Font = new System.Drawing.Font("Times New Roman", 9.75F);
-            this.xrRichText2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 20F);
-            this.xrRichText2.Name = "xrRichText2";
-            this.xrRichText2.SerializableRtfString = resources.GetString("xrRichText2.SerializableRtfString");
-            this.xrRichText2.SizeF = new System.Drawing.SizeF(12F, 20F);
             // 
             // xrLabel1
             // 
@@ -580,7 +580,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell96.StylePriority.UseTextAlignment = false;
             this.xrTableCell96.Text = "Test";
             this.xrTableCell96.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell96.Weight = 0.95881904705852072D;
+            this.xrTableCell96.Weight = 0.52860576611802979D;
             // 
             // xrTableCell97
             // 
@@ -593,7 +593,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell97.StylePriority.UseTextAlignment = false;
             this.xrTableCell97.Text = "Report Result";
             this.xrTableCell97.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell97.Weight = 2.0790054197472436D;
+            this.xrTableCell97.Weight = 2.5092187006877347D;
             // 
             // xrTableRow34
             // 
@@ -612,7 +612,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell109.Multiline = true;
             this.xrTableCell109.Name = "xrTableCell109";
             this.xrTableCell109.Text = "xrTableCell109";
-            this.xrTableCell109.Weight = 0.958819047058515D;
+            this.xrTableCell109.Weight = 0.528605766118024D;
             // 
             // xrTableCell110
             // 
@@ -625,7 +625,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell110.StylePriority.UseTextAlignment = false;
             this.xrTableCell110.Text = "Back Musde";
             this.xrTableCell110.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell110.Weight = 0.78284014562536541D;
+            this.xrTableCell110.Weight = 0.86674867817980172D;
             // 
             // xrTableCell111
             // 
@@ -638,7 +638,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell111.StylePriority.UseTextAlignment = false;
             this.xrTableCell111.Text = "Leg Musde";
             this.xrTableCell111.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell111.Weight = 0.65764254963909963D;
+            this.xrTableCell111.Weight = 0.87368589427836785D;
             // 
             // xrTableCell112
             // 
@@ -651,7 +651,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell112.StylePriority.UseTextAlignment = false;
             this.xrTableCell112.Text = "Grip Musde\r\n";
             this.xrTableCell112.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell112.Weight = 0.638522724482784D;
+            this.xrTableCell112.Weight = 0.76878412822957043D;
             // 
             // xrTableRow35
             // 
@@ -676,7 +676,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell114.StylePriority.UseTextAlignment = false;
             this.xrTableCell114.Text = "Value Strength";
             this.xrTableCell114.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell114.Weight = 0.95881904705852117D;
+            this.xrTableCell114.Weight = 0.52860576611803023D;
             // 
             // lbBackValue
             // 
@@ -688,7 +688,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbBackValue.StylePriority.UseFont = false;
             this.lbBackValue.StylePriority.UseTextAlignment = false;
             this.lbBackValue.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbBackValue.Weight = 0.78284012950971282D;
+            this.lbBackValue.Weight = 0.86674861552446747D;
             // 
             // lbValueLegStrength
             // 
@@ -700,7 +700,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbValueLegStrength.StylePriority.UseFont = false;
             this.lbValueLegStrength.StylePriority.UseTextAlignment = false;
             this.lbValueLegStrength.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbValueLegStrength.Weight = 0.65764250800177193D;
+            this.lbValueLegStrength.Weight = 0.8736858991807217D;
             // 
             // lbValueGripStrength
             // 
@@ -712,7 +712,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbValueGripStrength.StylePriority.UseFont = false;
             this.lbValueGripStrength.StylePriority.UseTextAlignment = false;
             this.lbValueGripStrength.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbValueGripStrength.Weight = 0.6385227822357582D;
+            this.lbValueGripStrength.Weight = 0.76878418598254461D;
             // 
             // xrTableRow36
             // 
@@ -737,7 +737,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell118.StylePriority.UseTextAlignment = false;
             this.xrTableCell118.Text = "Strength";
             this.xrTableCell118.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell118.Weight = 0.95881904705852117D;
+            this.xrTableCell118.Weight = 0.52860576611803023D;
             // 
             // lbBackStrenght
             // 
@@ -749,7 +749,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbBackStrenght.StylePriority.UseFont = false;
             this.lbBackStrenght.StylePriority.UseTextAlignment = false;
             this.lbBackStrenght.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbBackStrenght.Weight = 0.78284012950971282D;
+            this.lbBackStrenght.Weight = 0.8667488482228749D;
             // 
             // lbLegStrength
             // 
@@ -761,7 +761,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbLegStrength.StylePriority.UseFont = false;
             this.lbLegStrength.StylePriority.UseTextAlignment = false;
             this.lbLegStrength.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbLegStrength.Weight = 0.65764250800177193D;
+            this.lbLegStrength.Weight = 0.87368575956167749D;
             // 
             // lbGripStrength
             // 
@@ -773,7 +773,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbGripStrength.StylePriority.UseFont = false;
             this.lbGripStrength.StylePriority.UseTextAlignment = false;
             this.lbGripStrength.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbGripStrength.Weight = 0.6385227822357582D;
+            this.lbGripStrength.Weight = 0.76878409290318162D;
             // 
             // xrTableRow45
             // 
@@ -794,7 +794,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell128.StylePriority.UseTextAlignment = false;
             this.xrTableCell128.Text = "สรุปผล";
             this.xrTableCell128.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell128.Weight = 0.958819047058521D;
+            this.xrTableCell128.Weight = 0.5286057661180299D;
             // 
             // lbMuscleResult
             // 
@@ -804,7 +804,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbMuscleResult.StylePriority.UseFont = false;
             this.lbMuscleResult.StylePriority.UseTextAlignment = false;
             this.lbMuscleResult.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbMuscleResult.Weight = 2.0790054197472436D;
+            this.lbMuscleResult.Weight = 2.5092187006877347D;
             // 
             // xrTableRow46
             // 
@@ -825,7 +825,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell132.StylePriority.UseTextAlignment = false;
             this.xrTableCell132.Text = "หมายเหตุ";
             this.xrTableCell132.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell132.Weight = 0.958819047058521D;
+            this.xrTableCell132.Weight = 0.5286057661180299D;
             // 
             // lbNoteMuscle
             // 
@@ -835,7 +835,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbNoteMuscle.StylePriority.UseFont = false;
             this.lbNoteMuscle.StylePriority.UseTextAlignment = false;
             this.lbNoteMuscle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbNoteMuscle.Weight = 2.0790054197472436D;
+            this.lbNoteMuscle.Weight = 2.5092187006877347D;
             // 
             // xrTable3
             // 
@@ -1651,10 +1651,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.PageHeight = 827;
             this.PageWidth = 583;
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;
-            this.Version = "20.2";
+            this.Version = "22.1";
+            ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbEKG)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbRediology)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).EndInit();
