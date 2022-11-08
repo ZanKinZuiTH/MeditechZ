@@ -74,7 +74,6 @@ namespace MediTech.Views
                         grvExamList.BestFitColumns();
                     }
 
-
                 }
             }
         }

@@ -253,12 +253,14 @@
                                  CustomColumnDisplayText="grdExamList_CustomColumnDisplayText">
                     <dxmvvm:Interaction.Behaviors>
                         <helper:DeferredColumnFitBehavior/>
+                        <dxmvvm:ReadOnlyDependencyPropertyBindingBehavior Property="VisibleItems" Binding="{Binding VisibleData, Mode=OneWayToSource}"/>
                     </dxmvvm:Interaction.Behaviors>
                     <dxg:GridControl.ContextMenu>
                         <ContextMenu>
                             <MenuItem  Header="View PACS" Command="{Binding ViewPACSCommand}"/>
                         </ContextMenu>
                     </dxg:GridControl.ContextMenu>
+                    
                     <dxg:GridControl.Columns>
                         <dxg:GridColumn Header="No" FieldName="RowHandle" Width="30" Fixed="Left" />
                         <dxg:GridColumn x:Name="colSelected" 

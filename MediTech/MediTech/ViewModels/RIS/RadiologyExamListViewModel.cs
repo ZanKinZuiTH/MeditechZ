@@ -146,6 +146,14 @@ namespace MediTech.ViewModels
             set { Set(ref _RequestExamList, value); }
         }
 
+        private ObservableCollection<object> _VisibleData;
+
+        public ObservableCollection<object> VisibleData
+        {
+            get { return _VisibleData; }
+            set { Set(ref _VisibleData, value); }
+        }
+
         private List<CareproviderModel> _Radiologist;
 
         public List<CareproviderModel> Radiologist
@@ -300,7 +308,19 @@ namespace MediTech.ViewModels
                 Set(ref _IsSelectedAll, value);
                 if (!SurpassSelectAll)
                 {
-                    foreach (var requestExam in RequestExamList)
+                    List<long> requestDetailUID = new List<long>();
+                    foreach (var item in VisibleData)
+                    {
+                        if (item is RequestListModel)
+                        {
+                            requestDetailUID.Add((item as RequestListModel).RequestDetailUID);
+                        }
+
+                    }
+                    var requestVisibleData = from j in RequestExamList
+                                             join i in requestDetailUID on j.RequestDetailUID equals i
+                                             select j;
+                    foreach (var requestExam in requestVisibleData)
                     {
                         if (IsSelectedAll == true)
                         {
@@ -314,7 +334,7 @@ namespace MediTech.ViewModels
                     if (IsSelectedAll == true)
                     {
                         VisibilityCount = System.Windows.Visibility.Visible;
-                        CountSelect = "Count : " + RequestExamList.Count();
+                        CountSelect = "Count : " + requestVisibleData.Count();
                     }
                     else if (IsSelectedAll == false)
                     {
