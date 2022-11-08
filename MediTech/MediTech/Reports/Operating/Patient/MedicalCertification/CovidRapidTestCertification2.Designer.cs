@@ -163,7 +163,7 @@ namespace MediTech.Reports.Operating.Patient
             // 
             this.logoFooter.BorderWidth = 0F;
             this.logoFooter.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("logoFooter.ImageSource"));
-            this.logoFooter.LocationFloat = new DevExpress.Utils.PointFloat(50.50954F, 774.2249F);
+            this.logoFooter.LocationFloat = new DevExpress.Utils.PointFloat(44.72351F, 830.3234F);
             this.logoFooter.Name = "logoFooter";
             this.logoFooter.SizeF = new System.Drawing.SizeF(122.7141F, 46.5269F);
             this.logoFooter.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
@@ -172,7 +172,7 @@ namespace MediTech.Reports.Operating.Patient
             // lbAddress1
             // 
             this.lbAddress1.Font = new System.Drawing.Font("Tahoma", 7F);
-            this.lbAddress1.LocationFloat = new DevExpress.Utils.PointFloat(207.9874F, 790.3232F);
+            this.lbAddress1.LocationFloat = new DevExpress.Utils.PointFloat(207.9876F, 846.4216F);
             this.lbAddress1.Name = "lbAddress1";
             this.lbAddress1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.lbAddress1.SizeF = new System.Drawing.SizeF(584.2858F, 13.21431F);
@@ -183,7 +183,7 @@ namespace MediTech.Reports.Operating.Patient
             // lbFooterOrganisation
             // 
             this.lbFooterOrganisation.Font = new System.Drawing.Font("Times New Roman", 8F);
-            this.lbFooterOrganisation.LocationFloat = new DevExpress.Utils.PointFloat(344.178F, 774.2249F);
+            this.lbFooterOrganisation.LocationFloat = new DevExpress.Utils.PointFloat(344.1782F, 830.3234F);
             this.lbFooterOrganisation.Name = "lbFooterOrganisation";
             this.lbFooterOrganisation.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.lbFooterOrganisation.SizeF = new System.Drawing.SizeF(448.0953F, 20.09827F);
@@ -194,7 +194,7 @@ namespace MediTech.Reports.Operating.Patient
             // lbAddress2
             // 
             this.lbAddress2.Font = new System.Drawing.Font("Tahoma", 7F);
-            this.lbAddress2.LocationFloat = new DevExpress.Utils.PointFloat(207.9874F, 803.5374F);
+            this.lbAddress2.LocationFloat = new DevExpress.Utils.PointFloat(207.9876F, 859.6357F);
             this.lbAddress2.Name = "lbAddress2";
             this.lbAddress2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.lbAddress2.SizeF = new System.Drawing.SizeF(584.2858F, 13.21431F);
@@ -880,7 +880,7 @@ namespace MediTech.Reports.Operating.Patient
             this.PatientUID,
             this.PatientVisitUID,
             this.LogoType});
-            this.Version = "20.2";
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();

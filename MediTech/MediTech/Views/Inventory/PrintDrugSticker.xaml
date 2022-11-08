@@ -85,9 +85,20 @@
                 </dxg:GridControl.View>
             </dxg:GridControl>
             <dxlc:LayoutGroup Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-                <dxe:ComboBoxEdit ItemsSource="{Binding PrinterLists}"
+                <dxlc:LayoutItem Label="ภาษาที่ต้องการ" >
+                    <dxe:ComboBoxEdit ItemsSource="{Binding language}" 
+                                      SelectedItem="{Binding Selectlanguage}"
+                                      ValueMember="Key"
+                                      DisplayMember="Display"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      Width="180" Height="25"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Printer">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding PrinterLists}"
                                       SelectedItem="{Binding SelectPrinter}"
                         Width="180" Height="25"/>
+                </dxlc:LayoutItem>
                 <Button Name="PrintBtn" Command="{Binding PrintCommand}" Content="Print" Width="80" Height="26"/>
             </dxlc:LayoutGroup>
         </dxlc:LayoutControl>

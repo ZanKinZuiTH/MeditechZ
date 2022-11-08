@@ -253,8 +253,8 @@
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup Orientation="Horizontal">
                         <dxlc:LayoutItem Label="Payor">
-                            <dxg:LookUpEdit x:Name="lkePayorName2" ItemsSource="{Binding InsuranceCompany}" 
-                                      SelectedItem="{Binding SelectInsuranceCompany}"
+                            <dxg:LookUpEdit x:Name="lkePayorName2" ItemsSource="{Binding InsuranceCompany2}" 
+                                      SelectedItem="{Binding SelectInsuranceCompany2}"
                                       ValueMember="InsuranceCompanyUID"
                                       DisplayMember="CompanyName"
                                       NullValueButtonPlacement="EditBox"

@@ -10,6 +10,8 @@ using MediTech.Model.Report;
 using System.Windows.Media.Imaging;
 using System.IO;
 using System.Linq;
+using DevExpress.XtraReports.Parameters;
+using DevExpress.Mvvm.Native;
 
 namespace MediTech.Reports.Operating.Pharmacy
 {
@@ -25,16 +27,44 @@ namespace MediTech.Reports.Operating.Pharmacy
         {
             int OrganisationUID = int.Parse(this.Parameters["OrganisationUID"].Value.ToString());
             long prescriptionItemUID = long.Parse(this.Parameters["PrescriptionItemUID"].Value.ToString());
+            string languageType = this.Parameters["LangType"].Value.ToString();
             List<DrugStickerModel> drugSticker = (new PharmacyService()).PrintStrickerDrug(prescriptionItemUID);
             if (drugSticker != null)
             {
                 foreach (var item in drugSticker)
                 {
-                    if (item.NumericValue == null || item.NumericValue == 0)
+                    if (languageType.ToUpper() == "EN")
                     {
-                        item.DrugLable = item.DrugLable + " " + item.Dosage + " " + item.ItemUnit;
+                        if(!string.IsNullOrEmpty(item.ItemUnitEn))
+                        {
+                            item.ItemUnit = item.ItemUnitEn;
+                        }
+
+                        if (item.NumericValue == null || item.NumericValue == 0)
+                        {
+                            item.DrugLable = item.DrugLableEN + " " + item.Dosage + " " + item.ItemUnit;
+                        }
+                        else
+                        {
+                            item.DrugLable = item.DrugLableEN;
+                        }
+
+                        item.FrequencyDefinition = item.FrequencyDefinitionEn;
+                        item.PatientInstruction = item.PatientInstructionEn;
+
+                        if(item.DoctorNameEn != null)
+                        item.DoctorName = item.DoctorNameEn;
                     }
+                    else
+                    {
+                        if (item.NumericValue == null || item.NumericValue == 0)
+                        {
+                            item.DrugLable = item.DrugLable + " " + item.Dosage + " " + item.ItemUnit;
+                        }
+                    }
+
                     item.QuantityLabel = item.Quantity != null ? "#" + item.Quantity + " " + item.ItemUnit : "";
+                       
                 }
             }
             
@@ -46,11 +76,6 @@ namespace MediTech.Reports.Operating.Pharmacy
                 if (!string.IsNullOrEmpty(OrganisationUID.ToString()) && OrganisationUID != 0)
                 {
                     var Organisation = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
-                    lbFooterOrganisation.Text = Organisation.Description != null ? Organisation.Description?.ToString() : "";
-                    string mobile1 = Organisation.MobileNo != null ? "Tel. " + Organisation.MobileNo.ToString() : "";
-
-                    lbAddress.Text = Organisation.Address != null ? Organisation.Address?.ToString() + " "+ mobile1 : "";
-
                     if (Organisation.LogoImage != null)
                     {
                         MemoryStream ms = new MemoryStream(Organisation.LogoImage);
@@ -62,14 +87,25 @@ namespace MediTech.Reports.Operating.Pharmacy
                         logo.Image = Image.FromStream(ms);
                     }
 
+                    if (languageType.ToUpper() == "EN")
+                    {
+                        lbFooterOrganisation.Text = Organisation.Description != null ? Organisation.Description?.ToString() : "";
+                        string mobile1 = Organisation.MobileNo != null ? "Tel. " + Organisation.MobileNo.ToString() : "";
+
+                        lbAddress.Text = Organisation.Address2 != null ? Organisation.Address2?.ToString() + " " + mobile1 : "";                        
+                    }
+                    else
+                    {
+                         lbFooterOrganisation.Text = Organisation.Description != null ? Organisation.Description?.ToString() : "";
+                        string mobile1 = Organisation.MobileNo != null ? "Tel. " + Organisation.MobileNo.ToString() : "";
+
+                        lbAddress.Text = Organisation.Address != null ? Organisation.Address?.ToString() + " " + mobile1 : "";
+                    }
                 }
                 else
                 {
-                    var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(AppUtil.Current.OwnerOrganisationUID);
-                    lbFooterOrganisation.Text = OrganisationDefault.Description?.ToString();
-                    string mobile2 = OrganisationDefault.MobileNo != null ? "Tel. " + OrganisationDefault.MobileNo.ToString() : "";
 
-                    lbAddress.Text = OrganisationDefault.Address?.ToString() + " " + mobile2;
+                    var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(AppUtil.Current.OwnerOrganisationUID);
                     if (OrganisationDefault.LogoImage != null)
                     {
                         MemoryStream ms = new MemoryStream(OrganisationDefault.LogoImage);
@@ -79,6 +115,24 @@ namespace MediTech.Reports.Operating.Pharmacy
                     {
                         MemoryStream ms = new MemoryStream(OrganisationBRXG.LogoImage);
                         logo.Image = Image.FromStream(ms);
+                    }
+
+                    if (languageType.ToUpper() == "EN")
+                    {
+                        
+                        lbFooterOrganisation.Text = OrganisationDefault.Description?.ToString();
+                        string mobile2 = OrganisationDefault.MobileNo != null ? "Tel. " + OrganisationDefault.MobileNo.ToString() : "";
+
+                        lbAddress.Text = OrganisationDefault.Address2?.ToString() + " " + mobile2;
+                        
+                    }
+                    else
+                    {
+                        lbFooterOrganisation.Text = OrganisationDefault.Description?.ToString();
+                        string mobile2 = OrganisationDefault.MobileNo != null ? "Tel. " + OrganisationDefault.MobileNo.ToString() : "";
+
+                        lbAddress.Text = OrganisationDefault.Address?.ToString() + " " + mobile2;
+                        
                     }
                 }
                 //string healthOrganisationCode = drugSticker.FirstOrDefault().OrganisationCode;

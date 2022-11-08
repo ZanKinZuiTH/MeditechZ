@@ -116,6 +116,25 @@ namespace MediTech.ViewModels
             }
         }
 
+        private List<InsuranceCompanyModel> _InsuranceCompany2;
+
+        public List<InsuranceCompanyModel> InsuranceCompany2
+        {
+            get { return _InsuranceCompany2; }
+            set { Set(ref _InsuranceCompany2, value); }
+        }
+
+        private InsuranceCompanyModel _SelectInsuranceCompany2;
+
+        public InsuranceCompanyModel SelectInsuranceCompany2
+        {
+            get { return _SelectInsuranceCompany2; }
+            set
+            {
+                Set(ref _SelectInsuranceCompany2, value);
+            }
+        }
+
         private PayorDetailModel _SelectPayorDetail2;
 
         public PayorDetailModel SelectPayorDetail2
@@ -346,6 +365,7 @@ namespace MediTech.ViewModels
         {
             DateTime now = DateTime.Now;
             InsuranceCompany = DataService.Billing.GetInsuranceCompanyAll();
+            InsuranceCompany2 = DataService.Billing.GetInsuranceCompanyAll();
             DateFrom = now;
             DateTo = now;
             JobDateFrom = now;
@@ -1186,7 +1206,7 @@ namespace MediTech.ViewModels
                 patientID = SelectedPateintSearch.PatientID;
             }
 
-            payorDetailUID = SelectPayorDetail2 != null ? SelectPayorDetail2.PayorDetailUID : (int?)null;
+            payorDetailUID = SelectInsuranceCompany2 != null ? SelectInsuranceCompany2.InsuranceCompanyUID : (int?)null;
             PatientVisits = DataService.PatientIdentity.SearchPatientVisit(patientID, null, null, null, null, DateFrom, DateTo,null, null, null, payorDetailUID, null,"");
         }
 

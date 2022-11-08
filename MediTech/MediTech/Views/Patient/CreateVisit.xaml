@@ -166,6 +166,9 @@
                                       ItemsSource="{Binding CareproviderSource}"
                                       SelectedItem="{Binding SelectedCareprovider}"/>
                     </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Company">
+                        <dxe:TextEdit Text="{Binding Company}"/>
+                    </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="หมายเหตุ" LabelVerticalAlignment="Top">
                         <TextBox Name="txtDetail"   Text="{Binding CommentDoctor,Mode=TwoWay}"
                                                      Height="50"
