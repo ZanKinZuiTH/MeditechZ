@@ -331,6 +331,12 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell63 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell66 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
+            this.RowCopperBlood = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.CopperbloodRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.CopperBlood1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.CopperBlood2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.CopperBlood3 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbToxicology)).BeginInit();
@@ -408,7 +414,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel7,
             this.xrTable3,
             this.xrLabel4});
-            this.Detail.HeightF = 1230.243F;
+            this.Detail.HeightF = 1277.743F;
             this.Detail.Name = "Detail";
             // 
             // tbToxicology
@@ -461,8 +467,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.RowAmmo,
             this.RowLeadInu,
             this.RowCholinesteraseBlood,
-            this.RowThinnerUrine});
-            this.tbToxicology.SizeF = new System.Drawing.SizeF(498F, 964.5755F);
+            this.RowThinnerUrine,
+            this.RowCopperBlood});
+            this.tbToxicology.SizeF = new System.Drawing.SizeF(498F, 987.7924F);
             this.tbToxicology.StylePriority.UseBorderColor = false;
             this.tbToxicology.StylePriority.UseBorders = false;
             this.tbToxicology.StylePriority.UseBorderWidth = false;
@@ -3653,6 +3660,70 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel4.Text = "การเพาะเชื้อจากอุจจาระ (Stool Culture) ";
             this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
+            // RowCopperBlood
+            // 
+            this.RowCopperBlood.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell11,
+            this.CopperbloodRange,
+            this.CopperBlood1,
+            this.CopperBlood2,
+            this.CopperBlood3});
+            this.RowCopperBlood.Name = "RowCopperBlood";
+            this.RowCopperBlood.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell11
+            // 
+            this.xrTableCell11.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell11.Multiline = true;
+            this.xrTableCell11.Name = "xrTableCell11";
+            this.xrTableCell11.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell11.StylePriority.UseFont = false;
+            this.xrTableCell11.StylePriority.UsePadding = false;
+            this.xrTableCell11.StylePriority.UseTextAlignment = false;
+            this.xrTableCell11.Text = "Copper in Blood";
+            this.xrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell11.Weight = 1.2913566084432759D;
+            // 
+            // CopperbloodRange
+            // 
+            this.CopperbloodRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.CopperbloodRange.Multiline = true;
+            this.CopperbloodRange.Name = "CopperbloodRange";
+            this.CopperbloodRange.StylePriority.UseFont = false;
+            this.CopperbloodRange.StylePriority.UseTextAlignment = false;
+            this.CopperbloodRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.CopperbloodRange.Weight = 0.93906236153056333D;
+            // 
+            // CopperBlood1
+            // 
+            this.CopperBlood1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.CopperBlood1.Multiline = true;
+            this.CopperBlood1.Name = "CopperBlood1";
+            this.CopperBlood1.StylePriority.UseFont = false;
+            this.CopperBlood1.StylePriority.UseTextAlignment = false;
+            this.CopperBlood1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.CopperBlood1.Weight = 0.443296332132815D;
+            // 
+            // CopperBlood2
+            // 
+            this.CopperBlood2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.CopperBlood2.Multiline = true;
+            this.CopperBlood2.Name = "CopperBlood2";
+            this.CopperBlood2.StylePriority.UseFont = false;
+            this.CopperBlood2.StylePriority.UseTextAlignment = false;
+            this.CopperBlood2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.CopperBlood2.Weight = 0.44329633245297495D;
+            // 
+            // CopperBlood3
+            // 
+            this.CopperBlood3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.CopperBlood3.Multiline = true;
+            this.CopperBlood3.Name = "CopperBlood3";
+            this.CopperBlood3.StylePriority.UseFont = false;
+            this.CopperBlood3.StylePriority.UseTextAlignment = false;
+            this.CopperBlood3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.CopperBlood3.Weight = 0.44329635320818539D;
+            // 
             // CheckupPage7
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -3660,11 +3731,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.BottomMargin,
             this.Detail});
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(45, 40, 40, 40);
+            this.Margins = new System.Drawing.Printing.Margins(45, 39, 40, 40);
             this.PageHeight = 827;
             this.PageWidth = 583;
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;
-            this.Version = "20.2";
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbToxicology)).EndInit();
@@ -3976,5 +4047,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         public DevExpress.XtraReports.UI.XRTableCell ChroinS1;
         public DevExpress.XtraReports.UI.XRTableCell ChroinS2;
         public DevExpress.XtraReports.UI.XRTableCell ChroinS3;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell11;
+        public DevExpress.XtraReports.UI.XRTableCell CopperbloodRange;
+        public DevExpress.XtraReports.UI.XRTableCell CopperBlood1;
+        public DevExpress.XtraReports.UI.XRTableCell CopperBlood2;
+        public DevExpress.XtraReports.UI.XRTableCell CopperBlood3;
+        public DevExpress.XtraReports.UI.XRTableRow RowCopperBlood;
     }
 }

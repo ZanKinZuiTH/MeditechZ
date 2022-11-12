@@ -538,6 +538,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page7.RowLeadInu.Visible = false;
                 page7.RowCholinesteraseBlood.Visible = false;
                 page7.RowThinnerUrine.Visible = false;
+                page7.RowCopperBlood.Visible = false;
 
                 #endregion
 
@@ -700,6 +701,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             || p.RequestItemCode.Contains("LAB575")// Ammo
                             || p.RequestItemCode.Contains("LAB487") //Lead in Urin 
                             || p.RequestItemCode.Contains("LAB511")
+                            || p.RequestItemCode.Contains("LAB543")//copper blood
                             || p.RequestItemCode.Contains("LAB606"))
                              .OrderByDescending(p => p.Year);
                         GenerateToxicology(ToxicoTestSet);
@@ -2065,6 +2067,19 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         page7.ThinnerUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285" && p.Year == year1)?.ResultValue;
                         page7.ThinnerUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285" && p.Year == year2)?.ResultValue;
                         page7.ThinnerUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285" && p.Year == year3)?.ResultValue;
+                    }
+
+                    #endregion
+                    
+                    #region Copper in blood
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR139") != null)
+                    {
+                        page7.RowCopperBlood.Visible = true;
+                        page7.CopperbloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR139")?.ReferenceRange;
+                        page7.CopperBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR139" && p.Year == year1)?.ResultValue;
+                        page7.CopperBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PPAR139" && p.Year == year2)?.ResultValue;
+                        page7.CopperBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1139" && p.Year == year3)?.ResultValue;
                     }
 
                     #endregion
