@@ -409,6 +409,48 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
 
                 }
 
+                #region Hide Toxico
+
+                page3.RowIsopropanol.Visible = false;
+                page3.RowStyreneUrine.Visible = false;
+                page3.RowAluminiumBlood.Visible = false;
+                page3.RowArsenic.Visible = false;
+                page3.CyclohexanoneRow.Visible = false;
+                page3.RowPhenol.Visible = false;
+                page3.RowMibkUrine.Visible = false;
+                page3.RowCadmiumUrine.Visible = false;
+                page3.RowEthylbenzeneUrine.Visible = false;
+                page3.RowMercuryUrine.Visible = false;
+                page3.RowMEK.Visible = false;
+                page3.RowCarboxy.Visible = false;
+                page3.RowBenzene.Visible = false;
+                page3.RowMethanol.Visible = false;
+                page3.RowMethyrene.Visible = false;
+                page3.RowHexane.Visible = false;
+                page3.RowNickelUrine.Visible = false;
+                page3.RowMibkUrine.Visible = false;
+                page3.RowEthylbenzeneUrine.Visible = false;
+                page3.RowMercuryUrine.Visible = false;
+                page3.RowMethyreneUrine.Visible = false;
+                page3.RowBenzenettUrine.Visible = false;
+                page3.RowMercuryBlood.Visible = false;
+                page3.Rowfluoride.Visible = false;
+                page3.RowFormadehyde.Visible = false;
+                page3.Row25Hexan.Visible = false;
+                page3.RowManganese.Visible = false;
+                page3.RowZinc.Visible = false;
+                page3.RowIron.Visible = false;
+                page3.RowCadInb.Visible = false;
+                page3.RowChroinB.Visible = false;
+                page3.RowAmmo.Visible = false;
+                page3.RowLeadinU.Visible = false;
+                page3.RowAlu.Visible = false;
+                page3.RowLeadinU.Visible = true;
+                page3.RowCholinesteraseBlood.Visible = false;
+                page3.RowThinnerUrine.Visible = false;
+                page3.RowCopperBlood.Visible = false;
+                #endregion
+
                 var occmed = data.MobileResult;
                 if (occmed != null)
                 {
@@ -559,6 +601,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                         || p.RequestItemCode.Contains("LAB575") // Ammo
                         || p.RequestItemCode.Contains("LAB487") // Lead in Urin 
                         || p.RequestItemCode.Contains("LAB511")
+                        || p.RequestItemCode.Contains("LAB543")//copper blood
                         || p.RequestItemCode.Contains("LAB606"))
                         .OrderByDescending(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
@@ -973,43 +1016,6 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
 
             if (labTestSet != null)
             {
-                page3.RowIsopropanol.Visible = false;
-                page3.RowStyreneUrine.Visible = false;
-                page3.RowAluminiumBlood.Visible = false;
-                page3.RowArsenic.Visible = false;
-                page3.CyclohexanoneRow.Visible = false;
-                page3.RowPhenol.Visible = false;
-                page3.RowMibkUrine.Visible = false;
-                page3.RowCadmiumUrine.Visible = false;
-                page3.RowEthylbenzeneUrine.Visible = false;
-                page3.RowMercuryUrine.Visible = false;
-                page3.RowMEK.Visible = false;
-                page3.RowCarboxy.Visible = false;
-                page3.RowBenzene.Visible = false;
-                page3.RowMethanol.Visible = false;
-                page3.RowMethyrene.Visible = false;
-                page3.RowHexane.Visible = false;
-                page3.RowNickelUrine.Visible = false;
-                page3.RowMibkUrine.Visible = false;
-                page3.RowEthylbenzeneUrine.Visible = false;
-                page3.RowMercuryUrine.Visible = false;
-                page3.RowMethyreneUrine.Visible = false;
-                page3.RowBenzenettUrine.Visible = false;
-                page3.RowMercuryBlood.Visible = false;
-                page3.Rowfluoride.Visible = false;
-                page3.RowFormadehyde.Visible = false;
-                page3.Row25Hexan.Visible = false;
-                page3.RowManganese.Visible = false;
-                page3.RowZinc.Visible = false;
-                page3.RowIron.Visible = false;
-                page3.RowCadInb.Visible = false;
-                page3.RowChroinB.Visible = false;
-                page3.RowAmmo.Visible = false;
-                page3.RowLeadinU.Visible = false;
-                page3.RowAlu.Visible = false;
-                page3.RowLeadinU.Visible = true;
-                page3.RowCholinesteraseBlood.Visible = false;
-                page3.RowThinnerUrine.Visible = false;
 
                 if (labTestSet != null && labTestSet.Count() > 0)
                 {
@@ -1481,6 +1487,19 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                         page3.ThinnerUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285" && p.Year == year1)?.ResultValue;
                         page3.ThinnerUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285" && p.Year == year2)?.ResultValue;
                         page3.ThinnerUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285" && p.Year == year3)?.ResultValue;
+                    }
+
+                    #endregion
+
+                    #region Copper in blood
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR139") != null)
+                    {
+                        page3.RowCopperBlood.Visible = true;
+                        page3.CopperbloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR139")?.ReferenceRange;
+                        page3.CopperBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR139" && p.Year == year1)?.ResultValue;
+                        page3.CopperBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PPAR139" && p.Year == year2)?.ResultValue;
+                        page3.CopperBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1139" && p.Year == year3)?.ResultValue;
                     }
 
                     #endregion

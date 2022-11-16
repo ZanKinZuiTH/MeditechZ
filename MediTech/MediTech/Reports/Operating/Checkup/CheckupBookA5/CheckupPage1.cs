@@ -716,7 +716,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             || p.RequestItemCode.Contains("LAB273") //T4
                             || p.RequestItemCode.Contains("LAB274") //FreeT3
                             || p.RequestItemCode.Contains("LAB275") //FreeT4
-                            || p.RequestItemCode.Contains("LAB618") 
+                            || p.RequestItemCode.Contains("LAB618")
+                            || p.RequestItemCode.Contains("LAB431")
                              ).OrderByDescending(p => p.Year);
                         GenerateOther(OtherTestSet);
                         #endregion
@@ -2267,10 +2268,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page6.cellAboGroup2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32" && p.Year == year2)?.ResultValue;
                 page6.cellAboGroup3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32" && p.Year == year3)?.ResultValue;
 
-                page6.cellBloodGroupRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR43")?.ReferenceRange;
-                page6.cellBloodGroup1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR43" && p.Year == year1)?.ResultValue;
-                page6.cellBloodGroup2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR43" && p.Year == year2)?.ResultValue;
-                page6.cellBloodGroup3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR43" && p.Year == year3)?.ResultValue;
+                page6.cellBloodGroupRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR59")?.ReferenceRange;
+                page6.cellBloodGroup1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR59" && p.Year == year1)?.ResultValue;
+                page6.cellBloodGroup2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR59" && p.Year == year2)?.ResultValue;
+                page6.cellBloodGroup3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR59" && p.Year == year3)?.ResultValue;
 
 
                 page6.cellCalciumRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR79")?.ReferenceRange;

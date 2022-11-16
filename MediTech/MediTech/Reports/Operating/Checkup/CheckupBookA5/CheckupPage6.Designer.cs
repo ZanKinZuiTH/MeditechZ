@@ -2420,7 +2420,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell47.StylePriority.UseFont = false;
             this.xrTableCell47.StylePriority.UsePadding = false;
             this.xrTableCell47.StylePriority.UseTextAlignment = false;
-            this.xrTableCell47.Text = "Blood Group Rh";
+            this.xrTableCell47.Text = "VDRL";
             this.xrTableCell47.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell47.Weight = 1.1686395347612062D;
             // 
