@@ -632,13 +632,49 @@ namespace MediTech.ViewModels
                     file.Write(requestMessage);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                ErrorDialog(ex.Message);
             }
 
+        }
 
+        void WritesHL7OrderMessage(RequestLabModel patRequest, List<RequestDetailSpecimenModel> acceptDetailSpecimens)
+        {
+
+            try
+            {
+                DateTime now = DateTime.Now;
+                string patientID = patRequest.PatientID;
+                string orderNumber = patRequest.LabNumber;
+                string surName = patRequest.LastName;
+                string midName = patRequest.MiddleName;
+                string foreName = patRequest.FirstName;
+                string birthDate = patRequest.BirthDate != null ? patRequest.BirthDate.Value.ToString("yyyyMMdd") : "";
+                string sex = patRequest.Gender == "ชาย (Male)" ? "M" : patRequest.Gender == "หญิง (Female)" ? "F" : patRequest.Gender == "ไม่ระบุ (Unknown)" ? "U" : "";
+                string orderDate = patRequest.RequestedDttm.ToString("dd/MM/yyyy");
+                string receivedDttm = now.ToString("yyyyMMddHHmmss");
+                string registedDttm = patRequest.ArrivedDttm.ToString("yyyyMMddHHmmss");
+                string priority = patRequest.PriorityStatus == "Normal" ? "R" : patRequest.PriorityStatus == "Emergency" ? "E" : "";
+                string computerName = System.Environment.MachineName;
+                string height = patRequest.Height?.ToString();
+                List<MediTechInterfechModel> interfaces = DataService.Technical.GetMediTechInterfaceByCode("LABINF");
+                MediTechInterfechModel outPutInterface = interfaces.FirstOrDefault(f => f.ValueCode == "OUTP");
+                string outPutPath = outPutInterface.Value;
+                string fileName = "[LABNUMBER]-[ddMMyyyyhhmmss].pet";
+                fileName = fileName.Replace("[LABNUMBER]", orderNumber);
+                fileName = fileName.Replace("[ddMMyyyyhhmmss]", DateTime.Now.ToString("ddMMyyyyhhmmss"));
+                using (StreamWriter file = new StreamWriter(outPutPath + @"\" + fileName, false, Encoding.GetEncoding("windows-874")))
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ErrorDialog(ex.Message);
+            }
         }
 
         void RejectSpecimen()

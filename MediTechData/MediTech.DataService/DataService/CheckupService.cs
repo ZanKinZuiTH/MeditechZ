@@ -94,9 +94,9 @@ namespace MediTech.DataService
             return flag;
         }
 
-        public List<RequestListModel> SearchCheckupExamList(DateTime? requestDateFrom, DateTime? requestDateTo, long? patientUID, int? insuranceCompanyUID, int? checkupJobUID, int? PRTGPUID)
+        public List<RequestListModel> SearchCheckupExamList(DateTime? requestDateFrom, DateTime? requestDateTo, long? patientUID, int? insuranceCompanyUID, int? checkupJobUID, int? PRTGPUID,int? requestItemUID)
         {
-            string requestApi = string.Format("Api/Checkup/SearchCheckupExamList?requestDateFrom={0:MM/dd/yyyy}&requestDateTo={1:MM/dd/yyyy}&patientUID={2}&insuranceCompanyUID={3}&checkupJobUID={4}&PRTGPUID={5}", requestDateFrom, requestDateTo, patientUID, insuranceCompanyUID, checkupJobUID, PRTGPUID);
+            string requestApi = string.Format("Api/Checkup/SearchCheckupExamList?requestDateFrom={0:MM/dd/yyyy}&requestDateTo={1:MM/dd/yyyy}&patientUID={2}&insuranceCompanyUID={3}&checkupJobUID={4}&PRTGPUID={5}&requestItemUID={6}", requestDateFrom, requestDateTo, patientUID, insuranceCompanyUID, checkupJobUID, PRTGPUID, requestItemUID);
             List<RequestListModel> data = MeditechApiHelper.Get<List<RequestListModel>>(requestApi);
             return data;
         }
