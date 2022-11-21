@@ -290,6 +290,12 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.ThinnerUrine1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.ThinnerUrine2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.ThinnerUrine3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RowCopperBlood = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.CopperbloodRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.CopperBlood1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.CopperBlood2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.CopperBlood3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrTable3 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow10 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -331,12 +337,12 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell63 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell66 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
-            this.RowCopperBlood = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.CopperbloodRange = new DevExpress.XtraReports.UI.XRTableCell();
-            this.CopperBlood1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.CopperBlood2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.CopperBlood3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RowTrichloroUrine = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.TrichloroUrineRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.TrichloroUrine1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.TrichloroUrine2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.TrichloroUrine3 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbToxicology)).BeginInit();
@@ -414,7 +420,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel7,
             this.xrTable3,
             this.xrLabel4});
-            this.Detail.HeightF = 1277.743F;
+            this.Detail.HeightF = 1283.576F;
             this.Detail.Name = "Detail";
             // 
             // tbToxicology
@@ -468,8 +474,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.RowLeadInu,
             this.RowCholinesteraseBlood,
             this.RowThinnerUrine,
-            this.RowCopperBlood});
-            this.tbToxicology.SizeF = new System.Drawing.SizeF(498F, 987.7924F);
+            this.RowCopperBlood,
+            this.RowTrichloroUrine});
+            this.tbToxicology.SizeF = new System.Drawing.SizeF(498F, 1011.009F);
             this.tbToxicology.StylePriority.UseBorderColor = false;
             this.tbToxicology.StylePriority.UseBorders = false;
             this.tbToxicology.StylePriority.UseBorderWidth = false;
@@ -3098,6 +3105,70 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.ThinnerUrine3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.ThinnerUrine3.Weight = 0.44329635320818539D;
             // 
+            // RowCopperBlood
+            // 
+            this.RowCopperBlood.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell11,
+            this.CopperbloodRange,
+            this.CopperBlood1,
+            this.CopperBlood2,
+            this.CopperBlood3});
+            this.RowCopperBlood.Name = "RowCopperBlood";
+            this.RowCopperBlood.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell11
+            // 
+            this.xrTableCell11.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell11.Multiline = true;
+            this.xrTableCell11.Name = "xrTableCell11";
+            this.xrTableCell11.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell11.StylePriority.UseFont = false;
+            this.xrTableCell11.StylePriority.UsePadding = false;
+            this.xrTableCell11.StylePriority.UseTextAlignment = false;
+            this.xrTableCell11.Text = "Copper in Blood";
+            this.xrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell11.Weight = 1.2913566084432759D;
+            // 
+            // CopperbloodRange
+            // 
+            this.CopperbloodRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.CopperbloodRange.Multiline = true;
+            this.CopperbloodRange.Name = "CopperbloodRange";
+            this.CopperbloodRange.StylePriority.UseFont = false;
+            this.CopperbloodRange.StylePriority.UseTextAlignment = false;
+            this.CopperbloodRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.CopperbloodRange.Weight = 0.93906236153056333D;
+            // 
+            // CopperBlood1
+            // 
+            this.CopperBlood1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.CopperBlood1.Multiline = true;
+            this.CopperBlood1.Name = "CopperBlood1";
+            this.CopperBlood1.StylePriority.UseFont = false;
+            this.CopperBlood1.StylePriority.UseTextAlignment = false;
+            this.CopperBlood1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.CopperBlood1.Weight = 0.443296332132815D;
+            // 
+            // CopperBlood2
+            // 
+            this.CopperBlood2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.CopperBlood2.Multiline = true;
+            this.CopperBlood2.Name = "CopperBlood2";
+            this.CopperBlood2.StylePriority.UseFont = false;
+            this.CopperBlood2.StylePriority.UseTextAlignment = false;
+            this.CopperBlood2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.CopperBlood2.Weight = 0.44329633245297495D;
+            // 
+            // CopperBlood3
+            // 
+            this.CopperBlood3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.CopperBlood3.Multiline = true;
+            this.CopperBlood3.Name = "CopperBlood3";
+            this.CopperBlood3.StylePriority.UseFont = false;
+            this.CopperBlood3.StylePriority.UseTextAlignment = false;
+            this.CopperBlood3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.CopperBlood3.Weight = 0.44329635320818539D;
+            // 
             // xrLabel7
             // 
             this.xrLabel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
@@ -3660,69 +3731,69 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel4.Text = "การเพาะเชื้อจากอุจจาระ (Stool Culture) ";
             this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
-            // RowCopperBlood
+            // RowTrichloroUrine
             // 
-            this.RowCopperBlood.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell11,
-            this.CopperbloodRange,
-            this.CopperBlood1,
-            this.CopperBlood2,
-            this.CopperBlood3});
-            this.RowCopperBlood.Name = "RowCopperBlood";
-            this.RowCopperBlood.Weight = 0.92341768297675519D;
+            this.RowTrichloroUrine.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell12,
+            this.TrichloroUrineRange,
+            this.TrichloroUrine1,
+            this.TrichloroUrine2,
+            this.TrichloroUrine3});
+            this.RowTrichloroUrine.Name = "RowTrichloroUrine";
+            this.RowTrichloroUrine.Weight = 0.92341768297675519D;
             // 
-            // xrTableCell11
+            // xrTableCell12
             // 
-            this.xrTableCell11.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell11.Multiline = true;
-            this.xrTableCell11.Name = "xrTableCell11";
-            this.xrTableCell11.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
-            this.xrTableCell11.StylePriority.UseFont = false;
-            this.xrTableCell11.StylePriority.UsePadding = false;
-            this.xrTableCell11.StylePriority.UseTextAlignment = false;
-            this.xrTableCell11.Text = "Copper in Blood";
-            this.xrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell11.Weight = 1.2913566084432759D;
+            this.xrTableCell12.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell12.Multiline = true;
+            this.xrTableCell12.Name = "xrTableCell12";
+            this.xrTableCell12.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell12.StylePriority.UseFont = false;
+            this.xrTableCell12.StylePriority.UsePadding = false;
+            this.xrTableCell12.StylePriority.UseTextAlignment = false;
+            this.xrTableCell12.Text = "Trichloro Methane in Urine";
+            this.xrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell12.Weight = 1.2913566084432759D;
             // 
-            // CopperbloodRange
+            // TrichloroUrineRange
             // 
-            this.CopperbloodRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.CopperbloodRange.Multiline = true;
-            this.CopperbloodRange.Name = "CopperbloodRange";
-            this.CopperbloodRange.StylePriority.UseFont = false;
-            this.CopperbloodRange.StylePriority.UseTextAlignment = false;
-            this.CopperbloodRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.CopperbloodRange.Weight = 0.93906236153056333D;
+            this.TrichloroUrineRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.TrichloroUrineRange.Multiline = true;
+            this.TrichloroUrineRange.Name = "TrichloroUrineRange";
+            this.TrichloroUrineRange.StylePriority.UseFont = false;
+            this.TrichloroUrineRange.StylePriority.UseTextAlignment = false;
+            this.TrichloroUrineRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.TrichloroUrineRange.Weight = 0.93906236153056333D;
             // 
-            // CopperBlood1
+            // TrichloroUrine1
             // 
-            this.CopperBlood1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.CopperBlood1.Multiline = true;
-            this.CopperBlood1.Name = "CopperBlood1";
-            this.CopperBlood1.StylePriority.UseFont = false;
-            this.CopperBlood1.StylePriority.UseTextAlignment = false;
-            this.CopperBlood1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.CopperBlood1.Weight = 0.443296332132815D;
+            this.TrichloroUrine1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.TrichloroUrine1.Multiline = true;
+            this.TrichloroUrine1.Name = "TrichloroUrine1";
+            this.TrichloroUrine1.StylePriority.UseFont = false;
+            this.TrichloroUrine1.StylePriority.UseTextAlignment = false;
+            this.TrichloroUrine1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.TrichloroUrine1.Weight = 0.443296332132815D;
             // 
-            // CopperBlood2
+            // TrichloroUrine2
             // 
-            this.CopperBlood2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.CopperBlood2.Multiline = true;
-            this.CopperBlood2.Name = "CopperBlood2";
-            this.CopperBlood2.StylePriority.UseFont = false;
-            this.CopperBlood2.StylePriority.UseTextAlignment = false;
-            this.CopperBlood2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.CopperBlood2.Weight = 0.44329633245297495D;
+            this.TrichloroUrine2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.TrichloroUrine2.Multiline = true;
+            this.TrichloroUrine2.Name = "TrichloroUrine2";
+            this.TrichloroUrine2.StylePriority.UseFont = false;
+            this.TrichloroUrine2.StylePriority.UseTextAlignment = false;
+            this.TrichloroUrine2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.TrichloroUrine2.Weight = 0.44329633245297495D;
             // 
-            // CopperBlood3
+            // TrichloroUrine3
             // 
-            this.CopperBlood3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.CopperBlood3.Multiline = true;
-            this.CopperBlood3.Name = "CopperBlood3";
-            this.CopperBlood3.StylePriority.UseFont = false;
-            this.CopperBlood3.StylePriority.UseTextAlignment = false;
-            this.CopperBlood3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.CopperBlood3.Weight = 0.44329635320818539D;
+            this.TrichloroUrine3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.TrichloroUrine3.Multiline = true;
+            this.TrichloroUrine3.Name = "TrichloroUrine3";
+            this.TrichloroUrine3.StylePriority.UseFont = false;
+            this.TrichloroUrine3.StylePriority.UseTextAlignment = false;
+            this.TrichloroUrine3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.TrichloroUrine3.Weight = 0.44329635320818539D;
             // 
             // CheckupPage7
             // 
@@ -4053,5 +4124,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         public DevExpress.XtraReports.UI.XRTableCell CopperBlood2;
         public DevExpress.XtraReports.UI.XRTableCell CopperBlood3;
         public DevExpress.XtraReports.UI.XRTableRow RowCopperBlood;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell12;
+        public DevExpress.XtraReports.UI.XRTableCell TrichloroUrineRange;
+        public DevExpress.XtraReports.UI.XRTableCell TrichloroUrine1;
+        public DevExpress.XtraReports.UI.XRTableCell TrichloroUrine2;
+        public DevExpress.XtraReports.UI.XRTableCell TrichloroUrine3;
+        public DevExpress.XtraReports.UI.XRTableRow RowTrichloroUrine;
     }
 }
