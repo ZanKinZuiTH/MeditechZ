@@ -449,6 +449,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                 page3.RowCholinesteraseBlood.Visible = false;
                 page3.RowThinnerUrine.Visible = false;
                 page3.RowCopperBlood.Visible = false;
+                page3.RowTrichloroUrine.Visible = false;
                 #endregion
 
                 var occmed = data.MobileResult;
@@ -601,6 +602,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                         || p.RequestItemCode.Contains("LAB575") // Ammo
                         || p.RequestItemCode.Contains("LAB487") // Lead in Urin 
                         || p.RequestItemCode.Contains("LAB511")
+                        || p.RequestItemCode.Contains("LAB619")
                         || p.RequestItemCode.Contains("LAB543")//copper blood
                         || p.RequestItemCode.Contains("LAB606"))
                         .OrderByDescending(p => p.Year);
@@ -1500,6 +1502,19 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                         page3.CopperBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR139" && p.Year == year1)?.ResultValue;
                         page3.CopperBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PPAR139" && p.Year == year2)?.ResultValue;
                         page3.CopperBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1139" && p.Year == year3)?.ResultValue;
+                    }
+
+                    #endregion
+
+                    #region Trichloro Urine
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1300") != null)
+                    {
+                        page3.RowTrichloroUrine.Visible = true;
+                        page3.TrichloroUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1300")?.ReferenceRange;
+                        page3.TrichloroUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1300" && p.Year == year1)?.ResultValue;
+                        page3.TrichloroUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1300" && p.Year == year2)?.ResultValue;
+                        page3.TrichloroUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1300" && p.Year == year3)?.ResultValue;
                     }
 
                     #endregion

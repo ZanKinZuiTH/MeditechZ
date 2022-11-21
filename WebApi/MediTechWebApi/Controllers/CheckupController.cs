@@ -2119,45 +2119,59 @@ namespace MediTechWebApi.Controllers
                     }
                     else
                     {
-                        PatientVisit patientVisit = new PatientVisit();
+                        PatientVisit patientVisit = db.PatientVisit.Where(p => p.PatientUID == patientUID 
+                        && p.OwnerOrganisationUID == organisationUID 
+                        && p.Comments == "Migrate Lab Result"
+                        && p.StartDttm == enterDate
+                        && p.StatusFlag == "A").FirstOrDefault();
+
                         if (resultItemRange != null)
                         {
-                            patientVisit.PatientUID = resultItemRange.PatientUID;
-                            patientVisit.VISTYUID = 430;
-                            patientVisit.VISTSUID = 418;
-                            patientVisit.PRITYUID = 440;
-                            patientVisit.StartDttm = enterDate;
-                            patientVisit.ArrivedDttm = enterDate;
-                            patientVisit.EndDttm = enterDate;
-                            patientVisit.CUser = userID;
-                            patientVisit.CWhen = now;
-                            patientVisit.MUser = userID;
-                            patientVisit.MWhen = now;
-                            patientVisit.StatusFlag = "A";
-                            patientVisit.Comments = "Migrate Lab Result";
-                            patientVisit.OwnerOrganisationUID = organisationUID;
-                            patientVisit.LocationUID = locationUID;
+                            if (patientVisit == null)
+                            {
+                                patientVisit = new PatientVisit();
+                                patientVisit.PatientUID = resultItemRange.PatientUID;
+                                patientVisit.VISTYUID = 430;
+                                patientVisit.VISTSUID = 418;
+                                patientVisit.PRITYUID = 440;
+                                patientVisit.StartDttm = enterDate;
+                                patientVisit.ArrivedDttm = enterDate;
+                                patientVisit.EndDttm = enterDate;
+                                patientVisit.CUser = userID;
+                                patientVisit.CWhen = now;
+                                patientVisit.MUser = userID;
+                                patientVisit.MWhen = now;
+                                patientVisit.StatusFlag = "A";
+                                patientVisit.Comments = "Migrate Lab Result";
+                                patientVisit.OwnerOrganisationUID = organisationUID;
+                                patientVisit.LocationUID = locationUID;
 
-                            db.PatientVisit.Add(patientVisit);
-                            db.SaveChanges();
+                                db.PatientVisit.Add(patientVisit);
+                                db.SaveChanges();
+                            }
                         }
 
                         PatientVisitPayor visitPayor = new PatientVisitPayor();
                         if (patientVisit != null)
                         {
-                            visitPayor.PatientUID = resultItemRange.PatientUID;
-                            visitPayor.PatientVisitUID = patientVisit.UID;
-                            visitPayor.PayorDetailUID = payorDetailUID;
-                            visitPayor.PayorAgreementUID = payorAgreementsUID;
-                            visitPayor.Comment = "Migrate Lab Result";
-                            visitPayor.CUser = userID;
-                            visitPayor.CWhen = now;
-                            visitPayor.MUser = userID;
-                            visitPayor.MWhen = now;
-                            visitPayor.StatusFlag = "A";
+                            visitPayor  = db.PatientVisitPayor.Find(patientVisit.UID);
 
-                            db.PatientVisitPayor.Add(visitPayor);
-                            db.SaveChanges();
+                            if(visitPayor == null)
+                            {
+                                visitPayor.PatientUID = resultItemRange.PatientUID;
+                                visitPayor.PatientVisitUID = patientVisit.UID;
+                                visitPayor.PayorDetailUID = payorDetailUID;
+                                visitPayor.PayorAgreementUID = payorAgreementsUID;
+                                visitPayor.Comment = "Migrate Lab Result";
+                                visitPayor.CUser = userID;
+                                visitPayor.CWhen = now;
+                                visitPayor.MUser = userID;
+                                visitPayor.MWhen = now;
+                                visitPayor.StatusFlag = "A";
+
+                                db.PatientVisitPayor.Add(visitPayor);
+                                db.SaveChanges();
+                            }
                         }
 
                         int outrequestUID;
