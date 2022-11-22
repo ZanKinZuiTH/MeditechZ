@@ -1870,7 +1870,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pSearchCheckupExamList(DateTime? requestDateFrom, DateTime? requestDateTo, long? patientUID, int? InsuranceCompanyUID, int? checkupJobUID, int? PRTGPUID)
+        public static DataTable pSearchCheckupExamList(DateTime? requestDateFrom, DateTime? requestDateTo, long? patientUID, int? InsuranceCompanyUID, int? checkupJobUID, int? PRTGPUID, int? requestItemUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchCheckupExamList", entities.Database.Connection.ConnectionString);
@@ -1882,6 +1882,7 @@ namespace MediTech.DataBase
             adp.SelectCommand.Parameters.AddWithValue("@P_InsuranceCompanyUID", InsuranceCompanyUID ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_CheckupJobUID", checkupJobUID ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_PRTGPUID", PRTGPUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_RequestItemUID", requestItemUID ?? (object)DBNull.Value);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];

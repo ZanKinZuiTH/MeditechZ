@@ -66,7 +66,7 @@ namespace MediTechWebApi.Controllers
                      Comments = rqd.Comments,
                      IsConfidential = item.IsConfidential
                  }).ToList();
-               
+
             return data;
         }
 
@@ -777,7 +777,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("ReviewLabResult")]
         [HttpPost]
-        public HttpResponseMessage ReviewLabResult(List<RequestDetailItemModel> labRequestDetails,int careproviderUID, int userID)
+        public HttpResponseMessage ReviewLabResult(List<RequestDetailItemModel> labRequestDetails, int careproviderUID, int userID)
         {
             try
             {
@@ -786,7 +786,7 @@ namespace MediTechWebApi.Controllers
                 int imageType = 2516;
                 using (var tran = new TransactionScope())
                 {
-                    Request request = db.Request.Find(labRequestDetails.FirstOrDefault().RequestUID);
+                    Request request = db.Request.Find(labRequestDetails?.FirstOrDefault().RequestUID);
                     //var requestDetails = db.RequestDetail.Where(p => p.RequestUID == request.UID);
 
                     foreach (var delRequestDetail in labRequestDetails)
@@ -984,11 +984,14 @@ namespace MediTechWebApi.Controllers
 
                     }
 
-                    db.Request.Attach(request);
-                    request.ORDSTUID = (new RadiologyController()).CheckRequestStatus(request.UID);
-                    request.MUser = userID;
-                    request.MWhen = now;
-                    db.SaveChanges();
+                    if (request != null)
+                    {
+                        db.Request.Attach(request);
+                        request.ORDSTUID = (new RadiologyController()).CheckRequestStatus(request.UID);
+                        request.MUser = userID;
+                        request.MWhen = now;
+                        db.SaveChanges();
+                    }
 
                     tran.Complete();
                 }

@@ -109,7 +109,7 @@
                         </dxg:LookUpEdit.StyleSettings>
                     </dxg:LookUpEdit>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="รายการ">
+                <dxlc:LayoutItem Label="ประเภท">
                     <dxe:ComboBoxEdit ItemsSource="{Binding RequestItemTypes}" 
                                       SelectedItem="{Binding SelectRequestItemType}"
                                       DisplayMember="Display" ValueMember="Key"
@@ -118,6 +118,14 @@
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup>
+                <dxlc:LayoutItem Label="รายการ">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding RequestItems}" 
+                                      SelectedItem="{Binding SelectRequestItem}"
+                                      DisplayMember="Display" ValueMember="Key"
+                                      NullValueButtonPlacement="EditBox"
+                                      />
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem/>
                 <dxlc:LayoutItem>
                     <dx:SimpleButton HorizontalAlignment="Right" Width="80" Command="{Binding SearchCommand}"
                                      Height="25" Content="ค้นหา"/>

@@ -1175,6 +1175,7 @@ namespace MediTechWebApi.Controllers
             ReferenceValue partiallyDispensed = listOrderStatus.Where(p => p.ValueCode == "OPDISP").FirstOrDefault();
             ReferenceValue partiallyCancelDispensed = listOrderStatus.Where(p => p.ValueCode == "OPCANDISP").FirstOrDefault();
             ReferenceValue partiallycancel = listOrderStatus.Where(p => p.ValueCode == "PRCAN").FirstOrDefault();
+            int raisedCount = listPrescriptionItem.Where(p => p.ORDSTUID == raised.UID).Count();
             int dispensedCount = listPrescriptionItem.Where(p => p.ORDSTUID == dispensed.UID).Count();
             int cancelCount = listPrescriptionItem.Where(p => p.ORDSTUID == cancel.UID).Count();
             int cancelDispensedCount = listPrescriptionItem.Where(p => p.ORDSTUID == cancelDispensed.UID).Count();
@@ -1202,6 +1203,10 @@ namespace MediTechWebApi.Controllers
                     ORDSTUID = partiallyCancelDispensed.UID;
                 }
                 else if (cancelCount >= 1 && dispensedCount >= 1)
+                {
+                    ORDSTUID = raised.UID;
+                }
+                else if (cancelCount >= 1 && raisedCount >= 1)
                 {
                     ORDSTUID = raised.UID;
                 }

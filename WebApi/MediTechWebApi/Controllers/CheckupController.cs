@@ -445,9 +445,9 @@ namespace MediTechWebApi.Controllers
         #region HealthExamList
         [Route("SearchCheckupExamList")]
         [HttpGet]
-        public List<RequestListModel> SearchCheckupExamList(DateTime? requestDateFrom, DateTime? requestDateTo, long? patientUID, int? InsuranceCompanyUID, int? checkupJobUID, int? PRTGPUID)
+        public List<RequestListModel> SearchCheckupExamList(DateTime? requestDateFrom, DateTime? requestDateTo, long? patientUID, int? InsuranceCompanyUID, int? checkupJobUID, int? PRTGPUID, int? requestItemUID)
         {
-            DataTable dataTable = SqlDirectStore.pSearchCheckupExamList(requestDateFrom, requestDateTo, patientUID, InsuranceCompanyUID, checkupJobUID, PRTGPUID);
+            DataTable dataTable = SqlDirectStore.pSearchCheckupExamList(requestDateFrom, requestDateTo, patientUID, InsuranceCompanyUID, checkupJobUID, PRTGPUID,requestItemUID);
             List<RequestListModel> listData = dataTable.ToList<RequestListModel>();
 
             return listData;

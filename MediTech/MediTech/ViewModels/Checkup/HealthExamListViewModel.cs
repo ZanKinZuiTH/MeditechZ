@@ -130,6 +130,21 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectRequestItemType, value); }
         }
 
+        private List<RequestItemModel> _RequestItems;
+
+        public List<RequestItemModel> RequestItems
+        {
+            get { return _RequestItems; }
+            set { Set(ref _RequestItems, value); }
+        }
+
+        private RequestItemModel _SelectRequestItem;
+
+        public RequestItemModel SelectRequestItem
+        {
+            get { return _SelectRequestItem; }
+            set { Set(ref _SelectRequestItem, value); }
+        }
 
         private ObservableCollection<RequestListModel> _CheckupExamList;
 
@@ -333,6 +348,8 @@ namespace MediTech.ViewModels
             if (refValues != null)
                 RequestItemTypes = refValues.Where(p => p.NumericValue == 1).ToList();
 
+            RequestItems = DataService.MasterData.GetRequestItemByCategory("Mobile Checkup");
+
         }
 
         public void PatientSearch()
@@ -385,6 +402,7 @@ namespace MediTech.ViewModels
             int? insuranceCompanyUID = null;
             int? checkupJobUID = null;
             int? PRTGPUID = null;
+            int? requestItemUID = null;
             if (!string.IsNullOrEmpty(SearchPatientCriteria))
             {
                 if (SelectedPateintSearch != null)
@@ -408,7 +426,12 @@ namespace MediTech.ViewModels
                 PRTGPUID = SelectRequestItemType.Key;
             }
 
-            var listResult = DataService.Checkup.SearchCheckupExamList(DateFrom, DateTo, patientUID, insuranceCompanyUID, checkupJobUID, PRTGPUID);
+            if(SelectRequestItem != null)
+            {
+                requestItemUID = SelectRequestItem.RequestItemUID;
+            }
+
+            var listResult = DataService.Checkup.SearchCheckupExamList(DateFrom, DateTo, patientUID, insuranceCompanyUID, checkupJobUID, PRTGPUID, requestItemUID);
 
             CheckupExamList = new ObservableCollection<RequestListModel>(listResult);
             OnUpdateEvent();
