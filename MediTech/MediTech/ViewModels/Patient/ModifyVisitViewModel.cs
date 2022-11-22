@@ -124,6 +124,14 @@ namespace MediTech.ViewModels
             set { Set(ref _CommentDoctor, value); }
         }
 
+        private string _Company;
+
+        public string Company
+        {
+            get { return _Company; }
+            set { Set(ref _Company, value); }
+        }
+
         private bool _IsEnableFinancial;
 
         public bool IsEnableFinancial
@@ -218,6 +226,7 @@ namespace MediTech.ViewModels
                     visitInfo.CheckupJobUID = SelectedCheckupJob != null ? SelectedCheckupJob.CheckupJobContactUID : (int?)null;
 
                     visitInfo.Comments = CommentDoctor;
+                    visitInfo.CompanyName = Company;
                     //visitInfo.LocationUID = SelectLocation.LocationUID;
                     if (SelectedCareprovider != null)
                         visitInfo.CareProviderUID = SelectedCareprovider.CareproviderUID;
@@ -291,6 +300,7 @@ namespace MediTech.ViewModels
             SelectedPriority = PrioritySource.FirstOrDefault(p => p.Key == SelectPatientVisit.PRITYUID);
             SelectedCareprovider = CareproviderSource.FirstOrDefault(p => p.CareproviderUID == SelectPatientVisit.CareProviderUID);
             CommentDoctor = SelectPatientVisit.Comments;
+            Company = SelectPatientVisit.CompanyName;
 
             if (SelectPatientVisit.VisitStatus == "Financial Discharge")
             {
