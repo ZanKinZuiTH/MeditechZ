@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImagingReport));
+            DevExpress.XtraReports.Parameters.StaticListLookUpSettings staticListLookUpSettings1 = new DevExpress.XtraReports.Parameters.StaticListLookUpSettings();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.lblPatientOrder = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
@@ -66,6 +67,7 @@
             this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLine3 = new DevExpress.XtraReports.UI.XRLine();
             this.ResultUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.logoHead = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.RichTXT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -478,6 +480,14 @@
             this.ResultUID.Name = "ResultUID";
             this.ResultUID.Visible = false;
             // 
+            // logoHead
+            // 
+            this.logoHead.Description = "logo";
+            this.logoHead.Name = "logoHead";
+            this.logoHead.Type = typeof(int);
+            this.logoHead.ValueInfo = "0";
+            this.logoHead.ValueSourceSettings = staticListLookUpSettings1;
+            // 
             // ImagingReport
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -490,9 +500,13 @@
             this.PageHeight = 1169;
             this.PageWidth = 827;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
+            this.ParameterPanelLayoutItems.AddRange(new DevExpress.XtraReports.Parameters.ParameterPanelLayoutItem[] {
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.ResultUID, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.logoHead, DevExpress.XtraReports.Parameters.Orientation.Horizontal)});
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
-            this.ResultUID});
-            this.Version = "20.2";
+            this.ResultUID,
+            this.logoHead});
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.RichTXT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
@@ -537,5 +551,6 @@
         private DevExpress.XtraReports.UI.XRPictureBox logo;
         public DevExpress.XtraReports.UI.XRLabel lblOrganisationAddress;
         private DevExpress.XtraReports.UI.XRPictureBox logobutton;
+        private DevExpress.XtraReports.Parameters.Parameter logoHead;
     }
 }

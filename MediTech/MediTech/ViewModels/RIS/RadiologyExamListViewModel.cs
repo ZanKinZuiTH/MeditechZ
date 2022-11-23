@@ -688,7 +688,7 @@ namespace MediTech.ViewModels
             Logos = new List<LookupItemModel>();
             Logos.Add(new LookupItemModel { Key = 0, Display = "BRXG Polyclinic" });
             Logos.Add(new LookupItemModel { Key = 1, Display = "BRXG" });
-            Logos.Add(new LookupItemModel { Key = 2, Display = "DRC" });
+            Logos.Add(new LookupItemModel { Key = 2, Display = "BRXG Hospital" });
             Logos.Add(new LookupItemModel { Key = 3, Display = "แม่ฟ้าหลวง" });
             SelectLogo = Logos.FirstOrDefault();
 

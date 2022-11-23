@@ -33,6 +33,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.xrPictureBox2 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.logo = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
@@ -110,7 +111,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PayorDetailUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrPictureBox2 = new DevExpress.XtraReports.UI.XRPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.tbVatalSign)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbPatientDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
@@ -147,6 +147,18 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(15, 15, 15, 15, 100F);
             this.Detail.StylePriority.UsePadding = false;
+            // 
+            // xrPictureBox2
+            // 
+            this.xrPictureBox2.BorderWidth = 0F;
+            this.xrPictureBox2.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("xrPictureBox2.ImageSource"));
+            this.xrPictureBox2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.xrPictureBox2.Name = "xrPictureBox2";
+            this.xrPictureBox2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100F);
+            this.xrPictureBox2.SizeF = new System.Drawing.SizeF(267.5299F, 88.10343F);
+            this.xrPictureBox2.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+            this.xrPictureBox2.StylePriority.UseBorderWidth = false;
+            this.xrPictureBox2.StylePriority.UsePadding = false;
             // 
             // logo
             // 
@@ -1165,18 +1177,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.LogoType.Type = typeof(int);
             this.LogoType.ValueInfo = "0";
             this.LogoType.Visible = false;
-            // 
-            // xrPictureBox2
-            // 
-            this.xrPictureBox2.BorderWidth = 0F;
-            this.xrPictureBox2.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("xrPictureBox2.ImageSource"));
-            this.xrPictureBox2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
-            this.xrPictureBox2.Name = "xrPictureBox2";
-            this.xrPictureBox2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100F);
-            this.xrPictureBox2.SizeF = new System.Drawing.SizeF(267.5299F, 88.10343F);
-            this.xrPictureBox2.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
-            this.xrPictureBox2.StylePriority.UseBorderWidth = false;
-            this.xrPictureBox2.StylePriority.UsePadding = false;
             // 
             // CheckupPage1
             // 
