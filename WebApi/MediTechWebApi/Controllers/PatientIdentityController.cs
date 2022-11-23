@@ -2193,6 +2193,7 @@ namespace MediTechWebApi.Controllers
                              VisitStatus = SqlFunction.fGetRfValDescription(pv.VISTYUID ?? 0),
                              VisitType = SqlFunction.fGetRfValDescription(pv.VISTYUID ?? 0),
                              OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(pv.OwnerOrganisationUID ?? 0),
+                             CareProviderName = SqlFunction.fGetCareProviderName(pv.CareProviderUID ?? 0),
                              VisitID = pv.VisitID,
                              PRITYUID = pv.PRITYUID,
                              OwnerOrganisationUID = pv.OwnerOrganisationUID ?? 0,

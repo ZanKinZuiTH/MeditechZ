@@ -121,7 +121,7 @@
                 <dxlc:LayoutItem Label="รายการ">
                     <dxe:ComboBoxEdit ItemsSource="{Binding RequestItems}" 
                                       SelectedItem="{Binding SelectRequestItem}"
-                                      DisplayMember="Display" ValueMember="Key"
+                                      DisplayMember="ItemName" ValueMember="RequestItemUID"
                                       NullValueButtonPlacement="EditBox"
                                       />
                 </dxlc:LayoutItem>

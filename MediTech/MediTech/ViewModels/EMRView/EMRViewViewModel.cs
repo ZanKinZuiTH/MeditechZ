@@ -224,7 +224,7 @@ namespace MediTech.ViewModels
             var dataVisitList = DataService.PatientIdentity.GetPatientVisitByPatientUID(patVisitData.PatientUID);
             foreach (var item in dataVisitList)
             {
-                item.Comments = item.StartDttm.Value.ToString("dd MMM yyyy HH:mm") + " / " + item.VisitID + " / " + item.OwnerOrganisation;
+                item.Comments = item.StartDttm.Value.ToString("dd MMM yyyy HH:mm") + " / " + item.VisitID + " / " + item.OwnerOrganisation + " / " + item.CareProviderName;
             }
             PatientVisitLists = new ObservableCollection<PatientVisitModel>(dataVisitList.OrderByDescending(p => p.StartDttm).ToList());
             PatientVisitLists.Add(new PatientVisitModel { PatientUID = patVisitData.PatientUID, PatientVisitUID = 0, Comments = "All" });
