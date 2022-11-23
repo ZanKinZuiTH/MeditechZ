@@ -163,23 +163,29 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // 
             this.xrTableCell8.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
             this.xrTableCell8.Name = "xrTableCell8";
+            this.xrTableCell8.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.xrTableCell8.StylePriority.UseFont = false;
+            this.xrTableCell8.StylePriority.UsePadding = false;
             this.xrTableCell8.Text = "HN";
-            this.xrTableCell8.Weight = 0.27500013166859083D;
+            this.xrTableCell8.Weight = 0.1750001169020157D;
             // 
             // lbHN10
             // 
             this.lbHN10.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
             this.lbHN10.Name = "lbHN10";
+            this.lbHN10.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.lbHN10.StylePriority.UseFont = false;
-            this.lbHN10.Weight = 0.55833336245628074D;
+            this.lbHN10.StylePriority.UsePadding = false;
+            this.lbHN10.Weight = 0.4999997661959234D;
             // 
             // lbName10
             // 
             this.lbName10.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
             this.lbName10.Name = "lbName10";
+            this.lbName10.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.lbName10.StylePriority.UseFont = false;
-            this.lbName10.Weight = 1.2333327656407529D;
+            this.lbName10.StylePriority.UsePadding = false;
+            this.lbName10.Weight = 1.3916663766676853D;
             // 
             // Detail
             // 

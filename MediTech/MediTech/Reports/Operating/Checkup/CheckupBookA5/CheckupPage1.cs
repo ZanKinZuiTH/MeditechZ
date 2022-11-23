@@ -432,7 +432,16 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             {
                                 string mamEN = mammoGram.PlainText;
                                 string[] MamResult = mamEN.Split(new string[] { "IMPRESSION", "Impression", "impression" }, StringSplitOptions.None);
-                                string MamResultEn = MamResult[1].Replace("\n", "").Replace("\r", "").Replace("\r\n", "");
+                                string MamResultEn;
+                                if (MamResult.Length > 1)
+                                {
+                                    MamResultEn = MamResult[1].Replace("\n", "").Replace("\r", "").Replace("\r\n", "");
+                                }
+                                else
+                                {
+                                    MamResultEn = MamResult[1].Replace("\n", "").Replace("\r", "").Replace("\r\n", "");
+                                }
+                                //string MamResultEn = MamResult[1].Replace("\n", "").Replace("\r", "").Replace("\r\n", "");
                                 MamResultEn = MamResultEn.Trim();
                                 page8.lbMam.Text = MamResultEn;
                             }
@@ -469,7 +478,17 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             {
                                 string UltEN = ultrsound.PlainText;
                                 string[] UltResult = UltEN.Split(new string[] { "IMPRESSION", "Impression", "impression" }, StringSplitOptions.None);
-                                string UltResultEn = UltResult[1].Replace("\n", "").Replace("\r", "").Replace("\r\n", "").Replace(":", "");
+                                string UltResultEn;
+                                if (UltResult.Length > 1)
+                                {
+                                    UltResultEn = UltResult[1].Replace("\n", "").Replace("\r", "").Replace("\r\n", "").Replace(":", "");
+                                }
+                                else
+                                {
+                                    UltResultEn = UltResult[0].Replace("\n", "").Replace("\r", "").Replace("\r\n", "").Replace(":", "");
+                                }
+                                //string UltResultEn = UltResult[1].Replace("\n", "").Replace("\r", "").Replace("\r\n", "").Replace(":", "");
+                                
                                 UltResultEn = UltResultEn.Trim();
                                 page8.lbUlt.Text = UltResultEn;
                             }
@@ -2415,7 +2434,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 }
             }
         }
-        //GeneratePhysicalExamRisk
+
         private void GeneratePhysicalExamRisk(IEnumerable<PatientResultComponentModel> PhysicalExamRiskResult)
         {
             if (PhysicalExamRiskResult != null && PhysicalExamRiskResult.Count() > 0)

@@ -93,6 +93,9 @@ namespace MediTech.Reports.Operating.Patient
                 }
                 string name = OrganisationBRXG.HealthOrganisationUID == 17 ? "บีอาร์เอ็กซ์จีสหคลินิก" : OrganisationBRXG.Name?.ToString();
                 TextboxPlace.Text = name + " ที่อยู่ " + OrganisationBRXG.Address?.ToString() + "\nเลขที่ใบอนุญาต " + OrganisationBRXG.LicenseNo.ToString() + " เบอร์โทรศัพท์ " + OrganisationBRXG.MobileNo + " E-mail " + OrganisationBRXG.Email.ToString();
+
+                text1.Text = name + " ได้รับอนุญาตประกอบกิจการสถานพยาบาลประเภทไม่ค้างคืน เลขที่ใบอนุญาต " + OrganisationBRXG.LicenseNo.ToString();
+                text2.Text = "ตั้งอยู่ เลขที่ " + OrganisationBRXG.Address?.ToString() + " เบอร์โทรติดต่อ " + OrganisationBRXG.MobileNo;
             }
             else
             {
@@ -135,7 +138,8 @@ namespace MediTech.Reports.Operating.Patient
                 }
                 string name = SelectOrganisation.HealthOrganisationUID == 17 ? "บีอาร์เอ็กซ์จีสหคลินิก" : SelectOrganisation.Name?.ToString();
                 TextboxPlace.Text = name + " ที่อยู่ " + SelectOrganisation.Address?.ToString() + "\nเลขที่ใบอนุญาต " + SelectOrganisation.LicenseNo.ToString() + " เบอร์โทรศัพท์ " + SelectOrganisation.MobileNo + " E-mail " + SelectOrganisation.Email.ToString();
-
+                text1.Text = name + " ได้รับอนุญาตประกอบกิจการสถานพยาบาลประเภทไม่ค้างคืน เลขที่ใบอนุญาต " + SelectOrganisation.LicenseNo.ToString();
+                text2.Text = "ตั้งอยู่ เลขที่ " + SelectOrganisation.Address?.ToString() + " เบอร์โทรติดต่อ " + SelectOrganisation.MobileNo;
             }
 
             this.DataSource = model;
