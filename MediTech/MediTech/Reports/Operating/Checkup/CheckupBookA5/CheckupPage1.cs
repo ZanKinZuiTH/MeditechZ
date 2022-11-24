@@ -123,59 +123,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             PatientWellnessModel data = DataService.Reports.PrintWellnessBook(patientUID, patientVisitUID, payorDetailUID);
             int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
 
-            #region selectLogoDesibalcontact
-           
-            if ( logoType == 1 )
-            {
-                Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/LogoBRXG3.png", UriKind.Absolute);
-                BitmapImage imageSource = new BitmapImage(uri);
-                using (MemoryStream outStream = new MemoryStream())
-                {
-                    BitmapEncoder enc = new BmpBitmapEncoder();
-                    enc.Frames.Add(BitmapFrame.Create(imageSource));
-                    enc.Save(outStream);
-                    this.logo.Image = System.Drawing.Image.FromStream(outStream);
-                }
-                this.logo.LocationFloat = new DevExpress.Utils.PointFloat(314.4584F, 0F);
-                this.logo.SizeF = new System.Drawing.SizeF(220.1F, 90.1F);
-                this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
-            }
-            else if (logoType  == 2 )
-            {
-                RowContact.Visible = false;
-                Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/logoThonburi.jpg", UriKind.Absolute);
-                BitmapImage imageSource = new BitmapImage(uri);
-                using (MemoryStream outStream = new MemoryStream())
-                {
-                    BitmapEncoder enc = new BmpBitmapEncoder();
-                    enc.Frames.Add(BitmapFrame.Create(imageSource));
-                    enc.Save(outStream);
-                    this.logo.Image = System.Drawing.Image.FromStream(outStream);
-                }
-                this.logo.LocationFloat = new DevExpress.Utils.PointFloat(314.4584F, 0F);
-                this.logo.SizeF = new System.Drawing.SizeF(220.1F, 115.1F);
-               // this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
-            }
-
-            else
-            {
-                Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/LogoBRXG3.png", UriKind.Absolute);
-                BitmapImage imageSource = new BitmapImage(uri);
-                using (MemoryStream outStream = new MemoryStream())
-                {
-                    BitmapEncoder enc = new BmpBitmapEncoder();
-                    enc.Frames.Add(BitmapFrame.Create(imageSource));
-                    enc.Save(outStream);
-                    this.logo.Image = System.Drawing.Image.FromStream(outStream);
-                }
-                this.logo.LocationFloat = new DevExpress.Utils.PointFloat(314.4584F, 0F);
-                this.logo.SizeF = new System.Drawing.SizeF(220.1F, 90.1F);
-                this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
-
-            }
-
-            #endregion
-
             page10.RowRisk1.Visible = false;
             page10.RowRisk2.Visible = false;
 
