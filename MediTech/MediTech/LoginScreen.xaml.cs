@@ -125,6 +125,7 @@ namespace MediTech
                         //AppUtil.Current.RoleUID = user.loginModel.RoleUID;
                         AppUtil.Current.LoginName = user.loginModel.LoginName;
                         AppUtil.Current.UserName = user.FirstName + " " + user.LastName;
+                        AppUtil.Current.UserCode = user.Code;
                         AppUtil.Current.IsAdmin = user.loginModel.IsAdmin;
                         AppUtil.Current.IsDoctor = user.IsDoctor;
                         AppUtil.Current.IsRadiologist = user.IsRadiologist;

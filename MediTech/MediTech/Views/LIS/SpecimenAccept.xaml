@@ -230,14 +230,9 @@
             <dxlc:LayoutGroup>
                 <dxlc:LayoutGroup HorizontalAlignment="Left">
                     <dxlc:LayoutItem>
-                        <dx:SimpleButton Command="{Binding GenarateASTMCommand}" Content="Genarate ASTM" Height="25" Width="110"/>
+                        <dx:SimpleButton Command="{Binding GenarateASTMCommand}" Content="Genarate HL7" Height="25" Width="110"/>
                     </dxlc:LayoutItem>
-                    <dxlc:LayoutItem>
-                        <dx:SimpleButton Command="{Binding testCommand}" Content="testichek" Height="25" Width="90"/>
-                    </dxlc:LayoutItem>
-
-
-
+ 
 
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">

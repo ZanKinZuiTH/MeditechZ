@@ -38,6 +38,8 @@ namespace MediTech.Model
         public DateTime RequestedDttm { get; set; }
         public DateTime ArrivedDttm { get; set; }
         public string PayorName { get; set; }
+        public string OwnerOrganisationName { get; set; }
+        public string OwnerOrganisationCode { get; set; }
         public int OwnerOrganisationUID { get; set; }
         public string OrganisationName { get; set; }
         public int LocationUID { get; set; }
@@ -48,6 +50,11 @@ namespace MediTech.Model
         public int ORDSTUID { get; set; }
         public int VISTSUID { get; set; }
         public string VisitStatus { get; set; }
+        public string EncounterType { get; set; }
+        public string CareproviderCode { get; set; }
+
+        public string CareproviderName { get; set; }
+        public string VisitNumber { get; set; }
         public List<RequestDetailItemModel> RequestDetailLabs { get; set; }
 
 

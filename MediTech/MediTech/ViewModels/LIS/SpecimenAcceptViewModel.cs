@@ -1,11 +1,17 @@
-﻿using DevExpress.XtraReports.UI;
+﻿using DevExpress.Mvvm.POCO;
+using DevExpress.XtraReports.UI;
 using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
 using MediTech.Reports.Operating.Lab;
 using MediTech.Views;
+using NHapi.Base.Parser;
+using NHapi.Model.V23.Group;
+using NHapi.Model.V23.Message;
+using NHapi.Model.V23.Segment;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -567,7 +573,7 @@ namespace MediTech.ViewModels
                 //var acceptDetailSpecimens = RequestDetailSpecimens.ToList();
                 if (acceptDetailSpecimens != null && acceptDetailSpecimens.Count > 0)
                 {
-                    WriteASTMOrderMessage(SelectRequestLab, acceptDetailSpecimens);
+                    WritesHL7OrderMessage(SelectRequestLab, acceptDetailSpecimens);
                 }
 
             }
@@ -653,6 +659,10 @@ namespace MediTech.ViewModels
                 string foreName = patRequest.FirstName;
                 string birthDate = patRequest.BirthDate != null ? patRequest.BirthDate.Value.ToString("yyyyMMdd") : "";
                 string sex = patRequest.Gender == "ชาย (Male)" ? "M" : patRequest.Gender == "หญิง (Female)" ? "F" : patRequest.Gender == "ไม่ระบุ (Unknown)" ? "U" : "";
+                string encounterType = patRequest.EncounterType == "InPatient" ? "IP" : "OP";
+                string visitNumber = patRequest.VisitNumber;
+                string ownerOrganisationName = patRequest.OwnerOrganisationName;
+                string ownerOrganisationCode = patRequest.OwnerOrganisationCode;
                 string orderDate = patRequest.RequestedDttm.ToString("dd/MM/yyyy");
                 string receivedDttm = now.ToString("yyyyMMddHHmmss");
                 string registedDttm = patRequest.ArrivedDttm.ToString("yyyyMMddHHmmss");
@@ -665,6 +675,88 @@ namespace MediTech.ViewModels
                 string fileName = "[LABNUMBER]-[ddMMyyyyhhmmss].pet";
                 fileName = fileName.Replace("[LABNUMBER]", orderNumber);
                 fileName = fileName.Replace("[ddMMyyyyhhmmss]", DateTime.Now.ToString("ddMMyyyyhhmmss"));
+
+                ORM_O01 oRM_O01 = new ORM_O01();
+
+
+                //CreateMshSegment 
+                var mshSegment = oRM_O01.MSH;
+                mshSegment.FieldSeparator.Value = "|";
+                mshSegment.EncodingCharacters.Value = "^~\\&";
+                mshSegment.SendingApplication.NamespaceID.Value = "MediTech";
+                mshSegment.SendingFacility.NamespaceID.Value = "BRXG";
+                mshSegment.ReceivingApplication.NamespaceID.Value = "RAXLAB";
+                mshSegment.ReceivingFacility.NamespaceID.Value = "BRXG";
+                mshSegment.DateTimeOfMessage.TimeOfAnEvent.Value = GetCurrentTimeStamp();
+                mshSegment.MessageControlID.Value = "1234" + GetCurrentTimeStamp();
+                mshSegment.MessageType.MessageType.Value = "ORM^O01";
+                mshSegment.VersionID.Value = "2.3";
+                mshSegment.ProcessingID.ProcessingID.Value = "P";
+                mshSegment.AcceptAcknowledgementType.Value = "AL";
+                mshSegment.ApplicationAcknowledgementType.Value = "AL";
+
+                //CreatePidSegment
+                var pid = oRM_O01.PATIENT.PID;
+                pid.SetIDPatientID.Value = patientID;
+                var patientName = pid.GetPatientName(0);
+                patientName.GivenName.Value = foreName;
+                patientName.FamilyName.Value = surName;
+
+                if (!string.IsNullOrEmpty(birthDate))
+                    pid.DateOfBirth.TimeOfAnEvent.Value = now.ToString("yyyyddMM", CultureInfo.InvariantCulture);
+
+                pid.Sex.Value = sex;
+
+                //CreatePv1Segment
+                var pv = oRM_O01.PATIENT.PATIENT_VISIT.PV1;
+                pv.PatientClass.Value = encounterType;
+                pv.VisitNumber.ID.Value = visitNumber;
+                pv.VisitNumber.AssigningFacility.NamespaceID.Value = ownerOrganisationCode;
+                pv.VisitNumber.AssigningFacility.UniversalID.Value = ownerOrganisationName;
+              
+
+
+                int i = 1;
+                foreach (var item in acceptDetailSpecimens)
+                {
+                    ORM_O01_ORDER oRM_Order = oRM_O01.AddORDER();
+                    if (i ==1)
+                    {
+                        ORC oRC = oRM_Order.ORC;
+                        oRC.OrderControl.Value = "NW";
+                        oRC.OrderStatus.Value = "IP";
+                        var orderPlacerNumber = oRC.GetPlacerOrderNumber(0);
+                        orderPlacerNumber.EntityIdentifier.Value = orderNumber;
+                        oRC.DateTimeOfTransaction.TimeOfAnEvent.Value = now.ToString("yyyyMMddHHmmSS", CultureInfo.InvariantCulture);
+                        oRC.EnteredBy.FamilyName.Value = patRequest.CareproviderName;
+                        var orderingProvider = oRC.GetOrderingProvider(0);
+                        orderingProvider.IDNumber.Value = patRequest.CareproviderCode;
+                        orderingProvider.FamilyName.Value = AppUtil.Current.UserName;
+                        oRC.OrderEffectiveDateTime.TimeOfAnEvent.Value = now.ToString("yyyyMMddHHmmSS", CultureInfo.InvariantCulture);
+                    }
+
+                    var obr_segment = oRM_Order.ORDER_DETAIL.OBR;
+                    obr_segment.SetIDObservationRequest.Value = i.ToString();
+                    var orderNumberSeg = obr_segment.PlacerOrderNumber;
+                    orderNumberSeg.EntityIdentifier.Value = orderNumber;
+                    orderNumberSeg.UniversalID.Value = item.RequestItemCode+"^"+item.RequestItemName;
+                    var requestItem = DataService.MasterData.GetRequestItemByUID(item.RequestItemUID);
+                    obr_segment.Priority.Value = "R";
+                    obr_segment.RequestedDateTime.TimeOfAnEvent.Value = patRequest.RequestedDttm.ToString("yyyyMMddHHmmSS", CultureInfo.InvariantCulture);
+                    obr_segment.SpecimenReceivedDateTime.TimeOfAnEvent.Value = now.ToString("yyyyMMddHHmmSS", CultureInfo.InvariantCulture);
+                    obr_segment.SpecimenSource.SpecimenSourceNameOrCode.Identifier.Value = item.SpecimenCode;
+                    obr_segment.SpecimenSource.SpecimenSourceNameOrCode.Text.Value = item.SpecimenName;
+                    foreach (var resultItem in requestItem.RequestResultLinks)
+                    {
+           
+                    }
+                    i++;
+                }
+
+                var ourPP = new PipeParser();
+                string outMessage = ourPP.Encode(oRM_O01);
+
+
                 using (StreamWriter file = new StreamWriter(outPutPath + @"\" + fileName, false, Encoding.GetEncoding("windows-874")))
                 {
 
@@ -675,6 +767,11 @@ namespace MediTech.ViewModels
 
                 ErrorDialog(ex.Message);
             }
+        }
+
+        private static string GetCurrentTimeStamp()
+        {
+            return DateTime.Now.ToString("RRRRMMDDHH24MISS", CultureInfo.InvariantCulture);
         }
 
         void RejectSpecimen()

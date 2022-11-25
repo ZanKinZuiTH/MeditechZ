@@ -33,6 +33,14 @@ namespace MediTech
             set { _userID = value; }
         }
 
+        private string _userCode;
+
+        public string UserCode
+        {
+            get { return _userCode; }
+            set { _userCode = value; }
+        }
+
         private string _userName;
 
         public string UserName

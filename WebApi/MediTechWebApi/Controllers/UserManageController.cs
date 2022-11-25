@@ -96,6 +96,7 @@ namespace MediTechWebApi.Controllers
                     care.loginModel = new LoginModel();
                     care.ActiveFrom = dt.Rows[i]["ActiveFrom"].ToString() != "" ? DateTime.Parse(dt.Rows[i]["ActiveFrom"].ToString()) : (DateTime?)null;
                     care.ActiveTo = dt.Rows[i]["ActiveTo"].ToString() != "" ? DateTime.Parse(dt.Rows[i]["ActiveTo"].ToString()) : (DateTime?)null;
+                    care.Code = dt.Rows[i]["Code"].ToString();
                     care.FirstName = dt.Rows[i]["FirstName"].ToString();
                     care.LastName = dt.Rows[i]["LastName"].ToString();
                     care.CareproviderUID = int.Parse(dt.Rows[i]["CareproviderUID"].ToString());
