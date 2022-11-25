@@ -144,7 +144,7 @@ namespace MediTech.Reports.Operating.Radiology
                             enc.Save(outStream);
                             this.logo.Image = System.Drawing.Image.FromStream(outStream);
                         }
-                        this.logo.LocationFloat = new DevExpress.Utils.PointFloat(38.54167F, 33.41668F);
+                        this.logo.LocationFloat = new DevExpress.Utils.PointFloat(34.54167F, 33.41668F);
                         this.logo.SizeF = new System.Drawing.SizeF(205.4585F, 64.16669F);
                         this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
 

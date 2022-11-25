@@ -2397,7 +2397,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page10.cellLTShoulderROM.Text = PhysicalExamRiskResult.FirstOrDefault(p => p.ResultItemCode == "PAR1305")?.ResultValue;
                 page10.cellLumbarROM.Text = PhysicalExamRiskResult.FirstOrDefault(p => p.ResultItemCode == "PAR1306")?.ResultValue;
 
-                if(page10.cellNeckROM.Text == "ผิดปกติ" || page10.cellRTShoulderROM.Text == "ผิดปกติ" || page10.cellLTShoulderROM.Text == "ผิดปกติ" || page10.cellLumbarROM.Text == "ผิดปกติ" )
+                if(page10.cellMyofascialTop.Text == "มีความเสี่ยง" || page10.cellMyofascialBottom.Text == "มีความเสี่ยง" ||  page10.cellNeckROM.Text == "ผิดปกติ" || page10.cellRTShoulderROM.Text == "ผิดปกติ" || page10.cellLTShoulderROM.Text == "ผิดปกติ" || page10.cellLumbarROM.Text == "ผิดปกติ" )
                 {
                     page10.RiskRecommed.Text = "โครงสร้างและกล้ามเนื้ออยู่ในเกณฑ์มีความเสี่ยง หากอาการปวดหรืออาการชากระทบกับการดำเนินชีวิตประจำวัน ควรตรวจวินิจฉัยเพิ่มเติมโดยละเอียด และเข้ารับการรักษาที่เหมาะสม ร่วมกับการปรับพฤติกรรม เพื่อลดโอกาสการบาดเจ็บเรื้อรัง";
                 }
