@@ -123,61 +123,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             PatientWellnessModel data = DataService.Reports.PrintWellnessBook(patientUID, patientVisitUID, payorDetailUID);
             int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
 
-            #region selectLogoDesibalcontact
-           
-            if ( logoType == 1 )
-            {
-                Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/LogoBRXG3.png", UriKind.Absolute);
-                BitmapImage imageSource = new BitmapImage(uri);
-                using (MemoryStream outStream = new MemoryStream())
-                {
-                    BitmapEncoder enc = new BmpBitmapEncoder();
-                    enc.Frames.Add(BitmapFrame.Create(imageSource));
-                    enc.Save(outStream);
-                    this.logo.Image = System.Drawing.Image.FromStream(outStream);
-                }
-                this.logo.LocationFloat = new DevExpress.Utils.PointFloat(314.4584F, 0F);
-                this.logo.SizeF = new System.Drawing.SizeF(220.1F, 90.1F);
-                this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
-            }
-            else if (logoType  == 2 )
-            {
-                RowContact.Visible = false;
-                Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/logoThonburi.jpg", UriKind.Absolute);
-                BitmapImage imageSource = new BitmapImage(uri);
-                using (MemoryStream outStream = new MemoryStream())
-                {
-                    BitmapEncoder enc = new BmpBitmapEncoder();
-                    enc.Frames.Add(BitmapFrame.Create(imageSource));
-                    enc.Save(outStream);
-                    this.logo.Image = System.Drawing.Image.FromStream(outStream);
-                }
-                this.logo.LocationFloat = new DevExpress.Utils.PointFloat(314.4584F, 0F);
-                this.logo.SizeF = new System.Drawing.SizeF(220.1F, 115.1F);
-               // this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
-            }
+            page10.RowRisk1.Visible = false;
+            page10.RowRisk2.Visible = false;
 
-            else
-            {
-                Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/LogoBRXG3.png", UriKind.Absolute);
-                BitmapImage imageSource = new BitmapImage(uri);
-                using (MemoryStream outStream = new MemoryStream())
-                {
-                    BitmapEncoder enc = new BmpBitmapEncoder();
-                    enc.Frames.Add(BitmapFrame.Create(imageSource));
-                    enc.Save(outStream);
-                    this.logo.Image = System.Drawing.Image.FromStream(outStream);
-                }
-                this.logo.LocationFloat = new DevExpress.Utils.PointFloat(314.4584F, 0F);
-                this.logo.SizeF = new System.Drawing.SizeF(220.1F, 90.1F);
-                this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
-
-            }
-
-            #endregion
-
-
-            xrPictureBox2.Visible = false;
             if (data.PatientInfomation != null)
             {
                 var patient = data.PatientInfomation;
@@ -431,7 +379,16 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             {
                                 string mamEN = mammoGram.PlainText;
                                 string[] MamResult = mamEN.Split(new string[] { "IMPRESSION", "Impression", "impression" }, StringSplitOptions.None);
-                                string MamResultEn = MamResult[1].Replace("\n", "").Replace("\r", "").Replace("\r\n", "");
+                                string MamResultEn;
+                                if (MamResult.Length > 1)
+                                {
+                                    MamResultEn = MamResult[1].Replace("\n", "").Replace("\r", "").Replace("\r\n", "");
+                                }
+                                else
+                                {
+                                    MamResultEn = MamResult[1].Replace("\n", "").Replace("\r", "").Replace("\r\n", "");
+                                }
+                                //string MamResultEn = MamResult[1].Replace("\n", "").Replace("\r", "").Replace("\r\n", "");
                                 MamResultEn = MamResultEn.Trim();
                                 page8.lbMam.Text = MamResultEn;
                             }
@@ -468,7 +425,17 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             {
                                 string UltEN = ultrsound.PlainText;
                                 string[] UltResult = UltEN.Split(new string[] { "IMPRESSION", "Impression", "impression" }, StringSplitOptions.None);
-                                string UltResultEn = UltResult[1].Replace("\n", "").Replace("\r", "").Replace("\r\n", "").Replace(":", "");
+                                string UltResultEn;
+                                if (UltResult.Length > 1)
+                                {
+                                    UltResultEn = UltResult[1].Replace("\n", "").Replace("\r", "").Replace("\r\n", "").Replace(":", "");
+                                }
+                                else
+                                {
+                                    UltResultEn = UltResult[0].Replace("\n", "").Replace("\r", "").Replace("\r\n", "").Replace(":", "");
+                                }
+                                //string UltResultEn = UltResult[1].Replace("\n", "").Replace("\r", "").Replace("\r\n", "").Replace(":", "");
+                                
                                 UltResultEn = UltResultEn.Trim();
                                 page8.lbUlt.Text = UltResultEn;
                             }
@@ -741,10 +708,14 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                     IEnumerable<PatientResultComponentModel> SpiroResult = occmed
                         .Where(p => p.RequestItemCode.Contains("SPIRO"));
                     GenerateSpiro(SpiroResult);
-
+                    
                     IEnumerable<PatientResultComponentModel> PhysicalExam = occmed
                         .Where(p => p.RequestItemCode.Contains("PEXAM"));
                     GeneratePhysicalExam(PhysicalExam);
+
+                    IEnumerable<PatientResultComponentModel> PhysicalExamRisk = occmed
+                        .Where(p => p.RequestItemCode.Contains("PEAX01"));
+                    GeneratePhysicalExamRisk(PhysicalExamRisk);
 
                     IEnumerable<PatientResultComponentModel> BackStrength = occmed
                         .Where(p => p.RequestItemCode.Contains("MUSCLEBA")
@@ -2407,6 +2378,32 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                     {
                         page2.waterY.Checked = true;
                     }
+                }
+            }
+        }
+
+        private void GeneratePhysicalExamRisk(IEnumerable<PatientResultComponentModel> PhysicalExamRiskResult)
+        {
+            if (PhysicalExamRiskResult != null && PhysicalExamRiskResult.Count() > 0)
+            {
+                page10.RowRisk1.Visible = true;
+                page10.RowRisk2.Visible = true;
+
+                page10.cellBalance.Text = PhysicalExamRiskResult.FirstOrDefault(p => p.ResultItemCode == "PAR1295")?.ResultValue;
+                page10.cellMyofascialTop.Text = PhysicalExamRiskResult.FirstOrDefault(p => p.ResultItemCode == "PAR1301")?.ResultValue;
+                page10.cellMyofascialBottom.Text = PhysicalExamRiskResult.FirstOrDefault(p => p.ResultItemCode == "PAR1302")?.ResultValue;
+                page10.cellNeckROM.Text = PhysicalExamRiskResult.FirstOrDefault(p => p.ResultItemCode == "PAR1303")?.ResultValue;
+                page10.cellRTShoulderROM.Text = PhysicalExamRiskResult.FirstOrDefault(p => p.ResultItemCode == "PAR1304")?.ResultValue;
+                page10.cellLTShoulderROM.Text = PhysicalExamRiskResult.FirstOrDefault(p => p.ResultItemCode == "PAR1305")?.ResultValue;
+                page10.cellLumbarROM.Text = PhysicalExamRiskResult.FirstOrDefault(p => p.ResultItemCode == "PAR1306")?.ResultValue;
+
+                if(page10.cellMyofascialTop.Text == "มีความเสี่ยง" || page10.cellMyofascialBottom.Text == "มีความเสี่ยง" ||  page10.cellNeckROM.Text == "ผิดปกติ" || page10.cellRTShoulderROM.Text == "ผิดปกติ" || page10.cellLTShoulderROM.Text == "ผิดปกติ" || page10.cellLumbarROM.Text == "ผิดปกติ" )
+                {
+                    page10.RiskRecommed.Text = "โครงสร้างและกล้ามเนื้ออยู่ในเกณฑ์มีความเสี่ยง หากอาการปวดหรืออาการชากระทบกับการดำเนินชีวิตประจำวัน ควรตรวจวินิจฉัยเพิ่มเติมโดยละเอียด และเข้ารับการรักษาที่เหมาะสม ร่วมกับการปรับพฤติกรรม เพื่อลดโอกาสการบาดเจ็บเรื้อรัง";
+                }
+                else
+                {
+                    page10.RiskRecommed.Text = "โครงสร้างและกล้ามเนื้ออยู่ในเกณฑ์ปกติ ควรยืดเหยียดกล้ามเนื้อและออกกำลังกายสม่ำเสมออย่างเหมาะสม เพื่อลดความเสี่ยงการบาดเจ็บของโครงสร้างและกล้ามเนื้อ";
                 }
             }
         }

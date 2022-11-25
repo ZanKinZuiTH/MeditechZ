@@ -578,7 +578,8 @@ namespace MediTechWebApi.Controllers
                                                 BPSys = j.BPSys,
                                                 BPDio = j.BPDio,
                                                 Temp = j.Temprature,
-                                                CompanyName = pv.CompanyName
+                                                CompanyName = pv.CompanyName,
+                                                Nationality = SqlFunction.fGetRfValDescription(pa.NATNLUID ?? 0)
                                             }).OrderByDescending(p => p.VitalSignRecordDttm).FirstOrDefault();
 
             return data;

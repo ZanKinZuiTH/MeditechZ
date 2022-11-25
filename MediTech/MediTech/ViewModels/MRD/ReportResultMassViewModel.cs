@@ -472,6 +472,7 @@ namespace MediTech.ViewModels
             Logos.Add(new LookupItemModel { Key = 2, Display = "โรงพยาบาลพระยุพราช" });
             Logos.Add(new LookupItemModel { Key = 3, Display = "แม่ฟ้าหลวง"});
             Logos.Add(new LookupItemModel { Key = 4, Display = "โรงพยาบาลบ้านแพ้ว" });
+            Logos.Add(new LookupItemModel { Key = 5, Display = "BRXG Hospital" });
             SelectLogo = Logos.FirstOrDefault();
 
             ResultStatus = DataService.Technical.GetReferenceValueMany("RABSTS");

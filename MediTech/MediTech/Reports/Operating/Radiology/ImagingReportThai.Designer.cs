@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImagingReportThai));
+            DevExpress.XtraReports.Parameters.DynamicListLookUpSettings dynamicListLookUpSettings1 = new DevExpress.XtraReports.Parameters.DynamicListLookUpSettings();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
@@ -75,6 +76,7 @@
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
             this.lblThaiReult = new DevExpress.XtraReports.UI.XRTableCell();
+            this.logoHead = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.RichTXT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -610,6 +612,20 @@
             this.lblThaiReult.Text = "lblThaiReult";
             this.lblThaiReult.Weight = 1D;
             // 
+            // logoHead
+            // 
+            this.logoHead.Description = "logo";
+            this.logoHead.Name = "logoHead";
+            this.logoHead.Type = typeof(int);
+            this.logoHead.ValueInfo = "0";
+            dynamicListLookUpSettings1.DataMember = null;
+            dynamicListLookUpSettings1.DataSource = null;
+            dynamicListLookUpSettings1.DisplayMember = null;
+            dynamicListLookUpSettings1.FilterString = null;
+            dynamicListLookUpSettings1.SortMember = null;
+            dynamicListLookUpSettings1.ValueMember = null;
+            this.logoHead.ValueSourceSettings = dynamicListLookUpSettings1;
+            // 
             // ImagingReportThai
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -623,10 +639,15 @@
             this.PageHeight = 1169;
             this.PageWidth = 827;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
+            this.ParameterPanelLayoutItems.AddRange(new DevExpress.XtraReports.Parameters.ParameterPanelLayoutItem[] {
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.ResultUID, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.ResultThai, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.logoHead, DevExpress.XtraReports.Parameters.Orientation.Horizontal)});
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.ResultUID,
-            this.ResultThai});
-            this.Version = "20.2";
+            this.ResultThai,
+            this.logoHead});
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.RichTXT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -681,5 +702,6 @@
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow2;
         private DevExpress.XtraReports.UI.XRTableCell lblThaiReult;
         private DevExpress.XtraReports.UI.XRPictureBox logobutton;
+        private DevExpress.XtraReports.Parameters.Parameter logoHead;
     }
 }

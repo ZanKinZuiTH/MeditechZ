@@ -119,6 +119,11 @@
                         </dxg:LookUpEdit.StyleSettings>
                     </dxg:LookUpEdit>
                 </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Company" LabelVerticalAlignment="Top">
+                    <TextBox Name="txtDetail2"   Text="{Binding Company,Mode=TwoWay}"
+                                                     AcceptsReturn="True"             
+                                                     TextWrapping="Wrap" />
+                </dxlc:LayoutItem>
                 <dxlc:LayoutItem >
                     <dxlc:LayoutItem.Label>
                         <StackPanel Orientation="Horizontal">
