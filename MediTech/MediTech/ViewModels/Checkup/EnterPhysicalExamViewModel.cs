@@ -194,20 +194,23 @@ namespace MediTech.ViewModels
                         }
                     }
 
-
+                    
                     if (string.IsNullOrEmpty(resultValue))
                     {
-                        if (item.ResultItemName == "บุหรี่" || item.ResultItemName == "แอลกอฮอล์" || item.ResultItemName == "แพ้ยา" || item.ResultItemName == "โรคประจำตัว")
+                        if (reviewRequestDetail.RequestItemCode != "PEAX01")
                         {
-                            resultValue = "ปฏิเสธ";
-                        }
-                        else if (item.ResultItemName == "งดน้ำงดอาหาร")
-                        {
-                            resultValue = "ใช่";
-                        }
-                        else
-                        {
-                            resultValue = "ไม่พบความผิดปกติ";
+                            if (item.ResultItemName == "บุหรี่" || item.ResultItemName == "แอลกอฮอล์" || item.ResultItemName == "แพ้ยา" || item.ResultItemName == "โรคประจำตัว")
+                            {
+                                resultValue = "ปฏิเสธ";
+                            }
+                            else if (item.ResultItemName == "งดน้ำงดอาหาร")
+                            {
+                                resultValue = "ใช่";
+                            }
+                            else
+                            {
+                                resultValue = "ไม่พบความผิดปกติ";
+                            }
                         }
                     }
 

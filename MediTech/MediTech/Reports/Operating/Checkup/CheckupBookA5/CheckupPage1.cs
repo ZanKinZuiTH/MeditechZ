@@ -2386,8 +2386,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         {
             if (PhysicalExamRiskResult != null && PhysicalExamRiskResult.Count() > 0)
             {
-                page10.RowRisk1.Visible = true;
-                page10.RowRisk2.Visible = true;
 
                 page10.cellBalance.Text = PhysicalExamRiskResult.FirstOrDefault(p => p.ResultItemCode == "PAR1295")?.ResultValue;
                 page10.cellMyofascialTop.Text = PhysicalExamRiskResult.FirstOrDefault(p => p.ResultItemCode == "PAR1301")?.ResultValue;
@@ -2397,13 +2395,19 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page10.cellLTShoulderROM.Text = PhysicalExamRiskResult.FirstOrDefault(p => p.ResultItemCode == "PAR1305")?.ResultValue;
                 page10.cellLumbarROM.Text = PhysicalExamRiskResult.FirstOrDefault(p => p.ResultItemCode == "PAR1306")?.ResultValue;
 
-                if(page10.cellMyofascialTop.Text == "มีความเสี่ยง" || page10.cellMyofascialBottom.Text == "มีความเสี่ยง" ||  page10.cellNeckROM.Text == "ผิดปกติ" || page10.cellRTShoulderROM.Text == "ผิดปกติ" || page10.cellLTShoulderROM.Text == "ผิดปกติ" || page10.cellLumbarROM.Text == "ผิดปกติ" )
+                if (page10.cellMyofascialTop.Text != "" && page10.cellMyofascialBottom.Text != "" && page10.cellNeckROM.Text != "" && page10.cellRTShoulderROM.Text != "" && page10.cellLTShoulderROM.Text != "" && page10.cellLumbarROM.Text != "" )
                 {
-                    page10.RiskRecommed.Text = "โครงสร้างและกล้ามเนื้ออยู่ในเกณฑ์มีความเสี่ยง หากอาการปวดหรืออาการชากระทบกับการดำเนินชีวิตประจำวัน ควรตรวจวินิจฉัยเพิ่มเติมโดยละเอียด และเข้ารับการรักษาที่เหมาะสม ร่วมกับการปรับพฤติกรรม เพื่อลดโอกาสการบาดเจ็บเรื้อรัง";
-                }
-                else
-                {
-                    page10.RiskRecommed.Text = "โครงสร้างและกล้ามเนื้ออยู่ในเกณฑ์ปกติ ควรยืดเหยียดกล้ามเนื้อและออกกำลังกายสม่ำเสมออย่างเหมาะสม เพื่อลดความเสี่ยงการบาดเจ็บของโครงสร้างและกล้ามเนื้อ";
+                    page10.RowRisk1.Visible = true;
+                    page10.RowRisk2.Visible = true;
+
+                    if (page10.cellMyofascialTop.Text == "มีความเสี่ยง" || page10.cellMyofascialBottom.Text == "มีความเสี่ยง" ||  page10.cellNeckROM.Text == "ผิดปกติ" || page10.cellRTShoulderROM.Text == "ผิดปกติ" || page10.cellLTShoulderROM.Text == "ผิดปกติ" || page10.cellLumbarROM.Text == "ผิดปกติ" )
+                    {
+                        page10.RiskRecommed.Text = "โครงสร้างและกล้ามเนื้ออยู่ในเกณฑ์มีความเสี่ยง หากอาการปวดหรืออาการชากระทบกับการดำเนินชีวิตประจำวัน ควรตรวจวินิจฉัยเพิ่มเติมโดยละเอียด และเข้ารับการรักษาที่เหมาะสม ร่วมกับการปรับพฤติกรรม เพื่อลดโอกาสการบาดเจ็บเรื้อรัง";
+                    }
+                    else
+                    {
+                        page10.RiskRecommed.Text = "โครงสร้างและกล้ามเนื้ออยู่ในเกณฑ์ปกติ ควรยืดเหยียดกล้ามเนื้อและออกกำลังกายสม่ำเสมออย่างเหมาะสม เพื่อลดความเสี่ยงการบาดเจ็บของโครงสร้างและกล้ามเนื้อ";
+                    }
                 }
             }
         }
