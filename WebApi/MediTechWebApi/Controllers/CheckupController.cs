@@ -125,8 +125,8 @@ namespace MediTechWebApi.Controllers
         {
             DateTime now = DateTime.Now;
             List<CheckupJobContactModel> data = db.CheckupJobContact.Where(p =>
-            p.StatusFlag == "A" 
-            && (payorDetailUID == null || p.InsuranceCompanyUID == payorDetailUID )
+            p.StatusFlag == "A"
+            && (payorDetailUID == null || p.InsuranceCompanyUID == payorDetailUID)
             && (startDate == null || DbFunctions.TruncateTime(p.StartDttm) >= DbFunctions.TruncateTime(startDate))
             && (endDate == null || DbFunctions.TruncateTime(p.EndDttm) < DbFunctions.TruncateTime(endDate)))
                 .Select(p => new CheckupJobContactModel
@@ -447,7 +447,7 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<RequestListModel> SearchCheckupExamList(DateTime? requestDateFrom, DateTime? requestDateTo, long? patientUID, int? InsuranceCompanyUID, int? checkupJobUID, int? PRTGPUID, int? requestItemUID)
         {
-            DataTable dataTable = SqlDirectStore.pSearchCheckupExamList(requestDateFrom, requestDateTo, patientUID, InsuranceCompanyUID, checkupJobUID, PRTGPUID,requestItemUID);
+            DataTable dataTable = SqlDirectStore.pSearchCheckupExamList(requestDateFrom, requestDateTo, patientUID, InsuranceCompanyUID, checkupJobUID, PRTGPUID, requestItemUID);
             List<RequestListModel> listData = dataTable.ToList<RequestListModel>();
 
             return listData;
@@ -1257,28 +1257,14 @@ namespace MediTechWebApi.Controllers
         {
             List<PatientVisitModel> returnData = new List<PatientVisitModel>();
             List<PatientVisitModel> visitData = new List<PatientVisitModel>();
-            var data1 = from pv in db.PatientVisit
-                        join pa in db.Patient on pv.PatientUID equals pa.UID
-                        join re in db.Request on pv.UID equals re.PatientVisitUID
-                        join red in db.RequestDetail on re.UID equals red.RequestUID
-                        join gps in db.RequestItemGroupResult on red.RequestitemUID equals gps.RequestItemUID
-                        join rs in db.Result on red.UID equals rs.RequestDetailUID
-                        where pv.CheckupJobUID == checkupJobUID
-                        && pv.StatusFlag == "A"
-                        && re.StatusFlag == "A"
-                        && red.StatusFlag == "A"
-                        && red.ORDSTUID != 2848
-                        && rs.StatusFlag == "A"
-                        && GPRSTUIDs.Contains(gps.GPRSTUID)
-                        select new PatientVisitModel
-                        {
-                            PatientUID = pv.PatientUID,
-                            PatientVisitUID = pv.UID,
-                            Age = pa.DOBDttm.HasValue ? SqlFunction.fGetAge(pa.DOBDttm.Value) : "",
-                            SEXXXUID = pa.SEXXXUID
-                        };
+            var dtVisit = SqlStatement.GetVisitCheckupGroup(checkupJobUID, GPRSTUIDs);
 
-            visitData.AddRange(data1);
+            if (dtVisit != null && dtVisit.Rows.Count > 0)
+            {
+                List<PatientVisitModel> data1 = dtVisit.ToList<PatientVisitModel>();
+                visitData.AddRange(data1);
+            }
+
             if (GPRSTUIDs.Any(p => p == 3177 || p == 3178))
             {
                 var data2 = from pv in db.PatientVisit
@@ -2119,8 +2105,8 @@ namespace MediTechWebApi.Controllers
                     }
                     else
                     {
-                        PatientVisit patientVisit = db.PatientVisit.Where(p => p.PatientUID == patientUID 
-                        && p.OwnerOrganisationUID == organisationUID 
+                        PatientVisit patientVisit = db.PatientVisit.Where(p => p.PatientUID == patientUID
+                        && p.OwnerOrganisationUID == organisationUID
                         && p.Comments == "Migrate Lab Result"
                         && p.StartDttm == enterDate
                         && p.StatusFlag == "A").FirstOrDefault();
@@ -2154,9 +2140,9 @@ namespace MediTechWebApi.Controllers
                         PatientVisitPayor visitPayor = new PatientVisitPayor();
                         if (patientVisit != null)
                         {
-                            visitPayor  = db.PatientVisitPayor.Find(patientVisit.UID);
+                            visitPayor = db.PatientVisitPayor.Find(patientVisit.UID);
 
-                            if(visitPayor == null)
+                            if (visitPayor == null)
                             {
                                 visitPayor.PatientUID = resultItemRange.PatientUID;
                                 visitPayor.PatientVisitUID = patientVisit.UID;
