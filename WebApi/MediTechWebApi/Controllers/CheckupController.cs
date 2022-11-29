@@ -2151,12 +2151,15 @@ namespace MediTechWebApi.Controllers
                             }
                         }
 
-                        PatientVisitPayor visitPayor = new PatientVisitPayor();
+                        PatientVisitPayor visitPayor = new PatientVisitPayor(); ;
                         if (patientVisit != null)
                         {
-                            visitPayor  = db.PatientVisitPayor.Find(patientVisit.UID);
+                            var visitPayorData  = db.PatientVisitPayor.Where(p => p.PatientVisitUID == patientVisit.UID
+                            && p.Comment == "Migrate Lab Result"
+                            && p.PayorDetailUID == payorDetailUID
+                            && p.StatusFlag == "A").FirstOrDefault();
 
-                            if(visitPayor == null)
+                            if(visitPayorData == null)
                             {
                                 visitPayor.PatientUID = resultItemRange.PatientUID;
                                 visitPayor.PatientVisitUID = patientVisit.UID;
@@ -2171,6 +2174,10 @@ namespace MediTechWebApi.Controllers
 
                                 db.PatientVisitPayor.Add(visitPayor);
                                 db.SaveChanges();
+                            }
+                            else
+                            {
+                                visitPayor = visitPayorData;
                             }
                         }
 
