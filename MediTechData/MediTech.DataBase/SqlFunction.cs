@@ -55,7 +55,7 @@ namespace MediTech.DataBase
         }
 
         [DbFunction("MediTechModel.Store", "fGetCareProviderLicenseNo")]
-        public static string fGetCareProviderLicenseNo(int careproviderUID) 
+        public static string fGetCareProviderLicenseNo(int careproviderUID)
         {
             throw new NotSupportedException("Direct calls are not supported.");
         }
@@ -1341,7 +1341,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pCheckOrderDuplicate(long patientUID,long patientVisitUID,int billableitemUID)
+        public static DataTable pCheckOrderDuplicate(long patientUID, long patientVisitUID, int billableitemUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pCheckOrderDuplicate", entities.Database.Connection.ConnectionString);
@@ -1446,7 +1446,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pSearchPatientBill(DateTime? dateFrom, DateTime? dateTo, long? patientUID, string billNumber,string isIP, int? owerOrganisationUID,int? userUID)
+        public static DataTable pSearchPatientBill(DateTime? dateFrom, DateTime? dateTo, long? patientUID, string billNumber, string isIP, int? owerOrganisationUID, int? userUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchPatientBill", entities.Database.Connection.ConnectionString);
@@ -1610,7 +1610,7 @@ namespace MediTech.DataBase
         }
 
         public static DataTable pSearchPatientInvoiceForAllocateBill(long? patientUID, DateTime? billFromDTTM, DateTime? billToDTTM, int? insuranceComapnyUID, int? checkupJobUID
-            , int? ownerOrganisationUID,int? userUID)
+            , int? ownerOrganisationUID, int? userUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchPatientInvoiceForAllocateBill", entities.Database.Connection.ConnectionString);
@@ -1674,7 +1674,7 @@ namespace MediTech.DataBase
         }
 
 
-        public static DataTable pSearchListDispensedItemForReturn(long patientVisitUID,int? storeUID,string prescriptionNumber,string itemName)
+        public static DataTable pSearchListDispensedItemForReturn(long patientVisitUID, int? storeUID, string prescriptionNumber, string itemName)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchListDispensedItemForReturn", entities.Database.Connection.ConnectionString);
@@ -1793,7 +1793,7 @@ namespace MediTech.DataBase
         }
 
 
-        public static DataTable pSearchRequestLabList(DateTime? requestDateFrom, DateTime? requestDateTo, string statusList, long? patientUID, int? requestItemUID, string labNumber, int? insuranceCompanyUID, int? organisationUID, int? locationUID,int? userUID)
+        public static DataTable pSearchRequestLabList(DateTime? requestDateFrom, DateTime? requestDateTo, string statusList, long? patientUID, int? requestItemUID, string labNumber, int? insuranceCompanyUID, int? organisationUID, int? locationUID, int? userUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchRequestLabList", entities.Database.Connection.ConnectionString);
@@ -1814,7 +1814,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pSearchRequestExamList(DateTime? requestDateFrom, DateTime? requestDateTo, string statusList, int? RQPRTUID, long? patientUID, string orderName, int? RIMTYPUID, int? radiologistUID, int? rduStaffUID, int? payorDetailUID,int? orderLocationUID, int? organisationUID,int? userUID)
+        public static DataTable pSearchRequestExamList(DateTime? requestDateFrom, DateTime? requestDateTo, string statusList, int? RQPRTUID, long? patientUID, string orderName, int? RIMTYPUID, int? radiologistUID, int? rduStaffUID, int? payorDetailUID, int? orderLocationUID, int? organisationUID, int? userUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchRequestExamList", entities.Database.Connection.ConnectionString);
@@ -2863,7 +2863,7 @@ namespace MediTech.DataBase
             return flag;
         }
 
-        public static bool pHourlyComplete(string patientOrderDetailUIDs,int userUID,DateTime endDttm,string comments)
+        public static bool pHourlyComplete(string patientOrderDetailUIDs, int userUID, DateTime endDttm, string comments)
         {
             bool flag = false;
             MediTechEntities entities = new MediTechEntities();
@@ -3116,6 +3116,7 @@ and Status = -1";
                 DataTable dt = new DataTable();
                 SqlCommand command = new SqlCommand();
                 command.CommandType = CommandType.Text;
+                command.CommandTimeout = 5000;
                 command.Connection = con;
                 command.CommandText = @"select pv.PatientUID,
 pv.UID PatientVisitUID,
@@ -3133,12 +3134,12 @@ and red.StatusFlag = 'A'
 and rs.StatusFlag = 'A'
 and red.ORDSTUID <> 2848
 and pv.CheckupJobUID = @CheckupJobUID
-and GPRSTUID in (@GPRSTUID)";
+and GPRSTUID in (Select Name from dbo.splitstring(@GPRSTUID))";
                 string gprstUID = string.Empty;
 
                 foreach (var item in GPRSTUIDs)
                 {
-                    gprstUID = string.IsNullOrEmpty(gprstUID) ? item.ToString() : "," + item.ToString();
+                    gprstUID = string.IsNullOrEmpty(gprstUID) ? item.ToString() : gprstUID + "," + item.ToString();
                 }
 
                 command.Parameters.AddWithValue("@CheckupJobUID", checkupJobUID);
@@ -3157,6 +3158,8 @@ and GPRSTUID in (@GPRSTUID)";
                 con.Dispose();
             }
         }
+
+
 
         public static bool TruncateTableSEQID(string seqName)
         {

@@ -20,6 +20,7 @@ namespace MediTech.DataBase
         public MediTechEntities()
             : base("name=MediTechEntities")
         {
+            ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = 3000;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

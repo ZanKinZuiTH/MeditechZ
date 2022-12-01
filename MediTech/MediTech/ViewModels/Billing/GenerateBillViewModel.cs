@@ -60,7 +60,7 @@ namespace MediTech.ViewModels
                     BalanceAmount = null;
 
                     var patBillableItems = DataService.Billing.GetPatientBillableItemsAccount(SelectPateintVisit.PatientUID, SelectPateintVisit.PatientVisitUID, null, _SelectPatientVisitPayor.PatientVisitPayorUID
-                        , SelectPateintVisit.StartDttm.Value.Date, DateTime.Now.Date, null, null, null);
+                        , SelectPateintVisit.CWhen.Date, DateTime.Now.Date, null, null, null);
                     PatientBillableItemsAccounts = new ObservableCollection<AllocatedPatBillableItemsAccountResultModel>(patBillableItems);
 
                     if (PatientBillableItemsAccounts != null && PatientBillableItemsAccounts.Count > 0)

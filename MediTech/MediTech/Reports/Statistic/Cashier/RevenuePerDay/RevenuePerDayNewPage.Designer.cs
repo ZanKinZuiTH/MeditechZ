@@ -590,7 +590,7 @@ namespace MediTech.Reports.Statistic.Cashier
             this.Font = new System.Drawing.Font("Arial", 9.75F);
             this.Landscape = true;
             this.Margins = new System.Drawing.Printing.Margins(0, 0, 0, 7);
-            this.PageWidth = 1600;
+            this.PageWidth = 2000;
             this.PaperKind = System.Drawing.Printing.PaperKind.Custom;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.Date,
@@ -600,7 +600,7 @@ namespace MediTech.Reports.Statistic.Cashier
             this.crossTabHeaderStyle1,
             this.crossTabDataStyle1,
             this.crossTabTotalStyle1});
-            this.Version = "20.2";
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrCrossTab1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();

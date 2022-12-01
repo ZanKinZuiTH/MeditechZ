@@ -76,6 +76,9 @@ namespace MediTech.Reports.Statistic.Cashier
                 newPage.DataSource = dataGroupOrg;
 
                 newPage.CreateDocument();
+                newPage.PageHeight = 1100;
+                newPage.PageWidth = 2000;
+                this.Pages.Clear();
                 this.Pages.AddRange(newPage.Pages);
             }
         }
