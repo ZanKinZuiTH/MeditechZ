@@ -39,6 +39,8 @@ namespace MediTech.Model
         public long? IdentifyingUID { get; set; }
         public double? DoctorFee { get; set; }
         public int? CareproviderUID { get; set; }
+        public string BillingGroupEN { get; set; }
+        public string BillingSubGroupEN { get; set; }
 
     }
 }

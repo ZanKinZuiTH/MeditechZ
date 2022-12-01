@@ -1177,7 +1177,9 @@ namespace MediTechWebApi.Controllers
                     BillingGroupUID = f.Key.BillingGroupUID ?? 0,
                     BillingSubGroupUID = f.Key.BillingSubGroupUID ?? 0,
                     BillingGroup = SqlFunction.fGetBillingGroupDesc(f.Key.BillingGroupUID ?? 0, "G"),
-                    BillinsgSubGroup = SqlFunction.fGetBillingGroupDesc(f.Key.BillingSubGroupUID ?? 0, "S")
+                    BillinsgSubGroup = SqlFunction.fGetBillingGroupDesc(f.Key.BillingSubGroupUID ?? 0, "S"),
+                    BillingGroupEN = SqlFunction.fGetBillingGroupEN(f.Key.BillingGroupUID ?? 0, "G"),
+                    BillingSubGroupEN = SqlFunction.fGetBillingGroupEN(f.Key.BillingSubGroupUID ?? 0, "S")
                 }).ToList();
             return data;
         }
@@ -1224,7 +1226,9 @@ namespace MediTechWebApi.Controllers
                     BillingGroupUID = f.BillingGroupUID ?? 0,
                     BillingSubGroupUID = f.BillingSubGroupUID ?? 0,
                     BillingGroup = SqlFunction.fGetBillingGroupDesc(f.BillingGroupUID ?? 0, "G"),
-                    BillinsgSubGroup = SqlFunction.fGetBillingGroupDesc(f.BillingSubGroupUID ?? 0, "S")
+                    BillinsgSubGroup = SqlFunction.fGetBillingGroupDesc(f.BillingSubGroupUID ?? 0, "S"),
+                    BillingGroupEN = SqlFunction.fGetBillingGroupEN(f.BillingGroupUID ?? 0, "G"),
+                    BillingSubGroupEN = SqlFunction.fGetBillingGroupEN(f.BillingSubGroupUID ?? 0, "S")
                 }).ToList();
             return data;
         }
