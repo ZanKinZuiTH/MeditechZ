@@ -69,8 +69,8 @@ namespace MediTech.Reports.Operating.Cashier
                 ListLabelCopy.Text = "Lists";
                 AmountLabel.Text = "Amount";
                 AmountLabelCopy.Text = "Amount";
-                DiscountLabel.Text = "Discout";
-                DiscountLabelCopy.Text = "Discout";
+                DiscountLabel.Text = "Discount";
+                DiscountLabelCopy.Text = "Discount";
                 TotalLabel.Text = "Total (THB)";
                 TotalLabelCopy.Text = "Total (THB)";
                 TotalBottom.Text = "Total (Thai Baht)";
