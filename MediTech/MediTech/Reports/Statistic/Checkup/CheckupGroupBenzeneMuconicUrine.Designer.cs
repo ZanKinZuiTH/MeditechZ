@@ -111,6 +111,7 @@ namespace MediTech.Reports.Statistic.Checkup
             this.GroupHeader1.HeightF = 75.66666F;
             this.GroupHeader1.KeepTogether = true;
             this.GroupHeader1.Name = "GroupHeader1";
+            this.GroupHeader1.RepeatEveryPage = true;
             // 
             // xrTable2
             // 
@@ -444,7 +445,7 @@ namespace MediTech.Reports.Statistic.Checkup
             this.xrTableCell3.FormattingRules.Add(this.BenzeneL);
             this.xrTableCell3.Name = "xrTableCell3";
             this.xrTableCell3.StylePriority.UseFont = false;
-            this.xrTableCell3.Weight = 1.8564529484365449D;
+            this.xrTableCell3.Weight = 1.8564529484365448D;
             // 
             // BenzeneH
             // 
@@ -516,7 +517,7 @@ namespace MediTech.Reports.Statistic.Checkup
             this.BenzeneL,
             this.Abnormal,
             this.BenzeneH});
-            this.Version = "20.2";
+            this.Version = "22.1";
             this.Controls.SetChildIndex(this.GroupHeader1, 0);
             this.Controls.SetChildIndex(this.PageHeaderBase, 0);
             this.Controls.SetChildIndex(this.DetailBase, 0);

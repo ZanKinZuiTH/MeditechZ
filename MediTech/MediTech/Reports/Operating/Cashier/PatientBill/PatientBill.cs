@@ -53,7 +53,7 @@ namespace MediTech.Reports.Operating.Cashier
             var listStatementBill = service.PrintStatementBill(Convert.ToInt64(this.Parameters["PatientBillUID"].Value.ToString()));
             this.DataSource = listStatementBill;
 
-            var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);
+            var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(30);
             if (langType == "EN")
             {
                 NameLabel.Text = "Name :";
@@ -161,12 +161,21 @@ namespace MediTech.Reports.Operating.Cashier
                 }
                 else if (Organisation.HealthOrganisationUID == 25)
                 {
-                    lbOrganisation.Text = OrganisationBRXG.Description?.ToString();
-                    lbOrganisationCopy.Text = OrganisationBRXG.Description?.ToString();
-                    string mobileSRC = OrganisationBRXG.MobileNo != null ? " " + telLabel + " " + OrganisationBRXG.MobileNo?.ToString() : "";
-                    string addressSRC = langType == "EN" ? OrganisationBRXG.Address2?.ToString() : OrganisationBRXG.Address?.ToString();
-                    lbAddress.Text = addressSRC + mobileSRC;
-                    lbAddressCopy.Text = addressSRC + mobileSRC;
+                    lbOrganisation.Text = "บริษัทบีอาร์เอ็กซ์จีจำกัด (คลินิกบูรพารักษ์สาขาศรีราชา)";
+                    lbOrganisationCopy.Text = "บริษัทบีอาร์เอ็กซ์จีจำกัด (คลินิกบูรพารักษ์สาขาศรีราชา)";
+                    string mobileSRC = Organisation.MobileNo != null ? " " + telLabel + " " + Organisation.MobileNo?.ToString() : "";
+                    string addressBrxg = langType == "EN" ? OrganisationBRXG.Address2?.ToString() : OrganisationBRXG.Address?.ToString();
+                    lbAddress.Text = addressBrxg + mobile;
+                    lbAddressCopy.Text = addressBrxg + mobile;
+                }
+                else if (Organisation.HealthOrganisationUID == 17)
+                {
+                    lbOrganisation.Text = Organisation.Description?.ToString();
+                    lbOrganisationCopy.Text = Organisation.Description?.ToString();
+                    string mobileBrxg = Organisation.MobileNo != null ? " " + telLabel + " " + Organisation.MobileNo?.ToString() : "";
+                    string addressBrxg = langType == "EN" ? OrganisationBRXG.Address2?.ToString() : OrganisationBRXG.Address?.ToString();
+                    lbAddress.Text = addressBrxg + mobileBrxg;
+                    lbAddressCopy.Text = addressBrxg + mobileBrxg;
                 }
                 else
                 {

@@ -28,7 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraPrinting.Shape.ShapeRectangle shapeRectangle1 = new DevExpress.XtraPrinting.Shape.ShapeRectangle();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.WaterN = new DevExpress.XtraReports.UI.XRCheckBox();
+            this.waterY = new DevExpress.XtraReports.UI.XRCheckBox();
+            this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrShape1 = new DevExpress.XtraReports.UI.XRShape();
             this.lbResultWellness = new DevExpress.XtraReports.UI.XRLabel();
             this.TitleResultWellness = new DevExpress.XtraReports.UI.XRLabel();
             this.tbPhysicalExam = new DevExpress.XtraReports.UI.XRTable();
@@ -100,16 +105,60 @@
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.WaterN,
+            this.waterY,
+            this.xrLabel4,
+            this.xrShape1,
             this.lbResultWellness,
             this.TitleResultWellness,
             this.tbPhysicalExam,
             this.xrLabel3,
             this.xrLabel2,
             this.xrLabel1});
-            this.Detail.HeightF = 529.1667F;
+            this.Detail.HeightF = 623.3333F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // WaterN
+            // 
+            this.WaterN.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.WaterN.LocationFloat = new DevExpress.Utils.PointFloat(319.2857F, 486.2693F);
+            this.WaterN.Name = "WaterN";
+            this.WaterN.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.WaterN.SizeF = new System.Drawing.SizeF(69.04764F, 23F);
+            this.WaterN.StylePriority.UseFont = false;
+            this.WaterN.Text = " ไม่ใช่";
+            // 
+            // waterY
+            // 
+            this.waterY.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.waterY.LocationFloat = new DevExpress.Utils.PointFloat(263.9286F, 486.2693F);
+            this.waterY.Name = "waterY";
+            this.waterY.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.waterY.SizeF = new System.Drawing.SizeF(55.35712F, 23F);
+            this.waterY.StylePriority.UseFont = false;
+            this.waterY.Text = " ใช่";
+            // 
+            // xrLabel4
+            // 
+            this.xrLabel4.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(31.17752F, 486.2693F);
+            this.xrLabel4.Multiline = true;
+            this.xrLabel4.Name = "xrLabel4";
+            this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel4.SizeF = new System.Drawing.SizeF(198.2143F, 23F);
+            this.xrLabel4.StylePriority.UseFont = false;
+            this.xrLabel4.Text = "งดน้ำ-งดอาหารมาแล้ว 8-12 ชั่วโมง";
+            // 
+            // xrShape1
+            // 
+            this.xrShape1.BorderColor = System.Drawing.Color.Black;
+            this.xrShape1.LocationFloat = new DevExpress.Utils.PointFloat(22.00005F, 471.4099F);
+            this.xrShape1.Name = "xrShape1";
+            this.xrShape1.Shape = shapeRectangle1;
+            this.xrShape1.SizeF = new System.Drawing.SizeF(366.3333F, 52.5F);
+            this.xrShape1.StylePriority.UseBorderColor = false;
             // 
             // lbResultWellness
             // 
@@ -660,7 +709,7 @@
             // 
             this.xrLabel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel3.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(96.16686F, 27.75677F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(87.83353F, 25.25677F);
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel3.SizeF = new System.Drawing.SizeF(247.5001F, 23.00001F);
@@ -732,7 +781,7 @@
             this.lbName15.Font = new System.Drawing.Font("Angsana New", 9F);
             this.lbName15.Name = "lbName15";
             this.lbName15.StylePriority.UseFont = false;
-            this.lbName15.Weight = 1.5083327681018564D;
+            this.lbName15.Weight = 1.5083327681018563D;
             // 
             // xrTable1
             // 
@@ -776,7 +825,7 @@
             this.lbName2.Font = new System.Drawing.Font("Angsana New", 9F);
             this.lbName2.Name = "lbName2";
             this.lbName2.StylePriority.UseFont = false;
-            this.lbName2.Weight = 1.5083327681018564D;
+            this.lbName2.Weight = 1.5083327681018563D;
             // 
             // TopMargin
             // 
@@ -806,7 +855,7 @@
             this.PageHeight = 583;
             this.PageWidth = 827;
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;
-            this.Version = "20.2";
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.tbPhysicalExam)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
@@ -880,5 +929,9 @@
         public DevExpress.XtraReports.UI.XRLabel lbResultWellness;
         public DevExpress.XtraReports.UI.XRLabel TitleResultWellness;
         private DevExpress.XtraReports.UI.XRLabel xrLabel2;
+        public DevExpress.XtraReports.UI.XRCheckBox WaterN;
+        public DevExpress.XtraReports.UI.XRCheckBox waterY;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel4;
+        private DevExpress.XtraReports.UI.XRShape xrShape1;
     }
 }

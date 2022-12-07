@@ -33,7 +33,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
-            this.xrPictureBox2 = new DevExpress.XtraReports.UI.XRPictureBox();
+            this.xrPictureBox3 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.lbCompany = new DevExpress.XtraReports.UI.XRLabel();
@@ -128,7 +128,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrPictureBox2,
+            this.xrPictureBox3,
             this.xrLabel6,
             this.xrLabel5,
             this.lbCompany,
@@ -146,17 +146,17 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(15, 15, 15, 15, 100F);
             this.Detail.StylePriority.UsePadding = false;
             // 
-            // xrPictureBox2
+            // xrPictureBox3
             // 
-            this.xrPictureBox2.BorderWidth = 0F;
-            this.xrPictureBox2.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("xrPictureBox2.ImageSource"));
-            this.xrPictureBox2.LocationFloat = new DevExpress.Utils.PointFloat(292.243F, 0F);
-            this.xrPictureBox2.Name = "xrPictureBox2";
-            this.xrPictureBox2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100F);
-            this.xrPictureBox2.SizeF = new System.Drawing.SizeF(250.757F, 83.1067F);
-            this.xrPictureBox2.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
-            this.xrPictureBox2.StylePriority.UseBorderWidth = false;
-            this.xrPictureBox2.StylePriority.UsePadding = false;
+            this.xrPictureBox3.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrPictureBox3.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("xrPictureBox3.ImageSource"));
+            this.xrPictureBox3.LocationFloat = new DevExpress.Utils.PointFloat(292.243F, 0F);
+            this.xrPictureBox3.Name = "xrPictureBox3";
+            this.xrPictureBox3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100F);
+            this.xrPictureBox3.SizeF = new System.Drawing.SizeF(250.757F, 83.10669F);
+            this.xrPictureBox3.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+            this.xrPictureBox3.StylePriority.UseBorders = false;
+            this.xrPictureBox3.StylePriority.UsePadding = false;
             // 
             // xrLabel6
             // 
@@ -1275,6 +1275,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow1;
         private DevExpress.XtraReports.UI.XRTableCell txtRn;
         private DevExpress.XtraReports.UI.XRTableCell RN;
-        private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox2;
+        protected DevExpress.XtraReports.UI.XRPictureBox xrPictureBox3;
     }
 }
