@@ -162,17 +162,19 @@
             // 
             // lbResultWellness
             // 
-            this.lbResultWellness.AnchorHorizontal = DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left;
             this.lbResultWellness.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.lbResultWellness.BorderWidth = 1F;
+            this.lbResultWellness.CanGrow = false;
             this.lbResultWellness.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbResultWellness.ForeColor = System.Drawing.Color.Black;
             this.lbResultWellness.LocationFloat = new DevExpress.Utils.PointFloat(435.3333F, 49.09012F);
             this.lbResultWellness.Multiline = true;
             this.lbResultWellness.Name = "lbResultWellness";
-            this.lbResultWellness.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100F);
+            this.lbResultWellness.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.lbResultWellness.SizeF = new System.Drawing.SizeF(368.0001F, 474.8198F);
+            this.lbResultWellness.StylePriority.UseBorderWidth = false;
             this.lbResultWellness.StylePriority.UseFont = false;
             this.lbResultWellness.StylePriority.UseForeColor = false;
             this.lbResultWellness.StylePriority.UsePadding = false;

@@ -807,16 +807,16 @@
             // xrLabel4
             // 
             this.xrLabel4.CanGrow = false;
-            this.xrLabel4.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Italic);
-            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(459.0128F, 410.3217F);
+            this.xrLabel4.Font = new System.Drawing.Font("Angsana New", 8F, System.Drawing.FontStyle.Italic);
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(439.9893F, 407.1622F);
             this.xrLabel4.Multiline = true;
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel4.SizeF = new System.Drawing.SizeF(319.3611F, 40.49994F);
+            this.xrLabel4.SizeF = new System.Drawing.SizeF(358.7027F, 30.32614F);
             this.xrLabel4.StylePriority.UseFont = false;
-            this.xrLabel4.Text = "หมายเหตุ : หากมีข้อสงสัยเพิ่มเติมกรุณาติดต่อ บีอาร์เอ็กซ์จีสหคลินิก ที่เบอร์ 033 " +
-    "060 399 หรือ \r\nหากกรณีไปพบแพทย์ที่สหคลินิก หรือสถานพยาบาลอื่น กรุณานำสมุดรายงานผ" +
-    "ลตรวจทุกครั้ง";
+            this.xrLabel4.StylePriority.UseTextAlignment = false;
+            this.xrLabel4.Text = resources.GetString("xrLabel4.Text");
+            this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // xrTable5
             // 
