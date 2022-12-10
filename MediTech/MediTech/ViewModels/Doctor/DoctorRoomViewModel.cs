@@ -1124,6 +1124,13 @@ namespace MediTech.ViewModels
                             {
                                 ItemMasterModel itemMaster = DataService.Inventory.GetItemMasterByUID(billItem.ItemUID.Value);
                                 List<StockModel> stores = new List<StockModel>();
+
+                                if (itemMaster == null)
+                                {
+                                    WarningDialog("ไม่มี " + billItem.ItemName + " ในคลัง โปรดตรวจสอบ");
+                                    continue;
+                                }
+
                                 stores = DataService.Inventory.GetStockRemainForDispensedByItemMasterUID(itemMaster.ItemMasterUID, ownerUID ?? 0);
 
                                 if (stores == null || stores.Count <= 0)
@@ -1136,7 +1143,7 @@ namespace MediTech.ViewModels
                                     bool CanDispense = false;
                                     foreach (var store in stores)
                                     {
-                                        if (itemDrug.Quantity > store.Quantity)
+                                        if (store.Quantity > itemDrug.Quantity  )
                                         {
                                             CanDispense = true;
                                         }
