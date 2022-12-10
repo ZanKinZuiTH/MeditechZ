@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CheckupPage1));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.xrPictureBox3 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.lbResultWellness2 = new DevExpress.XtraReports.UI.XRLabel();
             this.TitleResultWellness2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
@@ -116,6 +117,7 @@
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrPictureBox3,
             this.lbResultWellness2,
             this.TitleResultWellness2,
             this.xrPictureBox1,
@@ -132,6 +134,16 @@
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // xrPictureBox3
+            // 
+            this.xrPictureBox3.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrPictureBox3.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("xrPictureBox3.ImageSource"));
+            this.xrPictureBox3.LocationFloat = new DevExpress.Utils.PointFloat(439.9893F, 470.7162F);
+            this.xrPictureBox3.Name = "xrPictureBox3";
+            this.xrPictureBox3.SizeF = new System.Drawing.SizeF(151.9155F, 60.35507F);
+            this.xrPictureBox3.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+            this.xrPictureBox3.StylePriority.UseBorders = false;
             // 
             // lbResultWellness2
             // 
@@ -493,7 +505,7 @@
             this.xrTableCell1,
             this.lbDateCheckup});
             this.xrTableRow1.Name = "xrTableRow1";
-            this.xrTableRow1.Weight = 0.75999891052229474D;
+            this.xrTableRow1.Weight = 0.75999891052229473D;
             // 
             // xrTableCell1
             // 
@@ -637,7 +649,7 @@
             this.lbGender.StylePriority.UsePadding = false;
             this.lbGender.StylePriority.UseTextAlignment = false;
             this.lbGender.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            this.lbGender.Weight = 1.0210340503487037D;
+            this.lbGender.Weight = 1.0210340503487036D;
             // 
             // xrTableRow4
             // 
@@ -961,7 +973,7 @@
             this.lbName16.Font = new System.Drawing.Font("Angsana New", 9F);
             this.lbName16.Name = "lbName16";
             this.lbName16.StylePriority.UseFont = false;
-            this.lbName16.Weight = 1.5083327681018564D;
+            this.lbName16.Weight = 1.5083327681018563D;
             // 
             // TopMargin
             // 
@@ -1015,7 +1027,7 @@
             this.PatientUID,
             this.PatientVisitUID,
             this.PayorDetailUID});
-            this.Version = "20.2";
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.tbVatalSign)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbPatientDetail)).EndInit();
@@ -1104,5 +1116,6 @@
         private DevExpress.XtraReports.UI.XRTableCell lbName16;
         public DevExpress.XtraReports.UI.XRLabel lbResultWellness2;
         public DevExpress.XtraReports.UI.XRLabel TitleResultWellness2;
+        public DevExpress.XtraReports.UI.XRPictureBox xrPictureBox3;
     }
 }
