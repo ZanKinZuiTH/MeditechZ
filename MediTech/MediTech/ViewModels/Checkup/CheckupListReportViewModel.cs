@@ -3,6 +3,7 @@ using DevExpress.XtraReports.UI;
 using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
 using MediTech.Reports.Operating.Checkup.RiskBook;
+using MediTech.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media;
 
 namespace MediTech.ViewModels
 {
@@ -184,6 +186,13 @@ namespace MediTech.ViewModels
         }
 
 
+        private bool _IsLoadBlifeData = false;
+
+        public bool IsLoadBlifeData
+        {
+            get { return _IsLoadBlifeData; }
+            set { Set(ref _IsLoadBlifeData, value); }
+        }
 
 
         #endregion
@@ -248,6 +257,14 @@ namespace MediTech.ViewModels
         {
             get { return _PrintToXLSXCommand ?? (_PrintToXLSXCommand = new RelayCommand(PrintToXLSX)); }
         }
+
+        private RelayCommand _ExportToExcelCommand;
+
+        public RelayCommand ExportToExcelCommand
+        {
+            get { return _ExportToExcelCommand ?? (_ExportToExcelCommand = new RelayCommand(ExportToExcel)); }
+        }
+
 
         #endregion
 
@@ -338,7 +355,7 @@ namespace MediTech.ViewModels
             }
 
             int? chekcupJobContactUID = SelectCheckupJobContact != null ? SelectCheckupJobContact.CheckupJobContactUID : (int?)null;
-            PatientCheckupResult = DataService.Checkup.SearchPatientCheckup(DateFrom, DateTo, patientUID, payorDetailUID, chekcupJobContactUID);
+            PatientCheckupResult = DataService.Checkup.SearchPatientCheckup(DateFrom, DateTo, patientUID, payorDetailUID, chekcupJobContactUID, IsLoadBlifeData);
 
             if (PatientCheckupResult != null && PatientCheckupResult.Count > 0)
             {
@@ -554,6 +571,56 @@ namespace MediTech.ViewModels
                     }
                 }
             }
+        }
+
+
+        private void ExportToExcel()
+        {
+            try
+            {
+                if (PatientCheckupResult != null)
+                {
+                    string fileName = ShowSaveFileDialog("Microsoft Excel Document", "Microsoft Excel|*.xlsx");
+                    if (fileName != "")
+                    {
+                        CheckupListReport view = (CheckupListReport)this.View;
+                        XlsxExportOptionsEx options = new XlsxExportOptionsEx();
+                        options.CustomizeCell += Options_CustomizeCell;
+                        view.tableViewCheckupList.ExportToXlsx(fileName,options);
+                        OpenFile(fileName);
+                    }
+
+                }
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+
+        }
+
+        private void Options_CustomizeCell(DevExpress.Export.CustomizeCellEventArgs e)
+        {
+            CheckupListReport view = (CheckupListReport)this.View;
+            PatientVisitModel data = (PatientVisitModel)view.grdCheckupList.GetRow(e.RowHandle);
+            if (data != null && data.IsDataInconsistency == true)
+            {
+                e.Formatting.BackColor = System.Drawing.ColorTranslator.FromHtml("#FFEE8D3D");
+
+            }
+            //if (e.ColumnFieldName == "RowHandle" && e.AreaType == DevExpress.Export.SheetAreaType.DataArea)
+            //{
+            //    var value = (int)e.Value;
+            //    var rowHandle = PatientCheckupResult.FirstOrDefault(p => p.RowHandle == value);
+            //    if (rowHandle != null && rowHandle.IsDataInconsistency == true)
+            //    {
+            //        e.Formatting.BackColor = System.Drawing.ColorTranslator.FromHtml("#FFEE8D3D");
+
+            //    }
+            //}
+
+            e.Handled = true;
         }
         #endregion
     }

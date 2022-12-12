@@ -4,7 +4,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:MediTech.Views" 
+             xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+             xmlns:vm="clr-namespace:MediTech.Views"
              xmlns:cc="clr-namespace:MediTech.CustomControl"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1200">
@@ -88,7 +89,7 @@
                         </dxg:LookUpEdit.StyleSettings>
                     </dxg:LookUpEdit>
                 </dxlc:LayoutItem>
-                
+
                 <dxlc:LayoutItem x:Name="layoutSearchPatient" Label="ค้นหาผู้ป่วย">
                     <cc:AutoCompleteTextBox Text="{Binding SearchPatientCriteria, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             ColumnsSource="{Binding Columns, Source={StaticResource PatientColumn}}"
@@ -112,26 +113,42 @@
                 <dxlc:LayoutItem Label="ถึงวันที่">
                     <dxe:DateEdit EditValue="{Binding DateTo}"/>
                 </dxlc:LayoutItem>
-                
-                <dxlc:LayoutItem>
-                    <dx:SimpleButton HorizontalAlignment="Right" Width="80" Command="{Binding SearchCommand}"
+
+                <dxlc:LayoutItem >
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                        <dxe:CheckEdit Content="ดึงข้อมูลจาก Blife" IsChecked="{Binding IsLoadBlifeData}" Margin="0,0,10,0"/>
+                        <dx:SimpleButton  Width="80" Command="{Binding SearchCommand}"
                                      Height="25" Content="ค้นหา"/>
+                    </StackPanel>
+
                 </dxlc:LayoutItem>
+
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup>
-                <dxg:GridControl ItemsSource="{Binding PatientCheckupResult}" 
+                <dxg:GridControl x:Name="grdCheckupList" ItemsSource="{Binding PatientCheckupResult}" 
                                      SelectedItems="{Binding SelectPatientCheckupResult}" 
                                      SelectionMode="MultipleRow">
                     <dxg:GridControl.View>
-                        <dxg:TableView ShowCheckBoxSelectorColumn="True"
+                        <dxg:TableView Name="tableViewCheckupList" ShowCheckBoxSelectorColumn="True"
                                        ShowCheckBoxSelectorInGroupRow="True"
+                                       AllowConditionalFormattingMenu="True"
                                        NavigationStyle="Row"
                                        ShowGroupPanel="False" 
                                        AllowEditing="False">
+                            <dxg:TableView.ColumnMenuCustomizations>
+                                <dxb:BarButtonItem Name="exportItem1" Content="Export To Excel"
+                                                   Command="{Binding DataContext.ExportToExcelCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:CheckupListReport}}}"
+                                                   Glyph="{dx:DXImage SvgImages/Export/ExportToXLSX.svg}" 
+                                                   dxb:BarItemLinkActionBase.ItemLinkIndex="0" />
+                                <dxb:BarItemLinkSeparator dxb:BarItemLinkActionBase.ItemLinkIndex="1" />
+                            </dxg:TableView.ColumnMenuCustomizations>
                             <dxg:TableView.FormatConditions>
-                                <dxg:FormatCondition ApplyToRow="True" Expression="[IsWellnessResult] = 'True'" FieldName="IsWellnessResult">
+                                <dxg:FormatCondition ApplyToRow="true" Expression="[IsWellnessResult] = 'True'" FieldName="IsWellnessResult">
                                     <dx:Format Background="#FF83B5F1"/>
+                                </dxg:FormatCondition>
+                                <dxg:FormatCondition ApplyToRow="true" Expression="[IsDataInconsistency] = 'True'" FieldName="IsDataInconsistency">
+                                    <dx:Format Background="#FFEE8D3D"/>
                                 </dxg:FormatCondition>
                             </dxg:TableView.FormatConditions>
                         </dxg:TableView>
@@ -146,6 +163,8 @@
                     <dxg:GridColumn FieldName="NationalID" Header="รหัส ปชช."/>
                     <dxg:GridColumn FieldName="IsIdentityOnBLIFE" Header="ยืนยันตัวตนบน B-Life"/>
                     <dxg:GridColumn FieldName="OnBLIFE" Header="ส่งขึ้น B-Life"/>
+                    <dxg:GridColumn FieldName="FirstNameBlife" Header="ชื่อ-Blife"/>
+                    <dxg:GridColumn FieldName="LastNameBlife" Header="นามสกุล-Blife"/>
                     <dxg:GridColumn FieldName="CompanyName" Header="บริษัท"/>
                     <dxg:GridColumn FieldName="EmployeeID" Header="รหัสพนักงาน"/>
                     <dxg:GridColumn FieldName="Department" Header="แผนก"/>
@@ -153,6 +172,7 @@
                     <dxg:GridColumn FieldName="RefNo" Header="RefNo"/>
                     <dxg:GridColumn FieldName="StartDttm" Header="วันที่ตรวจ"/>
                     <dxg:GridColumn FieldName="IsWillnessResult" Visible="False"/>
+                    <dxg:GridColumn FieldName="IsDataInconsistency" Visible="False"/>
                 </dxg:GridControl>
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup Orientation="Horizontal">
@@ -193,7 +213,7 @@
                     </dxlc:LayoutItem>
 
                 </dxlc:LayoutGroup>
-                
+
 
 
             </dxlc:LayoutGroup>

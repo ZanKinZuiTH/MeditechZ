@@ -1222,14 +1222,39 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchPatientCheckup")]
         [HttpGet]
-        public List<PatientVisitModel> SearchPatientCheckup(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? insuranceCompanyUID, int? checkupJobUID)
+        public List<PatientVisitModel> SearchPatientCheckup(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? insuranceCompanyUID, int? checkupJobUID,bool isLoadDataBlife = false)
         {
             List<PatientVisitModel> data = null;
             DataTable dt = SqlDirectStore.pSearchPatientCheckup(dateFrom, dateTo, patientUID, insuranceCompanyUID, checkupJobUID);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = dt.ToList<PatientVisitModel>();
+
+                if (isLoadDataBlife)
+                {
+                    foreach (var item in data)
+                    {
+                        var citizenID = ShareLibrary.Encryption.EncryptBLifeAccess(item.NationalID);
+                        var dtBlife = SqlStatement.BLIFEGetUsersByNationalID(citizenID);
+
+                        if (dtBlife != null && dtBlife.Rows.Count > 0)
+                        {
+                            item.FirstNameBlife = dtBlife.Rows[0]["FirstName"].ToString();
+                            item.LastNameBlife = dtBlife.Rows[0]["LastName"].ToString();
+                            item.IsIdentityOnBLIFE = dtBlife.Rows[0]["IsPatientIdentity"].ToString();
+
+                            if (item.FirstName.Trim() != item.FirstNameBlife.Trim() && item.LastName.Trim() != item.LastNameBlife.Trim())
+                            {
+                                item.IsDataInconsistency = true;
+                            }
+                        }
+
+                    }
+                }
+
             }
+
+  
 
             return data;
         }
