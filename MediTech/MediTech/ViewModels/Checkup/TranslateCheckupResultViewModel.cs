@@ -1170,6 +1170,91 @@ namespace MediTech.ViewModels
                         }
                     }
                     view.gcResultList.ItemsSource = dtResult;
+
+                    if (SelectCheckupJobTask.GPRSTUID == 4847)
+                    {
+                        var data = DataService.Checkup.SearchCheckupExamList(JobDateFrom, JobDateTo, null, SelectInsuranceCompany.InsuranceCompanyUID, SelectCheckupJobContact.CheckupJobContactUID, 3169, 502);
+                        //PatientWellnessModel data = DataService.Reports.PrintWellnessBook(patientUID, patientVisitUID, payorDetailUID);
+
+                        if (data != null && data.Count > 0)
+                        {
+                            int i = 1;
+                            ColumnsResultItems.Add(new Column() { Header = "การทรงตัว", FieldName = "การทรงตัว", VisibleIndex = visibleIndex++ });
+                            ColumnsResultItems.Add(new Column() { Header = "กล้ามเนื้อหลังส่วนบน", FieldName = "กล้ามเนื้อหลังส่วนบน", VisibleIndex = visibleIndex++ });
+                            ColumnsResultItems.Add(new Column() { Header = "กล้ามเนื้อหลังส่วนล่าง", FieldName = "กล้ามเนื้อหลังส่วนล่าง", VisibleIndex = visibleIndex++ });
+                            ColumnsResultItems.Add(new Column() { Header = "Neck ROM", FieldName = "Neck ROM", VisibleIndex = visibleIndex++ });
+                            ColumnsResultItems.Add(new Column() { Header = "RT Shoulder ROM", FieldName = "RT Shoulder ROM", VisibleIndex = visibleIndex++ });
+                            ColumnsResultItems.Add(new Column() { Header = "LT Shoulder ROM", FieldName = "LT Shoulder ROM", VisibleIndex = visibleIndex++ });
+                            ColumnsResultItems.Add(new Column() { Header = "Lumbar ROM", FieldName = "Lumbar ROM", VisibleIndex = visibleIndex++ });
+                            ColumnsResultItems.Add(new Column() { Header = "แปลผล", FieldName = "Conclusion", VisibleIndex = ColumnsResultItems.Count() });
+
+                            dtResult.Columns.Add("การทรงตัว");
+                            dtResult.Columns.Add("กล้ามเนื้อหลังส่วนบน");
+                            dtResult.Columns.Add("กล้ามเนื้อหลังส่วนล่าง");
+                            dtResult.Columns.Add("Neck ROM");
+                            dtResult.Columns.Add("RT Shoulder ROM");
+                            dtResult.Columns.Add("LT Shoulder ROM");
+                            dtResult.Columns.Add("Lumbar ROM");
+                            dtResult.Columns.Add("Conclusion");
+                            
+
+                            foreach (var item in data)
+                            {
+                                var dataResultList = DataService.Checkup.GetResultItemByRequestDetailUID(item.RequestDetailUID);
+                                dataResultList = dataResultList.Where(p => p.StatusFlag != "D").ToList();
+                                if (dataResultList != null)
+                                {
+                                    string MyofascialTop = dataResultList.FirstOrDefault(p => p.ResultItemCode == "PAR1301")?.ResultValue;
+                                    string MyofascialBottom = dataResultList.FirstOrDefault(p => p.ResultItemCode == "PAR1302")?.ResultValue;
+                                    string NeckROM = dataResultList.FirstOrDefault(p => p.ResultItemCode == "PAR1303")?.ResultValue;
+                                    string RTShoulderROM = dataResultList.FirstOrDefault(p => p.ResultItemCode == "PAR1304")?.ResultValue;
+                                    string LTShoulderROM = dataResultList.FirstOrDefault(p => p.ResultItemCode == "PAR1305")?.ResultValue;
+                                    string LumbarROM = dataResultList.FirstOrDefault(p => p.ResultItemCode == "PAR1306")?.ResultValue;
+
+                                    
+                                    DataRow newRow = dtResult.NewRow();
+                                        newRow["RowHandle"] = i++;
+                                        newRow["EmployeeID"] = item.EmployeeID;
+                                        newRow["PatientID"] = item.PatientID;
+                                        newRow["Title"] = item.Title;
+                                        newRow["FirstName"] = item.FirstName;
+                                        newRow["LastName"] = item.LastName;
+                                        newRow["Department"] = item.Department;
+                                        newRow["CompanyName"] = item.CompanyName;
+                                        newRow["Age"] = item.PatientAge;
+                                        newRow["Gender"] = item.Gender;
+                                        //newRow["CheckupResultStatus"] = patient.CheckupResultStatus;
+                                        newRow["StartDttm"] = item.StartDttm;
+                                        newRow["การทรงตัว"] = dataResultList.FirstOrDefault(p => p.ResultItemCode == "PAR1295")?.ResultValue;
+                                        newRow["กล้ามเนื้อหลังส่วนบน"] = MyofascialTop;
+                                        newRow["กล้ามเนื้อหลังส่วนล่าง"] = MyofascialBottom;
+                                        newRow["Neck ROM"] = NeckROM;
+                                        newRow["RT Shoulder ROM"] = RTShoulderROM;
+                                        newRow["LT Shoulder ROM"] = LTShoulderROM;
+                                        newRow["Lumbar ROM"] = LumbarROM;
+
+                                    if (MyofascialTop != "" && MyofascialBottom != "" && NeckROM != "" && RTShoulderROM != "" && LTShoulderROM != "" && LumbarROM != "")
+                                    {
+
+                                        if (MyofascialTop == "มีความเสี่ยง" || MyofascialBottom == "มีความเสี่ยง" || NeckROM == "ผิดปกติ" || RTShoulderROM == "ผิดปกติ" || LTShoulderROM == "ผิดปกติ" || LumbarROM == "ผิดปกติ")
+                                        {
+                                            newRow["Conclusion"] = "โครงสร้างและกล้ามเนื้ออยู่ในเกณฑ์มีความเสี่ยง หากอาการปวดหรืออาการชากระทบกับการดำเนินชีวิตประจำวัน ควรตรวจวินิจฉัยเพิ่มเติมโดยละเอียด และเข้ารับการรักษาที่เหมาะสม ร่วมกับการปรับพฤติกรรม เพื่อลดโอกาสการบาดเจ็บเรื้อรัง";
+                                        }
+                                        else
+                                        {
+                                            newRow["Conclusion"] = "โครงสร้างและกล้ามเนื้ออยู่ในเกณฑ์ปกติ ควรยืดเหยียดกล้ามเนื้อและออกกำลังกายสม่ำเสมออย่างเหมาะสม เพื่อลดความเสี่ยงการบาดเจ็บของโครงสร้างและกล้ามเนื้อ";
+                                        }
+                                    }
+
+                                    dtResult.Rows.Add(newRow);
+                                    
+                                    
+                                }
+                            }
+                            
+                            view.gcResultList.ItemsSource = dtResult;
+                        }
+                    }
                 }
 
             }

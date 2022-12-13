@@ -268,6 +268,7 @@ namespace MediTechWebApi.Controllers
                         AutoValue = ri.AutoValue,
                         UnitofMeasure = SqlFunction.fGetRfValDescription(ri.UnitofMeasure ?? 0),
                         IsAbnormal = resultCom.IsAbnormal,
+                        StatusFlag = resultCom.StatusFlag
                     }).OrderBy(p => p.PrintOrder).ToList();
 
             return data;

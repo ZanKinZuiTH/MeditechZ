@@ -113,5 +113,12 @@ namespace MediTech.Model
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
             }
         }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Department { get; set; }
+        public string Title { get; set; }
+        public DateTime StartDttm { get; set; }
+        public string EmployeeID { get; set; }
+        public string CompanyName { get; set; }
     }
 }
