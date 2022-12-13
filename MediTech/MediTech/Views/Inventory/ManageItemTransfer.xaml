@@ -199,7 +199,7 @@
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup Orientation="Horizontal">
+            <!--<dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutItem Label="ตำแหน่งไฟล์">
                     <TextBox Text="{Binding FileLocation}" IsReadOnly="True" Background="Gainsboro"/>
                 </dxlc:LayoutItem>
@@ -212,7 +212,7 @@
                 <dxlc:LayoutItem Label="Total Record" Width="180" HorizontalAlignment="Right">
                     <TextBox Width="80" IsReadOnly="True" Background="Gainsboro" Text="{Binding TotalRecord}"/>
                 </dxlc:LayoutItem>
-            </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>-->
 
 
 

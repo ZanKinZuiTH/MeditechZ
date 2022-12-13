@@ -344,9 +344,9 @@ namespace MediTech.DataService
         }
 
 
-        public List<PatientVisitModel> SearchPatientCheckup(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? insuranceCompanyUID, int? checkupJobUID)
+        public List<PatientVisitModel> SearchPatientCheckup(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? insuranceCompanyUID, int? checkupJobUID, bool isLoadDataBlife = false)
         {
-            string requestApi = string.Format("Api/Checkup/SearchPatientCheckup?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&patientUID={2}&insuranceCompanyUID={3}&checkupJobUID={4}", dateFrom,dateTo,patientUID, insuranceCompanyUID, checkupJobUID);
+            string requestApi = string.Format("Api/Checkup/SearchPatientCheckup?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&patientUID={2}&insuranceCompanyUID={3}&checkupJobUID={4}&isLoadDataBlife={5}", dateFrom,dateTo,patientUID, insuranceCompanyUID, checkupJobUID, isLoadDataBlife);
             List<PatientVisitModel> data = MeditechApiHelper.Get<List<PatientVisitModel>>(requestApi);
 
             return data;
