@@ -706,6 +706,12 @@
     <Compile Include="splitstring_Result.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SqlFunction.cs" />
     <Compile Include="Stock.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
@@ -723,6 +729,9 @@
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="StoreUOMConversion.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="vAllBillableItemRates.cs">

@@ -213,7 +213,8 @@
         <EntityTypeShape EntityType="MediTechModel.StockMovement" Width="1.5" PointX="38.75" PointY="48.75" />
         <EntityTypeShape EntityType="MediTechModel.Store" Width="1.5" PointX="40.75" PointY="48.75" />
         <EntityTypeShape EntityType="MediTechModel.StoreUOMConversion" Width="1.5" PointX="48.75" PointY="41.75" />
-        <EntityTypeShape EntityType="MediTechModel.VendorDetail" Width="1.5" PointX="48.75" PointY="45.75" />
+        <EntityTypeShape EntityType="MediTechModel.sysdiagrams" Width="1.5" PointX="48.75" PointY="45.75" />
+        <EntityTypeShape EntityType="MediTechModel.VendorDetail" Width="1.5" PointX="48.75" PointY="48.75" />
         <EntityTypeShape EntityType="MediTechModel.VIPPatient" Width="1.5" PointX="8.75" PointY="49.75" />
         <EntityTypeShape EntityType="MediTechModel.WellnessData" Width="1.5" PointX="10.75" PointY="49.75" />
         <EntityTypeShape EntityType="MediTechModel.XrayTranslateCondition" Width="1.5" PointX="12.75" PointY="49.75" />
