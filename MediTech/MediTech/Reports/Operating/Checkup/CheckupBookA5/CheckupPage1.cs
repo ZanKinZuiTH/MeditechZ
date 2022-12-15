@@ -507,7 +507,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page7.RowThinnerUrine.Visible = false;
                 page7.RowCopperBlood.Visible = false;
                 page7.RowTrichloroUrine.Visible = false;
-
+                page7.rowDirectToluene.Visible = false;
                 #endregion
 
                 IOrderedEnumerable<PatientResultComponentModel> labCompare;
@@ -669,6 +669,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             || p.RequestItemCode.Contains("LAB575")// Ammo
                             || p.RequestItemCode.Contains("LAB487") //Lead in Urin 
                             || p.RequestItemCode.Contains("LAB511")
+                            || p.RequestItemCode.Contains("LAB620") //direct Toluene 
                             || p.RequestItemCode.Contains("LAB619")
                             || p.RequestItemCode.Contains("LAB543")//copper blood
                             || p.RequestItemCode.Contains("LAB606"))
@@ -2190,6 +2191,19 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             page7.TrichloroUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1300" && p.Year == year2)?.ResultValue;
                             page7.TrichloroUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1300" && p.Year == year3)?.ResultValue;
                         }
+                        #endregion
+
+                        #region Direct Toluene in urine
+
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307") != null)
+                        {
+                            page7.rowDirectToluene.Visible = true;
+                            page7.DirectTolueneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307")?.ReferenceRange;
+                            page7.DirectToluene1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307" && p.Year == year1)?.ResultValue;
+                            page7.DirectToluene2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307" && p.Year == year2)?.ResultValue;
+                            page7.DirectToluene3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307" && p.Year == year3)?.ResultValue;
+                        }
+                        #endregion
                     }
                     else
                     {
@@ -2198,7 +2212,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         page7.cellToxicoYear3.Text = "ปี" + " " + (DateTime.Now.Year - 2);
                     }
 
-                    #endregion
+                    
                 }
                 else
                 {

@@ -277,6 +277,12 @@
             this.CopperBlood1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.CopperBlood2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.CopperBlood3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RowTrichloroUrine = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell34 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.TrichloroUrineRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.TrichloroUrine1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.TrichloroUrine2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.TrichloroUrine3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.Narcotic = new DevExpress.XtraReports.UI.XRLabel();
             this.AlcohoPeriodMonth = new DevExpress.XtraReports.UI.XRLabel();
             this.AlcohoPeriodYear = new DevExpress.XtraReports.UI.XRLabel();
@@ -625,12 +631,12 @@
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.RowTrichloroUrine = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell34 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.TrichloroUrineRange = new DevExpress.XtraReports.UI.XRTableCell();
-            this.TrichloroUrine1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.TrichloroUrine2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.TrichloroUrine3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.rowDirectToluene = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell35 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.DirectTolueneRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.DirectToluene1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.DirectToluene2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.DirectToluene3 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.tbToxicology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable12)).BeginInit();
@@ -701,7 +707,7 @@
             this.sssss,
             this.xrLabel8,
             this.xrLabel5});
-            this.Detail.HeightF = 1455.538F;
+            this.Detail.HeightF = 1463.871F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -757,8 +763,9 @@
             this.RowCholinesteraseBlood,
             this.RowThinnerUrine,
             this.RowCopperBlood,
-            this.RowTrichloroUrine});
-            this.tbToxicology.SizeF = new System.Drawing.SizeF(369.5942F, 785.6583F);
+            this.RowTrichloroUrine,
+            this.rowDirectToluene});
+            this.tbToxicology.SizeF = new System.Drawing.SizeF(369.5942F, 804.4714F);
             this.tbToxicology.StylePriority.UseBorderColor = false;
             this.tbToxicology.StylePriority.UseBorders = false;
             this.tbToxicology.StylePriority.UseBorderWidth = false;
@@ -3311,6 +3318,70 @@
             this.CopperBlood3.StylePriority.UseTextAlignment = false;
             this.CopperBlood3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.CopperBlood3.Weight = 0.44329635320818539D;
+            // 
+            // RowTrichloroUrine
+            // 
+            this.RowTrichloroUrine.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell34,
+            this.TrichloroUrineRange,
+            this.TrichloroUrine1,
+            this.TrichloroUrine2,
+            this.TrichloroUrine3});
+            this.RowTrichloroUrine.Name = "RowTrichloroUrine";
+            this.RowTrichloroUrine.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell34
+            // 
+            this.xrTableCell34.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell34.Multiline = true;
+            this.xrTableCell34.Name = "xrTableCell34";
+            this.xrTableCell34.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell34.StylePriority.UseFont = false;
+            this.xrTableCell34.StylePriority.UsePadding = false;
+            this.xrTableCell34.StylePriority.UseTextAlignment = false;
+            this.xrTableCell34.Text = "Trichloro Methane in Urine";
+            this.xrTableCell34.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell34.Weight = 1.2913566084432759D;
+            // 
+            // TrichloroUrineRange
+            // 
+            this.TrichloroUrineRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.TrichloroUrineRange.Multiline = true;
+            this.TrichloroUrineRange.Name = "TrichloroUrineRange";
+            this.TrichloroUrineRange.StylePriority.UseFont = false;
+            this.TrichloroUrineRange.StylePriority.UseTextAlignment = false;
+            this.TrichloroUrineRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.TrichloroUrineRange.Weight = 0.93906236153056333D;
+            // 
+            // TrichloroUrine1
+            // 
+            this.TrichloroUrine1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.TrichloroUrine1.Multiline = true;
+            this.TrichloroUrine1.Name = "TrichloroUrine1";
+            this.TrichloroUrine1.StylePriority.UseFont = false;
+            this.TrichloroUrine1.StylePriority.UseTextAlignment = false;
+            this.TrichloroUrine1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.TrichloroUrine1.Weight = 0.443296332132815D;
+            // 
+            // TrichloroUrine2
+            // 
+            this.TrichloroUrine2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.TrichloroUrine2.Multiline = true;
+            this.TrichloroUrine2.Name = "TrichloroUrine2";
+            this.TrichloroUrine2.StylePriority.UseFont = false;
+            this.TrichloroUrine2.StylePriority.UseTextAlignment = false;
+            this.TrichloroUrine2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.TrichloroUrine2.Weight = 0.44329633245297495D;
+            // 
+            // TrichloroUrine3
+            // 
+            this.TrichloroUrine3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.TrichloroUrine3.Multiline = true;
+            this.TrichloroUrine3.Name = "TrichloroUrine3";
+            this.TrichloroUrine3.StylePriority.UseFont = false;
+            this.TrichloroUrine3.StylePriority.UseTextAlignment = false;
+            this.TrichloroUrine3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.TrichloroUrine3.Weight = 0.44329635320818539D;
             // 
             // Narcotic
             // 
@@ -8113,69 +8184,69 @@
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // RowTrichloroUrine
+            // rowDirectToluene
             // 
-            this.RowTrichloroUrine.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell34,
-            this.TrichloroUrineRange,
-            this.TrichloroUrine1,
-            this.TrichloroUrine2,
-            this.TrichloroUrine3});
-            this.RowTrichloroUrine.Name = "RowTrichloroUrine";
-            this.RowTrichloroUrine.Weight = 0.92341768297675519D;
+            this.rowDirectToluene.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell35,
+            this.DirectTolueneRange,
+            this.DirectToluene1,
+            this.DirectToluene2,
+            this.DirectToluene3});
+            this.rowDirectToluene.Name = "rowDirectToluene";
+            this.rowDirectToluene.Weight = 0.92341768297675519D;
             // 
-            // xrTableCell34
+            // xrTableCell35
             // 
-            this.xrTableCell34.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell34.Multiline = true;
-            this.xrTableCell34.Name = "xrTableCell34";
-            this.xrTableCell34.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
-            this.xrTableCell34.StylePriority.UseFont = false;
-            this.xrTableCell34.StylePriority.UsePadding = false;
-            this.xrTableCell34.StylePriority.UseTextAlignment = false;
-            this.xrTableCell34.Text = "Trichloro Methane in Urine";
-            this.xrTableCell34.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell34.Weight = 1.2913566084432759D;
+            this.xrTableCell35.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell35.Multiline = true;
+            this.xrTableCell35.Name = "xrTableCell35";
+            this.xrTableCell35.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell35.StylePriority.UseFont = false;
+            this.xrTableCell35.StylePriority.UsePadding = false;
+            this.xrTableCell35.StylePriority.UseTextAlignment = false;
+            this.xrTableCell35.Text = "Direct Toluene in Urine";
+            this.xrTableCell35.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell35.Weight = 1.2913566084432759D;
             // 
-            // TrichloroUrineRange
+            // DirectTolueneRange
             // 
-            this.TrichloroUrineRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.TrichloroUrineRange.Multiline = true;
-            this.TrichloroUrineRange.Name = "TrichloroUrineRange";
-            this.TrichloroUrineRange.StylePriority.UseFont = false;
-            this.TrichloroUrineRange.StylePriority.UseTextAlignment = false;
-            this.TrichloroUrineRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TrichloroUrineRange.Weight = 0.93906236153056333D;
+            this.DirectTolueneRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.DirectTolueneRange.Multiline = true;
+            this.DirectTolueneRange.Name = "DirectTolueneRange";
+            this.DirectTolueneRange.StylePriority.UseFont = false;
+            this.DirectTolueneRange.StylePriority.UseTextAlignment = false;
+            this.DirectTolueneRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.DirectTolueneRange.Weight = 0.93906236153056333D;
             // 
-            // TrichloroUrine1
+            // DirectToluene1
             // 
-            this.TrichloroUrine1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.TrichloroUrine1.Multiline = true;
-            this.TrichloroUrine1.Name = "TrichloroUrine1";
-            this.TrichloroUrine1.StylePriority.UseFont = false;
-            this.TrichloroUrine1.StylePriority.UseTextAlignment = false;
-            this.TrichloroUrine1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TrichloroUrine1.Weight = 0.443296332132815D;
+            this.DirectToluene1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.DirectToluene1.Multiline = true;
+            this.DirectToluene1.Name = "DirectToluene1";
+            this.DirectToluene1.StylePriority.UseFont = false;
+            this.DirectToluene1.StylePriority.UseTextAlignment = false;
+            this.DirectToluene1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.DirectToluene1.Weight = 0.443296332132815D;
             // 
-            // TrichloroUrine2
+            // DirectToluene2
             // 
-            this.TrichloroUrine2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.TrichloroUrine2.Multiline = true;
-            this.TrichloroUrine2.Name = "TrichloroUrine2";
-            this.TrichloroUrine2.StylePriority.UseFont = false;
-            this.TrichloroUrine2.StylePriority.UseTextAlignment = false;
-            this.TrichloroUrine2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TrichloroUrine2.Weight = 0.44329633245297495D;
+            this.DirectToluene2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.DirectToluene2.Multiline = true;
+            this.DirectToluene2.Name = "DirectToluene2";
+            this.DirectToluene2.StylePriority.UseFont = false;
+            this.DirectToluene2.StylePriority.UseTextAlignment = false;
+            this.DirectToluene2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.DirectToluene2.Weight = 0.44329633245297495D;
             // 
-            // TrichloroUrine3
+            // DirectToluene3
             // 
-            this.TrichloroUrine3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.TrichloroUrine3.Multiline = true;
-            this.TrichloroUrine3.Name = "TrichloroUrine3";
-            this.TrichloroUrine3.StylePriority.UseFont = false;
-            this.TrichloroUrine3.StylePriority.UseTextAlignment = false;
-            this.TrichloroUrine3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TrichloroUrine3.Weight = 0.44329635320818539D;
+            this.DirectToluene3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.DirectToluene3.Multiline = true;
+            this.DirectToluene3.Name = "DirectToluene3";
+            this.DirectToluene3.StylePriority.UseFont = false;
+            this.DirectToluene3.StylePriority.UseTextAlignment = false;
+            this.DirectToluene3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.DirectToluene3.Weight = 0.44329635320818539D;
             // 
             // RiskBook3
             // 
@@ -8805,5 +8876,11 @@
         public DevExpress.XtraReports.UI.XRTableCell TrichloroUrine1;
         public DevExpress.XtraReports.UI.XRTableCell TrichloroUrine2;
         public DevExpress.XtraReports.UI.XRTableCell TrichloroUrine3;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell35;
+        public DevExpress.XtraReports.UI.XRTableRow rowDirectToluene;
+        public DevExpress.XtraReports.UI.XRTableCell DirectTolueneRange;
+        public DevExpress.XtraReports.UI.XRTableCell DirectToluene1;
+        public DevExpress.XtraReports.UI.XRTableCell DirectToluene2;
+        public DevExpress.XtraReports.UI.XRTableCell DirectToluene3;
     }
 }
