@@ -245,6 +245,12 @@ namespace MediTech.ViewModels
             get { return _PrintAutoCommand ?? (_PrintAutoCommand = new RelayCommand(PrintAuto)); }
         }
 
+        private RelayCommand _PrintEditCommand;
+        public RelayCommand PrintEditCommand
+        {
+            get { return _PrintEditCommand ?? (_PrintEditCommand = new RelayCommand(PrintEdit)); }
+        }
+
 
         private RelayCommand _PrintToPDFCommand;
         public RelayCommand PrintToPDFCommand
@@ -398,7 +404,6 @@ namespace MediTech.ViewModels
                         rpt.RequestParameters = false;
                         rpt.ShowPrintMarginsWarning = false;
                         printTool.Print(SelectPrinter);
-
                         SelectPatientCheckupResult.Remove(item);
                     }
                 }
@@ -409,6 +414,52 @@ namespace MediTech.ViewModels
                 ErrorDialog(er.Message);
             }
         }
+
+        void PrintEdit()
+        {
+            if (SelectPrinter == null)
+            {
+                WarningDialog("กรุณาเลือก Printer");
+                return;
+            }
+            try
+            {
+                if (SelectPatientCheckupResult != null)
+                {
+                    var patientResultLabList = SelectPatientCheckupResult.OrderBy(p => p.RowHandle);
+                    foreach (var item in patientResultLabList.ToList())
+                    {
+                        var myReport = Activator.CreateInstance(Type.GetType(SelectReport.NamespaceName));
+                        XtraReport rpt = (XtraReport)myReport;
+                        rpt.Parameters["PatientUID"].Value = item.PatientUID;
+                        rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
+
+                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคล" || SelectReport.Name == "เล่มความเสี่ยง" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มเล็ก"
+                            || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5"
+                            || SelectReport.Name == "รายงานตรวจสุขภาพCSR" || SelectReport.Name == "รายงานตรวจPapSmear" ||
+                            SelectReport.Name == "รายงานการตรวจปัจจัยเสี่ยงUACJ")
+                            rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
+                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5")
+                        {
+                            rpt.Parameters["LogoType"].Value = SelectLogo != null ? SelectLogo.Key : 1;
+
+                        }
+
+                        ReportPrintTool printTool = new ReportPrintTool(rpt);
+                        rpt.RequestParameters = false;
+                        rpt.ShowPrintMarginsWarning = false;
+                        printTool.PrintDialog();
+                        SelectPatientCheckupResult.Remove(item);
+                    }
+                }
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+        }
+
         void SendToBLIFE()
         {
             if (SelectPatientCheckupResult != null)

@@ -31,6 +31,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CheckupPage9));
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
+            this.xrRichText1 = new DevExpress.XtraReports.UI.XRRichText();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow37 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -38,7 +39,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbHN9 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbName9 = new DevExpress.XtraReports.UI.XRTableCell();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
-            this.xrRichText1 = new DevExpress.XtraReports.UI.XRRichText();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
             this.tbVisionOccmed = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow11 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -107,8 +107,44 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.TitleAudioRecommend = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbAudioRecommend = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
+            this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell14 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell17 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableRow3 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.R1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.R2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.R3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.R4 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.R5 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.R6 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.R7 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableRow4 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell28 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.L1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.L2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.L3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.L4 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.L5 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.L6 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.L7 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVisionOccmed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLung)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbAudio)).BeginInit();
@@ -120,6 +156,14 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrRichText1});
             this.TopMargin.HeightF = 40F;
             this.TopMargin.Name = "TopMargin";
+            // 
+            // xrRichText1
+            // 
+            this.xrRichText1.Font = new System.Drawing.Font("Times New Roman", 9.75F);
+            this.xrRichText1.LocationFloat = new DevExpress.Utils.PointFloat(486F, 16.99999F);
+            this.xrRichText1.Name = "xrRichText1";
+            this.xrRichText1.SerializableRtfString = resources.GetString("xrRichText1.SerializableRtfString");
+            this.xrRichText1.SizeF = new System.Drawing.SizeF(12F, 20F);
             // 
             // BottomMargin
             // 
@@ -182,20 +226,12 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.Detail.HeightF = 756.697F;
             this.Detail.Name = "Detail";
             // 
-            // xrRichText1
-            // 
-            this.xrRichText1.Font = new System.Drawing.Font("Times New Roman", 9.75F);
-            this.xrRichText1.LocationFloat = new DevExpress.Utils.PointFloat(486F, 16.99999F);
-            this.xrRichText1.Name = "xrRichText1";
-            this.xrRichText1.SerializableRtfString = resources.GetString("xrRichText1.SerializableRtfString");
-            this.xrRichText1.SizeF = new System.Drawing.SizeF(12F, 20F);
-            // 
             // xrLabel4
             // 
             this.xrLabel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel4.CanGrow = false;
             this.xrLabel4.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(68.36049F, 406.0391F);
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(68.36047F, 493.3795F);
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel4.SizeF = new System.Drawing.SizeF(384.7646F, 25F);
@@ -212,7 +248,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.tbVisionOccmed.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tbVisionOccmed.LocationFloat = new DevExpress.Utils.PointFloat(0F, 432.998F);
+            this.tbVisionOccmed.LocationFloat = new DevExpress.Utils.PointFloat(0F, 520.3384F);
             this.tbVisionOccmed.Name = "tbVisionOccmed";
             this.tbVisionOccmed.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow11,
@@ -220,7 +256,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableRow13,
             this.xrTableRow16,
             this.xrTableRow14});
-            this.tbVisionOccmed.SizeF = new System.Drawing.SizeF(498F, 159.3216F);
+            this.tbVisionOccmed.SizeF = new System.Drawing.SizeF(498F, 153.0797F);
             this.tbVisionOccmed.StylePriority.UseBorderColor = false;
             this.tbVisionOccmed.StylePriority.UseBorders = false;
             // 
@@ -417,7 +453,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.TitleVisionOccmedRecommend,
             this.lbVisionOccmedRecommend});
             this.xrTableRow14.Name = "xrTableRow14";
-            this.xrTableRow14.Weight = 1.8670899181254719D;
+            this.xrTableRow14.Weight = 1.6504361535030876D;
             // 
             // TitleVisionOccmedRecommend
             // 
@@ -447,7 +483,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel7.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel7.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(68.36049F, 198.9601F);
+            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(67.8049F, 294.4538F);
             this.xrLabel7.Name = "xrLabel7";
             this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel7.SizeF = new System.Drawing.SizeF(384.7646F, 25F);
@@ -463,7 +499,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.tbLung.BorderColor = System.Drawing.Color.DarkGray;
             this.tbLung.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
-            this.tbLung.LocationFloat = new DevExpress.Utils.PointFloat(0F, 224.7177F);
+            this.tbLung.LocationFloat = new DevExpress.Utils.PointFloat(0F, 320.2115F);
             this.tbLung.Name = "tbLung";
             this.tbLung.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow41,
@@ -679,7 +715,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.TitlePulmonaryResult,
             this.lbLungResult});
             this.xrTableRow47.Name = "xrTableRow47";
-            this.xrTableRow47.Weight = 1D;
+            this.xrTableRow47.Weight = 1.1430275600771762D;
             // 
             // TitlePulmonaryResult
             // 
@@ -708,7 +744,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.TitlePulmonaryRecommend,
             this.lbLungRecommend});
             this.xrTableRow27.Name = "xrTableRow27";
-            this.xrTableRow27.Weight = 2.0404607802220807D;
+            this.xrTableRow27.Weight = 1.8974332201449045D;
             // 
             // TitlePulmonaryRecommend
             // 
@@ -748,15 +784,19 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.tbAudio.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tbAudio.LocationFloat = new DevExpress.Utils.PointFloat(0F, 26.08563F);
+            this.tbAudio.LocationFloat = new DevExpress.Utils.PointFloat(0F, 27.22222F);
             this.tbAudio.Name = "tbAudio";
             this.tbAudio.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow29,
+            this.xrTableRow1,
+            this.xrTableRow3,
             this.xrTableRow30,
+            this.xrTableRow2,
+            this.xrTableRow4,
             this.xrTableRow31,
             this.xrTableRow34,
             this.xrTableRow35});
-            this.tbAudio.SizeF = new System.Drawing.SizeF(498F, 151.4872F);
+            this.tbAudio.SizeF = new System.Drawing.SizeF(498F, 252.252F);
             this.tbAudio.StylePriority.UseBorderColor = false;
             this.tbAudio.StylePriority.UseBorders = false;
             // 
@@ -766,7 +806,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.TitleAudiogram,
             this.TitleAudioListResult});
             this.xrTableRow29.Name = "xrTableRow29";
-            this.xrTableRow29.Weight = 0.81600358601316325D;
+            this.xrTableRow29.Weight = 0.74324924480500043D;
             // 
             // TitleAudiogram
             // 
@@ -776,7 +816,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.TitleAudiogram.StylePriority.UseTextAlignment = false;
             this.TitleAudiogram.Text = "การได้ยิน ";
             this.TitleAudiogram.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            this.TitleAudiogram.Weight = 0.75633979526302D;
+            this.TitleAudiogram.Weight = 0.3563541885659659D;
             // 
             // TitleAudioListResult
             // 
@@ -786,7 +826,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.TitleAudioListResult.StylePriority.UseTextAlignment = false;
             this.TitleAudioListResult.Text = "ผลการตรวจการได้ยิน ณ ความถี่";
             this.TitleAudioListResult.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            this.TitleAudioListResult.Weight = 3.0731658285982317D;
+            this.TitleAudioListResult.Weight = 1.4170069519654906D;
             // 
             // xrTableRow30
             // 
@@ -794,7 +834,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.TitleAudioRight,
             this.lbAudioRight});
             this.xrTableRow30.Name = "xrTableRow30";
-            this.xrTableRow30.Weight = 1D;
+            this.xrTableRow30.Weight = 0.81848596910355864D;
             // 
             // TitleAudioRight
             // 
@@ -804,9 +844,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.TitleAudioRight.StylePriority.UseFont = false;
             this.TitleAudioRight.StylePriority.UsePadding = false;
             this.TitleAudioRight.StylePriority.UseTextAlignment = false;
-            this.TitleAudioRight.Text = "แปลหูขวา";
             this.TitleAudioRight.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TitleAudioRight.Weight = 0.75633979526302D;
+            this.TitleAudioRight.Weight = 0.3563541885659659D;
             // 
             // lbAudioRight
             // 
@@ -815,7 +854,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbAudioRight.StylePriority.UseFont = false;
             this.lbAudioRight.StylePriority.UseTextAlignment = false;
             this.lbAudioRight.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbAudioRight.Weight = 3.0731658285982317D;
+            this.lbAudioRight.Weight = 1.4170069519654906D;
             // 
             // xrTableRow31
             // 
@@ -823,7 +862,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.TitleAudioLeft,
             this.lbAudioLeft});
             this.xrTableRow31.Name = "xrTableRow31";
-            this.xrTableRow31.Weight = 1D;
+            this.xrTableRow31.Weight = 0.818485973972484D;
             // 
             // TitleAudioLeft
             // 
@@ -833,9 +872,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.TitleAudioLeft.StylePriority.UseFont = false;
             this.TitleAudioLeft.StylePriority.UsePadding = false;
             this.TitleAudioLeft.StylePriority.UseTextAlignment = false;
-            this.TitleAudioLeft.Text = "แปลหูซ้าย";
             this.TitleAudioLeft.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TitleAudioLeft.Weight = 0.75633979526302D;
+            this.TitleAudioLeft.Weight = 0.3563541885659659D;
             // 
             // lbAudioLeft
             // 
@@ -844,7 +882,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbAudioLeft.StylePriority.UseFont = false;
             this.lbAudioLeft.StylePriority.UseTextAlignment = false;
             this.lbAudioLeft.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbAudioLeft.Weight = 3.0731658285982317D;
+            this.lbAudioLeft.Weight = 1.4170069519654906D;
             // 
             // xrTableRow34
             // 
@@ -852,7 +890,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.TitleAudioResult,
             this.lbAudioResult});
             this.xrTableRow34.Name = "xrTableRow34";
-            this.xrTableRow34.Weight = 1D;
+            this.xrTableRow34.Weight = 0.91670429263828734D;
             // 
             // TitleAudioResult
             // 
@@ -864,7 +902,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.TitleAudioResult.StylePriority.UseTextAlignment = false;
             this.TitleAudioResult.Text = "สรุปผล ";
             this.TitleAudioResult.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TitleAudioResult.Weight = 0.75633979526302D;
+            this.TitleAudioResult.Weight = 0.3563541885659659D;
             // 
             // lbAudioResult
             // 
@@ -873,7 +911,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbAudioResult.StylePriority.UseFont = false;
             this.lbAudioResult.StylePriority.UseTextAlignment = false;
             this.lbAudioResult.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbAudioResult.Weight = 3.0731658285982317D;
+            this.lbAudioResult.Weight = 1.4170069519654906D;
             // 
             // xrTableRow35
             // 
@@ -881,7 +919,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.TitleAudioRecommend,
             this.lbAudioRecommend});
             this.xrTableRow35.Name = "xrTableRow35";
-            this.xrTableRow35.Weight = 1.8506082081042412D;
+            this.xrTableRow35.Weight = 1.556760255976785D;
             // 
             // TitleAudioRecommend
             // 
@@ -893,7 +931,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.TitleAudioRecommend.StylePriority.UseTextAlignment = false;
             this.TitleAudioRecommend.Text = "คำแนะนำแพทย์";
             this.TitleAudioRecommend.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TitleAudioRecommend.Weight = 0.75633979526302D;
+            this.TitleAudioRecommend.Weight = 0.3563541885659659D;
             // 
             // lbAudioRecommend
             // 
@@ -905,7 +943,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbAudioRecommend.StylePriority.UsePadding = false;
             this.lbAudioRecommend.StylePriority.UseTextAlignment = false;
             this.lbAudioRecommend.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbAudioRecommend.Weight = 3.0731658285982317D;
+            this.lbAudioRecommend.Weight = 1.4170069519654906D;
             // 
             // xrLabel2
             // 
@@ -923,6 +961,408 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel2.Text = "  ผลการตรวจสมรรถภาพการได้ยิน  (Screening Audiogram)";
             this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
+            // xrTableRow1
+            // 
+            this.xrTableRow1.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell1,
+            this.xrTableCell3,
+            this.xrTableCell5,
+            this.xrTableCell6,
+            this.xrTableCell4,
+            this.xrTableCell9,
+            this.xrTableCell7,
+            this.xrTableCell8});
+            this.xrTableRow1.Name = "xrTableRow1";
+            this.xrTableRow1.Weight = 0.98218316850287268D;
+            // 
+            // xrTableCell1
+            // 
+            this.xrTableCell1.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell1.Multiline = true;
+            this.xrTableCell1.Name = "xrTableCell1";
+            this.xrTableCell1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
+            this.xrTableCell1.RowSpan = 3;
+            this.xrTableCell1.StylePriority.UseFont = false;
+            this.xrTableCell1.StylePriority.UsePadding = false;
+            this.xrTableCell1.StylePriority.UseTextAlignment = false;
+            this.xrTableCell1.Text = "หูขวา";
+            this.xrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell1.Weight = 0.3563541885659659D;
+            // 
+            // xrTableCell3
+            // 
+            this.xrTableCell3.Font = new System.Drawing.Font("EucrosiaUPC", 8F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell3.Multiline = true;
+            this.xrTableCell3.Name = "xrTableCell3";
+            this.xrTableCell3.StylePriority.UseFont = false;
+            this.xrTableCell3.StylePriority.UseTextAlignment = false;
+            this.xrTableCell3.Text = "500\r\n≤ 25 dB";
+            this.xrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell3.Weight = 0.20242956781577434D;
+            // 
+            // xrTableCell4
+            // 
+            this.xrTableCell4.Font = new System.Drawing.Font("EucrosiaUPC", 8F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell4.Multiline = true;
+            this.xrTableCell4.Name = "xrTableCell4";
+            this.xrTableCell4.StylePriority.UseFont = false;
+            this.xrTableCell4.StylePriority.UseTextAlignment = false;
+            this.xrTableCell4.Text = "3k\r\n≤ 25 dB";
+            this.xrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell4.Weight = 0.20242956887272417D;
+            // 
+            // xrTableCell5
+            // 
+            this.xrTableCell5.Font = new System.Drawing.Font("EucrosiaUPC", 8F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell5.Multiline = true;
+            this.xrTableCell5.Name = "xrTableCell5";
+            this.xrTableCell5.StylePriority.UseFont = false;
+            this.xrTableCell5.StylePriority.UseTextAlignment = false;
+            this.xrTableCell5.Text = "1k\r\n≤ 25 dB";
+            this.xrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell5.Weight = 0.20242955483258743D;
+            // 
+            // xrTableCell6
+            // 
+            this.xrTableCell6.Font = new System.Drawing.Font("EucrosiaUPC", 8F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell6.Multiline = true;
+            this.xrTableCell6.Name = "xrTableCell6";
+            this.xrTableCell6.StylePriority.UseFont = false;
+            this.xrTableCell6.StylePriority.UseTextAlignment = false;
+            this.xrTableCell6.Text = "2k\r\n≤ 25 dB";
+            this.xrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell6.Weight = 0.20242956887272393D;
+            // 
+            // xrTableCell7
+            // 
+            this.xrTableCell7.Font = new System.Drawing.Font("EucrosiaUPC", 8F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell7.Multiline = true;
+            this.xrTableCell7.Name = "xrTableCell7";
+            this.xrTableCell7.StylePriority.UseFont = false;
+            this.xrTableCell7.StylePriority.UseTextAlignment = false;
+            this.xrTableCell7.Text = "6k\r\n≤ 25 dB";
+            this.xrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell7.Weight = 0.2024295688727244D;
+            // 
+            // xrTableCell8
+            // 
+            this.xrTableCell8.Font = new System.Drawing.Font("EucrosiaUPC", 8F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell8.Multiline = true;
+            this.xrTableCell8.Name = "xrTableCell8";
+            this.xrTableCell8.StylePriority.UseFont = false;
+            this.xrTableCell8.StylePriority.UseTextAlignment = false;
+            this.xrTableCell8.Text = "8k\r\n≤ 25 dB";
+            this.xrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell8.Weight = 0.20242955382623207D;
+            // 
+            // xrTableCell9
+            // 
+            this.xrTableCell9.Font = new System.Drawing.Font("EucrosiaUPC", 8F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell9.Multiline = true;
+            this.xrTableCell9.Name = "xrTableCell9";
+            this.xrTableCell9.StylePriority.UseFont = false;
+            this.xrTableCell9.StylePriority.UseTextAlignment = false;
+            this.xrTableCell9.Text = "4k\r\n≤ 25 dB";
+            this.xrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell9.Weight = 0.20242956887272384D;
+            // 
+            // xrTableRow2
+            // 
+            this.xrTableRow2.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell10,
+            this.xrTableCell11,
+            this.xrTableCell15,
+            this.xrTableCell14,
+            this.xrTableCell12,
+            this.xrTableCell16,
+            this.xrTableCell13,
+            this.xrTableCell17});
+            this.xrTableRow2.Name = "xrTableRow2";
+            this.xrTableRow2.Weight = 0.98218310605735049D;
+            // 
+            // xrTableCell10
+            // 
+            this.xrTableCell10.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell10.Multiline = true;
+            this.xrTableCell10.Name = "xrTableCell10";
+            this.xrTableCell10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
+            this.xrTableCell10.RowSpan = 3;
+            this.xrTableCell10.StylePriority.UseFont = false;
+            this.xrTableCell10.StylePriority.UsePadding = false;
+            this.xrTableCell10.StylePriority.UseTextAlignment = false;
+            this.xrTableCell10.Text = "หูซ้าย";
+            this.xrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell10.Weight = 0.3563541885659659D;
+            // 
+            // xrTableCell11
+            // 
+            this.xrTableCell11.Font = new System.Drawing.Font("EucrosiaUPC", 8F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell11.Multiline = true;
+            this.xrTableCell11.Name = "xrTableCell11";
+            this.xrTableCell11.StylePriority.UseFont = false;
+            this.xrTableCell11.StylePriority.UseTextAlignment = false;
+            this.xrTableCell11.Text = "500\r\n≤ 25 dB";
+            this.xrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell11.Weight = 0.20242956491433495D;
+            // 
+            // xrTableCell12
+            // 
+            this.xrTableCell12.Font = new System.Drawing.Font("EucrosiaUPC", 8F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell12.Multiline = true;
+            this.xrTableCell12.Name = "xrTableCell12";
+            this.xrTableCell12.StylePriority.UseFont = false;
+            this.xrTableCell12.StylePriority.UseTextAlignment = false;
+            this.xrTableCell12.Text = "3k\r\n≤ 25 dB";
+            this.xrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell12.Weight = 0.20242956491433495D;
+            // 
+            // xrTableCell13
+            // 
+            this.xrTableCell13.Font = new System.Drawing.Font("EucrosiaUPC", 8F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell13.Multiline = true;
+            this.xrTableCell13.Name = "xrTableCell13";
+            this.xrTableCell13.StylePriority.UseFont = false;
+            this.xrTableCell13.StylePriority.UseTextAlignment = false;
+            this.xrTableCell13.Text = "6k\r\n≤ 25 dB";
+            this.xrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell13.Weight = 0.20242956491433495D;
+            // 
+            // xrTableCell14
+            // 
+            this.xrTableCell14.Font = new System.Drawing.Font("EucrosiaUPC", 8F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell14.Multiline = true;
+            this.xrTableCell14.Name = "xrTableCell14";
+            this.xrTableCell14.StylePriority.UseFont = false;
+            this.xrTableCell14.StylePriority.UseTextAlignment = false;
+            this.xrTableCell14.Text = "2k\r\n≤ 25 dB";
+            this.xrTableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell14.Weight = 0.20242956247948096D;
+            // 
+            // xrTableCell15
+            // 
+            this.xrTableCell15.Font = new System.Drawing.Font("EucrosiaUPC", 8F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell15.Multiline = true;
+            this.xrTableCell15.Name = "xrTableCell15";
+            this.xrTableCell15.StylePriority.UseFont = false;
+            this.xrTableCell15.StylePriority.UseTextAlignment = false;
+            this.xrTableCell15.Text = "1k\r\n≤ 25 dB";
+            this.xrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell15.Weight = 0.20242956491433495D;
+            // 
+            // xrTableCell16
+            // 
+            this.xrTableCell16.Font = new System.Drawing.Font("EucrosiaUPC", 8F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell16.Multiline = true;
+            this.xrTableCell16.Name = "xrTableCell16";
+            this.xrTableCell16.StylePriority.UseFont = false;
+            this.xrTableCell16.StylePriority.UseTextAlignment = false;
+            this.xrTableCell16.Text = "4k\r\n≤ 25 dB";
+            this.xrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell16.Weight = 0.20242956491433495D;
+            // 
+            // xrTableCell17
+            // 
+            this.xrTableCell17.Font = new System.Drawing.Font("EucrosiaUPC", 8F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell17.Multiline = true;
+            this.xrTableCell17.Name = "xrTableCell17";
+            this.xrTableCell17.StylePriority.UseFont = false;
+            this.xrTableCell17.StylePriority.UseTextAlignment = false;
+            this.xrTableCell17.Text = "8k\r\n≤ 25 dB";
+            this.xrTableCell17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell17.Weight = 0.20242956491433495D;
+            // 
+            // xrTableRow3
+            // 
+            this.xrTableRow3.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell18,
+            this.R1,
+            this.R2,
+            this.R3,
+            this.R4,
+            this.R5,
+            this.R6,
+            this.R7});
+            this.xrTableRow3.Name = "xrTableRow3";
+            this.xrTableRow3.Weight = 0.72026761233685876D;
+            // 
+            // xrTableCell18
+            // 
+            this.xrTableCell18.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell18.Multiline = true;
+            this.xrTableCell18.Name = "xrTableCell18";
+            this.xrTableCell18.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
+            this.xrTableCell18.StylePriority.UseFont = false;
+            this.xrTableCell18.StylePriority.UsePadding = false;
+            this.xrTableCell18.StylePriority.UseTextAlignment = false;
+            this.xrTableCell18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell18.Weight = 0.3563541885659659D;
+            // 
+            // R1
+            // 
+            this.R1.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
+            this.R1.Multiline = true;
+            this.R1.Name = "R1";
+            this.R1.StylePriority.UseFont = false;
+            this.R1.StylePriority.UseTextAlignment = false;
+            this.R1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.R1.Weight = 0.20242956781577434D;
+            // 
+            // R2
+            // 
+            this.R2.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
+            this.R2.Multiline = true;
+            this.R2.Name = "R2";
+            this.R2.StylePriority.UseFont = false;
+            this.R2.StylePriority.UseTextAlignment = false;
+            this.R2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.R2.Weight = 0.20242955483258743D;
+            // 
+            // R3
+            // 
+            this.R3.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
+            this.R3.Multiline = true;
+            this.R3.Name = "R3";
+            this.R3.StylePriority.UseFont = false;
+            this.R3.StylePriority.UseTextAlignment = false;
+            this.R3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.R3.Weight = 0.20242956887272393D;
+            // 
+            // R4
+            // 
+            this.R4.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
+            this.R4.Multiline = true;
+            this.R4.Name = "R4";
+            this.R4.StylePriority.UseFont = false;
+            this.R4.StylePriority.UseTextAlignment = false;
+            this.R4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.R4.Weight = 0.20242956887272417D;
+            // 
+            // R5
+            // 
+            this.R5.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
+            this.R5.Multiline = true;
+            this.R5.Name = "R5";
+            this.R5.StylePriority.UseFont = false;
+            this.R5.StylePriority.UseTextAlignment = false;
+            this.R5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.R5.Weight = 0.20242956887272384D;
+            // 
+            // R6
+            // 
+            this.R6.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
+            this.R6.Multiline = true;
+            this.R6.Name = "R6";
+            this.R6.StylePriority.UseFont = false;
+            this.R6.StylePriority.UseTextAlignment = false;
+            this.R6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.R6.Weight = 0.2024295688727244D;
+            // 
+            // R7
+            // 
+            this.R7.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
+            this.R7.Multiline = true;
+            this.R7.Name = "R7";
+            this.R7.StylePriority.UseFont = false;
+            this.R7.StylePriority.UseTextAlignment = false;
+            this.R7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.R7.Weight = 0.20242955382623207D;
+            // 
+            // xrTableRow4
+            // 
+            this.xrTableRow4.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell28,
+            this.L1,
+            this.L2,
+            this.L3,
+            this.L4,
+            this.L5,
+            this.L6,
+            this.L7});
+            this.xrTableRow4.Name = "xrTableRow4";
+            this.xrTableRow4.Weight = 0.720267607467934D;
+            // 
+            // xrTableCell28
+            // 
+            this.xrTableCell28.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell28.Multiline = true;
+            this.xrTableCell28.Name = "xrTableCell28";
+            this.xrTableCell28.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
+            this.xrTableCell28.StylePriority.UseFont = false;
+            this.xrTableCell28.StylePriority.UsePadding = false;
+            this.xrTableCell28.StylePriority.UseTextAlignment = false;
+            this.xrTableCell28.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell28.Weight = 0.3563541885659659D;
+            // 
+            // L1
+            // 
+            this.L1.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
+            this.L1.Multiline = true;
+            this.L1.Name = "L1";
+            this.L1.StylePriority.UseFont = false;
+            this.L1.StylePriority.UseTextAlignment = false;
+            this.L1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.L1.Weight = 0.20242956491433495D;
+            // 
+            // L2
+            // 
+            this.L2.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
+            this.L2.Multiline = true;
+            this.L2.Name = "L2";
+            this.L2.StylePriority.UseFont = false;
+            this.L2.StylePriority.UseTextAlignment = false;
+            this.L2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.L2.Weight = 0.20242956491433495D;
+            // 
+            // L3
+            // 
+            this.L3.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
+            this.L3.Multiline = true;
+            this.L3.Name = "L3";
+            this.L3.StylePriority.UseFont = false;
+            this.L3.StylePriority.UseTextAlignment = false;
+            this.L3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.L3.Weight = 0.20242956247948096D;
+            // 
+            // L4
+            // 
+            this.L4.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
+            this.L4.Multiline = true;
+            this.L4.Name = "L4";
+            this.L4.StylePriority.UseFont = false;
+            this.L4.StylePriority.UseTextAlignment = false;
+            this.L4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.L4.Weight = 0.20242956491433495D;
+            // 
+            // L5
+            // 
+            this.L5.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
+            this.L5.Multiline = true;
+            this.L5.Name = "L5";
+            this.L5.StylePriority.UseFont = false;
+            this.L5.StylePriority.UseTextAlignment = false;
+            this.L5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.L5.Weight = 0.20242956491433495D;
+            // 
+            // L6
+            // 
+            this.L6.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
+            this.L6.Multiline = true;
+            this.L6.Name = "L6";
+            this.L6.StylePriority.UseFont = false;
+            this.L6.StylePriority.UseTextAlignment = false;
+            this.L6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.L6.Weight = 0.20242956491433495D;
+            // 
+            // L7
+            // 
+            this.L7.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
+            this.L7.Multiline = true;
+            this.L7.Name = "L7";
+            this.L7.StylePriority.UseFont = false;
+            this.L7.StylePriority.UseTextAlignment = false;
+            this.L7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.L7.Weight = 0.20242956491433495D;
+            // 
             // CheckupPage9
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -934,9 +1374,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.PageHeight = 827;
             this.PageWidth = 583;
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;
-            this.Version = "20.2";
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVisionOccmed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLung)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbAudio)).EndInit();
@@ -1023,5 +1463,41 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell2;
         public DevExpress.XtraReports.UI.XRTableCell lbHN9;
         public DevExpress.XtraReports.UI.XRTableCell lbName9;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow1;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell1;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell3;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell5;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell6;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell4;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell9;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell7;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell8;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow3;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell18;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow2;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell10;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell11;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell15;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell14;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell12;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell16;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell13;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell17;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow4;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell28;
+        public DevExpress.XtraReports.UI.XRTableCell R1;
+        public DevExpress.XtraReports.UI.XRTableCell R2;
+        public DevExpress.XtraReports.UI.XRTableCell R3;
+        public DevExpress.XtraReports.UI.XRTableCell R4;
+        public DevExpress.XtraReports.UI.XRTableCell R5;
+        public DevExpress.XtraReports.UI.XRTableCell R6;
+        public DevExpress.XtraReports.UI.XRTableCell R7;
+        public DevExpress.XtraReports.UI.XRTableCell L1;
+        public DevExpress.XtraReports.UI.XRTableCell L2;
+        public DevExpress.XtraReports.UI.XRTableCell L3;
+        public DevExpress.XtraReports.UI.XRTableCell L4;
+        public DevExpress.XtraReports.UI.XRTableCell L5;
+        public DevExpress.XtraReports.UI.XRTableCell L6;
+        public DevExpress.XtraReports.UI.XRTableCell L7;
     }
 }

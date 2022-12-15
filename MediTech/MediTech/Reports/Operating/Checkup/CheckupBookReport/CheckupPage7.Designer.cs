@@ -600,14 +600,14 @@
             // 
             this.xrLabel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel8.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(55.82544F, 120.5407F);
+            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(43.92495F, 120.5407F);
             this.xrLabel8.Name = "xrLabel8";
             this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel8.SizeF = new System.Drawing.SizeF(309.1666F, 23F);
+            this.xrLabel8.SizeF = new System.Drawing.SizeF(337.7338F, 23.00001F);
             this.xrLabel8.StylePriority.UseBackColor = false;
             this.xrLabel8.StylePriority.UseFont = false;
             this.xrLabel8.StylePriority.UseTextAlignment = false;
-            this.xrLabel8.Text = "ผลการตรวจคัดกรองความเสี่ยงโครงสร้างและการเนื้อจากการทำงาน";
+            this.xrLabel8.Text = "ผลการตรวจคัดกรองความเสี่ยงโครงสร้างและกล้ามเนื้อจากการทำงาน";
             this.xrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // xrLabel3
