@@ -115,6 +115,8 @@ namespace MediTechWebApi.Controllers
                     CollectDttm = p.CollectDttm
                 }).ToList();
 
+            data.ForEach(p => p.CompanyName = p.CompanyName + " [วันที่ตรวจ: " + p.StartDttm.ToString("dd/MM/yyyy") + "]");
+
             return data;
         }
 
