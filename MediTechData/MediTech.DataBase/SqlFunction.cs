@@ -3194,7 +3194,6 @@ and GPRSTUID in (Select Name from dbo.splitstring(@GPRSTUID))";
 
         #region Blife
 
-
         public static DataTable BLIFEGetUsersByNationalID(string nationalID)
         {
             DataTable dt = new DataTable();
@@ -3207,7 +3206,7 @@ and GPRSTUID in (Select Name from dbo.splitstring(@GPRSTUID))";
                 SqlCommand command = new SqlCommand();
                 command.CommandType = CommandType.Text;
                 command.Connection = con;
-                command.CommandText = @"Select * From users Where StatusFlag = 'A' and CitizenID = @CitizenID";
+                command.CommandText = @"Select FirstName,LastName,IsPatientIdentity From users Where StatusFlag = 'A' and CitizenID = @CitizenID";
                 command.Parameters.AddWithValue("@CitizenID", nationalID);
 
                 dt.Load(command.ExecuteReader());

@@ -131,8 +131,8 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<PayorDetailModel> GetPayorDetailByDate(DateTime dateFrom, DateTime dateTo)
         {
-            List<PayorDetailModel> data = db.PayorDetail.Where(p => p.StatusFlag == "A"&& ( DbFunctions.TruncateTime(p.CWhen) >= DbFunctions.TruncateTime(dateFrom))
-                                             && ( DbFunctions.TruncateTime(p.CWhen) <= DbFunctions.TruncateTime(dateTo)))
+            List<PayorDetailModel> data = db.PayorDetail.Where(p => p.StatusFlag == "A" && (DbFunctions.TruncateTime(p.CWhen) >= DbFunctions.TruncateTime(dateFrom))
+                                             && (DbFunctions.TruncateTime(p.CWhen) <= DbFunctions.TruncateTime(dateTo)))
                 .Select(p => new PayorDetailModel
                 {
                     Code = p.Code,
@@ -140,9 +140,12 @@ namespace MediTechWebApi.Controllers
                     Address1 = p.Address1,
                     Address2 = p.Address2,
                     MobileNumber = p.MobileNumber
-                    ,PhoneNumber = p.PhoneNumber
-                    ,Email = p.EmailAddress 
-                    ,StatusFlag = p.StatusFlag
+                    ,
+                    PhoneNumber = p.PhoneNumber
+                    ,
+                    Email = p.EmailAddress
+                    ,
+                    StatusFlag = p.StatusFlag
 
                 }).ToList();
 
@@ -755,10 +758,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetCheckupRiskAudioTimus")]
         [HttpGet]
-        public List<PatientResultComponentModel> GetCheckupRiskAudioTimus(long patientUID,int payorDetailUID)
+        public List<PatientResultComponentModel> GetCheckupRiskAudioTimus(long patientUID, int payorDetailUID)
         {
             List<PatientResultComponentModel> data = null;
-            DataTable dt = SqlDirectStore.pGetCheckupRiskAudioTimus(patientUID,payorDetailUID);
+            DataTable dt = SqlDirectStore.pGetCheckupRiskAudioTimus(patientUID, payorDetailUID);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<PatientResultComponentModel>();
@@ -843,14 +846,24 @@ namespace MediTechWebApi.Controllers
                                                       on rs.PatientVisitUID equals pv.UID
                                                       join pt in db.Patient
                                                       on pv.PatientUID equals pt.UID
-                                                      join vts in db.PatientVitalSign
-                                                      on pv.UID equals vts.PatientVisitUID
+                                                      join pvs in db.PatientVitalSign on
+                                                       new
+                                                       {
+                                                           key1 = pv.UID,
+                                                           key2 = "A"
+                                                       } equals
+                                                       new
+                                                       {
+                                                           key1 = pvs.PatientVisitUID,
+                                                           key2 = pvs.StatusFlag
+                                                       } into lefpvs
+                                                      from j in lefpvs.DefaultIfEmpty()
                                                       where rst.StatusFlag == "A"
                                                       && rs.StatusFlag == "A"
                                                       && pv.StatusFlag == "A"
                                                       && rs.RequestItemCode == "AUDIO"
                                                       && rs.PatientVisitUID == patientVisitUID
-                                                    
+
                                                       select new PatientResultComponentModel
                                                       {
                                                           PatientName = SqlFunction.fGetPatientName(pt.UID),
@@ -863,8 +876,8 @@ namespace MediTechWebApi.Controllers
                                                           ResultItemCode = rst.ResultItemCode,
                                                           ResultItemName = rst.ResultItemName,
                                                           ResultValue = rst.ResultValue,
-                                                          Weight = vts.Weight,
-                                                          Height = vts.Height,
+                                                          Weight = j.Weight,
+                                                          Height = j.Height,
                                                           StartDttm = pv.StartDttm
 
                                                       }).ToList();

@@ -154,6 +154,7 @@
                         </dxg:TableView>
                     </dxg:GridControl.View>
                     <dxg:GridColumn Header="No" FieldName="RowHandle" Width="30" Fixed="Left"/>
+                    <dxg:GridColumn FieldName="StartDttm" Header="วันที่ตรวจ"/>
                     <dxg:GridColumn FieldName="PatientID" Header="รหัสผู้ป่วย"/>
                     <dxg:GridColumn FieldName="Title" Header="คำนำหน้า"/>
                     <dxg:GridColumn FieldName="FirstName" Header="ชื่อ"/>
@@ -170,7 +171,6 @@
                     <dxg:GridColumn FieldName="Department" Header="แผนก"/>
                     <dxg:GridColumn FieldName="Position" Header="ตำแหน่ง"/>
                     <dxg:GridColumn FieldName="RefNo" Header="RefNo"/>
-                    <dxg:GridColumn FieldName="StartDttm" Header="วันที่ตรวจ"/>
                     <dxg:GridColumn FieldName="IsWillnessResult" Visible="False"/>
                     <dxg:GridColumn FieldName="IsDataInconsistency" Visible="False"/>
                 </dxg:GridControl>
