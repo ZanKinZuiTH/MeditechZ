@@ -507,7 +507,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page7.RowThinnerUrine.Visible = false;
                 page7.RowCopperBlood.Visible = false;
                 page7.RowTrichloroUrine.Visible = false;
-
+                page7.rowDirectToluene.Visible = false;
                 #endregion
 
                 IOrderedEnumerable<PatientResultComponentModel> labCompare;
@@ -669,6 +669,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             || p.RequestItemCode.Contains("LAB575")// Ammo
                             || p.RequestItemCode.Contains("LAB487") //Lead in Urin 
                             || p.RequestItemCode.Contains("LAB511")
+                            || p.RequestItemCode.Contains("LAB620") //direct Toluene 
                             || p.RequestItemCode.Contains("LAB619")
                             || p.RequestItemCode.Contains("LAB543")//copper blood
                             || p.RequestItemCode.Contains("LAB606"))
@@ -2190,6 +2191,19 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             page7.TrichloroUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1300" && p.Year == year2)?.ResultValue;
                             page7.TrichloroUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1300" && p.Year == year3)?.ResultValue;
                         }
+                        #endregion
+
+                        #region Direct Toluene in urine
+
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307") != null)
+                        {
+                            page7.rowDirectToluene.Visible = true;
+                            page7.DirectTolueneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307")?.ReferenceRange;
+                            page7.DirectToluene1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307" && p.Year == year1)?.ResultValue;
+                            page7.DirectToluene2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307" && p.Year == year2)?.ResultValue;
+                            page7.DirectToluene3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307" && p.Year == year3)?.ResultValue;
+                        }
+                        #endregion
                     }
                     else
                     {
@@ -2198,7 +2212,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         page7.cellToxicoYear3.Text = "ปี" + " " + (DateTime.Now.Year - 2);
                     }
 
-                    #endregion
+                    
                 }
                 else
                 {
@@ -2473,7 +2487,22 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         {
             if (AudioResult != null && AudioResult.Count() > 0)
             {
+                page9.R1.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO1")?.ResultValue;
+                page9.R2.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO2")?.ResultValue;
+                page9.R3.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO3")?.ResultValue;
+                page9.R4.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO4")?.ResultValue;
+                page9.R5.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO5")?.ResultValue;
+                page9.R6.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO6")?.ResultValue;
+                page9.R7.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO7")?.ResultValue;
                 page9.lbAudioRight.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO8")?.ResultValue;
+
+                page9.L1.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO9")?.ResultValue;
+                page9.L2.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO10")?.ResultValue;
+                page9.L3.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO11")?.ResultValue;
+                page9.L4.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO12")?.ResultValue;
+                page9.L5.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO13")?.ResultValue;
+                page9.L6.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO14")?.ResultValue;
+                page9.L7.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO15")?.ResultValue;
                 page9.lbAudioLeft.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO16")?.ResultValue;
             }
         }

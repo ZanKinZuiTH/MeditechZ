@@ -127,10 +127,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // xrRichText2
             // 
             this.xrRichText2.Font = new System.Drawing.Font("Times New Roman", 9.75F);
-            this.xrRichText2.LocationFloat = new DevExpress.Utils.PointFloat(486F, 20F);
+            this.xrRichText2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 15.39215F);
             this.xrRichText2.Name = "xrRichText2";
             this.xrRichText2.SerializableRtfString = resources.GetString("xrRichText2.SerializableRtfString");
-            this.xrRichText2.SizeF = new System.Drawing.SizeF(12F, 20F);
+            this.xrRichText2.SizeF = new System.Drawing.SizeF(22.93137F, 24.60785F);
             // 
             // BottomMargin
             // 
@@ -497,7 +497,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel1.StylePriority.UseBackColor = false;
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.StylePriority.UseTextAlignment = false;
-            this.xrLabel1.Text = "ผลการตรวจคัดกรองความเสี่ยงโครงสร้างและการเนื้อจากการทำงาน";
+            this.xrLabel1.Text = "ผลการตรวจคัดกรองความเสี่ยงโครงสร้างและกล้ามเนื้อจากการทำงาน";
             this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // xrLabel4

@@ -450,6 +450,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                 page3.RowThinnerUrine.Visible = false;
                 page3.RowCopperBlood.Visible = false;
                 page3.RowTrichloroUrine.Visible = false;
+                page3.rowDirectToluene.Visible = false;
                 #endregion
 
                 var occmed = data.MobileResult;
@@ -602,6 +603,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                         || p.RequestItemCode.Contains("LAB575") // Ammo
                         || p.RequestItemCode.Contains("LAB487") // Lead in Urin 
                         || p.RequestItemCode.Contains("LAB511")
+                        || p.RequestItemCode.Contains("LAB620") //direct Toluene 
                         || p.RequestItemCode.Contains("LAB619")
                         || p.RequestItemCode.Contains("LAB543")//copper blood
                         || p.RequestItemCode.Contains("LAB606"))
@@ -1519,6 +1521,17 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
 
                     #endregion
 
+                    #region Direct Toluene in urine
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307") != null)
+                    {
+                        page3.rowDirectToluene.Visible = true;
+                        page3.DirectTolueneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307")?.ReferenceRange;
+                        page3.DirectToluene1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307" && p.Year == year1)?.ResultValue;
+                        page3.DirectToluene2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307" && p.Year == year2)?.ResultValue;
+                        page3.DirectToluene3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307" && p.Year == year3)?.ResultValue;
+                    }
+                    #endregion
                 }
                 else
                 {

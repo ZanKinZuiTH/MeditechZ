@@ -236,6 +236,14 @@
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem HorizontalAlignment="Right">
+                    <dx:SimpleButton Width="100" Height="30" Command="{Binding PrintEditCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/MediTech;component/Resources/Images/Print/Print_32x32.png"/>
+                            <TextBlock Text="Print Edit" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </dx:SimpleButton>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem HorizontalAlignment="Right">
                     <dx:SimpleButton Width="100" Height="30" Command="{Binding PrintAutoCommand}">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/MediTech;component/Resources/Images/Print/Print_32x32.png"/>
