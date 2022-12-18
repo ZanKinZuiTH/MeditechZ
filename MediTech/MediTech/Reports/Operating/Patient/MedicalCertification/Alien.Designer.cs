@@ -288,12 +288,13 @@ namespace MediTech.Reports.Operating.Patient
             this.xrLabel77.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Nationality]")});
             this.xrLabel77.Font = new System.Drawing.Font("Angsana New", 14F, System.Drawing.FontStyle.Bold);
-            this.xrLabel77.LocationFloat = new DevExpress.Utils.PointFloat(378.2664F, 103.3371F);
+            this.xrLabel77.LocationFloat = new DevExpress.Utils.PointFloat(378.2664F, 100.6419F);
             this.xrLabel77.Multiline = true;
             this.xrLabel77.Name = "xrLabel77";
-            this.xrLabel77.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel77.SizeF = new System.Drawing.SizeF(372.9005F, 23.2257F);
+            this.xrLabel77.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            this.xrLabel77.SizeF = new System.Drawing.SizeF(372.9005F, 23.28115F);
             this.xrLabel77.StylePriority.UseFont = false;
+            this.xrLabel77.StylePriority.UsePadding = false;
             this.xrLabel77.StylePriority.UseTextAlignment = false;
             this.xrLabel77.Text = "xrLabel69";
             this.xrLabel77.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
@@ -410,12 +411,13 @@ namespace MediTech.Reports.Operating.Patient
             this.xrLabel69.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DateOfBirth]")});
             this.xrLabel69.Font = new System.Drawing.Font("Angsana New", 14F, System.Drawing.FontStyle.Bold);
-            this.xrLabel69.LocationFloat = new DevExpress.Utils.PointFloat(145.4167F, 124.6111F);
+            this.xrLabel69.LocationFloat = new DevExpress.Utils.PointFloat(145.4167F, 124.2005F);
             this.xrLabel69.Multiline = true;
             this.xrLabel69.Name = "xrLabel69";
-            this.xrLabel69.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel69.SizeF = new System.Drawing.SizeF(101F, 24.40624F);
+            this.xrLabel69.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            this.xrLabel69.SizeF = new System.Drawing.SizeF(101F, 24.57073F);
             this.xrLabel69.StylePriority.UseFont = false;
+            this.xrLabel69.StylePriority.UsePadding = false;
             this.xrLabel69.StylePriority.UseTextAlignment = false;
             this.xrLabel69.Text = "xrLabel69";
             this.xrLabel69.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
@@ -430,7 +432,7 @@ namespace MediTech.Reports.Operating.Patient
             this.xrLabel68.Multiline = true;
             this.xrLabel68.Name = "xrLabel68";
             this.xrLabel68.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel68.SizeF = new System.Drawing.SizeF(364.1666F, 23F);
+            this.xrLabel68.SizeF = new System.Drawing.SizeF(209.6271F, 23F);
             this.xrLabel68.StylePriority.UseFont = false;
             this.xrLabel68.Text = "xrLabel68";
             // 
