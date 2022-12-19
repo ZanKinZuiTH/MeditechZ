@@ -3206,7 +3206,7 @@ and GPRSTUID in (Select Name from dbo.splitstring(@GPRSTUID))";
                 SqlCommand command = new SqlCommand();
                 command.CommandType = CommandType.Text;
                 command.Connection = con;
-                command.CommandText = @"Select FirstName,LastName,IsPatientIdentity From users Where StatusFlag = 'A' and CitizenID = @CitizenID";
+                command.CommandText = @"Select UID,FirstName,LastName,IsPatientIdentity From users Where StatusFlag = 'A' and CitizenID = @CitizenID";
                 command.Parameters.AddWithValue("@CitizenID", nationalID);
 
                 dt.Load(command.ExecuteReader());
