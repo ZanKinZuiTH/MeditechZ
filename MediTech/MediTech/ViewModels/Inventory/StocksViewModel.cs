@@ -27,9 +27,15 @@ namespace MediTech.ViewModels
                     {
                         SelectOrganisationMovement = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == SelectOrganisationOnHand.HealthOrganisationUID);
                     }
+
+                    if (SelectLocationOnHand != null)
+                    {
+                        SelectLocationMovement = LocationMovements?.FirstOrDefault(p => p.LocationUID == SelectLocationOnHand.LocationUID);
+                    }
+
                     if (SelectStoreOnHand != null)
                     {
-                        SelectStoreMovement = StoresMovement.FirstOrDefault(p => p.StoreUID ==  SelectStoreOnHand.StoreUID);
+                        SelectStoreMovement = StoresMovement?.FirstOrDefault(p => p.StoreUID ==  SelectStoreOnHand.StoreUID);
                     }
                  
                     if (SelectStockOnHand != null)
@@ -51,9 +57,13 @@ namespace MediTech.ViewModels
                     {
                         SelectOrganisationBalance = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == SelectOrganisationOnHand.HealthOrganisationUID);
                     }
+                    if (SelectLocationOnHand != null)
+                    {
+                        SelectLocationBalance = LocationBalances?.FirstOrDefault(p => p.LocationUID == SelectLocationOnHand.LocationUID);
+                    }
                     if (SelectStoreOnHand != null)
                     {
-                        SelectStoreBalance = StoresBalance.FirstOrDefault(p => p.StoreUID == SelectStoreOnHand.StoreUID);
+                        SelectStoreBalance = StoresBalance?.FirstOrDefault(p => p.StoreUID == SelectStoreOnHand.StoreUID);
                     }
                     if (SelectStockOnHand != null)
                     {

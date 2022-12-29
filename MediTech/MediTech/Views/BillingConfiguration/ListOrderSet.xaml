@@ -42,6 +42,7 @@
                     <dxg:GridColumn Header="รายละเอียด" FieldName="Description"/>
                     <dxg:GridColumn Header="OrderCategory" FieldName="OrderCategory" Width="120"/>
                     <dxg:GridColumn Header="OrderSubCategory" FieldName="OrderSubCategory" Width="120"/>
+                    <dxg:GridColumn Header="ราคาขาย" FieldName="Price"/>
                     <dxg:GridColumn Header="เปิดใช้งาน" FieldName="ActiveFrom"/>
                     <dxg:GridColumn Header="ปิดใช้งาน" FieldName="ActiveTo"/>
                 </dxg:GridControl.Columns>

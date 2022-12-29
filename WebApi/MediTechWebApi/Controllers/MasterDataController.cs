@@ -1547,6 +1547,13 @@ namespace MediTechWebApi.Controllers
                                             StatusFlag = p.StatusFlag
                                         }).ToList();
 
+            foreach (var OrderSet in data)
+            {
+                var orderSetBillableItems = db.OrderSetBillableItem.Where(p => p.OrderSetUID == OrderSet.OrderSetUID && p.ActiveTo == null && p.StatusFlag == "A").ToList();
+                var price  = orderSetBillableItems.Sum(p => p.Price);
+                OrderSet.Price = price ?? 0;
+            }
+
             return data;
         }
 
