@@ -701,7 +701,9 @@
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel1.SizeF = new System.Drawing.SizeF(21.66669F, 23F);
             this.xrLabel1.StylePriority.UseFont = false;
+            this.xrLabel1.StylePriority.UseTextAlignment = false;
             this.xrLabel1.Text = "2";
+            this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             // 
             // xrTable4
             // 
@@ -745,7 +747,7 @@
             this.lbName15.Font = new System.Drawing.Font("Angsana New", 8F);
             this.lbName15.Name = "lbName15";
             this.lbName15.StylePriority.UseFont = false;
-            this.lbName15.Weight = 1.5083327681018564D;
+            this.lbName15.Weight = 1.5083327681018563D;
             // 
             // xrTable1
             // 
@@ -789,7 +791,7 @@
             this.lbName2.Font = new System.Drawing.Font("Angsana New", 8F);
             this.lbName2.Name = "lbName2";
             this.lbName2.StylePriority.UseFont = false;
-            this.lbName2.Weight = 1.5083327681018564D;
+            this.lbName2.Weight = 1.5083327681018563D;
             // 
             // TopMargin
             // 
@@ -819,7 +821,7 @@
             this.PageHeight = 583;
             this.PageWidth = 827;
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;
-            this.Version = "20.2";
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.tbPhysicalExam)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
