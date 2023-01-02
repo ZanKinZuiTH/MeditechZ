@@ -871,7 +871,7 @@ namespace MediTech.ViewModels
                                     visitInfo.VISTSUID = 418; //Medical Discharge
                                     visitInfo.CompanyName = currentData.Company != "" ? currentData.Company : result.Company;
                                     visitInfo.EmployerAddress = currentData.EmployerAddress != "" ? currentData.EmployerAddress : result.EmployerAddress;
-                                    visitInfo.Program = currentData.Program;
+                                    visitInfo.Program = currentData.Program != "" ? currentData.Program : null;
                                     visitInfo.RefNo = currentData.No;
                                     visitInfo.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
                                     PatientVisitModel returnData = DataService.PatientIdentity.SavePatientVisit(visitInfo, AppUtil.Current.UserID);
