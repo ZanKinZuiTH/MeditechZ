@@ -64,7 +64,7 @@ namespace MediTech.ViewModels
         //        Set(ref _SelectLocation, value);
         //    }
         //}
-
+        
         private List<LookupReferenceValueModel> _VisitTypeSource;
 
         public List<LookupReferenceValueModel> VisitTypeSource
@@ -83,6 +83,7 @@ namespace MediTech.ViewModels
                 if (_SelectedVisitType != null)
                 {
                     VisibiltyCheckupCompany = Visibility.Collapsed;
+                    VisibiltyEmployerAddress = Visibility.Collapsed;
                     if (SelectedVisitType.ValueCode == "MBCHK" || SelectedVisitType.ValueCode == "CHKUP" || SelectedVisitType.ValueCode == "CHKIN")
                     {
                         if (CheckupJobSource == null)
@@ -94,6 +95,10 @@ namespace MediTech.ViewModels
                     else
                     {
                         CheckupJobSource = null;
+                    }
+                    if (SelectedVisitType.ValueCode == "CHKIN3")
+                    {
+                        VisibiltyEmployerAddress = Visibility.Visible;
                     }
                 }
             }
@@ -131,6 +136,14 @@ namespace MediTech.ViewModels
             get { return _Company; }
             set { Set(ref _Company, value); }
         }
+        
+        private string _EmployerAddress;
+
+        public string EmployerAddress
+        {
+            get { return _EmployerAddress; }
+            set { Set(ref _EmployerAddress, value); }
+        }
 
         private bool _IsEnableFinancial;
 
@@ -165,6 +178,13 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectedCheckupJob, value); }
         }
 
+        private Visibility _VisibiltyEmployerAddress = Visibility.Collapsed;
+
+        public Visibility VisibiltyEmployerAddress
+        {
+            get { return _VisibiltyEmployerAddress; }
+            set { Set(ref _VisibiltyEmployerAddress, value); }
+        }
         #endregion
 
         #region Command
@@ -227,6 +247,7 @@ namespace MediTech.ViewModels
 
                     visitInfo.Comments = CommentDoctor;
                     visitInfo.CompanyName = Company;
+                    visitInfo.EmployerAddress = EmployerAddress;
                     //visitInfo.LocationUID = SelectLocation.LocationUID;
                     if (SelectedCareprovider != null)
                         visitInfo.CareProviderUID = SelectedCareprovider.CareproviderUID;
@@ -301,6 +322,7 @@ namespace MediTech.ViewModels
             SelectedCareprovider = CareproviderSource.FirstOrDefault(p => p.CareproviderUID == SelectPatientVisit.CareProviderUID);
             CommentDoctor = SelectPatientVisit.Comments;
             Company = SelectPatientVisit.CompanyName;
+            EmployerAddress = SelectPatientVisit.EmployerAddress;
 
             if (SelectPatientVisit.VisitStatus == "Financial Discharge")
             {

@@ -96,6 +96,7 @@
                 <dxg:GridColumn Header="Group" FieldName="Group"/>
                 <dxg:GridColumn Header="Program" FieldName="Program"/>
                 <dxg:GridColumn Header="CheckupDttm" FieldName="CheckupDttm"/>
+                <dxg:GridColumn Header="EmployerAddress" FieldName="EmployerAddress"/>
                 <dxg:GridControl.View>
                     <dxg:TableView x:Name="tableView" ShowGroupPanel="False"
                                    UseLightweightTemplates="None"

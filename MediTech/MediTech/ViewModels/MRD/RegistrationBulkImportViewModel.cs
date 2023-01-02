@@ -456,7 +456,7 @@ namespace MediTech.ViewModels
                         CurrentImportedData.Gender = drow["Sex"].ToString().Trim();
                         CurrentImportedData.Company = drow["Company"].ToString().Trim();
                         CurrentImportedData.Program = drow["Program"].ToString().Trim();
-
+                        CurrentImportedData.EmployerAddress = drow["EmployerAddress"].ToString().Trim();
                         DateTime checkupDttm;
                         if (DateTime.TryParse(drow["CheckupDttm"].ToString().Trim(), out checkupDttm))
                             CurrentImportedData.CheckupDttm = checkupDttm;
@@ -582,6 +582,9 @@ namespace MediTech.ViewModels
 
                         if (drow.Table.Columns.Contains("Company"))
                             CurrentImportedData.Company = drow["Company"].ToString();
+
+                        if (drow.Table.Columns.Contains("EmployerAddress"))
+                            CurrentImportedData.EmployerAddress = drow["EmployerAddress"].ToString();
 
                         if (drow.Table.Columns.Contains("Position"))
                             CurrentImportedData.Position = drow["Position"].ToString();
@@ -866,7 +869,9 @@ namespace MediTech.ViewModels
                                     PatientVisitModel visitInfo = result.PatientVisitInfo;
                                     visitInfo.PatientUID = currentData.PatientUID;
                                     visitInfo.VISTSUID = 418; //Medical Discharge
-                                    visitInfo.CompanyName = currentData.Company;
+                                    visitInfo.CompanyName = currentData.Company != "" ? currentData.Company : result.Company;
+                                    visitInfo.EmployerAddress = currentData.EmployerAddress != "" ? currentData.EmployerAddress : result.EmployerAddress;
+                                    visitInfo.Program = currentData.Program;
                                     visitInfo.RefNo = currentData.No;
                                     visitInfo.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
                                     PatientVisitModel returnData = DataService.PatientIdentity.SavePatientVisit(visitInfo, AppUtil.Current.UserID);
@@ -1015,6 +1020,7 @@ namespace MediTech.ViewModels
                             rpt.Parameters["Department"].Value = patient.Department;
                             rpt.Parameters["EmployeeID"].Value = patient.EmployeeID;
                             rpt.Parameters["CompanyName"].Value = patient.Company;
+                            rpt.Parameters["EmployerAddress"].Value = patient.EmployerAddress;
                             rpt.RequestParameters = false;
                             rpt.ShowPrintMarginsWarning = false;
                             for (int i = 0; i < StickerQuantity; i++)
@@ -1119,6 +1125,7 @@ namespace MediTech.ViewModels
                                         rpt.Parameters["BirthDttm"].Value = patient.BirthDttm != null ? patient.BirthDttm.Value.ToString("dd/MM/yyyy") : "";
                                         rpt.Parameters["CheckUp"].Value = item.Display;
                                         rpt.Parameters["Company"].Value = patient.Company;
+                                        rpt.Parameters["EmployerAddress"].Value = patient.EmployerAddress;
                                         rpt.Parameters["Program"].Value = patient.Program;
                                         rpt.RequestParameters = false;
                                         rpt.ShowPrintMarginsWarning = false;
@@ -1188,6 +1195,7 @@ namespace MediTech.ViewModels
                             }
                             rpt.Parameters["Group"].Value = patient.Group;
                             rpt.Parameters["CompanyName"].Value = patient.Company;
+                            rpt.Parameters["EmployerAddress"].Value = patient.EmployerAddress;
                             rpt.Parameters["PositionEmployee"].Value = patient.Position;
                             rpt.ShowPrintMarginsWarning = false;
                             printTool.Print();

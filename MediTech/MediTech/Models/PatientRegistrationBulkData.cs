@@ -67,5 +67,6 @@ namespace MediTech.Models
         public string Program { get; set; }
         public DateTime? CheckupDttm { get; set; }
         public int No { get; set; }
+        public string EmployerAddress { get; set; } 
     }
 }

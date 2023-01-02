@@ -41,6 +41,7 @@ namespace MediTech.Model.Report
         public List<string> Detail{ get; set; }
         public string CompanyName { get; set; }
         public string Nationality { get; set; }
+        public string EmployerAddress { get; set; }
 
     }
 }

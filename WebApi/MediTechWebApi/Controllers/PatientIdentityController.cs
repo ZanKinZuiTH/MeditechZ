@@ -1072,6 +1072,8 @@ namespace MediTechWebApi.Controllers
                     patientVisit.CheckupJobUID = patientVisitInfo.CheckupJobUID;
                     patientVisit.RefNo = patientVisitInfo.RefNo;
                     patientVisit.CompanyName = patientVisitInfo.CompanyName;
+                    patientVisit.EmployerAddress = patientVisitInfo.EmployerAddress;
+                    patientVisit.Program = patientVisitInfo.Program;
                     patientVisit.VisitID = seqVisitID;
                     patientVisit.CareProviderUID = patientVisitInfo.CareProviderUID;
                     patientVisit.BookingUID = patientVisitInfo.BookingUID;
@@ -1859,6 +1861,7 @@ namespace MediTechWebApi.Controllers
                     patientVisit.CheckupJobUID = patientVisitInfo.CheckupJobUID;
                     patientVisit.Comments = patientVisitInfo.Comments;
                     patientVisit.CompanyName = patientVisitInfo.CompanyName;
+                    patientVisit.EmployerAddress = patientVisitInfo.EmployerAddress;
                     patientVisit.MUser = userID;
                     patientVisit.MWhen = DateTime.Now;
                 }

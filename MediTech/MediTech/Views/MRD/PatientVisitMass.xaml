@@ -186,6 +186,7 @@
                                     </dxg:GridColumn>
                                     <dxg:GridColumn Header="แพทย์เจ้าของผู้ป่วย" FieldName="CareProviderName" ReadOnly="True"/>
                                     <dxg:GridColumn Header="EN" FieldName="VisitID" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="Program" FieldName="Program" ReadOnly="True"/>
                                     <dxg:GridColumn Header="หมายเหตุ" FieldName="Note" ReadOnly="True"/>
                                     <!--<dxg:GridColumn Header="Payor" FieldName="PayorName" ReadOnly="True"/>-->
                                     <dxg:GridControl.View>

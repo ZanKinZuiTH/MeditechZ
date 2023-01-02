@@ -948,6 +948,32 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             page3.rowCBC_RBCMor.Visible = false;
             if (labTestSet != null && labTestSet.Count() > 0)
             {
+
+                List<int?> oneYears = labTestSet.Select(p => p.Year).Distinct().ToList();
+                if(oneYears.Count == 1)
+                {
+                    List<DateTime?> repeatYears = labTestSet.Select(p => p.StartDttm).Distinct().ToList();
+                    repeatYears.Sort();
+
+                    if (repeatYears.Count > 1)
+                    {
+                        DateTime? dateMax = DateTime.Now;
+                        DateTime? dateMin = repeatYears[0];
+                        foreach (DateTime dt in repeatYears)
+                        {
+
+                            if (dt > dateMin)
+                            {
+                                dateMax = dt;
+                            }
+                        }
+                        int yearMax = dateMax.Value.Year;
+                        int yearMin = yearMax - 1;
+
+                        labTestSet.Where(w => w.StartDttm == dateMin).ToList().ForEach(i => i.Year = yearMin);
+                    }
+                }
+
                 int thisYear = DateTime.Now.Year;
                 int? compare = thisYear - 2;
                 List<int?> Years = labTestSet.Select(p => p.Year).Where(p => p.Value >= compare).Distinct().ToList();
@@ -1070,6 +1096,31 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         {
             if (labTestSet != null && labTestSet.Count() > 0)
             {
+                List<int?> oneYears = labTestSet.Select(p => p.Year).Distinct().ToList();
+                if (oneYears.Count == 1)
+                {
+                    List<DateTime?> repeatYears = labTestSet.Select(p => p.StartDttm).Distinct().ToList();
+                    repeatYears.Sort();
+
+                    if (repeatYears.Count > 1)
+                    {
+                        DateTime? dateMax = DateTime.Now;
+                        DateTime? dateMin = repeatYears[0];
+                        foreach (DateTime dt in repeatYears)
+                        {
+
+                            if (dt > dateMin)
+                            {
+                                dateMax = dt;
+                            }
+                        }
+                        int yearMax = dateMax.Value.Year;
+                        int yearMin = yearMax - 1;
+
+                        labTestSet.Where(w => w.StartDttm == dateMin).ToList().ForEach(i => i.Year = yearMin);
+                    }
+                }
+
                 int thisYear = DateTime.Now.Year;
                 int? compare = thisYear - 2;
                 List<int?> Years = labTestSet.Select(p => p.Year).Where(p => p.Value >= compare).Distinct().ToList();
@@ -1197,6 +1248,31 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         {
             if (labTestSet != null && labTestSet.Count() > 0)
             {
+                List<int?> oneYears = labTestSet.Select(p => p.Year).Distinct().ToList();
+                if (oneYears.Count == 1)
+                {
+                    List<DateTime?> repeatYears = labTestSet.Select(p => p.StartDttm).Distinct().ToList();
+                    repeatYears.Sort();
+
+                    if (repeatYears.Count > 1)
+                    {
+                        DateTime? dateMax = DateTime.Now;
+                        DateTime? dateMin = repeatYears[0];
+                        foreach (DateTime dt in repeatYears)
+                        {
+
+                            if (dt > dateMin)
+                            {
+                                dateMax = dt;
+                            }
+                        }
+                        int yearMax = dateMax.Value.Year;
+                        int yearMin = yearMax - 1;
+
+                        labTestSet.Where(w => w.StartDttm == dateMin).ToList().ForEach(i => i.Year = yearMin);
+                    }
+                }
+
                 int thisYear = DateTime.Now.Year;
                 int? compare = thisYear - 2;
                 List<int?> Years = labTestSet.Select(p => p.Year).Where(p => p.Value >= compare).Distinct().ToList();
@@ -1249,6 +1325,31 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         {
             if (labTestSet != null && labTestSet.Count() > 0)
             {
+                List<int?> oneYears = labTestSet.Select(p => p.Year).Distinct().ToList();
+                if (oneYears.Count == 1)
+                {
+                    List<DateTime?> repeatYears = labTestSet.Select(p => p.StartDttm).Distinct().ToList();
+                    repeatYears.Sort();
+
+                    if (repeatYears.Count > 1)
+                    {
+                        DateTime? dateMax = DateTime.Now;
+                        DateTime? dateMin = repeatYears[0];
+                        foreach (DateTime dt in repeatYears)
+                        {
+
+                            if (dt > dateMin)
+                            {
+                                dateMax = dt;
+                            }
+                        }
+                        int yearMax = dateMax.Value.Year;
+                        int yearMin = yearMax - 1;
+
+                        labTestSet.Where(w => w.StartDttm == dateMin).ToList().ForEach(i => i.Year = yearMin);
+                    }
+                }
+
                 int thisYear = DateTime.Now.Year;
                 int? compare = thisYear - 2;
                 List<int?> Years = labTestSet.Select(p => p.Year).Where(p => p.Value >= compare).Distinct().ToList();
@@ -1296,6 +1397,31 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         {
             if (labTestSet != null && labTestSet.Count() > 0)
             {
+                List<int?> oneYears = labTestSet.Select(p => p.Year).Distinct().ToList();
+                if (oneYears.Count == 1)
+                {
+                    List<DateTime?> repeatYears = labTestSet.Select(p => p.StartDttm).Distinct().ToList();
+                    repeatYears.Sort();
+
+                    if (repeatYears.Count > 1)
+                    {
+                        DateTime? dateMax = DateTime.Now;
+                        DateTime? dateMin = repeatYears[0];
+                        foreach (DateTime dt in repeatYears)
+                        {
+
+                            if (dt > dateMin)
+                            {
+                                dateMax = dt;
+                            }
+                        }
+                        int yearMax = dateMax.Value.Year;
+                        int yearMin = yearMax - 1;
+
+                        labTestSet.Where(w => w.StartDttm == dateMin).ToList().ForEach(i => i.Year = yearMin);
+                    }
+                }
+
                 int thisYear = DateTime.Now.Year;
                 int? compare = thisYear - 2;
                 List<int?> Years = labTestSet.Select(p => p.Year).Where(p => p.Value >= compare).Distinct().ToList();
@@ -1338,6 +1464,30 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         {
             if (labTestSet != null && labTestSet.Count() > 0)
             {
+                List<int?> oneYears = labTestSet.Select(p => p.Year).Distinct().ToList();
+                if (oneYears.Count == 1)
+                {
+                    List<DateTime?> repeatYears = labTestSet.Select(p => p.StartDttm).Distinct().ToList();
+                    repeatYears.Sort();
+
+                    if (repeatYears.Count > 1)
+                    {
+                        DateTime? dateMax = DateTime.Now;
+                        DateTime? dateMin = repeatYears[0];
+                        foreach (DateTime dt in repeatYears)
+                        {
+
+                            if (dt > dateMin)
+                            {
+                                dateMax = dt;
+                            }
+                        }
+                        int yearMax = dateMax.Value.Year;
+                        int yearMin = yearMax - 1;
+
+                        labTestSet.Where(w => w.StartDttm == dateMin).ToList().ForEach(i => i.Year = yearMin);
+                    }
+                }
 
                 int thisYear = DateTime.Now.Year;
                 int? compare = thisYear - 2;
@@ -1396,6 +1546,31 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         {
             if (labTestSet != null && labTestSet.Count() > 0)
             {
+                List<int?> oneYears = labTestSet.Select(p => p.Year).Distinct().ToList();
+                if (oneYears.Count == 1)
+                {
+                    List<DateTime?> repeatYears = labTestSet.Select(p => p.StartDttm).Distinct().ToList();
+                    repeatYears.Sort();
+
+                    if (repeatYears.Count > 1)
+                    {
+                        DateTime? dateMax = DateTime.Now;
+                        DateTime? dateMin = repeatYears[0];
+                        foreach (DateTime dt in repeatYears)
+                        {
+
+                            if (dt > dateMin)
+                            {
+                                dateMax = dt;
+                            }
+                        }
+                        int yearMax = dateMax.Value.Year;
+                        int yearMin = yearMax - 1;
+
+                        labTestSet.Where(w => w.StartDttm == dateMin).ToList().ForEach(i => i.Year = yearMin);
+                    }
+                }
+
                 int thisYear = DateTime.Now.Year;
                 int? compare = thisYear - 2;
                 List<int?> Years = labTestSet.Select(p => p.Year).Where(p => p.Value >= compare).Distinct().ToList();
@@ -1478,6 +1653,31 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         {
             if (labTestSet != null && labTestSet.Count() > 0)
             {
+                List<int?> oneYears = labTestSet.Select(p => p.Year).Distinct().ToList();
+                if (oneYears.Count == 1)
+                {
+                    List<DateTime?> repeatYears = labTestSet.Select(p => p.StartDttm).Distinct().ToList();
+                    repeatYears.Sort();
+
+                    if (repeatYears.Count > 1)
+                    {
+                        DateTime? dateMax = DateTime.Now;
+                        DateTime? dateMin = repeatYears[0];
+                        foreach (DateTime dt in repeatYears)
+                        {
+
+                            if (dt > dateMin)
+                            {
+                                dateMax = dt;
+                            }
+                        }
+                        int yearMax = dateMax.Value.Year;
+                        int yearMin = yearMax - 1;
+
+                        labTestSet.Where(w => w.StartDttm == dateMin).ToList().ForEach(i => i.Year = yearMin);
+                    }
+                }
+
                 int thisYear = DateTime.Now.Year;
                 int? compare = thisYear - 2;
                 List<int?> Years = labTestSet.Select(p => p.Year).Where(p => p.Value >= compare).Distinct().ToList();
@@ -1550,6 +1750,31 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         {
             if (labTestSet != null && labTestSet.Count() > 0)
             {
+                List<int?> oneYears = labTestSet.Select(p => p.Year).Distinct().ToList();
+                if (oneYears.Count == 1)
+                {
+                    List<DateTime?> repeatYears = labTestSet.Select(p => p.StartDttm).Distinct().ToList();
+                    repeatYears.Sort();
+
+                    if (repeatYears.Count > 1)
+                    {
+                        DateTime? dateMax = DateTime.Now;
+                        DateTime? dateMin = repeatYears[0];
+                        foreach (DateTime dt in repeatYears)
+                        {
+
+                            if (dt > dateMin)
+                            {
+                                dateMax = dt;
+                            }
+                        }
+                        int yearMax = dateMax.Value.Year;
+                        int yearMin = yearMax - 1;
+
+                        labTestSet.Where(w => w.StartDttm == dateMin).ToList().ForEach(i => i.Year = yearMin);
+                    }
+                }
+
                 int thisYear = DateTime.Now.Year;
                 int? compare = thisYear - 2;
                 List<int?> Years = labTestSet.Select(p => p.Year).Where(p => p.Value >= compare).Distinct().ToList();
@@ -1612,6 +1837,31 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         {
             if (labTestSet != null && labTestSet.Count() > 0)
             {
+                List<int?> oneYears = labTestSet.Select(p => p.Year).Distinct().ToList();
+                if (oneYears.Count == 1)
+                {
+                    List<DateTime?> repeatYears = labTestSet.Select(p => p.StartDttm).Distinct().ToList();
+                    repeatYears.Sort();
+
+                    if (repeatYears.Count > 1)
+                    {
+                        DateTime? dateMax = DateTime.Now;
+                        DateTime? dateMin = repeatYears[0];
+                        foreach (DateTime dt in repeatYears)
+                        {
+
+                            if (dt > dateMin)
+                            {
+                                dateMax = dt;
+                            }
+                        }
+                        int yearMax = dateMax.Value.Year;
+                        int yearMin = yearMax - 1;
+
+                        labTestSet.Where(w => w.StartDttm == dateMin).ToList().ForEach(i => i.Year = yearMin);
+                    }
+                }
+
                 int thisYear = DateTime.Now.Year;
                 int? compare = thisYear - 2;
                 List<int?> Years = labTestSet.Select(p => p.Year).Where(p => p.Value >= compare).Distinct().ToList();
@@ -1678,6 +1928,31 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             {
                 if (labTestSet != null && labTestSet.Count() > 0)
                 {
+                    List<int?> oneYears = labTestSet.Select(p => p.Year).Distinct().ToList();
+                    if (oneYears.Count == 1)
+                    {
+                        List<DateTime?> repeatYears = labTestSet.Select(p => p.StartDttm).Distinct().ToList();
+                        repeatYears.Sort();
+
+                        if (repeatYears.Count > 1)
+                        {
+                            DateTime? dateMax = DateTime.Now;
+                            DateTime? dateMin = repeatYears[0];
+                            foreach (DateTime dt in repeatYears)
+                            {
+
+                                if (dt > dateMin)
+                                {
+                                    dateMax = dt;
+                                }
+                            }
+                            int yearMax = dateMax.Value.Year;
+                            int yearMin = yearMax - 1;
+
+                            labTestSet.Where(w => w.StartDttm == dateMin).ToList().ForEach(i => i.Year = yearMin);
+                        }
+                    }
+
                     int thisYear = DateTime.Now.Year;
                     int? compare =  thisYear - 2;
                     List<int?> Years = labTestSet.Select(p => p.Year).Where(p => p.Value >= compare).Distinct().ToList();
@@ -2231,6 +2506,31 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         {
             if (labTestSet != null && labTestSet.Count() > 0)
             {
+                List<int?> oneYears = labTestSet.Select(p => p.Year).Distinct().ToList();
+                if (oneYears.Count == 1)
+                {
+                    List<DateTime?> repeatYears = labTestSet.Select(p => p.StartDttm).Distinct().ToList();
+                    repeatYears.Sort();
+
+                    if (repeatYears.Count > 1)
+                    {
+                        DateTime? dateMax = DateTime.Now;
+                        DateTime? dateMin = repeatYears[0];
+                        foreach (DateTime dt in repeatYears)
+                        {
+
+                            if (dt > dateMin)
+                            {
+                                dateMax = dt;
+                            }
+                        }
+                        int yearMax = dateMax.Value.Year;
+                        int yearMin = yearMax - 1;
+
+                        labTestSet.Where(w => w.StartDttm == dateMin).ToList().ForEach(i => i.Year = yearMin);
+                    }
+                }
+
                 PatientResultComponentModel CheckGender = labTestSet.FirstOrDefault();
                 int thisYear = DateTime.Now.Year;
                 int? compare = thisYear - 2;
@@ -2386,6 +2686,31 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         {
             if (labTestSet != null && labTestSet.Count() > 0)
             {
+                List<int?> oneYears = labTestSet.Select(p => p.Year).Distinct().ToList();
+                if (oneYears.Count == 1)
+                {
+                    List<DateTime?> repeatYears = labTestSet.Select(p => p.StartDttm).Distinct().ToList();
+                    repeatYears.Sort();
+
+                    if (repeatYears.Count > 1)
+                    {
+                        DateTime? dateMax = DateTime.Now;
+                        DateTime? dateMin = repeatYears[0];
+                        foreach (DateTime dt in repeatYears)
+                        {
+
+                            if (dt > dateMin)
+                            {
+                                dateMax = dt;
+                            }
+                        }
+                        int yearMax = dateMax.Value.Year;
+                        int yearMin = yearMax - 1;
+
+                        labTestSet.Where(w => w.StartDttm == dateMin).ToList().ForEach(i => i.Year = yearMin);
+                    }
+                }
+
                 PatientResultComponentModel CheckGender = labTestSet.FirstOrDefault();
                 int thisYear = DateTime.Now.Year;
                 int? compare = thisYear - 2;

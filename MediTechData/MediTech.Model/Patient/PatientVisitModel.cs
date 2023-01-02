@@ -24,6 +24,8 @@ namespace MediTech.Model
         }
         public Nullable<int> CheckupJobUID { get; set; }
         public string CompanyName { get; set; }
+        public string EmployerAddress { get; set; }
+        public string Program { get; set; }
         public string VisitType { get; set; }
 
         private string _VisitStatus;

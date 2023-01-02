@@ -37,6 +37,8 @@ namespace MediTech.DataBase
         public Nullable<int> CheckupJobUID { get; set; }
         public Nullable<int> BedUID { get; set; }
         public string IsReAdmisstion { get; set; }
+        public string Program { get; set; }
+        public string EmployerAddress { get; set; }
         public string CompanyName { get; set; }
         public string Comments { get; set; }
         public Nullable<int> RefNo { get; set; }

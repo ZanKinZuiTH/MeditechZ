@@ -124,6 +124,11 @@
                                                      AcceptsReturn="True"             
                                                      TextWrapping="Wrap" />
                 </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="ที่อยู่นายจ้าง" LabelVerticalAlignment="Top" Visibility="{Binding VisibiltyEmployerAddress}">
+                    <TextBox Text="{Binding EmployerAddress}"
+                                    AcceptsReturn="True"             
+                                    TextWrapping="Wrap" />
+                </dxlc:LayoutItem>
                 <dxlc:LayoutItem >
                     <dxlc:LayoutItem.Label>
                         <StackPanel Orientation="Horizontal">

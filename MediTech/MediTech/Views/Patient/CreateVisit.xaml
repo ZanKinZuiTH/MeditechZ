@@ -169,6 +169,12 @@
                     <dxlc:LayoutItem Label="Company">
                         <dxe:TextEdit Text="{Binding Company}"/>
                     </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="ที่อยู่นายจ้าง" LabelVerticalAlignment="Top" Visibility="{Binding VisibiltyEmployerAddress}">
+                        <TextBox Text="{Binding EmployerAddress}"
+                                                     Height="40"
+                                                     AcceptsReturn="True"             
+                                                     TextWrapping="Wrap" />
+                    </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="หมายเหตุ" LabelVerticalAlignment="Top">
                         <TextBox Name="txtDetail"   Text="{Binding CommentDoctor,Mode=TwoWay}"
                                                      Height="50"

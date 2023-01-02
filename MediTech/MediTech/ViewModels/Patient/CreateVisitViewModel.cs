@@ -106,6 +106,7 @@ namespace MediTech.ViewModels
                 if (_SelectedVisitType != null)
                 {
                     VisibiltyCheckupCompany = Visibility.Collapsed;
+                    VisibiltyEmployerAddress = Visibility.Collapsed;
                     if (SelectedVisitType.ValueCode == "MBCHK" || SelectedVisitType.ValueCode == "CHKUP" || SelectedVisitType.ValueCode == "CHKIN")
                     {
                         if (CheckupJobSource == null)
@@ -115,7 +116,10 @@ namespace MediTech.ViewModels
 
                         VisibiltyCheckupCompany = Visibility.Visible;
                     }
-
+                    if (SelectedVisitType.ValueCode == "CHKIN3")
+                    {
+                        VisibiltyEmployerAddress = Visibility.Visible;
+                    }
                 }
             }
         }
@@ -318,6 +322,14 @@ namespace MediTech.ViewModels
             get { return _Company; }
             set { Set(ref _Company, value); }
         }
+        
+        private string _EmployerAddress;
+
+        public string EmployerAddress
+        {
+            get { return _EmployerAddress; }
+            set { Set(ref _EmployerAddress, value); }
+        }
 
         private double? _OPDCoverPerDay;
 
@@ -358,6 +370,14 @@ namespace MediTech.ViewModels
         {
             get { return _ActiveTo; }
             set { Set(ref _ActiveTo, value); }
+        }
+
+        private Visibility _VisibiltyEmployerAddress = Visibility.Collapsed;
+
+        public Visibility VisibiltyEmployerAddress
+        {
+            get { return _VisibiltyEmployerAddress; }
+            set { Set(ref _VisibiltyEmployerAddress, value); }
         }
 
         private Visibility _VisibiltyCheckupCompany = Visibility.Collapsed;
@@ -889,6 +909,7 @@ namespace MediTech.ViewModels
             visitInfo.LocationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
             visitInfo.PatientVisitPayors = PatientVisitPayorList.ToList();
             visitInfo.CompanyName = Company;
+            visitInfo.EmployerAddress = EmployerAddress;
             if (!IsMassRegister)
             {
 
@@ -980,6 +1001,7 @@ namespace MediTech.ViewModels
             visitInfo.LocationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
             visitInfo.PatientVisitPayors = PatientVisitPayorList.ToList();
             visitInfo.CompanyName = Company;
+            visitInfo.EmployerAddress = EmployerAddress;
             if (!IsMassRegister)
             {
 
