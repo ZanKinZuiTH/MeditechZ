@@ -1020,7 +1020,7 @@ namespace MediTech.ViewModels
                             rpt.Parameters["Department"].Value = patient.Department;
                             rpt.Parameters["EmployeeID"].Value = patient.EmployeeID;
                             rpt.Parameters["CompanyName"].Value = patient.Company;
-                            rpt.Parameters["EmployerAddress"].Value = patient.EmployerAddress;
+                            //rpt.Parameters["EmployerAddress"].Value = patient.EmployerAddress;
                             rpt.RequestParameters = false;
                             rpt.ShowPrintMarginsWarning = false;
                             for (int i = 0; i < StickerQuantity; i++)
@@ -1125,7 +1125,7 @@ namespace MediTech.ViewModels
                                         rpt.Parameters["BirthDttm"].Value = patient.BirthDttm != null ? patient.BirthDttm.Value.ToString("dd/MM/yyyy") : "";
                                         rpt.Parameters["CheckUp"].Value = item.Display;
                                         rpt.Parameters["Company"].Value = patient.Company;
-                                        rpt.Parameters["EmployerAddress"].Value = patient.EmployerAddress;
+                                        //rpt.Parameters["EmployerAddress"].Value = patient.EmployerAddress;
                                         rpt.Parameters["Program"].Value = patient.Program;
                                         rpt.RequestParameters = false;
                                         rpt.ShowPrintMarginsWarning = false;
@@ -1195,7 +1195,7 @@ namespace MediTech.ViewModels
                             }
                             rpt.Parameters["Group"].Value = patient.Group;
                             rpt.Parameters["CompanyName"].Value = patient.Company;
-                            rpt.Parameters["EmployerAddress"].Value = patient.EmployerAddress;
+                            //rpt.Parameters["EmployerAddress"].Value = patient.EmployerAddress;
                             rpt.Parameters["PositionEmployee"].Value = patient.Position;
                             rpt.ShowPrintMarginsWarning = false;
                             printTool.Print();

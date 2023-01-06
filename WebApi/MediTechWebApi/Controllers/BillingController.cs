@@ -764,6 +764,7 @@ namespace MediTechWebApi.Controllers
 
                     int BLTYP_Receive = refValue.FirstOrDefault(p => p.ValueCode == "RECEI" && p.DomainCode == "PBTYP").UID;
                     int BLTYP_Invoice = refValue.FirstOrDefault(p => p.ValueCode == "INVOC" && p.DomainCode == "PBTYP").UID;
+                    int BLTYP_TaxInvoice = refValue.FirstOrDefault(p => p.ValueCode == "TAXINV" && p.DomainCode == "PBTYP").UID;
 
                     PatientVisit patpv = db.PatientVisit.Find(generateBill.PatientVisitUID);
                     var refVisitType = db.ReferenceValue.Where(p => p.StatusFlag == "A" && p.DomainCode == "VISTY" && (p.ValueCode == "NONMED" || p.ValueCode == "BUSNT"));
@@ -777,64 +778,14 @@ namespace MediTechWebApi.Controllers
                     IEnumerable<HealthOrganisationID> healthOrganisationIDs;
                     string billType = "";
 
-                    if (patpv.VISTYUID == nonMed?.UID)
-                    {
-                        healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == 2 && p.StatusFlag == "A"); //Nonmed
-                    }
-                    else
-                    {
-                        healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == patpv.OwnerOrganisationUID && p.StatusFlag == "A");
-                    }
+                    healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == patpv.OwnerOrganisationUID && p.StatusFlag == "A");
 
-                    if (generateBill.PBTYPUID == BLTYP_Receive)
+                    if (patpv.VISTYUID == nonMed?.UID) //Nonmed
                     {
-                        if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Receive) != null)
+                        if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_TaxInvoice) != null)
                         {
-                            billType = "Receive";
-                            healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Receive);
-                            if (healthIDBillType == null)
-                            {
-                                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No HealthOranisationID Type " + billType + " in HealthOranisation");
-                            }
-                            db.HealthOrganisationID.Attach(healthIDBillType);
-                            if (healthIDBillType.LastRenumberDttm == null)
-                            {
-                                healthIDBillType.LastRenumberDttm = now;
-                            }
-                            else
-                            {
-                                double dateDiff = ((now.Year - healthIDBillType.LastRenumberDttm.Value.Year) * 12) + now.Month - healthIDBillType.LastRenumberDttm.Value.Month;
-                                if (dateDiff >= 1)
-                                {
-                                    healthIDBillType.LastRenumberDttm = now;
-                                    healthIDBillType.NumberValue = 1;
-                                }
-                            }
-
-                            patientBillID = SEQHelper.GetSEQBillNumber(healthIDBillType.IDFormat, healthIDBillType.IDLength.Value, healthIDBillType.NumberValue.Value);
-                            seqBillID = healthIDBillType.NumberValue.Value;
-
-                            healthIDBillType.NumberValue = ++healthIDBillType.NumberValue;
-
-                            db.SaveChanges();
-                        }
-                        else
-                        {
-                            patientBillID = SEQHelper.GetSEQIDFormat("SEQPatientBill", out seqBillID);
-                            if (string.IsNullOrEmpty(patientBillID))
-                            {
-                                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientBill Or SEQPatientINVBill in SEQCONFIGURATION");
-                            }
-                        }
-
-
-                    }
-                    else if (generateBill.PBTYPUID == BLTYP_Invoice)
-                    {
-                        if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Invoice) != null)
-                        {
-                            billType = "Invoice";
-                            healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Invoice);
+                            billType = "Tax Invoice";
+                            healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_TaxInvoice);
                             if (healthIDBillType == null)
                             {
                                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No HealthOranisationID Type " + billType + " in HealthOranisation");
@@ -871,6 +822,95 @@ namespace MediTechWebApi.Controllers
                         }
 
                     }
+                    else
+                    {
+                        if (generateBill.PBTYPUID == BLTYP_Receive)
+                        {
+                            if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Receive) != null)
+                            {
+                                billType = "Receive";
+                                healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Receive);
+                                if (healthIDBillType == null)
+                                {
+                                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No HealthOranisationID Type " + billType + " in HealthOranisation");
+                                }
+                                db.HealthOrganisationID.Attach(healthIDBillType);
+                                if (healthIDBillType.LastRenumberDttm == null)
+                                {
+                                    healthIDBillType.LastRenumberDttm = now;
+                                }
+                                else
+                                {
+                                    double dateDiff = ((now.Year - healthIDBillType.LastRenumberDttm.Value.Year) * 12) + now.Month - healthIDBillType.LastRenumberDttm.Value.Month;
+                                    if (dateDiff >= 1)
+                                    {
+                                        healthIDBillType.LastRenumberDttm = now;
+                                        healthIDBillType.NumberValue = 1;
+                                    }
+                                }
+
+                                patientBillID = SEQHelper.GetSEQBillNumber(healthIDBillType.IDFormat, healthIDBillType.IDLength.Value, healthIDBillType.NumberValue.Value);
+                                seqBillID = healthIDBillType.NumberValue.Value;
+
+                                healthIDBillType.NumberValue = ++healthIDBillType.NumberValue;
+
+                                db.SaveChanges();
+                            }
+                            else
+                            {
+                                patientBillID = SEQHelper.GetSEQIDFormat("SEQPatientBill", out seqBillID);
+                                if (string.IsNullOrEmpty(patientBillID))
+                                {
+                                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientBill Or SEQPatientINVBill in SEQCONFIGURATION");
+                                }
+                            }
+
+                        }
+                        else if (generateBill.PBTYPUID == BLTYP_Invoice)
+                        {
+                            if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Invoice) != null)
+                            {
+                                billType = "Invoice";
+                                healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Invoice);
+                                if (healthIDBillType == null)
+                                {
+                                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No HealthOranisationID Type " + billType + " in HealthOranisation");
+                                }
+                                db.HealthOrganisationID.Attach(healthIDBillType);
+                                if (healthIDBillType.LastRenumberDttm == null)
+                                {
+                                    healthIDBillType.LastRenumberDttm = now;
+                                }
+                                else
+                                {
+                                    double dateDiff = ((now.Year - healthIDBillType.LastRenumberDttm.Value.Year) * 12) + now.Month - healthIDBillType.LastRenumberDttm.Value.Month;
+                                    if (dateDiff >= 1)
+                                    {
+                                        healthIDBillType.LastRenumberDttm = now;
+                                        healthIDBillType.NumberValue = 1;
+                                    }
+                                }
+
+                                patientBillID = SEQHelper.GetSEQBillNumber(healthIDBillType.IDFormat, healthIDBillType.IDLength.Value, healthIDBillType.NumberValue.Value);
+                                seqBillID = healthIDBillType.NumberValue.Value;
+
+                                healthIDBillType.NumberValue = ++healthIDBillType.NumberValue;
+
+                                db.SaveChanges();
+                            }
+                            else
+                            {
+                                patientBillID = SEQHelper.GetSEQIDFormat("SEQPatientINVBill", out seqBillID);
+                                if (string.IsNullOrEmpty(patientBillID))
+                                {
+                                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientBill Or SEQPatientINVBill in SEQCONFIGURATION");
+                                }
+                            }
+
+                        }
+                    }
+
+
 
                     if (seqBillID == 0)
                     {
@@ -1516,11 +1556,11 @@ namespace MediTechWebApi.Controllers
                                 patientvisit.CareProviderUID = patientvisit.CareProviderUID;
                                 patientvisit.VISTSUID = FINDIS;
                                 patientvisit.EndDttm = DateTime.Now;
-                                patientvisit.IsBillFinalized =  "Y";
+                                patientvisit.IsBillFinalized = "Y";
                                 patientvisit.MUser = userUID;
                                 patientvisit.MWhen = now;
 
-                
+
 
                                 #region PatientServiceEvent
                                 PatientServiceEvent serviceEvent = new PatientServiceEvent();
@@ -1550,7 +1590,7 @@ namespace MediTechWebApi.Controllers
                                                             careproviderName = SqlFunction.fGetCareProviderName(cr.UID)
                                                         }).FirstOrDefault()?.careproviderName;
 
-                                    PatientVisitCareProvider patientVisitCare = db.PatientVisitCareProvider.FirstOrDefault(p => p.PatientVisitUID == patientvisit.UID&& p.LocationUID == patientvisit.LocationUID && p.StatusFlag == "A");
+                                    PatientVisitCareProvider patientVisitCare = db.PatientVisitCareProvider.FirstOrDefault(p => p.PatientVisitUID == patientvisit.UID && p.LocationUID == patientvisit.LocationUID && p.StatusFlag == "A");
                                     if (patientVisitCare != null)
                                     {
                                         db.PatientVisitCareProvider.Attach(patientVisitCare);

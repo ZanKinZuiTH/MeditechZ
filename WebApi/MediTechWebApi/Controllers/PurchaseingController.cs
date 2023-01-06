@@ -10,6 +10,7 @@ using System.Data.Entity.Migrations;
 using System.Transactions;
 using System.Web.Http;
 using System.Data.Entity;
+using System.IO;
 
 namespace MediTechWebApi.Controllers
 {
@@ -31,7 +32,7 @@ namespace MediTechWebApi.Controllers
                                         ItemMasterUID = im.UID,
                                         Code = im.Code,
                                         Name = im.Name
-                                        
+
                                     }).FirstOrDefault();
 
             return data;
@@ -611,20 +612,51 @@ namespace MediTechWebApi.Controllers
                     string BillID = "";
                     DateTime now = DateTime.Now;
                     GroupReceipt receipt = db.GroupReceipt.Find(model.GroupReceiptUID);
-                    int BLTYP_Receive = db.ReferenceValue.FirstOrDefault(p => p.ValueCode == "RECEI" && p.DomainCode == "PBTYP").UID;
+                    var refValue = db.ReferenceValue.Where(p => (p.DomainCode == "PBTYP") && p.StatusFlag == "A");
+
+                    int BLTYP_Receive = refValue.FirstOrDefault(p => p.ValueCode == "RECEI" && p.DomainCode == "PBTYP").UID;
+                    int BLTYP_Invoice = refValue.FirstOrDefault(p => p.ValueCode == "INVOC" && p.DomainCode == "PBTYP").UID;
+                    int BLTYP_TaxInvoice = refValue.FirstOrDefault(p => p.ValueCode == "TAXINV" && p.DomainCode == "PBTYP").UID;
+
                     if (receipt == null)
                     {
                         receipt = new GroupReceipt();
                         int seqBillID = 0;
-                        IEnumerable<HealthOrganisationID> healthOrganisationIDs = null;
-                        if (model.TaxAmount != null && model.TaxAmount > 0)
-                        {
-                            healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == 2 && p.StatusFlag == "A"); //Nonmed
-                        }
+                        HealthOrganisationID healthIDBillType = null;
+                        IEnumerable<HealthOrganisationID> healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == model.OwnerOrganisation && p.StatusFlag == "A");
 
-                        if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Receive) != null)
+                        if (model.TaxAmount != null && model.TaxAmount > 0) //Nonmed
                         {
-                            HealthOrganisationID healthIDBillType = null;
+                            healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_TaxInvoice);
+                            if (healthIDBillType == null)
+                            {
+                                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No HealthOranisationID Type Cash in HealthOranisation");
+                            }
+                            db.HealthOrganisationID.Attach(healthIDBillType);
+                            if (healthIDBillType.LastRenumberDttm == null)
+                            {
+                                healthIDBillType.LastRenumberDttm = now;
+                            }
+                            else
+                            {
+                                double dateDiff = ((now.Year - healthIDBillType.LastRenumberDttm.Value.Year) * 12) + now.Month - healthIDBillType.LastRenumberDttm.Value.Month;
+                                if (dateDiff >= 1)
+                                {
+                                    healthIDBillType.LastRenumberDttm = now;
+                                    healthIDBillType.NumberValue = 1;
+                                }
+                            }
+
+                            BillID = SEQHelper.GetSEQBillNumber(healthIDBillType.IDFormat, healthIDBillType.IDLength.Value, healthIDBillType.NumberValue.Value);
+                            seqBillID = healthIDBillType.NumberValue.Value;
+
+                            healthIDBillType.NumberValue = ++healthIDBillType.NumberValue;
+
+                            db.SaveChanges();
+                        }
+                        else if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Receive) != null)
+                        {
+
                             healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Receive);
                             if (healthIDBillType == null)
                             {
@@ -659,6 +691,7 @@ namespace MediTechWebApi.Controllers
                             {
                                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQGroupReceipt in SEQCONFIGURATION");
                             }
+
                         }
 
                         receipt.ReceiptNo = BillID;
