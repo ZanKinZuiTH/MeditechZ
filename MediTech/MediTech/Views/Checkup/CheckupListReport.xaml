@@ -160,12 +160,14 @@
                     <dxg:GridColumn FieldName="FirstName" Header="ชื่อ"/>
                     <dxg:GridColumn FieldName="LastName" Header="นามสกุล"/>
                     <dxg:GridColumn FieldName="Gender" Header="เพศ"/>
+                    <dxg:GridColumn FieldName="BirthDttm" Header="วัน เดือน ปี เกิด"/>
                     <dxg:GridColumn FieldName="Age" Header="อายุ"/>
                     <dxg:GridColumn FieldName="NationalID" Header="รหัส ปชช."/>
                     <dxg:GridColumn FieldName="IsIdentityOnBLIFE" Header="ยืนยันตัวตนบน B-Life"/>
                     <dxg:GridColumn FieldName="OnBLIFE" Header="ส่งขึ้น B-Life"/>
                     <dxg:GridColumn FieldName="FirstNameBlife" Header="ชื่อ-Blife"/>
                     <dxg:GridColumn FieldName="LastNameBlife" Header="นามสกุล-Blife"/>
+                    <dxg:GridColumn FieldName="NationalIDBlife" Header="รหัส ปชช.-Blife"/>
                     <dxg:GridColumn FieldName="CompanyName" Header="บริษัท"/>
                     <dxg:GridColumn FieldName="EmployeeID" Header="รหัสพนักงาน"/>
                     <dxg:GridColumn FieldName="Department" Header="แผนก"/>

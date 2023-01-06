@@ -1237,8 +1237,10 @@ namespace MediTechWebApi.Controllers
                 {
                     foreach (var item in data)
                     {
-                        var citizenID = ShareLibrary.Encryption.EncryptBLifeAccess(item.NationalID);
-                        var dtBlife = SqlStatement.BLIFEGetUsersByNationalID(citizenID);
+                        //var citizenID = ShareLibrary.Encryption.EncryptBLifeAccess(item.NationalID);
+                        //var dtBlife = SqlStatement.BLIFEGetUsersByNationalID(citizenID);
+
+                        var dtBlife = SqlStatement.BLIFEVerifyPatientIdentity(item.FirstName,item.LastName,item.SEXXXUID ?? 0,item.BirthDttm ?? DateTime.MinValue);
 
                         if (dtBlife != null && dtBlife.Rows.Count > 0)
                         {
@@ -1246,10 +1248,17 @@ namespace MediTechWebApi.Controllers
                             item.LastNameBlife = dtBlife.Rows[0]["LastName"].ToString();
                             item.IsIdentityOnBLIFE = dtBlife.Rows[0]["IsPatientIdentity"].ToString();
 
-                            if (item.FirstName.Trim() != item.FirstNameBlife.Trim() && item.LastName.Trim() != item.LastNameBlife.Trim())
+                            item.NationalIDBlife = !String.IsNullOrEmpty(dtBlife.Rows[0]["CitizenID"].ToString()) ? ShareLibrary.Encryption.DecryptBLifeAccess(dtBlife.Rows[0]["CitizenID"].ToString()) : "";
+
+                            if (item.NationalID != item.NationalIDBlife)
                             {
                                 item.IsDataInconsistency = true;
                             }
+
+                            //if (item.FirstName.Trim() != item.FirstNameBlife.Trim() && item.LastName.Trim() != item.LastNameBlife.Trim())
+                            //{
+                            //    item.IsDataInconsistency = true;
+                            //}
                         }
 
                     }

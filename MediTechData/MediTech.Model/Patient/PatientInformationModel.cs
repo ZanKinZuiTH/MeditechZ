@@ -82,6 +82,7 @@ namespace MediTech.Model
         public string IsIdentityOnBLIFE { get; set; }
         public string FirstNameBlife { get; set; }
         public string LastNameBlife { get; set; }
+        public string NationalIDBlife { get; set; }
 
         public List<PatientInsuranceDetailModel> PatientInsuranceDetails { get; set; }
     }

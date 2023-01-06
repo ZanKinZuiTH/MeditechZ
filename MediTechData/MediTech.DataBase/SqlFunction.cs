@@ -3226,6 +3226,42 @@ and GPRSTUID in (Select Name from dbo.splitstring(@GPRSTUID))";
             return dt;
         }
 
+        public static DataTable BLIFEVerifyPatientIdentity(string firstName,string lastName,int sexxxUID,DateTime birthDttm)
+        {
+            DataTable dt = new DataTable();
+            var blifeConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["BlifeDatabase"].ToString();
+            SqlConnection con = new SqlConnection(blifeConnectionString);
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+                SqlCommand command = new SqlCommand();
+                command.CommandType = CommandType.Text;
+                command.Connection = con;
+                command.CommandText = @"Select UID,FirstName,LastName,IsPatientIdentity,CitizenID From users 
+                Where StatusFlag = 'A' and Firstname = @Firstname and LastName = @LastName and SEXXXUID = @SEXXXUID and Convert(date,BirthDttm) = Convert(date,@BirthDttm)";
+                command.Parameters.AddWithValue("@Firstname", firstName);
+                command.Parameters.AddWithValue("@LastName", lastName);
+                command.Parameters.AddWithValue("@SEXXXUID", sexxxUID);
+                command.Parameters.AddWithValue("@BirthDttm", birthDttm);
+
+                dt.Load(command.ExecuteReader());
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                con.Close();
+                con.Dispose();
+            }
+
+            return dt;
+        }
+
         public static bool BLIFEVerifyPatientIdentity(int userUID)
         {
             bool flag = false;
