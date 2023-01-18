@@ -1255,6 +1255,56 @@ namespace MediTech.ViewModels
                             view.gcResultList.ItemsSource = dtResult;
                         }
                     }
+
+                    if (SelectCheckupJobTask.GPRSTUID == 4853)
+                    {
+                        var data = DataService.Checkup.SearchCheckupExamList(JobDateFrom, JobDateTo, null, SelectInsuranceCompany.InsuranceCompanyUID, SelectCheckupJobContact.CheckupJobContactUID, 4828, 474);
+                        //PatientWellnessModel data = DataService.Reports.PrintWellnessBook(patientUID, patientVisitUID, payorDetailUID);
+
+                        if (data != null && data.Count > 0)
+                        {
+                            int i = 1;
+                            ColumnsResultItems.Add(new Column() { Header = "รูปแบบการตรวจ", FieldName = "รูปแบบการตรวจ", VisibleIndex = visibleIndex++ });
+                            ColumnsResultItems.Add(new Column() { Header = "ผลการตรวจมะเร็งปากมดลูก", FieldName = "ผลการตรวจมะเร็งปากมดลูก", VisibleIndex = visibleIndex++ });
+                            ColumnsResultItems.Add(new Column() { Header = "ผลการตรวจอื่นๆ", FieldName = "ผลการตรวจอื่นๆ", VisibleIndex = visibleIndex++ });
+                            ColumnsResultItems.Add(new Column() { Header = "คำแนะนำ", FieldName = "คำแนะนำ", VisibleIndex = ColumnsResultItems.Count() });
+
+                            dtResult.Columns.Add("รูปแบบการตรวจ");
+                            dtResult.Columns.Add("ผลการตรวจมะเร็งปากมดลูก");
+                            dtResult.Columns.Add("ผลการตรวจอื่นๆ");
+                            dtResult.Columns.Add("คำแนะนำ");
+
+
+                            foreach (var item in data)
+                            {
+                                var dataResultList = DataService.Checkup.GetResultItemByRequestDetailUID(item.RequestDetailUID);
+                                dataResultList = dataResultList.Where(p => p.StatusFlag != "D").ToList();
+                                if (dataResultList != null)
+                                {
+                                    DataRow newRow = dtResult.NewRow();
+                                    newRow["RowHandle"] = i++;
+                                    newRow["EmployeeID"] = item.EmployeeID;
+                                    newRow["PatientID"] = item.PatientID;
+                                    newRow["Title"] = item.Title;
+                                    newRow["FirstName"] = item.FirstName;
+                                    newRow["LastName"] = item.LastName;
+                                    newRow["Department"] = item.Department;
+                                    newRow["CompanyName"] = item.CompanyName;
+                                    newRow["Age"] = item.PatientAge;
+                                    newRow["Gender"] = item.Gender;
+                                    newRow["StartDttm"] = item.StartDttm;
+                                    newRow["รูปแบบการตรวจ"] = dataResultList.FirstOrDefault(p => p.ResultItemCode == "PASM01")?.ResultValue; 
+                                    newRow["ผลการตรวจมะเร็งปากมดลูก"] = dataResultList.FirstOrDefault(p => p.ResultItemCode == "PASM02")?.ResultValue; 
+                                    newRow["ผลการตรวจอื่นๆ"] = dataResultList.FirstOrDefault(p => p.ResultItemCode == "PASM03")?.ResultValue; 
+                                    newRow["คำแนะนำ"] = dataResultList.FirstOrDefault(p => p.ResultItemCode == "PASM04")?.ResultValue; 
+
+                                    dtResult.Rows.Add(newRow);
+                                }
+                            }
+
+                            view.gcResultList.ItemsSource = dtResult;
+                        }
+                    }
                 }
 
             }

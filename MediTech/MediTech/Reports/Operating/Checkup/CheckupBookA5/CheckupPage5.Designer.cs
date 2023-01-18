@@ -171,6 +171,12 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.cellCoiHbs1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellCoiHbs2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellCoiHbs3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableRow7 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellHbcRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellHbc1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellHbc2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellHbc3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow55 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell46 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellHavIgmRange = new DevExpress.XtraReports.UI.XRTableCell();
@@ -183,12 +189,18 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.cellHavIgg1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellHavIgg2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellHavIgg3 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableRow7 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellHbcRange = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellHbc1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellHbc2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellHbc3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableRow10 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellHCVRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellHCV1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellHCV2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellHCV3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableRow17 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell20 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellCoiHCVRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellCoiHCV1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellCoiHCV2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellCoiHCV3 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLiver)).BeginInit();
@@ -269,7 +281,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.tbRenal,
             this.xrLabel8,
             this.tbImmunology});
-            this.Detail.HeightF = 686.1621F;
+            this.Detail.HeightF = 707.8288F;
             this.Detail.Name = "Detail";
             // 
             // tbLiver
@@ -1416,8 +1428,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableRow54,
             this.xrTableRow7,
             this.xrTableRow55,
-            this.xrTableRow56});
-            this.tbImmunology.SizeF = new System.Drawing.SizeF(498F, 187.8656F);
+            this.xrTableRow56,
+            this.xrTableRow10,
+            this.xrTableRow17});
+            this.tbImmunology.SizeF = new System.Drawing.SizeF(498F, 232.5229F);
             this.tbImmunology.StylePriority.UseBorderColor = false;
             this.tbImmunology.StylePriority.UseBorders = false;
             this.tbImmunology.StylePriority.UseBorderWidth = false;
@@ -1815,6 +1829,70 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.cellCoiHbs3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.cellCoiHbs3.Weight = 0.52697614903565448D;
             // 
+            // xrTableRow7
+            // 
+            this.xrTableRow7.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell7,
+            this.cellHbcRange,
+            this.cellHbc1,
+            this.cellHbc2,
+            this.cellHbc3});
+            this.xrTableRow7.Name = "xrTableRow7";
+            this.xrTableRow7.Weight = 0.91678080629563641D;
+            // 
+            // xrTableCell7
+            // 
+            this.xrTableCell7.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell7.Multiline = true;
+            this.xrTableCell7.Name = "xrTableCell7";
+            this.xrTableCell7.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell7.StylePriority.UseFont = false;
+            this.xrTableCell7.StylePriority.UsePadding = false;
+            this.xrTableCell7.StylePriority.UseTextAlignment = false;
+            this.xrTableCell7.Text = "Anti HBc ";
+            this.xrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell7.Weight = 1.0023526034122143D;
+            // 
+            // cellHbcRange
+            // 
+            this.cellHbcRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellHbcRange.Multiline = true;
+            this.cellHbcRange.Name = "cellHbcRange";
+            this.cellHbcRange.StylePriority.UseFont = false;
+            this.cellHbcRange.StylePriority.UseTextAlignment = false;
+            this.cellHbcRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellHbcRange.Weight = 1.0606790749000987D;
+            // 
+            // cellHbc1
+            // 
+            this.cellHbc1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellHbc1.Multiline = true;
+            this.cellHbc1.Name = "cellHbc1";
+            this.cellHbc1.StylePriority.UseFont = false;
+            this.cellHbc1.StylePriority.UseTextAlignment = false;
+            this.cellHbc1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellHbc1.Weight = 0.52697601217558276D;
+            // 
+            // cellHbc2
+            // 
+            this.cellHbc2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellHbc2.Multiline = true;
+            this.cellHbc2.Name = "cellHbc2";
+            this.cellHbc2.StylePriority.UseFont = false;
+            this.cellHbc2.StylePriority.UseTextAlignment = false;
+            this.cellHbc2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellHbc2.Weight = 0.52697600129345268D;
+            // 
+            // cellHbc3
+            // 
+            this.cellHbc3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellHbc3.Multiline = true;
+            this.cellHbc3.Name = "cellHbc3";
+            this.cellHbc3.StylePriority.UseFont = false;
+            this.cellHbc3.StylePriority.UseTextAlignment = false;
+            this.cellHbc3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellHbc3.Weight = 0.52697614903565448D;
+            // 
             // xrTableRow55
             // 
             this.xrTableRow55.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
@@ -1939,69 +2017,133 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.cellHavIgg3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.cellHavIgg3.Weight = 0.52697614903565448D;
             // 
-            // xrTableRow7
+            // xrTableRow10
             // 
-            this.xrTableRow7.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell7,
-            this.cellHbcRange,
-            this.cellHbc1,
-            this.cellHbc2,
-            this.cellHbc3});
-            this.xrTableRow7.Name = "xrTableRow7";
-            this.xrTableRow7.Weight = 0.91678080629563641D;
+            this.xrTableRow10.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell8,
+            this.cellHCVRange,
+            this.cellHCV1,
+            this.cellHCV2,
+            this.cellHCV3});
+            this.xrTableRow10.Name = "xrTableRow10";
+            this.xrTableRow10.Weight = 0.91678080629563641D;
             // 
-            // xrTableCell7
+            // xrTableCell8
             // 
-            this.xrTableCell7.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell7.Multiline = true;
-            this.xrTableCell7.Name = "xrTableCell7";
-            this.xrTableCell7.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
-            this.xrTableCell7.StylePriority.UseFont = false;
-            this.xrTableCell7.StylePriority.UsePadding = false;
-            this.xrTableCell7.StylePriority.UseTextAlignment = false;
-            this.xrTableCell7.Text = "Anti HBc ";
-            this.xrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell7.Weight = 1.0023526034122143D;
+            this.xrTableCell8.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell8.Multiline = true;
+            this.xrTableCell8.Name = "xrTableCell8";
+            this.xrTableCell8.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell8.StylePriority.UseFont = false;
+            this.xrTableCell8.StylePriority.UsePadding = false;
+            this.xrTableCell8.StylePriority.UseTextAlignment = false;
+            this.xrTableCell8.Text = "Anti HCV";
+            this.xrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell8.Weight = 1.0023526034122143D;
             // 
-            // cellHbcRange
+            // cellHCVRange
             // 
-            this.cellHbcRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.cellHbcRange.Multiline = true;
-            this.cellHbcRange.Name = "cellHbcRange";
-            this.cellHbcRange.StylePriority.UseFont = false;
-            this.cellHbcRange.StylePriority.UseTextAlignment = false;
-            this.cellHbcRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellHbcRange.Weight = 1.0606790749000987D;
+            this.cellHCVRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellHCVRange.Multiline = true;
+            this.cellHCVRange.Name = "cellHCVRange";
+            this.cellHCVRange.StylePriority.UseFont = false;
+            this.cellHCVRange.StylePriority.UseTextAlignment = false;
+            this.cellHCVRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellHCVRange.Weight = 1.0606790749000987D;
             // 
-            // cellHbc1
+            // cellHCV1
             // 
-            this.cellHbc1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.cellHbc1.Multiline = true;
-            this.cellHbc1.Name = "cellHbc1";
-            this.cellHbc1.StylePriority.UseFont = false;
-            this.cellHbc1.StylePriority.UseTextAlignment = false;
-            this.cellHbc1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellHbc1.Weight = 0.52697601217558276D;
+            this.cellHCV1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellHCV1.Multiline = true;
+            this.cellHCV1.Name = "cellHCV1";
+            this.cellHCV1.StylePriority.UseFont = false;
+            this.cellHCV1.StylePriority.UseTextAlignment = false;
+            this.cellHCV1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellHCV1.Weight = 0.52697601217558276D;
             // 
-            // cellHbc2
+            // cellHCV2
             // 
-            this.cellHbc2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.cellHbc2.Multiline = true;
-            this.cellHbc2.Name = "cellHbc2";
-            this.cellHbc2.StylePriority.UseFont = false;
-            this.cellHbc2.StylePriority.UseTextAlignment = false;
-            this.cellHbc2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellHbc2.Weight = 0.52697600129345268D;
+            this.cellHCV2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellHCV2.Multiline = true;
+            this.cellHCV2.Name = "cellHCV2";
+            this.cellHCV2.StylePriority.UseFont = false;
+            this.cellHCV2.StylePriority.UseTextAlignment = false;
+            this.cellHCV2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellHCV2.Weight = 0.52697600129345268D;
             // 
-            // cellHbc3
+            // cellHCV3
             // 
-            this.cellHbc3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.cellHbc3.Multiline = true;
-            this.cellHbc3.Name = "cellHbc3";
-            this.cellHbc3.StylePriority.UseFont = false;
-            this.cellHbc3.StylePriority.UseTextAlignment = false;
-            this.cellHbc3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellHbc3.Weight = 0.52697614903565448D;
+            this.cellHCV3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellHCV3.Multiline = true;
+            this.cellHCV3.Name = "cellHCV3";
+            this.cellHCV3.StylePriority.UseFont = false;
+            this.cellHCV3.StylePriority.UseTextAlignment = false;
+            this.cellHCV3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellHCV3.Weight = 0.52697614903565448D;
+            // 
+            // xrTableRow17
+            // 
+            this.xrTableRow17.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell20,
+            this.cellCoiHCVRange,
+            this.cellCoiHCV1,
+            this.cellCoiHCV2,
+            this.cellCoiHCV3});
+            this.xrTableRow17.Name = "xrTableRow17";
+            this.xrTableRow17.Weight = 0.91678080629563641D;
+            // 
+            // xrTableCell20
+            // 
+            this.xrTableCell20.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell20.Multiline = true;
+            this.xrTableCell20.Name = "xrTableCell20";
+            this.xrTableCell20.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell20.StylePriority.UseFont = false;
+            this.xrTableCell20.StylePriority.UsePadding = false;
+            this.xrTableCell20.StylePriority.UseTextAlignment = false;
+            this.xrTableCell20.Text = "COI of Anti HCV";
+            this.xrTableCell20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell20.Weight = 1.0023526034122143D;
+            // 
+            // cellCoiHCVRange
+            // 
+            this.cellCoiHCVRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellCoiHCVRange.Multiline = true;
+            this.cellCoiHCVRange.Name = "cellCoiHCVRange";
+            this.cellCoiHCVRange.StylePriority.UseFont = false;
+            this.cellCoiHCVRange.StylePriority.UseTextAlignment = false;
+            this.cellCoiHCVRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellCoiHCVRange.Weight = 1.0606790749000987D;
+            // 
+            // cellCoiHCV1
+            // 
+            this.cellCoiHCV1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellCoiHCV1.Multiline = true;
+            this.cellCoiHCV1.Name = "cellCoiHCV1";
+            this.cellCoiHCV1.StylePriority.UseFont = false;
+            this.cellCoiHCV1.StylePriority.UseTextAlignment = false;
+            this.cellCoiHCV1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellCoiHCV1.Weight = 0.52697601217558276D;
+            // 
+            // cellCoiHCV2
+            // 
+            this.cellCoiHCV2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellCoiHCV2.Multiline = true;
+            this.cellCoiHCV2.Name = "cellCoiHCV2";
+            this.cellCoiHCV2.StylePriority.UseFont = false;
+            this.cellCoiHCV2.StylePriority.UseTextAlignment = false;
+            this.cellCoiHCV2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellCoiHCV2.Weight = 0.52697600129345268D;
+            // 
+            // cellCoiHCV3
+            // 
+            this.cellCoiHCV3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellCoiHCV3.Multiline = true;
+            this.cellCoiHCV3.Name = "cellCoiHCV3";
+            this.cellCoiHCV3.StylePriority.UseFont = false;
+            this.cellCoiHCV3.StylePriority.UseTextAlignment = false;
+            this.cellCoiHCV3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellCoiHCV3.Weight = 0.52697614903565448D;
             // 
             // CheckupPage5
             // 
@@ -2014,7 +2156,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.PageHeight = 827;
             this.PageWidth = 583;
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;
-            this.Version = "20.2";
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLiver)).EndInit();
@@ -2185,5 +2327,17 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         public DevExpress.XtraReports.UI.XRTableCell cellHbc1;
         public DevExpress.XtraReports.UI.XRTableCell cellHbc2;
         public DevExpress.XtraReports.UI.XRTableCell cellHbc3;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow10;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell8;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow17;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell20;
+        public DevExpress.XtraReports.UI.XRTableCell cellHCVRange;
+        public DevExpress.XtraReports.UI.XRTableCell cellHCV1;
+        public DevExpress.XtraReports.UI.XRTableCell cellHCV2;
+        public DevExpress.XtraReports.UI.XRTableCell cellHCV3;
+        public DevExpress.XtraReports.UI.XRTableCell cellCoiHCVRange;
+        public DevExpress.XtraReports.UI.XRTableCell cellCoiHCV1;
+        public DevExpress.XtraReports.UI.XRTableCell cellCoiHCV2;
+        public DevExpress.XtraReports.UI.XRTableCell cellCoiHCV3;
     }
 }

@@ -597,6 +597,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             || p.RequestItemCode.Contains("LAB595")
                             || p.RequestItemCode.Contains("LAB596")
                             || p.RequestItemCode.Contains("LAB582")
+                            || p.RequestItemCode.Contains("LAB452")
                             )
                              .OrderByDescending(p => p.Year);
                         GenerateImmunology(ImmunologyTestSet);
@@ -1727,6 +1728,16 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                     page5.cellHavIgg1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR190" && p.Year == year1)?.ResultValue;
                     page5.cellHavIgg2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR190" && p.Year == year2)?.ResultValue;
                     page5.cellHavIgg3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR190" && p.Year == year3)?.ResultValue;
+
+                    page5.cellHCVRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR53")?.ReferenceRange;
+                    page5.cellHCV1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR53" && p.Year == year1)?.ResultValue;
+                    page5.cellHCV2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR53" && p.Year == year2)?.ResultValue;
+                    page5.cellHCV3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR53" && p.Year == year3)?.ResultValue;
+
+                    page5.cellCoiHCVRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR54")?.ReferenceRange;
+                    page5.cellCoiHCV1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR54" && p.Year == year1)?.ResultValue;
+                    page5.cellCoiHCV2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR54" && p.Year == year2)?.ResultValue;
+                    page5.cellCoiHCV3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR54" && p.Year == year3)?.ResultValue;
                 }
                 else
                 {

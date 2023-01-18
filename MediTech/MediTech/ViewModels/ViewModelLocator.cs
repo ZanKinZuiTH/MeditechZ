@@ -1726,6 +1726,18 @@ namespace MediTech.ViewModels
                 return ServiceLocator.Current.GetInstance<ImportOldResultViewModel>();
             }
         }
+
+        public EnterPapSmearViewModel EnterPapSmearViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<EnterPapSmearViewModel>())
+                    SimpleIoc.Default.Register<EnterPapSmearViewModel>();
+
+                return ServiceLocator.Current.GetInstance<EnterPapSmearViewModel>();
+            }
+        }
+
         #endregion
 
         #region OrderProcessing

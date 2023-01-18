@@ -91,6 +91,11 @@ namespace MediTech.Views
                             (reviewFitnessTest.DataContext as EnterFitnessTestResultViewModel).AssignModel(row);
                             reviewViewModel = (EnterFitnessTestResultViewModel)viewModel.LaunchViewDialogNonPermiss(reviewFitnessTest, false, true);
                             break;
+                        case "PAP Smear Test":
+                            EnterPapSmear reviewPapSmear = new EnterPapSmear();
+                            (reviewPapSmear.DataContext as EnterPapSmearViewModel).AssignModel(row);
+                            reviewViewModel = (EnterPapSmearViewModel)viewModel.LaunchViewDialogNonPermiss(reviewPapSmear, false, true);
+                            break;
                         default:
                             EnterCheckupTestResult reviewCheckup = new EnterCheckupTestResult();
                             (reviewCheckup.DataContext as EnterCheckupTestResultViewModel).AssignModel(row);
