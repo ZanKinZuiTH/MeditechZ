@@ -29,6 +29,8 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("SearchBillPackage")]
+        [HttpGet]
         public List<BillPackageModel> SearchBillPackage(string text,int? orderCategoryUID, int? orderSubCategoryUID)
         {
             List<BillPackageModel> data = SqlDirectStore.pSearchBillPackageItem(text, orderCategoryUID, orderSubCategoryUID).ToList<BillPackageModel>();

@@ -15,7 +15,9 @@ namespace MediTech.CustomControl
         {
             Columns = new ObservableCollection<Column>() {
                 new Column() { FieldName = "PackageName", Header = "Name" },
-                new Column() { FieldName = "Code", Header = "Code" }
+                new Column() { FieldName = "Code", Header = "Code" },
+                new Column() { FieldName = "OrderCategory", Header = "Category" },
+                new Column() { FieldName = "OrderSubCategory", Header = "SubCategory" }
 
             };
         }

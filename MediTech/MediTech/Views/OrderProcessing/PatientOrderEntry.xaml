@@ -337,6 +337,7 @@
                                               DisplayMember="Name"
                                               ValueMember="OrderCategoryUID"
                                               NullValueButtonPlacement="EditBox"
+                                              IsEnabled="{Binding EnableEnterOrder}"
                                               ItemsSource="{Binding CategoryPackages}"
                                               SelectedItem="{Binding SelectCategoryPackage}"/>
                             </dxlc:LayoutItem>
@@ -345,6 +346,7 @@
                                               DisplayMember="Name"
                                               ValueMember="OrderSubCategoryUID"
                                               NullValueButtonPlacement="EditBox"
+                                              IsEnabled="{Binding EnableEnterOrder}"
                                               ItemsSource="{Binding SubCategoryPackages}"
                                               SelectedItem="{Binding SelectSubCategoryPackage}"/>
                             </dxlc:LayoutItem>
@@ -354,6 +356,7 @@
                                                     OnTextChangedEvent="True"
                                                     SuppressEvent="{Binding SuppressEvent,Mode=OneWayToSource}"
                                                     MaxCompletions="30"
+                                                    IsEnabled="{Binding EnableEnterOrder}"
                                                     ItemsSource="{Binding BillPackageItems}"
                                                     SelectedItem="{Binding SelectBillPackage,Mode=OneWayToSource}"
                                                     >
