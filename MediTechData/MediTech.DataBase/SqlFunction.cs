@@ -1087,6 +1087,20 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
+        public static DataTable pSearchBillPackageItem(string text,int? orderCategoryUID,int? orderSubCategoryUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pSearchBillPackageItem", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 3000;
+            adp.SelectCommand.Parameters.AddWithValue("@P_Text", text);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrderCategoryUID", orderCategoryUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrderSubCategoryUID", orderSubCategoryUID);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
         public static DataTable pSearchPatient(string patientID, string firstName, string middleName, string lastName, string nickName, DateTime? birthDate
             , int? SEXXXUID, string idCard, DateTime? lastVisitDate, string mobilePhone, string idPassport)
         {

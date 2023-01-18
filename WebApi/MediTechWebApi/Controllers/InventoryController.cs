@@ -1,5 +1,6 @@
 ﻿using MediTech.DataBase;
 using MediTech.Model;
+using MediTechWebApi.Common;
 using ShareLibrary;
 using System;
 using System.Collections.Generic;
@@ -403,7 +404,7 @@ namespace MediTechWebApi.Controllers
                     itemMaster.GenaricName = itemMasterModel.GenaricName;
                     if (!string.IsNullOrEmpty(itemMasterModel.GenaricName))
                     {
-                        itemMaster.GenaricNameSearch = (new MasterDataController()).SetItemNameSearch(itemMasterModel.GenaricName);
+                        itemMaster.GenaricNameSearch = CommonHelpter.SetItemNameSearch(itemMasterModel.GenaricName);
                     }
                     itemMaster.DispenseEnglish = itemMasterModel.DispenseEnglish;
                     itemMaster.DispenseLocal = itemMasterModel.DispenseLocal;

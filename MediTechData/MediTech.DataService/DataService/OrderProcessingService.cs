@@ -18,6 +18,13 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<BillPackageModel> SearchBillPackage(string text, int? orderCategoryUID, int? orderSubCategoryUID)
+        {
+            string requestApi = string.Format("Api/OrderProcessing/SearchBillPackage?text={0}&orderCategoryUID={1}&orderSubCategoryUID={2}", text, orderCategoryUID, orderSubCategoryUID);
+            List<BillPackageModel> data = MeditechApiHelper.Get<List<BillPackageModel>>(requestApi);
+            return data;
+        }
+
         public bool CreateOrder(long patientUID, long patientVisitUID, int userUID,int locationUID, int ownerOrganisationUID, List<PatientOrderDetailModel> orderDetails)
         {
             bool flag = false;

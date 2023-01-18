@@ -1,5 +1,6 @@
 ﻿using MediTech.DataBase;
 using MediTech.Model;
+using MediTechWebApi.Common;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -1017,7 +1018,7 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<BillableItemModel> SearchBillableItem(string code, string itemName, int? BSMDDUID, int? billingGroupUID, int? billingSubGroupUID, int? ownerUID)
         {
-            itemName = !string.IsNullOrEmpty(itemName) ? SetItemNameSearch(itemName) : itemName;
+            itemName = !string.IsNullOrEmpty(itemName) ? CommonHelpter.SetItemNameSearch(itemName) : itemName;
             List<BillableItemModel> data = (from p in db.BillableItem
                                             join bl in db.BillingGroup on p.BillingGroupUID equals bl.UID into billing
                                             from b in billing.DefaultIfEmpty()
@@ -1356,7 +1357,7 @@ namespace MediTechWebApi.Controllers
 
                     billableItem.Code = billableItemModel.Code;
                     billableItem.ItemName = billableItemModel.ItemName;
-                    billableItem.ItemNameSearch = SetItemNameSearch(billableItem.ItemName);
+                    billableItem.ItemNameSearch = CommonHelpter.SetItemNameSearch(billableItem.ItemName);
                     billableItem.Description = billableItemModel.Description;
                     billableItem.Comments = billableItemModel.Comments;
                     billableItem.ItemUID = billableItemModel.ItemUID;
@@ -1673,7 +1674,7 @@ namespace MediTechWebApi.Controllers
                     orderSet.Code = orderSetModel.Code;
                     orderSet.Name = orderSetModel.Name;
                     orderSet.Description = orderSetModel.Description;
-                    orderSet.OrdersetNameSearch = SetItemNameSearch(orderSet.Name);
+                    orderSet.OrdersetNameSearch = CommonHelpter.SetItemNameSearch(orderSet.Name);
                     orderSet.ActiveFrom = orderSetModel.ActiveFrom;
                     orderSet.ActiveTo = orderSetModel.ActiveTo;
                     orderSet.MUser = userID;
@@ -2277,39 +2278,6 @@ namespace MediTechWebApi.Controllers
         #endregion
 
 
-        public string SetItemNameSearch(string itemName)
-        {
-            itemName = itemName.Replace(",", "");
-            itemName = itemName.Replace(".", "");
-            itemName = itemName.Replace("(", "");
-            itemName = itemName.Replace(")", "");
-            itemName = itemName.Replace(";", "");
-            itemName = itemName.Replace("#", "");
-            itemName = itemName.Replace("<", "");
-            itemName = itemName.Replace(">", "");
-            itemName = itemName.Replace("?", "");
-            itemName = itemName.Replace("\"", "");
-            itemName = itemName.Replace("*", "");
-            itemName = itemName.Replace("&", "");
-            itemName = itemName.Replace("^", "");
-            itemName = itemName.Replace("$", "");
-            itemName = itemName.Replace("@", "");
-            itemName = itemName.Replace("!", "");
-            itemName = itemName.Replace("|", "");
-            itemName = itemName.Replace("}", "");
-            itemName = itemName.Replace("{", "");
-            itemName = itemName.Replace(":", "");
-            itemName = itemName.Replace("\\", "");
-            itemName = itemName.Replace("/", "");
-            itemName = itemName.Replace(" ", "");
-            itemName = itemName.Replace("	", "");
-            itemName = itemName.Replace("-", "");
-            itemName = itemName.Replace("+", "");
-            itemName = itemName.Replace("=", "");
-            itemName = itemName.Replace("_", "");
-
-            return itemName;
-        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

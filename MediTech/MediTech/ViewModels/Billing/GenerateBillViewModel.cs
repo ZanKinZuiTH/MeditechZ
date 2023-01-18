@@ -282,12 +282,12 @@ namespace MediTech.ViewModels
 
         public List<AllocatedPatBillableItemsSubAccountResultModel> LoadPatientBillableItemsSubGroups(int accountUID, long patientVisitPayorUID,string IsPackage)
         {
-            return DataService.Billing.GetPatientBillableItemsSubAccount(SelectPateintVisit.PatientUID, SelectPateintVisit.PatientVisitUID, null, patientVisitPayorUID, SelectPateintVisit.StartDttm.Value.Date, DateTime.Now.Date, IsPackage, accountUID, null, null);
+            return DataService.Billing.GetPatientBillableItemsSubAccount(SelectPateintVisit.PatientUID, SelectPateintVisit.PatientVisitUID, null, patientVisitPayorUID, SelectPateintVisit.CWhen.Date, DateTime.Now.Date, IsPackage, accountUID, null, null);
         }
 
         public List<AllocatedPatBillableItemsResultModel> LoadPatientBillableItems(long patientVisitPayorUID,int? accountUID, int? subAccountUID, int? careproviderUID, string IsPackage)
         {
-            return DataService.Billing.GetPatientBillableItemsBySA(SelectPateintVisit.PatientUID, SelectPateintVisit.PatientVisitUID, null, careproviderUID, null, patientVisitPayorUID, SelectPateintVisit.StartDttm.Value.Date, DateTime.Now.Date, IsPackage, accountUID, subAccountUID, null);
+            return DataService.Billing.GetPatientBillableItemsBySA(SelectPateintVisit.PatientUID, SelectPateintVisit.PatientVisitUID, null, careproviderUID, null, patientVisitPayorUID, SelectPateintVisit.CWhen.Date, DateTime.Now.Date, IsPackage, accountUID, subAccountUID, null);
         }
 
         public override void OnLoaded()
@@ -420,7 +420,7 @@ namespace MediTech.ViewModels
                 generateBill.PayorDetailUID = SelectPatientVisitPayor.PayorDetailUID;
                 generateBill.PayorAgreementUID = SelectPatientVisitPayor.PayorAgreementUID;
                 generateBill.UserUID = AppUtil.Current.UserID;
-                generateBill.DateFrom = SelectPateintVisit.StartDttm.Value;
+                generateBill.DateFrom = SelectPateintVisit.CWhen.Date;
                 generateBill.DateTo = DateTime.Now;
                 generateBill.Comments = Comments;
 

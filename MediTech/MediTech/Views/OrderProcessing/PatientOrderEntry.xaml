@@ -11,9 +11,10 @@
              xmlns:cv="clr-namespace:MediTech.Converter"
              xmlns:vm="clr-namespace:MediTech.Views"
              DataContext="{Binding Path=PatientOrderEntryViewModel,Source={StaticResource Locator}}"
-             d:DesignHeight="600" d:DesignWidth="900">
+             d:DesignHeight="600" d:DesignWidth="1400">
     <UserControl.Resources>
         <cc:OrderItemSearchPopUp x:Key="OrderItemColumn"/>
+        <cc:PackageSearchPopUp x:Key="PackageColumn"/>
         <cv:AddValueConverter x:Key="AddValueConverter" />
 
         <Style x:Key="BackgroundStyle"
@@ -321,6 +322,98 @@
                                      Height="25" Content="Cancel Order"/>
 
                         </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>
+                </dx:DXTabItem>
+                <dx:DXTabItem Header="Packange">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger  EventName="GotFocus">
+                            <mvvm:EventToCommand Command="{Binding Path=DataContext.LoadedPackangeCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:PatientOrderEntry}}}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" Header="Packange Search">
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <dxlc:LayoutItem Label="Category" Width="300">
+                                <dxe:ComboBoxEdit x:Name="cmbCategoryPackages"
+                                              DisplayMember="Name"
+                                              ValueMember="OrderCategoryUID"
+                                              NullValueButtonPlacement="EditBox"
+                                              ItemsSource="{Binding CategoryPackages}"
+                                              SelectedItem="{Binding SelectCategoryPackage}"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Sub Category" Width="300">
+                                <dxe:ComboBoxEdit x:Name="cmbSubCategoryPackages"
+                                              DisplayMember="Name"
+                                              ValueMember="OrderSubCategoryUID"
+                                              NullValueButtonPlacement="EditBox"
+                                              ItemsSource="{Binding SubCategoryPackages}"
+                                              SelectedItem="{Binding SelectSubCategoryPackage}"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="ค้นหา Packange :" Width="400">
+                                <cc:AutoCompleteTextBox x:Name="txtPackange"   Text="{Binding SearchPackageCriteria,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                    ColumnsSource="{Binding Path=Columns,Source={StaticResource PackageColumn}}"
+                                                    OnTextChangedEvent="True"
+                                                    SuppressEvent="{Binding SuppressEvent,Mode=OneWayToSource}"
+                                                    MaxCompletions="30"
+                                                    ItemsSource="{Binding BillPackageItems}"
+                                                    SelectedItem="{Binding SelectBillPackage,Mode=OneWayToSource}"
+                                                    >
+                                </cc:AutoCompleteTextBox>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutGroup HorizontalAlignment="Right">
+                                <dxlc:LayoutItem Label="วัน/เวลา สิ้นสุด :" Width="180">
+                                    <dxe:DateEdit EditValue="{Binding StartPackageDate}"
+                                          DisplayFormatString="dd/MM/yyyy"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem HorizontalAlignment="Right">
+                                    <dx:SimpleButton Content="Add Packange" Height="25" Command="{Binding AddPackageCommand}"/>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Horizontal" Visibility="{Binding IsVisibilityUsedPackage}">
+                            <dxlc:LayoutItem Label="Used Packange">
+                                <dxe:ComboBoxEdit >
+                                    
+                                </dxe:ComboBoxEdit>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutGroup Orientation="Horizontal" VerticalAlignment="Center">
+                                <Label Content="{Binding OrderPackageBy}" />
+                                <Label Content="{Binding OrderPackageDttm}"/>
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                                <dxlc:LayoutItem Label="Package Price">
+                                    <dxe:TextEdit Width="100" IsReadOnly="True"/>
+                                </dxlc:LayoutItem>
+                                <dx:SimpleButton Content="Select All" Width="80" Height="25"/>
+                                <dx:SimpleButton Content="Order" Width="80" Height="25"/>
+                                <dx:SimpleButton Content="Unlink All" Width="80" Height="25"/>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutGroup>
+
+                        <dxg:GridControl >
+                            <dxg:GridColumn Header="No" Width="30" ReadOnly="True"/>
+                            <dxg:GridColumn Header="" Width="30"/>
+                            <dxg:GridColumn Header="Order Name" ReadOnly="True"/>
+                            <dxg:GridColumn Header="Qty" Width="50" ReadOnly="True"/>
+                            <dxg:GridColumn Header="UOM" ReadOnly="True"/>
+                            <dxg:GridColumn Header="Used Qty" Width="80" ReadOnly="True"/>
+                            <dxg:GridColumn Header="Less/Under" Width="80" ReadOnly="True"/>
+                            <dxg:GridColumn Header="Out Package" Width="80" ReadOnly="True"/>
+                            <dxg:GridColumn Header="Alternative" Width="80" ReadOnly="True"/>
+                            <dxg:GridColumn Header="PayorName" ReadOnly="True"/>
+                            <dxg:GridColumn Header="Price" ReadOnly="True"/>
+                            <dxg:GridColumn FieldName="NetPrice" Header="NetPrice" ReadOnly="True" />
+                            <dxg:GridColumn Header="Discount" ReadOnly="True"/>
+                            
+                            <dxg:GridControl.TotalSummary>
+                                <dxg:GridSummaryItem x:Name="TotalQty"  
+                                                     FieldName="Qty" SummaryType="Sum"  DisplayFormat="#,#"/>
+                                <dxg:GridSummaryItem x:Name="TotalNetPrice"  
+                                                     FieldName="NetPrice" SummaryType="Sum"  DisplayFormat="#,#.00"/>
+                            </dxg:GridControl.TotalSummary>
+                            <dxg:GridControl.View>
+                                <dxg:TableView ShowGroupPanel="False" ShowTotalSummary="True"/>
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
                     </dxlc:LayoutGroup>
                 </dx:DXTabItem>
             </dx:DXTabControl>

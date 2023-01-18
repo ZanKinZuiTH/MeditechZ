@@ -293,12 +293,101 @@ namespace MediTech.ViewModels
             set { Set(ref _IsEnableOrderFrom, value); }
         }
 
+
+        private string _SearchPackageCriteria;
+
+        public string SearchPackageCriteria
+        {
+            get { return _SearchPackageCriteria; }
+            set
+            {
+                Set(ref _SearchPackageCriteria, value);
+                if (!string.IsNullOrEmpty(_SearchPackageCriteria) && _SearchPackageCriteria.Length >= 3)
+                {
+
+                    BillPackageItems = DataService.OrderProcessing.SearchBillPackage(_SearchPackageCriteria
+                        , SelectCategoryPackage != null ? SelectCategoryPackage.OrderCategoryUID : (int?)null
+                        , SelectSubCategoryPackage != null ? SelectSubCategoryPackage.OrderSubCategoryUID : (int?)null);
+
+                }
+                else
+                {
+                    BillPackageItems = null;
+                }
+            }
+        }
+
+        private List<BillPackageModel> _BillPackageItems;
+
+        public List<BillPackageModel> BillPackageItems
+        {
+            get { return _BillPackageItems; }
+            set { Set(ref _BillPackageItems, value); }
+        }
+
+
         private List<LookupReferenceValueModel> _BillingCategory;
 
         public List<LookupReferenceValueModel> BillingCategory
         {
             get { return _BillingCategory; }
             set { _BillingCategory = value; }
+        }
+
+
+        private List<OrderCategoryModel> _CategoryPackages;
+        public List<OrderCategoryModel> CategoryPackages
+        {
+            get { return _CategoryPackages; }
+            set { Set(ref _CategoryPackages, value); }
+        }
+
+        private OrderCategoryModel _SelectCategoryPackage;
+        public OrderCategoryModel SelectCategoryPackage
+        {
+            get { return _SelectCategoryPackage; }
+            set
+            {
+                Set(ref _SelectCategoryPackage, value);
+                if (_SelectCategoryPackage != null)
+                {
+                    SubCategoryPackages = DataService.MasterData.GetOrderSubCategoryByUID(_SelectCategoryPackage.OrderCategoryUID);
+                }
+            }
+        }
+
+        private List<OrderSubCategoryModel> _SubCategoryPackages;
+        public List<OrderSubCategoryModel> SubCategoryPackages
+        {
+            get { return _SubCategoryPackages; }
+            set
+            {
+                Set(ref _SubCategoryPackages, value);
+
+            }
+        }
+
+        private OrderSubCategoryModel _SelectSubCategoryPackage;
+        public OrderSubCategoryModel SelectSubCategoryPackage
+        {
+            get { return _SelectSubCategoryPackage; }
+            set { Set(ref _SelectSubCategoryPackage, value); }
+        }
+
+        private DateTime _StartPackageDate;
+
+        public DateTime StartPackageDate
+        {
+            get { return _StartPackageDate; }
+            set { Set(ref _StartPackageDate, value); }
+        }
+
+        private Visibility _IsVisibilityUsedPackage = Visibility.Collapsed;
+
+        public Visibility IsVisibilityUsedPackage
+        {
+            get { return _IsVisibilityUsedPackage; }
+            set { _IsVisibilityUsedPackage = value; }
         }
 
 
@@ -391,11 +480,31 @@ namespace MediTech.ViewModels
             }
         }
 
+
+        private RelayCommand _LoadedPackangeCommand;
+        public RelayCommand LoadedPackangeCommand
+        {
+            get
+            {
+                return _LoadedPackangeCommand ?? (_LoadedPackangeCommand = new RelayCommand(LoadedPackange));
+            }
+        }
+
+        private RelayCommand _AddPackageCommand;
+        public RelayCommand AddPackageCommand
+        {
+            get
+            {
+                return _AddPackageCommand ?? (_AddPackageCommand = new RelayCommand(AddPackage));
+            }
+        }
         #endregion
 
         #region Variable
 
-        bool IsOneceLoad = false;
+        bool IsExisitsOrderOneceLoad = false;
+
+        bool IsPackageOneceLoad = false;
 
         List<LookupReferenceValueModel> OrderTypes;
 
@@ -438,7 +547,7 @@ namespace MediTech.ViewModels
 
         public void LoadedExisting()
         {
-            if (!IsOneceLoad)
+            if (!IsExisitsOrderOneceLoad)
             {
                 PatientVisitsList = DataService.PatientIdentity.GetPatientVisitByPatientUID(PatientVisit.PatientUID).OrderByDescending(p => p.StartDttm).ToList();
                 if (PatientVisitsList != null)
@@ -451,7 +560,7 @@ namespace MediTech.ViewModels
 
                     SelectLookupVisit = LookupVisit.FirstOrDefault(p => p.Key2 == PatientVisit.PatientVisitUID);
                 }
-                IsOneceLoad = true;
+                IsExisitsOrderOneceLoad = true;
             }
         }
 
@@ -633,6 +742,22 @@ namespace MediTech.ViewModels
                     PatientOrders = null;
                 }
             }
+        }
+
+        public void LoadedPackange()
+        {
+            if (!IsPackageOneceLoad)
+            {
+                StartPackageDate = DateTime.Now;
+                CategoryPackages = DataService.MasterData.GetOrderCategory();
+                IsPackageOneceLoad = true;
+            }
+
+        }
+
+        public void AddPackage()
+        {
+
         }
 
         void ApplyOrderItem(SearchOrderItem orderItem)
@@ -1015,7 +1140,7 @@ namespace MediTech.ViewModels
             IsBilling = isbilling;
         }
 
-        public BillableItemDetailModel GetBillableItemPrice(List<BillableItemDetailModel> billItmDetail,int? PBLCTUID, int ownerOrganisationUID)
+        public BillableItemDetailModel GetBillableItemPrice(List<BillableItemDetailModel> billItmDetail, int? PBLCTUID, int ownerOrganisationUID)
         {
             BillableItemDetailModel selectBillItemDetail = null;
 

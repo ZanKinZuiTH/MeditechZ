@@ -13,6 +13,7 @@ using ShareLibrary;
 using System.Data.Entity;
 using MediTech.Model.Report;
 using System.Xml.Linq;
+using MediTechWebApi.Common;
 
 namespace MediTechWebApi.Controllers
 {
@@ -2359,6 +2360,7 @@ namespace MediTechWebApi.Controllers
                     billPackage.OrderSubCategoryUID = billPackageModel.OrderSubCategoryUID;
                     billPackage.OwnerOrganisationUID = billPackageModel.OwnerOrganisationUID;
                     billPackage.Code = billPackageModel.Code;
+                    billPackage.PackageNameSearch = CommonHelpter.SetItemNameSearch(billPackage.PackageName);
                     billPackage.MUser = userID;
                     billPackage.MWhen = now;
                     billPackage.StatusFlag = "A";

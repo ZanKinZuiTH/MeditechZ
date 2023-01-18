@@ -31,6 +31,7 @@ namespace MediTech.DataBase
         public string AllowOverridePrice { get; set; }
         public Nullable<int> SecondRoomBillPackageUID { get; set; }
         public string Code { get; set; }
+        public string PackageNameSearch { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }
