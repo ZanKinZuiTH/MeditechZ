@@ -385,6 +385,16 @@ namespace MediTech.ViewModels
             }
         }
 
+        private RelayCommand _PrintSticker2Command;
+        public RelayCommand PrintSticker2Command
+        {
+            get
+            {
+                return _PrintSticker2Command
+                    ?? (_PrintSticker2Command = new RelayCommand(PrintSticker2));
+            }
+        }
+
         private RelayCommand _PrintStickerLargeCommand;
         public RelayCommand PrintStickerLargeCommand
         {
@@ -985,6 +995,87 @@ namespace MediTech.ViewModels
                         OnUpdateEvent();
 
                         No++;
+                    }
+                    view.SetProgressBarValue(upperlimit);
+                }
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+
+        }
+
+        private void PrintSticker2()
+        {
+            int upperlimit = 0;
+            int pgBarCounter = 0;
+            try
+            {
+
+                if (PatientXrays != null && PatientXrays.Count > 0)
+                {
+                    ReportResultMass view = (ReportResultMass)this.View;
+                    foreach (var currentData in SelectPatientXrays)
+                    {
+                        upperlimit++;
+                    }
+                    view.SetProgressBarLimits(0, upperlimit);
+                    foreach (var item in SelectPatientXrays.ToList())
+                    {
+                        PatientSticker3 rpt = new PatientSticker3();
+                        ReportPrintTool printTool = new ReportPrintTool(rpt);
+
+                        string gender;
+                        switch (item.Gender)
+                        {
+                            case "หญิง (Female)":
+                            case "F":
+                                gender = "(F)";
+                                break;
+                            case "ชาย (Male)":
+                            case "M":
+                                gender = "(M)";
+                                break;
+                            default:
+                                gender = "(N/A)";
+                                break;
+                        }
+
+                        rpt.Parameters["PatientName"].Value = item.PatientName + " " + gender;
+
+                        if (SelectLogo.Key == 0)
+                        {
+                            rpt.Parameters["HN"].Value = item.HN;
+                        }
+                        else if (SelectLogo.Key == 1)
+                        {
+                            rpt.Parameters["HN"].Value = item.EmployeeID;
+                        }
+                        else
+                        {
+                            rpt.Parameters["HN"].Value = item.HN;
+                        }
+
+                        rpt.Parameters["Age"].Value = item.Age;
+                        rpt.Parameters["BirthDttm"].Value = item.DOBDttm != null ? item.DOBDttm.Value.ToString("dd/MM/yyyy") : "";
+                        rpt.Parameters["Department"].Value = item.Department;
+                        rpt.Parameters["EmployeeID"].Value = string.IsNullOrEmpty(item.EmployeeID) ? item.OtherID : item.EmployeeID;
+                        rpt.Parameters["CompanyName"].Value = item.Company;
+                        rpt.RequestParameters = false;
+                        rpt.ShowPrintMarginsWarning = false;
+                        for (int i = 0; i < StickerQuantity; i++)
+                        {
+                            printTool.Print();
+                        }
+
+                        SelectPatientXrays.Remove(item);
+
+                        pgBarCounter = pgBarCounter + 1;
+                        view.SetProgressBarValue(pgBarCounter);
+
+                        OnUpdateEvent();
                     }
                     view.SetProgressBarValue(upperlimit);
                 }

@@ -194,6 +194,8 @@
                 </dxlc:LayoutItem>
                 <dx:SimpleButton HorizontalAlignment="Right" Width="85" Command="{Binding PrintStickerCommand}"
                                      Height="25" Content="Print Sticker"/>
+                <dx:SimpleButton HorizontalAlignment="Right" Width="100" Command="{Binding PrintSticker2Command}"
+                                     Height="25" Content="Print Sticker2"/>
                 <dx:SimpleButton HorizontalAlignment="Right" Width="120" Command="{Binding PrintStickerLargeCommand}"
                                      Height="25" Content="Print Sticker Large"/>
             </dxlc:LayoutGroup>
