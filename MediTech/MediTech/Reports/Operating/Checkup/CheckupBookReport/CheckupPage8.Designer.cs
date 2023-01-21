@@ -3419,7 +3419,7 @@
             this.xrTableCell35.Name = "xrTableCell35";
             this.xrTableCell35.StylePriority.UseFont = false;
             this.xrTableCell35.StylePriority.UseTextAlignment = false;
-            this.xrTableCell35.Text = "Methyrene chloride in Urine";
+            this.xrTableCell35.Text = "Methylene Chloride in Urine";
             this.xrTableCell35.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell35.Weight = 1.0081393020274905D;
             // 
