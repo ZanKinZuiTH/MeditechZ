@@ -1033,9 +1033,6 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                     page3.cellToxicoYear2.Text = "ปี" + " " + (year2 + 543).ToString();
                     page3.cellToxicoYear3.Text = "ปี" + " " + (year3 + 543).ToString();
 
-
-
-
                     #region Aluminium in Urin
 
 
@@ -1346,8 +1343,6 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                     }
                     #endregion
 
-
-
                     #region 2,5 Hexanedion in urine
 
                     if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242") != null)
@@ -1395,6 +1390,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                         page3.Zinc3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR141" && p.Year == year3)?.ResultValue;
                     }
                     #endregion
+
                     #region iron zerum 
 
                     if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR142") != null)
@@ -1533,15 +1529,6 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                     }
                     #endregion
                 }
-                else
-                {
-                    List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
-                    Years.OrderByDescending(p => ((uint?)p));
-                    int countYear = Years.Count();
-                    page3.cellToxicoYear1.Text = "ปี" + " " + (DateTime.Now.Year + 543);
-                    page3.cellToxicoYear2.Text = "ปี" + " " + (DateTime.Now.Year + 544);
-                    page3.cellToxicoYear3.Text = "ปี" + " " + (DateTime.Now.Year + 545);
-                }
             }
         }
 
@@ -1678,9 +1665,19 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
         {
             if (SpiroResult != null && SpiroResult.Count() > 0)
             {
-                page4.lbFVCPer1.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO3")?.ResultValue;
-                page4.lbFEV1Per1.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO6")?.ResultValue;
-                page4.lbFEVPer1.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO9")?.ResultValue;
+                    List<int?> Years = SpiroResult.Select(p => p.Year).Distinct().ToList();
+                    Years.OrderByDescending(p => ((uint?)p));
+                    int countYear = Years.Count();
+                    int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
+                    int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 - 1;
+                    int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 - 1;
+                    page4.LungYear1.Text = "ปี" + " " + (year1 + 543).ToString();
+                    page4.LungYear2.Text = "ปี" + " " + (year2 + 543).ToString();
+                    page4.LungYear3.Text = "ปี" + " " + (year3 + 543).ToString();
+
+                    page4.lbFVCPer1.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO3")?.ResultValue;
+                    page4.lbFEV1Per1.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO6")?.ResultValue;
+                    page4.lbFEVPer1.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO9")?.ResultValue;
             }
         }
 

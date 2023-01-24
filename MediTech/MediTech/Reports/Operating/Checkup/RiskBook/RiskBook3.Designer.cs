@@ -798,7 +798,7 @@
             // 
             // xrTableCell1
             // 
-            this.xrTableCell1.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.xrTableCell1.Multiline = true;
             this.xrTableCell1.Name = "xrTableCell1";
             this.xrTableCell1.StylePriority.UseBorders = false;
@@ -815,13 +815,13 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellToxicoYear1.CanGrow = false;
-            this.cellToxicoYear1.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.cellToxicoYear1.Font = new System.Drawing.Font("EucrosiaUPC", 9F, System.Drawing.FontStyle.Bold);
             this.cellToxicoYear1.Name = "cellToxicoYear1";
             this.cellToxicoYear1.StylePriority.UseBorders = false;
             this.cellToxicoYear1.StylePriority.UseBorderWidth = false;
             this.cellToxicoYear1.StylePriority.UseFont = false;
             this.cellToxicoYear1.StylePriority.UseTextAlignment = false;
-            this.cellToxicoYear1.Text = "ปีที่1";
+            this.cellToxicoYear1.Text = "ปีที่...";
             this.cellToxicoYear1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.cellToxicoYear1.Weight = 0.443296332132815D;
             // 
@@ -831,13 +831,13 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellToxicoYear2.CanGrow = false;
-            this.cellToxicoYear2.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.cellToxicoYear2.Font = new System.Drawing.Font("EucrosiaUPC", 9F, System.Drawing.FontStyle.Bold);
             this.cellToxicoYear2.Name = "cellToxicoYear2";
             this.cellToxicoYear2.StylePriority.UseBorders = false;
             this.cellToxicoYear2.StylePriority.UseBorderWidth = false;
             this.cellToxicoYear2.StylePriority.UseFont = false;
             this.cellToxicoYear2.StylePriority.UseTextAlignment = false;
-            this.cellToxicoYear2.Text = "ปีที่2";
+            this.cellToxicoYear2.Text = "ปีที่...";
             this.cellToxicoYear2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.cellToxicoYear2.Weight = 0.44329633245297495D;
             // 
@@ -847,13 +847,13 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellToxicoYear3.CanGrow = false;
-            this.cellToxicoYear3.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.cellToxicoYear3.Font = new System.Drawing.Font("EucrosiaUPC", 9F, System.Drawing.FontStyle.Bold);
             this.cellToxicoYear3.Name = "cellToxicoYear3";
             this.cellToxicoYear3.StylePriority.UseBorders = false;
             this.cellToxicoYear3.StylePriority.UseBorderWidth = false;
             this.cellToxicoYear3.StylePriority.UseFont = false;
             this.cellToxicoYear3.StylePriority.UseTextAlignment = false;
-            this.cellToxicoYear3.Text = "ปีที่3";
+            this.cellToxicoYear3.Text = "ปีที่...";
             this.cellToxicoYear3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.cellToxicoYear3.Weight = 0.44329635320818539D;
             // 
