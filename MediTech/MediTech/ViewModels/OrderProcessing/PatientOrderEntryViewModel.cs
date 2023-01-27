@@ -305,24 +305,32 @@ namespace MediTech.ViewModels
                 if (!string.IsNullOrEmpty(_SearchPackageCriteria) && _SearchPackageCriteria.Length >= 3)
                 {
 
-                    BillPackageItems = DataService.OrderProcessing.SearchBillPackage(_SearchPackageCriteria
+                    BillPackages = DataService.OrderProcessing.SearchBillPackage(_SearchPackageCriteria
                         , SelectCategoryPackage != null ? SelectCategoryPackage.OrderCategoryUID : (int?)null
                         , SelectSubCategoryPackage != null ? SelectSubCategoryPackage.OrderSubCategoryUID : (int?)null);
 
                 }
                 else
                 {
-                    BillPackageItems = null;
+                    BillPackages = null;
                 }
             }
         }
 
-        private List<BillPackageModel> _BillPackageItems;
+        private List<BillPackageModel> _BillPackages;
 
-        public List<BillPackageModel> BillPackageItems
+        public List<BillPackageModel> BillPackages
         {
-            get { return _BillPackageItems; }
-            set { Set(ref _BillPackageItems, value); }
+            get { return _BillPackages; }
+            set { Set(ref _BillPackages, value); }
+        }
+
+        private BillPackageModel _SelectBillPackage;
+
+        public BillPackageModel SelectBillPackage
+        {
+            get { return _SelectBillPackage; }
+            set { Set(ref _SelectBillPackage, value); }
         }
 
 
@@ -387,7 +395,112 @@ namespace MediTech.ViewModels
         public Visibility IsVisibilityUsedPackage
         {
             get { return _IsVisibilityUsedPackage; }
-            set { _IsVisibilityUsedPackage = value; }
+            set { Set(ref _IsVisibilityUsedPackage, value); }
+        }
+
+        private string _UsedPackageCount;
+
+        public string UsedPackageCount
+        {
+            get { return _UsedPackageCount; }
+            set { Set(ref _UsedPackageCount, value); }
+        }
+
+
+        private List<PatientPackageModel> _UsedPackages;
+
+        public List<PatientPackageModel> UsedPackages
+        {
+            get { return _UsedPackages; }
+            set
+            {
+                Set(ref _UsedPackages, value);
+                if (_UsedPackages != null && _UsedPackages.Count > 0)
+                {
+                    IsVisibilityUsedPackage = Visibility.Visible;
+                    UsedPackagedDescription = string.Format("Package {0} List. Prices = {1} ", _UsedPackages.Count(), Math.Round(_UsedPackages.Sum(p => p.TotalAmount) ?? 0,2));
+                    UsedPackageCount = _UsedPackages.Count().ToString();
+
+                }
+                else
+                {
+                    IsVisibilityUsedPackage = Visibility.Collapsed;
+                    UsedPackagedDescription = "";
+                    UsedPackageCount = "";
+                }
+            }
+        }
+
+        private PatientPackageModel _SelecedUsedPackage;
+
+        public PatientPackageModel SelecedUsedPackage
+        {
+            get { return _SelecedUsedPackage; }
+            set { Set(ref _SelecedUsedPackage, value);
+                if (SelecedUsedPackage != null)
+                {
+                    BillPackageItems = new ObservableCollection<BillPackageDetailModel>(SelecedUsedPackage.BillPackageDetails);
+                    AdjustablePackageItems = DataService.OrderProcessing.GetAdjustablePackageItems(PatientVisit.PatientUID, PatientVisit.PatientVisitUID, SelecedUsedPackage.BillPackageUID ?? 0);
+                    OrderPackageBy = string.Format("- {0} -   {1}", SelecedUsedPackage.PackageCreatedByName, SelecedUsedPackage.PackageCreatedDttm.ToString("dd-MM-yyyy HH:MM tt"));
+                    UsedPackagePrice = String.Format("{0:#,#.00}", SelecedUsedPackage.TotalAmount?.ToString());
+                }
+                else
+                {
+                    OrderPackageBy = "";
+                    UsedPackagePrice = "";
+                    BillPackageItems = null;
+                    AdjustablePackageItems = null;
+                }
+            }
+        }
+
+        private string _OrderPackageBy;
+
+        public string OrderPackageBy
+        {
+            get { return _OrderPackageBy; }
+            set { Set(ref _OrderPackageBy, value); }
+        }
+
+        private string _UsedPackagePrice;
+
+        public string UsedPackagePrice
+        {
+            get { return _UsedPackagePrice; }
+            set { Set(ref _UsedPackagePrice, value); }
+        }
+
+
+        private ObservableCollection<BillPackageDetailModel> _BillPackageItems;
+
+        public ObservableCollection<BillPackageDetailModel> BillPackageItems
+        {
+            get { return _BillPackageItems; }
+            set { Set(ref _BillPackageItems, value); }
+        }
+
+        private BillPackageDetailModel _SelectBillPackageItem;
+
+        public BillPackageDetailModel SelectBillPackageItem
+        {
+            get { return _SelectBillPackageItem; }
+            set { Set(ref _SelectBillPackageItem, value); }
+        }
+
+        private List<AdjustablePackageItemModel> _AdjustablePackageItems;
+
+        public List<AdjustablePackageItemModel> AdjustablePackageItems
+        {
+            get { return _AdjustablePackageItems; }
+            set { Set(ref _AdjustablePackageItems, value); }
+        }
+
+        private string _UsedPackagedDescription;
+
+        public string UsedPackagedDescription
+        {
+            get { return _UsedPackagedDescription; }
+            set { Set(ref _UsedPackagedDescription, value); }
         }
 
 
@@ -498,6 +611,54 @@ namespace MediTech.ViewModels
                 return _AddPackageCommand ?? (_AddPackageCommand = new RelayCommand(AddPackage));
             }
         }
+
+        private RelayCommand _DeletePackageCommand;
+        public RelayCommand DeletePackageCommand
+        {
+            get
+            {
+                return _DeletePackageCommand ?? (_DeletePackageCommand = new RelayCommand(DeletePackage));
+            }
+        }
+
+        private RelayCommand _SelectAllPackageCommand;
+        public RelayCommand SelectAllPackageCommand
+        {
+            get
+            {
+                return _SelectAllPackageCommand ?? (_SelectAllPackageCommand = new RelayCommand(SelectAllPackage));
+            }
+        }
+
+
+        private RelayCommand _OrderPackageCommand;
+        public RelayCommand OrderPackageCommand
+        {
+            get
+            {
+                return _OrderPackageCommand ?? (_OrderPackageCommand = new RelayCommand(OrderPackage));
+            }
+        }
+
+
+        private RelayCommand _UnlinkPackageCommand;
+        public RelayCommand UnlinkPackageCommand
+        {
+            get
+            {
+                return _UnlinkPackageCommand ?? (_UnlinkPackageCommand = new RelayCommand(UnlinkPackage));
+            }
+        }
+
+        private RelayCommand _EditPackageItemCommand;
+        public RelayCommand EditPackageItemCommand
+        {
+            get
+            {
+                return _EditPackageItemCommand ?? (_EditPackageItemCommand = new RelayCommand(EditPackageItem));
+            }
+        }
+        
         #endregion
 
         #region Variable
@@ -542,6 +703,8 @@ namespace MediTech.ViewModels
                 EnableEnterOrder = false;
             }
 
+            UsedPackages = DataService.OrderProcessing.GetPatientPackageByVisitUID(PatientVisit.PatientVisitUID);
+            SelecedUsedPackage = _UsedPackages?.FirstOrDefault();
             (this.View as PatientOrderEntry).txtOrder.Focus();
         }
 
@@ -756,6 +919,114 @@ namespace MediTech.ViewModels
         }
 
         public void AddPackage()
+        {
+            try
+            {
+                if (SelectBillPackage != null)
+                {
+                    if (UsedPackages != null && UsedPackages.FirstOrDefault(p => p.BillPackageUID == SelectBillPackage.BillPackageUID) != null)
+                    {
+                       var result = QuestionDialog("Package นี้การมีคีย์ใช้แล้ว คุณต้องการดำเนินการต่อ หรือไม่ ?");
+                        if (result != MessageBoxResult.Yes)
+                        {
+                            return;
+                        }
+                    }
+                    PatientPackageModel newPatPackage = new PatientPackageModel();
+                    newPatPackage.PatientUID = PatientVisit.PatientUID;
+                    newPatPackage.PatientVisitUID = PatientVisit.PatientVisitUID;
+                    newPatPackage.PackageName = SelectBillPackage.PackageName;
+                    newPatPackage.BillPackageUID = SelectBillPackage.BillPackageUID;
+                    newPatPackage.ActiveFrom = SelectBillPackage.ActiveFrom;
+                    newPatPackage.ActiveTo = SelectBillPackage.ActiveTo;
+                    newPatPackage.PackageCreatedByUID = AppUtil.Current.UserID;
+                    newPatPackage.IsConsiderItem = "N";
+                    newPatPackage.TotalAmount = SelectBillPackage.TotalAmount;
+                    newPatPackage.Qty = 1;
+                    newPatPackage.OwnerOrganisationUID = PatientVisit.OwnerOrganisationUID ?? 0;
+                    DataService.OrderProcessing.AddPatientPackage(newPatPackage);
+
+
+                    UsedPackages = DataService.OrderProcessing.GetPatientPackageByVisitUID(PatientVisit.PatientVisitUID);
+
+                    SelecedUsedPackage = _UsedPackages.OrderByDescending(p => p.PatientPackageUID).FirstOrDefault();
+
+                    SearchPackageCriteria = String.Empty;
+                    SelectBillPackage = null;
+                }
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+
+        }
+
+        public void DeletePackage()
+        {
+            try
+            {
+                if (SelecedUsedPackage != null)
+                {
+                   var result = QuestionDialog(String.Format("ต้องการรบ Package {0} หรือไม่", SelecedUsedPackage.PackageName));
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        DataService.OrderProcessing.DeletePatientPackage(SelecedUsedPackage.PatientPackageUID, AppUtil.Current.UserID);
+
+                        UsedPackages = DataService.OrderProcessing.GetPatientPackageByVisitUID(PatientVisit.PatientVisitUID);
+
+                        SelecedUsedPackage = _UsedPackages.OrderByDescending(p => p.PatientPackageUID).FirstOrDefault();
+                    }
+                }
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+        }
+
+        public void SelectAllPackage()
+        {
+            if (BillPackageItems.Count(p => p.IsSelected) != BillPackageItems.Count())
+            {
+                foreach (var item in BillPackageItems)
+                {
+                    item.IsSelected = true;
+                }
+            }
+            else
+            {
+                foreach (var item in BillPackageItems)
+                {
+                    item.IsSelected = false;
+                }
+            }
+
+            OnUpdateEvent();
+        }
+
+        private void EditPackageItem()
+        {
+            if (SelectBillPackageItem != null)
+            {
+               
+            }
+        }
+
+        public void OrderPackage()
+        {
+            foreach (var item in BillPackageItems)
+            {
+                if (item.IsSelected)
+                {
+
+                }
+            }
+        }
+
+        public void UnlinkPackage()
         {
 
         }

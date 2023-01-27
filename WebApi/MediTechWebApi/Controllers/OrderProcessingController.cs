@@ -12,6 +12,9 @@ using System.Web.Http;
 using ShareLibrary;
 using System.Data.Entity;
 using MediTech.Model.Report;
+using System.Xml.Linq;
+using System.Web.UI.WebControls;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MediTechWebApi.Controllers
 {
@@ -29,14 +32,6 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
-        [Route("SearchBillPackage")]
-        [HttpGet]
-        public List<BillPackageModel> SearchBillPackage(string text,int? orderCategoryUID, int? orderSubCategoryUID)
-        {
-            List<BillPackageModel> data = SqlDirectStore.pSearchBillPackageItem(text, orderCategoryUID, orderSubCategoryUID).ToList<BillPackageModel>();
-
-            return data;
-        }
 
         [Route("GetOrderAllByPatientUID")]
         [HttpGet]
@@ -706,6 +701,9 @@ namespace MediTechWebApi.Controllers
                                                 orderDetail.IdentifyingType = identifyingType;
                                                 orderDetail.IdentifyingUID = item.ItemUID;
                                                 orderDetail.IsStandingOrder = item.IsStandingOrder;
+                                                orderDetail.BillPackageUID = item.BillPackageUID;
+                                                orderDetail.PatientPackageUID = item.PatientPackageUID;
+                                                orderDetail.PatientPackageItemUID = item.PatientPackageItemUID;
                                                 db.PatientOrderDetail.Add(orderDetail);
                                                 db.SaveChanges();
 
@@ -925,6 +923,7 @@ namespace MediTechWebApi.Controllers
                                                 patBillableItem.OrderSetUID = orderDetail.OrderSetUID;
                                                 patBillableItem.OrderSetBillableItemUID = orderDetail.OrderSetBillableItemUID;
                                                 patBillableItem.PatientFixPriceUID = orderDetail.PatientFixPriceUID;
+                                                patBillableItem.BillPackageUID = orderDetail.PatientPackageUID;
                                                 patBillableItem.CUser = userUID;
                                                 patBillableItem.CWhen = now;
                                                 patBillableItem.MUser = userUID;
@@ -1100,6 +1099,9 @@ namespace MediTechWebApi.Controllers
                                                     orderDetailStading.IdentifyingType = identifyingType;
                                                     orderDetailStading.IdentifyingUID = orderStadingDetail.ItemUID;
                                                     orderDetailStading.IsStandingOrder = orderStadingDetail.IsStandingOrder;
+                                                    orderDetailStading.BillPackageUID = orderStadingDetail.BillPackageUID;
+                                                    orderDetailStading.PatientPackageUID = orderStadingDetail.PatientPackageUID;
+                                                    orderDetailStading.PatientPackageItemUID = orderStadingDetail.PatientPackageItemUID;
                                                     db.PatientOrderDetail.Add(orderDetailStading);
                                                     db.SaveChanges();
                                                     #endregion
@@ -1228,6 +1230,7 @@ namespace MediTechWebApi.Controllers
                                                     patBillableItemStading.OrderSetUID = orderDetailStading.OrderSetUID;
                                                     patBillableItemStading.OrderSetBillableItemUID = orderDetailStading.OrderSetBillableItemUID;
                                                     patBillableItemStading.PatientFixPriceUID = orderDetailStading.PatientFixPriceUID;
+                                                    patBillableItemStading.BillPackageUID = orderDetailStading.PatientPackageUID;
                                                     patBillableItemStading.CUser = userUID;
                                                     patBillableItemStading.CWhen = now;
                                                     patBillableItemStading.MUser = userUID;
@@ -1637,6 +1640,244 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        #endregion
+
+
+        #region Package
+        [Route("SearchBillPackage")]
+        [HttpGet]
+        public List<BillPackageModel> SearchBillPackage(string text, int? orderCategoryUID, int? orderSubCategoryUID)
+        {
+            List<BillPackageModel> data = SqlDirectStore.pSearchBillPackageItem(text, orderCategoryUID, orderSubCategoryUID).ToList<BillPackageModel>();
+
+            return data;
+        }
+
+        [Route("AddPatientPackage")]
+        [HttpPost]
+        public HttpResponseMessage AddPatientPackage(PatientPackageModel model)
+        {
+            if (model is null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            try
+            {
+                DateTime now = DateTime.Now;
+
+                using (var tran = new TransactionScope())
+                {
+
+
+                    PatientPackage patPackage = new PatientPackage();
+                    patPackage.PatientUID = model.PatientUID;
+                    patPackage.PatientVisitUID = model.PatientVisitUID;
+                    patPackage.PackageName = model.PackageName;
+                    patPackage.BillPackageUID = model.BillPackageUID;
+                    patPackage.TotalAmount = model.TotalAmount;
+                    patPackage.ActiveFrom = now;
+                    patPackage.ActiveTo = model.ActiveTo;
+                    patPackage.PackageCreatedByUID = model.PackageCreatedByUID;
+                    patPackage.PackageCreatedDttm = now;
+                    patPackage.Comments = model.Comments;
+                    patPackage.BillingGroupUID = model.BillingGroupUID;
+                    patPackage.BillingSubGroupUID = model.BillingSubGroupUID;
+                    patPackage.IsConsiderItem = model.IsConsiderItem;
+                    patPackage.Qty = model.Qty;
+                    patPackage.OwnerOrganisationUID = model.OwnerOrganisationUID;
+                    patPackage.StatusFlag = "A";
+                    patPackage.MUser = model.MUser;
+                    patPackage.CUser = model.CUser;
+                    patPackage.MWhen = now;
+                    patPackage.CWhen = now;
+
+                    db.PatientPackage.Add(patPackage);
+
+                    db.SaveChanges();
+
+                    IEnumerable<BillPackageItem> billPackageItems = db.BillPackageItem.Where(p => p.BillPackageUID == model.BillPackageUID);
+
+                    foreach (var item in billPackageItems)
+                    {
+                        BillableItem billableItem = new BillableItem();
+
+                        PatientPackageItem patPackageItem = new PatientPackageItem();
+                        patPackageItem.PatientPackageUID = patPackage.UID;
+                        patPackageItem.BillableItemUID = item.BillableItemUID ?? 0;
+                        patPackageItem.BSMDDUID = item.BSMDDUID;
+                        patPackageItem.ItemName = billableItem.ItemName;
+                        patPackageItem.Amount = item.Amount;
+                        patPackageItem.ItemMultiplier = item.Quantity;
+                        patPackageItem.StatusFlag = "A";
+                        patPackageItem.MUser = model.MUser;
+                        patPackageItem.CUser = model.CUser;
+                        patPackageItem.MWhen = now;
+                        patPackageItem.CWhen = now;
+
+                        db.PatientPackageItem.Add(patPackageItem);
+
+                    }
+
+                    db.SaveChanges();
+
+
+                    PatientBillableItem patBillableItem = new PatientBillableItem();
+                    patBillableItem.PatientUID = model.PatientUID;
+                    patBillableItem.PatientVisitUID = model.PatientVisitUID;
+                    patBillableItem.IdentifyingUID = model.BillPackageUID ?? 0;
+                    patBillableItem.IdentifyingType = "BillPackage";
+                    patBillableItem.Amount = model.TotalAmount;
+                    patBillableItem.Discount = 0;
+                    patBillableItem.NetAmount = model.TotalAmount;
+                    patBillableItem.ItemMultiplier = model.Qty;
+                    patBillableItem.ItemName = model.PackageName;
+                    patBillableItem.EventOccuredDttm = now;
+                    patBillableItem.BillPackageUID = (int?)patPackage.UID;
+                    patBillableItem.StatusFlag = "A";
+                    patBillableItem.MUser = model.MUser;
+                    patBillableItem.CUser = model.CUser;
+                    patBillableItem.MWhen = now;
+                    patBillableItem.CWhen = now;
+
+                    db.PatientBillableItem.Add(patBillableItem);
+
+                    db.SaveChanges();
+                    tran.Complete();
+
+                }
+
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+
+        [Route("DeletePatientPackage")]
+        [HttpDelete]
+        public HttpResponseMessage DeletePatientPackage(long patientPackakgeUID, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                var patientPackage = db.PatientPackage.Find(patientPackakgeUID);
+                if (patientPackage == null) return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Date Not Found");
+                using (var tran = new TransactionScope())
+                {
+                    db.PatientPackage.Attach(patientPackage);
+                    patientPackage.MUser = userID;
+                    patientPackage.MWhen = now;
+                    patientPackage.StatusFlag = "D";
+                    db.SaveChanges();
+
+
+                    IEnumerable<PatientPackageItem> patPackageItems = db.PatientPackageItem.Where(p => p.PatientPackageUID == patientPackage.UID);
+                    foreach (var item in patPackageItems)
+                    {
+                        db.PatientPackageItem.Attach(item);
+                        item.MUser = userID;
+                        item.MWhen = now;
+                        item.StatusFlag = "D";
+
+                    }
+                    db.SaveChanges();
+
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+
+        [Route("GetPatientPackageByVisitUID")]
+        [HttpGet]
+        public List<PatientPackageModel> GetPatientPackageByVisitUID(long patientVisitUID)
+        {
+            List<PatientPackageModel> patientPackages = db.PatientPackage
+                 .Where(p => p.PatientVisitUID == patientVisitUID && p.StatusFlag == "A")
+                 .Select(p => new PatientPackageModel
+                 {
+                     PatientPackageUID = p.UID,
+                     PackageName = p.PackageName,
+                     PackageCreatedByUID = p.PackageCreatedByUID,
+                     PackageCreatedDttm = p.PackageCreatedDttm,
+                     PackageCreatedByName = SqlFunction.fGetCareProviderName(p.PackageCreatedByUID),
+                     TotalAmount = p.TotalAmount,
+                     PatientUID = p.PatientUID,
+                     PatientVisitUID = p.PatientVisitUID,
+                     BillPackageUID = p.BillPackageUID,
+                     BillingGroupUID = p.BillingGroupUID,
+                     BillingSubGroupUID = p.BillingSubGroupUID,
+                     BillingGroup = (p.BillingGroupUID != 0 && p.BillingGroupUID != null) ? SqlFunction.fGetBillingGroupDesc(p.BillingGroupUID ?? 0, "G") : "",
+                     BillingSubGroup = (p.BillingSubGroupUID != 0 && p.BillingSubGroupUID != null) ? SqlFunction.fGetBillingGroupDesc(p.BillingSubGroupUID ?? 0, "S") : ""
+
+                 }).ToList();
+
+            if (patientPackages != null && patientPackages.Count > 0)
+            {
+                foreach (var patPackage in patientPackages)
+                {
+                    patPackage.BillPackageDetails = GetBillPackageItemByBillPakcageUID(patPackage.BillPackageUID ?? 0);
+                }
+            }
+
+            return patientPackages;
+        }
+
+        [Route("GetBillPackageItemByBillPakcageUID")]
+        [HttpGet]
+        public List<BillPackageDetailModel> GetBillPackageItemByBillPakcageUID(int billPackageUID)
+        {
+            List<BillPackageDetailModel> data = (from bp in db.BillPackageItem
+                                                 join bl in db.BillableItem on bp.BillableItemUID equals bl.UID
+                                                 where bp.BillPackageUID == billPackageUID
+                                                 && bp.StatusFlag == "A"
+                                                 && bl.StatusFlag == "A"
+                                                 select new BillPackageDetailModel
+                                                 {
+                                                     BillPackageDetailUID = bp.UID,
+                                                     BillableItemUID = bp.BillableItemUID,
+                                                     OrderCategoryUID = bp.OrderCategoryUID,
+                                                     OrderSubCategoryUID = bp.OrderSubCategoryUID,
+                                                     ActiveFrom = bp.ActiveFrom,
+                                                     ActiveTo = bp.ActiveTo,
+                                                     Amount = bp.Amount,
+                                                     Quantity = bp.Quantity,
+                                                     DoctorShare = bp.DoctorShare,
+                                                     BillPackageUID = bp.BillPackageUID,
+                                                     BSMDDUID = bp.BSMDDUID,
+                                                     CURNCUID = bp.CURNCUID,
+                                                     ItemCode = bl.Code,
+                                                     ItemName = bl.ItemName
+                                                 }).ToList();
+
+            return data;
+        }
+
+        [Route("GetBillPackageItemByBillPakcageUID")]
+        [HttpGet]
+        public List<AdjustablePackageItemModel> GetAdjustablePackageItems(long patientUID, long patientVisitUID, int billPackageUID)
+        {
+            List<AdjustablePackageItemModel> data = SqlDirectStore.pGetAdjustablePackageItems(patientUID, patientVisitUID, billPackageUID).ToList<AdjustablePackageItemModel>();
+
+            return data;
+        }
+
+        private HttpResponseMessage HttpNotFound()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

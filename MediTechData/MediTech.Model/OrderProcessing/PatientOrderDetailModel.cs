@@ -70,6 +70,7 @@ namespace MediTech.Model
         public Nullable<int> CancelledByUserUID { get; set; }
         public Nullable<System.DateTime> CancelledDttm { get; set; }
         public Nullable<long> PatientPackageUID { get; set; }
+        public Nullable<long> PatientPackageItemUID { get; set; }
         public int BSMDDUID { get; set; }
 
         public string BillingService { get; set; }

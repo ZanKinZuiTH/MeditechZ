@@ -59,7 +59,8 @@ namespace MediTech.DataBase
         public string IsStockItem { get; set; }
         public Nullable<int> PatientVisitPayorUID { get; set; }
         public Nullable<int> PayorDetailUID { get; set; }
-        public Nullable<int> PatientPackageItemUID { get; set; }
+        public Nullable<long> PatientPackageItemUID { get; set; }
+        public Nullable<int> AltBillableItemUID { get; set; }
         public Nullable<int> OrderSetUID { get; set; }
         public Nullable<int> OrderSetBillableItemUID { get; set; }
         public int CUser { get; set; }

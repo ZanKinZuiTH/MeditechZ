@@ -152,5 +152,64 @@ namespace MediTech.DataService
         }
 
         #endregion
+
+        #region PatientPackage
+        public bool AddPatientPackage(PatientPackageModel model)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/OrderProcessing/AddPatientPackage");
+                MeditechApiHelper.Post<PatientPackageModel>(requestApi, model);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return flag;
+        }
+
+        public bool DeletePatientPackage(long patientPackakgeUID, int userID)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/OrderProcessing/DeletePatientPackage?patientPackakgeUID={0}&userID={0}", patientPackakgeUID,userID);
+                MeditechApiHelper.Delete(requestApi);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return flag;
+        }
+
+        public List<PatientPackageModel> GetPatientPackageByVisitUID(long patientVisitUID)
+        {
+            string requestApi = string.Format("Api/OrderProcessing/GetPatientPackageByVisitUID?patientVisitUID={0}", patientVisitUID);
+            List<PatientPackageModel> data = MeditechApiHelper.Get<List<PatientPackageModel>>(requestApi);
+            return data;
+        }
+
+        public List<BillPackageDetailModel> GetBillPackageItemByBillPakcageUID(int billPackageUID)
+        {
+            string requestApi = string.Format("Api/OrderProcessing/GetBillPackageItemByBillPakcageUID?billPackageUID={0}", billPackageUID);
+            List<BillPackageDetailModel> data = MeditechApiHelper.Get<List<BillPackageDetailModel>>(requestApi);
+            return data;
+        }
+
+        public List<AdjustablePackageItemModel> GetAdjustablePackageItems(long patientUID, long patientVisitUID, int billPackageUID)
+        {
+            string requestApi = string.Format("Api/OrderProcessing/GetAdjustablePackageItems?patientUID={0}&patientVisitUID={1}&billPackageUID={2}", patientUID,patientVisitUID, billPackageUID);
+            List<AdjustablePackageItemModel> data = MeditechApiHelper.Get<List<AdjustablePackageItemModel>>(requestApi);
+            return data;
+        }
+        #endregion
     }
 }

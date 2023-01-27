@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -2945,6 +2946,38 @@ namespace MediTech.DataBase
                 con.Close();
             }
 
+        }
+
+        public static DataTable pGetAdjustablePackageItems(long patientUID,long patientVisitUID,int billPackageUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+
+            SqlConnection con = new SqlConnection(entities.Database.Connection.ConnectionString);
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+                DataTable dt = new DataTable();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "pGetAdjustablePackageItems";
+
+                cmd.Parameters.AddWithValue("@P_PatientUID", patientUID);
+                cmd.Parameters.AddWithValue("@P_PatientVisitUID", patientVisitUID);
+                cmd.Parameters.AddWithValue("@P_BillPackageUID", billPackageUID);
+                dt.Load(cmd.ExecuteReader());
+                return dt;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
         }
 
     }

@@ -50,7 +50,7 @@ namespace MediTech.DataBase
         public Nullable<double> InternalCost { get; set; }
         public string CalculateTaxOnMRP { get; set; }
         public Nullable<int> StoreUID { get; set; }
-        public Nullable<int> BillPackageUID { get; set; }
+        public Nullable<long> BillPackageUID { get; set; }
         public Nullable<double> SplitDiscount { get; set; }
         public Nullable<int> BLTYPUID { get; set; }
         public string OrderType { get; set; }
