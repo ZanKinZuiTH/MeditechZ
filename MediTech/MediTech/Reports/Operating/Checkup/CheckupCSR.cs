@@ -12,6 +12,7 @@ using DevExpress.XtraPrinting;
 using MediTech.Model.Report;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Reflection;
 
 namespace MediTech.Reports.Operating.Checkup
 {
@@ -24,14 +25,55 @@ namespace MediTech.Reports.Operating.Checkup
         {
             get { return _DataService ?? (_DataService = new MediTechDataService()); }
         }
-        List<XrayTranslateMappingModel> dtResultMapping;
+
         public string PreviewWellness { get; set; }
 
         public CheckupCSR()
         {
             InitializeComponent();
             BeforePrint += CheckupCSR_BeforePrint;
-          
+            lbResultWellness.BeforePrint += LbResultWellness2_BeforePrint;
+        }
+
+        private void LbResultWellness2_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            XRLabel label = lbResultWellness;
+            string text = label.Text;
+
+            this.PrintingSystem.Graph.Font = label.Font;
+
+            float labelWidth = label.WidthF;
+            float textHeight = 0;
+
+            switch (this.ReportUnit)
+            {
+                case DevExpress.XtraReports.UI.ReportUnit.HundredthsOfAnInch:
+                    labelWidth = GraphicsUnitConverter.Convert(labelWidth, GraphicsUnit.Inch, GraphicsUnit.Document) / 100;
+                    break;
+                case DevExpress.XtraReports.UI.ReportUnit.TenthsOfAMillimeter:
+                    labelWidth = GraphicsUnitConverter.Convert(labelWidth, GraphicsUnit.Millimeter, GraphicsUnit.Document) / 10;
+                    break;
+            }
+
+            SizeF size = this.PrintingSystem.Graph.MeasureString(text, (int)labelWidth);
+
+
+            switch (this.ReportUnit)
+            {
+                case DevExpress.XtraReports.UI.ReportUnit.HundredthsOfAnInch:
+                    textHeight = GraphicsUnitConverter.Convert(size.Height, GraphicsUnit.Document, GraphicsUnit.Inch) * 100;
+                    break;
+                case DevExpress.XtraReports.UI.ReportUnit.TenthsOfAMillimeter:
+                    textHeight = GraphicsUnitConverter.Convert(size.Height, GraphicsUnit.Document, GraphicsUnit.Millimeter) * 10;
+                    break;
+            }
+
+            if (textHeight > label.HeightF)
+            {
+                var newSize = label.Font.Size - 0.5f;
+                lbResultWellness.Font = new System.Drawing.Font(lbResultWellness.Font.Name, newSize);
+                LbResultWellness2_BeforePrint(null, null);
+            }
         }
 
         private void CheckupCSR_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
@@ -59,8 +101,6 @@ namespace MediTech.Reports.Operating.Checkup
                 lbDateOfBirth.Text = patient.BirthDttm != null ? patient.BirthDttm.Value.ToString("dd/MM/yyyy") : "";
                 lbAge.Text = patient.Age != null ? patient.Age : "";
                 lbGender.Text = patient.Gender;
-                lbAddress.Text = patient.PatientAddress != null ? patient.PatientAddress : "";
-                lbPhoneNumber.Text = patient.MobilePhone != null ? patient.MobilePhone : "";
 
                 lbHeight.Text = patient.Height != null ? patient.Height.ToString() : "";
                 lbWeight.Text = patient.Weight != null ? patient.Weight.ToString() : "";
@@ -87,27 +127,14 @@ namespace MediTech.Reports.Operating.Checkup
                 {
                     string[] locResult = Regex.Split(wellnessResult, "[\r\n]+");
                     StringBuilder sb = new StringBuilder();
-                    //StringBuilder sb2 = new StringBuilder();
-                    int line = 0;
                     foreach (var item in locResult)
                     {
                         if (!string.IsNullOrEmpty(item))
                         {
-                            //if (line < 14)
-                            //{
-                            //    sb.AppendLine(item);
-                            //}
-                            //else
-                            //{
-                            //    sb2.AppendLine(item);
-                            //}
                             sb.AppendLine(item);
-                            line++;
                         }
                     }
-
-                   lbResultWellness.Text = sb.ToString();
-                    //lbResultWellness2.Text = sb2.ToString();
+                    lbResultWellness.Text = sb.ToString();
 
 
                     if (wellnessResult.Contains("สงสัยตั้งครรภ์") == true)

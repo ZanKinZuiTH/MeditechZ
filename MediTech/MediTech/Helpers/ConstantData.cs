@@ -18,6 +18,7 @@ namespace MediTech.Helpers
             ListPatientReports.Add(new ReportsModel { Name = "ใบ Request Order", NamespaceName = "MediTech.Reports.Operating.Patient.OrderRequest" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCertificate" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ 5 โรค", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCouncil5" });
+            ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ 5 โรค (ภาษาอังกฤษ)", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCertificateEng2" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ (ภาษาอังกฤษ)", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCertificateEng" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ 2 ส่วน", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCertificate2Parts" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ 2 ส่วน (ภาษาอังกฤษ)", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCertificateEng2Parts" });
@@ -34,7 +35,6 @@ namespace MediTech.Helpers
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ Fittnes", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalFitness" });
             ListPatientReports.Add(new ReportsModel { Name = "ปริ้น Sticker", NamespaceName = "MediTech.Reports.Operating.Patient.PatientSticker" });
             ListPatientReports.Add(new ReportsModel { Name = "ปริ้น Sticker Large", NamespaceName = "MediTech.Reports.Operating.Patient.PatientLargSticker" });
-            ListPatientReports.Add(new ReportsModel { Name = "ใบ Wellness", NamespaceName = "MediTech.Reports.Operating.Patient.WellnessBook.WellnessMainBook" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ต่างด้าว", NamespaceName = "MediTech.Reports.Operating.Patient.Alien" });
             ListPatientReports.Add(new ReportsModel { Name = "รายงานตรวจPapSmear", NamespaceName = "MediTech.Reports.Operating.Checkup.Papsmear" });
            

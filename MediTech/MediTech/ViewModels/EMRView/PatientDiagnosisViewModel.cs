@@ -55,9 +55,9 @@ namespace MediTech.ViewModels
 
         public string SearchDiagnosisCriteria { get; set; }
 
-        private List<ProblemModel> _SearchProblemList;
+        private ObservableCollection<ProblemModel> _SearchProblemList;
 
-        public List<ProblemModel> SearchProblemList
+        public ObservableCollection<ProblemModel> SearchProblemList
         {
             get { return _SearchProblemList; }
             set { Set(ref _SearchProblemList, value); }
@@ -442,7 +442,8 @@ namespace MediTech.ViewModels
             {
                 if (!String.IsNullOrEmpty(SearchDiagnosisCriteria) && SearchDiagnosisCriteria.Length >= 3)
                 {
-                    SearchProblemList = DataService.PatientDiagnosis.SearchProblem(SearchDiagnosisCriteria);
+                    var SearchProblemListitem = DataService.PatientDiagnosis.SearchProblem(SearchDiagnosisCriteria);
+                    SearchProblemList = new ObservableCollection<ProblemModel>(SearchProblemListitem);
                 } 
             }
 
