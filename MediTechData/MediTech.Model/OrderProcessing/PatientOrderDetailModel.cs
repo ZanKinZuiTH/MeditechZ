@@ -71,6 +71,7 @@ namespace MediTech.Model
         public Nullable<System.DateTime> CancelledDttm { get; set; }
         public Nullable<long> PatientPackageUID { get; set; }
         public Nullable<long> PatientPackageItemUID { get; set; }
+        public string PackageName { get; set; }
         public int BSMDDUID { get; set; }
 
         public string BillingService { get; set; }
@@ -107,6 +108,7 @@ namespace MediTech.Model
         public PatientOrderDetailModel StandingPatientOrder { get; set; }
         public long? ParentUID { get; set; }
         public string IdentityGen { get; set; }
+        public string Package_OrderSet_Name { get; set; }
 
     }
 }

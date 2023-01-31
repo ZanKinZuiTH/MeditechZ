@@ -2845,7 +2845,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetPatientVisitPayorByVisitUID")]
         [HttpGet]
-        public List<PatientVisitPayorModel> GetPatientVisitPayorByVisitUID(int patientVisitUID)
+        public List<PatientVisitPayorModel> GetPatientVisitPayorByVisitUID(long patientVisitUID)
         {
             List<PatientVisitPayorModel> data = (from pvp in db.PatientVisitPayor
                                                  join ag in db.PayorAgreement on pvp.PayorAgreementUID equals ag.UID

@@ -33,8 +33,10 @@ namespace MediTech.ViewModels
         public OrderCategoryModel SelectCatagory
         {
             get { return _SelectCatagory; }
-            set { Set(ref _SelectCatagory, value); 
-            if(SelectCatagory != null)
+            set
+            {
+                Set(ref _SelectCatagory, value);
+                if (SelectCatagory != null)
                 {
                     OrderSubCatagory = DataService.MasterData.GetOrderSubCategoryByUID(SelectCatagory.OrderCategoryUID);
                 }
@@ -57,16 +59,16 @@ namespace MediTech.ViewModels
                 Set(ref _SelectRoomCharge, value);
                 if (_SelectRoomCharge != null)
                 {
-                    if(SelectRoomCharge.Key == 1)
+                    if (SelectRoomCharge.Key == 1)
                     {
                         SelectCatagory = Catagory.FirstOrDefault(p => p.Description == "ค่าห้อง");
                         SelectOrderSubCatagory = OrderSubCatagory.FirstOrDefault(p => p.Description == "ค่าห้อง");
                     }
-                    else
-                    {
-                        SelectCatagory = null;
-                        SelectOrderSubCatagory = null;
-                    }
+                    //else
+                    //{
+                    //    SelectCatagory = null;
+                    //    SelectOrderSubCatagory = null;
+                    //}
                 }
             }
         }
@@ -75,8 +77,10 @@ namespace MediTech.ViewModels
         public List<OrderSubCategoryModel> OrderSubCatagory
         {
             get { return _OrderSubCatagory; }
-            set { Set(ref _OrderSubCatagory, value); 
-                
+            set
+            {
+                Set(ref _OrderSubCatagory, value);
+
             }
         }
 
@@ -153,7 +157,7 @@ namespace MediTech.ViewModels
                     //    ownerOrganisationUID = SelectOrganisation.HealthOrganisationUID;
                     //}
                     OrderItems = DataService.OrderProcessing.SearchOrderItem(_SearchOrderCriteria, ownerOrganisationUID);
-                   
+
                 }
                 else
                 {
@@ -193,8 +197,10 @@ namespace MediTech.ViewModels
         public string ItemAmount
         {
             get { return _ItemAmount; }
-            set { Set(ref _ItemAmount, value); 
-            
+            set
+            {
+                Set(ref _ItemAmount, value);
+
             }
         }
 
@@ -220,8 +226,10 @@ namespace MediTech.ViewModels
         public BillPackageDetailModel SelectBillPackageDetail
         {
             get { return _SelectBillPackageDetail; }
-            set { Set(ref _SelectBillPackageDetail, value); 
-            if(SelectBillPackageDetail != null)
+            set
+            {
+                Set(ref _SelectBillPackageDetail, value);
+                if (SelectBillPackageDetail != null)
                 {
                     AssignModelToPackagePropertie();
                 }
@@ -259,7 +267,7 @@ namespace MediTech.ViewModels
         {
             get { return _AddBillPackageCommand ?? (_AddBillPackageCommand = new RelayCommand(AddBillPackageDetail)); }
         }
-        
+
         private RelayCommand _EditBillPackageCommand;
         public RelayCommand EditBillPackageCommand
         {
@@ -328,7 +336,7 @@ namespace MediTech.ViewModels
 
         private void AddBillPackageDetail()
         {
-            if(ItemName == null)
+            if (ItemName == null)
             {
                 WarningDialog("กรุณาเลือก item");
                 return;
@@ -398,7 +406,7 @@ namespace MediTech.ViewModels
                 return;
             }
 
-            if(SelectBillPackageDetail != null)
+            if (SelectBillPackageDetail != null)
             {
                 MessageBoxResult result = QuestionDialog("คุณต้องการลบ item ใช่หรือไม่ ?");
                 if (result == MessageBoxResult.Yes)
@@ -422,7 +430,7 @@ namespace MediTech.ViewModels
 
         private void Add()
         {
-            if(PackageCode == null)
+            if (PackageCode == null)
             {
                 WarningDialog("กรุณาใส่ Code");
                 return;
@@ -476,7 +484,7 @@ namespace MediTech.ViewModels
 
         private void CalculateNetAmount()
         {
-            if(BillPackageDetail != null)
+            if (BillPackageDetail != null)
             {
                 double amount = 0;
                 amount = BillPackageDetail.Sum(item => item.TotalAmount);
@@ -501,7 +509,7 @@ namespace MediTech.ViewModels
             TotalAmount = model.TotalAmount.ToString();
 
             var data = DataService.Billing.GetBillPackageItemByUID(model.BillPackageUID);
-           
+
             if (data != null)
             {
 
@@ -513,8 +521,8 @@ namespace MediTech.ViewModels
                 //CalculateNetAmount();
             }
 
-            int roomUID = Catagory.FirstOrDefault(p => p.Description == "ค่าห้อง").OrderCategoryUID;
-            int roomUID2 = OrderSubCatagory.FirstOrDefault(p => p.Description == "ค่าห้อง").OrderSubCategoryUID;
+            int? roomUID = Catagory.FirstOrDefault(p => p.Description == "ค่าห้อง")?.OrderCategoryUID;
+            int? roomUID2 = OrderSubCatagory.FirstOrDefault(p => p.Description == "ค่าห้อง")?.OrderSubCategoryUID;
             SelectRoomCharge = (model.OrderCategoryUID == roomUID && model.OrderSubCategoryUID == roomUID2) ? RoomCharge.FirstOrDefault(p => p.Key == 1) : RoomCharge.FirstOrDefault(p => p.Key == 2);
         }
 

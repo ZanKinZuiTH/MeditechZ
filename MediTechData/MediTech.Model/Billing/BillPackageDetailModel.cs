@@ -31,11 +31,6 @@ namespace MediTech.Model
         public string ItemName { get; set; }
         public string ItemCode { get; set; }
         public double TotalAmount { get; set; }
-        public string UOM { get; set; }
-        public int? UsedQuantity { get; set; }
 
-        public double? NetAmount { get; set; }
-        public double? Discount { get; set; }
-        public bool IsSelected { get; set; }
     }
 }

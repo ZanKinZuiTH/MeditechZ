@@ -97,6 +97,8 @@ namespace MediTechWebApi.Controllers
                     addItem.PaymentStatus = item["PaymentStatus"].ToString();
                     addItem.OwnerOrganisationName = item["OwnerOrganisationName"].ToString();
                     addItem.OwnerOrganisationUID = int.Parse(item["OwnerOrganisationUID"].ToString());
+                    addItem.BillPackageUID = item["BillPackageUID"].ToString() != "" ? int.Parse(item["BillPackageUID"].ToString()) : 0;
+                    addItem.PackageName = item["PackageName"].ToString();
                     if (addItem.IsPriceOverwrite == "Y")
                     {
                         addItem.DisplayPrice = addItem.OverwritePrice;
@@ -181,6 +183,8 @@ namespace MediTechWebApi.Controllers
                     addItem.OwnerOrganisationUID = int.Parse(item["OwnerOrganisationUID"].ToString());
                     addItem.LocationUID = item["LocationUID"].ToString() != "" ? int.Parse(item["LocationUID"].ToString()) : 0;
                     addItem.LocationName = item["LocationName"].ToString();
+                    addItem.BillPackageUID = item["BillPackageUID"].ToString() != "" ? int.Parse(item["BillPackageUID"].ToString()) : 0;
+                    addItem.PackageName = item["PackageName"].ToString();
 
                     if (addItem.IsPriceOverwrite == "Y")
                     {
@@ -1828,50 +1832,284 @@ namespace MediTechWebApi.Controllers
             {
                 foreach (var patPackage in patientPackages)
                 {
-                    patPackage.BillPackageDetails = GetBillPackageItemByBillPakcageUID(patPackage.BillPackageUID ?? 0);
+                    patPackage.BillPackageDetails = GetPatientPackageItemByPatientPakcageUID(patPackage.PatientPackageUID);
                 }
             }
 
             return patientPackages;
         }
 
-        [Route("GetBillPackageItemByBillPakcageUID")]
+        [Route("GetPatientPackageItemByPatientPakcageUID")]
         [HttpGet]
-        public List<BillPackageDetailModel> GetBillPackageItemByBillPakcageUID(int billPackageUID)
+        public List<PatientPackageItemModel> GetPatientPackageItemByPatientPakcageUID(long patientPakcageUID)
         {
-            List<BillPackageDetailModel> data = (from bp in db.BillPackageItem
-                                                 join bl in db.BillableItem on bp.BillableItemUID equals bl.UID
-                                                 where bp.BillPackageUID == billPackageUID
-                                                 && bp.StatusFlag == "A"
-                                                 && bl.StatusFlag == "A"
-                                                 select new BillPackageDetailModel
-                                                 {
-                                                     BillPackageDetailUID = bp.UID,
-                                                     BillableItemUID = bp.BillableItemUID,
-                                                     OrderCategoryUID = bp.OrderCategoryUID,
-                                                     OrderSubCategoryUID = bp.OrderSubCategoryUID,
-                                                     ActiveFrom = bp.ActiveFrom,
-                                                     ActiveTo = bp.ActiveTo,
-                                                     Amount = bp.Amount,
-                                                     Quantity = bp.Quantity,
-                                                     DoctorShare = bp.DoctorShare,
-                                                     BillPackageUID = bp.BillPackageUID,
-                                                     BSMDDUID = bp.BSMDDUID,
-                                                     CURNCUID = bp.CURNCUID,
-                                                     ItemCode = bl.Code,
-                                                     ItemName = bl.ItemName
-                                                 }).ToList();
+            var orderDetailList = from pod in db.PatientOrderDetail
+                                  where pod.StatusFlag == "A"
+                                  && pod.PatientPackageUID == patientPakcageUID
+                                  && pod.ORDSTUID != 2848
+                                  select pod;
+
+
+
+            List<PatientPackageItemModel> data = (from pki in db.PatientPackageItem
+                                                  join bl in db.BillableItem on pki.BillableItemUID equals bl.UID
+                                                  join pk in db.PatientPackage on pki.PatientPackageUID equals pk.UID
+                                                  join pod in orderDetailList on pki.UID equals pod.PatientPackageItemUID into temppod
+                                                  from pod2 in temppod.DefaultIfEmpty()
+                                                  where pki.PatientPackageUID == patientPakcageUID
+                                                  && pki.StatusFlag == "A"
+                                                  && bl.StatusFlag == "A"
+                                                  select new PatientPackageItemModel
+                                                  {
+                                                      PatientPackageItemUID = pki.UID,
+                                                      PatientPackageUID = pki.PatientPackageUID,
+                                                      BillableItemUID = pki.BillableItemUID,
+                                                      Amount = pki.Amount,
+                                                      Discount = pki.Discount,
+                                                      ActualAmount = pki.ActualAmount,
+                                                      ItemMultiplier = pki.ItemMultiplier,
+                                                      BillPackageUID = pk.BillPackageUID ?? 0,
+                                                      BSMDDUID = pki.BSMDDUID,
+                                                      ItemCode = bl.Code,
+                                                      ItemName = bl.ItemName,
+                                                      PatientOrderDetailUID = pod2.UID,
+                                                  }).ToList();
+            foreach (var item in data)
+            {
+                item.NetAmount = Math.Round(item.Amount * item.ItemMultiplier ?? 0, 2);
+            }
+            return data;
+        }
+
+        [Route("GetAdjustablePackageItems")]
+        [HttpGet]
+        public List<AdjustablePackageItemModel> GetAdjustablePackageItems(long patientUID, long patientVisitUID, long patientPackageUID)
+        {
+            List<AdjustablePackageItemModel> data = SqlDirectStore.pGetAdjustablePackageItems(patientUID, patientVisitUID, patientPackageUID).ToList<AdjustablePackageItemModel>();
 
             return data;
         }
 
-        [Route("GetBillPackageItemByBillPakcageUID")]
+        [Route("GetLinkPackage")]
         [HttpGet]
-        public List<AdjustablePackageItemModel> GetAdjustablePackageItems(long patientUID, long patientVisitUID, int billPackageUID)
+        public List<LinkPackageModel> GetLinkPackage(int billableItemUID, long patientVisitUID)
         {
-            List<AdjustablePackageItemModel> data = SqlDirectStore.pGetAdjustablePackageItems(patientUID, patientVisitUID, billPackageUID).ToList<AdjustablePackageItemModel>();
+            List<LinkPackageModel> data = SqlDirectStore.pGetLinkPackage(billableItemUID, patientVisitUID).ToList<LinkPackageModel>();
 
             return data;
+        }
+
+        [Route("AdjustOrderDetailForPackage")]
+        [HttpPut]
+        public HttpResponseMessage AdjustOrderDetailForPackage(long patientUID, long patientVisitUID, long? patientPackageUID, int billableItemUID, List<long> patientOrderDetailUIDs)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+
+                using (var tran = new TransactionScope())
+                {
+                    var billPackageUID = db.PatientPackage.Find(patientPackageUID)?.BillPackageUID;
+                    foreach (var orderDetailUID in patientOrderDetailUIDs)
+                    {
+                        var patientOrderDetail = db.PatientOrderDetail.Find(orderDetailUID);
+
+                        if (patientOrderDetail != null)
+                        {
+                            db.PatientOrderDetail.Attach(patientOrderDetail);
+                            patientOrderDetail.BillPackageUID = null;
+                            patientOrderDetail.PatientPackageUID = null;
+                            patientOrderDetail.MWhen = now;
+                            patientOrderDetail.AltBillableItemUID = patientOrderDetail.BillableItemUID != billableItemUID ? billableItemUID : patientOrderDetail.AltBillableItemUID;
+
+                        }
+
+                        var patientBillableItem = db.PatientBillableItem.FirstOrDefault(p => p.PatientOrderDetailUID == orderDetailUID);
+                        if (patientBillableItem != null)
+                        {
+                            db.PatientBillableItem.Attach(patientBillableItem);
+                            patientBillableItem.BillPackageUID = null;
+                            patientBillableItem.MWhen = now;
+                        }
+
+                        var billPackage = from i in db.PatientPackage
+                                          join j in db.BillPackage on i.BillPackageUID equals j.UID
+                                          where i.UID == patientPackageUID
+                                          && i.StatusFlag == "A"
+                                          && j.StatusFlag == "A"
+                                          && j.AllowOverridePrice == "Y"
+                                          select j;
+                        if (billPackage != null && billPackage.Count() > 0)
+                        {
+                            var amount = db.PatientBillableItem
+                                .Where(p => p.PatientUID == patientUID && p.PatientVisitUID == patientVisitUID && p.StatusFlag == "A" && (p.BillPackageUID != null || p.BillPackageUID > 0)
+                                && p.IdentifyingType != "BillPackage" && p.BillPackageUID == patientPackageUID)
+                                .Sum(p => p.Amount * p.ItemMultiplier);
+
+                            var patientBillableItem1 = db.PatientBillableItem.Where(p => p.PatientUID == patientUID && p.PatientVisitUID == patientVisitUID && p.StatusFlag == "A"
+                                && p.IdentifyingType == "BillPackage" && p.BillPackageUID == patientPackageUID).FirstOrDefault();
+                            if (patientBillableItem1 != null)
+                            {
+                                patientBillableItem1.Amount = amount;
+                                patientBillableItem1.NetAmount = amount * patientBillableItem1.ItemMultiplier - patientBillableItem1.Discount;
+                                patientBillableItem1.MWhen = now;
+                                db.PatientBillableItem.Attach(patientBillableItem1);
+                            }
+                        }
+
+                    }
+                    db.SaveChanges();
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+
+        [Route("UpdateLinkPackage")]
+        [HttpPut]
+        public HttpResponseMessage UpdateLinkPackage(long patientOrderDetailUID, long patientPackageUID, bool linkFlag, int userUID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+
+                var patOrder = (from pd in db.PatientOrderDetail
+                                join p in db.PatientOrder on pd.PatientOrderUID equals p.UID
+                                where pd.UID == patientOrderDetailUID
+                                && pd.StatusFlag == "A"
+                                && p.StatusFlag == "A"
+                                select new
+                                {
+                                    PatientOrderDetailUID = pd.UID,
+                                    PatientVisitUID = p.PatientVisitUID,
+                                    PatientFixPriceUID = pd.PatientFixPriceUID ?? 0,
+                                    ORDSTUID = pd.ORDSTUID,
+                                    PatientPackageUID = pd.PatientPackageUID ?? 0,
+                                    OwnerOrganisationUID = pd.OwnerOrganisationUID,
+                                    BillableItemUID = pd.BillableItemUID,
+                                    StartDttm = pd.StartDttm,
+                                    Quantity = pd.Quantity,
+                                    OverwritePrice = pd.OverwritePrice,
+                                    PatientPackageItemUID = pd.PatientPackageItemUID
+                                }).ToList().FirstOrDefault();
+
+
+
+                using (var tran = new TransactionScope())
+                {
+
+                    if (patOrder != null && patOrder.ORDSTUID != 2848 && patOrder.PatientFixPriceUID == 0)
+                    {
+                        if (patOrder.PatientPackageUID == 0 || patOrder.PatientPackageUID == patientPackageUID)
+                        {
+                            var patientBillbaleItemUIDs = db.PatientBillableItem.Where(p => p.StatusFlag == "A" && p.PatientOrderDetailUID == patOrder.PatientOrderDetailUID).Select(p => p.UID).ToList();
+
+                            var countBill = (from i in db.PatientBill
+                                             join j in db.PatientBilledItem on i.UID equals j.PatientBillUID
+                                             where i.StatusFlag == "A"
+                                             && j.StatusFlag == "A"
+                                             && i.IsRefund == null
+                                             && i.PatientVisitUID == patOrder.PatientVisitUID
+                                             && patientBillbaleItemUIDs.Contains(j.PatientBillableItemUID ?? 0)
+                                             select i).Count();
+                            if (countBill == 0)
+                            {
+                                if (linkFlag && patOrder.PatientPackageUID == 0)
+                                {
+             
+
+                                    var patientPackage = db.PatientPackage.FirstOrDefault(p => p.UID == patientPackageUID);
+                                    var patientPackageItem = db.PatientPackageItem.FirstOrDefault(p => p.PatientPackageUID == patientPackageUID && p.BillableItemUID == patOrder.BillableItemUID && p.StatusFlag == "A");
+                                    var maxQty = patientPackage.Qty;
+                                    var quantity = db.BillPackageItem.FirstOrDefault(p => p.BillPackageUID == patientPackage.BillPackageUID && p.BillableItemUID == patOrder.BillableItemUID && p.StatusFlag == "A")?.Quantity;
+
+                                    var patientOrder = db.PatientOrder.Where(p => p.PatientVisitUID == patOrder.PatientVisitUID && p.StatusFlag == "A");
+
+                                    var quantityN = (from pd in db.PatientOrderDetail
+                                                     join po in db.PatientOrder on pd.PatientOrderUID equals po.UID
+                                                     where pd.StatusFlag == "A"
+                                                     && pd.ORDSTUID != 2848
+                                                     && pd.BillableItemUID == patOrder.BillableItemUID
+                                                     && pd.BillPackageUID == patientPackage.BillPackageUID
+                                                     && pd.PatientPackageUID == patientPackage.UID
+                                                     select pd.Quantity).Sum();
+                                    var checkItemQty = quantityN ?? 0 - quantity ?? 0 * maxQty ?? 0;
+                                    if (checkItemQty + patOrder.Quantity <= 0)
+                                    {
+                                        var patientOrderDetail = db.PatientOrderDetail.Find(patOrder.PatientOrderDetailUID);
+                                        db.PatientOrderDetail.Attach(patientOrderDetail);
+                                        patientOrderDetail.PatientPackageUID = patientPackage.UID;
+                                        patientOrderDetail.BillPackageUID = patientPackage.BillPackageUID;
+                                        patientOrderDetail.PatientPackageItemUID = patientPackageItem.UID;
+                                        patientOrderDetail.UnitPrice = patientPackageItem.Amount;
+                                        patientOrderDetail.NetAmount = patientPackageItem.Amount * patientOrderDetail.Quantity;
+
+
+                                        var patientBillableItem = db.PatientBillableItem.FirstOrDefault(p => p.PatientVisitUID == patOrder.PatientVisitUID && p.PatientOrderDetailUID == patOrder.PatientOrderDetailUID);
+                                        db.PatientBillableItem.Attach(patientBillableItem);
+                                        patientBillableItem.BillPackageUID = patientPackage.UID;
+                                        patientBillableItem.IsModified = "Y";
+                                    }
+
+                                 }
+                                else if (!linkFlag && patOrder.PatientPackageUID == patientPackageUID)
+                                {
+                                    var billingCategory = db.ReferenceValue.Where(p => p.DomainCode == "PBLCT").ToList();
+                                    var patientVisitPayors = (new PatientIdentityController()).GetPatientVisitPayorByVisitUID(patOrder.PatientVisitUID);
+                                    var firstVisitPayors = patientVisitPayors.FirstOrDefault();
+                                    int? PBLCTUID = billingCategory.FirstOrDefault(p => p.ValueCode == "OPDTRF")?.UID;
+
+                                    if (firstVisitPayors != null)
+                                    {
+                                        PBLCTUID = firstVisitPayors.PrimaryPBLCTUID;
+                                    }
+
+                                    var selectBillItemDetail = db.BillableItemDetail
+    .FirstOrDefault(p => p.StatusFlag == "A" && p.BillableItemUID == patOrder.BillableItemUID && p.OwnerOrganisationUID == patOrder.OwnerOrganisationUID && p.PBLCTUID == PBLCTUID
+    && (p.ActiveFrom == null || (DbFunctions.TruncateTime(p.ActiveFrom) <= DbFunctions.TruncateTime(DateTime.Now)))
+    && (p.ActiveTo == null || (p.ActiveTo.HasValue && DbFunctions.TruncateTime(p.ActiveTo) >= DbFunctions.TruncateTime(DateTime.Now)))
+    );
+
+                                    var patientOrderDetail = db.PatientOrderDetail.Find(patOrder.PatientOrderDetailUID);
+                                    db.PatientOrderDetail.Attach(patientOrderDetail);
+                                    patientOrderDetail.PatientPackageUID = null;
+                                    patientOrderDetail.BillPackageUID = null;
+                                    patientOrderDetail.PatientPackageItemUID = null;
+                                    patientOrderDetail.UnitPrice = selectBillItemDetail.Price;
+                                    patientOrderDetail.NetAmount = patientOrderDetail.OverwritePrice != null ? patOrder.OverwritePrice * patientOrderDetail.Quantity : selectBillItemDetail.Price * patientOrderDetail.Quantity;
+
+
+                                    var patientBillableItem = db.PatientBillableItem.FirstOrDefault(p => p.PatientVisitUID == patOrder.PatientVisitUID && p.PatientOrderDetailUID == patOrder.PatientOrderDetailUID);
+                                    db.PatientBillableItem.Attach(patientBillableItem);
+                                    patientBillableItem.BillPackageUID = null;
+                                    patientBillableItem.IsModified = "N";
+
+
+
+                                }
+                            }
+                        }
+                    }
+
+                    db.SaveChanges();
+
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
         }
 
         private HttpResponseMessage HttpNotFound()

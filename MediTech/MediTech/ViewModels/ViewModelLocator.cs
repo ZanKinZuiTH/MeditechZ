@@ -1830,6 +1830,17 @@ namespace MediTech.ViewModels
             }
         }
 
+        public AdjustOrderDetailForPackageViewModel AdjustOrderDetailForPackageViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<AdjustOrderDetailForPackageViewModel>())
+                    SimpleIoc.Default.Register<AdjustOrderDetailForPackageViewModel>();
+
+                return ServiceLocator.Current.GetInstance<AdjustOrderDetailForPackageViewModel>();
+            }
+        }
+
         #endregion
 
         #region Patient

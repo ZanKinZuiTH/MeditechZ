@@ -97,7 +97,7 @@
                                         <Setter Property="Padding" Value="0"/>
                                     </Style>
                                 </dxlc:LayoutGroup.GroupBoxStyle>
-                                <dxg:GridControl x:Name="grdOrderDetail" ItemsSource="{Binding PatientOrders}"
+                                <dxg:GridControl x:Name="grdOrderDetail" ItemsSource="{Binding PatientOrders}" 
                                          SelectedItem="{Binding SelectPatientOrder}">
                                     <dxg:GridControl.Columns>
                                         <dxg:GridColumn Width="40" Fixed="Left">
@@ -177,21 +177,23 @@
                                             </dxg:GridColumn.EditSettings>
                                         </dxg:GridColumn>
                                         <dxg:GridColumn Header="แพทย์" FieldName="CareproviderName"  ReadOnly="True"/>
+                                        <dxg:GridColumn Header="Package/OrderSet" FieldName="Package_OrderSet_Name"  ReadOnly="True"/>
                                         <dxg:GridColumn Header="หมายเหตุ" FieldName="Comments" ReadOnly="True"/>
                                     </dxg:GridControl.Columns>
                                     <dxg:GridControl.View>
                                         <dxg:TableView x:Name="gvOrderDetail"  ShowGroupPanel="False" AllowBestFit="True" 
                                                BestFitArea="All"
-                                               BestFitMode="AllRows" 
-                                               ShowTotalSummary="True" ShowIndicator="True"/>
+                                               BestFitMode="AllRows" />
                                     </dxg:GridControl.View>
-                                    <dxg:GridControl.TotalSummary>
+                                    <!--<dxg:GridControl.TotalSummary>
                                         <dxg:GridSummaryItem x:Name="TotalAmount"  
                                                      FieldName="NetAmount" SummaryType="Sum"  DisplayFormat="#,#.00"/>
-                                    </dxg:GridControl.TotalSummary>
+                                    </dxg:GridControl.TotalSummary>-->
                                 </dxg:GridControl>
                             </dxlc:LayoutGroup>
-
+                            <dxlc:LayoutItem HorizontalAlignment="Right">
+                                <TextBlock Text="{Binding OrderSumDesc}" FontWeight="Bold"/>
+                            </dxlc:LayoutItem>
                             <dxlc:LayoutGroup HorizontalAlignment="Right">
                                 <dx:SimpleButton Width="80" Command="{Binding SaveCommand}"
                                              IsEnabled="{Binding EnableEnterOrder}"
@@ -268,6 +270,7 @@
                             </dxg:GridColumn>
                             <dxg:GridColumn FieldName="PaymentStatus" Header="สถานะการชำระเงิน"/>
                             <dxg:GridColumn Header="OverridePrice" FieldName="IsPriceOverwrite" ReadOnly="True"/>
+                            <dxg:GridColumn Header="PackageName" FieldName="PackageName" ReadOnly="True"/>
                             <dxg:GridColumn Header="OrderSet" FieldName="OrderSetName" ReadOnly="True"/>
                             <dxg:GridColumn Header="ผู้คีย์" FieldName="OrderBy" ReadOnly="True"/>
                             <dxg:GridColumn FieldName="OrderNumber"/>
@@ -306,11 +309,8 @@
                             </dxlc:LayoutItem>
 
                         </dxlc:LayoutGroup>
-                        <dxlc:LayoutItem Label="Total amount =" HorizontalAlignment="Right">
-                            <dxe:TextEdit EditValue="{Binding TotalExistingAmount}"
-                                          Background="Transparent"
-                                          DisplayFormatString="#,#.00" 
-                                          IsReadOnly="True"/>
+                        <dxlc:LayoutItem HorizontalAlignment="Right">
+                            <TextBlock Text="{Binding TotalExistingAmount}" FontWeight="Bold"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutGroup HorizontalAlignment="Right">
                             <dx:SimpleButton Width="95" Command="{Binding ReviewOrderCommand}"
@@ -393,7 +393,7 @@
                         <dxlc:LayoutGroup Orientation="Horizontal" Visibility="{Binding IsVisibilityUsedPackage}">
                             <dxlc:LayoutItem Label="Used Packange" HorizontalAlignment="Left">
                                 <dxe:ComboBoxEdit Width="250"   ItemsSource="{Binding UsedPackages}"
-                                                  SelectedItem="{Binding SelecedUsedPackage}"
+                                                  SelectedItem="{Binding SelectUsedPackage}"
                                                   DisplayMember="PackageName"
                                                   ValueMember="BillPackageUID"/>
                             </dxlc:LayoutItem>
@@ -406,11 +406,12 @@
                                 </dxlc:LayoutItem>
                                 <dx:SimpleButton Content="Select All" Width="80" Height="25" Command="{Binding SelectAllPackageCommand}" IsEnabled="{Binding EnableEnterOrder}"/>
                                 <dx:SimpleButton Content="Order" Width="80" Height="25" Command="{Binding OrderPackageCommand}" IsEnabled="{Binding EnableEnterOrder}"/>
-                                <dx:SimpleButton Content="Unlink" Width="80" Height="25" Command="{Binding UnlinkPackageCommand}" IsEnabled="{Binding EnableEnterOrder}"/>
+                                <dx:SimpleButton Content="Unlink All" Width="80" Height="25" Command="{Binding UnlinkPackageCommand}" IsEnabled="{Binding EnableEnterOrder}"/>
                             </dxlc:LayoutGroup>
                         </dxlc:LayoutGroup>
 
-                        <dxg:GridControl Name="grdPackage" ItemsSource="{Binding BillPackageItems}"
+                        <dxg:GridControl Name="grdPackage" ItemsSource="{Binding BillPackageItems}" 
+
                                          SelectedItem="{Binding SelectBillPackageItem}"
                                          >
                             <dxg:GridColumn Header="No" Width="30" ReadOnly="True">
@@ -427,10 +428,10 @@
                                     <dxe:CheckEditSettings />
                                 </dxg:GridColumn.EditSettings>
                             </dxg:GridColumn>
-                            <dxg:GridColumn Header="Order Name" FieldName="ItemName" ReadOnly="True">
+                            <dxg:GridColumn Header="Order Name" FieldName="ItemName" ReadOnly="True"  Width="200">
                                 <dxg:GridColumn.CellTemplate>
                                     <DataTemplate>
-                                        <dxe:HyperlinkEdit EditValue="{Binding RowData.Row.ItemName}" TextWrapping="Wrap">
+                                        <dxe:HyperlinkEdit EditValue="{Binding RowData.Row.ItemName}" TextWrapping="Wrap" IsEnabled="{Binding EnableEnterOrder}"  >
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger  EventName="RequestNavigation">
                                                     <mvvm:EventToCommand Command="{Binding View.DataContext.EditPackageItemCommand}" />
@@ -440,29 +441,27 @@
                                     </DataTemplate>
                                 </dxg:GridColumn.CellTemplate>
                             </dxg:GridColumn>
-                            <dxg:GridColumn Header="Qty" Width="50" FieldName="Quantity" ReadOnly="True"/>
-                            <dxg:GridColumn Header="UOM" ReadOnly="True" FieldName="UOM"/>
+                            <dxg:GridColumn Header="Qty" Width="50" FieldName="ItemMultiplier" ReadOnly="True"/>
                             <dxg:GridColumn Header="Used Qty" Width="80" ReadOnly="True" FieldName="UsedQuantity"/>
-                            <dxg:GridColumn Header="Less/Under" Width="80" ReadOnly="True" FieldName=""/>
-                            <dxg:GridColumn Header="Out Package" Width="80" ReadOnly="True" FieldName="OutQuantity"/>
-                            <dxg:GridColumn Header="Alternative" Width="80" ReadOnly="True" FieldName="Alternative"/>
+                            <dxg:GridColumn Header="Less/Under" Width="80" ReadOnly="True" FieldName="Lest_Over_Quantity"/>
+                            <dxg:GridColumn Header="Out Package" Width="80" ReadOnly="True" FieldName="OutPackageQuantity"/>
                             <dxg:GridColumn Header="Price" ReadOnly="True" FieldName="Amount"/>
                             <dxg:GridColumn Header="NetPrice" ReadOnly="True" FieldName="NetAmount"/>
                             <dxg:GridColumn Header="Discount" ReadOnly="True" FieldName="Discount"/>
                             
                             <dxg:GridControl.TotalSummary>
                                 <dxg:GridSummaryItem x:Name="TotalQty"  
-                                                     FieldName="Qty" SummaryType="Sum"  DisplayFormat="#
+                                                     FieldName="ItemMultiplier" SummaryType="Sum"  DisplayFormat="#
                                                      "/>
                                 <dxg:GridSummaryItem x:Name="TotalNetPrice"  
-                                                     FieldName="NetPrice" SummaryType="Sum"  DisplayFormat="#,#.00"/>
+                                                     FieldName="NetAmount" SummaryType="Sum"  DisplayFormat="#,#.00"/>
                             </dxg:GridControl.TotalSummary>
                             <dxg:GridControl.View>
                                 <dxg:TableView ShowGroupPanel="False" ShowTotalSummary="True"/>
                             </dxg:GridControl.View>
                         </dxg:GridControl>
                         <dxlc:LayoutItem HorizontalAlignment="Right">
-                            <TextBlock Text="{Binding UsedPackagedDescription}" FontWeight="Bold" Foreground="Red" FontSize="18"/>
+                            <TextBlock Text="{Binding UsedPackagedDescription}" FontWeight="Bold"/>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                 </dx:DXTabItem>

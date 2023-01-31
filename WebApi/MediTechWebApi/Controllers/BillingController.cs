@@ -22,16 +22,16 @@ namespace MediTechWebApi.Controllers
     {
         protected MediTechEntities db = new MediTechEntities();
 
-        public BillableItemDetailModel GetBillableItemPrice(List<BillableItemDetailModel> billItmDetail, int ownerOrganisationUID)
+        public BillableItemDetailModel GetBillableItemPrice(List<BillableItemDetailModel> billItmDetail, int? PBLCTUID, int ownerOrganisationUID)
         {
             BillableItemDetailModel selectBillItemDetail = null;
 
             if (billItmDetail.Count(p => p.OwnerOrganisationUID == ownerOrganisationUID) > 0)
             {
                 selectBillItemDetail = billItmDetail
-                    .FirstOrDefault(p => p.StatusFlag == "A" && p.OwnerOrganisationUID == ownerOrganisationUID
-                    && (p.ActiveFrom == null || (DbFunctions.TruncateTime(p.ActiveFrom) >= DbFunctions.TruncateTime(DateTime.Now)))
-                    && (p.ActiveTo == null || (p.ActiveTo.HasValue && DbFunctions.TruncateTime(p.ActiveTo) <= DbFunctions.TruncateTime(DateTime.Now)))
+                    .FirstOrDefault(p => p.StatusFlag == "A" && p.OwnerOrganisationUID == ownerOrganisationUID && p.PBLCTUID == PBLCTUID
+                    && (p.ActiveFrom == null || (DbFunctions.TruncateTime(p.ActiveFrom) <= DbFunctions.TruncateTime(DateTime.Now)))
+                    && (p.ActiveTo == null || (p.ActiveTo.HasValue && DbFunctions.TruncateTime(p.ActiveTo) >= DbFunctions.TruncateTime(DateTime.Now)))
                     );
             }
 
@@ -1076,9 +1076,13 @@ namespace MediTechWebApi.Controllers
                                 itemCost = billItemDetail?.Cost;
                             }
 
-                            BillableItem billableItem = db.BillableItem.Find(item.BillableItemUID);
+                            if (accountItem.IsPackage != "Y")
+                            {
+                                BillableItem billableItem = db.BillableItem.Find(item.BillableItemUID);
 
-                            doctorFee = (billableItem.DoctorFee / 100) * item.NetAmount;
+                                doctorFee = (billableItem.DoctorFee / 100) * item.NetAmount;
+                            }
+
 
                             PatientBilledItem patientBilledItem = new PatientBilledItem();
                             patientBilledItem.PatientBillUID = patBill.UID;
@@ -1104,7 +1108,16 @@ namespace MediTechWebApi.Controllers
                             }
                             if (accountItem.IsPackage == "Y" && item.BillableItemUID.HasValue && item.BillableItemUID.Value > 0)
                             {
-                                patientBilledItem.PatientPackageItemUID = item.SubAccountUID;
+                                var patientPackageUID = (from pk in db.PatientPackage
+                                                        join pki in db.PatientPackageItem on pk.UID equals pki.PatientPackageUID
+                                                        where pk.BillPackageUID == item.SubAccountUID
+                                                        && pki.BillableItemUID == item.BillableItemUID
+                                                        && pk.StatusFlag == "A"
+                                                        && pki.StatusFlag == "A"
+                                                        && pk.PatientVisitUID == patpv.UID
+                                                        && pk.PatientUID == patpv.PatientUID
+                                                        select pki).FirstOrDefault()?.UID;
+                                patientBilledItem.PatientPackageItemUID = patientPackageUID;
                             }
 
 
@@ -2246,8 +2259,8 @@ namespace MediTechWebApi.Controllers
             List<BillPackageModel> data = db.BillPackage.Where(p => p.StatusFlag == "A"
             && (string.IsNullOrEmpty(code) || p.Code.ToLower().Contains(code.ToLower()))
             && (string.IsNullOrEmpty(name) || p.PackageName.ToLower().Contains(name.ToLower()))
-            && (p.OrderCategoryUID == null || p.OrderCategoryUID == orderCategoryUID)
-            && (p.OrderSubCategoryUID == null || p.OrderSubCategoryUID == orderSubCategoryUID)
+            && (orderCategoryUID == null || p.OrderCategoryUID == orderCategoryUID)
+            && (orderSubCategoryUID == null || p.OrderSubCategoryUID == orderSubCategoryUID)
             ).Select(p => new BillPackageModel
             {
                 BillPackageUID = p.UID,
@@ -2275,7 +2288,7 @@ namespace MediTechWebApi.Controllers
         public List<BillPackageDetailModel> GetBillPackageItemByUID(int billPackageUID)
         {
             List<BillPackageDetailModel> data = (from p in db.BillPackageItem
-                                                 join b in db.ItemMaster on p.ItemUID equals b.UID
+                                                 join b in db.BillableItem on p.BillableItemUID equals b.UID
                                                  where p.StatusFlag == "A"
                                                  && p.BillPackageUID == billPackageUID
                                                  && b.StatusFlag == "A"
@@ -2287,7 +2300,7 @@ namespace MediTechWebApi.Controllers
                                                      Quantity = p.Quantity,
                                                      ItemUID = p.ItemUID,
                                                      ItemCode = b.Code,
-                                                     ItemName = b.Name,
+                                                     ItemName = b.ItemName,
                                                      CURNCUID = p.CURNCUID,
                                                      ActiveFrom = p.ActiveFrom,
                                                      ActiveTo = p.ActiveTo,
@@ -2430,7 +2443,7 @@ namespace MediTechWebApi.Controllers
                             billPackageItem.OrderCategoryUID = item.OrderCategoryUID;
                             billPackageItem.OrderSubCategoryUID = item.OrderSubCategoryUID;
                             billPackageItem.OwnerOrganisationUID = item.OwnerOrganisationUID;
-                            billPackageItem.ActiveFrom = null;
+                            billPackageItem.ActiveFrom = item.ActiveFrom;
                             billPackageItem.ActiveTo = null;
 
                             db.BillPackageItem.AddOrUpdate(billPackageItem);

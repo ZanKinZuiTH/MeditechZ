@@ -25,5 +25,18 @@ namespace MediTech.Model
         public string StatusFlag { get; set; }
         public int OwnerOrganisationUID { get; set; }
         public byte[] TIMESTAMP { get; set; }
+
+        public bool IsSelected { get; set; }
+        public int BillPackageUID { get; set; }
+        public int CURNCUID { get; set; }
+        public int? ItemUID { get; set; }
+        public string ItemCode { get; set; }
+        public double? UsedQuantity { get; set; }
+        public double? Lest_Over_Quantity { get; set; }
+        public double? OutPackageQuantity { get; set; }
+        public double? AlternativeQuantity { get; set; }
+        public double? NetAmount { get; set; }
+        public long? PatientOrderDetailUID { get; set; }
+
     }
 }

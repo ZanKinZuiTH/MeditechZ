@@ -35,6 +35,6 @@ namespace MediTech.Model
         public string BillingGroup { get; set; }
         public string BillingSubGroup { get; set; }
 
-        public List<BillPackageDetailModel> BillPackageDetails { get; set; }
+        public List<PatientPackageItemModel> BillPackageDetails { get; set; }
     }
 }

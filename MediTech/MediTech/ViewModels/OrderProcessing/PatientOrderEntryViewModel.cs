@@ -142,6 +142,14 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectCareprovider, value); }
         }
 
+        private string _OrderSumDesc = "Order All = 0 list, Out Package = 0 list Price = 0";
+
+        public string OrderSumDesc
+        {
+            get { return _OrderSumDesc; }
+            set { Set(ref _OrderSumDesc, value); }
+        }
+
 
         private List<PatientOrderAlertModel> _PatientOrderAlerts;
 
@@ -160,11 +168,7 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _PatientOrders, value);
-                IsEnableOrderFrom = true;
-                if (_PatientOrders != null || _PatientOrders.Count > 0)
-                {
-                    IsEnableOrderFrom = false;
-                }
+
             }
         }
 
@@ -261,9 +265,9 @@ namespace MediTech.ViewModels
             set { Set(ref _DateExitingTo, value); }
         }
 
-        private double? _TotalExistingAmount;
+        private string _TotalExistingAmount;
 
-        public double? TotalExistingAmount
+        public string TotalExistingAmount
         {
             get { return _TotalExistingAmount; }
             set { Set(ref _TotalExistingAmount, value); }
@@ -418,9 +422,8 @@ namespace MediTech.ViewModels
                 if (_UsedPackages != null && _UsedPackages.Count > 0)
                 {
                     IsVisibilityUsedPackage = Visibility.Visible;
-                    UsedPackagedDescription = string.Format("Package {0} List. Prices = {1} ", _UsedPackages.Count(), Math.Round(_UsedPackages.Sum(p => p.TotalAmount) ?? 0,2));
+                    UsedPackagedDescription = string.Format("Package {0} List. Prices = {1:#,#.00} ", _UsedPackages.Count(), Math.Round(_UsedPackages.Sum(p => p.TotalAmount) ?? 0, 2));
                     UsedPackageCount = _UsedPackages.Count().ToString();
-
                 }
                 else
                 {
@@ -428,21 +431,20 @@ namespace MediTech.ViewModels
                     UsedPackagedDescription = "";
                     UsedPackageCount = "";
                 }
+                }
             }
-        }
 
-        private PatientPackageModel _SelecedUsedPackage;
+        private PatientPackageModel _SelectUsedPackage;
 
-        public PatientPackageModel SelecedUsedPackage
+        public PatientPackageModel SelectUsedPackage
         {
-            get { return _SelecedUsedPackage; }
-            set { Set(ref _SelecedUsedPackage, value);
-                if (SelecedUsedPackage != null)
+            get { return _SelectUsedPackage; }
+            set
+            {
+                Set(ref _SelectUsedPackage, value);
+                if (SelectUsedPackage != null)
                 {
-                    BillPackageItems = new ObservableCollection<BillPackageDetailModel>(SelecedUsedPackage.BillPackageDetails);
-                    AdjustablePackageItems = DataService.OrderProcessing.GetAdjustablePackageItems(PatientVisit.PatientUID, PatientVisit.PatientVisitUID, SelecedUsedPackage.BillPackageUID ?? 0);
-                    OrderPackageBy = string.Format("- {0} -   {1}", SelecedUsedPackage.PackageCreatedByName, SelecedUsedPackage.PackageCreatedDttm.ToString("dd-MM-yyyy HH:MM tt"));
-                    UsedPackagePrice = String.Format("{0:#,#.00}", SelecedUsedPackage.TotalAmount?.ToString());
+                    AdjustOrderDetailForPackage();
                 }
                 else
                 {
@@ -471,17 +473,17 @@ namespace MediTech.ViewModels
         }
 
 
-        private ObservableCollection<BillPackageDetailModel> _BillPackageItems;
+        private ObservableCollection<PatientPackageItemModel> _BillPackageItems;
 
-        public ObservableCollection<BillPackageDetailModel> BillPackageItems
+        public ObservableCollection<PatientPackageItemModel> BillPackageItems
         {
             get { return _BillPackageItems; }
             set { Set(ref _BillPackageItems, value); }
         }
 
-        private BillPackageDetailModel _SelectBillPackageItem;
+        private PatientPackageItemModel _SelectBillPackageItem;
 
-        public BillPackageDetailModel SelectBillPackageItem
+        public PatientPackageItemModel SelectBillPackageItem
         {
             get { return _SelectBillPackageItem; }
             set { Set(ref _SelectBillPackageItem, value); }
@@ -538,6 +540,9 @@ namespace MediTech.ViewModels
                 return _SaveCommand ?? (_SaveCommand = new RelayCommand(SaveOrder));
             }
         }
+
+
+
 
         private RelayCommand _ClearOrderCommand;
         public RelayCommand ClearOrderCommand
@@ -658,7 +663,7 @@ namespace MediTech.ViewModels
                 return _EditPackageItemCommand ?? (_EditPackageItemCommand = new RelayCommand(EditPackageItem));
             }
         }
-        
+
         #endregion
 
         #region Variable
@@ -681,6 +686,19 @@ namespace MediTech.ViewModels
             OrderTypes = refVale.Where(p => p.DomainCode == "PRSTYP").ToList();
             Priorities = refVale.Where(p => p.DomainCode == "RQPRT").ToList();
             BillingCategory = refVale.Where(p => p.DomainCode == "PBLCT").ToList();
+
+            PatientOrders.CollectionChanged += PatientOrders_CollectionChanged;
+        }
+
+        private void PatientOrders_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            IsEnableOrderFrom = true;
+            if (_PatientOrders != null || _PatientOrders.Count > 0)
+            {
+                IsEnableOrderFrom = false;
+            }
+            OrderSumDesc = String.Format("Order All = {0} list, Out Package = {1} list Price = {2:#,#.00}", PatientOrders.Count()
+                , PatientOrders.Count(p => p.BillPackageUID == null), PatientOrders.Where(p => p.BillPackageUID == null).Sum(p => p.NetAmount));
         }
 
         public override void OnLoaded()
@@ -704,7 +722,7 @@ namespace MediTech.ViewModels
             }
 
             UsedPackages = DataService.OrderProcessing.GetPatientPackageByVisitUID(PatientVisit.PatientVisitUID);
-            SelecedUsedPackage = _UsedPackages?.FirstOrDefault();
+            SelectUsedPackage = _UsedPackages?.FirstOrDefault();
             (this.View as PatientOrderEntry).txtOrder.Focus();
         }
 
@@ -820,7 +838,10 @@ namespace MediTech.ViewModels
         {
             ExistingOrders = new ObservableCollection<PatientOrderDetailModel>(DataService.OrderProcessing.GetOrderAllByVisitUID(SelectLookupVisit.Key2.Value, DateExitingFrom, DateExitingTo));
 
-            TotalExistingAmount = ExistingOrders.Where(p => p.ORDSTUID != 2848).Sum(p => p.NetAmount);
+            double totalPackage = UsedPackages.Sum(p => p.TotalAmount) ?? 0;
+            double totalNotPackage = ExistingOrders.Where(p => p.ORDSTUID != 2848 && (p.BillPackageUID ?? 0) == 0).Sum(p => p.NetAmount) ?? 0;
+            double totalAmount = totalPackage + totalNotPackage;
+            TotalExistingAmount = string.Format("Total in Pakcage = {0:#,#.00},Total Not Package = {1:#,#.00},Total amount = {2:#,#.00}", totalPackage, totalNotPackage, totalAmount);
         }
 
         private void ExecuteDeleteRow()
@@ -907,6 +928,7 @@ namespace MediTech.ViewModels
             }
         }
 
+
         public void LoadedPackange()
         {
             if (!IsPackageOneceLoad)
@@ -926,7 +948,7 @@ namespace MediTech.ViewModels
                 {
                     if (UsedPackages != null && UsedPackages.FirstOrDefault(p => p.BillPackageUID == SelectBillPackage.BillPackageUID) != null)
                     {
-                       var result = QuestionDialog("Package นี้การมีคีย์ใช้แล้ว คุณต้องการดำเนินการต่อ หรือไม่ ?");
+                        var result = QuestionDialog("Package นี้การมีคีย์ใช้แล้ว คุณต้องการดำเนินการต่อ หรือไม่ ?");
                         if (result != MessageBoxResult.Yes)
                         {
                             return;
@@ -949,7 +971,7 @@ namespace MediTech.ViewModels
 
                     UsedPackages = DataService.OrderProcessing.GetPatientPackageByVisitUID(PatientVisit.PatientVisitUID);
 
-                    SelecedUsedPackage = _UsedPackages.OrderByDescending(p => p.PatientPackageUID).FirstOrDefault();
+                    SelectUsedPackage = _UsedPackages.OrderByDescending(p => p.PatientPackageUID).FirstOrDefault();
 
                     SearchPackageCriteria = String.Empty;
                     SelectBillPackage = null;
@@ -967,16 +989,16 @@ namespace MediTech.ViewModels
         {
             try
             {
-                if (SelecedUsedPackage != null)
+                if (SelectUsedPackage != null)
                 {
-                   var result = QuestionDialog(String.Format("ต้องการรบ Package {0} หรือไม่", SelecedUsedPackage.PackageName));
+                    var result = QuestionDialog(String.Format("ต้องการรบ Package {0} หรือไม่", SelectUsedPackage.PackageName));
                     if (result == MessageBoxResult.Yes)
                     {
-                        DataService.OrderProcessing.DeletePatientPackage(SelecedUsedPackage.PatientPackageUID, AppUtil.Current.UserID);
+                        DataService.OrderProcessing.DeletePatientPackage(SelectUsedPackage.PatientPackageUID, AppUtil.Current.UserID);
 
                         UsedPackages = DataService.OrderProcessing.GetPatientPackageByVisitUID(PatientVisit.PatientVisitUID);
 
-                        SelecedUsedPackage = _UsedPackages.OrderByDescending(p => p.PatientPackageUID).FirstOrDefault();
+                        SelectUsedPackage = _UsedPackages.OrderByDescending(p => p.PatientPackageUID).FirstOrDefault();
                     }
                 }
             }
@@ -1011,24 +1033,182 @@ namespace MediTech.ViewModels
         {
             if (SelectBillPackageItem != null)
             {
-               
+                AdjustOrderDetailForPackageViewModel viewModel = new AdjustOrderDetailForPackageViewModel(SelectUsedPackage.PackageName, OrderPackageBy, SelectUsedPackage.PatientPackageUID, SelectBillPackageItem.BillableItemUID,PatientVisit.PatientVisitUID);
+                AdjustOrderDetailForPackage view = new AdjustOrderDetailForPackage();
+                view.DataContext = viewModel;
+                var result = (AdjustOrderDetailForPackageViewModel)this.LaunchViewDialogNonPermiss(view,false);
+                if (result != null && result.ResultDialog == ActionDialog.Save)
+                {
+                    long patientPackageUID = SelectUsedPackage.PatientPackageUID;
+                    UsedPackages = DataService.OrderProcessing.GetPatientPackageByVisitUID(PatientVisit.PatientVisitUID);
+                    SelectUsedPackage = _UsedPackages?.FirstOrDefault(p => p.PatientPackageUID == patientPackageUID);
+                }
             }
         }
 
         public void OrderPackage()
         {
+
             foreach (var item in BillPackageItems)
             {
-                if (item.IsSelected)
+                if (item.IsSelected && PatientOrders.Count(p => p.BillableItemUID == item.BillableItemUID && p.PatientPackageUID == item.PatientPackageUID) <= 0)
                 {
+                    int ownerUID = AppUtil.Current.OwnerOrganisationUID;
+                    PatientOrderDetailModel newOrder = new PatientOrderDetailModel();
+                    BillableItemModel billItem = DataService.MasterData.GetBillableItemByUID(item.BillableItemUID);
+                    if (billItem.BillingServiceMetaData == "Drug"
+                               || billItem.BillingServiceMetaData == "Medical Supplies"
+                               || billItem.BillingServiceMetaData == "Supply")
+                    {
+                        ItemMasterModel itemMaster = DataService.Inventory.GetItemMasterByUID(billItem.ItemUID.Value);
+                        List<StockModel> stores = new List<StockModel>();
 
+                        if (itemMaster == null)
+                        {
+                            WarningDialog("ไม่มี " + billItem.ItemName + " ในคลัง โปรดตรวจสอบ");
+                            continue;
+                        }
+
+                        stores = DataService.Inventory.GetStockRemainForDispensedByItemMasterUID(itemMaster.ItemMasterUID, ownerUID);
+
+                        if (stores == null || stores.Count <= 0)
+                        {
+                            WarningDialog("ไม่มี " + billItem.ItemName + " ในคลัง โปรดตรวจสอบ");
+                            continue;
+                        }
+                        else
+                        {
+                            bool CanDispense = false;
+                            foreach (var store in stores)
+                            {
+                                if (store.Quantity >= item.ItemMultiplier)
+                                {
+                                    CanDispense = true;
+                                }
+                            }
+                            if (CanDispense == false)
+                            {
+                                if (itemMaster.CanDispenseWithOutStock != "Y")
+                                {
+                                    WarningDialog("มี " + billItem.ItemName + " ในคลังไม่พอสำหรับจ่ายยา โปรดตรวจสอบ");
+                                    continue;
+
+                                }
+                                else if (itemMaster.CanDispenseWithOutStock == "Y")
+                                {
+                                    MessageBoxResult result = QuestionDialog("มี" + billItem.ItemName + "ในคลังไม่พอ คุณต้องการดำเนินการต่อหรือไม่ ?");
+                                    if (result == MessageBoxResult.No || result == MessageBoxResult.Cancel)
+                                    {
+                                        continue;
+                                    }
+                                }
+                            }
+                        }
+
+                        if (item.ItemMultiplier <= 0)
+                        {
+                            WarningDialog("ไม่อนุญาติให้คีย์ + " + billItem.ItemName + " จำนวน < 0");
+                            continue;
+                        }
+
+                        if (itemMaster.MinSalesQty != null && item.ItemMultiplier < itemMaster.MinSalesQty)
+                        {
+                            WarningDialog("คีย์จำนวน " + billItem.ItemName + " ที่ใช้น้อยกว่าจำนวนขั้นต่ำที่คีย์ได้ โปรดตรวจสอบ");
+                            continue;
+                        }
+
+
+                        newOrder.IsStock = itemMaster.IsStock;
+                        newOrder.StoreUID = stores.Count(p => p.Quantity >= item.ItemMultiplier) > 0 ? stores.Where(p => p.Quantity >= item.ItemMultiplier)?.FirstOrDefault().StoreUID : (int?)null;
+                        newOrder.DFORMUID = itemMaster.FORMMUID;
+                        newOrder.ROUTEUID = itemMaster.ROUTEUID;
+                        newOrder.PDSTSUID = itemMaster.PDSTSUID;
+                        newOrder.QNUOMUID = itemMaster.BaseUOM;
+                        newOrder.Dosage = itemMaster.DoseQuantity;
+                    }
+
+                    newOrder.BillPackageUID = item.BillPackageUID;
+                    newOrder.PatientPackageUID = item.PatientPackageUID;
+                    newOrder.PatientPackageItemUID = item.PatientPackageItemUID;
+                    newOrder.Package_OrderSet_Name = SelectUsedPackage.PackageName;
+                    newOrder.BillableItemUID = billItem.BillableItemUID;
+                    newOrder.ItemName = billItem.ItemName;
+                    newOrder.BSMDDUID = billItem.BSMDDUID;
+                    newOrder.ItemUID = billItem.ItemUID;
+                    newOrder.ItemCode = billItem.Code;
+                    newOrder.BillingService = billItem.BillingServiceMetaData;
+                    newOrder.UnitPrice = item.Amount;
+                    newOrder.OriginalUnitPrice = item.Amount;
+                    newOrder.OrderCatagoryUID = billItem.OrderCategoryUID;
+                    newOrder.OrderSubCategoryUID = billItem.OrderSubCategoryUID;
+
+                    newOrder.ORDPRUID = Priorities.FirstOrDefault(p => p.ValueCode == "NORML").Key;
+                    newOrder.PRSTYPUID = OrderTypes.FirstOrDefault(p => p.ValueCode == "ROMED").Key;
+                    newOrder.OrderType = OrderTypes.FirstOrDefault(p => p.ValueCode == "ROMED").Display;
+
+                    newOrder.DisplayPrice = item.Amount;
+
+                    newOrder.Quantity = item.ItemMultiplier;
+
+                    newOrder.IsPriceOverwrite = "N";
+                    newOrder.StartDttm = DateTime.Now;
+                    newOrder.EndDttm = newOrder.StartDttm?.AddDays(1);
+
+                    newOrder.NetAmount = ((item.Amount) * item.ItemMultiplier);
+                    newOrder.DoctorFeePer = billItem.DoctorFee;
+                    newOrder.DoctorFee = (billItem.DoctorFee / 100) * newOrder.NetAmount;
+
+                    newOrder.OwnerOrganisationUID = ownerUID;
+
+                    if (PatientOrderAlerts != null && PatientOrderAlerts.Count() > 0)
+                        newOrder.PatientOrderAlert = PatientOrderAlerts;
+
+                    PatientOrders.Add(newOrder);
+                    OnUpdateEvent();
                 }
             }
+            SelectTabIndex = 0;
+
+
         }
 
         public void UnlinkPackage()
         {
+            try
+            {
+                var result = QuestionDialog("คุณต้องการ ยกรายการทั้งหมดออกจาก Package ใช้หรือไม่?");
+                if (result == MessageBoxResult.Yes)
+                {
+                    var listOrderDetilUIDs = BillPackageItems.Where(p => (p.PatientOrderDetailUID ?? 0) != 0).Select(p => p.PatientOrderDetailUID ?? 0).ToList();
+                    DataService.OrderProcessing.AdjustOrderDetailForPackage(PatientVisit.PatientUID, PatientVisit.PatientVisitUID, SelectUsedPackage.PatientPackageUID, 0, listOrderDetilUIDs);
+                    AdjustOrderDetailForPackage();
+                }
+            }
+            catch (Exception er)
+            {
 
+                ErrorDialog(er.Message);
+            }
+        }
+
+        void AdjustOrderDetailForPackage()
+        {
+            BillPackageItems = new ObservableCollection<PatientPackageItemModel>(SelectUsedPackage.BillPackageDetails);
+            AdjustablePackageItems = DataService.OrderProcessing.GetAdjustablePackageItems(PatientVisit.PatientUID, PatientVisit.PatientVisitUID, SelectUsedPackage.PatientPackageUID);
+            OrderPackageBy = string.Format("    -   {0}   -   {1}", SelectUsedPackage.PackageCreatedByName, SelectUsedPackage.PackageCreatedDttm.ToString("dd-MM-yyyy HH:MM tt"));
+            UsedPackagePrice = String.Format("{0:#,#.00}", SelectUsedPackage.TotalAmount?.ToString());
+
+            foreach (var item in BillPackageItems)
+            {
+                if (AdjustablePackageItems != null && AdjustablePackageItems.Count(p => p.BillableItemUID == item.BillableItemUID) > 0)
+                {
+                    item.OutPackageQuantity = AdjustablePackageItems.Count(p => p.BillableItemUID == item.BillableItemUID && p.BillPackageUID == 0);
+                    item.UsedQuantity = AdjustablePackageItems.Count(p => p.BillableItemUID == item.BillableItemUID && p.BillPackageUID == item.PatientPackageUID);
+                    item.Lest_Over_Quantity = item.ItemMultiplier - item.UsedQuantity;
+                }
+
+            }
+            OnUpdateEvent();
         }
 
         void ApplyOrderItem(SearchOrderItem orderItem)
@@ -1159,6 +1339,7 @@ namespace MediTech.ViewModels
                             newOrder.OrderSetUID = item.OrderSetUID;
                             newOrder.OrderSetBillableItemUID = item.OrderSetBillableItemUID;
                             newOrder.BillableItemUID = billItem.BillableItemUID;
+                            newOrder.Package_OrderSet_Name = orderSet.Name;
                             newOrder.ItemName = billItem.ItemName;
                             newOrder.BSMDDUID = billItem.BSMDDUID;
                             newOrder.ItemUID = billItem.ItemUID;
@@ -1181,7 +1362,7 @@ namespace MediTech.ViewModels
                             newOrder.Comments = item.ProcessingNotes;
                             newOrder.IsPriceOverwrite = "N";
                             newOrder.StartDttm = DateTime.Now;
-                            newOrder.EndDttm = newOrder.StartDttm;
+                            newOrder.EndDttm = newOrder.StartDttm?.AddDays(1);
 
                             newOrder.NetAmount = ((item.Price) * item.Quantity);
                             newOrder.DoctorFeePer = item.DoctorFee;

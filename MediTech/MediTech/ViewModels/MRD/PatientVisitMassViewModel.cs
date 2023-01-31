@@ -1094,7 +1094,7 @@ namespace MediTech.ViewModels
                             newOrder.Comments = item.ProcessingNotes;
                             newOrder.IsPriceOverwrite = "N";
                             newOrder.StartDttm = DateTime.Now;
-                            newOrder.EndDttm = newOrder.StartDttm;
+                            newOrder.EndDttm = newOrder.StartDttm?.AddDays(1);
 
                             newOrder.NetAmount = ((item.Price) * item.Quantity);
                             newOrder.DoctorFeePer = item.DoctorFee;

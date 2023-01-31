@@ -2948,7 +2948,7 @@ namespace MediTech.DataBase
 
         }
 
-        public static DataTable pGetAdjustablePackageItems(long patientUID,long patientVisitUID,int billPackageUID)
+        public static DataTable pGetAdjustablePackageItems(long patientUID,long patientVisitUID, long patientPackageUID)
         {
             MediTechEntities entities = new MediTechEntities();
 
@@ -2965,7 +2965,38 @@ namespace MediTech.DataBase
 
                 cmd.Parameters.AddWithValue("@P_PatientUID", patientUID);
                 cmd.Parameters.AddWithValue("@P_PatientVisitUID", patientVisitUID);
-                cmd.Parameters.AddWithValue("@P_BillPackageUID", billPackageUID);
+                cmd.Parameters.AddWithValue("@P_BillPackageUID", patientPackageUID);
+                dt.Load(cmd.ExecuteReader());
+                return dt;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public static DataTable pGetLinkPackage(long billableItemUID, long patientVisitUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+
+            SqlConnection con = new SqlConnection(entities.Database.Connection.ConnectionString);
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+                DataTable dt = new DataTable();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "pGetLinkPackage";
+
+                cmd.Parameters.AddWithValue("@P_BillableItemUID", billableItemUID);
+                cmd.Parameters.AddWithValue("@P_PatientVisitUID", patientVisitUID);
                 dt.Load(cmd.ExecuteReader());
                 return dt;
             }
