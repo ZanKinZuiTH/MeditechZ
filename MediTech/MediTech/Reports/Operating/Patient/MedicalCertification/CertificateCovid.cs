@@ -91,11 +91,11 @@ namespace MediTech.Reports.Operating.Patient
                     logo.Image = Image.FromStream(ms);
 
                 }
-                string name = OrganisationBRXG.HealthOrganisationUID == 17 ? "บีอาร์เอ็กซ์จีสหคลินิก" : OrganisationBRXG.Name?.ToString();
-                TextboxPlace.Text = name + " ที่อยู่ " + OrganisationBRXG.Address?.ToString() + "\nเลขที่ใบอนุญาต " + OrganisationBRXG.LicenseNo.ToString() + " เบอร์โทรศัพท์ " + OrganisationBRXG.MobileNo + " E-mail " + OrganisationBRXG.Email.ToString();
+                string name = OrganisationDefault.HealthOrganisationUID == 17 ? "บีอาร์เอ็กซ์จีสหคลินิก" : OrganisationDefault.Name?.ToString();
+                TextboxPlace.Text = name + " ที่อยู่ " + OrganisationBRXG.Address?.ToString() + "\nเลขที่ใบอนุญาต " + OrganisationDefault.LicenseNo.ToString() + " เบอร์โทรศัพท์ " + OrganisationBRXG.MobileNo + " E-mail " + OrganisationBRXG.Email.ToString();
 
-                text1.Text = name + " ได้รับอนุญาตประกอบกิจการสถานพยาบาลประเภทไม่ค้างคืน เลขที่ใบอนุญาต " + OrganisationBRXG.LicenseNo.ToString();
-                text2.Text = "ตั้งอยู่ เลขที่ " + OrganisationBRXG.Address?.ToString() + " เบอร์โทรติดต่อ " + OrganisationBRXG.MobileNo;
+                text1.Text = name + " ได้รับอนุญาตประกอบกิจการสถานพยาบาลประเภทไม่ค้างคืน เลขที่ใบอนุญาต " + OrganisationDefault.LicenseNo.ToString();
+                text2.Text = "ตั้งอยู่ เลขที่ " + OrganisationDefault.Address?.ToString() + " เบอร์โทรติดต่อ " + OrganisationDefault.MobileNo;
             }
             else
             {
