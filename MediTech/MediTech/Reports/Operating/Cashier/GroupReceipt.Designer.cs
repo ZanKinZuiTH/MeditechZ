@@ -1142,9 +1142,9 @@
             this.xrLabel4.StylePriority.UseBorders = false;
             this.xrLabel4.StylePriority.UseFont = false;
             this.xrLabel4.StylePriority.UseTextAlignment = false;
-            this.xrLabel4.Text = "บริษัท บีอาร์เอ็กซ์จี จำกัด (สำนักงานใหญ่)\r\nเลขที่ 155/196 หมู่ 2 ต.ทับมา อ.เมือง" +
-    " จ.ระยอง 21000\r\nเลขประจำตัวผู้เสียภาษี 0215559007518\r\nโทร 033-060-399, เบอร์มือถ" +
-    "ือ 082-77345-50\r\n";
+            this.xrLabel4.Text = "บริษัท บีอาร์เอ็กซ์จี จำกัด (สำนักงานใหญ่)\r\nเลขที่ 99/99 หมู่ 2 ต.หนองบัว อ.บ้านค" +
+    "่าย จ.ระยอง 21120\r\nเลขประจำตัวผู้เสียภาษี 0215559007518\r\nโทร 033-060-399, เบอร์ม" +
+    "ือถือ 082-77345-50\r\n";
             this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
             // xrTable1
@@ -1336,7 +1336,7 @@
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.GroupReceiptUID,
             this.ReceiptCopy});
-            this.Version = "20.2";
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
