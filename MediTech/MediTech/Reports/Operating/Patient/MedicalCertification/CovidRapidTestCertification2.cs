@@ -22,6 +22,8 @@ namespace MediTech.Reports.Operating.Patient
             int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
             var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(30);
             var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+            string textType = "ไม่ค้างคืน";
+
             if (this.Parameters["PatientVisitUID"].Value != null)
             {
                 long PatientVisitUID = long.Parse(this.Parameters["PatientVisitUID"].Value.ToString());
@@ -77,9 +79,14 @@ namespace MediTech.Reports.Operating.Patient
 
                 }
 
-                string name = OrganisationDefault.HealthOrganisationUID == 17 ? "บีอาร์เอ็กซ์จีสหคลินิก" : OrganisationDefault.Name?.ToString();           
-                text1.Text = "ประกอบวิชาชีพเวชกรรมอยู่ที่ " + name + " ได้รับอนุญาตประกอบกิจการสถานพยาบาลประเภทไม่ค้างคืน เลขที่ใบอนุญาต ";
-                text2.Text = OrganisationDefault.LicenseNo.ToString()+ " ตั้งอยู่ เลขที่ " + OrganisationDefault.Address?.ToString() + " เบอร์โทรติดต่อ " + OrganisationDefault.MobileNo;
+                string name = OrganisationDefault.HealthOrganisationUID == 17 ? "บีอาร์เอ็กซ์จีสหคลินิก" : OrganisationDefault.Name?.ToString();
+
+                if (OrganisationDefault.HOTYPUID == 3079)
+                    textType = "ค้างคืน";
+
+                text1.Text = "ประกอบวิชาชีพเวชกรรมอยู่ที่ " + name + " ได้รับอนุญาตประกอบกิจการสถานพยาบาลประเภท"+ textType +" เลขที่ใบอนุญาต";
+                text2.Text = OrganisationDefault.LicenseNo.ToString() + " ตั้งอยู่เลขที่ " + OrganisationDefault.Address?.ToString() + " เบอร์โทรติดต่อ " + OrganisationDefault.MobileNo;
+
             }
             else
             {
@@ -127,8 +134,11 @@ namespace MediTech.Reports.Operating.Patient
 
                 }
                 string name = SelectOrganisation.HealthOrganisationUID == 17 ? "บีอาร์เอ็กซ์จีสหคลินิก" : SelectOrganisation.Name?.ToString();
-                text1.Text = "ประกอบวิชาชีพเวชกรรมอยู่ที่ "+ name + " ได้รับอนุญาตประกอบกิจการสถานพยาบาลประเภทไม่ค้างคืน เลขที่ใบอนุญาต " + SelectOrganisation.LicenseNo.ToString();
-                text2.Text = SelectOrganisation.LicenseNo.ToString() + " ตั้งอยู่ เลขที่ " + SelectOrganisation.Address?.ToString() + " เบอร์โทรติดต่อ " + SelectOrganisation.MobileNo;
+                if (SelectOrganisation.HOTYPUID == 3079)
+                    textType = "ค้างคืน";
+
+                text1.Text = "ประกอบวิชาชีพเวชกรรมอยู่ที่ "+ name + " ได้รับอนุญาตประกอบกิจการสถานพยาบาลประเภท" + textType + " เลขที่ใบอนุญาต" ;
+                text2.Text = SelectOrganisation.LicenseNo.ToString() + " ตั้งอยู่เลขที่ " + SelectOrganisation.Address?.ToString() + " เบอร์โทรติดต่อ " + SelectOrganisation.MobileNo;
             }
 
         }

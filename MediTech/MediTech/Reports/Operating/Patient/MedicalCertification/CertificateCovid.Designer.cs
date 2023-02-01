@@ -59,7 +59,6 @@
             this.xrCheckBox1 = new DevExpress.XtraReports.UI.XRCheckBox();
             this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
-            this.text2 = new DevExpress.XtraReports.UI.XRLabel();
             this.text1 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
@@ -72,10 +71,11 @@
             this.xrShape3 = new DevExpress.XtraReports.UI.XRShape();
             this.CovidTest = new DevExpress.XtraReports.Parameters.Parameter();
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
             this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.text2 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -385,18 +385,6 @@
             this.xrLabel12.StylePriority.UseFont = false;
             this.xrLabel12.Text = "วันที่ตรวจ ...........................................";
             // 
-            // text2
-            // 
-            this.text2.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.text2.LocationFloat = new DevExpress.Utils.PointFloat(87.5F, 300F);
-            this.text2.Multiline = true;
-            this.text2.Name = "text2";
-            this.text2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.text2.SizeF = new System.Drawing.SizeF(662.5F, 25F);
-            this.text2.StylePriority.UseFont = false;
-            this.text2.StylePriority.UseTextAlignment = false;
-            this.text2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            // 
             // text1
             // 
             this.text1.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
@@ -404,7 +392,7 @@
             this.text1.Multiline = true;
             this.text1.Name = "text1";
             this.text1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.text1.SizeF = new System.Drawing.SizeF(662.5F, 25.00003F);
+            this.text1.SizeF = new System.Drawing.SizeF(675F, 25.00003F);
             this.text1.StylePriority.UseFont = false;
             this.text1.StylePriority.UseTextAlignment = false;
             this.text1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -529,11 +517,6 @@
             this.PatientVisitUID.ValueInfo = "0";
             this.PatientVisitUID.Visible = false;
             // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.MedicalCertificateModel);
-            this.objectDataSource1.Name = "objectDataSource1";
-            // 
             // PatientUID
             // 
             this.PatientUID.Name = "PatientUID";
@@ -555,6 +538,23 @@
             this.OrganisationUID.Type = typeof(long);
             this.OrganisationUID.ValueInfo = "0";
             this.OrganisationUID.Visible = false;
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.MedicalCertificateModel);
+            this.objectDataSource1.Name = "objectDataSource1";
+            // 
+            // text2
+            // 
+            this.text2.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
+            this.text2.LocationFloat = new DevExpress.Utils.PointFloat(87.5F, 300F);
+            this.text2.Multiline = true;
+            this.text2.Name = "text2";
+            this.text2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.text2.SizeF = new System.Drawing.SizeF(675F, 25F);
+            this.text2.StylePriority.UseFont = false;
+            this.text2.StylePriority.UseTextAlignment = false;
+            this.text2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
             // CertificateCovid
             // 
@@ -609,7 +609,6 @@
         private DevExpress.XtraReports.UI.XRShape xrShape2;
         private DevExpress.XtraReports.UI.XRLabel xrLabel7;
         private DevExpress.XtraReports.UI.XRLabel text1;
-        private DevExpress.XtraReports.UI.XRLabel text2;
         private DevExpress.XtraReports.UI.XRShape xrShape3;
         private DevExpress.XtraReports.UI.XRLabel xrLabel12;
         private DevExpress.XtraReports.UI.XRLabel xrLabel13;
@@ -634,5 +633,6 @@
         private DevExpress.XtraReports.UI.XRLabel testResult;
         private DevExpress.XtraReports.Parameters.Parameter OrganisationUID;
         private DevExpress.XtraReports.UI.XRLabel lbHeadAddress2;
+        private DevExpress.XtraReports.UI.XRLabel text2;
     }
 }
