@@ -38,7 +38,7 @@ namespace MediTech.Reports.Operating.Patient
             var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);
             var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
             int selectCovidTest = int.Parse(this.Parameters["CovidTest"].Value.ToString());
-
+            string textType = "ไม่ค้างคืน";
 
             if (selectCovidTest == 0)
             {
@@ -91,11 +91,14 @@ namespace MediTech.Reports.Operating.Patient
                     logo.Image = Image.FromStream(ms);
 
                 }
-                string name = OrganisationBRXG.HealthOrganisationUID == 17 ? "บีอาร์เอ็กซ์จีสหคลินิก" : OrganisationBRXG.Name?.ToString();
-                TextboxPlace.Text = name + " ที่อยู่ " + OrganisationBRXG.Address?.ToString() + "\nเลขที่ใบอนุญาต " + OrganisationBRXG.LicenseNo.ToString() + " เบอร์โทรศัพท์ " + OrganisationBRXG.MobileNo + " E-mail " + OrganisationBRXG.Email.ToString();
+                string name = OrganisationDefault.HealthOrganisationUID == 17 ? "บีอาร์เอ็กซ์จีสหคลินิก" : OrganisationDefault.Name?.ToString();
+                TextboxPlace.Text = name + " ที่อยู่ " + OrganisationBRXG.Address?.ToString() + "\nเลขที่ใบอนุญาต " + OrganisationDefault.LicenseNo.ToString() + " เบอร์โทรศัพท์ " + OrganisationBRXG.MobileNo + " E-mail " + OrganisationBRXG.Email.ToString();
 
-                text1.Text = name + " ได้รับอนุญาตประกอบกิจการสถานพยาบาลประเภทไม่ค้างคืน เลขที่ใบอนุญาต " + OrganisationBRXG.LicenseNo.ToString();
-                text2.Text = "ตั้งอยู่ เลขที่ " + OrganisationBRXG.Address?.ToString() + " เบอร์โทรติดต่อ " + OrganisationBRXG.MobileNo;
+                if (OrganisationDefault.HOTYPUID == 3079)
+                    textType = "ค้างคืน";
+
+                text1.Text = name + " ได้รับอนุญาตประกอบกิจการสถานพยาบาลประเภท"+ textType +" เลขที่ใบอนุญาต " + OrganisationDefault.LicenseNo.ToString();
+                text2.Text = "ตั้งอยู่ เลขที่ " + OrganisationDefault.Address?.ToString() + " เบอร์โทรติดต่อ " + OrganisationDefault.MobileNo;
             }
             else
             {
@@ -138,7 +141,11 @@ namespace MediTech.Reports.Operating.Patient
                 }
                 string name = SelectOrganisation.HealthOrganisationUID == 17 ? "บีอาร์เอ็กซ์จีสหคลินิก" : SelectOrganisation.Name?.ToString();
                 TextboxPlace.Text = name + " ที่อยู่ " + SelectOrganisation.Address?.ToString() + "\nเลขที่ใบอนุญาต " + SelectOrganisation.LicenseNo.ToString() + " เบอร์โทรศัพท์ " + SelectOrganisation.MobileNo + " E-mail " + SelectOrganisation.Email.ToString();
-                text1.Text = name + " ได้รับอนุญาตประกอบกิจการสถานพยาบาลประเภทไม่ค้างคืน เลขที่ใบอนุญาต " + SelectOrganisation.LicenseNo.ToString();
+                
+                if (SelectOrganisation.HOTYPUID == 3079)
+                    textType = "ค้างคืน";
+
+                text1.Text = name + " ได้รับอนุญาตประกอบกิจการสถานพยาบาลประเภท"+ textType +"  เลขที่ใบอนุญาต " + SelectOrganisation.LicenseNo.ToString();
                 text2.Text = "ตั้งอยู่ เลขที่ " + SelectOrganisation.Address?.ToString() + " เบอร์โทรติดต่อ " + SelectOrganisation.MobileNo;
             }
 
