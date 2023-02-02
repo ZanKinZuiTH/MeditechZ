@@ -107,6 +107,7 @@ namespace MediTech.Reports.Operating.Checkup
             this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PayorDetailUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.tbVatalSign)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbPatientDetail)).BeginInit();
@@ -186,7 +187,7 @@ namespace MediTech.Reports.Operating.Checkup
             this.tbVatalSign.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.tbVatalSign.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.tbVatalSign.LocationFloat = new DevExpress.Utils.PointFloat(134.5588F, 250.6353F);
+            this.tbVatalSign.LocationFloat = new DevExpress.Utils.PointFloat(133.7255F, 253.9686F);
             this.tbVatalSign.Name = "tbVatalSign";
             this.tbVatalSign.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow9,
@@ -644,7 +645,7 @@ namespace MediTech.Reports.Operating.Checkup
             // xrTable1
             // 
             this.xrTable1.Font = new System.Drawing.Font("Angsana New", 9F);
-            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(152.408F, 107.8334F);
+            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(149.0747F, 117.8334F);
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow1});
@@ -683,7 +684,7 @@ namespace MediTech.Reports.Operating.Checkup
             // xrLabel3
             // 
             this.xrLabel3.Font = new System.Drawing.Font("EucrosiaUPC", 18F, System.Drawing.FontStyle.Bold);
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(251.027F, 39.83334F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(247.6937F, 49.83332F);
             this.xrLabel3.Multiline = true;
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -696,7 +697,7 @@ namespace MediTech.Reports.Operating.Checkup
             // tbPatientDetail
             // 
             this.tbPatientDetail.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.tbPatientDetail.LocationFloat = new DevExpress.Utils.PointFloat(179.2585F, 154.9163F);
+            this.tbPatientDetail.LocationFloat = new DevExpress.Utils.PointFloat(175.9252F, 164.9163F);
             this.tbPatientDetail.Name = "tbPatientDetail";
             this.tbPatientDetail.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow3,
@@ -1032,7 +1033,7 @@ namespace MediTech.Reports.Operating.Checkup
             // xrTable2
             // 
             this.xrTable2.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
-            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(179.2579F, 134.5F);
+            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(175.9246F, 144.5F);
             this.xrTable2.Name = "xrTable2";
             this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow13});
@@ -1089,9 +1090,9 @@ namespace MediTech.Reports.Operating.Checkup
             // 
             this.xrPictureBox3.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrPictureBox3.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("xrPictureBox3.ImageSource"));
-            this.xrPictureBox3.LocationFloat = new DevExpress.Utils.PointFloat(577F, 0F);
+            this.xrPictureBox3.LocationFloat = new DevExpress.Utils.PointFloat(546.2041F, 0F);
             this.xrPictureBox3.Name = "xrPictureBox3";
-            this.xrPictureBox3.SizeF = new System.Drawing.SizeF(174.1667F, 51.49998F);
+            this.xrPictureBox3.SizeF = new System.Drawing.SizeF(210.6161F, 72.33331F);
             this.xrPictureBox3.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
             this.xrPictureBox3.StylePriority.UseBorders = false;
             // 
@@ -1119,6 +1120,14 @@ namespace MediTech.Reports.Operating.Checkup
             this.PayorDetailUID.ValueInfo = "0";
             this.PayorDetailUID.Visible = false;
             // 
+            // LogoType
+            // 
+            this.LogoType.Description = "Parameter1";
+            this.LogoType.Name = "LogoType";
+            this.LogoType.Type = typeof(int);
+            this.LogoType.ValueInfo = "0";
+            this.LogoType.Visible = false;
+            // 
             // CheckupCSR
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1132,11 +1141,13 @@ namespace MediTech.Reports.Operating.Checkup
             this.ParameterPanelLayoutItems.AddRange(new DevExpress.XtraReports.Parameters.ParameterPanelLayoutItem[] {
             new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.PatientUID, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
             new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.PatientVisitUID, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
-            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.PayorDetailUID, DevExpress.XtraReports.Parameters.Orientation.Horizontal)});
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.PayorDetailUID, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.LogoType, DevExpress.XtraReports.Parameters.Orientation.Horizontal)});
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.PatientUID,
             this.PatientVisitUID,
-            this.PayorDetailUID});
+            this.PayorDetailUID,
+            this.LogoType});
             this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.tbVatalSign)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
@@ -1225,5 +1236,6 @@ namespace MediTech.Reports.Operating.Checkup
         private DevExpress.XtraReports.Parameters.Parameter PatientUID;
         private DevExpress.XtraReports.Parameters.Parameter PatientVisitUID;
         private DevExpress.XtraReports.Parameters.Parameter PayorDetailUID;
+        private DevExpress.XtraReports.Parameters.Parameter LogoType;
     }
 }

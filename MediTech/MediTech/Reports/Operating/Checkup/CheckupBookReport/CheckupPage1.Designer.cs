@@ -103,9 +103,10 @@
             this.lbName16 = new DevExpress.XtraReports.UI.XRTableCell();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PayorDetailUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.tbVatalSign)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbPatientDetail)).BeginInit();
@@ -991,12 +992,13 @@
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // PatientUID
+            // LogoType
             // 
-            this.PatientUID.Name = "PatientUID";
-            this.PatientUID.Type = typeof(int);
-            this.PatientUID.ValueInfo = "0";
-            this.PatientUID.Visible = false;
+            this.LogoType.Description = "LogoType";
+            this.LogoType.Name = "LogoType";
+            this.LogoType.Type = typeof(int);
+            this.LogoType.ValueInfo = "0";
+            this.LogoType.Visible = false;
             // 
             // PatientVisitUID
             // 
@@ -1012,6 +1014,14 @@
             this.PayorDetailUID.ValueInfo = "0";
             this.PayorDetailUID.Visible = false;
             // 
+            // PatientUID
+            // 
+            this.PatientUID.Description = "PatientUID";
+            this.PatientUID.Name = "PatientUID";
+            this.PatientUID.Type = typeof(int);
+            this.PatientUID.ValueInfo = "0";
+            this.PatientUID.Visible = false;
+            // 
             // CheckupPage1
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1023,10 +1033,16 @@
             this.PageHeight = 583;
             this.PageWidth = 827;
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;
+            this.ParameterPanelLayoutItems.AddRange(new DevExpress.XtraReports.Parameters.ParameterPanelLayoutItem[] {
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.LogoType, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.PatientVisitUID, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.PayorDetailUID, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.PatientUID, DevExpress.XtraReports.Parameters.Orientation.Horizontal)});
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
-            this.PatientUID,
+            this.LogoType,
             this.PatientVisitUID,
-            this.PayorDetailUID});
+            this.PayorDetailUID,
+            this.PatientUID});
             this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.tbVatalSign)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
@@ -1106,7 +1122,7 @@
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow13;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell6;
         private DevExpress.XtraReports.UI.XRTableCell lbCompany;
-        private DevExpress.XtraReports.Parameters.Parameter PatientUID;
+        private DevExpress.XtraReports.Parameters.Parameter LogoType;
         private DevExpress.XtraReports.Parameters.Parameter PatientVisitUID;
         private DevExpress.XtraReports.Parameters.Parameter PayorDetailUID;
         private DevExpress.XtraReports.UI.XRTable xrTable4;
@@ -1117,5 +1133,6 @@
         public DevExpress.XtraReports.UI.XRLabel lbResultWellness2;
         public DevExpress.XtraReports.UI.XRLabel TitleResultWellness2;
         public DevExpress.XtraReports.UI.XRPictureBox xrPictureBox3;
+        private DevExpress.XtraReports.Parameters.Parameter PatientUID;
     }
 }

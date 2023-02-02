@@ -297,9 +297,11 @@ namespace MediTech.ViewModels
             ReportsList.Add(new ReportsModel { Name = "รายงานการตรวจปัจจัยเสี่ยงUACJ", NamespaceName = "MediTech.Reports.Operating.Checkup.RiskMobileCheckup" });
             SelectReport = ReportsList[0];
             Logos = new List<LookupItemModel>();
-            Logos.Add(new LookupItemModel { Key = 1, Display = "BRXG" });
-            Logos.Add(new LookupItemModel { Key = 2, Display = "ธนบุรี" });
-            SelectLogo = Logos.FirstOrDefault();
+            Logos.Add(new LookupItemModel { Key = 1, Display = "BRXG Company" });
+            Logos.Add(new LookupItemModel { Key = 2, Display = "BRXG Hospital" });
+            Logos.Add(new LookupItemModel { Key = 3, Display = "BRXG Polyclinic" });
+            Logos.Add(new LookupItemModel { Key = 4, Display = "ธนบุรี" });
+            //SelectLogo = Logos.FirstOrDefault();
         }
         public void PatientSearch()
         {
@@ -388,10 +390,16 @@ namespace MediTech.ViewModels
                             || SelectReport.Name == "รายงานตรวจสุขภาพCSR" || SelectReport.Name == "รายงานตรวจPapSmear" ||
                             SelectReport.Name == "รายงานการตรวจปัจจัยเสี่ยงUACJ")
                             rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
-                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5")
+                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มเล็ก" || SelectReport.Name == "ผลตรวจสมรรถภาพการได้ยินเบื้องต้น"
+                            || SelectReport.Name == "รายงานตรวจสุขภาพCSR" || SelectReport.Name == "รายงานตรวจPapSmear")
                         {
-                            rpt.Parameters["LogoType"].Value = SelectLogo != null ? SelectLogo.Key : 1;
+                            rpt.Parameters["LogoType"].Value = SelectLogo.Key;
 
+                        }
+                        if(SelectReport.Name == "ใบรับรองแพทย์สำหรับทำงานที่อับอากาศ")
+                        {
+                            int logoID = SelectLogo.Key == 3 ? 17 : 30; 
+                            rpt.Parameters["OrganisationUID"].Value = logoID;
                         }
 
                         ReportPrintTool printTool = new ReportPrintTool(rpt);
@@ -469,10 +477,16 @@ namespace MediTech.ViewModels
                              SelectReport.Name == "รายงานการตรวจปัจจัยเสี่ยงUACJ")
                         rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
 
-                    if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5")
+                    if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มเล็ก" || SelectReport.Name == "ผลตรวจสมรรถภาพการได้ยินเบื้องต้น"
+                        || SelectReport.Name == "รายงานตรวจสุขภาพCSR" || SelectReport.Name == "รายงานตรวจPapSmear")
                     {
-                        rpt.Parameters["LogoType"].Value = SelectLogo != null ? SelectLogo.Key : 1;
+                        rpt.Parameters["LogoType"].Value = SelectLogo != null ? SelectLogo.Key : 0;
 
+                    }
+                    if (SelectReport.Name == "ใบรับรองแพทย์สำหรับทำงานที่อับอากาศ")
+                    {
+                        int logoID = (SelectLogo != null && SelectLogo.Key == 3 )? 17 : 30;
+                        rpt.Parameters["OrganisationUID"].Value = logoID;
                     }
                     ReportPrintTool printTool = new ReportPrintTool(rpt);
                     rpt.RequestParameters = false;
@@ -510,12 +524,17 @@ namespace MediTech.ViewModels
                             SelectReport.Name == "รายงานการตรวจปัจจัยเสี่ยงUACJ")
                             rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
                    
-                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5")
+                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มเล็ก" || SelectReport.Name == "ผลตรวจสมรรถภาพการได้ยินเบื้องต้น"
+                            || SelectReport.Name == "รายงานตรวจสุขภาพCSR" || SelectReport.Name == "รายงานตรวจPapSmear")
                         {
-                            rpt.Parameters["LogoType"].Value = SelectLogo != null ? SelectLogo.Key : 1;
+                            rpt.Parameters["LogoType"].Value = SelectLogo != null ? SelectLogo.Key : 0;
 
                         }
-
+                        if (SelectReport.Name == "ใบรับรองแพทย์สำหรับทำงานที่อับอากาศ")
+                        {
+                            int logoID = (SelectLogo != null && SelectLogo.Key == 3) ? 17 : 30;
+                            rpt.Parameters["OrganisationUID"].Value = logoID;
+                        }
                         ReportPrintTool printTool = new ReportPrintTool(rpt);
                         rpt.RequestParameters = false;
                         rpt.ShowPrintMarginsWarning = false;
@@ -552,11 +571,17 @@ namespace MediTech.ViewModels
                             || SelectReport.Name == "รายงานตรวจสุขภาพCSR" || SelectReport.Name == "รายงานตรวจPapSmear" ||
                             SelectReport.Name == "รายงานการตรวจปัจจัยเสี่ยงUACJ")
                             rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
-                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5")
+                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มเล็ก" || SelectReport.Name == "ผลตรวจสมรรถภาพการได้ยินเบื้องต้น"
+                            || SelectReport.Name == "รายงานตรวจสุขภาพCSR" || SelectReport.Name == "รายงานตรวจPapSmear")
                         {
-                            rpt.Parameters["LogoType"].Value = SelectLogo != null ? SelectLogo.Key : 1;
+                            rpt.Parameters["LogoType"].Value = SelectLogo != null ? SelectLogo.Key : 0;
 
                         }
+                        //if (SelectReport.Name == "ใบรับรองแพทย์สำหรับทำงานที่อับอากาศ")
+                        //{
+                        //    int logoID = (SelectLogo != null && SelectLogo.Key == 3) ? 17 : 30;
+                        //    rpt.Parameters["OrganisationUID"].Value = logoID;
+                        //}
 
                         XlsxExportOptions xlsxExportOptions = new XlsxExportOptions()
                         {

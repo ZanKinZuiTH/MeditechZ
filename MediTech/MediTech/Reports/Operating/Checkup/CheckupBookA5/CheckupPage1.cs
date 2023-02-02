@@ -123,6 +123,44 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             PatientWellnessModel data = DataService.Reports.PrintWellnessBook(patientUID, patientVisitUID, payorDetailUID);
             int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
 
+            //int logoType = int.Parse(this.Parameters["LogoType"].Value.ToString());
+         
+            HealthOrganisationModel Organisation = null;
+            if (logoType == 2)
+            {
+                Organisation = (new MasterDataService()).GetHealthOrganisationByUID(30);
+            }
+
+            if (logoType == 3)
+            {
+                Organisation = (new MasterDataService()).GetHealthOrganisationByUID(17);
+            }
+
+            if (Organisation != null)
+            {
+                if (Organisation.LogoImage != null)
+                {
+                    MemoryStream ms = new MemoryStream(Organisation.LogoImage);
+                    xrPictureBox3.Image = Image.FromStream(ms);
+                }
+            }
+
+            if (logoType == 1)
+            {
+                Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/LogoBRXG3.png", UriKind.Absolute);
+                BitmapImage imageSource = new BitmapImage(uri);
+                using (MemoryStream outStream = new MemoryStream())
+                {
+                    BitmapEncoder enc = new BmpBitmapEncoder();
+                    enc.Frames.Add(BitmapFrame.Create(imageSource));
+                    enc.Save(outStream);
+                    this.xrPictureBox3.LocationFloat = new DevExpress.Utils.PointFloat(320.61F, 20F);
+                    this.xrPictureBox3.Image = System.Drawing.Image.FromStream(outStream);
+                }
+                this.xrPictureBox3.SizeF = new System.Drawing.SizeF(205.4585F, 64.16669F);
+            }
+
+
             page10.RowRisk1.Visible = false;
             page10.RowRisk2.Visible = false;
 

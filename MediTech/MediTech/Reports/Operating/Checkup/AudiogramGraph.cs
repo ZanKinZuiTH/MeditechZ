@@ -10,6 +10,8 @@ using System.Linq;
 using DevExpress.DataProcessing;
 using DevExpress.Xpf.CodeView;
 using DevExpress.XtraCharts;
+using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace MediTech.Reports.Operating.Checkup
 {
@@ -29,6 +31,46 @@ namespace MediTech.Reports.Operating.Checkup
             long PatientVisitUID = long.Parse(this.Parameters["PatientVisitUID"].Value.ToString());
             var dataAudio = (new ReportsService()).AudiogramResult(PatientUID, PatientVisitUID);
            var GroupResult = (new ReportsService()).CheckupGroupResult(PatientUID,PatientVisitUID);
+            int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
+
+
+            HealthOrganisationModel Organisation = null;
+            if (logoType == 2)
+            {
+                Organisation = (new MasterDataService()).GetHealthOrganisationByUID(30);
+            }
+
+            if (logoType == 3)
+            {
+                Organisation = (new MasterDataService()).GetHealthOrganisationByUID(17);
+            }
+
+            if (Organisation != null)
+            {
+                if (Organisation.LogoImage != null)
+                {
+                    MemoryStream ms = new MemoryStream(Organisation.LogoImage);
+                    xrPictureBox1.Image = Image.FromStream(ms);
+                }
+
+                xrLabel1.Text = Organisation.Description.ToString() + "\r\n" + Organisation.Address.ToString() + "\r\n" +
+                    Organisation.Email.ToString() + " Tel " + Organisation.MobileNo.ToString() + "\r\n" + "เลขที่ใบอนุญาต " + Organisation.LicenseNo.ToString();
+            }
+
+            if (logoType == 1)
+            {
+                Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/LogoBRXG3.png", UriKind.Absolute);
+                BitmapImage imageSource = new BitmapImage(uri);
+                using (MemoryStream outStream = new MemoryStream())
+                {
+                    BitmapEncoder enc = new BmpBitmapEncoder();
+                    enc.Frames.Add(BitmapFrame.Create(imageSource));
+                    enc.Save(outStream);
+                    //this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(109.17F, 60.67F);
+                    this.xrPictureBox1.Image = System.Drawing.Image.FromStream(outStream);
+                }
+                this.xrPictureBox1.SizeF = new System.Drawing.SizeF(170.4585F, 50.16669F);
+            }
 
             //var GroupResult = (new CheckupController()).GetCheckupGroupResultListByVisit(patientUID, patientVisitUID);
             // PatientWellnessModel data = DataService.Reports.PrintWellnessBook(patientUID, patientVisitUID, payorDetailUID);
