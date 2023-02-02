@@ -1109,14 +1109,14 @@ namespace MediTechWebApi.Controllers
                             if (accountItem.IsPackage == "Y" && item.BillableItemUID.HasValue && item.BillableItemUID.Value > 0)
                             {
                                 var patientPackageUID = (from pk in db.PatientPackage
-                                                        join pki in db.PatientPackageItem on pk.UID equals pki.PatientPackageUID
-                                                        where pk.BillPackageUID == item.SubAccountUID
-                                                        && pki.BillableItemUID == item.BillableItemUID
-                                                        && pk.StatusFlag == "A"
-                                                        && pki.StatusFlag == "A"
-                                                        && pk.PatientVisitUID == patpv.UID
-                                                        && pk.PatientUID == patpv.PatientUID
-                                                        select pki).FirstOrDefault()?.UID;
+                                                         join pki in db.PatientPackageItem on pk.UID equals pki.PatientPackageUID
+                                                         where pk.BillPackageUID == item.SubAccountUID
+                                                         && pki.BillableItemUID == item.BillableItemUID
+                                                         && pk.StatusFlag == "A"
+                                                         && pki.StatusFlag == "A"
+                                                         && pk.PatientVisitUID == patpv.UID
+                                                         && pk.PatientUID == patpv.PatientUID
+                                                         select pki).FirstOrDefault()?.UID;
                                 patientBilledItem.PatientPackageItemUID = patientPackageUID;
                             }
 
@@ -1220,8 +1220,8 @@ namespace MediTechWebApi.Controllers
         public List<PatientBilledItemModel> GetPatientBillingGroup(long PatientBillUID)
         {
             List<PatientBilledItemModel> data = new List<PatientBilledItemModel>();
-            data = db.PatientBilledItem
-                .Where(w => w.PatientBillUID == PatientBillUID && w.StatusFlag == "A")
+            var data1 = db.PatientBilledItem
+                .Where(w => w.PatientBillUID == PatientBillUID && w.StatusFlag == "A" && w.ServiceName != "BillPackage" && w.PatientPackageItemUID == null)
                 .GroupBy(p => new { p.BillingGroupUID, p.BillingSubGroupUID })
                 .Select(f => new PatientBilledItemModel
                 {
@@ -1235,6 +1235,23 @@ namespace MediTechWebApi.Controllers
                     BillingGroupEN = SqlFunction.fGetBillingGroupEN(f.Key.BillingGroupUID ?? 0, "G"),
                     BillingSubGroupEN = SqlFunction.fGetBillingGroupEN(f.Key.BillingSubGroupUID ?? 0, "S")
                 }).ToList();
+            var data2 = db.PatientBilledItem
+    .Where(w => w.PatientBillUID == PatientBillUID && w.StatusFlag == "A" && w.ServiceName == "BillPackage")
+    .GroupBy(p => new { p.BillingGroupUID, p.ItemName })
+    .Select(f => new PatientBilledItemModel
+    {
+        Amount = f.Sum(x => x.Amount),
+        NetAmount = f.Sum(x => x.NetAmount),
+        Discount = f.Sum(x => x.Discount),
+        BillingGroupUID = 14,
+        BillingSubGroupUID = 122,
+        BillingGroup = "1.1.14 ค่าบริการเหมาจ่ายค่ารักษาพยาบาล",
+        BillinsgSubGroup = f.Key.ItemName,
+        BillingGroupEN = "1.1.14 Packaged Medical Charge",
+        BillingSubGroupEN = f.Key.ItemName
+    }).ToList();
+            data.AddRange(data1);
+            data.AddRange(data2);
             return data;
         }
 
@@ -1268,8 +1285,8 @@ namespace MediTechWebApi.Controllers
         public List<PatientBilledItemModel> GetPatientBilledItem(long PatientBillUID)
         {
             List<PatientBilledItemModel> data = new List<PatientBilledItemModel>(); ;
-            data = db.PatientBilledItem
-                .Where(w => w.PatientBillUID == PatientBillUID && w.StatusFlag == "A")
+            var data1 = db.PatientBilledItem
+                .Where(w => w.PatientBillUID == PatientBillUID && w.StatusFlag == "A" && w.ServiceName != "BillPackage" && w.PatientPackageItemUID == null)
                 .Select(f => new PatientBilledItemModel
                 {
                     Amount = f.Amount,
@@ -1284,6 +1301,26 @@ namespace MediTechWebApi.Controllers
                     BillingGroupEN = SqlFunction.fGetBillingGroupEN(f.BillingGroupUID ?? 0, "G"),
                     BillingSubGroupEN = SqlFunction.fGetBillingGroupEN(f.BillingSubGroupUID ?? 0, "S")
                 }).ToList();
+
+            var data2 = db.PatientBilledItem
+                .Where(w => w.PatientBillUID == PatientBillUID && w.StatusFlag == "A" && w.ServiceName == "BillPackage")
+                .Select(f => new PatientBilledItemModel
+                {
+                    Amount = f.Amount,
+                    NetAmount = f.NetAmount,
+                    Discount = f.Discount,
+                    ItemName = f.ItemName,
+                    ItemMultiplier = f.ItemMultiplier,
+                    BillingGroupUID = 14,
+                    BillingSubGroupUID = 122,
+                    BillingGroup = "1.1.14 ค่าบริการเหมาจ่ายค่ารักษาพยาบาล",
+                    BillinsgSubGroup = f.ItemName,
+                    BillingGroupEN = "1.1.14 Packaged Medical Charge",
+                    BillingSubGroupEN = f.ItemName
+                }).ToList();
+
+            data.AddRange(data1);
+            data.AddRange(data2);
             return data;
         }
 
@@ -2304,6 +2341,7 @@ namespace MediTechWebApi.Controllers
                                                      CURNCUID = p.CURNCUID,
                                                      ActiveFrom = p.ActiveFrom,
                                                      ActiveTo = p.ActiveTo,
+                                                     BSMDDUID = p.BSMDDUID,
                                                      OrderCategoryUID = p.OrderCategoryUID,
                                                      OrderSubCategoryUID = p.OrderSubCategoryUID,
                                                      OwnerOrganisationUID = p.OwnerOrganisationUID,

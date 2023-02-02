@@ -156,7 +156,8 @@ namespace MediTech.ViewModels
                     //{
                     //    ownerOrganisationUID = SelectOrganisation.HealthOrganisationUID;
                     //}
-                    OrderItems = DataService.OrderProcessing.SearchOrderItem(_SearchOrderCriteria, ownerOrganisationUID);
+                    var searchOrders = DataService.OrderProcessing.SearchOrderItem(_SearchOrderCriteria, ownerOrganisationUID);
+                    OrderItems = searchOrders?.Where(p => p.TypeOrder != "OrderSet").ToList();
 
                 }
                 else
@@ -314,6 +315,8 @@ namespace MediTech.ViewModels
                 Item.BillableItemUID = orderItem.BillableItemUID;
                 Item.ItemUID = orderItem.ItemUID;
                 Item.BSMDDUID = orderItem.BillingServiceUID;
+                Item.OrderCategoryUID = orderItem.OrderCategoryUID;
+                Item.OrderSubCategoryUID = orderItem.OrderSubCategoryUID;
                 Item.Quantity = 1;
                 ItemName = orderItem.ItemName;
 
@@ -336,6 +339,12 @@ namespace MediTech.ViewModels
 
         private void AddBillPackageDetail()
         {
+            if (BillPackageDetail.Count(p=> p.BillableItemUID == Item.BillableItemUID) > 0)
+            {
+                WarningDialog("Item ซ้ำ กรุณาตรวจสอบ");
+                return;
+            }
+
             if (ItemName == null)
             {
                 WarningDialog("กรุณาเลือก item");
@@ -352,6 +361,7 @@ namespace MediTech.ViewModels
                 WarningDialog("กรุณาใส่ Amount");
                 return;
             }
+
             var quantity = int.Parse(ItemQuantity);
             var amount = double.Parse(ItemAmount);
             var total = quantity * amount;
@@ -361,7 +371,6 @@ namespace MediTech.ViewModels
             Item.Amount = double.Parse(ItemAmount);
             Item.ActiveFrom = ItemActiveFrom;
             Item.TotalAmount = total;
-
             if (BillPackageDetail != null)
             {
                 BillPackageDetailModel data = new BillPackageDetailModel();
@@ -380,18 +389,39 @@ namespace MediTech.ViewModels
                 WarningDialog("กรุณาเลือก item");
             }
 
+            if (BillPackageDetail != null && BillPackageDetail.Count > 0 && Item != null)
+            {
+                foreach (BillPackageDetailModel packageItem in BillPackageDetail)
+                {
+                    if (packageItem.BillableItemUID == Item.BillableItemUID
+                                  && !packageItem.Equals(SelectBillPackageDetail)
+                                  )
+                    {
+                        WarningDialog("Item ซ้ำ กรุณาตรวจสอบ");
+                        return;
+                    }
+                }
+            }
+
             if (SelectBillPackageDetail != null)
             {
-                var index = BillPackageDetail.Where(p => p.ItemName == SelectBillPackageDetail.ItemName);
-                Item = SelectBillPackageDetail;
+                if (Item != null)
+                {
+                    SelectBillPackageDetail.ItemCode = Item.ItemCode;
+                    SelectBillPackageDetail.ItemName = Item.ItemName;
+                    SelectBillPackageDetail.BillableItemUID = Item.BillableItemUID;
+                    SelectBillPackageDetail.ItemUID = Item.ItemUID;
+                    SelectBillPackageDetail.BSMDDUID = Item.BSMDDUID;
+                    SelectBillPackageDetail.OrderCategoryUID = Item.OrderCategoryUID;
+                    SelectBillPackageDetail.OrderSubCategoryUID = Item.OrderSubCategoryUID;
+                }
                 var total = int.Parse(ItemQuantity) * double.Parse(ItemAmount);
-                Item.Amount = double.Parse(ItemAmount);
-                Item.Quantity = int.Parse(ItemQuantity);
-                Item.TotalAmount = total;
-                Item.ActiveFrom = ItemActiveFrom;
-                //BillPackageDetail[index] = Item;
-                BillPackageDetail.Remove(index.FirstOrDefault());
-                BillPackageDetail.Add(Item);
+                SelectBillPackageDetail.Amount = double.Parse(ItemAmount);
+                SelectBillPackageDetail.Quantity = int.Parse(ItemQuantity);
+                SelectBillPackageDetail.TotalAmount = total;
+                SelectBillPackageDetail.ActiveFrom = ItemActiveFrom;
+                SelectBillPackageDetail.CURNCUID = 2811;
+                (this.View as ManagePackage).grdBilPackageItem.RefreshData();
                 ClearBillPackageDetail();
             }
 
@@ -414,12 +444,14 @@ namespace MediTech.ViewModels
                     BillPackageDetail.Remove(SelectBillPackageDetail);
                     CollectionViewSource.GetDefaultView(BillPackageDetail).Refresh();
                     CalculateNetAmount();
+                    ClearBillPackageDetail();
                 }
             }
         }
 
         private void ClearBillPackageDetail()
         {
+            SelectBillPackageDetail = null;
             SearchOrderCriteria = "";
             SelectOrderItem = null;
             ItemName = null;

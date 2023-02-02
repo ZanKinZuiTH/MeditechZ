@@ -966,6 +966,8 @@ namespace MediTech.ViewModels
                     newPatPackage.TotalAmount = SelectBillPackage.TotalAmount;
                     newPatPackage.Qty = 1;
                     newPatPackage.OwnerOrganisationUID = PatientVisit.OwnerOrganisationUID ?? 0;
+                    newPatPackage.CUser = AppUtil.Current.UserID;
+                    newPatPackage.MUser = AppUtil.Current.UserID;
                     DataService.OrderProcessing.AddPatientPackage(newPatPackage);
 
 
@@ -989,8 +991,14 @@ namespace MediTech.ViewModels
         {
             try
             {
+                
                 if (SelectUsedPackage != null)
                 {
+                    if(SelectUsedPackage.BillPackageDetails.Count(p => p.UsedQuantity > 0) > 0)
+                    {
+                        WarningDialog("ไม่สามรถลบ Package ได้ ต้องทำการ Unlink Order ทั้งหมดก่อน");
+                        return;
+                    }
                     var result = QuestionDialog(String.Format("ต้องการรบ Package {0} หรือไม่", SelectUsedPackage.PackageName));
                     if (result == MessageBoxResult.Yes)
                     {

@@ -185,6 +185,7 @@
                 </dxlc:LayoutGroup>
             </dxlc:LayoutItem>
             <dxg:GridControl  x:Name="gPatient" ItemsSource="{Binding UnBilledPatientLists,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                              SelectionMode="Cell"
                                   SelectedItem="{Binding SelectUnBilledPatient,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
                 <dxg:GridControl.View>
                     <dxg:TableView ShowGroupPanel="False" AllowScrollAnimation="True" 

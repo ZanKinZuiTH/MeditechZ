@@ -16,6 +16,8 @@ namespace MediTech.Model
         public string Generic { get; set; }
         public int BillingServiceUID { get; set; }
         public string TypeOrder { get; set; }
-        
+        public int? OrderCategoryUID { get; set; }
+        public int? OrderSubCategoryUID { get; set; }
+
     }
 }
