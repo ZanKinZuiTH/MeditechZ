@@ -212,9 +212,17 @@
                     <dxlc:LayoutItem>
                         <dxe:CheckEdit Content="SelectAll" IsChecked="{Binding SelectAll}"/>
                     </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Margin="10,0,0,0">
+                    <dxlc:LayoutItem Label="Printer" Margin="10,0,0,0">
                         <dxe:ComboBoxEdit ItemsSource="{Binding PrinterLists}"
                                       SelectedItem="{Binding SelectPrinter}"
+                                      DisplayMember="Display"
+                                      ValueMember="Key"
+                        Width="180" Height="25"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="logo" Margin="10,0,0,0">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding LogoLists}"
+                                      SelectedItem="{Binding SelectLogo}"
+                                      NullValueButtonPlacement="EditBox"
                                       DisplayMember="Display"
                                       ValueMember="Key"
                         Width="180" Height="25"/>

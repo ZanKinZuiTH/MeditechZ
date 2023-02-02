@@ -263,6 +263,20 @@ namespace MediTech.ViewModels
             set { Set(ref _PrinterLists, value); }
         }
 
+        private LookupItemModel _SelectLogo;
+        public LookupItemModel SelectLogo
+        {
+            get { return _SelectLogo; }
+            set { Set(ref _SelectLogo, value); }
+        }
+
+        private List<LookupItemModel> _LogoLists;
+        public List<LookupItemModel> LogoLists
+        {
+            get { return _LogoLists; }
+            set { Set(ref _LogoLists, value); }
+        }
+
         private ObservableCollection<StoreItemList> _StoreOrderList;
         public ObservableCollection<StoreItemList> StoreOrderList
         {
@@ -564,6 +578,10 @@ namespace MediTech.ViewModels
                 i++;
             }
             SelectPrinter = PrinterLists.FirstOrDefault(p => p.Display.ToLower().Contains("Sticker"));
+
+            LogoLists = new List<LookupItemModel>();
+            LogoLists.Add(new LookupItemModel { Key = 30, Display = "BRXG Hospital" });
+            LogoLists.Add(new LookupItemModel { Key = 17, Display = "BRXG Polyclinic" });
         }
 
         private void SearchLabOrder()
@@ -694,7 +712,7 @@ namespace MediTech.ViewModels
             {
                 LabResultReport rpt = new LabResultReport();
                 ReportPrintTool printTool = new ReportPrintTool(rpt);
-
+                rpt.Parameters["logoHead"].Value = SelectLogo != null ? SelectLogo.Key : 0;
                 rpt.Parameters["PatientVisitUID"].Value = SelectRequestLab.PatientVisitUID;
                 rpt.Parameters["OrganisationUID"].Value = SelectRequestLab.OwnerOrganisationUID;
                 rpt.Parameters["RequestNumber"].Value = SelectRequestLab.LabNumber;
@@ -717,7 +735,7 @@ namespace MediTech.ViewModels
                 foreach (var item in requestLabSelected)
                 {
                     LabResultReport rpt = new LabResultReport();
-
+                    rpt.Parameters["logoHead"].Value = SelectLogo != null ? SelectLogo.Key : 0;
                     rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
                     rpt.Parameters["OrganisationUID"].Value = item.OwnerOrganisationUID;
                     rpt.Parameters["RequestNumber"].Value = item.LabNumber;
@@ -749,7 +767,7 @@ namespace MediTech.ViewModels
                         string fileName = (string.IsNullOrEmpty(item.PatientID) ? "" : item.PatientID + " ") + item.PatientName + ".pdf";
 
                         LabResultReport rpt = new LabResultReport();
-
+                        rpt.Parameters["logoHead"].Value = SelectLogo != null ? SelectLogo.Key : 0;
                         rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
                         rpt.Parameters["OrganisationUID"].Value = item.OwnerOrganisationUID;
                         rpt.Parameters["RequestNumber"].Value = item.LabNumber;

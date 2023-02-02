@@ -78,9 +78,10 @@
             this.PageFooter = new DevExpress.XtraReports.UI.PageFooterBand();
             this.xrLabel24 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel25 = new DevExpress.XtraReports.UI.XRLabel();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
             this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.logoHead = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -586,11 +587,6 @@
             this.xrLabel25.SizeF = new System.Drawing.SizeF(263.3824F, 23F);
             this.xrLabel25.StylePriority.UseFont = false;
             // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.PatientLabResult);
-            this.objectDataSource1.Name = "objectDataSource1";
-            // 
             // LogoType
             // 
             this.LogoType.Description = "LogoType";
@@ -604,6 +600,19 @@
             this.OrganisationUID.Type = typeof(long);
             this.OrganisationUID.ValueInfo = "0";
             this.OrganisationUID.Visible = false;
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.PatientLabResult);
+            this.objectDataSource1.Name = "objectDataSource1";
+            // 
+            // logoHead
+            // 
+            this.logoHead.Description = "logoHead";
+            this.logoHead.Name = "logoHead";
+            this.logoHead.Type = typeof(int);
+            this.logoHead.ValueInfo = "0";
+            this.logoHead.Visible = false;
             // 
             // LabResultReport
             // 
@@ -628,8 +637,9 @@
             this.PatientVisitUID,
             this.RequestNumber,
             this.LogoType,
-            this.OrganisationUID});
-            this.Version = "20.2";
+            this.OrganisationUID,
+            this.logoHead});
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
@@ -690,5 +700,6 @@
         private DevExpress.XtraReports.Parameters.Parameter LogoType;
         private DevExpress.XtraReports.Parameters.Parameter OrganisationUID;
         private DevExpress.XtraReports.UI.XRLabel lbLicenseNo;
+        private DevExpress.XtraReports.Parameters.Parameter logoHead;
     }
 }

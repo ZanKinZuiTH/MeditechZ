@@ -66,13 +66,13 @@ namespace MediTech.Reports.Operating.Checkup
             this.xrTableCell54 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow32 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell55 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
-            this.xrPictureBox3 = new DevExpress.XtraReports.UI.XRPictureBox();
-            this.xrRichText1 = new DevExpress.XtraReports.UI.XRRichText();
             this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PayorDetailUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrPictureBox3 = new DevExpress.XtraReports.UI.XRPictureBox();
+            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
@@ -82,13 +82,15 @@ namespace MediTech.Reports.Operating.Checkup
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // TopMargin
             // 
-            this.TopMargin.HeightF = 30F;
+            this.TopMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrPictureBox3,
+            this.xrLabel1});
+            this.TopMargin.HeightF = 118.3333F;
             this.TopMargin.Name = "TopMargin";
             // 
             // BottomMargin
@@ -128,7 +130,7 @@ namespace MediTech.Reports.Operating.Checkup
             this.xrTableCell9,
             this.lbcompany});
             this.xrTableRow6.Name = "xrTableRow6";
-            this.xrTableRow6.Weight = 0.75999891052229474D;
+            this.xrTableRow6.Weight = 0.75999891052229473D;
             // 
             // xrTableCell9
             // 
@@ -167,7 +169,7 @@ namespace MediTech.Reports.Operating.Checkup
             this.xrTableCell7,
             this.lbDateCheckup});
             this.xrTableRow5.Name = "xrTableRow5";
-            this.xrTableRow5.Weight = 0.75999891052229474D;
+            this.xrTableRow5.Weight = 0.75999891052229473D;
             // 
             // xrTableCell7
             // 
@@ -205,7 +207,7 @@ namespace MediTech.Reports.Operating.Checkup
             this.xrTableRow4.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell6});
             this.xrTableRow4.Name = "xrTableRow4";
-            this.xrTableRow4.Weight = 0.75999891052229474D;
+            this.xrTableRow4.Weight = 0.75999891052229473D;
             // 
             // xrTableCell6
             // 
@@ -235,7 +237,7 @@ namespace MediTech.Reports.Operating.Checkup
             this.xrTableCell4,
             this.lbAGE});
             this.xrTableRow3.Name = "xrTableRow3";
-            this.xrTableRow3.Weight = 0.75999891052229474D;
+            this.xrTableRow3.Weight = 0.75999891052229473D;
             // 
             // xrTableCell4
             // 
@@ -274,7 +276,7 @@ namespace MediTech.Reports.Operating.Checkup
             this.xrTableCell2,
             this.lbPatientName});
             this.xrTableRow2.Name = "xrTableRow2";
-            this.xrTableRow2.Weight = 0.75999891052229474D;
+            this.xrTableRow2.Weight = 0.75999891052229473D;
             // 
             // xrTableCell2
             // 
@@ -313,7 +315,7 @@ namespace MediTech.Reports.Operating.Checkup
             this.xrTableCell1,
             this.lbHN});
             this.xrTableRow1.Name = "xrTableRow1";
-            this.xrTableRow1.Weight = 0.75999891052229474D;
+            this.xrTableRow1.Weight = 0.75999891052229473D;
             // 
             // xrTableCell1
             // 
@@ -428,37 +430,13 @@ namespace MediTech.Reports.Operating.Checkup
             this.xrTableCell55.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             this.xrTableCell55.Weight = 1.6500003051757812D;
             // 
-            // PageHeader
-            // 
-            this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrPictureBox3,
-            this.xrRichText1});
-            this.PageHeader.Name = "PageHeader";
-            // 
-            // xrPictureBox3
-            // 
-            this.xrPictureBox3.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrPictureBox3.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("xrPictureBox3.ImageSource"));
-            this.xrPictureBox3.LocationFloat = new DevExpress.Utils.PointFloat(42.99998F, 0F);
-            this.xrPictureBox3.Name = "xrPictureBox3";
-            this.xrPictureBox3.SizeF = new System.Drawing.SizeF(196.6667F, 53.99998F);
-            this.xrPictureBox3.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
-            this.xrPictureBox3.StylePriority.UseBorders = false;
-            // 
-            // xrRichText1
-            // 
-            this.xrRichText1.LocationFloat = new DevExpress.Utils.PointFloat(271.6801F, 0F);
-            this.xrRichText1.Name = "xrRichText1";
-            this.xrRichText1.SerializableRtfString = resources.GetString("xrRichText1.SerializableRtfString");
-            this.xrRichText1.SizeF = new System.Drawing.SizeF(508.3198F, 100F);
-            this.xrRichText1.StylePriority.UseFont = false;
-            // 
             // PatientUID
             // 
             this.PatientUID.Description = "Parameter1";
             this.PatientUID.Name = "PatientUID";
             this.PatientUID.Type = typeof(int);
             this.PatientUID.ValueInfo = "0";
+            this.PatientUID.Visible = false;
             // 
             // PatientVisitUID
             // 
@@ -466,6 +444,7 @@ namespace MediTech.Reports.Operating.Checkup
             this.PatientVisitUID.Name = "PatientVisitUID";
             this.PatientVisitUID.Type = typeof(int);
             this.PatientVisitUID.ValueInfo = "0";
+            this.PatientVisitUID.Visible = false;
             // 
             // PayorDetailUID
             // 
@@ -473,32 +452,70 @@ namespace MediTech.Reports.Operating.Checkup
             this.PayorDetailUID.Name = "PayorDetailUID";
             this.PayorDetailUID.Type = typeof(int);
             this.PayorDetailUID.ValueInfo = "0";
+            this.PayorDetailUID.Visible = false;
             // 
             // objectDataSource1
             // 
             this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.PatientWellnessModel);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
+            // LogoType
+            // 
+            this.LogoType.Description = "Parameter1";
+            this.LogoType.Name = "LogoType";
+            this.LogoType.Type = typeof(int);
+            this.LogoType.ValueInfo = "0";
+            this.LogoType.Visible = false;
+            // 
+            // xrPictureBox3
+            // 
+            this.xrPictureBox3.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrPictureBox3.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("xrPictureBox3.ImageSource"));
+            this.xrPictureBox3.LocationFloat = new DevExpress.Utils.PointFloat(45.29177F, 46.00002F);
+            this.xrPictureBox3.Name = "xrPictureBox3";
+            this.xrPictureBox3.SizeF = new System.Drawing.SizeF(228.6801F, 72.33331F);
+            this.xrPictureBox3.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+            this.xrPictureBox3.StylePriority.UseBorders = false;
+            // 
+            // xrLabel1
+            // 
+            this.xrLabel1.Font = new System.Drawing.Font("EucrosiaUPC", 10F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(422.2918F, 46.00002F);
+            this.xrLabel1.Multiline = true;
+            this.xrLabel1.Name = "xrLabel1";
+            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(332.8333F, 72.33332F);
+            this.xrLabel1.StylePriority.UseFont = false;
+            this.xrLabel1.StylePriority.UseTextAlignment = false;
+            this.xrLabel1.Text = "โรงพยาบาลบูรพารักษ์ ( Burapharux Hospital )\r\n99/99 หมู่ 2 ต.หนองบัว อ.บ้านค่าย จ." +
+    "ระยอง 21120\r\ncontact@brxggroup.com Tel 038-032432\r\nเลขที่ใบอนุญาต 10201002665";
+            this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            // 
             // Papsmear
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.TopMargin,
             this.BottomMargin,
-            this.Detail,
-            this.PageHeader});
+            this.Detail});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(20, 20, 30, 20);
+            this.Margins = new System.Drawing.Printing.Margins(20, 20, 118, 20);
             this.PageHeight = 1169;
             this.PageWidth = 827;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
+            this.ParameterPanelLayoutItems.AddRange(new DevExpress.XtraReports.Parameters.ParameterPanelLayoutItem[] {
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.PatientUID, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.PatientVisitUID, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.PayorDetailUID, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.LogoType, DevExpress.XtraReports.Parameters.Orientation.Horizontal)});
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.PatientUID,
             this.PatientVisitUID,
-            this.PayorDetailUID});
-            this.Version = "20.2";
+            this.PayorDetailUID,
+            this.LogoType});
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).EndInit();
@@ -508,7 +525,6 @@ namespace MediTech.Reports.Operating.Checkup
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
@@ -519,8 +535,6 @@ namespace MediTech.Reports.Operating.Checkup
         private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
         private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
         private DevExpress.XtraReports.UI.DetailBand Detail;
-        private DevExpress.XtraReports.UI.PageHeaderBand PageHeader;
-        private DevExpress.XtraReports.UI.XRRichText xrRichText1;
         private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox1;
         private DevExpress.XtraReports.UI.XRTable xrTable5;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow31;
@@ -553,10 +567,12 @@ namespace MediTech.Reports.Operating.Checkup
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow1;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell1;
         public DevExpress.XtraReports.UI.XRTableCell lbHN;
-        protected DevExpress.XtraReports.UI.XRPictureBox xrPictureBox3;
         private DevExpress.XtraReports.Parameters.Parameter PatientUID;
         private DevExpress.XtraReports.Parameters.Parameter PatientVisitUID;
         private DevExpress.XtraReports.Parameters.Parameter PayorDetailUID;
         private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
+        private DevExpress.XtraReports.Parameters.Parameter LogoType;
+        protected DevExpress.XtraReports.UI.XRPictureBox xrPictureBox3;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel1;
     }
 }

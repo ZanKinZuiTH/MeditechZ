@@ -37,6 +37,7 @@ namespace MediTech.Reports.Operating.Lab
             try
             {
                 int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
+                int logoHead = int.Parse(this.Parameters["logoHead"].Value.ToString());
                 int OrganisationUID = int.Parse(this.Parameters["OrganisationUID"].Value.ToString());
                 long patientVisitUID = Convert.ToInt64(this.Parameters["PatientVisitUID"].Value.ToString());
                 string requestNumber = this.Parameters["RequestNumber"].Value.ToString();
@@ -48,29 +49,72 @@ namespace MediTech.Reports.Operating.Lab
 
                 if (logoType == 0)
                 {
-                    var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
-                    lbLicenseNo.Text = OrganisationDefault.Description?.ToString();
-                    if(OrganisationDefault.LicenseNo != null)
+                    if(logoHead == 17)
                     {
-                        lbLicenseNo.Text = lbLicenseNo.Text + "\r\nใบอนุญาตเลขที่ " + OrganisationDefault.LicenseNo.ToString();
+                        var SelectHead = (new MasterDataService()).GetHealthOrganisationByUID(logoHead);
+                        if (SelectHead != null)
+                        {
+                            lbLicenseNo.Text = SelectHead.Description?.ToString();
+                            //lbLicenseNo.Text = SelectOrganisation.LicenseNo != null ? "ใบอนุญาตเลขที่ " + SelectOrganisation.LicenseNo.ToString() : "";
+                            if (SelectHead.LicenseNo != null)
+                            {
+                                lbLicenseNo.Text = lbLicenseNo.Text + "\r\nใบอนุญาตเลขที่ " + SelectHead.LicenseNo.ToString();
+                            }
+                            string mobile1 = SelectHead.MobileNo != null ? "โทรศัพท์ " + SelectHead.MobileNo.ToString() : "";
+                            string email = SelectHead.Email != null ? "e-mail:" + SelectHead.Email.ToString() : "";
+
+                            xrLabel19.Text = SelectHead.Address?.ToString() + " " + mobile1;
+                            MemoryStream ms = new MemoryStream(SelectHead.LogoImage);
+                            logo.Image = Image.FromStream(ms);
+                        }
+                       
                     }
-                    //lbLicenseNo.Text = OrganisationDefault.LicenseNo != null ? "ใบอนุญาตเลขที่ " + OrganisationDefault.LicenseNo.ToString() : "";
-
-                    string mobile1 = OrganisationDefault.MobileNo != null ? "โทรศัพท์ " + OrganisationDefault.MobileNo.ToString() : "";
-                    string email = OrganisationDefault.Email != null ? "e-mail:" + OrganisationDefault.Email.ToString() : "";
-
-                    xrLabel19.Text = OrganisationDefault.Address?.ToString() + " " + mobile1;
-
-                    if (OrganisationDefault.LogoImage != null)
+                    if(logoHead == 30)
                     {
-                        MemoryStream ms = new MemoryStream(OrganisationDefault.LogoImage);
-                        logo.Image = Image.FromStream(ms);
+                        var SelectHead = (new MasterDataService()).GetHealthOrganisationByUID(logoHead);
+                        if (SelectHead != null)
+                        {
+                            lbLicenseNo.Text = SelectHead.Description?.ToString();
+                            //lbLicenseNo.Text = SelectOrganisation.LicenseNo != null ? "ใบอนุญาตเลขที่ " + SelectOrganisation.LicenseNo.ToString() : "";
+                            if (SelectHead.LicenseNo != null)
+                            {
+                                lbLicenseNo.Text = lbLicenseNo.Text + "\r\nใบอนุญาตเลขที่ " + SelectHead.LicenseNo.ToString();
+                            }
+                            string mobile1 = SelectHead.MobileNo != null ? "โทรศัพท์ " + SelectHead.MobileNo.ToString() : "";
+                            string email = SelectHead.Email != null ? "e-mail:" + SelectHead.Email.ToString() : "";
+
+                            xrLabel19.Text = SelectHead.Address?.ToString() + " " + mobile1;
+                            MemoryStream ms = new MemoryStream(SelectHead.LogoImage);
+                            logo.Image = Image.FromStream(ms);
+                        }
                     }
                     else
                     {
-                        MemoryStream ms = new MemoryStream(OrganisationBRXG.LogoImage);
-                        logo.Image = Image.FromStream(ms);
+                        var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+                        lbLicenseNo.Text = OrganisationDefault.Description?.ToString();
+                        if (OrganisationDefault.LicenseNo != null)
+                        {
+                            lbLicenseNo.Text = lbLicenseNo.Text + "\r\nใบอนุญาตเลขที่ " + OrganisationDefault.LicenseNo.ToString();
+                        }
+                        //lbLicenseNo.Text = OrganisationDefault.LicenseNo != null ? "ใบอนุญาตเลขที่ " + OrganisationDefault.LicenseNo.ToString() : "";
+
+                        string mobile1 = OrganisationDefault.MobileNo != null ? "โทรศัพท์ " + OrganisationDefault.MobileNo.ToString() : "";
+                        string email = OrganisationDefault.Email != null ? "e-mail:" + OrganisationDefault.Email.ToString() : "";
+
+                        xrLabel19.Text = OrganisationDefault.Address?.ToString() + " " + mobile1;
+
+                        if (OrganisationDefault.LogoImage != null)
+                        {
+                            MemoryStream ms = new MemoryStream(OrganisationDefault.LogoImage);
+                            logo.Image = Image.FromStream(ms);
+                        }
+                        else
+                        {
+                            MemoryStream ms = new MemoryStream(OrganisationBRXG.LogoImage);
+                            logo.Image = Image.FromStream(ms);
+                        }
                     }
+                    
                 }
                 else
                 {
