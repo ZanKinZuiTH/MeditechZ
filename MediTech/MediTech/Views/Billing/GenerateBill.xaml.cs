@@ -57,7 +57,7 @@ namespace MediTech.Views
                 }
                 else
                 {
-                    ChildItems = viewModel.LoadPatientBillableItemsSubGroups(item.AccountUID ?? 0, item.PatientVisitPayorUID ?? 0,item.IsPackage);
+                    ChildItems = viewModel.LoadPatientBillableItemsSubGroups(item.AccountUID ?? 0, item.PatientVisitPayorUID ?? 0, item.IsPackage);
                     updateItem.AllocatedPatBillableItemsSubGroups = new ObservableCollection<AllocatedPatBillableItemsSubAccountResultModel>(ChildItems.ToArray());
                 }
                 if (ChildItems != null && ChildItems.Count() > 0)

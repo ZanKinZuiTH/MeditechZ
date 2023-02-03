@@ -922,7 +922,6 @@ namespace MediTechWebApi.Controllers
                                                 patBillableItem.QNUOMUID = orderDetail.QNUOMUID;
                                                 patBillableItem.PayorDetailUID = orderDetail.PayorDetailUID;
                                                 patBillableItem.StoreUID = orderDetail.StoreUID;
-                                                patBillableItem.BillPackageUID = orderDetail.BillPackageUID;
                                                 patBillableItem.PatientOrderDetailUID = orderDetail.UID;
                                                 patBillableItem.OrderSetUID = orderDetail.OrderSetUID;
                                                 patBillableItem.OrderSetBillableItemUID = orderDetail.OrderSetBillableItemUID;
@@ -1229,7 +1228,6 @@ namespace MediTechWebApi.Controllers
                                                     patBillableItemStading.QNUOMUID = orderDetailStading.QNUOMUID;
                                                     patBillableItemStading.PayorDetailUID = orderDetailStading.PayorDetailUID;
                                                     patBillableItemStading.StoreUID = orderDetailStading.StoreUID;
-                                                    patBillableItemStading.BillPackageUID = orderDetailStading.BillPackageUID;
                                                     patBillableItemStading.PatientOrderDetailUID = orderDetailStading.UID;
                                                     patBillableItemStading.OrderSetUID = orderDetailStading.OrderSetUID;
                                                     patBillableItemStading.OrderSetBillableItemUID = orderDetailStading.OrderSetBillableItemUID;
@@ -1700,7 +1698,7 @@ namespace MediTechWebApi.Controllers
 
                     db.SaveChanges();
 
-                    IEnumerable<BillPackageItem> billPackageItems = db.BillPackageItem.Where(p => p.BillPackageUID == model.BillPackageUID);
+                    IEnumerable<BillPackageItem> billPackageItems = db.BillPackageItem.Where(p => p.BillPackageUID == model.BillPackageUID && p.StatusFlag == "A");
 
                     foreach (var item in billPackageItems)
                     {
@@ -1718,7 +1716,7 @@ namespace MediTechWebApi.Controllers
                         patPackageItem.CUser = model.CUser;
                         patPackageItem.MWhen = now;
                         patPackageItem.CWhen = now;
-
+                        patPackageItem.OwnerOrganisationUID = model.OwnerOrganisationUID;
                         db.PatientPackageItem.Add(patPackageItem);
 
                     }
