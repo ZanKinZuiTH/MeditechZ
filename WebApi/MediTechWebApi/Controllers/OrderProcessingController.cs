@@ -1741,6 +1741,7 @@ namespace MediTechWebApi.Controllers
                     patBillableItem.CUser = model.CUser;
                     patBillableItem.MWhen = now;
                     patBillableItem.CWhen = now;
+                    patBillableItem.OwnerOrganisationUID = model.OwnerOrganisationUID;
 
                     db.PatientBillableItem.Add(patBillableItem);
 
@@ -1841,19 +1842,10 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<PatientPackageItemModel> GetPatientPackageItemByPatientPakcageUID(long patientPakcageUID)
         {
-            var orderDetailList = from pod in db.PatientOrderDetail
-                                  where pod.StatusFlag == "A"
-                                  && pod.PatientPackageUID == patientPakcageUID
-                                  && pod.ORDSTUID != 2848
-                                  select pod;
 
-
-
-            List<PatientPackageItemModel> data = (from pki in db.PatientPackageItem
+           List<PatientPackageItemModel> data = (from pki in db.PatientPackageItem
                                                   join bl in db.BillableItem on pki.BillableItemUID equals bl.UID
                                                   join pk in db.PatientPackage on pki.PatientPackageUID equals pk.UID
-                                                  join pod in orderDetailList on pki.UID equals pod.PatientPackageItemUID into temppod
-                                                  from pod2 in temppod.DefaultIfEmpty()
                                                   where pki.PatientPackageUID == patientPakcageUID
                                                   && pki.StatusFlag == "A"
                                                   && bl.StatusFlag == "A"
@@ -1870,7 +1862,6 @@ namespace MediTechWebApi.Controllers
                                                       BSMDDUID = pki.BSMDDUID,
                                                       ItemCode = bl.Code,
                                                       ItemName = bl.ItemName,
-                                                      PatientOrderDetailUID = pod2.UID,
                                                   }).ToList();
             foreach (var item in data)
             {
@@ -1908,6 +1899,10 @@ namespace MediTechWebApi.Controllers
                 using (var tran = new TransactionScope())
                 {
                     var billPackageUID = db.PatientPackage.Find(patientPackageUID)?.BillPackageUID;
+                    if (patientOrderDetailUIDs == null || patientOrderDetailUIDs.Count < 0)
+                    {
+                        patientOrderDetailUIDs = db.PatientOrderDetail.Where(p => p.PatientPackageUID == patientPackageUID && p.StatusFlag == "A").Select(p => p.UID).ToList();
+                    }
                     foreach (var orderDetailUID in patientOrderDetailUIDs)
                     {
                         var patientOrderDetail = db.PatientOrderDetail.Find(orderDetailUID);

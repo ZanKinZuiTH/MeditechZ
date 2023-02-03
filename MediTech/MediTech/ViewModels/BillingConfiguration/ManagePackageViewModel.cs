@@ -488,7 +488,7 @@ namespace MediTech.ViewModels
                 return;
             }
 
-            CalculateNetAmount();
+
             AssingPropertiesToModel();
 
             DataService.Billing.ManageBillPackage(model, AppUtil.Current.UserID);

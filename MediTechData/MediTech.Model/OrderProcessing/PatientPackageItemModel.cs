@@ -36,7 +36,6 @@ namespace MediTech.Model
         public double? OutPackageQuantity { get; set; }
         public double? AlternativeQuantity { get; set; }
         public double? NetAmount { get; set; }
-        public long? PatientOrderDetailUID { get; set; }
 
     }
 }

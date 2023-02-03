@@ -765,6 +765,7 @@ namespace MediTech.ViewModels
                         if (result != null && result.ResultDialog == ActionDialog.Save)
                         {
                             SearchExistingOrder();
+                            AdjustOrderDetailForPackage();
                             ResultDialog = ActionDialog.Save;
                         }
                     }
@@ -1187,8 +1188,7 @@ namespace MediTech.ViewModels
                 var result = QuestionDialog("คุณต้องการ ยกรายการทั้งหมดออกจาก Package ใช้หรือไม่?");
                 if (result == MessageBoxResult.Yes)
                 {
-                    var listOrderDetilUIDs = BillPackageItems.Where(p => (p.PatientOrderDetailUID ?? 0) != 0).Select(p => p.PatientOrderDetailUID ?? 0).ToList();
-                    DataService.OrderProcessing.AdjustOrderDetailForPackage(PatientVisit.PatientUID, PatientVisit.PatientVisitUID, SelectUsedPackage.PatientPackageUID, 0, listOrderDetilUIDs);
+                    DataService.OrderProcessing.AdjustOrderDetailForPackage(PatientVisit.PatientUID, PatientVisit.PatientVisitUID, SelectUsedPackage.PatientPackageUID, 0, null);
                     AdjustOrderDetailForPackage();
                 }
             }
@@ -1201,22 +1201,28 @@ namespace MediTech.ViewModels
 
         void AdjustOrderDetailForPackage()
         {
-            BillPackageItems = new ObservableCollection<PatientPackageItemModel>(SelectUsedPackage.BillPackageDetails);
-            AdjustablePackageItems = DataService.OrderProcessing.GetAdjustablePackageItems(PatientVisit.PatientUID, PatientVisit.PatientVisitUID, SelectUsedPackage.PatientPackageUID);
-            OrderPackageBy = string.Format("    -   {0}   -   {1}", SelectUsedPackage.PackageCreatedByName, SelectUsedPackage.PackageCreatedDttm.ToString("dd-MM-yyyy HH:MM tt"));
-            UsedPackagePrice = String.Format("{0:#,#.00}", SelectUsedPackage.TotalAmount?.ToString());
-
-            foreach (var item in BillPackageItems)
+            if (SelectUsedPackage != null)
             {
-                if (AdjustablePackageItems != null && AdjustablePackageItems.Count(p => p.BillableItemUID == item.BillableItemUID) > 0)
-                {
-                    item.OutPackageQuantity = AdjustablePackageItems.Count(p => p.BillableItemUID == item.BillableItemUID && p.BillPackageUID == 0);
-                    item.UsedQuantity = AdjustablePackageItems.Count(p => p.BillableItemUID == item.BillableItemUID && p.BillPackageUID == item.PatientPackageUID);
-                    item.Lest_Over_Quantity = item.ItemMultiplier - item.UsedQuantity;
-                }
+                BillPackageItems = new ObservableCollection<PatientPackageItemModel>(SelectUsedPackage.BillPackageDetails);
+                AdjustablePackageItems = DataService.OrderProcessing.GetAdjustablePackageItems(PatientVisit.PatientUID, PatientVisit.PatientVisitUID, SelectUsedPackage.PatientPackageUID);
+                OrderPackageBy = string.Format("    -   {0}   -   {1}", SelectUsedPackage.PackageCreatedByName, SelectUsedPackage.PackageCreatedDttm.ToString("dd-MM-yyyy HH:MM tt"));
+                UsedPackagePrice = String.Format("{0:#,#.00}", SelectUsedPackage.TotalAmount?.ToString());
 
+                foreach (var item in BillPackageItems)
+                {
+                    double? outPackageQuantity = null;
+                    double? UsedQuantity = null;
+                    if (AdjustablePackageItems != null && AdjustablePackageItems.Count(p => p.BillableItemUID == item.BillableItemUID) > 0)
+                    {
+                        outPackageQuantity = AdjustablePackageItems.Where(p => p.BillableItemUID == item.BillableItemUID && p.BillPackageUID == 0).Sum(p => p.Quantity);
+                        UsedQuantity = AdjustablePackageItems.Where(p => p.BillableItemUID == item.BillableItemUID && p.BillPackageUID == item.PatientPackageUID).Sum(p => p.Quantity);
+                    }
+                    item.OutPackageQuantity = outPackageQuantity;
+                    item.UsedQuantity = UsedQuantity;
+                    item.Lest_Over_Quantity = item.ItemMultiplier - item.UsedQuantity ?? 0;
+                }
+                OnUpdateEvent();
             }
-            OnUpdateEvent();
         }
 
         void ApplyOrderItem(SearchOrderItem orderItem)

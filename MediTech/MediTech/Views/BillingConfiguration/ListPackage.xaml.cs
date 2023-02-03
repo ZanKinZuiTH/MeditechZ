@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MediTech.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace MediTech.Views
         public ListPackage()
         {
             InitializeComponent();
+            (this.DataContext as ListPackageViewModel).UpdateEvent += ListPackage_UpdateEvent;
+        }
+
+        private void ListPackage_UpdateEvent(object sender, EventArgs e)
+        {
+            this.grdBillableItem.RefreshData();
         }
     }
 }
