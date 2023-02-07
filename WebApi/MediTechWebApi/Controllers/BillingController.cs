@@ -1491,7 +1491,7 @@ namespace MediTechWebApi.Controllers
                     inData.SubAccountUID = !string.IsNullOrEmpty(row["SubAccountUID"].ToString()) ? Convert.ToInt32(row["SubAccountUID"]) : (int?)null;
                     inData.ItemName = row["ItemName"].ToString();
                     inData.Quantity = !string.IsNullOrEmpty(row["Quantity"].ToString()) ? Convert.ToDouble(row["Quantity"]) : 0;
-                    inData.Amount = Convert.ToDouble(row["Amount"]);
+                    inData.Amount = !string.IsNullOrEmpty(row["Amount"].ToString()) ? Convert.ToDouble(row["Amount"]) : (double?)null;
                     inData.Discount = !string.IsNullOrEmpty(row["Discount"].ToString()) ? Convert.ToDouble(row["Discount"]) : (double?)null;
                     inData.NetAmount = !string.IsNullOrEmpty(row["NetAmount"].ToString()) ? Convert.ToDouble(row["NetAmount"]) : (double?)null;
                     inData.PayorUID = !string.IsNullOrEmpty(row["PayorUID"].ToString()) ? Convert.ToInt32(row["PayorUID"]) : (int?)null;
