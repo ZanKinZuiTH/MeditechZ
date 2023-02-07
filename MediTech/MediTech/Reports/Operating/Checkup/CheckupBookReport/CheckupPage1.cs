@@ -175,6 +175,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
 
                 #region Hide Row 
                 page8.Rowpylori.Visible = false;
+                page8.RowVDRL.Visible = false;
+                page8.RowPhosphorus.Visible = false;
 
                 #region Hide Toxico
 
@@ -725,6 +727,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                             || p.RequestItemCode.Contains("LAB274") //FreeT3
                             || p.RequestItemCode.Contains("LAB275") //FreeT4
                             || p.RequestItemCode.Contains("LAB618")
+                            || p.RequestItemCode.Contains("LAB565")
                             || p.RequestItemCode.Contains("LAB431"))
                         .OrderByDescending(p => p.Year);
                     GenerateOther(OtherTestSet);
@@ -2146,11 +2149,15 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                 page8.FreeT4_2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR23" && p.Year == year2)?.ResultValue;
                 page8.FreeT4_3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR23" && p.Year == year3)?.ResultValue;
 
-                page8.cellVdrlRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR59")?.ReferenceRange;
-                page8.cellVdrl1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR59" && p.Year == year1)?.ResultValue;
-                page8.cellVdrl2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR59" && p.Year == year2)?.ResultValue;
-                page8.cellVdrl3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR59" && p.Year == year3)?.ResultValue;
-                
+                if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR59") != null)
+                {
+                    page8.RowVDRL.Visible = true;
+                    page8.cellVdrlRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR59")?.ReferenceRange;
+                    page8.cellVdrl1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR59" && p.Year == year1)?.ResultValue;
+                    page8.cellVdrl2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR59" && p.Year == year2)?.ResultValue;
+                    page8.cellVdrl3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR59" && p.Year == year3)?.ResultValue;
+                }
+
                 if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1297") != null)
                 {
                     page8.Rowpylori.Visible = true;
@@ -2158,6 +2165,15 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                     page8.cellHpylori1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1297" && p.Year == year1)?.ResultValue;
                     page8.cellHpylori2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1297" && p.Year == year3)?.ResultValue;
                     page8.cellHpylori3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1297" && p.Year == year3)?.ResultValue;
+                }
+
+                if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR207") != null)
+                {
+                    page8.RowPhosphorus.Visible = true;
+                    page8.PhosphorusRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR207")?.ReferenceRange;
+                    page8.Phosphorus1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR207" && p.Year == year1)?.ResultValue;
+                    page8.Phosphorus2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR207" && p.Year == year3)?.ResultValue;
+                    page8.Phosphorus3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR207" && p.Year == year3)?.ResultValue;
                 }
 
             }

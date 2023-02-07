@@ -24,7 +24,7 @@ namespace MediTech.Reports.Operating.Cashier
 
             if(data != null)
             {
-                if (data.ReceiptNo.Contains("NM"))
+                if (data.ReceiptNo.Contains("NR"))
                 {
                     TitleReceipt.Text = "ใบเสร็จรับเงิน/ใบกำกับภาษี";
                 }
