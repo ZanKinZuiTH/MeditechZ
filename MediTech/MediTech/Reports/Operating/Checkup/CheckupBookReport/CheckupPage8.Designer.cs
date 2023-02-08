@@ -149,7 +149,7 @@
             this.cellAboGroup1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellAboGroup2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellAboGroup3 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableRow29 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.RowVDRL = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell62 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellVdrlRange = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellVdrl1 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -385,6 +385,12 @@
             this.lbName8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
+            this.RowPhosphorus = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell61 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.PhosphorusRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Phosphorus1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Phosphorus2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Phosphorus3 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.tbOtherTest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
@@ -1158,9 +1164,10 @@
             this.xrTableRow25,
             this.xrTableRow18,
             this.xrTableRow19,
-            this.xrTableRow29,
-            this.Rowpylori});
-            this.xrTable3.SizeF = new System.Drawing.SizeF(360.5632F, 216.0679F);
+            this.RowVDRL,
+            this.Rowpylori,
+            this.RowPhosphorus});
+            this.xrTable3.SizeF = new System.Drawing.SizeF(360.5632F, 236.8294F);
             this.xrTable3.StylePriority.UseBorders = false;
             this.xrTable3.StylePriority.UseBorderWidth = false;
             this.xrTable3.StylePriority.UseFont = false;
@@ -1706,16 +1713,16 @@
             this.cellAboGroup3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.cellAboGroup3.Weight = 0.55343095482494142D;
             // 
-            // xrTableRow29
+            // RowVDRL
             // 
-            this.xrTableRow29.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.RowVDRL.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell62,
             this.cellVdrlRange,
             this.cellVdrl1,
             this.cellVdrl2,
             this.cellVdrl3});
-            this.xrTableRow29.Name = "xrTableRow29";
-            this.xrTableRow29.Weight = 0.96427178698233051D;
+            this.RowVDRL.Name = "RowVDRL";
+            this.RowVDRL.Weight = 0.96427178698233051D;
             // 
             // xrTableCell62
             // 
@@ -4166,6 +4173,68 @@
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
+            // RowPhosphorus
+            // 
+            this.RowPhosphorus.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell61,
+            this.PhosphorusRange,
+            this.Phosphorus1,
+            this.Phosphorus2,
+            this.Phosphorus3});
+            this.RowPhosphorus.Name = "RowPhosphorus";
+            this.RowPhosphorus.Weight = 0.96427178698233051D;
+            // 
+            // xrTableCell61
+            // 
+            this.xrTableCell61.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell61.Multiline = true;
+            this.xrTableCell61.Name = "xrTableCell61";
+            this.xrTableCell61.StylePriority.UseFont = false;
+            this.xrTableCell61.StylePriority.UseTextAlignment = false;
+            this.xrTableCell61.Text = "Phosphorus";
+            this.xrTableCell61.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell61.Weight = 0.977581750587864D;
+            // 
+            // PhosphorusRange
+            // 
+            this.PhosphorusRange.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.PhosphorusRange.Multiline = true;
+            this.PhosphorusRange.Name = "PhosphorusRange";
+            this.PhosphorusRange.StylePriority.UseFont = false;
+            this.PhosphorusRange.StylePriority.UseTextAlignment = false;
+            this.PhosphorusRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.PhosphorusRange.Weight = 0.9945655344089398D;
+            // 
+            // Phosphorus1
+            // 
+            this.Phosphorus1.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.Phosphorus1.Multiline = true;
+            this.Phosphorus1.Name = "Phosphorus1";
+            this.Phosphorus1.StylePriority.UseFont = false;
+            this.Phosphorus1.StylePriority.UseTextAlignment = false;
+            this.Phosphorus1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.Phosphorus1.Weight = 0.54675561703877329D;
+            // 
+            // Phosphorus2
+            // 
+            this.Phosphorus2.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.Phosphorus2.Multiline = true;
+            this.Phosphorus2.Name = "Phosphorus2";
+            this.Phosphorus2.StylePriority.UseFont = false;
+            this.Phosphorus2.StylePriority.UseTextAlignment = false;
+            this.Phosphorus2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.Phosphorus2.Weight = 0.54433270808088774D;
+            // 
+            // Phosphorus3
+            // 
+            this.Phosphorus3.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.Phosphorus3.Multiline = true;
+            this.Phosphorus3.Name = "Phosphorus3";
+            this.Phosphorus3.StylePriority.UseFont = false;
+            this.Phosphorus3.StylePriority.UseTextAlignment = false;
+            this.Phosphorus3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.Phosphorus3.Weight = 0.55343095482494142D;
+            // 
             // CheckupPage8
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -4535,7 +4604,6 @@
         public DevExpress.XtraReports.UI.XRTableCell cellAboGroup1;
         public DevExpress.XtraReports.UI.XRTableCell cellAboGroup2;
         public DevExpress.XtraReports.UI.XRTableCell cellAboGroup3;
-        private DevExpress.XtraReports.UI.XRTableRow xrTableRow29;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell62;
         public DevExpress.XtraReports.UI.XRTableCell cellVdrlRange;
         public DevExpress.XtraReports.UI.XRTableCell cellVdrl1;
@@ -4547,5 +4615,12 @@
         public DevExpress.XtraReports.UI.XRTableCell cellHpylori2;
         public DevExpress.XtraReports.UI.XRTableCell cellHpylori3;
         public DevExpress.XtraReports.UI.XRTableRow Rowpylori;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell61;
+        public DevExpress.XtraReports.UI.XRTableCell PhosphorusRange;
+        public DevExpress.XtraReports.UI.XRTableCell Phosphorus1;
+        public DevExpress.XtraReports.UI.XRTableCell Phosphorus2;
+        public DevExpress.XtraReports.UI.XRTableCell Phosphorus3;
+        public DevExpress.XtraReports.UI.XRTableRow RowPhosphorus;
+        public DevExpress.XtraReports.UI.XRTableRow RowVDRL;
     }
 }
