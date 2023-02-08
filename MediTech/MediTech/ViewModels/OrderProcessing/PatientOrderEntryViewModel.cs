@@ -1599,6 +1599,8 @@ namespace MediTech.ViewModels
                     break;
             }
             OnUpdateEvent();
+            OrderSumDesc = String.Format("Order All = {0} list, Out Package = {1} list Price = {2:#,#.00}", PatientOrders.Count()
+    , PatientOrders.Count(p => p.BillPackageUID == null), PatientOrders.Where(p => p.BillPackageUID == null).Sum(p => p.NetAmount));
         }
         public void AssingPatientVisit(PatientVisitModel visitModel, bool isbilling = false)
         {
