@@ -428,9 +428,6 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                 page3.RowMethyrene.Visible = false;
                 page3.RowHexane.Visible = false;
                 page3.RowNickelUrine.Visible = false;
-                page3.RowMibkUrine.Visible = false;
-                page3.RowEthylbenzeneUrine.Visible = false;
-                page3.RowMercuryUrine.Visible = false;
                 page3.RowMethyreneUrine.Visible = false;
                 page3.RowBenzenettUrine.Visible = false;
                 page3.RowMercuryBlood.Visible = false;
@@ -445,7 +442,6 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                 page3.RowAmmo.Visible = false;
                 page3.RowLeadinU.Visible = false;
                 page3.RowAlu.Visible = false;
-                page3.RowLeadinU.Visible = true;
                 page3.RowCholinesteraseBlood.Visible = false;
                 page3.RowThinnerUrine.Visible = false;
                 page3.RowCopperBlood.Visible = false;
@@ -1035,11 +1031,23 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
 
                     #region Aluminium in Urin
 
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122") != null)
+                    {
+                        page3.RowAlu.Visible = true;
+                        page3.cellAluminiumRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122")?.ReferenceRange;
+                        page3.cellAluminium1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year1)?.ResultValue;
+                        page3.cellAluminium2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year2)?.ResultValue;
+                        page3.cellAluminium3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year3)?.ResultValue;
+                    }
 
-                    page3.cellAluminiumRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122")?.ReferenceRange;
-                    page3.cellAluminium1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year1)?.ResultValue;
-                    page3.cellAluminium2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year2)?.ResultValue;
-                    page3.cellAluminium3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year3)?.ResultValue;
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1319") != null)
+                    {
+                        page3.RowAlu.Visible = true;
+                        page3.cellAluminiumRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1319")?.ReferenceRange;
+                        page3.cellAluminium1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1319" && p.Year == year1)?.ResultValue;
+                        page3.cellAluminium2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1319" && p.Year == year2)?.ResultValue;
+                        page3.cellAluminium3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1319" && p.Year == year3)?.ResultValue;
+                    }
 
                     #endregion
 
@@ -1352,18 +1360,6 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                         page3.cell25Hexan1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242" && p.Year == year1)?.ResultValue;
                         page3.cell25Hexan2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242" && p.Year == year2)?.ResultValue;
                         page3.cell25Hexan3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Manganese in Blood 
-
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270") != null)
-                    {
-                        page3.RowManganese.Visible = true;
-                        page3.ManganeseRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270")?.ReferenceRange;
-                        page3.Manganes1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270" && p.Year == year1)?.ResultValue;
-                        page3.Manganes2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270" && p.Year == year2)?.ResultValue;
-                        page3.Manganes3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270" && p.Year == year3)?.ResultValue;
                     }
                     #endregion
 

@@ -2024,13 +2024,21 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
 
 
                         #region Aluminium in Urin
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122") != null)
+                        {     
+                            page7.cellAluminiumRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122")?.ReferenceRange;
+                            page7.cellAluminium1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year1)?.ResultValue;
+                            page7.cellAluminium2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year2)?.ResultValue;
+                            page7.cellAluminium3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year3)?.ResultValue;
+                        }
 
-
-                        page7.cellAluminiumRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122")?.ReferenceRange;
-                        page7.cellAluminium1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year1)?.ResultValue;
-                        page7.cellAluminium2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year2)?.ResultValue;
-                        page7.cellAluminium3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year3)?.ResultValue;
-
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1319") != null)
+                        {
+                            page7.cellAluminiumRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1319")?.ReferenceRange;
+                            page7.cellAluminium1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1319" && p.Year == year1)?.ResultValue;
+                            page7.cellAluminium2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1319" && p.Year == year2)?.ResultValue;
+                            page7.cellAluminium3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1319" && p.Year == year3)?.ResultValue;
+                        }
                         #endregion
 
                         #region Toluene
