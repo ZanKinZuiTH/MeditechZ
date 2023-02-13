@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfinedSpaceCertificate1));
             DevExpress.XtraReports.Parameters.StaticListLookUpSettings staticListLookUpSettings1 = new DevExpress.XtraReports.Parameters.StaticListLookUpSettings();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
-            this.xrLabel34 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrCheckBox39 = new DevExpress.XtraReports.UI.XRCheckBox();
             this.xrCheckBox40 = new DevExpress.XtraReports.UI.XRCheckBox();
             this.xrCheckBox37 = new DevExpress.XtraReports.UI.XRCheckBox();
@@ -127,7 +126,6 @@
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel34,
             this.xrCheckBox39,
             this.xrCheckBox40,
             this.xrCheckBox37,
@@ -208,17 +206,6 @@
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.StylePriority.UseFont = false;
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            // 
-            // xrLabel34
-            // 
-            this.xrLabel34.Font = new System.Drawing.Font("Angsana New", 12F);
-            this.xrLabel34.LocationFloat = new DevExpress.Utils.PointFloat(27.99993F, 805.6063F);
-            this.xrLabel34.Multiline = true;
-            this.xrLabel34.Name = "xrLabel34";
-            this.xrLabel34.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel34.SizeF = new System.Drawing.SizeF(383.3334F, 26.70825F);
-            this.xrLabel34.StylePriority.UseFont = false;
-            this.xrLabel34.Text = "หมายเหตุ ใบรับรองแพทย์ฉบับนี้ ให้ใช้ได้ 1 เดือน นับตั้งแต่วันที่ตรวจร่างกาย";
             // 
             // xrCheckBox39
             // 
@@ -1024,6 +1011,5 @@
         private DevExpress.XtraReports.UI.XRLabel lbAddressPage1;
         private DevExpress.XtraReports.Parameters.Parameter OrganisationUID;
         private DevExpress.XtraReports.Parameters.Parameter LogoType;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel34;
     }
 }
