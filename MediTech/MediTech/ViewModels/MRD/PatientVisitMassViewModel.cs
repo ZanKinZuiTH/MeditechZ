@@ -804,13 +804,13 @@ namespace MediTech.ViewModels
                                     }
                                     else
                                     {
-                                        if (selectVisitStatus == SNDDOC && patientVisit.VISTSUID != REGST)
-                                        {
-                                            WarningDialog("ผู้ป่วย " + patientVisit.PatientName + "ไม่สามารถดำเนินการ Send To Doctor ได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
-                                            patientVisit.Select = false;
-                                            OnUpdateEvent();
-                                            continue;
-                                        }
+                                        //if (selectVisitStatus == SNDDOC && patientVisit.VISTSUID != REGST)
+                                        //{
+                                        //    WarningDialog("ผู้ป่วย " + patientVisit.PatientName + "ไม่สามารถดำเนินการ Send To Doctor ได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
+                                        //    patientVisit.Select = false;
+                                        //    OnUpdateEvent();
+                                        //    continue;
+                                        //}
                                         if (selectVisitStatus == CHKOUT && (patientVisit.VISTSUID == CHKOUT || patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL))
                                         {
                                             WarningDialog("ผู้ป่วย " + patientVisit.PatientName + "ไม่สามารถดำเนินการ ปิด Medical Discharge ได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
