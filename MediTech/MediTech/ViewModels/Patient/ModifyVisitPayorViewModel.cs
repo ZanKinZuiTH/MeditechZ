@@ -282,7 +282,7 @@ namespace MediTech.ViewModels
 
         public void AssingPatientVisit(PatientVisitModel visitModel)
         {
-            PatientVisit = DataService.PatientIdentity.GetPatientVisitByUID(visitModel.PatientVisitUID);
+            PatientVisit = visitModel;
         }
 
         void AddVisitPayor()
@@ -374,6 +374,14 @@ namespace MediTech.ViewModels
                     return;
                 }
 
+
+                var patbill = DataService.Billing.GetPatientBillByVisitPayorUID(SelectedPatientVisitPayor.PatientVisitPayorUID);
+                if (patbill != null && patbill.Count > 0)
+                {
+                    WarningDialog("ไม่สามารถทำการแก้ไข ข้อมูลได้ เนื่องจาก Payor มีการออกบิลไปบางส่วนแล้ว");
+                    return;
+                }
+
                 if (SelectInsuranceCompany == null || SelectInsuranceCompany.InsuranceCompanyUID == 0)
                 {
                     WarningDialog("กรุณาเลือก Payor");
@@ -459,6 +467,13 @@ namespace MediTech.ViewModels
                 if ((PatientVisit.VISTSUID == FINDIS))
                 {
                     WarningDialog("ไม่สามารถทำการแก้ไข ข้อมูลได้ เนื่องจากสถานะคนไข้ออกบิลแล้ว");
+                    return;
+                }
+
+                var patbill = DataService.Billing.GetPatientBillByVisitPayorUID(SelectedPatientVisitPayor.PatientVisitPayorUID);
+                if (patbill != null && patbill.Count > 0)
+                {
+                    WarningDialog("ไม่สามารถทำการแก้ไข ข้อมูลได้ เนื่องจาก Payor มีการออกบิลไปบางส่วนแล้ว");
                     return;
                 }
 

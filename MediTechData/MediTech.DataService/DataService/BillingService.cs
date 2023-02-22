@@ -68,6 +68,13 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<PatientBillModel> GetPatientBillByVisitPayorUID(long patientVisitPayorUID)
+        {
+            string requestApi = string.Format("Api/Billing/GetPatientBillByVisitPayorUID?patientVisitPayorUID={0}", patientVisitPayorUID);
+            List<PatientBillModel> data = MeditechApiHelper.Get<List<PatientBillModel>>(requestApi);
+            return data;
+        }
+
         public List<PatientBilledItemModel> GetPatientBillingGroup(long PatientBillUID)
         {
 

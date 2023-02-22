@@ -1353,12 +1353,45 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("GetPatientBill")]
+        [HttpGet]
         public List<PatientBillModel> GetPatientBill(long patientUID, long patientVisitUID)
         {
             List<PatientBillModel> data = (from bill in db.PatientBill
                                            where bill.StatusFlag == "A"
                                            && bill.PatientUID == patientUID
                                            && bill.PatientVisitUID == patientVisitUID
+                                           && bill.CancelledDttm == null
+                                           select new PatientBillModel
+                                           {
+                                               PatientBillUID = bill.UID,
+                                               PatientUID = bill.PatientUID ?? 0,
+                                               PatientVisitUID = bill.PatientVisitUID ?? 0,
+                                               BillGeneratedDttm = bill.BillGeneratedDttm,
+                                               BillNumber = bill.BillNumber,
+                                               BLCATUID = bill.BLCATUID,
+                                               BLTYPUID = bill.BLTYPUID,
+                                               PBTYPUID = bill.PBTYPUID,
+                                               TotalAmount = bill.TotalAmount,
+                                               DiscountAmount = bill.DiscountAmount,
+                                               NetAmount = bill.DiscountAmount,
+                                               PaidAmount = bill.PaidAmount,
+                                               Comments = bill.Comments,
+                                               CUser = bill.CUser,
+                                               CWhen = bill.CWhen,
+                                               MUser = bill.MUser,
+                                               MWhen = bill.MWhen
+                                           }).ToList();
+            return data;
+        }
+
+        [Route("GetPatientBillByVisitPayorUID")]
+        [HttpGet]
+        public List<PatientBillModel> GetPatientBillByVisitPayorUID(long patientVisitPayorUID)
+        {
+            List<PatientBillModel> data = (from bill in db.PatientBill
+                                           where bill.StatusFlag == "A"
+                                           && bill.PatientVisitPayorUID == patientVisitPayorUID
                                            && bill.CancelledDttm == null
                                            select new PatientBillModel
                                            {
