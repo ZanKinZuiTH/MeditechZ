@@ -14,6 +14,10 @@ namespace MediTech.ViewModels
     {
         #region Properties
 
+        int FINDIS = 421;
+        int BLINP = 423;
+        int CANCEL = 410;
+
         private List<LookupReferenceValueModel> _PayorTypes;
 
         public List<LookupReferenceValueModel> PayorTypes
@@ -278,11 +282,17 @@ namespace MediTech.ViewModels
 
         public void AssingPatientVisit(PatientVisitModel visitModel)
         {
-            PatientVisit = visitModel;
+            PatientVisit = DataService.PatientIdentity.GetPatientVisitByUID(visitModel.PatientVisitUID);
         }
 
         void AddVisitPayor()
         {
+            if ((PatientVisit.VISTSUID == FINDIS))
+            {
+                WarningDialog("ไม่สามารถทำการแก้ไข ข้อมูลได้ เนื่องจากสถานะคนไข้ออกบิลแล้ว");
+                return;
+            }
+
             if (PatientVisitPayorList == null)
                 PatientVisitPayorList = new ObservableCollection<PatientVisitPayorModel>();
 
@@ -358,6 +368,12 @@ namespace MediTech.ViewModels
         {
             if (SelectedPatientVisitPayor != null)
             {
+                if ((PatientVisit.VISTSUID == FINDIS))
+                {
+                    WarningDialog("ไม่สามารถทำการแก้ไข ข้อมูลได้ เนื่องจากสถานะคนไข้ออกบิลแล้ว");
+                    return;
+                }
+
                 if (SelectInsuranceCompany == null || SelectInsuranceCompany.InsuranceCompanyUID == 0)
                 {
                     WarningDialog("กรุณาเลือก Payor");
@@ -440,6 +456,12 @@ namespace MediTech.ViewModels
         {
             if (SelectedPatientVisitPayor != null)
             {
+                if ((PatientVisit.VISTSUID == FINDIS))
+                {
+                    WarningDialog("ไม่สามารถทำการแก้ไข ข้อมูลได้ เนื่องจากสถานะคนไข้ออกบิลแล้ว");
+                    return;
+                }
+
                 SelectedPatientVisitPayor.StatusFlag = "D";
                 _deletedVisitPayorList.Add(SelectedPatientVisitPayor);
                 PatientVisitPayorList.Remove(SelectedPatientVisitPayor);
