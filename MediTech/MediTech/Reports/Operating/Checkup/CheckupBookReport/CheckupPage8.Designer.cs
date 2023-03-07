@@ -161,6 +161,12 @@
             this.cellHpylori1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellHpylori2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellHpylori3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RowPhosphorus = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell61 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.PhosphorusRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Phosphorus1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Phosphorus2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Phosphorus3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTable2 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow6 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell22 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -385,12 +391,12 @@
             this.lbName8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.RowPhosphorus = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell61 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.PhosphorusRange = new DevExpress.XtraReports.UI.XRTableCell();
-            this.Phosphorus1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.Phosphorus2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.Phosphorus3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RowEthanolBlood = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell64 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RangeEthanolBlood = new DevExpress.XtraReports.UI.XRTableCell();
+            this.EthanolBlood1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.EthanolBlood2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.EthanolBlood3 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.tbOtherTest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
@@ -412,7 +418,7 @@
             this.tbToxicology,
             this.xrLabel1,
             this.xrLabel2});
-            this.Detail.HeightF = 752.8966F;
+            this.Detail.HeightF = 797.8221F;
             this.Detail.LockedInUserDesigner = true;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -1837,6 +1843,68 @@
             this.cellHpylori3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.cellHpylori3.Weight = 0.55343095482494142D;
             // 
+            // RowPhosphorus
+            // 
+            this.RowPhosphorus.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell61,
+            this.PhosphorusRange,
+            this.Phosphorus1,
+            this.Phosphorus2,
+            this.Phosphorus3});
+            this.RowPhosphorus.Name = "RowPhosphorus";
+            this.RowPhosphorus.Weight = 0.96427178698233051D;
+            // 
+            // xrTableCell61
+            // 
+            this.xrTableCell61.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell61.Multiline = true;
+            this.xrTableCell61.Name = "xrTableCell61";
+            this.xrTableCell61.StylePriority.UseFont = false;
+            this.xrTableCell61.StylePriority.UseTextAlignment = false;
+            this.xrTableCell61.Text = "Phosphorus";
+            this.xrTableCell61.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell61.Weight = 0.977581750587864D;
+            // 
+            // PhosphorusRange
+            // 
+            this.PhosphorusRange.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.PhosphorusRange.Multiline = true;
+            this.PhosphorusRange.Name = "PhosphorusRange";
+            this.PhosphorusRange.StylePriority.UseFont = false;
+            this.PhosphorusRange.StylePriority.UseTextAlignment = false;
+            this.PhosphorusRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.PhosphorusRange.Weight = 0.9945655344089398D;
+            // 
+            // Phosphorus1
+            // 
+            this.Phosphorus1.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.Phosphorus1.Multiline = true;
+            this.Phosphorus1.Name = "Phosphorus1";
+            this.Phosphorus1.StylePriority.UseFont = false;
+            this.Phosphorus1.StylePriority.UseTextAlignment = false;
+            this.Phosphorus1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.Phosphorus1.Weight = 0.54675561703877329D;
+            // 
+            // Phosphorus2
+            // 
+            this.Phosphorus2.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.Phosphorus2.Multiline = true;
+            this.Phosphorus2.Name = "Phosphorus2";
+            this.Phosphorus2.StylePriority.UseFont = false;
+            this.Phosphorus2.StylePriority.UseTextAlignment = false;
+            this.Phosphorus2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.Phosphorus2.Weight = 0.54433270808088774D;
+            // 
+            // Phosphorus3
+            // 
+            this.Phosphorus3.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.Phosphorus3.Multiline = true;
+            this.Phosphorus3.Name = "Phosphorus3";
+            this.Phosphorus3.StylePriority.UseFont = false;
+            this.Phosphorus3.StylePriority.UseTextAlignment = false;
+            this.Phosphorus3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.Phosphorus3.Weight = 0.55343095482494142D;
+            // 
             // xrTable2
             // 
             this.xrTable2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
@@ -2116,8 +2184,9 @@
             this.RowMercuryBlood,
             this.RowBenzenettUrine,
             this.RowFluorine,
-            this.RowFormadehyde});
-            this.tbToxicology.SizeF = new System.Drawing.SizeF(363.5789F, 595.3017F);
+            this.RowFormadehyde,
+            this.RowEthanolBlood});
+            this.tbToxicology.SizeF = new System.Drawing.SizeF(363.5789F, 614.1728F);
             this.tbToxicology.StylePriority.UseBorders = false;
             this.tbToxicology.StylePriority.UseBorderWidth = false;
             this.tbToxicology.StylePriority.UseFont = false;
@@ -4173,67 +4242,67 @@
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // RowPhosphorus
+            // RowEthanolBlood
             // 
-            this.RowPhosphorus.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell61,
-            this.PhosphorusRange,
-            this.Phosphorus1,
-            this.Phosphorus2,
-            this.Phosphorus3});
-            this.RowPhosphorus.Name = "RowPhosphorus";
-            this.RowPhosphorus.Weight = 0.96427178698233051D;
+            this.RowEthanolBlood.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell64,
+            this.RangeEthanolBlood,
+            this.EthanolBlood1,
+            this.EthanolBlood2,
+            this.EthanolBlood3});
+            this.RowEthanolBlood.Name = "RowEthanolBlood";
+            this.RowEthanolBlood.Weight = 0.92341768297675519D;
             // 
-            // xrTableCell61
+            // xrTableCell64
             // 
-            this.xrTableCell61.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell61.Multiline = true;
-            this.xrTableCell61.Name = "xrTableCell61";
-            this.xrTableCell61.StylePriority.UseFont = false;
-            this.xrTableCell61.StylePriority.UseTextAlignment = false;
-            this.xrTableCell61.Text = "Phosphorus";
-            this.xrTableCell61.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell61.Weight = 0.977581750587864D;
+            this.xrTableCell64.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell64.Multiline = true;
+            this.xrTableCell64.Name = "xrTableCell64";
+            this.xrTableCell64.StylePriority.UseFont = false;
+            this.xrTableCell64.StylePriority.UseTextAlignment = false;
+            this.xrTableCell64.Text = "Ethanol in Blood";
+            this.xrTableCell64.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell64.Weight = 1.0081393020274905D;
             // 
-            // PhosphorusRange
+            // RangeEthanolBlood
             // 
-            this.PhosphorusRange.Font = new System.Drawing.Font("Angsana New", 9F);
-            this.PhosphorusRange.Multiline = true;
-            this.PhosphorusRange.Name = "PhosphorusRange";
-            this.PhosphorusRange.StylePriority.UseFont = false;
-            this.PhosphorusRange.StylePriority.UseTextAlignment = false;
-            this.PhosphorusRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.PhosphorusRange.Weight = 0.9945655344089398D;
+            this.RangeEthanolBlood.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.RangeEthanolBlood.Multiline = true;
+            this.RangeEthanolBlood.Name = "RangeEthanolBlood";
+            this.RangeEthanolBlood.StylePriority.UseFont = false;
+            this.RangeEthanolBlood.StylePriority.UseTextAlignment = false;
+            this.RangeEthanolBlood.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.RangeEthanolBlood.Weight = 1.0314162206887314D;
             // 
-            // Phosphorus1
+            // EthanolBlood1
             // 
-            this.Phosphorus1.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.Phosphorus1.Multiline = true;
-            this.Phosphorus1.Name = "Phosphorus1";
-            this.Phosphorus1.StylePriority.UseFont = false;
-            this.Phosphorus1.StylePriority.UseTextAlignment = false;
-            this.Phosphorus1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.Phosphorus1.Weight = 0.54675561703877329D;
+            this.EthanolBlood1.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.EthanolBlood1.Multiline = true;
+            this.EthanolBlood1.Name = "EthanolBlood1";
+            this.EthanolBlood1.StylePriority.UseFont = false;
+            this.EthanolBlood1.StylePriority.UseTextAlignment = false;
+            this.EthanolBlood1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.EthanolBlood1.Weight = 0.52909351643135161D;
             // 
-            // Phosphorus2
+            // EthanolBlood2
             // 
-            this.Phosphorus2.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.Phosphorus2.Multiline = true;
-            this.Phosphorus2.Name = "Phosphorus2";
-            this.Phosphorus2.StylePriority.UseFont = false;
-            this.Phosphorus2.StylePriority.UseTextAlignment = false;
-            this.Phosphorus2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.Phosphorus2.Weight = 0.54433270808088774D;
+            this.EthanolBlood2.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.EthanolBlood2.Multiline = true;
+            this.EthanolBlood2.Name = "EthanolBlood2";
+            this.EthanolBlood2.StylePriority.UseFont = false;
+            this.EthanolBlood2.StylePriority.UseTextAlignment = false;
+            this.EthanolBlood2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.EthanolBlood2.Weight = 0.55147320971800662D;
             // 
-            // Phosphorus3
+            // EthanolBlood3
             // 
-            this.Phosphorus3.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.Phosphorus3.Multiline = true;
-            this.Phosphorus3.Name = "Phosphorus3";
-            this.Phosphorus3.StylePriority.UseFont = false;
-            this.Phosphorus3.StylePriority.UseTextAlignment = false;
-            this.Phosphorus3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.Phosphorus3.Weight = 0.55343095482494142D;
+            this.EthanolBlood3.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.EthanolBlood3.Multiline = true;
+            this.EthanolBlood3.Name = "EthanolBlood3";
+            this.EthanolBlood3.StylePriority.UseFont = false;
+            this.EthanolBlood3.StylePriority.UseTextAlignment = false;
+            this.EthanolBlood3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.EthanolBlood3.Weight = 0.49654431607582589D;
             // 
             // CheckupPage8
             // 
@@ -4622,5 +4691,11 @@
         public DevExpress.XtraReports.UI.XRTableCell Phosphorus3;
         public DevExpress.XtraReports.UI.XRTableRow RowPhosphorus;
         public DevExpress.XtraReports.UI.XRTableRow RowVDRL;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell64;
+        public DevExpress.XtraReports.UI.XRTableRow RowEthanolBlood;
+        public DevExpress.XtraReports.UI.XRTableCell RangeEthanolBlood;
+        public DevExpress.XtraReports.UI.XRTableCell EthanolBlood1;
+        public DevExpress.XtraReports.UI.XRTableCell EthanolBlood2;
+        public DevExpress.XtraReports.UI.XRTableCell EthanolBlood3;
     }
 }

@@ -204,6 +204,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                 page8.RowBenzenettUrine.Visible = false;
                 page8.RowMercuryBlood.Visible = false;
                 //page8.Rowfluoride.Visible = false;
+                page8.RowEthanolBlood.Visible = false;
                 page8.RowFormadehyde.Visible = false;
                 //page8.Row25Hexan.Visible = false;
                 //page8.RowManganese.Visible = false;
@@ -689,6 +690,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                         || p.RequestItemCode.Contains("LAB558")
                         || p.RequestItemCode.Contains("LAB518")
                         || p.RequestItemCode.Contains("LAB560")
+                        || p.RequestItemCode.Contains("LAB589")
                         || p.RequestItemCode.Contains("LAB561") //Arsenic 
                         || p.RequestItemCode.Contains("LAB562") //Cyclohexanone
                         || p.RequestItemCode.Contains("LAB316") //Phenol
@@ -1964,13 +1966,24 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                         //}
                         #endregion
 
-                        }
-                        else
+                        #region Ethanol in blood
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271") != null)
                         {
-                            page8.cellToxicoYear1.Text = "ปี" + " " + DateTime.Now.Year;
-                            page8.cellToxicoYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
-                            page8.cellToxicoYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
+                            page8.RowEthanolBlood.Visible = true;
+                            page8.RangeEthanolBlood.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271")?.ReferenceRange;
+                            page8.EthanolBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271" && p.Year == year1)?.ResultValue;
+                            page8.EthanolBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271" && p.Year == year2)?.ResultValue;
+                            page8.EthanolBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271" && p.Year == year3)?.ResultValue;
                         }
+
+                        #endregion
+                    }
+                    else
+                    {
+                        page8.cellToxicoYear1.Text = "ปี" + " " + DateTime.Now.Year;
+                        page8.cellToxicoYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
+                        page8.cellToxicoYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
+                    }
                     }
                     else
                     {

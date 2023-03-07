@@ -447,6 +447,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                 page3.RowCopperBlood.Visible = false;
                 page3.RowTrichloroUrine.Visible = false;
                 page3.rowDirectToluene.Visible = false;
+                page3.RowEthanolBlood.Visible = false;
                 #endregion
 
                 var occmed = data.MobileResult;
@@ -601,6 +602,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                         || p.RequestItemCode.Contains("LAB511")
                         || p.RequestItemCode.Contains("LAB620") //direct Toluene 
                         || p.RequestItemCode.Contains("LAB619")
+                        || p.RequestItemCode.Contains("LAB589")
                         || p.RequestItemCode.Contains("LAB543")//copper blood
                         || p.RequestItemCode.Contains("LAB606"))
                         .OrderByDescending(p => p.Year);
@@ -1522,6 +1524,17 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                         page3.DirectToluene1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307" && p.Year == year1)?.ResultValue;
                         page3.DirectToluene2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307" && p.Year == year2)?.ResultValue;
                         page3.DirectToluene3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307" && p.Year == year3)?.ResultValue;
+                    }
+                    #endregion
+
+                    #region Ethanol in blood
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271") != null)
+                    {
+                        page3.RowEthanolBlood.Visible = true;
+                        page3.RangeEthanolBlood.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271")?.ReferenceRange;
+                        page3.EthanolBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271" && p.Year == year1)?.ResultValue;
+                        page3.EthanolBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271" && p.Year == year2)?.ResultValue;
+                        page3.EthanolBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271" && p.Year == year3)?.ResultValue;
                     }
                     #endregion
                 }

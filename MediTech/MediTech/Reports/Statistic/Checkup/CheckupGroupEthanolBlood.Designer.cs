@@ -1,6 +1,6 @@
 ﻿namespace MediTech.Reports.Statistic.Checkup
 {
-    partial class CheckupGroupBenzene
+    partial class CheckupGroupEthanolBlood
     {
         /// <summary>
         /// Required designer variable.
@@ -47,8 +47,6 @@
             this.xrTableCell17 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell20 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.BenzeneL = new DevExpress.XtraReports.UI.FormattingRule();
-            this.BenzeneH = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell21 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell30 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow3 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -70,10 +68,12 @@
             this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell19 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell41 = new DevExpress.XtraReports.UI.XRTableCell();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.H = new DevExpress.XtraReports.UI.FormattingRule();
+            this.L = new DevExpress.XtraReports.UI.FormattingRule();
+            this.Abnormal = new DevExpress.XtraReports.UI.FormattingRule();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -195,7 +195,7 @@
             this.xrTableCell43.Font = new System.Drawing.Font("Angsana New", 13F, System.Drawing.FontStyle.Bold);
             this.xrTableCell43.Name = "xrTableCell43";
             this.xrTableCell43.StylePriority.UseFont = false;
-            this.xrTableCell43.Text = "ตรวจหาสารเบนซีนในปัสสาวะ(Benzene in Urine)";
+            this.xrTableCell43.Text = "ตรวจหาสารเอทานอลในเลือด (Ethanol in Blood)";
             this.xrTableCell43.Weight = 6.2536340304187057D;
             // 
             // xrTableCell29
@@ -253,31 +253,17 @@
             this.xrTableCell10.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
             this.xrTableCell10.Name = "xrTableCell10";
             this.xrTableCell10.StylePriority.UseFont = false;
-            this.xrTableCell10.Text = "Benzene in Urine";
+            this.xrTableCell10.Text = "Ethanol in Blood";
             this.xrTableCell10.Weight = 1.6741732447832094D;
             // 
             // xrTableCell20
             // 
             this.xrTableCell20.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell20.FormattingRules.Add(this.BenzeneL);
-            this.xrTableCell20.FormattingRules.Add(this.BenzeneH);
             this.xrTableCell20.Name = "xrTableCell20";
             this.xrTableCell20.RowSpan = 2;
             this.xrTableCell20.StylePriority.UseFont = false;
             this.xrTableCell20.Text = "แปลผล/คำแนะนำ";
             this.xrTableCell20.Weight = 4.1822199194134457D;
-            // 
-            // BenzeneL
-            // 
-            this.BenzeneL.Condition = "EndsWith(Trim([PAR115]), \'L\')";
-            this.BenzeneL.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.BenzeneL.Name = "BenzeneL";
-            // 
-            // BenzeneH
-            // 
-            this.BenzeneH.Condition = "EndsWith(Trim([PAR115]), \'H\')";
-            this.BenzeneH.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.BenzeneH.Name = "BenzeneH";
             // 
             // xrTableCell21
             // 
@@ -347,13 +333,11 @@
             this.xrTableCell18.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell18.Name = "xrTableCell18";
             this.xrTableCell18.StylePriority.UseFont = false;
-            this.xrTableCell18.Text = "0-50 mg/L";
+            this.xrTableCell18.Text = "<10 mg%";
             this.xrTableCell18.Weight = 1.6741732347480871D;
             // 
             // xrTableCell31
             // 
-            this.xrTableCell31.FormattingRules.Add(this.BenzeneH);
-            this.xrTableCell31.FormattingRules.Add(this.BenzeneL);
             this.xrTableCell31.Name = "xrTableCell31";
             this.xrTableCell31.Weight = 4.1822199093783246D;
             // 
@@ -452,10 +436,10 @@
             // xrTableCell8
             // 
             this.xrTableCell8.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PAR115")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PAR1271")});
             this.xrTableCell8.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrTableCell8.FormattingRules.Add(this.BenzeneH);
-            this.xrTableCell8.FormattingRules.Add(this.BenzeneL);
+            this.xrTableCell8.FormattingRules.Add(this.H);
+            this.xrTableCell8.FormattingRules.Add(this.L);
             this.xrTableCell8.Name = "xrTableCell8";
             this.xrTableCell8.StylePriority.UseFont = false;
             this.xrTableCell8.Weight = 1.5698914863753859D;
@@ -465,7 +449,7 @@
             this.xrTableCell6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Conclusion")});
             this.xrTableCell6.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrTableCell6.FormattingRules.Add(this.formattingRule1);
+            this.xrTableCell6.FormattingRules.Add(this.Abnormal);
             this.xrTableCell6.Name = "xrTableCell6";
             this.xrTableCell6.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 2, 0, 0, 100F);
             this.xrTableCell6.StylePriority.UseFont = false;
@@ -474,18 +458,12 @@
             this.xrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell6.Weight = 3.9217159552490126D;
             // 
-            // formattingRule1
-            // 
-            this.formattingRule1.Condition = "[ResultStatus]=\'ผิดปกติ\'";
-            this.formattingRule1.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.formattingRule1.Name = "formattingRule1";
-            // 
             // xrTableCell19
             // 
             this.xrTableCell19.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "ResultStatus")});
             this.xrTableCell19.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrTableCell19.FormattingRules.Add(this.formattingRule1);
+            this.xrTableCell19.FormattingRules.Add(this.Abnormal);
             this.xrTableCell19.Name = "xrTableCell19";
             this.xrTableCell19.StylePriority.UseFont = false;
             this.xrTableCell19.Weight = 0.88746729195746277D;
@@ -506,22 +484,40 @@
             this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.CheckupGroupReportModel);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
-            // CheckupGroupBenzene
+            // H
+            // 
+            this.H.Condition = "EndsWith(Trim([PAR1271]), \'H\')";
+            this.H.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.H.Name = "H";
+            // 
+            // L
+            // 
+            this.L.Condition = "EndsWith(Trim([PAR1271]), \'L\')";
+            this.L.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.L.Name = "L";
+            // 
+            // Abnormal
+            // 
+            this.Abnormal.Condition = "[ResultStatus]=\'ผิดปกติ\'";
+            this.Abnormal.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Abnormal.Name = "Abnormal";
+            // 
+            // CheckupGroupEthanolBlood
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.DetailBase,
-            this.GroupHeader1,
-            this.PageHeaderBase});
+            this.PageHeaderBase,
+            this.GroupHeader1});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
             this.FormattingRuleSheet.AddRange(new DevExpress.XtraReports.UI.FormattingRule[] {
-            this.formattingRule1,
-            this.BenzeneH,
-            this.BenzeneL});
+            this.H,
+            this.L,
+            this.Abnormal});
             this.Version = "22.1";
-            this.Controls.SetChildIndex(this.PageHeaderBase, 0);
             this.Controls.SetChildIndex(this.GroupHeader1, 0);
+            this.Controls.SetChildIndex(this.PageHeaderBase, 0);
             this.Controls.SetChildIndex(this.DetailBase, 0);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
@@ -542,22 +538,27 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell38;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell39;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell43;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell29;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow2;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell11;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell12;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell13;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell16;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell17;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell10;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell20;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell21;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell30;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow3;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell22;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell23;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell24;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell27;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell28;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell18;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell31;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell32;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell40;
         private DevExpress.XtraReports.UI.XRTable xrTable1;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow1;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell1;
@@ -567,16 +568,11 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell7;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell8;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell6;
-        private DevExpress.XtraReports.UI.FormattingRule formattingRule1;
-        private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
-        private DevExpress.XtraReports.UI.FormattingRule BenzeneH;
-        private DevExpress.XtraReports.UI.FormattingRule BenzeneL;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell19;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell10;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell18;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell41;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell29;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell30;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell40;
+        private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
+        private DevExpress.XtraReports.UI.FormattingRule H;
+        private DevExpress.XtraReports.UI.FormattingRule L;
+        private DevExpress.XtraReports.UI.FormattingRule Abnormal;
     }
 }

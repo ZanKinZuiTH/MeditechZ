@@ -349,6 +349,12 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell63 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell66 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
+            this.RowEthanolBlood = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RangeEthanolBlood = new DevExpress.XtraReports.UI.XRTableCell();
+            this.EthanolBlood1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.EthanolBlood2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.EthanolBlood3 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbToxicology)).BeginInit();
@@ -426,7 +432,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel7,
             this.xrTable3,
             this.xrLabel4});
-            this.Detail.HeightF = 1317.743F;
+            this.Detail.HeightF = 1350.243F;
             this.Detail.Name = "Detail";
             // 
             // tbToxicology
@@ -482,8 +488,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.RowThinnerUrine,
             this.RowCopperBlood,
             this.RowTrichloroUrine,
-            this.rowDirectToluene});
-            this.tbToxicology.SizeF = new System.Drawing.SizeF(498F, 1034.226F);
+            this.rowDirectToluene,
+            this.RowEthanolBlood});
+            this.tbToxicology.SizeF = new System.Drawing.SizeF(498F, 1057.444F);
             this.tbToxicology.StylePriority.UseBorderColor = false;
             this.tbToxicology.StylePriority.UseBorders = false;
             this.tbToxicology.StylePriority.UseBorderWidth = false;
@@ -3866,6 +3873,70 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel4.Text = "การเพาะเชื้อจากอุจจาระ (Stool Culture) ";
             this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
+            // RowEthanolBlood
+            // 
+            this.RowEthanolBlood.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell15,
+            this.RangeEthanolBlood,
+            this.EthanolBlood1,
+            this.EthanolBlood2,
+            this.EthanolBlood3});
+            this.RowEthanolBlood.Name = "RowEthanolBlood";
+            this.RowEthanolBlood.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell15
+            // 
+            this.xrTableCell15.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell15.Multiline = true;
+            this.xrTableCell15.Name = "xrTableCell15";
+            this.xrTableCell15.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell15.StylePriority.UseFont = false;
+            this.xrTableCell15.StylePriority.UsePadding = false;
+            this.xrTableCell15.StylePriority.UseTextAlignment = false;
+            this.xrTableCell15.Text = "Ethanol in Blood";
+            this.xrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell15.Weight = 1.2913566084432759D;
+            // 
+            // RangeEthanolBlood
+            // 
+            this.RangeEthanolBlood.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.RangeEthanolBlood.Multiline = true;
+            this.RangeEthanolBlood.Name = "RangeEthanolBlood";
+            this.RangeEthanolBlood.StylePriority.UseFont = false;
+            this.RangeEthanolBlood.StylePriority.UseTextAlignment = false;
+            this.RangeEthanolBlood.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.RangeEthanolBlood.Weight = 0.93906236153056333D;
+            // 
+            // EthanolBlood1
+            // 
+            this.EthanolBlood1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.EthanolBlood1.Multiline = true;
+            this.EthanolBlood1.Name = "EthanolBlood1";
+            this.EthanolBlood1.StylePriority.UseFont = false;
+            this.EthanolBlood1.StylePriority.UseTextAlignment = false;
+            this.EthanolBlood1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.EthanolBlood1.Weight = 0.443296332132815D;
+            // 
+            // EthanolBlood2
+            // 
+            this.EthanolBlood2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.EthanolBlood2.Multiline = true;
+            this.EthanolBlood2.Name = "EthanolBlood2";
+            this.EthanolBlood2.StylePriority.UseFont = false;
+            this.EthanolBlood2.StylePriority.UseTextAlignment = false;
+            this.EthanolBlood2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.EthanolBlood2.Weight = 0.44329633245297495D;
+            // 
+            // EthanolBlood3
+            // 
+            this.EthanolBlood3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.EthanolBlood3.Multiline = true;
+            this.EthanolBlood3.Name = "EthanolBlood3";
+            this.EthanolBlood3.StylePriority.UseFont = false;
+            this.EthanolBlood3.StylePriority.UseTextAlignment = false;
+            this.EthanolBlood3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.EthanolBlood3.Weight = 0.44329635320818539D;
+            // 
             // CheckupPage7
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -4207,5 +4278,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         public DevExpress.XtraReports.UI.XRTableCell DirectToluene1;
         public DevExpress.XtraReports.UI.XRTableCell DirectToluene2;
         public DevExpress.XtraReports.UI.XRTableCell DirectToluene3;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell15;
+        public DevExpress.XtraReports.UI.XRTableRow RowEthanolBlood;
+        public DevExpress.XtraReports.UI.XRTableCell RangeEthanolBlood;
+        public DevExpress.XtraReports.UI.XRTableCell EthanolBlood1;
+        public DevExpress.XtraReports.UI.XRTableCell EthanolBlood2;
+        public DevExpress.XtraReports.UI.XRTableCell EthanolBlood3;
     }
 }

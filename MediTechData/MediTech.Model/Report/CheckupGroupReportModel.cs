@@ -221,6 +221,7 @@ namespace MediTech.Model.Report
         public string PAR53 { get; set; }
         public string PAR54 { get; set; }
         public string PAR1319 { get; set; }
+        public string PAR1271 { get; set; }
 
         public string Conclusion { get; set; }
         public string ResultStatus { get; set; }
