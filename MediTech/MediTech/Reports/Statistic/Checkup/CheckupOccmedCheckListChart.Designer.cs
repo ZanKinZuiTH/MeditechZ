@@ -40,8 +40,10 @@
             DevExpress.XtraCharts.SideBySideBarSeriesLabel sideBySideBarSeriesLabel3 = new DevExpress.XtraCharts.SideBySideBarSeriesLabel();
             DevExpress.XtraCharts.SideBySideBarSeriesView sideBySideBarSeriesView3 = new DevExpress.XtraCharts.SideBySideBarSeriesView();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CheckupOccmedCheckListChart));
+            DevExpress.XtraReports.Parameters.StaticListLookUpSettings staticListLookUpSettings1 = new DevExpress.XtraReports.Parameters.StaticListLookUpSettings();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.checkupChart = new DevExpress.XtraReports.UI.XRChart();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
@@ -49,7 +51,7 @@
             this.Header = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.checkupChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
@@ -83,11 +85,13 @@
             xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
             xyDiagram1.AxisX.VisualRange.Auto = false;
             xyDiagram1.AxisX.VisualRange.AutoSideMargins = false;
+            xyDiagram1.AxisX.VisualRange.EndSideMargin = 0.5D;
             xyDiagram1.AxisX.VisualRange.MaxValueSerializable = "J";
             xyDiagram1.AxisX.VisualRange.MinValueSerializable = "A";
-            xyDiagram1.AxisX.VisualRange.SideMarginsValue = 0.5D;
+            xyDiagram1.AxisX.VisualRange.StartSideMargin = 0.5D;
             xyDiagram1.AxisX.WholeRange.AutoSideMargins = false;
-            xyDiagram1.AxisX.WholeRange.SideMarginsValue = 0.5D;
+            xyDiagram1.AxisX.WholeRange.EndSideMargin = 0.5D;
+            xyDiagram1.AxisX.WholeRange.StartSideMargin = 0.5D;
             xyDiagram1.AxisY.GridLines.Visible = false;
             xyDiagram1.AxisY.Tickmarks.MinorVisible = false;
             xyDiagram1.AxisY.Tickmarks.Visible = false;
@@ -142,6 +146,11 @@
         series3};
             this.checkupChart.SizeF = new System.Drawing.SizeF(672.3334F, 530.8333F);
             // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.CheckupSummaryModel);
+            this.objectDataSource1.Name = "objectDataSource1";
+            // 
             // TopMargin
             // 
             this.TopMargin.HeightF = 0F;
@@ -173,11 +182,11 @@
             new DevExpress.XtraReports.UI.XRBinding(this.Header, "Text", "")});
             this.xrLabel2.Font = new System.Drawing.Font("EucrosiaUPC", 16F, System.Drawing.FontStyle.Bold);
             this.xrLabel2.ForeColor = System.Drawing.Color.Blue;
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(177.6667F, 113.6666F);
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(81.00004F, 113.6666F);
             this.xrLabel2.Multiline = true;
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel2.SizeF = new System.Drawing.SizeF(557.5001F, 29.66667F);
+            this.xrLabel2.SizeF = new System.Drawing.SizeF(654.1667F, 29.66666F);
             this.xrLabel2.StylePriority.UseBorderColor = false;
             this.xrLabel2.StylePriority.UseBorders = false;
             this.xrLabel2.StylePriority.UseFont = false;
@@ -194,11 +203,11 @@
             // 
             this.xrLabel1.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel1.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(518.9999F, 10F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(436.4999F, 24.33326F);
             this.xrLabel1.Multiline = true;
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(278.3334F, 89.33334F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(360.8334F, 89.33334F);
             this.xrLabel1.StylePriority.UseBorders = false;
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.StylePriority.UseTextAlignment = false;
@@ -209,18 +218,24 @@
             // xrPictureBox1
             // 
             this.xrPictureBox1.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
-            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(62.83335F, 10F);
+            this.xrPictureBox1.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("xrPictureBox1.ImageSource"));
+            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(62.83335F, 24.33326F);
             this.xrPictureBox1.Name = "xrPictureBox1";
             this.xrPictureBox1.SizeF = new System.Drawing.SizeF(220F, 68.99999F);
             this.xrPictureBox1.StylePriority.UseBorders = false;
             // 
-            // objectDataSource1
+            // LogoType
             // 
-            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.CheckupSummaryModel);
-            this.objectDataSource1.Name = "objectDataSource1";
+            this.LogoType.Description = "Logo";
+            this.LogoType.Name = "LogoType";
+            this.LogoType.Type = typeof(int);
+            this.LogoType.ValueInfo = "0";
+            staticListLookUpSettings1.LookUpValues.Add(new DevExpress.XtraReports.Parameters.LookUpValue(0, "โรงพยาบาลบูรพารักษ์"));
+            staticListLookUpSettings1.LookUpValues.Add(new DevExpress.XtraReports.Parameters.LookUpValue(1, "บีอาร์เอ็กซ์จีสหคลินิก"));
+            staticListLookUpSettings1.LookUpValues.Add(new DevExpress.XtraReports.Parameters.LookUpValue(2, "BRXG Company"));
+            this.LogoType.ValueSourceSettings = staticListLookUpSettings1;
             // 
-            // CheckupOccmedSummaryChart
+            // CheckupOccmedCheckListChart
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail,
@@ -235,8 +250,10 @@
             this.PageWidth = 827;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
-            this.Header});
-            this.Version = "17.1";
+            this.Header,
+            this.LogoType});
+            this.RequestParameters = false;
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView1)).EndInit();
@@ -265,5 +282,6 @@
         private DevExpress.XtraReports.Parameters.Parameter Header;
         private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
         public DevExpress.XtraReports.UI.XRChart checkupChart;
+        private DevExpress.XtraReports.Parameters.Parameter LogoType;
     }
 }

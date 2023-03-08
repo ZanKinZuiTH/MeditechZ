@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CheckupGroupBase));
+            DevExpress.XtraReports.Parameters.StaticListLookUpSettings staticListLookUpSettings1 = new DevExpress.XtraReports.Parameters.StaticListLookUpSettings();
             this.DetailBase = new DevExpress.XtraReports.UI.DetailBand();
             this.TopMarginBase = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMarginBase = new DevExpress.XtraReports.UI.BottomMarginBand();
@@ -36,6 +37,7 @@
             this.lbTitle = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
+            this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // DetailBase
@@ -110,6 +112,17 @@
             this.xrPictureBox1.SizeF = new System.Drawing.SizeF(220F, 68.99999F);
             this.xrPictureBox1.StylePriority.UseBorders = false;
             // 
+            // LogoType
+            // 
+            this.LogoType.Description = "Logo";
+            this.LogoType.Name = "LogoType";
+            this.LogoType.Type = typeof(int);
+            this.LogoType.ValueInfo = "0";
+            staticListLookUpSettings1.LookUpValues.Add(new DevExpress.XtraReports.Parameters.LookUpValue(0, "โรงพยาบาลบูรพารักษ์"));
+            staticListLookUpSettings1.LookUpValues.Add(new DevExpress.XtraReports.Parameters.LookUpValue(1, "บีอาร์เอ็กซ์จีสหคลินิก"));
+            staticListLookUpSettings1.LookUpValues.Add(new DevExpress.XtraReports.Parameters.LookUpValue(2, "BRXG Company"));
+            this.LogoType.ValueSourceSettings = staticListLookUpSettings1;
+            // 
             // CheckupGroupBase
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -122,7 +135,12 @@
             this.PageHeight = 827;
             this.PageWidth = 1169;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
-            this.Version = "20.2";
+            this.ParameterPanelLayoutItems.AddRange(new DevExpress.XtraReports.Parameters.ParameterPanelLayoutItem[] {
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.LogoType, DevExpress.XtraReports.Parameters.Orientation.Horizontal)});
+            this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
+            this.LogoType});
+            this.RequestParameters = false;
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -132,8 +150,9 @@
         private DevExpress.XtraReports.UI.BottomMarginBand BottomMarginBase;
         protected DevExpress.XtraReports.UI.DetailBand DetailBase;
         protected DevExpress.XtraReports.UI.XRPictureBox xrPictureBox1;
-        protected DevExpress.XtraReports.UI.XRLabel xrLabel1;
         public DevExpress.XtraReports.UI.XRLabel lbTitle;
         protected DevExpress.XtraReports.UI.PageHeaderBand PageHeaderBase;
+        private DevExpress.XtraReports.Parameters.Parameter LogoType;
+        protected DevExpress.XtraReports.UI.XRLabel xrLabel1;
     }
 }

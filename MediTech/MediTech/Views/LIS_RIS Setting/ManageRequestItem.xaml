@@ -122,6 +122,7 @@
                         </dxlc:LayoutGroup>
                         <dxg:GridControl x:Name="grdResultItem" ItemsSource="{Binding RequestResultLinks}"
                                          SelectedItem="{Binding SelectRequestResultLink}">
+                            <dxg:GridColumn Header="Code" FieldName="ResultItemCode"/>
                             <dxg:GridColumn Header="Name" FieldName="ResultItemName"/>
                             <dxg:GridColumn Header="Unit" FieldName="Unit"/>
                             <dxg:GridColumn Header="Print Order" FieldName="PrintOrder"/>

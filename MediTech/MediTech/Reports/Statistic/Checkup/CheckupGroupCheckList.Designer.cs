@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CheckupGroupCheckList));
+            DevExpress.XtraReports.Parameters.StaticListLookUpSettings staticListLookUpSettings1 = new DevExpress.XtraReports.Parameters.StaticListLookUpSettings();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -76,6 +77,7 @@
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.DateFrom = new DevExpress.XtraReports.Parameters.Parameter();
             this.DateTo = new DevExpress.XtraReports.Parameters.Parameter();
+            this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -245,11 +247,11 @@
             // 
             this.xrLabel1.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel1.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(497.6668F, 14F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(416.7203F, 20.99998F);
             this.xrLabel1.Multiline = true;
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(278.3333F, 96.00001F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(359.2799F, 96.00001F);
             this.xrLabel1.StylePriority.UseBorders = false;
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.StylePriority.UseTextAlignment = false;
@@ -272,11 +274,11 @@
             this.lbTitle.CanShrink = true;
             this.lbTitle.Font = new System.Drawing.Font("Angsana New", 16F, System.Drawing.FontStyle.Bold);
             this.lbTitle.ForeColor = System.Drawing.Color.Blue;
-            this.lbTitle.LocationFloat = new DevExpress.Utils.PointFloat(169.6667F, 117F);
+            this.lbTitle.LocationFloat = new DevExpress.Utils.PointFloat(101.3334F, 117F);
             this.lbTitle.Multiline = true;
             this.lbTitle.Name = "lbTitle";
             this.lbTitle.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbTitle.SizeF = new System.Drawing.SizeF(455.5832F, 29.66669F);
+            this.lbTitle.SizeF = new System.Drawing.SizeF(595.5832F, 29.66669F);
             this.lbTitle.StylePriority.UseBorderColor = false;
             this.lbTitle.StylePriority.UseBorders = false;
             this.lbTitle.StylePriority.UseFont = false;
@@ -288,7 +290,7 @@
             // 
             this.xrPictureBox1.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrPictureBox1.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("xrPictureBox1.ImageSource"));
-            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(20.83333F, 14F);
+            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(20.83333F, 20.99999F);
             this.xrPictureBox1.Name = "xrPictureBox1";
             this.xrPictureBox1.SizeF = new System.Drawing.SizeF(220F, 68.99999F);
             this.xrPictureBox1.StylePriority.UseBorders = false;
@@ -562,6 +564,17 @@
             this.DateTo.Type = typeof(System.DateTime);
             this.DateTo.Visible = false;
             // 
+            // LogoType
+            // 
+            this.LogoType.Description = "Logo";
+            this.LogoType.Name = "LogoType";
+            this.LogoType.Type = typeof(int);
+            this.LogoType.ValueInfo = "0";
+            staticListLookUpSettings1.LookUpValues.Add(new DevExpress.XtraReports.Parameters.LookUpValue(0, "โรงพยาบาลบูรพารักษ์"));
+            staticListLookUpSettings1.LookUpValues.Add(new DevExpress.XtraReports.Parameters.LookUpValue(1, "บีอาร์เอ็กซ์จีสหคลินิก"));
+            staticListLookUpSettings1.LookUpValues.Add(new DevExpress.XtraReports.Parameters.LookUpValue(2, "BRXG Company"));
+            this.LogoType.ValueSourceSettings = staticListLookUpSettings1;
+            // 
             // CheckupGroupCheckList
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -587,8 +600,10 @@
             this.GPRSTUIDs,
             this.Year,
             this.DateFrom,
-            this.DateTo});
-            this.Version = "20.2";
+            this.DateTo,
+            this.LogoType});
+            this.RequestParameters = false;
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
@@ -644,5 +659,6 @@
         private DevExpress.XtraReports.Parameters.Parameter Year;
         private DevExpress.XtraReports.Parameters.Parameter DateFrom;
         private DevExpress.XtraReports.Parameters.Parameter DateTo;
+        private DevExpress.XtraReports.Parameters.Parameter LogoType;
     }
 }
