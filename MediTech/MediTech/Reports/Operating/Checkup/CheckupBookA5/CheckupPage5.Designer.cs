@@ -86,19 +86,19 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.cellTotalProtein1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellTotalProtein2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellTotalProtein3 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableRow15 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.RowAlbumin = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell85 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellAlbuminRange = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellAlbumin1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellAlbumin2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellAlbumin3 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableRow19 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.RowGlobulin = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell90 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellGlobulinRange = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellGlobulin1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellGlobulin2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellGlobulin3 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableRow16 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.RowGGT = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell28 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellGgtRange = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellggt1 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -301,9 +301,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableRow12,
             this.xrTableRow13,
             this.xrTableRow14,
-            this.xrTableRow15,
-            this.xrTableRow19,
-            this.xrTableRow16});
+            this.RowAlbumin,
+            this.RowGlobulin,
+            this.RowGGT});
             this.tbLiver.SizeF = new System.Drawing.SizeF(498F, 243.62F);
             this.tbLiver.StylePriority.UseBorderColor = false;
             this.tbLiver.StylePriority.UseBorders = false;
@@ -829,16 +829,16 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.cellTotalProtein3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.cellTotalProtein3.Weight = 0.45735967203555439D;
             // 
-            // xrTableRow15
+            // RowAlbumin
             // 
-            this.xrTableRow15.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.RowAlbumin.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell85,
             this.cellAlbuminRange,
             this.cellAlbumin1,
             this.cellAlbumin2,
             this.cellAlbumin3});
-            this.xrTableRow15.Name = "xrTableRow15";
-            this.xrTableRow15.Weight = 0.92341768297675519D;
+            this.RowAlbumin.Name = "RowAlbumin";
+            this.RowAlbumin.Weight = 0.92341768297675519D;
             // 
             // xrTableCell85
             // 
@@ -892,16 +892,16 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.cellAlbumin3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.cellAlbumin3.Weight = 0.45735967203555439D;
             // 
-            // xrTableRow19
+            // RowGlobulin
             // 
-            this.xrTableRow19.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.RowGlobulin.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell90,
             this.cellGlobulinRange,
             this.cellGlobulin1,
             this.cellGlobulin2,
             this.cellGlobulin3});
-            this.xrTableRow19.Name = "xrTableRow19";
-            this.xrTableRow19.Weight = 0.92341768297675519D;
+            this.RowGlobulin.Name = "RowGlobulin";
+            this.RowGlobulin.Weight = 0.92341768297675519D;
             // 
             // xrTableCell90
             // 
@@ -955,16 +955,16 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.cellGlobulin3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.cellGlobulin3.Weight = 0.45735967203555439D;
             // 
-            // xrTableRow16
+            // RowGGT
             // 
-            this.xrTableRow16.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.RowGGT.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell28,
             this.cellGgtRange,
             this.cellggt1,
             this.cellggt2,
             this.cellggt3});
-            this.xrTableRow16.Name = "xrTableRow16";
-            this.xrTableRow16.Weight = 0.92341768297675519D;
+            this.RowGGT.Name = "RowGGT";
+            this.RowGGT.Weight = 0.92341768297675519D;
             // 
             // xrTableCell28
             // 
@@ -2224,19 +2224,16 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         public DevExpress.XtraReports.UI.XRTableCell cellTotalProtein1;
         public DevExpress.XtraReports.UI.XRTableCell cellTotalProtein2;
         public DevExpress.XtraReports.UI.XRTableCell cellTotalProtein3;
-        private DevExpress.XtraReports.UI.XRTableRow xrTableRow15;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell85;
         public DevExpress.XtraReports.UI.XRTableCell cellAlbuminRange;
         public DevExpress.XtraReports.UI.XRTableCell cellAlbumin1;
         public DevExpress.XtraReports.UI.XRTableCell cellAlbumin2;
         public DevExpress.XtraReports.UI.XRTableCell cellAlbumin3;
-        private DevExpress.XtraReports.UI.XRTableRow xrTableRow19;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell90;
         public DevExpress.XtraReports.UI.XRTableCell cellGlobulinRange;
         public DevExpress.XtraReports.UI.XRTableCell cellGlobulin1;
         public DevExpress.XtraReports.UI.XRTableCell cellGlobulin2;
         public DevExpress.XtraReports.UI.XRTableCell cellGlobulin3;
-        private DevExpress.XtraReports.UI.XRTableRow xrTableRow16;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell28;
         public DevExpress.XtraReports.UI.XRTableCell cellGgtRange;
         public DevExpress.XtraReports.UI.XRTableCell cellggt1;
@@ -2339,5 +2336,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         public DevExpress.XtraReports.UI.XRTableCell cellCoiHCV1;
         public DevExpress.XtraReports.UI.XRTableCell cellCoiHCV2;
         public DevExpress.XtraReports.UI.XRTableCell cellCoiHCV3;
+        public DevExpress.XtraReports.UI.XRTableRow RowAlbumin;
+        public DevExpress.XtraReports.UI.XRTableRow RowGlobulin;
+        public DevExpress.XtraReports.UI.XRTableRow RowGGT;
     }
 }
