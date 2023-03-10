@@ -1258,7 +1258,7 @@ namespace MediTech.ViewModels
 
                     if (SelectCheckupJobTask.GPRSTUID == 4853)
                     {
-                        var data = DataService.Checkup.SearchCheckupExamList(JobDateFrom, JobDateTo, null, SelectInsuranceCompany.InsuranceCompanyUID, SelectCheckupJobContact.CheckupJobContactUID, 4828, 474);
+                        var data = DataService.Checkup.SearchCheckupExamList(JobDateFrom, JobDateTo, null, SelectInsuranceCompany.InsuranceCompanyUID, SelectCheckupJobContact.CheckupJobContactUID, 4854, 511);
                         //PatientWellnessModel data = DataService.Reports.PrintWellnessBook(patientUID, patientVisitUID, payorDetailUID);
 
                         if (data != null && data.Count > 0)
