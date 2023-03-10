@@ -84,6 +84,12 @@ namespace MediTech.ViewModels
 
         }
 
+        private RelayCommand _ExportToXLSXCommand;
+        public RelayCommand ExportToXLSXCommand
+        {
+            get { return _ExportToXLSXCommand ?? (_ExportToXLSXCommand = new RelayCommand(ExportToXLSX)); }
+        }
+
         #endregion
 
         #region Method
@@ -104,6 +110,27 @@ namespace MediTech.ViewModels
         {
             ManageItemMaster pageManageItemMaster = new ManageItemMaster();
             ChangeViewPermission(pageManageItemMaster);
+        }
+
+        private void ExportToXLSX()
+        {
+            try
+            {
+                if (ItemMasters != null)
+                {
+                    string fileName = ShowSaveFileDialog("Microsoft Excel Document", "Microsoft Excel|*.xlsx");
+                    if (fileName != "")
+                    {
+                        ListItemMaster view = (ListItemMaster)this.View;
+                        view.gvItemMaster.ExportToXlsx(fileName);
+                        OpenFile(fileName);
+                    }
+                }
+            }
+            catch (Exception er)
+            {
+                ErrorDialog(er.Message);
+            }
         }
 
         private void EditItemMaster()

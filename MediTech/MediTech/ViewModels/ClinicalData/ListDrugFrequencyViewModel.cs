@@ -48,6 +48,12 @@ namespace MediTech.ViewModels
             get { return _DeleteCommand ?? (_DeleteCommand = new RelayCommand(Delete)); }
         }
 
+        private RelayCommand _ExportToXLSXCommand;
+        public RelayCommand ExportToXLSXCommand
+        {
+            get { return _ExportToXLSXCommand ?? (_ExportToXLSXCommand = new RelayCommand(ExportToXLSX)); }
+        }
+
         #endregion
 
         #region Method
@@ -72,6 +78,27 @@ namespace MediTech.ViewModels
                 ChangeViewPermission(pageManage);
             }
 
+        }
+
+        private void ExportToXLSX()
+        {
+            try
+            {
+                if (DrugFrequencys != null)
+                {
+                    string fileName = ShowSaveFileDialog("Microsoft Excel Document", "Microsoft Excel|*.xlsx");
+                    if (fileName != "")
+                    {
+                        ListDrugFrequency view = (ListDrugFrequency)this.View;
+                        view.gvDrugFrequency.ExportToXlsx(fileName);
+                        OpenFile(fileName);
+                    }
+                }
+            }
+            catch (Exception er)
+            {
+                ErrorDialog(er.Message);
+            }
         }
 
         private void Delete()
