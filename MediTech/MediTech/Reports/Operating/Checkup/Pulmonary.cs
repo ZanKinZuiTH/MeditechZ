@@ -65,7 +65,8 @@ namespace MediTech.Reports.Operating.Checkup
                 this.xrPictureBox1.SizeF = new System.Drawing.SizeF(170.4585F, 50.16669F);
             }
 
-            if (dataPulmonary != null && dataPulmonary.Count > 0)
+            var data = dataPulmonary.Where(p => p.ResultItemCode.Contains("SPIR")).ToList();
+            if (data != null && data.Count > 0)
             {
                 lbHN.Text = patient.PatientID;
                 lbEmployeeID.Text = patient.EmployeeID;
@@ -78,18 +79,20 @@ namespace MediTech.Reports.Operating.Checkup
                 lbHeight.Text = patient.Height != null ? patient.Height + " ซม." : "";
                 lbStartDttm.Text = patient.StartDttm.Value.ToString("dd/MM/yyyy");
 
-                lbFVCMeasure.Text = dataPulmonary.FirstOrDefault(p => p.ResultItemCode == "SPIRO1").ResultValue;
-                lbFVCPredic.Text = dataPulmonary.FirstOrDefault(p => p.ResultItemCode == "SPIRO2").ResultValue;
-                lbFVCPer.Text = dataPulmonary.FirstOrDefault(p => p.ResultItemCode == "SPIRO3").ResultValue;
-                lbFEV1Measure.Text = dataPulmonary.FirstOrDefault(p => p.ResultItemCode == "SPIRO4").ResultValue;
-                lbFEV1Predic.Text = dataPulmonary.FirstOrDefault(p => p.ResultItemCode == "SPIRO5").ResultValue;
-                lbFEV1Per.Text = dataPulmonary.FirstOrDefault(p => p.ResultItemCode == "SPIRO6").ResultValue;
-                lbFEVMeasure.Text = dataPulmonary.FirstOrDefault(p => p.ResultItemCode == "SPIRO7").ResultValue;
-                lbFEVPredic.Text = dataPulmonary.FirstOrDefault(p => p.ResultItemCode == "SPIRO8").ResultValue;
-                lbFEVPer.Text = dataPulmonary.FirstOrDefault(p => p.ResultItemCode == "SPIRO9").ResultValue;
+               
+                    lbFVCMeasure.Text = dataPulmonary.FirstOrDefault(p => p.ResultItemCode == "SPIRO1").ResultValue;
+                    lbFVCPredic.Text = dataPulmonary.FirstOrDefault(p => p.ResultItemCode == "SPIRO2").ResultValue;
+                    lbFVCPer.Text = dataPulmonary.FirstOrDefault(p => p.ResultItemCode == "SPIRO3").ResultValue;
+                    lbFEV1Measure.Text = dataPulmonary.FirstOrDefault(p => p.ResultItemCode == "SPIRO4").ResultValue;
+                    lbFEV1Predic.Text = dataPulmonary.FirstOrDefault(p => p.ResultItemCode == "SPIRO5").ResultValue;
+                    lbFEV1Per.Text = dataPulmonary.FirstOrDefault(p => p.ResultItemCode == "SPIRO6").ResultValue;
+                    lbFEVMeasure.Text = dataPulmonary.FirstOrDefault(p => p.ResultItemCode == "SPIRO7").ResultValue;
+                    lbFEVPredic.Text = dataPulmonary.FirstOrDefault(p => p.ResultItemCode == "SPIRO8").ResultValue;
+                    lbFEVPer.Text = dataPulmonary.FirstOrDefault(p => p.ResultItemCode == "SPIRO9").ResultValue;
 
-                lbLungResult.Text = GroupResult.FirstOrDefault(p => p.GroupCode == "GPRST33")?.ResultStatus.ToString();
-                lbLungRecommend.Text = GroupResult.FirstOrDefault(p => p.GroupCode == "GPRST33")?.Conclusion.ToString();
+                    lbLungResult.Text = GroupResult.FirstOrDefault(p => p.GroupCode == "GPRST33")?.ResultStatus.ToString();
+                    lbLungRecommend.Text = GroupResult.FirstOrDefault(p => p.GroupCode == "GPRST33")?.Conclusion.ToString();
+                
             }
         }
     }

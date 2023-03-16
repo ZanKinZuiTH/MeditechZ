@@ -25,6 +25,7 @@ namespace MediTech.Reports.Operating.Checkup
             var GroupResult = (new ReportsService()).CheckupGroupResult(PatientUID, PatientVisitUID);
             var patient = (new ReportsService()).PatientInfomationWellness(PatientUID, PatientVisitUID);
             var dataMuscle = (new CheckupService()).GetCheckupMobileResultByVisitUID(PatientUID, PatientVisitUID);
+            var groupResult = (new CheckupService()).GetCheckupGroupResultListByVisit(PatientUID, PatientVisitUID);
             int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
 
             HealthOrganisationModel Organisation = null;
@@ -65,26 +66,88 @@ namespace MediTech.Reports.Operating.Checkup
                 this.xrPictureBox1.SizeF = new System.Drawing.SizeF(170.4585F, 50.16669F);
             }
 
-            string MyofascialTop = dataMuscle.FirstOrDefault(p => p.ResultItemCode == "PAR1301")?.ResultValue;
-            string MyofascialBottom = dataMuscle.FirstOrDefault(p => p.ResultItemCode == "PAR1302")?.ResultValue;
-            string NeckROM = dataMuscle.FirstOrDefault(p => p.ResultItemCode == "PAR1303")?.ResultValue;
-            string RTShoulderROM = dataMuscle.FirstOrDefault(p => p.ResultItemCode == "PAR1304")?.ResultValue;
-            string LTShoulderROM = dataMuscle.FirstOrDefault(p => p.ResultItemCode == "PAR1305")?.ResultValue;
-            string LumbarROM = dataMuscle.FirstOrDefault(p => p.ResultItemCode == "PAR1306")?.ResultValue;
-            string Conclusion;
-
-            if (MyofascialTop != "" && MyofascialBottom != "" && NeckROM != "" && RTShoulderROM != "" && LTShoulderROM != "" && LumbarROM != "")
+            var data = dataMuscle.Where(p => p.ResultItemCode.Contains("MUCS")).ToList();
+            if (data != null && data.Count > 0)
             {
+                
+                lbHN.Text = patient.PatientID;
+                lbEmployeeID.Text = patient.EmployeeID;
+                lbDepartment.Text = patient.Department;
+                lbPatientName.Text = patient.PatientName;
+                lbAge.Text = patient.Age;
+                lbGender.Text = patient.Gender;
+                lbBirthDttm.Text = patient.BirthDttmString;
+                lbWeight.Text = patient.Weight != null ? patient.Weight + " กก." : "";
+                lbHeight.Text = patient.Height != null ? patient.Height + " ซม." : "";
+                lbStartDttm.Text = patient.StartDttm.Value.ToString("dd/MM/yyyy");
 
-                if (MyofascialTop == "มีความเสี่ยง" || MyofascialBottom == "มีความเสี่ยง" || NeckROM == "ผิดปกติ" || RTShoulderROM == "ผิดปกติ" || LTShoulderROM == "ผิดปกติ" || LumbarROM == "ผิดปกติ")
+
+                var lbMuscleResult = GroupResult.FirstOrDefault(p => p.GroupCode == "GPRST32")?.Conclusion;
+                if (!string.IsNullOrEmpty(lbMuscleResult))
                 {
-                    Conclusion = "โครงสร้างและกล้ามเนื้ออยู่ในเกณฑ์มีความเสี่ยง หากอาการปวดหรืออาการชากระทบกับการดำเนินชีวิตประจำวัน ควรตรวจวินิจฉัยเพิ่มเติมโดยละเอียด และเข้ารับการรักษาที่เหมาะสม ร่วมกับการปรับพฤติกรรม เพื่อลดโอกาสการบาดเจ็บเรื้อรัง";
+                    string[] results = lbMuscleResult.Split(',');
+                    foreach (var item in results)
+                    {
+                        string description = "";
+                        string recommand = "";
+                        if (item.Contains("หลัง"))
+                        {
+                            if (item.Contains("ควร"))
+                            {
+                                int index = item.IndexOf("ควร");
+                                description += string.IsNullOrEmpty(description) ? item.Substring(0, index).Trim() : " " + item.Substring(0, index).Trim();
+                                recommand = item.Substring(index).Trim();
+                                Backconclude.Text = description;
+                                Backrecommend.Text = recommand;
+                            }
+                            else
+                            {
+                                Backconclude.Text = item.Trim();
+                            }
+                        }
+
+                        if (item.Contains("ขา"))
+                        {
+                            if (item.Contains("ควร"))
+                            {
+                                int index = item.IndexOf("ควร");
+                                description += string.IsNullOrEmpty(description) ? item.Substring(0, index).Trim() : " " + item.Substring(0, index).Trim();
+                                recommand = item.Substring(index).Trim();
+                                Legconclude.Text = description;
+                                Legrecommend.Text = recommand;
+                            }
+                            else
+                            {
+                                Legconclude.Text = item.Trim();
+                            }
+                        }
+
+                        if (item.Contains("บีบมือ"))
+                        {
+                            if (item.Contains("ควร"))
+                            {
+                                int index = item.IndexOf("ควร");
+                                description += string.IsNullOrEmpty(description) ? item.Substring(0, index).Trim() : " " + item.Substring(0, index).Trim();
+                                recommand = item.Substring(index).Trim();
+                                Gripconclude.Text = description;
+                                Griprecommend.Text = recommand;
+                            }
+                            else
+                            {
+                                Gripconclude.Text = item.Trim();
+                            }
+                        }
+                    }
                 }
-                else
-                {
-                    Conclusion = "โครงสร้างและกล้ามเนื้ออยู่ในเกณฑ์ปกติ ควรยืดเหยียดกล้ามเนื้อและออกกำลังกายสม่ำเสมออย่างเหมาะสม เพื่อลดความเสี่ยงการบาดเจ็บของโครงสร้างและกล้ามเนื้อ";
-                }
+
+                lbBackValue.Text = dataMuscle.FirstOrDefault(p => p.ResultItemCode == "MUCS1")?.ResultValue;
+                lbBackStrenght.Text = dataMuscle.FirstOrDefault(p => p.ResultItemCode == "MUCS2")?.ResultValue;
+                lbValueLegStrength.Text = dataMuscle.FirstOrDefault(p => p.ResultItemCode == "MUCS5")?.ResultValue;
+                lbLegStrength.Text = dataMuscle.FirstOrDefault(p => p.ResultItemCode == "MUCS6")?.ResultValue;
+                lbValueGripStrength.Text = dataMuscle.FirstOrDefault(p => p.ResultItemCode == "MUCS3")?.ResultValue;
+                lbGripStrength.Text = dataMuscle.FirstOrDefault(p => p.ResultItemCode == "MUCS4")?.ResultValue;
             }
+          
         }
 
     }
