@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using MediTech.Helpers;
 using MediTech.Model.Report;
+using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace MediTech.Reports.Operating.Checkup.RiskBook
 {
@@ -38,9 +40,24 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
             long patientUID = long.Parse(this.Parameters["PatientUID"].Value.ToString());
             long patientVisitUID = long.Parse(this.Parameters["PatientVisitUID"].Value.ToString());
             int payorDetailUID = int.Parse(this.Parameters["PayorDetailUID"].Value.ToString());
+            int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
             PatientRiskBookModel data = DataService.Reports.PrintRiskBook(patientUID, patientVisitUID, payorDetailUID);
             List<PatientResultComponentModel> dataAudiotis = DataService.Reports.GetCheckupRiskAudioTimus(patientUID, payorDetailUID);
 
+            HealthOrganisationModel Organisation = null;
+            if (logoType == 3)
+            {
+                Organisation = (new MasterDataService()).GetHealthOrganisationByUID(17);
+            }
+            else
+            {
+                Organisation = (new MasterDataService()).GetHealthOrganisationByUID(30);
+            }
+
+            page4.organizationName.Text = Organisation.Description;
+            page4.organizationAddress.Text = Organisation.Address;
+            page4.organizationPhone.Text = Organisation.MobileNo;
+            
             if (data.PatientInfomation != null)
             {
                 var patient = data.PatientInfomation;

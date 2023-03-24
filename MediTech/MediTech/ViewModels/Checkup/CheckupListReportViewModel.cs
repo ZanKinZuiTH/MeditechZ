@@ -393,7 +393,7 @@ namespace MediTech.ViewModels
                             SelectReport.Name == "รายงานการตรวจปัจจัยเสี่ยงUACJ")
                             rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
                         if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มเล็ก" || SelectReport.Name == "ผลตรวจสมรรถภาพการได้ยินเบื้องต้น"
-                            || SelectReport.Name == "รายงานตรวจสุขภาพCSR" || SelectReport.Name == "รายงานตรวจPapSmear" || SelectReport.Name == "ผลตรวจสมรรถภาพปอด" || SelectReport.Name == "ผลตรวจสมรรถภาพกล้ามเนื้อ")
+                            || SelectReport.Name == "รายงานตรวจสุขภาพCSR" || SelectReport.Name == "เล่มความเสี่ยง"  || SelectReport.Name == "รายงานตรวจPapSmear" || SelectReport.Name == "ผลตรวจสมรรถภาพปอด" || SelectReport.Name == "ผลตรวจสมรรถภาพกล้ามเนื้อ")
                         {
                             rpt.Parameters["LogoType"].Value = SelectLogo != null ? SelectLogo.Key : 2;
 
@@ -475,12 +475,12 @@ namespace MediTech.ViewModels
                     rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
                     if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคล" || SelectReport.Name == "เล่มความเสี่ยง" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มเล็ก"
                              || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5"
-                             || SelectReport.Name == "รายงานตรวจสุขภาพCSR" || SelectReport.Name == "รายงานตรวจPapSmear" ||
+                             || SelectReport.Name == "รายงานตรวจสุขภาพCSR"  || SelectReport.Name == "รายงานตรวจPapSmear" ||
                              SelectReport.Name == "รายงานการตรวจปัจจัยเสี่ยงUACJ")
                         rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
 
                     if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มเล็ก" || SelectReport.Name == "ผลตรวจสมรรถภาพการได้ยินเบื้องต้น"
-                        || SelectReport.Name == "รายงานตรวจสุขภาพCSR" || SelectReport.Name == "รายงานตรวจPapSmear" || SelectReport.Name == "ผลตรวจสมรรถภาพปอด" || SelectReport.Name == "ผลตรวจสมรรถภาพกล้ามเนื้อ")
+                        || SelectReport.Name == "รายงานตรวจสุขภาพCSR" || SelectReport.Name == "เล่มความเสี่ยง"  || SelectReport.Name == "รายงานตรวจPapSmear" || SelectReport.Name == "ผลตรวจสมรรถภาพปอด" || SelectReport.Name == "ผลตรวจสมรรถภาพกล้ามเนื้อ")
                     {
                         rpt.Parameters["LogoType"].Value = SelectLogo != null ? SelectLogo.Key : 0;
 
@@ -527,7 +527,7 @@ namespace MediTech.ViewModels
                             rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
                    
                         if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มเล็ก" || SelectReport.Name == "ผลตรวจสมรรถภาพการได้ยินเบื้องต้น"
-                            || SelectReport.Name == "รายงานตรวจสุขภาพCSR" || SelectReport.Name == "รายงานตรวจPapSmear" || SelectReport.Name == "ผลตรวจสมรรถภาพปอด" || SelectReport.Name == "ผลตรวจสมรรถภาพกล้ามเนื้อ")
+                            || SelectReport.Name == "รายงานตรวจสุขภาพCSR" || SelectReport.Name == "เล่มความเสี่ยง"  || SelectReport.Name == "รายงานตรวจPapSmear" || SelectReport.Name == "ผลตรวจสมรรถภาพปอด" || SelectReport.Name == "ผลตรวจสมรรถภาพกล้ามเนื้อ")
                         {
                             rpt.Parameters["LogoType"].Value = SelectLogo != null ? SelectLogo.Key : 0;
 
@@ -574,7 +574,7 @@ namespace MediTech.ViewModels
                             SelectReport.Name == "รายงานการตรวจปัจจัยเสี่ยงUACJ")
                             rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
                         if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มเล็ก" || SelectReport.Name == "ผลตรวจสมรรถภาพการได้ยินเบื้องต้น"
-                            || SelectReport.Name == "รายงานตรวจสุขภาพCSR" || SelectReport.Name == "รายงานตรวจPapSmear" || SelectReport.Name == "ผลตรวจสมรรถภาพปอด" || SelectReport.Name == "ผลตรวจสมรรถภาพกล้ามเนื้อ")
+                            || SelectReport.Name == "รายงานตรวจสุขภาพCSR" || SelectReport.Name == "เล่มความเสี่ยง"  || SelectReport.Name == "รายงานตรวจPapSmear" || SelectReport.Name == "ผลตรวจสมรรถภาพปอด" || SelectReport.Name == "ผลตรวจสมรรถภาพกล้ามเนื้อ")
                         {
                             rpt.Parameters["LogoType"].Value = SelectLogo != null ? SelectLogo.Key : 0;
 

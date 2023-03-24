@@ -120,6 +120,7 @@
             this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PayorDetailUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
@@ -635,7 +636,7 @@
             this.Equipment1.StylePriority.UseFont = false;
             this.Equipment1.StylePriority.UseTextAlignment = false;
             this.Equipment1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.Equipment1.Weight = 1.8366794520439465D;
+            this.Equipment1.Weight = 1.8366794520439464D;
             // 
             // xrTableRow6
             // 
@@ -719,7 +720,7 @@
             this.Equipment2.StylePriority.UseFont = false;
             this.Equipment2.StylePriority.UseTextAlignment = false;
             this.Equipment2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.Equipment2.Weight = 1.8366794520439465D;
+            this.Equipment2.Weight = 1.8366794520439464D;
             // 
             // xrTableRow8
             // 
@@ -803,7 +804,7 @@
             this.Equipment3.StylePriority.UseFont = false;
             this.Equipment3.StylePriority.UseTextAlignment = false;
             this.Equipment3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.Equipment3.Weight = 1.8366794520439465D;
+            this.Equipment3.Weight = 1.8366794520439464D;
             // 
             // xrTableRow9
             // 
@@ -888,7 +889,7 @@
             this.xrTableCell46.StylePriority.UseFont = false;
             this.xrTableCell46.StylePriority.UseTextAlignment = false;
             this.xrTableCell46.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell46.Weight = 1.8366794520439465D;
+            this.xrTableCell46.Weight = 1.8366794520439464D;
             // 
             // xrTableRow10
             // 
@@ -973,7 +974,7 @@
             this.xrTableCell47.StylePriority.UseFont = false;
             this.xrTableCell47.StylePriority.UseTextAlignment = false;
             this.xrTableCell47.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell47.Weight = 1.8366794520439465D;
+            this.xrTableCell47.Weight = 1.8366794520439464D;
             // 
             // xrTableRow11
             // 
@@ -1058,7 +1059,7 @@
             this.xrTableCell48.StylePriority.UseFont = false;
             this.xrTableCell48.StylePriority.UseTextAlignment = false;
             this.xrTableCell48.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell48.Weight = 1.8366794520439465D;
+            this.xrTableCell48.Weight = 1.8366794520439464D;
             // 
             // xrRichText1
             // 
@@ -1139,6 +1140,14 @@
             this.PayorDetailUID.ValueInfo = "0";
             this.PayorDetailUID.Visible = false;
             // 
+            // LogoType
+            // 
+            this.LogoType.Description = "Parameter1";
+            this.LogoType.Name = "LogoType";
+            this.LogoType.Type = typeof(int);
+            this.LogoType.ValueInfo = "0";
+            this.LogoType.Visible = false;
+            // 
             // RiskBook1
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1152,8 +1161,9 @@
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.PatientUID,
             this.PatientVisitUID,
-            this.PayorDetailUID});
-            this.Version = "17.1";
+            this.PayorDetailUID,
+            this.LogoType});
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).EndInit();
@@ -1259,5 +1269,6 @@
         public DevExpress.XtraReports.UI.XRTableCell Description2;
         public DevExpress.XtraReports.UI.XRTableCell CompanyName3;
         public DevExpress.XtraReports.UI.XRTableCell Description3;
+        private DevExpress.XtraReports.Parameters.Parameter LogoType;
     }
 }

@@ -375,23 +375,13 @@
             this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow5 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell14 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.organizationName = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow6 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell17 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell25 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell26 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell27 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell28 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell29 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.organizationAddress = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow7 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell19 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell32 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell30 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell20 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell31 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell21 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.organizationPhone = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.lbResult = new DevExpress.XtraReports.UI.XRLabel();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
@@ -4911,7 +4901,7 @@
             // 
             this.xrTableRow5.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell13,
-            this.xrTableCell14});
+            this.organizationName});
             this.xrTableRow5.Name = "xrTableRow5";
             this.xrTableRow5.Weight = 1D;
             // 
@@ -4928,28 +4918,21 @@
             this.xrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell13.Weight = 1D;
             // 
-            // xrTableCell14
+            // organizationName
             // 
-            this.xrTableCell14.CanGrow = false;
-            this.xrTableCell14.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrTableCell14.Name = "xrTableCell14";
-            this.xrTableCell14.StylePriority.UseFont = false;
-            this.xrTableCell14.StylePriority.UseTextAlignment = false;
-            this.xrTableCell14.Text = " บีอาร์เอ็กซ์จีสหคลินิก";
-            this.xrTableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell14.Weight = 2D;
+            this.organizationName.CanGrow = false;
+            this.organizationName.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.organizationName.Name = "organizationName";
+            this.organizationName.StylePriority.UseFont = false;
+            this.organizationName.StylePriority.UseTextAlignment = false;
+            this.organizationName.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.organizationName.Weight = 2D;
             // 
             // xrTableRow6
             // 
             this.xrTableRow6.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell16,
-            this.xrTableCell17,
-            this.xrTableCell25,
-            this.xrTableCell26,
-            this.xrTableCell27,
-            this.xrTableCell28,
-            this.xrTableCell29,
-            this.xrTableCell18});
+            this.organizationAddress});
             this.xrTableRow6.Name = "xrTableRow6";
             this.xrTableRow6.Weight = 1D;
             // 
@@ -4962,102 +4945,25 @@
             this.xrTableCell16.StylePriority.UseFont = false;
             this.xrTableCell16.StylePriority.UsePadding = false;
             this.xrTableCell16.StylePriority.UseTextAlignment = false;
-            this.xrTableCell16.Text = "ตั้งอยู่เลขที่";
+            this.xrTableCell16.Text = "ที่อยู่";
             this.xrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell16.Weight = 0.42763151871530636D;
+            this.xrTableCell16.Weight = 0.42763156150149495D;
             // 
-            // xrTableCell17
+            // organizationAddress
             // 
-            this.xrTableCell17.CanGrow = false;
-            this.xrTableCell17.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrTableCell17.Name = "xrTableCell17";
-            this.xrTableCell17.StylePriority.UseFont = false;
-            this.xrTableCell17.StylePriority.UseTextAlignment = false;
-            this.xrTableCell17.Text = "155/196 ";
-            this.xrTableCell17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell17.Weight = 0.42099117968730049D;
-            // 
-            // xrTableCell25
-            // 
-            this.xrTableCell25.CanGrow = false;
-            this.xrTableCell25.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrTableCell25.Name = "xrTableCell25";
-            this.xrTableCell25.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
-            this.xrTableCell25.StylePriority.UseFont = false;
-            this.xrTableCell25.StylePriority.UsePadding = false;
-            this.xrTableCell25.StylePriority.UseTextAlignment = false;
-            this.xrTableCell25.Text = "หมู่";
-            this.xrTableCell25.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell25.Weight = 0.15137732605091075D;
-            // 
-            // xrTableCell26
-            // 
-            this.xrTableCell26.CanGrow = false;
-            this.xrTableCell26.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrTableCell26.Name = "xrTableCell26";
-            this.xrTableCell26.StylePriority.UseFont = false;
-            this.xrTableCell26.StylePriority.UseTextAlignment = false;
-            this.xrTableCell26.Text = "2";
-            this.xrTableCell26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell26.Weight = 0.35139972652597645D;
-            // 
-            // xrTableCell27
-            // 
-            this.xrTableCell27.CanGrow = false;
-            this.xrTableCell27.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrTableCell27.Name = "xrTableCell27";
-            this.xrTableCell27.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
-            this.xrTableCell27.StylePriority.UseFont = false;
-            this.xrTableCell27.StylePriority.UsePadding = false;
-            this.xrTableCell27.StylePriority.UseTextAlignment = false;
-            this.xrTableCell27.Text = "ถนน";
-            this.xrTableCell27.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell27.Weight = 0.24665553244636543D;
-            // 
-            // xrTableCell28
-            // 
-            this.xrTableCell28.CanGrow = false;
-            this.xrTableCell28.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrTableCell28.Name = "xrTableCell28";
-            this.xrTableCell28.StylePriority.UseFont = false;
-            this.xrTableCell28.StylePriority.UseTextAlignment = false;
-            this.xrTableCell28.Text = "-";
-            this.xrTableCell28.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell28.Weight = 0.40194509763274955D;
-            // 
-            // xrTableCell29
-            // 
-            this.xrTableCell29.CanGrow = false;
-            this.xrTableCell29.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrTableCell29.Name = "xrTableCell29";
-            this.xrTableCell29.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
-            this.xrTableCell29.StylePriority.UseFont = false;
-            this.xrTableCell29.StylePriority.UsePadding = false;
-            this.xrTableCell29.StylePriority.UseTextAlignment = false;
-            this.xrTableCell29.Text = "ตำบล(แขวง)";
-            this.xrTableCell29.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell29.Weight = 0.45655687030326858D;
-            // 
-            // xrTableCell18
-            // 
-            this.xrTableCell18.CanGrow = false;
-            this.xrTableCell18.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrTableCell18.Name = "xrTableCell18";
-            this.xrTableCell18.StylePriority.UseFont = false;
-            this.xrTableCell18.StylePriority.UseTextAlignment = false;
-            this.xrTableCell18.Text = "ทับมา";
-            this.xrTableCell18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell18.Weight = 0.543442748638122D;
+            this.organizationAddress.CanGrow = false;
+            this.organizationAddress.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.organizationAddress.Name = "organizationAddress";
+            this.organizationAddress.StylePriority.UseFont = false;
+            this.organizationAddress.StylePriority.UseTextAlignment = false;
+            this.organizationAddress.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.organizationAddress.Weight = 2.572368438498505D;
             // 
             // xrTableRow7
             // 
             this.xrTableRow7.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell19,
-            this.xrTableCell32,
-            this.xrTableCell30,
-            this.xrTableCell20,
-            this.xrTableCell31,
-            this.xrTableCell21});
+            this.organizationPhone});
             this.xrTableRow7.Name = "xrTableRow7";
             this.xrTableRow7.Weight = 1D;
             // 
@@ -5070,68 +4976,19 @@
             this.xrTableCell19.StylePriority.UseFont = false;
             this.xrTableCell19.StylePriority.UsePadding = false;
             this.xrTableCell19.StylePriority.UseTextAlignment = false;
-            this.xrTableCell19.Text = "อําเภอ (เขต)";
+            this.xrTableCell19.Text = "โทรศัพท์";
             this.xrTableCell19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell19.Weight = 0.42763139976292497D;
+            this.xrTableCell19.Weight = 0.4276314198539457D;
             // 
-            // xrTableCell32
+            // organizationPhone
             // 
-            this.xrTableCell32.CanGrow = false;
-            this.xrTableCell32.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrTableCell32.Name = "xrTableCell32";
-            this.xrTableCell32.StylePriority.UseFont = false;
-            this.xrTableCell32.StylePriority.UseTextAlignment = false;
-            this.xrTableCell32.Text = "เมือง";
-            this.xrTableCell32.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell32.Weight = 0.57236838044035843D;
-            // 
-            // xrTableCell30
-            // 
-            this.xrTableCell30.CanGrow = false;
-            this.xrTableCell30.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrTableCell30.Name = "xrTableCell30";
-            this.xrTableCell30.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
-            this.xrTableCell30.StylePriority.UseFont = false;
-            this.xrTableCell30.StylePriority.UsePadding = false;
-            this.xrTableCell30.StylePriority.UseTextAlignment = false;
-            this.xrTableCell30.Text = "จังหวัด";
-            this.xrTableCell30.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell30.Weight = 0.28657579996268795D;
-            // 
-            // xrTableCell20
-            // 
-            this.xrTableCell20.CanGrow = false;
-            this.xrTableCell20.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrTableCell20.Name = "xrTableCell20";
-            this.xrTableCell20.StylePriority.UseFont = false;
-            this.xrTableCell20.StylePriority.UseTextAlignment = false;
-            this.xrTableCell20.Text = "ระยอง 21000";
-            this.xrTableCell20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell20.Weight = 0.7134244198340286D;
-            // 
-            // xrTableCell31
-            // 
-            this.xrTableCell31.CanGrow = false;
-            this.xrTableCell31.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrTableCell31.Name = "xrTableCell31";
-            this.xrTableCell31.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
-            this.xrTableCell31.StylePriority.UseFont = false;
-            this.xrTableCell31.StylePriority.UsePadding = false;
-            this.xrTableCell31.StylePriority.UseTextAlignment = false;
-            this.xrTableCell31.Text = "โทรศัพท์";
-            this.xrTableCell31.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell31.Weight = 0.456557109714329D;
-            // 
-            // xrTableCell21
-            // 
-            this.xrTableCell21.CanGrow = false;
-            this.xrTableCell21.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrTableCell21.Name = "xrTableCell21";
-            this.xrTableCell21.StylePriority.UseFont = false;
-            this.xrTableCell21.StylePriority.UseTextAlignment = false;
-            this.xrTableCell21.Text = "033-066399";
-            this.xrTableCell21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell21.Weight = 0.54344289028567094D;
+            this.organizationPhone.CanGrow = false;
+            this.organizationPhone.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.organizationPhone.Name = "organizationPhone";
+            this.organizationPhone.StylePriority.UseFont = false;
+            this.organizationPhone.StylePriority.UseTextAlignment = false;
+            this.organizationPhone.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.organizationPhone.Weight = 2.5723685801460539D;
             // 
             // xrLabel1
             // 
@@ -5221,20 +5078,13 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell11;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow5;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell13;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell14;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow6;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell16;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell17;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell18;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow7;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell19;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell20;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell21;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell23;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell22;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell24;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell25;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell26;
         private DevExpress.XtraReports.UI.XRTable xrTable2;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow8;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell33;
@@ -5268,12 +5118,6 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell76;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow27;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell88;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell27;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell28;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell29;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell32;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell30;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell31;
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
         private DevExpress.XtraReports.UI.XRTable xrTable8;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow62;
@@ -5571,5 +5415,8 @@
         public DevExpress.XtraReports.UI.XRTableCell LungYear1;
         public DevExpress.XtraReports.UI.XRTableCell LungYear2;
         public DevExpress.XtraReports.UI.XRTableCell LungYear3;
+        public DevExpress.XtraReports.UI.XRTableCell organizationName;
+        public DevExpress.XtraReports.UI.XRTableCell organizationAddress;
+        public DevExpress.XtraReports.UI.XRTableCell organizationPhone;
     }
 }
