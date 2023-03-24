@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MedicalCouncil5));
             DevExpress.XtraReports.Parameters.StaticListLookUpSettings staticListLookUpSettings1 = new DevExpress.XtraReports.Parameters.StaticListLookUpSettings();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.forMobile = new DevExpress.XtraReports.UI.XRRichText();
             this.xrLabel18 = new DevExpress.XtraReports.UI.XRLabel();
             this.lbOrganisationPlace = new DevExpress.XtraReports.UI.XRLabel();
@@ -106,11 +107,11 @@
             this.lbAddress2 = new DevExpress.XtraReports.UI.XRLabel();
             this.lbFooterOrganisation = new DevExpress.XtraReports.UI.XRLabel();
             this.logoFooter = new DevExpress.XtraReports.UI.XRPictureBox();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
             this.ReportName = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
+            this.MDtext = new DevExpress.XtraReports.Parameters.Parameter();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.forMobile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -184,14 +185,25 @@
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
+            // xrLabel3
+            // 
+            this.xrLabel3.Font = new System.Drawing.Font("Angsana New", 12F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(33.88097F, 753.0832F);
+            this.xrLabel3.Multiline = true;
+            this.xrLabel3.Name = "xrLabel3";
+            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel3.SizeF = new System.Drawing.SizeF(423.6188F, 26.70825F);
+            this.xrLabel3.StylePriority.UseFont = false;
+            this.xrLabel3.Text = "หมายเหตุ ใบรับรองแพทย์ฉบับนี้ ให้ใช้ได้ 1 เดือน นับตั้งแต่วันที่ตรวจร่างกาย";
+            // 
             // forMobile
             // 
             this.forMobile.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.forMobile.LocationFloat = new DevExpress.Utils.PointFloat(218.6546F, 538.6309F);
+            this.forMobile.LocationFloat = new DevExpress.Utils.PointFloat(130.7498F, 538.6309F);
             this.forMobile.Name = "forMobile";
             this.forMobile.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.forMobile.SerializableRtfString = resources.GetString("forMobile.SerializableRtfString");
-            this.forMobile.SizeF = new System.Drawing.SizeF(402.762F, 24.78571F);
+            this.forMobile.SizeF = new System.Drawing.SizeF(490.6668F, 24.78571F);
             this.forMobile.StylePriority.UseFont = false;
             // 
             // xrLabel18
@@ -1004,11 +1016,6 @@
             this.logoFooter.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
             this.logoFooter.StylePriority.UseBorderWidth = false;
             // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.MedicalCertificateModel);
-            this.objectDataSource1.Name = "objectDataSource1";
-            // 
             // OrganisationUID
             // 
             this.OrganisationUID.Name = "OrganisationUID";
@@ -1028,16 +1035,17 @@
             this.ReportName.Name = "ReportName";
             this.ReportName.Visible = false;
             // 
-            // xrLabel3
+            // MDtext
             // 
-            this.xrLabel3.Font = new System.Drawing.Font("Angsana New", 12F);
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(33.88097F, 753.0832F);
-            this.xrLabel3.Multiline = true;
-            this.xrLabel3.Name = "xrLabel3";
-            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel3.SizeF = new System.Drawing.SizeF(423.6188F, 26.70825F);
-            this.xrLabel3.StylePriority.UseFont = false;
-            this.xrLabel3.Text = "หมายเหตุ ใบรับรองแพทย์ฉบับนี้ ให้ใช้ได้ 1 เดือน นับตั้งแต่วันที่ตรวจร่างกาย";
+            this.MDtext.Description = "ข้อความ";
+            this.MDtext.Name = "MDtext";
+            this.MDtext.Type = typeof(int);
+            this.MDtext.ValueInfo = "0";
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.MedicalCertificateModel);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // MedicalCouncil5
             // 
@@ -1055,11 +1063,19 @@
             this.PageHeight = 1169;
             this.PageWidth = 827;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
+            this.ParameterPanelLayoutItems.AddRange(new DevExpress.XtraReports.Parameters.ParameterPanelLayoutItem[] {
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.PatientVisitUID, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.LogoType, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.MDtext, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.PatientUID, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.OrganisationUID, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.ReportName, DevExpress.XtraReports.Parameters.Orientation.Horizontal)});
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.PatientVisitUID,
+            this.LogoType,
+            this.MDtext,
             this.PatientUID,
             this.OrganisationUID,
-            this.LogoType,
             this.ReportName});
             this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.forMobile)).EndInit();
@@ -1150,5 +1166,6 @@
         private DevExpress.XtraReports.Parameters.Parameter ReportName;
         public DevExpress.XtraReports.UI.XRRichText forMobile;
         private DevExpress.XtraReports.UI.XRLabel xrLabel3;
+        private DevExpress.XtraReports.Parameters.Parameter MDtext;
     }
 }

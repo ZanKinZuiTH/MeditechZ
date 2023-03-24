@@ -14,17 +14,25 @@ namespace MediTech.Reports.Operating.Patient
     public partial class MedicalCertificate2Parts : DevExpress.XtraReports.UI.XtraReport
     {
         List<HealthOrganisationModel> Organisations = new List<HealthOrganisationModel>();
+        List<LookupReferenceValueModel> ListText = new List<LookupReferenceValueModel>();
         public MedicalCertificate2Parts()
         {
             InitializeComponent();
             Organisations = (new MasterDataService()).GetHealthOrganisation();
-
+            ListText = (new TechnicalService()).GetReferenceValueMany("MDCFC");
             StaticListLookUpSettings lookupSettings = new StaticListLookUpSettings();
             foreach (var item in Organisations)
             {
                 lookupSettings.LookUpValues.Add(new LookUpValue(item.HealthOrganisationUID, item.Name));
             }
 
+            StaticListLookUpSettings lookupMDtext = new StaticListLookUpSettings();
+            foreach (var item in ListText)
+            {
+                lookupMDtext.LookUpValues.Add(new LookUpValue(item.Key, item.AlternateName));
+            }
+
+            this.MDtext.LookUpSettings = lookupMDtext;
             this.LogoType.LookUpSettings = lookupSettings;
             this.BeforePrint += MedicalCertificate2Parts_BeforePrint;
         }
@@ -35,8 +43,18 @@ namespace MediTech.Reports.Operating.Patient
             long PatientVisitUID = long.Parse(this.Parameters["PatientVisitUID"].Value.ToString());
             var dataSource = (new ReportsService()).PrintConfinedSpaceCertificate(PatientVisitUID);
             int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
-
+            int valueText = Convert.ToInt32(this.Parameters["MDtext"].Value.ToString());
             var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);
+
+            if (valueText != 0)
+            {
+                autoMDText.Text = (new TechnicalService()).GetReferenceValue(valueText).AlternateName;
+            }
+            else
+            {
+                autoMDText.Text = "";
+            }
+
             if (logoType == 0)
             {
                 var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);

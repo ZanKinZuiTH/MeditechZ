@@ -51,6 +51,10 @@ namespace MediTech.Reports.Operating.Patient
             {
                 autoMDText.Text = (new TechnicalService()).GetReferenceValue(valueText).AlternateName;
             }
+            else
+            {
+                autoMDText.Text = "";
+            }
 
             if (logoType == 0)
             {

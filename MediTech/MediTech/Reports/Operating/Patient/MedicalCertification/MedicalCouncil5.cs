@@ -14,16 +14,25 @@ namespace MediTech.Reports.Operating.Patient
     public partial class MedicalCouncil5 : DevExpress.XtraReports.UI.XtraReport
     {
         List<HealthOrganisationModel> Organisations = new List<HealthOrganisationModel>();
+        List<LookupReferenceValueModel> ListText = new List<LookupReferenceValueModel>();
         public MedicalCouncil5()
         {
             InitializeComponent();
             Organisations = (new MasterDataService()).GetHealthOrganisation();
-
+            ListText = (new TechnicalService()).GetReferenceValueMany("MDCFC");
             StaticListLookUpSettings lookupSettings = new StaticListLookUpSettings();
             foreach (var item in Organisations)
             {
                 lookupSettings.LookUpValues.Add(new LookUpValue(item.HealthOrganisationUID, item.Name));
             }
+
+            StaticListLookUpSettings lookupMDtext = new StaticListLookUpSettings();
+            foreach (var item in ListText)
+            {
+                lookupMDtext.LookUpValues.Add(new LookUpValue(item.Key, item.AlternateName));
+            }
+
+            this.MDtext.LookUpSettings = lookupMDtext;
             this.LogoType.LookUpSettings = lookupSettings;
             this.BeforePrint += MedicalCouncil5_BeforePrint;
            
@@ -36,12 +45,24 @@ namespace MediTech.Reports.Operating.Patient
             string ReportName = this.Parameters["ReportName"].Value.ToString();
             var dataSource = (new ReportsService()).PrintConfinedSpaceCertificate(PatientVisitUID);
             int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
+            int valueText = Convert.ToInt32(this.Parameters["MDtext"].Value.ToString());
 
             var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);
 
             if (ReportName == "ใบรับรองแพทย์ 5 โรค (Mobile)")
             {
                 forMobile.Text = "ร่างกายแข็งแรงดี ไม่เป็นอุปสรรคต่อการทำงาน สามารถปฏิบัติงานได้";
+            }
+            else
+            {
+                if (valueText != 0)
+                {
+                    forMobile.Text = (new TechnicalService()).GetReferenceValue(valueText).AlternateName;
+                }
+                else
+                {
+                    forMobile.Text = "";
+                }
             }
 
             if (logoType == 0)
