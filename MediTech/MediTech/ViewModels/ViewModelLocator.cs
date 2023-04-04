@@ -1348,6 +1348,16 @@ namespace MediTech.ViewModels
             }
         }
 
+        public CheckRISResultViewModel CheckRISResultViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<CheckRISResultViewModel>())
+                    SimpleIoc.Default.Register<CheckRISResultViewModel>();
+
+                return ServiceLocator.Current.GetInstance<CheckRISResultViewModel>();
+            }
+        }
         #endregion
 
         #region LIS

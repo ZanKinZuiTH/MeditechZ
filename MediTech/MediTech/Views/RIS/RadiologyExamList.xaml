@@ -357,6 +357,11 @@
                                          Visibility="{Binding VisibilityMassResult}"
                                          Content="Mass Result (RDU)" Width="125" Height="25" />
                     </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton Command="{Binding CheckMassResultCommand}"
+                                         Visibility="{Binding VisibilityMassResult}"
+                                         Content="QC Result" Width="125" Height="25" />
+                    </dxlc:LayoutItem>
                     <dxlc:LayoutItem VerticalAlignment="Center">
                         <TextBlock Text="{Binding CountSelect}"
                                    Name="txtCountSelect"

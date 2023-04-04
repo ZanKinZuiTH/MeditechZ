@@ -592,6 +592,20 @@ namespace MediTech.ViewModels
             }
         }
 
+        private RelayCommand _CheckMassResultCommand;
+
+        /// <summary>
+        /// Gets the BulkResultCommand.
+        /// </summary>
+        public RelayCommand CheckMassResultCommand
+        {
+            get
+            {
+                return _CheckMassResultCommand
+                    ?? (_CheckMassResultCommand = new RelayCommand(CheckMassResult));
+            }
+        }
+
         private RelayCommand<string> _PrintPreviewAndAutoCommand;
 
         /// <summary>
@@ -834,6 +848,59 @@ namespace MediTech.ViewModels
                         OnUpdateEvent();
                     }
                 }
+            }
+        }
+        
+        private void CheckMassResult()
+        {
+            if (RequestExamList != null)
+            {
+                var selectRequestExamlist = RequestExamList.Where(p => p.IsSelected).OrderBy(p => p.RowHandle);
+                if (selectRequestExamlist != null && selectRequestExamlist.Count() > 0)
+                {
+                    var registList = selectRequestExamlist.Where(p => p.OrderStatus == "Reviewed");
+                    if (registList != null && registList.Count() > 0)
+                    {
+                        foreach (var item in registList)
+                        {
+                            CheckRISResult chkResult = new CheckRISResult();
+                            (chkResult.DataContext as CheckRISResultViewModel).AssignModel(item);
+                            CheckRISResultViewModel checkViewModel = (CheckRISResultViewModel)LaunchViewDialog(chkResult, "CHEKRST", true);
+
+                            if (checkViewModel == null)
+                            {
+                                return;
+                            }
+
+                            if (checkViewModel == null && checkViewModel.ResultDialog == ActionDialog.Save)
+                            {
+                                SelectRequestExam.OrderStatus = checkViewModel.ResultOrderStatus;
+                                SelectRequestExam.DoctorName = checkViewModel.DoctorName;
+                                SelectRequestExam.ResultStatus = checkViewModel.ResultedStatus;
+                                return;
+                            }
+
+                            if (checkViewModel != null && checkViewModel.ResultDialog == ActionDialog.Cancel)
+                            {
+                                item.IsSelected = false;
+                                OnUpdateEvent();
+                                break;
+                            }
+
+                            item.IsSelected = false;
+                            OnUpdateEvent();
+                        }
+                    }
+                    else
+                    {
+                        WarningDialog("ไม่สามารถทำรายการได้ เนื่องจากสถานะไม่ใช่ Reviewed");
+                        foreach (var item in selectRequestExamlist)
+                        {
+                            item.IsSelected = false;
+                        }
+                    }
+                }
+                
             }
         }
 
