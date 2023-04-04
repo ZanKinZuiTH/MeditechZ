@@ -175,6 +175,12 @@ namespace MediTech.ViewModels
                     PatientVitalSign.BSAValue = Math.Round(PatientVitalSign.BSAValue.Value, 2);
                 }
 
+                if (PatientVitalSign.WaistCircumference != null && PatientVitalSign.HipCircumference != null)
+                {
+                    var val = PatientVitalSign.WaistCircumference / PatientVitalSign.HipCircumference ?? 0;
+                    PatientVitalSign.WHRValue = Math.Round(val, 2);
+                }
+
                 foreach (var item in ResultComponentItems)
                 {
                     string resultValue = string.Empty;
@@ -219,7 +225,7 @@ namespace MediTech.ViewModels
 
                 reviewRequestDetail.ResultComponents = new ObservableCollection<ResultComponentModel>(ResultComponentItems.Where(p => !string.IsNullOrEmpty(p.ResultValue)));
                 if (PatientVitalSign.Weight != null || PatientVitalSign.Height != null || PatientVitalSign.BPSys != null || PatientVitalSign.BPDio != null
-                    || PatientVitalSign.Pulse != null || PatientVitalSign.WaistCircumference != null
+                    || PatientVitalSign.Pulse != null || PatientVitalSign.WaistCircumference != null || PatientVitalSign.HipCircumference != null
                     || PatientVitalSign.IsPregnant == true)
                 {
                     PatientVitalSign.RecordedDttm = DateTime.Now;

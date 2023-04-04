@@ -72,7 +72,8 @@ namespace MediTech.Model
         public double? Pulse { get; set; }
 
         public double? WaistCircumference { get; set; }
-
+        public double? HipCircumference { get; set; }
+        public double? WHR { get; set; }
         public int UserUID { get; set; }
 
         public int? OwnerOrganisationUID { get; set; }

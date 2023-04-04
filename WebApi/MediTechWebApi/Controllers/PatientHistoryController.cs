@@ -52,7 +52,9 @@ namespace MediTechWebApi.Controllers
                     WaistCircumference = p.WaistCircumference,
                     IsPregnant = p.IsPregnant,
                     Comments = p.Comments,
-                    RecordedBy = SqlFunction.fGetCareProviderName(p.CUser)
+                    RecordedBy = SqlFunction.fGetCareProviderName(p.CUser),
+                    HipCircumference = p.HipCircumference,
+                    WHRValue = p.WHRValue
                 }).ToList();
 
             return data;
@@ -81,6 +83,8 @@ namespace MediTechWebApi.Controllers
                     BPDio = p.BPDio,
                     OxygenSat = p.OxygenSat,
                     WaistCircumference = p.WaistCircumference,
+                    HipCircumference = p.HipCircumference,
+                    WHRValue = p.WHRValue,
                     IsPregnant = p.IsPregnant,
                     Comments = p.Comments,
                     RecordedBy = SqlFunction.fGetCareProviderName(p.CUser)
@@ -112,6 +116,8 @@ namespace MediTechWebApi.Controllers
                     BPDio = p.BPDio,
                     OxygenSat = p.OxygenSat,
                     WaistCircumference = p.WaistCircumference,
+                    HipCircumference = p.HipCircumference,
+                    WHRValue = p.WHRValue,
                     IsPregnant = p.IsPregnant,
                     Comments = p.Comments,
                     RecordedBy = SqlFunction.fGetCareProviderName(p.CUser)
@@ -152,6 +158,8 @@ namespace MediTechWebApi.Controllers
                 vitalsign.BPDio = model.BPDio;
                 vitalsign.OxygenSat = model.OxygenSat;
                 vitalsign.WaistCircumference = model.WaistCircumference;
+                vitalsign.HipCircumference = model.HipCircumference;
+                vitalsign.WHRValue = model.WHRValue;
                 vitalsign.IsPregnant = model.IsPregnant;
                 vitalsign.Comments = model.Comments;
                 vitalsign.MUser = userID;

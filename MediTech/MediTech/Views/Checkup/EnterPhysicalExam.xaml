@@ -80,12 +80,22 @@
                         <TextBlock Text="ซม." FontSize="17"/>
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="เส้นรอบสะโพก" FontSize="17">
+                            <dxe:TextEdit  Height="25" EditValue="{Binding PatientVitalSign.HipCircumference,Mode=TwoWay}"
+                               Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                 Name="txtHip"
+                                 Width="80" 
+                                 VerticalAlignment="Top"/>
+                        </dxlc:LayoutItem>
+                        <TextBlock Text="ซม." FontSize="17"/>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
                         <dxlc:LayoutItem Label="ตั้งครรภ์" FontSize="17">
                             <dxe:CheckEdit  Height="25" EditValue="{Binding PatientVitalSign.IsPregnant,Mode=TwoWay}"
                                             VerticalAlignment="Top"/>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
-                    <dxlc:LayoutItem/>
+                    
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
             <Border VerticalAlignment="Top" BorderThickness="0,0,0,0.5" BorderBrush="Black"/>

@@ -1171,6 +1171,91 @@ namespace MediTech.ViewModels
                     }
                     view.gcResultList.ItemsSource = dtResult;
 
+                    if (SelectCheckupJobTask.GPRSTUID == 4864) //ตรวจวัดอัตราส่วนของรอบเอวต่อรอบสะโพก(Waist-to-hip Ratio)
+                    {
+                        var data = DataService.Checkup.SearchCheckupExamList(JobDateFrom, JobDateTo, null, SelectInsuranceCompany.InsuranceCompanyUID, SelectCheckupJobContact.CheckupJobContactUID, 3169, null); //pe 
+
+                        if (data != null && data.Count > 0)
+                        {
+                            ;
+                            int i = 1;
+                            ColumnsResultItems.Add(new Column() { Header = "วัดรอบเอว", FieldName = "วัดรอบเอว", VisibleIndex = visibleIndex++ });
+                            ColumnsResultItems.Add(new Column() { Header = "วัดรอบสะโพก", FieldName = "วัดรอบสะโพก", VisibleIndex = visibleIndex++ });
+                            ColumnsResultItems.Add(new Column() { Header = "Waist-to-hip Ratio", FieldName = "Waist-to-hip Ratio", VisibleIndex = visibleIndex++ });
+                            ColumnsResultItems.Add(new Column() { Header = "แปลผล", FieldName = "Conclusion", VisibleIndex = ColumnsResultItems.Count() });
+
+                            dtResult.Columns.Add("วัดรอบเอว");
+                            dtResult.Columns.Add("วัดรอบสะโพก");
+                            dtResult.Columns.Add("Waist-to-hip Ratio"); 
+                            dtResult.Columns.Add("Conclusion");
+
+                            foreach (var item in data)
+                            {
+                                var dataResultList = DataService.Reports.PatientInfomationWellness(item.PatientUID, item.PatientVisitUID);
+                                //var dataResultList = DataService.Checkup.GetResultItemByRequestDetailUID(item.RequestDetailUID);
+                               
+                                if (dataResultList.HipCircumference != null && dataResultList.WaistCircumference != null && dataResultList.WHR != null)
+                                {
+                                    DataRow newRow = dtResult.NewRow();
+                                    newRow["RowHandle"] = i++;
+                                    newRow["EmployeeID"] = item.EmployeeID;
+                                    newRow["PatientID"] = item.PatientID;
+                                    newRow["Title"] = item.Title;
+                                    newRow["FirstName"] = item.FirstName;
+                                    newRow["LastName"] = item.LastName;
+                                    newRow["Department"] = item.Department;
+                                    newRow["CompanyName"] = item.CompanyName;
+                                    newRow["Age"] = item.PatientAge;
+                                    newRow["Gender"] = item.Gender;
+                                    newRow["StartDttm"] = item.StartDttm;
+                                    newRow["วัดรอบเอว"] = dataResultList.WaistCircumference;
+                                    newRow["วัดรอบสะโพก"] = dataResultList.HipCircumference; 
+                                    newRow["Waist-to-hip Ratio"] = dataResultList.WHR; 
+
+                                    if (dataResultList.WHR != null)
+                                    {
+                                        var whrValue = dataResultList.WHR;
+                                        if (dataResultList.SEXXXUID == 1)
+                                        {
+                                            if (whrValue >= 1)
+                                            {
+                                                newRow["Conclusion"] = "ความเสี่ยงต่อโรคสูง";
+                                            }
+                                            else if (whrValue >= 0.96 && whrValue < 1)
+                                            {
+                                                newRow["Conclusion"] = "ความเสี่ยงต่อโรคปานกลาง";
+                                            }
+                                            else if (whrValue <= 0.95)
+                                            {
+                                                newRow["Conclusion"] = "ความเสี่ยงต่อโรคต่ำ";
+                                            }
+                                        }
+
+                                        if (dataResultList.SEXXXUID == 2)
+                                        {
+                                            if (whrValue >= 0.86)
+                                            {
+                                                newRow["Conclusion"] = "ความเสี่ยงต่อโรคสูง";
+                                            }
+                                            else if (whrValue >= 0.81 && whrValue <= 0.85)
+                                            {
+                                                newRow["Conclusion"] = "ความเสี่ยงต่อโรคปานกลาง";
+                                            }
+                                            else if (whrValue <= 0.8)
+                                            {
+                                                newRow["Conclusion"] = "ความเสี่ยงต่อโรคต่ำ";
+                                            }
+                                        }
+                                        
+                                    }
+                                    dtResult.Rows.Add(newRow);
+                                }
+                            }
+
+                            view.gcResultList.ItemsSource = dtResult;
+                        }
+                    }
+
                     if (SelectCheckupJobTask.GPRSTUID == 4847)
                     {
                         var data = DataService.Checkup.SearchCheckupExamList(JobDateFrom, JobDateTo, null, SelectInsuranceCompany.InsuranceCompanyUID, SelectCheckupJobContact.CheckupJobContactUID, 3169, 502);

@@ -24,6 +24,8 @@ namespace MediTech.Model
         public Nullable<double> BPDio { get; set; }
         public Nullable<double> OxygenSat { get; set; }
         public Nullable<double> WaistCircumference { get; set; }
+        public Nullable<double> HipCircumference { get; set; }
+        public Nullable<double> WHRValue { get; set; }
         public bool? IsPregnant { get; set; }
         public string Comments { get; set; }
         public System.DateTime CWhen { get; set; }

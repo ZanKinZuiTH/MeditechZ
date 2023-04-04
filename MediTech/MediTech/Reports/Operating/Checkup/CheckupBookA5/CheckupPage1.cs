@@ -221,6 +221,54 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 lbPulse.Text = patient.Pulse != null ? patient.Pulse.ToString() : "";
                 lbWaist.Text = patient.WaistCircumference != null ? patient.WaistCircumference.ToString() : "";
 
+                RowHip.Visible = false;
+                RowWHR.Visible = false;
+
+                if (patient.HipCircumference != null)
+                {
+                    RowHip.Visible = true;
+                    lbHip.Text = patient.HipCircumference != null ? patient.HipCircumference.ToString() : "";
+
+                    if (patient.WHR != null)
+                    {
+                        RowWHR.Visible = true;
+                        var whrValue = patient.WHR;
+                        lbWHR.Text = whrValue.ToString();
+
+                        //if(patient.SEXXXUID == 1)
+                        //{
+                        //    if (whrValue >= 1)
+                        //    {
+                        //        lbWHR.Text = "ความเสี่ยงต่อโรคสูง";
+                        //    }
+                        //    else if (whrValue >= 0.96 && whrValue < 1)
+                        //    {
+                        //        lbWHR.Text = "ความเสี่ยงต่อโรคปานกลาง";
+                        //    }
+                        //    else if (whrValue <= 0.95)
+                        //    {
+                        //        lbWHR.Text = "ความเสี่ยงต่อโรคต่ำ";
+                        //    }
+                        //}
+
+                        //if (patient.SEXXXUID == 2)
+                        //{
+                        //    if(whrValue >= 0.86)
+                        //    {
+                        //        lbWHR.Text = "ความเสี่ยงต่อโรคสูง";
+                        //    }
+                        //    else if (whrValue >= 0.81 && whrValue <= 0.85)
+                        //    {
+                        //        lbWHR.Text = "ความเสี่ยงต่อโรคปานกลาง";
+                        //    }
+                        //    else if (whrValue <= 0.8)
+                        //    {
+                        //        lbWHR.Text = "ความเสี่ยงต่อโรคต่ำ";
+                        //    }
+                        //}
+                    }
+                }
+                
                 #endregion
 
                 #region Result Wellness
@@ -547,6 +595,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page7.RowTrichloroUrine.Visible = false;
                 page7.rowDirectToluene.Visible = false;
                 page7.RowEthanolBlood.Visible = false;
+                page7.RowButylAcrylate.Visible = false;
+                page7.RowEthylAcetate.Visible = false;
+                page7.RowVinylAcetate.Visible = false;
+
                 page6.RowHpylori.Visible = false;
                 page6.RowPhosphorus.Visible = false;
                 page6.RowVDRL.Visible = false;
@@ -724,6 +776,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             || p.RequestItemCode.Contains("LAB619")
                             || p.RequestItemCode.Contains("LAB589")
                             || p.RequestItemCode.Contains("LAB543")//copper blood
+                            || p.RequestItemCode.Contains("PEAX02")
+                            || p.RequestItemCode.Contains("PEAX03")
+                            || p.RequestItemCode.Contains("PEAX04")
                             || p.RequestItemCode.Contains("LAB606"))
                              .OrderByDescending(p => p.Year);
                         GenerateToxicology(ToxicoTestSet);
@@ -2029,7 +2084,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                     }
 
                     int thisYear = DateTime.Now.Year;
-                    int? compare =  thisYear - 2;
+                    int? compare = thisYear - 2;
                     List<int?> Years = labTestSet.Select(p => p.Year).Where(p => p.Value >= compare).Distinct().ToList();
                     Years.OrderByDescending(p => ((uint?)p));
                     int countYear = Years.Count();
@@ -2046,7 +2101,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
 
                         #region Aluminium in Urin
                         if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122") != null)
-                        {     
+                        {
                             page7.cellAluminiumRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122")?.ReferenceRange;
                             page7.cellAluminium1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year1)?.ResultValue;
                             page7.cellAluminium2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year2)?.ResultValue;
@@ -2573,6 +2628,42 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             page7.EthanolBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271" && p.Year == year3)?.ResultValue;
                         }
                         #endregion
+
+                        #region Ethyl Acetate
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321") != null)
+                        {
+                            page7.RowEthylAcetate.Visible = true;
+                            page7.RangeEthanolBlood.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321")?.ReferenceRange;
+                            page7.EthylAcetate1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321" && p.Year == year1)?.ResultValue;
+                            page7.EthylAcetate2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321" && p.Year == year2)?.ResultValue;
+                            page7.EthylAcetate3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321" && p.Year == year3)?.ResultValue;
+                        }
+                        #endregion
+
+                        #region Butyl Acrylate
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1322") != null)
+                        {
+                            page7.RowButylAcrylate.Visible = true;
+                            page7.RangeButylAcrylate.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1322")?.ReferenceRange;
+                            page7.ButylAcrylate1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1322" && p.Year == year1)?.ResultValue;
+                            page7.ButylAcrylate2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1322" && p.Year == year2)?.ResultValue;
+                            page7.ButylAcrylate3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1322" && p.Year == year3)?.ResultValue;
+
+                        }
+                        #endregion
+
+                        #region Vinyl Acetate
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1323") != null)
+                        {
+                            page7.RowVinylAcetate.Visible = true;
+                            page7.RangeVinylAcetate.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1323")?.ReferenceRange;
+                            page7.VinylAcetate1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1323" && p.Year == year1)?.ResultValue;
+                            page7.VinylAcetate2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1323" && p.Year == year2)?.ResultValue;
+                            page7.VinylAcetate3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1323" && p.Year == year3)?.ResultValue;
+
+                        }
+                        #endregion
+
                     }
                     else
                     {
@@ -2581,7 +2672,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         page7.cellToxicoYear3.Text = "ปี" + " " + (DateTime.Now.Year - 2);
                     }
 
-                    
+                
                 }
                 else
                 {
