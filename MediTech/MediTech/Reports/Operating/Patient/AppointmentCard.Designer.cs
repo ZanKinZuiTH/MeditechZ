@@ -38,7 +38,7 @@
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.xrLine2 = new DevExpress.XtraReports.UI.XRLine();
-            this.xrLabel19 = new DevExpress.XtraReports.UI.XRLabel();
+            this.textFooter = new DevExpress.XtraReports.UI.XRLabel();
             this.BookUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.xrLabel26 = new DevExpress.XtraReports.UI.XRLabel();
@@ -160,16 +160,16 @@
             this.xrLine2.Name = "xrLine2";
             this.xrLine2.SizeF = new System.Drawing.SizeF(784.1667F, 2F);
             // 
-            // xrLabel19
+            // textFooter
             // 
-            this.xrLabel19.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrLabel19.LocationFloat = new DevExpress.Utils.PointFloat(10F, 53.00003F);
-            this.xrLabel19.Multiline = true;
-            this.xrLabel19.Name = "xrLabel19";
-            this.xrLabel19.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel19.SizeF = new System.Drawing.SizeF(776.6667F, 68.16671F);
-            this.xrLabel19.StylePriority.UseFont = false;
-            this.xrLabel19.Text = resources.GetString("xrLabel19.Text");
+            this.textFooter.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.textFooter.LocationFloat = new DevExpress.Utils.PointFloat(3.833262F, 53.00003F);
+            this.textFooter.Multiline = true;
+            this.textFooter.Name = "textFooter";
+            this.textFooter.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.textFooter.SizeF = new System.Drawing.SizeF(776.6667F, 68.16671F);
+            this.textFooter.StylePriority.UseFont = false;
+            this.textFooter.Text = resources.GetString("textFooter.Text");
             // 
             // BookUID
             // 
@@ -199,7 +199,7 @@
             // PageFooter
             // 
             this.PageFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel19,
+            this.textFooter,
             this.xrLine2,
             this.xrCheckBox6,
             this.xrCheckBox7,
@@ -806,7 +806,7 @@
             this.BookUID,
             this.OrganisationUID,
             this.LogoType});
-            this.Version = "20.2";
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
@@ -822,7 +822,7 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel14;
         private DevExpress.XtraReports.UI.XRLabel xrLabel15;
         private DevExpress.XtraReports.UI.XRLine xrLine2;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel19;
+        private DevExpress.XtraReports.UI.XRLabel textFooter;
         private DevExpress.XtraReports.UI.PageHeaderBand PageHeader;
         private DevExpress.XtraReports.UI.PageFooterBand PageFooter;
         private DevExpress.XtraReports.UI.XRLabel xrLabel27;

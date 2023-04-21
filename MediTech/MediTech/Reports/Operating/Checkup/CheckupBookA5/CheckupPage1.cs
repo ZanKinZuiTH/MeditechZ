@@ -598,6 +598,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page7.RowButylAcrylate.Visible = false;
                 page7.RowEthylAcetate.Visible = false;
                 page7.RowVinylAcetate.Visible = false;
+                page7.toxicoComment.Visible = false;
 
                 page6.RowHpylori.Visible = false;
                 page6.RowPhosphorus.Visible = false;
@@ -776,9 +777,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             || p.RequestItemCode.Contains("LAB619")
                             || p.RequestItemCode.Contains("LAB589")
                             || p.RequestItemCode.Contains("LAB543")//copper blood
-                            || p.RequestItemCode.Contains("PEAX02")
-                            || p.RequestItemCode.Contains("PEAX03")
-                            || p.RequestItemCode.Contains("PEAX04")
+                            || p.RequestItemCode.Contains("LAB628")
+                            || p.RequestItemCode.Contains("LAB626")
+                            || p.RequestItemCode.Contains("LAB627")
                             || p.RequestItemCode.Contains("LAB606"))
                              .OrderByDescending(p => p.Year);
                         GenerateToxicology(ToxicoTestSet);
@@ -2632,6 +2633,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         #region Ethyl Acetate
                         if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321") != null)
                         {
+                            page7.toxicoComment.Visible = true;
                             page7.RowEthylAcetate.Visible = true;
                             page7.RangeEthanolBlood.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321")?.ReferenceRange;
                             page7.EthylAcetate1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321" && p.Year == year1)?.ResultValue;
@@ -2643,6 +2645,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         #region Butyl Acrylate
                         if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1322") != null)
                         {
+                            page7.toxicoComment.Visible = true;
                             page7.RowButylAcrylate.Visible = true;
                             page7.RangeButylAcrylate.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1322")?.ReferenceRange;
                             page7.ButylAcrylate1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1322" && p.Year == year1)?.ResultValue;
@@ -2655,6 +2658,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         #region Vinyl Acetate
                         if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1323") != null)
                         {
+                            page7.toxicoComment.Visible = true;
                             page7.RowVinylAcetate.Visible = true;
                             page7.RangeVinylAcetate.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1323")?.ReferenceRange;
                             page7.VinylAcetate1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1323" && p.Year == year1)?.ResultValue;
