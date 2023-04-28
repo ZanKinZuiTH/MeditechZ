@@ -5,7 +5,7 @@ using System.ComponentModel;
 using DevExpress.XtraReports.UI;
 using System.Collections.Generic;
 
-namespace MediTech.Reports.Operating.Checkup.RiskBook
+namespace MediTech.Reports.Operating.Checkup.RiskBook2563
 {
     public partial class RiskBook3 : DevExpress.XtraReports.UI.XtraReport
     {

@@ -41,6 +41,7 @@ namespace MediTech.DataBase
         public virtual DbSet<BillingGroup> BillingGroup { get; set; }
         public virtual DbSet<BillingSubGroup> BillingSubGroup { get; set; }
         public virtual DbSet<BillPackage> BillPackage { get; set; }
+        public virtual DbSet<BillPackageAlternateItem> BillPackageAlternateItem { get; set; }
         public virtual DbSet<BillPackageItem> BillPackageItem { get; set; }
         public virtual DbSet<BillPackagePrice> BillPackagePrice { get; set; }
         public virtual DbSet<Booking> Booking { get; set; }
@@ -552,6 +553,40 @@ namespace MediTech.DataBase
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual ObjectResult<pGetLinkPackage_Result> pGetLinkPackage(Nullable<int> p_BillableItemUID, Nullable<int> p_PatientVisitUID)
+        {
+            var p_BillableItemUIDParameter = p_BillableItemUID.HasValue ?
+                new ObjectParameter("P_BillableItemUID", p_BillableItemUID) :
+                new ObjectParameter("P_BillableItemUID", typeof(int));
+    
+            var p_PatientVisitUIDParameter = p_PatientVisitUID.HasValue ?
+                new ObjectParameter("P_PatientVisitUID", p_PatientVisitUID) :
+                new ObjectParameter("P_PatientVisitUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetLinkPackage_Result>("pGetLinkPackage", p_BillableItemUIDParameter, p_PatientVisitUIDParameter);
+        }
+    
+        public virtual ObjectResult<pRPTCheckupLabCompareByGroupTest_Result> pRPTCheckupLabCompareByGroupTest(Nullable<long> p_PatientUID, Nullable<int> p_PayorDetailUID, Nullable<int> p_GPRSTUID, Nullable<int> p_PatientVisitUID)
+        {
+            var p_PatientUIDParameter = p_PatientUID.HasValue ?
+                new ObjectParameter("P_PatientUID", p_PatientUID) :
+                new ObjectParameter("P_PatientUID", typeof(long));
+    
+            var p_PayorDetailUIDParameter = p_PayorDetailUID.HasValue ?
+                new ObjectParameter("P_PayorDetailUID", p_PayorDetailUID) :
+                new ObjectParameter("P_PayorDetailUID", typeof(int));
+    
+            var p_GPRSTUIDParameter = p_GPRSTUID.HasValue ?
+                new ObjectParameter("P_GPRSTUID", p_GPRSTUID) :
+                new ObjectParameter("P_GPRSTUID", typeof(int));
+    
+            var p_PatientVisitUIDParameter = p_PatientVisitUID.HasValue ?
+                new ObjectParameter("P_PatientVisitUID", p_PatientVisitUID) :
+                new ObjectParameter("P_PatientVisitUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTCheckupLabCompareByGroupTest_Result>("pRPTCheckupLabCompareByGroupTest", p_PatientUIDParameter, p_PayorDetailUIDParameter, p_GPRSTUIDParameter, p_PatientVisitUIDParameter);
         }
     }
 }

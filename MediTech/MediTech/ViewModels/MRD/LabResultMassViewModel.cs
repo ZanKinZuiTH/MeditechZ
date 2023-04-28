@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MediTech.Reports.Operating.Checkup.RiskBook;
+using MediTech.Reports.Operating.Checkup.RiskBook2547;
 
 namespace MediTech.ViewModels
 {

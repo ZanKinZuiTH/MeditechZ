@@ -12,7 +12,7 @@ using MediTech.Model.Report;
 using System.IO;
 using System.Windows.Media.Imaging;
 
-namespace MediTech.Reports.Operating.Checkup.RiskBook
+namespace MediTech.Reports.Operating.Checkup.RiskBook2563
 {
     public partial class RiskBook1 : DevExpress.XtraReports.UI.XtraReport
     {

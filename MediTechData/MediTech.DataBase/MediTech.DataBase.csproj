@@ -34,6 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.DataAccess.v22.1, Version=22.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v22.1, Version=22.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\WebApi\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -94,6 +96,9 @@
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="BillPackage.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BillPackageAlternateItem.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="BillPackageItem.cs">
@@ -474,6 +479,9 @@
     <Compile Include="pGetCheckupRiskAudioTimus_Result.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="pGetLinkPackage_Result.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="pGetWardView_Result.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
@@ -503,6 +511,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Province.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pRPTCheckupLabCompareByGroupTest_Result.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTEcoutSumGroupReceipt_Result.cs">

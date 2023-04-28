@@ -381,6 +381,23 @@
           <Property Name="AllowOverridePrice" Type="nvarchar" MaxLength="1" />
           <Property Name="SecondRoomBillPackageUID" Type="int" />
           <Property Name="Code" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PackageNameSearch" Type="nvarchar" MaxLength="800" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="OwnerOrganisationUID" Type="int" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BillPackageAlternateItem">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BillPackageItemUID" Type="int" Nullable="false" />
+          <Property Name="BillableItemUID" Type="int" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
           <Property Name="MUser" Type="int" Nullable="false" />
@@ -1308,7 +1325,7 @@
           <Property Name="ItemIssueUID" Type="int" Nullable="false" />
           <Property Name="ItemMasterUID" Type="int" Nullable="false" />
           <Property Name="ItemCode" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ItemName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="ItemCost" Type="float" Nullable="false" />
           <Property Name="UnitPrice" Type="float" Nullable="false" />
           <Property Name="NetAmount" Type="float" Nullable="false" />
@@ -1404,7 +1421,7 @@
           <Property Name="ItemRecieveUID" Type="int" Nullable="false" />
           <Property Name="ItemMasterUID" Type="int" Nullable="false" />
           <Property Name="ItemCode" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ItemName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="ItemCost" Type="float" Nullable="false" />
           <Property Name="UnitPrice" Type="float" Nullable="false" />
           <Property Name="Quantity" Type="float" Nullable="false" />
@@ -1455,7 +1472,7 @@
           <Property Name="ItemRequestUID" Type="int" Nullable="false" />
           <Property Name="ItemMasterUID" Type="int" Nullable="false" />
           <Property Name="ItemCode" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ItemName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="Quantity" Type="float" Nullable="false" />
           <Property Name="IMUOMUID" Type="int" Nullable="false" />
           <Property Name="CurrentQuantity" Type="float" Nullable="false" />
@@ -2085,7 +2102,7 @@
           <Property Name="InternalCost" Type="float" />
           <Property Name="CalculateTaxOnMRP" Type="nvarchar" MaxLength="1" />
           <Property Name="StoreUID" Type="int" />
-          <Property Name="BillPackageUID" Type="int" />
+          <Property Name="BillPackageUID" Type="bigint" />
           <Property Name="SplitDiscount" Type="float" />
           <Property Name="BLTYPUID" Type="int" />
           <Property Name="OrderType" Type="nvarchar" MaxLength="30" />
@@ -2591,7 +2608,8 @@
           <Property Name="IsStockItem" Type="nvarchar" MaxLength="2" />
           <Property Name="PatientVisitPayorUID" Type="int" />
           <Property Name="PayorDetailUID" Type="int" />
-          <Property Name="PatientPackageItemUID" Type="int" />
+          <Property Name="PatientPackageItemUID" Type="bigint" />
+          <Property Name="AltBillableItemUID" Type="int" />
           <Property Name="OrderSetUID" Type="int" />
           <Property Name="OrderSetBillableItemUID" Type="int" />
           <Property Name="CUser" Type="int" Nullable="false" />
@@ -2852,6 +2870,8 @@
           <Property Name="CheckupJobUID" Type="int" />
           <Property Name="BedUID" Type="int" />
           <Property Name="IsReAdmisstion" Type="nvarchar" MaxLength="1" />
+          <Property Name="Program" Type="nvarchar" MaxLength="200" />
+          <Property Name="EmployerAddress" Type="nvarchar" MaxLength="200" />
           <Property Name="CompanyName" Type="nvarchar" MaxLength="100" />
           <Property Name="Comments" Type="nvarchar" MaxLength="200" />
           <Property Name="RefNo" Type="int" />
@@ -2980,7 +3000,9 @@
           <Property Name="BPSys" Type="float" />
           <Property Name="BPDio" Type="float" />
           <Property Name="OxygenSat" Type="float" />
+          <Property Name="HipCircumference" Type="float" />
           <Property Name="WaistCircumference" Type="float" />
+          <Property Name="WHRValue" Type="float" />
           <Property Name="IsPregnant" Type="bit" />
           <Property Name="Comments" Type="nvarchar" MaxLength="500" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
@@ -4252,7 +4274,7 @@
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StoreUID" Type="int" Nullable="false" />
           <Property Name="ItemMasterUID" Type="int" Nullable="false" />
-          <Property Name="ItemName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="VendorDetailUID" Type="int" />
           <Property Name="ManufacturerUID" Type="int" />
           <Property Name="Quantity" Type="float" Nullable="false" />
@@ -4283,7 +4305,7 @@
           <Property Name="StoreUID" Type="int" Nullable="false" />
           <Property Name="StockUID" Type="int" Nullable="false" />
           <Property Name="ItemMasterUID" Type="int" Nullable="false" />
-          <Property Name="ItemName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="BatchID" Type="nchar" MaxLength="10" />
           <Property Name="ActualQuantity" Type="float" Nullable="false" />
           <Property Name="ActualUOM" Type="int" Nullable="false" />
@@ -5031,6 +5053,10 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
         <Function Name="pGetItemMasterQtyByStore" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_StoreUID" Type="int" Mode="In" />
         </Function>
+        <Function Name="pGetLinkPackage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_BillableItemUID" Type="int" Mode="In" />
+          <Parameter Name="P_PatientVisitUID" Type="int" Mode="In" />
+        </Function>
         <Function Name="pGetOrderALLByPatientUID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
@@ -5398,6 +5424,12 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
           <Parameter Name="P_PayorDetailUID" Type="int" Mode="In" />
           <Parameter Name="P_GPRSTUID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pRPTCheckupLabCompareByGroupTest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
+          <Parameter Name="P_PayorDetailUID" Type="int" Mode="In" />
+          <Parameter Name="P_GPRSTUID" Type="int" Mode="In" />
+          <Parameter Name="P_PatientVisitUID" Type="int" Mode="In" />
         </Function>
         <Function Name="pRPTCheckupSummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_CheckupJobUID" Type="int" Mode="In" />
@@ -5906,6 +5938,7 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
           <EntitySet Name="BillingGroup" EntityType="Self.BillingGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BillingSubGroup" EntityType="Self.BillingSubGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BillPackage" EntityType="Self.BillPackage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BillPackageAlternateItem" EntityType="Self.BillPackageAlternateItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BillPackageItem" EntityType="Self.BillPackageItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BillPackagePrice" EntityType="Self.BillPackagePrice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
@@ -6296,6 +6329,7 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
           <EntitySet Name="BillingGroup" EntityType="MediTechModel.BillingGroup" />
           <EntitySet Name="BillingSubGroup" EntityType="MediTechModel.BillingSubGroup" />
           <EntitySet Name="BillPackage" EntityType="MediTechModel.BillPackage" />
+          <EntitySet Name="BillPackageAlternateItem" EntityType="MediTechModel.BillPackageAlternateItem" />
           <EntitySet Name="BillPackageItem" EntityType="MediTechModel.BillPackageItem" />
           <EntitySet Name="BillPackagePrice" EntityType="MediTechModel.BillPackagePrice" />
           <EntitySet Name="Booking" EntityType="MediTechModel.Booking" />
@@ -6500,6 +6534,16 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
           <EntitySet Name="vAllBillableItemRates" EntityType="MediTechModel.vAllBillableItemRates" />
           <EntitySet Name="vAllPayorAgreements" EntityType="MediTechModel.vAllPayorAgreements" />
           <EntitySet Name="vAllPayorAgreementsDiscount" EntityType="MediTechModel.vAllPayorAgreementsDiscount" />
+          <FunctionImport Name="pGetLinkPackage" ReturnType="Collection(MediTechModel.pGetLinkPackage_Result)">
+            <Parameter Name="P_BillableItemUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_PatientVisitUID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pRPTCheckupLabCompareByGroupTest" ReturnType="Collection(MediTechModel.pRPTCheckupLabCompareByGroupTest_Result)">
+            <Parameter Name="P_PatientUID" Mode="In" Type="Int64" />
+            <Parameter Name="P_PayorDetailUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_GPRSTUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_PatientVisitUID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="fGetRoomAdjust_Result">
           <Property Type="DateTime" Name="DateOrder" Nullable="true" Precision="10" />
@@ -7022,6 +7066,23 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
           <Property Name="AllowOverridePrice" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="SecondRoomBillPackageUID" Type="Int32" />
           <Property Name="Code" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PackageNameSearch" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerOrganisationUID" Type="Int32" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="BillPackageAlternateItem">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BillPackageItemUID" Type="Int32" Nullable="false" />
+          <Property Name="BillableItemUID" Type="Int32" Nullable="false" />
+          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
@@ -7949,7 +8010,7 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
           <Property Name="ItemIssueUID" Type="Int32" Nullable="false" />
           <Property Name="ItemMasterUID" Type="Int32" Nullable="false" />
           <Property Name="ItemCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ItemCost" Type="Double" Nullable="false" />
           <Property Name="UnitPrice" Type="Double" Nullable="false" />
           <Property Name="NetAmount" Type="Double" Nullable="false" />
@@ -8045,7 +8106,7 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
           <Property Name="ItemRecieveUID" Type="Int32" Nullable="false" />
           <Property Name="ItemMasterUID" Type="Int32" Nullable="false" />
           <Property Name="ItemCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ItemCost" Type="Double" Nullable="false" />
           <Property Name="UnitPrice" Type="Double" Nullable="false" />
           <Property Name="Quantity" Type="Double" Nullable="false" />
@@ -8096,7 +8157,7 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
           <Property Name="ItemRequestUID" Type="Int32" Nullable="false" />
           <Property Name="ItemMasterUID" Type="Int32" Nullable="false" />
           <Property Name="ItemCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Quantity" Type="Double" Nullable="false" />
           <Property Name="IMUOMUID" Type="Int32" Nullable="false" />
           <Property Name="CurrentQuantity" Type="Double" Nullable="false" />
@@ -8726,7 +8787,7 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
           <Property Name="InternalCost" Type="Double" />
           <Property Name="CalculateTaxOnMRP" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="StoreUID" Type="Int32" />
-          <Property Name="BillPackageUID" Type="Int32" />
+          <Property Name="BillPackageUID" Type="Int64" />
           <Property Name="SplitDiscount" Type="Double" />
           <Property Name="BLTYPUID" Type="Int32" />
           <Property Name="OrderType" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
@@ -9232,7 +9293,8 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
           <Property Name="IsStockItem" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
           <Property Name="PatientVisitPayorUID" Type="Int32" />
           <Property Name="PayorDetailUID" Type="Int32" />
-          <Property Name="PatientPackageItemUID" Type="Int32" />
+          <Property Name="PatientPackageItemUID" Type="Int64" />
+          <Property Name="AltBillableItemUID" Type="Int32" />
           <Property Name="OrderSetUID" Type="Int32" />
           <Property Name="OrderSetBillableItemUID" Type="Int32" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
@@ -9493,6 +9555,8 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
           <Property Name="CheckupJobUID" Type="Int32" />
           <Property Name="BedUID" Type="Int32" />
           <Property Name="IsReAdmisstion" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Program" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EmployerAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Comments" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="RefNo" Type="Int32" />
@@ -9621,7 +9685,9 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
           <Property Name="BPSys" Type="Double" />
           <Property Name="BPDio" Type="Double" />
           <Property Name="OxygenSat" Type="Double" />
+          <Property Name="HipCircumference" Type="Double" />
           <Property Name="WaistCircumference" Type="Double" />
+          <Property Name="WHRValue" Type="Double" />
           <Property Name="IsPregnant" Type="Boolean" />
           <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
@@ -10893,7 +10959,7 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StoreUID" Type="Int32" Nullable="false" />
           <Property Name="ItemMasterUID" Type="Int32" Nullable="false" />
-          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="VendorDetailUID" Type="Int32" />
           <Property Name="ManufacturerUID" Type="Int32" />
           <Property Name="Quantity" Type="Double" Nullable="false" />
@@ -10924,7 +10990,7 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
           <Property Name="StoreUID" Type="Int32" Nullable="false" />
           <Property Name="StockUID" Type="Int32" Nullable="false" />
           <Property Name="ItemMasterUID" Type="Int32" Nullable="false" />
-          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="BatchID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="ActualQuantity" Type="Double" Nullable="false" />
           <Property Name="ActualUOM" Type="Int32" Nullable="false" />
@@ -11222,6 +11288,48 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
           <Property Name="ItemDateFrom" Type="DateTime" Precision="0" />
           <Property Name="ItemDateTo" Type="DateTime" Precision="0" />
         </EntityType>
+        <ComplexType Name="pGetLinkPackage_Result">
+          <Property Type="Int32" Name="UID" Nullable="true" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ItemName" Nullable="true" MaxLength="400" />
+          <Property Type="DateTime" Name="StartDttm" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="EndDttm" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Quantity" Nullable="true" />
+          <Property Type="Double" Name="NetAmount" Nullable="true" />
+          <Property Type="String" Name="OrderLocation" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="OrderToLocation" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="OrderRaisedBy" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="OrderCategory" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="OrderSubCategory" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Comments" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="UserKey" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="BillPackageUID" Nullable="false" />
+          <Property Type="Int32" Name="PatientPackageUID" Nullable="false" />
+          <Property Type="Int32" Name="pCount1" Nullable="false" />
+          <Property Type="Int32" Name="pCount2" Nullable="false" />
+          <Property Type="String" Name="ParentUID" Nullable="true" />
+          <Property Type="String" Name="PaymentStatus" Nullable="false" MaxLength="13" />
+        </ComplexType>
+        <ComplexType Name="pRPTCheckupLabCompareByGroupTest_Result">
+          <Property Type="String" Name="PatientID" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="PatientName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Year" Nullable="true" />
+          <Property Type="String" Name="RequestItemName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Catagory" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="SEXXXUID" Nullable="true" />
+          <Property Type="String" Name="RequestItemCode" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ResultItemCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ResultItemName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="160" />
+          <Property Type="String" Name="ReferenceRange" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="IsAbnormal" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="ResultValue" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="ResultUnit" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="GPRSTUID" Nullable="false" />
+          <Property Type="DateTime" Name="ResultDTTM" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="StartDttm" Nullable="true" Precision="23" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11818,6 +11926,7 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
                 <ScalarProperty Name="MUser" ColumnName="MUser" />
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="PackageNameSearch" ColumnName="PackageNameSearch" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="SecondRoomBillPackageUID" ColumnName="SecondRoomBillPackageUID" />
                 <ScalarProperty Name="AllowOverridePrice" ColumnName="AllowOverridePrice" />
@@ -11834,6 +11943,23 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
                 <ScalarProperty Name="NoofDays" ColumnName="NoofDays" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="PackageName" ColumnName="PackageName" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillPackageAlternateItem">
+            <EntityTypeMapping TypeName="MediTechModel.BillPackageAlternateItem">
+              <MappingFragment StoreEntitySet="BillPackageAlternateItem">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="BillableItemUID" ColumnName="BillableItemUID" />
+                <ScalarProperty Name="BillPackageItemUID" ColumnName="BillPackageItemUID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -14097,6 +14223,7 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="OrderSetBillableItemUID" ColumnName="OrderSetBillableItemUID" />
                 <ScalarProperty Name="OrderSetUID" ColumnName="OrderSetUID" />
+                <ScalarProperty Name="AltBillableItemUID" ColumnName="AltBillableItemUID" />
                 <ScalarProperty Name="PatientPackageItemUID" ColumnName="PatientPackageItemUID" />
                 <ScalarProperty Name="PayorDetailUID" ColumnName="PayorDetailUID" />
                 <ScalarProperty Name="PatientVisitPayorUID" ColumnName="PatientVisitPayorUID" />
@@ -14391,6 +14518,8 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
                 <ScalarProperty Name="RefNo" ColumnName="RefNo" />
                 <ScalarProperty Name="Comments" ColumnName="Comments" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="EmployerAddress" ColumnName="EmployerAddress" />
+                <ScalarProperty Name="Program" ColumnName="Program" />
                 <ScalarProperty Name="IsReAdmisstion" ColumnName="IsReAdmisstion" />
                 <ScalarProperty Name="BedUID" ColumnName="BedUID" />
                 <ScalarProperty Name="CheckupJobUID" ColumnName="CheckupJobUID" />
@@ -14531,7 +14660,9 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="Comments" ColumnName="Comments" />
                 <ScalarProperty Name="IsPregnant" ColumnName="IsPregnant" />
+                <ScalarProperty Name="WHRValue" ColumnName="WHRValue" />
                 <ScalarProperty Name="WaistCircumference" ColumnName="WaistCircumference" />
+                <ScalarProperty Name="HipCircumference" ColumnName="HipCircumference" />
                 <ScalarProperty Name="OxygenSat" ColumnName="OxygenSat" />
                 <ScalarProperty Name="BPDio" ColumnName="BPDio" />
                 <ScalarProperty Name="BPSys" ColumnName="BPSys" />
@@ -16220,6 +16351,56 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="pGetLinkPackage" FunctionName="MediTechModel.Store.pGetLinkPackage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pGetLinkPackage_Result">
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="StartDttm" ColumnName="StartDttm" />
+                <ScalarProperty Name="EndDttm" ColumnName="EndDttm" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+                <ScalarProperty Name="OrderLocation" ColumnName="OrderLocation" />
+                <ScalarProperty Name="OrderToLocation" ColumnName="OrderToLocation" />
+                <ScalarProperty Name="OrderRaisedBy" ColumnName="OrderRaisedBy" />
+                <ScalarProperty Name="OrderCategory" ColumnName="OrderCategory" />
+                <ScalarProperty Name="OrderSubCategory" ColumnName="OrderSubCategory" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UserKey" ColumnName="UserKey" />
+                <ScalarProperty Name="BillPackageUID" ColumnName="BillPackageUID" />
+                <ScalarProperty Name="PatientPackageUID" ColumnName="PatientPackageUID" />
+                <ScalarProperty Name="pCount1" ColumnName="pCount1" />
+                <ScalarProperty Name="pCount2" ColumnName="pCount2" />
+                <ScalarProperty Name="ParentUID" ColumnName="ParentUID" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pRPTCheckupLabCompareByGroupTest" FunctionName="MediTechModel.Store.pRPTCheckupLabCompareByGroupTest">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pRPTCheckupLabCompareByGroupTest_Result">
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="RequestItemName" ColumnName="RequestItemName" />
+                <ScalarProperty Name="Catagory" ColumnName="Catagory" />
+                <ScalarProperty Name="SEXXXUID" ColumnName="SEXXXUID" />
+                <ScalarProperty Name="RequestItemCode" ColumnName="RequestItemCode" />
+                <ScalarProperty Name="ResultItemCode" ColumnName="ResultItemCode" />
+                <ScalarProperty Name="ResultItemName" ColumnName="ResultItemName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ReferenceRange" ColumnName="ReferenceRange" />
+                <ScalarProperty Name="IsAbnormal" ColumnName="IsAbnormal" />
+                <ScalarProperty Name="ResultValue" ColumnName="ResultValue" />
+                <ScalarProperty Name="ResultUnit" ColumnName="ResultUnit" />
+                <ScalarProperty Name="GPRSTUID" ColumnName="GPRSTUID" />
+                <ScalarProperty Name="ResultDTTM" ColumnName="ResultDTTM" />
+                <ScalarProperty Name="StartDttm" ColumnName="StartDttm" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

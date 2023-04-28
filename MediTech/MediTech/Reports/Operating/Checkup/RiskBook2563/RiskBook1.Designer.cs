@@ -1,4 +1,4 @@
-﻿namespace MediTech.Reports.Operating.Checkup.RiskBook
+﻿namespace MediTech.Reports.Operating.Checkup.RiskBook2563
 {
     partial class RiskBook1
     {
@@ -1064,7 +1064,7 @@
             // xrRichText1
             // 
             this.xrRichText1.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrRichText1.LocationFloat = new DevExpress.Utils.PointFloat(492.5F, 383F);
+            this.xrRichText1.LocationFloat = new DevExpress.Utils.PointFloat(492.5F, 373F);
             this.xrRichText1.Name = "xrRichText1";
             this.xrRichText1.SerializableRtfString = resources.GetString("xrRichText1.SerializableRtfString");
             this.xrRichText1.SizeF = new System.Drawing.SizeF(114.1667F, 23F);
@@ -1073,19 +1073,19 @@
             // xrRichText3
             // 
             this.xrRichText3.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrRichText3.LocationFloat = new DevExpress.Utils.PointFloat(442.8333F, 406.0001F);
+            this.xrRichText3.LocationFloat = new DevExpress.Utils.PointFloat(442.8333F, 396.0001F);
             this.xrRichText3.Name = "xrRichText3";
             this.xrRichText3.SerializableRtfString = resources.GetString("xrRichText3.SerializableRtfString");
-            this.xrRichText3.SizeF = new System.Drawing.SizeF(333.801F, 148.1667F);
+            this.xrRichText3.SizeF = new System.Drawing.SizeF(333.801F, 166.2222F);
             this.xrRichText3.StylePriority.UseFont = false;
             // 
             // xrRichText4
             // 
             this.xrRichText4.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrRichText4.LocationFloat = new DevExpress.Utils.PointFloat(606.6667F, 383F);
+            this.xrRichText4.LocationFloat = new DevExpress.Utils.PointFloat(606.6667F, 373F);
             this.xrRichText4.Name = "xrRichText4";
             this.xrRichText4.SerializableRtfString = resources.GetString("xrRichText4.SerializableRtfString");
-            this.xrRichText4.SizeF = new System.Drawing.SizeF(175.8333F, 23F);
+            this.xrRichText4.SizeF = new System.Drawing.SizeF(171.1666F, 23F);
             this.xrRichText4.StylePriority.UseFont = false;
             // 
             // xrRichText5
@@ -1099,10 +1099,10 @@
             // xrRichText2
             // 
             this.xrRichText2.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrRichText2.LocationFloat = new DevExpress.Utils.PointFloat(447.3333F, 255.8334F);
+            this.xrRichText2.LocationFloat = new DevExpress.Utils.PointFloat(442.8333F, 245.8334F);
             this.xrRichText2.Name = "xrRichText2";
             this.xrRichText2.SerializableRtfString = resources.GetString("xrRichText2.SerializableRtfString");
-            this.xrRichText2.SizeF = new System.Drawing.SizeF(330.5F, 127.1666F);
+            this.xrRichText2.SizeF = new System.Drawing.SizeF(335F, 127.1666F);
             this.xrRichText2.StylePriority.UseFont = false;
             // 
             // TopMargin

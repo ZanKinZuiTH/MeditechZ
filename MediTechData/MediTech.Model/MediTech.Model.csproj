@@ -117,6 +117,8 @@
     <Compile Include="Inventory\StockWorkListModel.cs" />
     <Compile Include="OrderMaster\OrderSetBillableItemModel.cs" />
     <Compile Include="OrderMaster\OrderSetModel.cs" />
+    <Compile Include="OrderProcessing\AdjustablePackageItemModel.cs" />
+    <Compile Include="OrderProcessing\LinkPackageModel.cs" />
     <Compile Include="OrderProcessing\PatientOrderAlertModel.cs" />
     <Compile Include="OrderProcessing\PatientOrderDetailModel.cs" />
     <Compile Include="OrderProcessing\PatientOrderModel.cs">
@@ -137,6 +139,8 @@
     <Compile Include="Inventory\StoreUOMConversionModel.cs" />
     <Compile Include="MasterData\ItemServiceModel.cs" />
     <Compile Include="OrderProcessing\PatientOrderStandingModel.cs" />
+    <Compile Include="OrderProcessing\PatientPackageItemModel.cs" />
+    <Compile Include="OrderProcessing\PatientPackageModel.cs" />
     <Compile Include="PACS\InstancesCopyToModel.cs" />
     <Compile Include="PACS\DataInbound.cs" />
     <Compile Include="PACS\SendDicomFilesModel.cs" />

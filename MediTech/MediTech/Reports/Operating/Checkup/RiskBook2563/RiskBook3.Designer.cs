@@ -1,4 +1,4 @@
-﻿namespace MediTech.Reports.Operating.Checkup.RiskBook
+﻿namespace MediTech.Reports.Operating.Checkup.RiskBook2563
 {
     partial class RiskBook3
     {

@@ -2,7 +2,7 @@
 using DevExpress.XtraReports.UI;
 using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
-using MediTech.Reports.Operating.Checkup.RiskBook;
+using MediTech.Reports.Operating.Checkup.RiskBook2547;
 using MediTech.Views;
 using System;
 using System.Collections.Generic;

@@ -28,7 +28,9 @@ namespace MediTech.DataBase
         public Nullable<double> BPSys { get; set; }
         public Nullable<double> BPDio { get; set; }
         public Nullable<double> OxygenSat { get; set; }
+        public Nullable<double> HipCircumference { get; set; }
         public Nullable<double> WaistCircumference { get; set; }
+        public Nullable<double> WHRValue { get; set; }
         public Nullable<bool> IsPregnant { get; set; }
         public string Comments { get; set; }
         public System.DateTime CWhen { get; set; }
