@@ -622,6 +622,7 @@ namespace MediTech.ViewModels
                                     CurrentImportedData.IsNationalIDDuplicate = "Y";
                                     CurrentImportedData.Register = false;
                                 }
+
                             }
 
                         }
@@ -637,8 +638,16 @@ namespace MediTech.ViewModels
                             CurrentImportedData.AlreadyExists = "Y";
                             CurrentImportedData.Register = false;
                             CurrentImportedData.BN = patient.PatientID;
-
                             CurrentImportedData.PatientUID = patient.PatientUID;
+                            if (string.IsNullOrEmpty(CurrentImportedData.IDCard) && patient.NationalID != null)
+                            {
+                                CurrentImportedData.IDCard = patient.NationalID;
+                            }
+
+                            if (string.IsNullOrEmpty(CurrentImportedData.IDPassport) && patient.IDPassport != null)
+                            {
+                                CurrentImportedData.IDPassport = patient.IDPassport;
+                            }
 
                             if (string.IsNullOrEmpty(CurrentImportedData.DateOfBirth) && patient.BirthDttm != null)
                             {

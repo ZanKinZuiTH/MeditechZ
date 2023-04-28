@@ -147,6 +147,7 @@
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.logo2 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel58 = new DevExpress.XtraReports.UI.XRLabel();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -154,6 +155,7 @@
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel58,
             this.infoOrganisation,
             this.xrLabel48,
             this.xrCheckBox35,
@@ -261,7 +263,7 @@
             this.xrLabel12,
             this.xrLabel6});
             this.Detail.Font = new System.Drawing.Font("Angsana New", 12F);
-            this.Detail.HeightF = 875.625F;
+            this.Detail.HeightF = 885.3338F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.StylePriority.UseFont = false;
@@ -1088,14 +1090,14 @@
             // 
             // TopMargin
             // 
-            this.TopMargin.HeightF = 51F;
+            this.TopMargin.HeightF = 40F;
             this.TopMargin.Name = "TopMargin";
             this.TopMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
             // BottomMargin
             // 
-            this.BottomMargin.HeightF = 44F;
+            this.BottomMargin.HeightF = 40F;
             this.BottomMargin.Name = "BottomMargin";
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -1147,7 +1149,7 @@
             this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.logo2,
             this.xrLabel1});
-            this.PageHeader.HeightF = 98.33335F;
+            this.PageHeader.HeightF = 88.83337F;
             this.PageHeader.Name = "PageHeader";
             // 
             // logo2
@@ -1163,12 +1165,22 @@
             // xrLabel1
             // 
             this.xrLabel1.Font = new System.Drawing.Font("Angsana New", 18F, System.Drawing.FontStyle.Bold);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(224.7377F, 60.33337F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(226.1667F, 50.33337F);
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel1.SizeF = new System.Drawing.SizeF(298.3334F, 37.99998F);
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.Text = "ใบรับรองแพทย์สำหรับการทำงานบนที่สูง";
+            // 
+            // xrLabel58
+            // 
+            this.xrLabel58.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.xrLabel58.LocationFloat = new DevExpress.Utils.PointFloat(75.8334F, 862.3338F);
+            this.xrLabel58.Name = "xrLabel58";
+            this.xrLabel58.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel58.SizeF = new System.Drawing.SizeF(513.7381F, 23F);
+            this.xrLabel58.StylePriority.UseFont = false;
+            this.xrLabel58.Text = "หมายเหตุ ใบรับรองแพทย์ฉบับนี้ ให้ใช้ได้ 6 เดือน นับตั้งแต่วันที่ตรวจร่างกาย";
             // 
             // objectDataSource1
             // 
@@ -1187,11 +1199,11 @@
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
-            this.Margins = new System.Drawing.Printing.Margins(51, 75, 51, 44);
+            this.Margins = new System.Drawing.Printing.Margins(51, 75, 40, 40);
             this.PageHeight = 1169;
             this.PageWidth = 827;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
-            this.Version = "20.2";
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
@@ -1316,5 +1328,6 @@
         public DevExpress.XtraReports.UI.XRLabel lbAddress2Page2;
         public DevExpress.XtraReports.UI.XRLabel lbAddressPage2;
         public DevExpress.XtraReports.UI.XRPictureBox logo2;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel58;
     }
 }

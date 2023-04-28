@@ -1,5 +1,6 @@
 ﻿using MediTech.DataBase;
 using MediTech.Model;
+using Microsoft.Ajax.Utilities;
 using ShareLibrary;
 using System;
 using System.Collections.Generic;
@@ -79,6 +80,7 @@ namespace MediTechWebApi.Controllers
                                                 ZipCode = j.ZipCode,
                                                 UserUID = pa.CUser,
                                                 IsVIP = pa.IsVIP ?? false,
+                                                IsIdentityOnBLIFE = pa.IsIdentityOnBLIFE,
                                                 OwnerOrganisationUID = pa.OwnerOrganisationUID ?? 0
                                             }).FirstOrDefault();
             return data;
@@ -142,6 +144,7 @@ namespace MediTechWebApi.Controllers
                                                       ZipCode = j.ZipCode,
                                                       UserUID = pa.CUser,
                                                       IsVIP = pa.IsVIP ?? false,
+                                                      IsIdentityOnBLIFE = pa.IsIdentityOnBLIFE,
                                                       OwnerOrganisationUID = pa.OwnerOrganisationUID ?? 0
                                                   }).ToList();
             return data;
@@ -204,6 +207,7 @@ namespace MediTechWebApi.Controllers
                                                 ZipCode = j.ZipCode,
                                                 UserUID = pa.CUser,
                                                 IsVIP = pa.IsVIP ?? false,
+                                                IsIdentityOnBLIFE = pa.IsIdentityOnBLIFE,
                                                 OwnerOrganisationUID = pa.OwnerOrganisationUID ?? 0
                                             }).FirstOrDefault();
             return data;
@@ -266,6 +270,7 @@ namespace MediTechWebApi.Controllers
                                                 ZipCode = j.ZipCode,
                                                 UserUID = pa.CUser,
                                                 IsVIP = pa.IsVIP ?? false,
+                                                IsIdentityOnBLIFE = pa.IsIdentityOnBLIFE,
                                                 OwnerOrganisationUID = pa.OwnerOrganisationUID ?? 0
                                             }).FirstOrDefault();
             return data;
@@ -328,6 +333,7 @@ namespace MediTechWebApi.Controllers
                                                 ZipCode = j.ZipCode,
                                                 UserUID = pa.CUser,
                                                 IsVIP = pa.IsVIP ?? false,
+                                                IsIdentityOnBLIFE = pa.IsIdentityOnBLIFE,
                                                 OwnerOrganisationUID = pa.OwnerOrganisationUID ?? 0
                                             }).FirstOrDefault();
             return data;
@@ -649,6 +655,9 @@ namespace MediTechWebApi.Controllers
                         patient.CUser = patientData.CUser;
                         patient.CWhen = patientData.CWhen;
                         patient.OwnerOrganisationUID = patientData.OwnerOrganisationUID;
+                        patient.IDCard = patientData.IDCard;
+                        patient.IDPassport = patientData.IDPassport;
+                        patient.IsIdentityOnBLIFE = patientData.IsIdentityOnBLIFE;
                     }
 
 
