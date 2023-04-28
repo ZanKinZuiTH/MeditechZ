@@ -25,62 +25,67 @@
             </dxlc:LayoutItem>
 
             <dxlc:LayoutGroup View="Tabs">
-                <dxlc:LayoutGroup Header="รายละเอียด" Orientation="Vertical">
-                    <dxlc:LayoutGroup Orientation="Horizontal">
-                        <dxlc:LayoutGroup ItemSpace="15" Orientation="Vertical">
-                        <dxlc:LayoutItem>
-                            <TextBlock Text="{Binding Path=PatientRequest.RequestItemName}" 
+               
+                <dxlc:LayoutGroup Header="รายละเอียด" Orientation="Vertical" >
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <dxlc:LayoutGroup Orientation="Vertical">
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:LayoutGroup ItemSpace="15" Orientation="Vertical">
+                                    <dxlc:LayoutItem>
+                                        <TextBlock Text="{Binding Path=PatientRequest.RequestItemName}" 
                                    FontWeight="Bold" FontSize="14"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="Executed By :">
-                            <TextBlock Text="{Binding Path=PatientRequest.ExecuteBy}"
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="Executed By :">
+                                        <TextBlock Text="{Binding Path=PatientRequest.ExecuteBy}"
                                            FontWeight="Bold"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutGroup Orientation="Horizontal">
-                            <dxlc:LayoutItem Label="Order At :">
-                                <TextBlock Text="{Binding Path=PatientRequest.RequestedDttm,StringFormat='dd/MM/yyyy HH:mm'}"
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutGroup Orientation="Horizontal">
+                                        <dxlc:LayoutItem Label="Order At :">
+                                            <TextBlock Text="{Binding Path=PatientRequest.RequestedDttm,StringFormat='dd/MM/yyyy HH:mm'}"
                                            FontWeight="Bold"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="Executed At :">
-                                <TextBlock Text="{Binding Path=PatientRequest.PreparedDttm,StringFormat='dd/MM/yyyy HH:mm'}"
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="Executed At :">
+                                            <TextBlock Text="{Binding Path=PatientRequest.PreparedDttm,StringFormat='dd/MM/yyyy HH:mm'}"
                                            FontWeight="Bold"/>
-                            </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>
-                    </dxlc:LayoutGroup>
-                        <dxlc:LayoutGroup ItemSpace="15" Orientation="Vertical">
-                        
-                        <dxlc:LayoutGroup Orientation="Horizontal" >
-                            <dxlc:LayoutItem Label="Modality :">
-                                <TextBlock Text="{Binding Path=PatientRequest.Modality}" FontWeight="Bold"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem HorizontalContentAlignment="Right">
-                                <dxe:HyperlinkEdit Text="View PACS" Command="{Binding OPENPACSViewCommand}"/>
-                            </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+                                </dxlc:LayoutGroup>
+                                <dxlc:LayoutGroup ItemSpace="15" Orientation="Vertical">
 
-                        <dxlc:LayoutItem Label="Request Number :">
-                            <TextBlock Text="{Binding Path=PatientRequest.RequestNumber}" FontWeight="Bold"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="Comments :">
-                            <TextBlock Text="{Binding Path=PatientRequest.ProcessingNote}"/>
-                        </dxlc:LayoutItem>
-                    </dxlc:LayoutGroup>
-                    </dxlc:LayoutGroup>
-                    
-                    <dxlc:LayoutGroup  Orientation="Horizontal" Margin="0,10,0,0">
-                        <dxlc:LayoutGroup Orientation="Vertical">
-                            <dxlc:LayoutItem Label="ผลภาษาอังกฤษ :" FontSize="14"/>
-                            
-                                <TextBlock Text="{Binding Path=DataResultReport.ResultValue}" 
+                                    <dxlc:LayoutGroup Orientation="Horizontal" >
+                                        <dxlc:LayoutItem Label="Modality :">
+                                            <TextBlock Text="{Binding Path=PatientRequest.Modality}" FontWeight="Bold"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem HorizontalContentAlignment="Right">
+                                            <dxe:HyperlinkEdit Text="View PACS" Command="{Binding OPENPACSViewCommand}"/>
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+
+                                    <dxlc:LayoutItem Label="Request Number :">
+                                        <TextBlock Text="{Binding Path=PatientRequest.RequestNumber}" FontWeight="Bold"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="Comments :">
+                                        <TextBlock Text="{Binding Path=PatientRequest.ProcessingNote}"/>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+                            </dxlc:LayoutGroup>
+
+                            <dxlc:LayoutGroup  Orientation="Horizontal" Margin="0,10,0,0">
+                                <dxlc:LayoutGroup Orientation="Vertical">
+                                    <dxlc:LayoutItem Label="ผลภาษาอังกฤษ :" FontSize="14"/>
+
+                                    <TextBlock Text="{Binding Path=DataResultReport.ResultValue}" 
                                    FontWeight="Bold" TextWrapping="Wrap"  FontSize="14"/>
-                            
-                        </dxlc:LayoutGroup>
-                        <dxlc:LayoutGroup Orientation="Vertical">
-                            <dxlc:LayoutItem Label="ผลแปลไทย :" FontSize="14"/>
-                            <TextBlock Text="{Binding ThaiResult}" TextWrapping="Wrap" 
+
+                                </dxlc:LayoutGroup>
+                                <dxlc:LayoutGroup Orientation="Vertical">
+                                    <dxlc:LayoutItem Label="ผลแปลไทย :" FontSize="14"/>
+                                    <TextBlock Text="{Binding ThaiResult}" TextWrapping="Wrap" 
                                    FontWeight="Bold" FontSize="14"/>
+                                </dxlc:LayoutGroup>
+                            </dxlc:LayoutGroup>
                         </dxlc:LayoutGroup>
-                    </dxlc:LayoutGroup>
+                    </ScrollViewer>
                 </dxlc:LayoutGroup>
                 
                 <dxlc:LayoutGroup Header="ประวัติที่ผ่านมา">
