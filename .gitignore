@@ -20,7 +20,3 @@ MediTechData/PACS.DataBase/bin/
 MediTechData/ShareLibrary/bin/
 MediTech/packages/
 MediTech/MediTech/Reports/Statistic/Inventory/StockDispensed.resx.bak
-WebApi/MediTechWebApi/Web.config
-WebApi/MediTechWebApi/MediTechWebApi.csproj
-WebApi/MediTechWebApi/MediTechWebApi.csproj.user
-WebApi/PACSWebApi/PACSWebApi.csproj.user
