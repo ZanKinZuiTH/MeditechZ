@@ -856,8 +856,6 @@ namespace MediTech.ViewModels
                 {
                     dateFrom = null;
                     dateTo = null;
-                    StudiesList = DataService.PACS.SearchPACSWorkList(dateFrom, dateTo,
-                        modlity, null, PatientRequest.PatientID, null, null, null, null, null);
 
                     PACSWorkList pacs = new PACSWorkList();
                     PACSWorkListViewModel pacsViewModel = (pacs.DataContext as PACSWorkListViewModel);
@@ -866,7 +864,6 @@ namespace MediTech.ViewModels
                     pacsViewModel.DateTo = dateTo;
                     pacsViewModel.IsCheckedPeriod = true;
                     pacsViewModel.Modality = PatientRequest.Modality;
-                    pacsViewModel.StudiesList = StudiesList;
                     DXWindow owner = (DXWindow)(this.View as ReviewRISResult).Parent;
                     LaunchViewShow(pacs, owner, "PACS", false, true);
                 }

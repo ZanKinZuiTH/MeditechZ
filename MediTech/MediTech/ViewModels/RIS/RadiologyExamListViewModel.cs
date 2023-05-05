@@ -1256,8 +1256,6 @@ namespace MediTech.ViewModels
                 {
                     dateFrom = null;
                     dateTo = null;
-                    StudiesList = DataService.PACS.SearchPACSWorkList(dateFrom, dateTo,
-                        modlity, null, SelectRequestExam.PatientID, null, null, null, null, null);
 
                     PACSWorkList pacs = new PACSWorkList();
                     PACSWorkListViewModel pacsViewModel = (pacs.DataContext as PACSWorkListViewModel);
@@ -1266,7 +1264,6 @@ namespace MediTech.ViewModels
                     pacsViewModel.DateTo = dateTo;
                     pacsViewModel.IsCheckedPeriod = true;
                     pacsViewModel.Modality = SelectRequestExam.Modality;
-                    pacsViewModel.StudiesList = StudiesList;
                     DXWindow owner = (DXWindow)(this.View as RadiologyExamList).Parent;
                     LaunchViewShow(pacs, owner, "PACS", false, true);
                 }
