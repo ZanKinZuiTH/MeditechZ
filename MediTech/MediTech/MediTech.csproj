@@ -218,16 +218,16 @@
     </ApplicationDefinition>
     <Compile Include="AppUtil.cs" />
     <Compile Include="Converter\BitmapToBitmapImage.cs" />
-    <Compile Include="Converter\PercentageConverter.cs" />
-    <Compile Include="Converter\IndexConverter.cs" />
     <Compile Include="Converter\DateConverter.cs" />
     <Compile Include="Converter\DiscRecorderValueConverter.cs" />
     <Compile Include="Converter\ImageConverter.cs" />
     <Compile Include="Converter\ImageModuleConverter.cs" />
     <Compile Include="Converter\ImageMenuConverter.cs" />
+    <Compile Include="Converter\IndexConverter.cs" />
     <Compile Include="Converter\InverseBooleanConverter.cs" />
     <Compile Include="Converter\IsNullOrEmptyConverter.cs" />
     <Compile Include="Converter\NumericN2Formatter.cs" />
+    <Compile Include="Converter\PercentageConverter.cs" />
     <Compile Include="Converter\VisibilityConverter.cs" />
     <Compile Include="CustomControl\AutoComplete\AutoCompleteTextBox.cs" />
     <Compile Include="CustomControl\AutoComplete\PackageSearchPopUp.cs" />
@@ -285,13 +285,13 @@
     <Compile Include="LoginScreen.xaml.cs">
       <DependentUpon>LoginScreen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\UnbilledPatientsResult.cs" />
     <Compile Include="Models\ColumnSource.cs" />
     <Compile Include="Models\EnumerationTypes.cs" />
     <Compile Include="Models\LaunchPageMassage.cs" />
     <Compile Include="Models\ItemMasterList.cs" />
     <Compile Include="Models\PatientRegistrationBulkData.cs" />
     <Compile Include="Models\StoreItemList.cs" />
+    <Compile Include="Models\UnbilledPatientsResult.cs" />
     <Compile Include="Reports\Operating\Cashier\GroupReceipt.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1668,16 +1668,17 @@
     <Compile Include="ViewModels\Billing\AllocateBillPopupViewModel.cs" />
     <Compile Include="ViewModels\Billing\BillingPaymentModePopUpViewModel.cs" />
     <Compile Include="ViewModels\Billing\BillSettlementIPViewModel.cs" />
-    <Compile Include="ViewModels\Billing\ListQueryBillsMassForInvoiceViewModel.cs" />
     <Compile Include="ViewModels\Billing\BillSettlementOPViewModel.cs" />
     <Compile Include="ViewModels\Billing\CancelBillPopupViewModel.cs" />
+    <Compile Include="ViewModels\Billing\GenerateBillViewModel.cs" />
     <Compile Include="ViewModels\Billing\ListBillPaymentViewModel.cs" />
     <Compile Include="ViewModels\Billing\ListPaymentDetailsViewModel.cs" />
     <Compile Include="ViewModels\Billing\ListQueryBillsIPViewModel.cs" />
+    <Compile Include="ViewModels\Billing\ListQueryBillsMassForInvoiceViewModel.cs" />
     <Compile Include="ViewModels\Billing\ListQueryBillsOPViewModel.cs" />
-    <Compile Include="ViewModels\Billing\GenerateBillViewModel.cs" />
     <Compile Include="ViewModels\Billing\MergeBillRecipetPopupViewModel.cs" />
     <Compile Include="ViewModels\Billing\PatientBilledIPViewModel.cs" />
+    <Compile Include="ViewModels\Billing\PatientBilledOPViewModel.cs" />
     <Compile Include="ViewModels\Checkup\CheckupListReportViewModel.cs" />
     <Compile Include="ViewModels\Checkup\CheckupSummaryViewmodel.cs" />
     <Compile Include="ViewModels\Checkup\EnterFitnessTestResultViewModel.cs" />
@@ -1821,7 +1822,6 @@
     <Compile Include="ViewModels\RIS\PACSWorkListViewModel.cs" />
     <Compile Include="ViewModels\Patient\ListAppointmentViewModel.cs" />
     <Compile Include="ViewModels\Patient\ManageAppointmentViewModel.cs" />
-    <Compile Include="ViewModels\Billing\PatientBilledOPViewModel.cs" />
     <Compile Include="ViewModels\Billing\CashierWorklistViewModel.cs" />
     <Compile Include="ViewModels\ClinicalData\ListDrugFrequencyViewModel.cs" />
     <Compile Include="ViewModels\ClinicalData\ListDrugGenericViewModel.cs" />
