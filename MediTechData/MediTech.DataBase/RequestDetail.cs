@@ -32,6 +32,7 @@ namespace MediTech.DataBase
         public Nullable<int> AssignedToUID { get; set; }
         public Nullable<int> PreparedByUID { get; set; }
         public Nullable<System.DateTime> PreparedDttm { get; set; }
+        public Nullable<int> UltrasoundByUID { get; set; }
         public string ProcessingNote { get; set; }
         public string RDUNote { get; set; }
         public Nullable<int> RABSTSUID { get; set; }

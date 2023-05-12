@@ -11,7 +11,7 @@
              xmlns:cc="clr-namespace:MediTech.CustomControl"
              mc:Ignorable="d"
              DataContext="{Binding Path=ExecutePopUpViewModel,Source={StaticResource Locator}}"
-             d:DesignHeight="600" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="900">
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">
             <dxlc:LayoutGroup Orientation="Horizontal">
@@ -60,6 +60,43 @@
                     </dxlc:LayoutItem.Label>
                     <cc:MyLookUpEdit     ItemsSource="{Binding ExecuteBy}"
                                          SelectedItem="{Binding SelectExecuteBy}"
+                                         DisplayMember="FullName"
+                                         ValueMember="CareproviderUID"
+                                         AutoComplete="False"
+                                         IncrementalFiltering="True"
+                                         AllowNullInput="True"
+                                         ImmediatePopup="True"
+                                         FindButtonPlacement="Popup"
+                                         FindMode = "Always"
+                                         PopupMinHeight="100"
+                                         PopupMinWidth="100"
+                                         PopupHeight="400"
+                                         PopupWidth="500"                                       
+                                         AutoPopulateColumns="False">
+                        <cc:MyLookUpEdit.ColumnsToFilter>
+                            <cc:ColumnItem FieldName="FirstName"/>
+                            <cc:ColumnItem FieldName="LastName"/>
+                        </cc:MyLookUpEdit.ColumnsToFilter>
+                        <dxg:LookUpEdit.PopupContentTemplate>
+                            <ControlTemplate>
+                                <dxg:GridControl  Name="PART_GridControl" >
+                                    <dxg:GridColumn Header="ชื่อ" FieldName="FullName" 
+                                                    Width="*" AllowSearchPanel="True" 
+                                                    AllowIncrementalSearch="True" 
+                                                    AllowAutoFilter="True"
+                                                    ReadOnly="True"/>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView Name="view"
+                                                       ShowGroupPanel="False"/>
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                            </ControlTemplate>
+                        </dxg:LookUpEdit.PopupContentTemplate>
+                    </cc:MyLookUpEdit>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Ultrasound By">
+                    <cc:MyLookUpEdit     ItemsSource="{Binding UltrasoundBy}"
+                                         SelectedItem="{Binding SelectUltrasoundBy}"
                                          DisplayMember="FullName"
                                          ValueMember="CareproviderUID"
                                          AutoComplete="False"

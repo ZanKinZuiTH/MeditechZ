@@ -1438,6 +1438,7 @@ namespace MediTechWebApi.Controllers
                         db.RequestDetail.Attach(requestDetail);
                         requestDetail.PreparedByUID = item.ExecuteByUID;
                         requestDetail.PreparedDttm = item.PreparedDttm;
+                        requestDetail.UltrasoundByUID = item.UltrasoundByUID;
                         requestDetail.ProcessingNote = item.ProcessingNote;
                         requestDetail.RadiologistUID = item.RadiologistUID;
 

@@ -30,6 +30,14 @@ namespace MediTech.ViewModels
             set { Set(ref _ExecuteBy, value); }
         }
 
+        private List<CareproviderModel> _UltrasoundBy;
+
+        public List<CareproviderModel> UltrasoundBy
+        {
+            get { return _UltrasoundBy; }
+            set { Set(ref _UltrasoundBy, value); }
+        }
+
         private CareproviderModel _SelectRaiologist;
 
         public CareproviderModel SelectRaiologist
@@ -55,6 +63,14 @@ namespace MediTech.ViewModels
         {
             get { return _SelectExecuteBy; }
             set { Set(ref _SelectExecuteBy, value); }
+        }
+
+        private CareproviderModel _SelectUltrasoundBy;
+
+        public CareproviderModel SelectUltrasoundBy
+        {
+            get { return _SelectUltrasoundBy; }
+            set { Set(ref _SelectUltrasoundBy, value); }
         }
 
         private List<RequestListModel> _ExecuteList;
@@ -133,6 +149,7 @@ namespace MediTech.ViewModels
         {
             var Careprovider = DataService.UserManage.GetCareproviderAll();
             ExecuteBy = Careprovider;
+            UltrasoundBy = Careprovider;
             Radiologists = new ObservableCollection<CareproviderModel>(Careprovider.Where(p => p.IsRadiologist).ToList());
             Radiologists.Insert(0, new CareproviderModel { CareproviderUID = 0, FirstName = "Assign", LastName = "Auto", FullName = "Assign Auto" });
 
@@ -163,6 +180,7 @@ namespace MediTech.ViewModels
                     }
                     item.PreparedDttm = executeDttm;
                     item.ExecuteByUID = SelectExecuteBy.CareproviderUID;
+                    item.UltrasoundByUID = SelectUltrasoundBy != null ? SelectUltrasoundBy.CareproviderUID : (int?)null;
 
                 }
                 DataService.Radiology.AssignRadiologist(ExecuteList.ToList(), AppUtil.Current.UserID);
