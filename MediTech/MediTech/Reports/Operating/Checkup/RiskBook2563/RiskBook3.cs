@@ -17,5 +17,25 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2563
         private void Detail_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
         }
+
+        private void xrTableCell41_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+
+        }
+
+        private void xrTableCell48_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+
+        }
+
+        private void xrTableCell49_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+
+        }
+
+        private void xrTableCell50_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+
+        }
     }
 }

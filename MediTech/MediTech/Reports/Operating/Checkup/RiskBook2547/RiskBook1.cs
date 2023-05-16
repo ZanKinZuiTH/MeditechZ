@@ -506,7 +506,8 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2547
                     #region Complete Blood Count
 
                     IEnumerable<PatientResultComponentModel> cbcTestSet = labCompare
-                    .Where(p => p.RequestItemName.Contains("CBC"))
+                    .Where(p => p.RequestItemName.Contains("CBC")
+                    || p.RequestItemCode.Contains("LAB597"))
                     .OrderByDescending(p => p.Year);
                     GenerateCompleteBloodCount(cbcTestSet);
                     #endregion
@@ -697,6 +698,11 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2547
                 page3.cellRbc1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0428" && p.Year == year1)?.ResultValue;
                 page3.cellRbc2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0428" && p.Year == year2)?.ResultValue;
                 page3.cellRbc3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0428" && p.Year == year3)?.ResultValue;
+
+                page3.LiveBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1326")?.ReferenceRange;
+                page3.LiveBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1326" && p.Year == year1)?.ResultValue;
+                page3.LiveBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1326" && p.Year == year2)?.ResultValue;
+                page3.LiveBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1326" && p.Year == year3)?.ResultValue;
             }
         }
 

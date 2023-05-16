@@ -1070,6 +1070,7 @@ namespace MediTech.ViewModels
                     dtResult.Columns.Add("LastName");
                     dtResult.Columns.Add("Department");
                     dtResult.Columns.Add("CompanyName");
+                    dtResult.Columns.Add("Program");
                     dtResult.Columns.Add("Age");
                     dtResult.Columns.Add("Gender");
                     dtResult.Columns.Add("StartDttm");
@@ -1085,8 +1086,9 @@ namespace MediTech.ViewModels
                     ColumnsResultItems.Add(new Column() { Header = "Gender", FieldName = "Gender", VisibleIndex = 8 });
                     ColumnsResultItems.Add(new Column() { Header = "Department", FieldName = "Department", VisibleIndex = 9 });
                     ColumnsResultItems.Add(new Column() { Header = "CompanyName", FieldName = "CompanyName", VisibleIndex = 10 });
-                    ColumnsResultItems.Add(new Column() { Header = "StartDttm", FieldName = "StartDttm", VisibleIndex = 11 });
-                    int visibleIndex = 12;
+                    ColumnsResultItems.Add(new Column() { Header = "Program", FieldName = "Program", VisibleIndex = 11 });
+                    ColumnsResultItems.Add(new Column() { Header = "StartDttm", FieldName = "StartDttm", VisibleIndex = 12 });
+                    int visibleIndex = 13;
 
                     CheckupCompanyModel chkCompanyModel = new CheckupCompanyModel();
                     chkCompanyModel.CheckupJobUID = SelectCheckupJobContact.CheckupJobContactUID;
@@ -1119,6 +1121,7 @@ namespace MediTech.ViewModels
                         p.LastName,
                         p.Department,
                         p.CompanyName,
+                        p.Program,
                         p.Age,
                         p.Gender,
                         p.Conclusion,
@@ -1135,6 +1138,7 @@ namespace MediTech.ViewModels
                         LastName = g.FirstOrDefault().LastName,
                         Department = g.FirstOrDefault().Department,
                         CompanyName = g.FirstOrDefault().CompanyName,
+                        Program = g.FirstOrDefault().Program,
                         Age = g.FirstOrDefault().Age,
                         Gender = g.FirstOrDefault().Gender,
                         Conclusion = g.FirstOrDefault().Conclusion,
@@ -1153,6 +1157,7 @@ namespace MediTech.ViewModels
                         newRow["LastName"] = patient.LastName;
                         newRow["Department"] = patient.Department;
                         newRow["CompanyName"] = patient.CompanyName;
+                        newRow["Program"] = patient.Program; ;
                         newRow["Age"] = patient.Age;
                         newRow["Gender"] = patient.Gender;
                         newRow["Conclusion"] = patient.Conclusion;
