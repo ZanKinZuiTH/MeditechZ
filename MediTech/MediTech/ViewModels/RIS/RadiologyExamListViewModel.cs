@@ -704,8 +704,16 @@ namespace MediTech.ViewModels
             Logos.Add(new LookupItemModel { Key = 1, Display = "BRXG" });
             Logos.Add(new LookupItemModel { Key = 2, Display = "BRXG Hospital" });
             Logos.Add(new LookupItemModel { Key = 3, Display = "แม่ฟ้าหลวง" });
-            SelectLogo = Logos.FirstOrDefault();
-
+            
+            if (AppUtil.Current.OwnerOrganisationUID == 30 || AppUtil.Current.OwnerOrganisationUID == 8)
+            {
+                SelectLogo = Logos[2];
+            }
+            else
+            {
+                SelectLogo = Logos.FirstOrDefault();
+            }            
+            
 
             if (AppUtil.Current.IsRDUStaff ?? false)
             {
