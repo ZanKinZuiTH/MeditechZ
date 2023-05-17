@@ -43,6 +43,8 @@
             this.xrLine7 = new DevExpress.XtraReports.UI.XRLine();
             this.xrLine6 = new DevExpress.XtraReports.UI.XRLine();
             this.xrLine5 = new DevExpress.XtraReports.UI.XRLine();
+            this.BillingDetail_supreport = new DevExpress.XtraReports.UI.XRSubreport();
+            this.BillingDetail_supreport2 = new DevExpress.XtraReports.UI.XRSubreport();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.xrPanel2 = new DevExpress.XtraReports.UI.XRPanel();
             this.lbComment2 = new DevExpress.XtraReports.UI.XRLabel();
@@ -145,8 +147,6 @@
             this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
             this.LangType = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.BillingDetail_supreport = new DevExpress.XtraReports.UI.XRSubreport();
-            this.BillingDetail_supreport2 = new DevExpress.XtraReports.UI.XRSubreport();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
@@ -286,6 +286,20 @@
             this.xrLine5.SizeF = new System.Drawing.SizeF(2F, 364.6411F);
             this.xrLine5.StylePriority.UseBorders = false;
             this.xrLine5.StylePriority.UseForeColor = false;
+            // 
+            // BillingDetail_supreport
+            // 
+            this.BillingDetail_supreport.LocationFloat = new DevExpress.Utils.PointFloat(30.55552F, 0F);
+            this.BillingDetail_supreport.Name = "BillingDetail_supreport";
+            this.BillingDetail_supreport.ReportSource = new MediTech.Reports.Statistic.Checkup.CheckupGroupTrichloroUrine();
+            this.BillingDetail_supreport.SizeF = new System.Drawing.SizeF(537.5004F, 28.50006F);
+            // 
+            // BillingDetail_supreport2
+            // 
+            this.BillingDetail_supreport2.LocationFloat = new DevExpress.Utils.PointFloat(589.0551F, 9.536742E-05F);
+            this.BillingDetail_supreport2.Name = "BillingDetail_supreport2";
+            this.BillingDetail_supreport2.ReportSource = new MediTech.Reports.Operating.Cashier.PatientBillDetail();
+            this.BillingDetail_supreport2.SizeF = new System.Drawing.SizeF(537.5002F, 28.49995F);
             // 
             // TopMargin
             // 
@@ -1457,20 +1471,6 @@
             // 
             this.objectDataSource1.DataSource = typeof(MediTech.Model.PatientBillModel);
             this.objectDataSource1.Name = "objectDataSource1";
-            // 
-            // BillingDetail_supreport
-            // 
-            this.BillingDetail_supreport.LocationFloat = new DevExpress.Utils.PointFloat(30.55552F, 0F);
-            this.BillingDetail_supreport.Name = "BillingDetail_supreport";
-            this.BillingDetail_supreport.ReportSource = new MediTech.Reports.Operating.Cashier.PatientBillDetail();
-            this.BillingDetail_supreport.SizeF = new System.Drawing.SizeF(537.5004F, 28.50006F);
-            // 
-            // BillingDetail_supreport2
-            // 
-            this.BillingDetail_supreport2.LocationFloat = new DevExpress.Utils.PointFloat(589.0551F, 9.536742E-05F);
-            this.BillingDetail_supreport2.Name = "BillingDetail_supreport2";
-            this.BillingDetail_supreport2.ReportSource = new MediTech.Reports.Operating.Cashier.PatientBillDetail();
-            this.BillingDetail_supreport2.SizeF = new System.Drawing.SizeF(537.5002F, 28.49995F);
             // 
             // PatientBill
             // 
