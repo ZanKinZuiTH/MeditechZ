@@ -91,6 +91,14 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectCareproviderType, value); }
         }
 
+        private string _Qualification;
+
+        public string Qualification
+        {
+            get { return _Qualification; }
+            set { Set(ref _Qualification, value); }
+        }
+
 
         private DateTime? _ActiveFrom;
 
@@ -485,6 +493,7 @@ namespace MediTech.ViewModels
             Tel = modelCareprovider.Tel;
             Email = modelCareprovider.Email;
             LineID = modelCareprovider.LineID;
+            Qualification = modelCareprovider.Qualification;
             SelectCareproviderType = CareproviderType.FirstOrDefault(p => p.Key == modelCareprovider.CPTYPUID);
             if (modelCareprovider.loginModel != null)
             {
@@ -532,6 +541,7 @@ namespace MediTech.ViewModels
             modelCareprovider.Tel = Tel;
             modelCareprovider.Email = Email;
             modelCareprovider.LineID = LineID;
+            modelCareprovider.Qualification = Qualification;
             modelCareprovider.loginModel.LoginName = LoginName;
             modelCareprovider.loginModel.ActiveFrom = LoginActiveFrom;
             modelCareprovider.loginModel.ActiveTo = LoginActiveTo;

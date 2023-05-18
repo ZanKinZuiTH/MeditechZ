@@ -42,5 +42,6 @@ namespace MediTech.Model
         public LoginModel loginModel { get; set; }
         public int VISTYUID { get; set; }
         public int? CPTYPUID { get; set; }
+        public string Qualification { get; set; }
     }
 }

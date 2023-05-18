@@ -200,6 +200,7 @@ namespace MediTechWebApi.Controllers
                                                 IsRDUStaff = ca.IsRDUStaff ?? false,
                                                 Tel = ca.Tel,
                                                 Email = ca.Email,
+                                                Qualification = ca.Qualification,
                                                 ActiveFrom = ca.ActiveFrom,
                                                 ActiveTo = ca.ActiveTo,
                                                 MWhen = ca.MWhen,
@@ -282,6 +283,7 @@ namespace MediTechWebApi.Controllers
                                           CPTYPUID = ca.CPTYPUID,
                                           Tel = ca.Tel,
                                           Email = ca.Email,
+                                          Qualification = ca.Qualification,
                                           LineID = ca.LineID,
                                           ActiveFrom = ca.ActiveFrom,
                                           ActiveTo = ca.ActiveTo,
@@ -376,6 +378,7 @@ namespace MediTechWebApi.Controllers
                                           IsRDUStaff = ca.IsRDUStaff ?? false,
                                           Tel = ca.Tel,
                                           Email = ca.Email,
+                                          Qualification = ca.Qualification,
                                           LineID = ca.LineID,
                                           ActiveFrom = ca.ActiveFrom,
                                           ActiveTo = ca.ActiveTo,
@@ -497,6 +500,7 @@ namespace MediTechWebApi.Controllers
                     careprovider.StatusFlag = "A";
                     careprovider.MUser = userID;
                     careprovider.MWhen = now;
+                    careprovider.Qualification = careproviderData.Qualification;
 
                     db.Careprovider.AddOrUpdate(careprovider);
 
@@ -707,6 +711,7 @@ namespace MediTechWebApi.Controllers
                 LicenseIssueDttm = ca.LicenseIssueDttm,
                 LicenseExpiryDttm = ca.LicenseExpiryDttm,
                 DOBDttm = ca.DOBDttm,
+                Qualification = ca.Qualification,
                 IsDoctor = ca.IsDoctor ?? false,
                 IsRadiologist = ca.IsRadiologist ?? false,
                 IsAdminRadread = ca.IsAdminRadread ?? false,
@@ -743,6 +748,7 @@ namespace MediTechWebApi.Controllers
                 LicenseIssueDttm = ca.LicenseIssueDttm,
                 LicenseExpiryDttm = ca.LicenseExpiryDttm,
                 DOBDttm = ca.DOBDttm,
+                Qualification = ca.Qualification,
                 IsDoctor = ca.IsDoctor ?? false,
                 IsRadiologist = ca.IsRadiologist ?? false,
                 IsAdminRadread = ca.IsAdminRadread ?? false,
@@ -787,6 +793,7 @@ namespace MediTechWebApi.Controllers
                                                 LicenseIssueDttm = ca.LicenseIssueDttm,
                                                 LicenseExpiryDttm = ca.LicenseExpiryDttm,
                                                 DOBDttm = ca.DOBDttm,
+                                                Qualification = ca.Qualification,
                                                 IsDoctor = ca.IsDoctor ?? false,
                                                 IsRadiologist = ca.IsRadiologist ?? false,
                                                 IsAdminRadread = ca.IsAdminRadread ?? false,

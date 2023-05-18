@@ -54,13 +54,18 @@
                         <dxlc:LayoutItem Label="English Name">
                             <dxe:TextEdit EditValue="{Binding EnglishName}"/>
                         </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="เปิดใช้งาน">
-                            <dxe:DateEdit EditValue="{Binding ActiveFrom}"/>
+                        <dxlc:LayoutItem Label="Qualification">
+                            <TextBox Text="{Binding Qualification}"/>
                         </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="ปิดใช้งาน">
-                            <dxe:DateEdit EditValue="{Binding ActiveTo
-                                }"/>
-                        </dxlc:LayoutItem>
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <dxlc:LayoutItem Label="เปิดใช้งาน">
+                                <dxe:DateEdit EditValue="{Binding ActiveFrom}"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="ปิดใช้งาน">
+                                <dxe:DateEdit EditValue="{Binding ActiveTo}"/>
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+        
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup Orientation="Vertical">
                         <dxlc:LayoutGroup Orientation="Horizontal">
