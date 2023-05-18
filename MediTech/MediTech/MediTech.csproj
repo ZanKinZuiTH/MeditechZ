@@ -970,6 +970,12 @@
     <Compile Include="Reports\Statistic\Cashier\DataStockToEcount.Designer.cs">
       <DependentUpon>DataStockToEcount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Cashier\DoctorFeeReport2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\DoctorFeeReport2.Designer.cs">
+      <DependentUpon>DoctorFeeReport2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Cashier\DoctorFeeReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -3918,6 +3924,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Cashier\DataStockToEcount.resx">
       <DependentUpon>DataStockToEcount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Cashier\DoctorFeeReport2.resx">
+      <DependentUpon>DoctorFeeReport2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Cashier\DoctorFeeReport.resx">
       <DependentUpon>DoctorFeeReport.cs</DependentUpon>
