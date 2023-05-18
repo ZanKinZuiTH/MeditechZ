@@ -269,8 +269,7 @@ namespace MediTech.ViewModels
                         pacsViewModel.DateFrom = dateFrom;
                         pacsViewModel.DateTo = dateTo;
                         pacsViewModel.IsCheckedPeriod = true;
-                        pacsViewModel.Modality = PatientRequest.Modality;
-                        pacsViewModel.IsOpenFromExam = true;
+                        pacsViewModel.Modality = PatientRequest.Modality;;
                         DXWindow owner = (DXWindow)(this.View as RDUReviewResult).Parent;
                         LaunchViewShow(pacs, owner, "PACS", false, true);
                     }
