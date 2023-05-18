@@ -600,8 +600,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page7.RowVinylAcetate.Visible = false;
                 page7.toxicoComment.Visible = false;
 
+                page6.aboGroupRow.Visible = false;
                 page6.RowHpylori.Visible = false;
                 page6.RowPhosphorus.Visible = false;
+                page6.CReactiveRow.Visible = false;
+                page6.HomocysteineRow.Visible = false;
                 page6.RowVDRL.Visible = false;
                 #endregion
 
@@ -623,7 +626,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         #region Complete Blood Count
 
                         IEnumerable<PatientResultComponentModel> cbcTestSet = labCompare
-                        .Where(p => p.RequestItemName.Contains("CBC"))
+                        .Where(p => p.RequestItemName.Contains("CBC")
+                        || p.RequestItemCode.Contains("LAB597"))
                         .OrderByDescending(p => p.Year);
                         GenerateCompleteBloodCount(cbcTestSet);
                         #endregion
@@ -797,6 +801,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             || p.RequestItemCode.Contains("LAB618")
                             || p.RequestItemCode.Contains("LAB431")
                             || p.RequestItemCode.Contains("LAB565")
+                            || p.RequestItemCode.Contains("LAB480")
+                            || p.RequestItemCode.Contains("LAB262")
                              ).OrderByDescending(p => p.Year);
                         GenerateOther(OtherTestSet);
                         #endregion
@@ -1181,6 +1187,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                     page3.cellPlateletsCount1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0010" && p.Year == year1)?.ResultValue;
                     page3.cellPlateletsCount2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0010" && p.Year == year2)?.ResultValue;
                     page3.cellPlateletsCount3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0010" && p.Year == year3)?.ResultValue;
+
+                    page3.LiveBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1326")?.ReferenceRange;
+                    page3.LiveBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1326" && p.Year == year1)?.ResultValue;
+                    page3.LiveBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1326" && p.Year == year2)?.ResultValue;
+                    page3.LiveBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1326" && p.Year == year3)?.ResultValue;
                 }
                 else
                 {
@@ -2916,11 +2927,14 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                     page6.cellOther2Year2.Text = "ปี" + " " + year2.ToString();
                     page6.cellOther2Year3.Text = "ปี" + " " + year3.ToString();
 
-
-                    page6.cellAboGroupRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32")?.ReferenceRange;
-                    page6.cellAboGroup1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32" && p.Year == year1)?.ResultValue;
-                    page6.cellAboGroup2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32" && p.Year == year2)?.ResultValue;
-                    page6.cellAboGroup3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32" && p.Year == year3)?.ResultValue;
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32") != null)
+                    {
+                        page6.aboGroupRow.Visible = true;
+                        page6.cellAboGroupRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32")?.ReferenceRange;
+                        page6.cellAboGroup1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32" && p.Year == year1)?.ResultValue;
+                        page6.cellAboGroup2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32" && p.Year == year2)?.ResultValue;
+                        page6.cellAboGroup3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32" && p.Year == year3)?.ResultValue;
+                    }
 
                     if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR59") != null)
                     {
@@ -2967,7 +2981,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         page6.RowHpylori.Visible = true;
                         page6.cellHpyloriRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1297")?.ReferenceRange;
                         page6.cellHpylori1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1297" && p.Year == year1)?.ResultValue;
-                        page6.cellHpylori2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1297" && p.Year == year3)?.ResultValue;
+                        page6.cellHpylori2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1297" && p.Year == year2)?.ResultValue;
                         page6.cellHpylori3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1297" && p.Year == year3)?.ResultValue;
                     }
 
@@ -2976,9 +2990,28 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         page6.RowPhosphorus.Visible = true;
                         page6.PhosphorusRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR207")?.ReferenceRange;
                         page6.Phosphorus1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR207" && p.Year == year1)?.ResultValue;
-                        page6.Phosphorus2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR207" && p.Year == year3)?.ResultValue;
+                        page6.Phosphorus2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR207" && p.Year == year2)?.ResultValue;
                         page6.Phosphorus3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR207" && p.Year == year3)?.ResultValue;
                     }
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR80") != null)
+                    {
+                        page6.CReactiveRow.Visible = true;
+                        page6.CReactiveRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR80")?.ReferenceRange;
+                        page6.CReactive1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR80" && p.Year == year1)?.ResultValue;
+                        page6.CReactive2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR80" && p.Year == year2)?.ResultValue;
+                        page6.CReactive3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR80" && p.Year == year3)?.ResultValue;
+                    }
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR106") != null)
+                    {
+                        page6.HomocysteineRow.Visible = true;
+                        page6.HomocysteineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR106")?.ReferenceRange;
+                        page6.Homocysteine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR106" && p.Year == year1)?.ResultValue;
+                        page6.Homocysteine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR106" && p.Year == year2)?.ResultValue;
+                        page6.Homocysteine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR106" && p.Year == year3)?.ResultValue;
+                    }
+                    
                 }
                 else
                 {
