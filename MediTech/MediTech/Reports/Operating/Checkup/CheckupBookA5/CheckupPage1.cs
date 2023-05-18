@@ -600,6 +600,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page7.RowVinylAcetate.Visible = false;
                 page7.toxicoComment.Visible = false;
 
+                page6.aboGroupRow.Visible = false;
                 page6.RowHpylori.Visible = false;
                 page6.RowPhosphorus.Visible = false;
                 page6.CReactiveRow.Visible = false;
@@ -2926,11 +2927,14 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                     page6.cellOther2Year2.Text = "ปี" + " " + year2.ToString();
                     page6.cellOther2Year3.Text = "ปี" + " " + year3.ToString();
 
-
-                    page6.cellAboGroupRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32")?.ReferenceRange;
-                    page6.cellAboGroup1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32" && p.Year == year1)?.ResultValue;
-                    page6.cellAboGroup2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32" && p.Year == year2)?.ResultValue;
-                    page6.cellAboGroup3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32" && p.Year == year3)?.ResultValue;
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32") != null)
+                    {
+                        page6.aboGroupRow.Visible = true;
+                        page6.cellAboGroupRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32")?.ReferenceRange;
+                        page6.cellAboGroup1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32" && p.Year == year1)?.ResultValue;
+                        page6.cellAboGroup2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32" && p.Year == year2)?.ResultValue;
+                        page6.cellAboGroup3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32" && p.Year == year3)?.ResultValue;
+                    }
 
                     if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR59") != null)
                     {
