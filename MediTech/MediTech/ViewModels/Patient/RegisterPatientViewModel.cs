@@ -417,7 +417,7 @@ namespace MediTech.ViewModels
 
         public void OpenPage(PageRegister page, PatientInformationModel patientData, BookingModel booking = null, bool userCardRead = false)
         {
-            if(booking != null)
+            if (booking != null)
             {
                 Booking = booking;
             }
@@ -489,9 +489,15 @@ namespace MediTech.ViewModels
                         createVisitViewModel.Booking = Booking;
 
                     createVisitViewModel.OnLoaded();
-                    
+
+
+                    if (createVisitViewModel.IsDupicateVisit ?? true)
+                    {
+                        SelectPageIndex = 2;
+                    }
+
                 }
-                SelectPageIndex = 2;
+
             }
         }
 

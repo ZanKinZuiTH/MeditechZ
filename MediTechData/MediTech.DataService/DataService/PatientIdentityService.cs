@@ -875,6 +875,14 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<PatientConsultationModel> GetPatientConsultationMedicalCertificate(long patientUID, long patientVisitUID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetPatientConsultationMedicalCertificate?patientUID={0}&patientVisitUID={1}", patientUID, patientVisitUID);
+            List<PatientConsultationModel> data = MeditechApiHelper.Get<List<PatientConsultationModel>>(requestApi);
+
+            return data;
+        }
+
         public bool ManageAppointmentRequest(List<AppointmentRequestModel> appointmentRequests, int userUID)
         {
             bool flag = false;

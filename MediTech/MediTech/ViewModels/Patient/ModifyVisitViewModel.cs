@@ -84,6 +84,8 @@ namespace MediTech.ViewModels
                 {
                     VisibiltyCheckupCompany = Visibility.Collapsed;
                     VisibiltyEmployerAddress = Visibility.Collapsed;
+                    VisibilityCareprovider2 = Visibility.Collapsed;
+                    CareproviderLabel = "แพทย์";
                     if (SelectedVisitType.ValueCode == "MBCHK" || SelectedVisitType.ValueCode == "CHKUP" || SelectedVisitType.ValueCode == "CHKIN")
                     {
                         if (CheckupJobSource == null)
@@ -96,9 +98,10 @@ namespace MediTech.ViewModels
                     {
                         CheckupJobSource = null;
                     }
-                    if (SelectedVisitType.ValueCode == "CHKIN3")
+                    if (SelectedVisitType.ValueCode == "CHKIN4")
                     {
-                        VisibiltyEmployerAddress = Visibility.Visible;
+                        VisibilityCareprovider2 = Visibility.Visible;
+                        CareproviderLabel = "แพทย์อาชีว";
                     }
                 }
             }
@@ -119,6 +122,22 @@ namespace MediTech.ViewModels
         {
             get { return _SelectedCareprovider; }
             set { Set(ref _SelectedCareprovider, value); }
+        }
+
+        private CareproviderModel _SelectedCareprovider2;
+
+        public CareproviderModel SelectedCareprovider2
+        {
+            get { return _SelectedCareprovider2; }
+            set { Set(ref _SelectedCareprovider2, value); }
+        }
+
+        private string _CareproviderLabel = "แพทย์";
+
+        public string CareproviderLabel
+        {
+            get { return _CareproviderLabel; }
+            set { Set(ref _CareproviderLabel, value); }
         }
 
         private string _CommentDoctor;
@@ -151,6 +170,14 @@ namespace MediTech.ViewModels
         {
             get { return _IsEnableFinancial; }
             set { Set(ref _IsEnableFinancial, value); }
+        }
+
+        private Visibility _VisibilityCareprovider2 = Visibility.Collapsed;
+
+        public Visibility VisibilityCareprovider2
+        {
+            get { return _VisibilityCareprovider2; }
+            set { Set(ref _VisibilityCareprovider2, value); }
         }
 
         private Visibility _VisibiltyCheckupCompany = Visibility.Collapsed;
@@ -252,6 +279,11 @@ namespace MediTech.ViewModels
                     if (SelectedCareprovider != null)
                         visitInfo.CareProviderUID = SelectedCareprovider.CareproviderUID;
 
+                    if (SelectedCareprovider2 != null && VisibilityCareprovider2 == Visibility.Visible)
+                    {
+                        visitInfo.CareProvider2UID = SelectedCareprovider2.CareproviderUID;
+                    }
+
                     DataService.PatientIdentity.ModifyPatientVisit(visitInfo, AppUtil.Current.UserID);
                     CloseViewDialog(ActionDialog.Save);
                 }
@@ -320,6 +352,19 @@ namespace MediTech.ViewModels
             SelectedCheckupJob = CheckupJobSource?.FirstOrDefault(p => p.CheckupJobContactUID == SelectPatientVisit.CheckupJobUID);
             SelectedPriority = PrioritySource.FirstOrDefault(p => p.Key == SelectPatientVisit.PRITYUID);
             SelectedCareprovider = CareproviderSource.FirstOrDefault(p => p.CareproviderUID == SelectPatientVisit.CareProviderUID);
+
+            if (visitModel.VISTYUID == 4867) //ใบรับรองแพทย์อับอากาศ
+            {
+                var careMedical = DataService.PatientIdentity.GetPatientConsultationMedicalCertificate(visitModel.PatientUID, visitModel.PatientVisitUID);
+                if (careMedical != null && careMedical.Count > 0)
+                {
+                    SelectedCareprovider2 = CareproviderSource.FirstOrDefault(p => p.CareproviderUID == careMedical.FirstOrDefault().CareproviderUID);
+                }
+  
+            }
+
+
+
             CommentDoctor = SelectPatientVisit.Comments;
             Company = SelectPatientVisit.CompanyName;
             EmployerAddress = SelectPatientVisit.EmployerAddress;

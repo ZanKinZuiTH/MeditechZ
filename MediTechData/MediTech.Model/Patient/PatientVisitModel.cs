@@ -11,6 +11,7 @@ namespace MediTech.Model
     {
         public long PatientVisitUID { get; set; }
         public Nullable<int> CareProviderUID { get; set; }
+        public Nullable<int> CareProvider2UID { get; set; }
         public string CareProviderName { get; set; }
         public Nullable<int> ENTYPUID { get; set; }
         public Nullable<int> ENSTAUID { get; set; }

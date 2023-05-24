@@ -107,6 +107,8 @@ namespace MediTech.ViewModels
                 {
                     VisibiltyCheckupCompany = Visibility.Collapsed;
                     VisibiltyEmployerAddress = Visibility.Collapsed;
+                    VisibilityCareprovider2 = Visibility.Collapsed;
+                    CareproviderLabel = "แพทย์";
                     if (SelectedVisitType.ValueCode == "MBCHK" || SelectedVisitType.ValueCode == "CHKUP" || SelectedVisitType.ValueCode == "CHKIN")
                     {
                         if (CheckupJobSource == null)
@@ -119,6 +121,12 @@ namespace MediTech.ViewModels
                     if (SelectedVisitType.ValueCode == "CHKIN3")
                     {
                         VisibiltyEmployerAddress = Visibility.Visible;
+                    }
+
+                    if (SelectedVisitType.ValueCode == "CHKIN4")
+                    {
+                        VisibilityCareprovider2 = Visibility.Visible;
+                        CareproviderLabel = "แพทย์อาชีว";
                     }
                 }
             }
@@ -299,6 +307,23 @@ namespace MediTech.ViewModels
         }
 
 
+        private CareproviderModel _SelectedCareprovider2;
+
+        public CareproviderModel SelectedCareprovider2
+        {
+            get { return _SelectedCareprovider2; }
+            set { Set(ref _SelectedCareprovider2, value); }
+        }
+
+        private string _CareproviderLabel = "แพทย์";
+
+        public string CareproviderLabel
+        {
+            get { return _CareproviderLabel; }
+            set { Set(ref _CareproviderLabel, value); }
+        }
+
+
         private string _CommentDoctor;
 
         public string CommentDoctor
@@ -411,6 +436,22 @@ namespace MediTech.ViewModels
         {
             get { return _IsUpdateVisit; }
             set { Set(ref _IsUpdateVisit, value); }
+        }
+
+        private bool? _IsDupicateVisit;
+
+        public bool? IsDupicateVisit
+        {
+            get { return _IsDupicateVisit; }
+            set { Set(ref _IsDupicateVisit, value); }
+        }
+
+        private Visibility _VisibilityCareprovider2 = Visibility.Collapsed;
+
+        public Visibility VisibilityCareprovider2
+        {
+            get { return _VisibilityCareprovider2; }
+            set { Set(ref _VisibilityCareprovider2, value); }
         }
 
 
@@ -583,8 +624,13 @@ namespace MediTech.ViewModels
                     if (notCloseVisit != null)
                     {
                         MessageBoxResult dialogResult = System.Windows.MessageBox.Show("ผู้ป่วยมีการลงทะเบียนที่ยังไม่ปิดไว้วันที่ " + notCloseVisit.StartDttm.Value.ToString("dd/MM/yyyy") + "\r\n คุณต้องการลงทะเบียนต่อหรือไม่ ? ", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                        if (dialogResult == MessageBoxResult.No)
+                        if (dialogResult == MessageBoxResult.Yes)
                         {
+                            IsDupicateVisit = true;
+                        }
+                        else
+                        {
+                            IsDupicateVisit = false;
                             return;
                         }
                     }
@@ -904,8 +950,15 @@ namespace MediTech.ViewModels
             visitInfo.Comments = CommentDoctor;
             visitInfo.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
             visitInfo.CheckupJobUID = SelectedCheckupJob != null ? SelectedCheckupJob.CheckupJobContactUID : (int?)null;
+
             if (SelectedCareprovider != null)
                 visitInfo.CareProviderUID = SelectedCareprovider.CareproviderUID;
+
+            if (SelectedCareprovider2 != null && VisibilityCareprovider2 == Visibility.Visible)
+            {
+                visitInfo.CareProvider2UID = SelectedCareprovider2.CareproviderUID;
+            }
+
             visitInfo.LocationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
             visitInfo.PatientVisitPayors = PatientVisitPayorList.ToList();
             visitInfo.CompanyName = Company;
@@ -996,8 +1049,14 @@ namespace MediTech.ViewModels
             visitInfo.Comments = CommentDoctor;
             visitInfo.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
             visitInfo.CheckupJobUID = SelectedCheckupJob != null ? SelectedCheckupJob.CheckupJobContactUID : (int?)null;
+
             if (SelectedCareprovider != null)
                 visitInfo.CareProviderUID = SelectedCareprovider.CareproviderUID;
+
+            if (SelectedCareprovider2 != null && VisibilityCareprovider2 == Visibility.Visible)
+            {
+                visitInfo.CareProvider2UID = SelectedCareprovider2.CareproviderUID;
+            }
             visitInfo.LocationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
             visitInfo.PatientVisitPayors = PatientVisitPayorList.ToList();
             visitInfo.CompanyName = Company;

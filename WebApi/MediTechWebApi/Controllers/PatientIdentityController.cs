@@ -1164,6 +1164,39 @@ namespace MediTechWebApi.Controllers
 
                     #endregion
 
+                    #region PatientConsultation
+
+                    if (patientVisitInfo.CareProvider2UID != null)
+                    {
+                        var careproviderName2 = (from cr in db.Careprovider
+                                                 where cr.UID == patientVisitInfo.CareProvider2UID
+                                                 select new
+                                                 {
+                                                     careproviderName = SqlFunction.fGetCareProviderName(cr.UID)
+                                                 }).FirstOrDefault()?.careproviderName;
+                        PatientConsultation patConsult = new PatientConsultation();
+                        patConsult.PatientUID = patientVisit.PatientUID;
+                        patConsult.PatientVisitUID = patientVisit.UID;
+                        patConsult.CareproviderUID = patientVisitInfo.CareProvider2UID ?? 0;
+                        patConsult.RecordedDttm = now;
+                        patConsult.Comments = "ใบรับรองแพทย์อับอากาศ";
+                        patConsult.OwnerOrganisationUID = patientVisit.OwnerOrganisationUID ?? 0;
+                        patConsult.CareProviderName = careproviderName2;
+                        patConsult.VISTYUID = 4654;
+                        patConsult.CONSTSUID = 4868;
+                        patConsult.StartDttm = now;
+                        patConsult.EndDttm = now;
+                        patConsult.CUser = userID;
+                        patConsult.CWhen = now;
+                        patConsult.MUser = userID;
+                        patConsult.MWhen = now;
+                        patConsult.StatusFlag = "A";
+                        db.PatientConsultation.AddOrUpdate(patConsult);
+                    }
+
+
+                    #endregion
+
                     db.SaveChanges();
 
 
@@ -1862,6 +1895,7 @@ namespace MediTechWebApi.Controllers
                 PatientVisit patientVisit = db.PatientVisit.Find(patientVisitInfo.PatientVisitUID);
                 if (patientVisit != null)
                 {
+                    DateTime now = DateTime.Now;
                     db.PatientVisit.Attach(patientVisit);
                     patientVisit.VISTYUID = patientVisitInfo.VISTYUID;
                     patientVisit.StartDttm = patientVisitInfo.StartDttm;
@@ -1872,7 +1906,79 @@ namespace MediTechWebApi.Controllers
                     patientVisit.CompanyName = patientVisitInfo.CompanyName;
                     patientVisit.EmployerAddress = patientVisitInfo.EmployerAddress;
                     patientVisit.MUser = userID;
-                    patientVisit.MWhen = DateTime.Now;
+                    patientVisit.MWhen = now;
+
+
+                    if (patientVisitInfo.CareProvider2UID != null)
+                    {
+                        var careproviderName2 = (from cr in db.Careprovider
+                                                 where cr.UID == patientVisitInfo.CareProvider2UID
+                                                 select new
+                                                 {
+                                                     careproviderName = SqlFunction.fGetCareProviderName(cr.UID)
+                                                 }).FirstOrDefault()?.careproviderName;
+
+                        var patConsult = db.PatientConsultation.Where(p => p.StatusFlag == "A"
+                        && p.PatientVisitUID == patientVisit.UID
+                        && p.Comments == "ใบรับรองแพทย์อับอากาศ"
+                        && p.CareproviderUID == patientVisitInfo.CareProvider2UID).FirstOrDefault();
+                        if (patConsult == null)
+                        {
+                            var oldConsults = db.PatientConsultation.Where(p => p.StatusFlag == "A" && p.PatientVisitUID == patientVisit.UID && p.Comments == "ใบรับรองแพทย์อับอากาศ");
+
+                            if (oldConsults != null)
+                            {
+                                foreach (var oldDt in oldConsults)
+                                {
+                                    db.PatientConsultation.Attach(oldDt);
+                                    oldDt.MUser = userID;
+                                    oldDt.MWhen = now;
+                                    oldDt.StatusFlag = "D";
+                                }
+                                db.SaveChanges();
+                            }
+
+                            patConsult = new PatientConsultation();
+                            patConsult.PatientUID = patientVisit.PatientUID;
+                            patConsult.PatientVisitUID = patientVisit.UID;
+                            patConsult.CareProviderName = careproviderName2;
+                            patConsult.RecordedDttm = now;
+                            patConsult.MUser = userID;
+                            patConsult.MWhen = now;
+                            patConsult.Comments = "ใบรับรองแพทย์อับอากาศ";
+                            patConsult.CareproviderUID = patientVisitInfo.CareProvider2UID ?? 0;
+                            patConsult.OwnerOrganisationUID = patientVisit.OwnerOrganisationUID ?? 0;
+                            patConsult.VISTYUID = 4654;
+                            patConsult.CONSTSUID = 4868;
+                            patConsult.StartDttm = now;
+                            patConsult.EndDttm = now;
+                            patConsult.MUser = userID;
+                            patConsult.MWhen = now;
+                            patConsult.CUser = userID;
+                            patConsult.CWhen = now;
+                            patConsult.StatusFlag = "A";
+
+                            db.PatientConsultation.AddOrUpdate(patConsult);
+
+                        }
+
+                    }
+                    else
+                    {
+                        var oldConsults = db.PatientConsultation.Where(p => p.StatusFlag == "A" && p.PatientVisitUID == patientVisit.UID && p.Comments == "ใบรับรองแพทย์อับอากาศ");
+
+                        if (oldConsults != null)
+                        {
+                            foreach (var oldDt in oldConsults)
+                            {
+                                db.PatientConsultation.Attach(oldDt);
+                                oldDt.MUser = userID;
+                                oldDt.MWhen = now;
+                                oldDt.StatusFlag = "D";
+                            }
+                            db.SaveChanges();
+                        }
+                    }
                 }
 
                 db.SaveChanges();
@@ -4075,6 +4181,30 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("GetPatientConsultationMedicalCertificate")]
+        [HttpGet]
+        public List<PatientConsultationModel> GetPatientConsultationMedicalCertificate(int patientUID, int patientVisitUID)
+        {
+            List<PatientConsultationModel> data = db.PatientConsultation.Where(p => p.PatientUID == patientUID
+                                            && p.PatientVisitUID == patientVisitUID
+                                            && p.Comments == "ใบรับรองแพทย์อับอากาศ"
+                                            && p.StatusFlag == "A")
+                                            .Select(p => new PatientConsultationModel()
+                                            {
+                                              PatientConsultationUID = p.UID,
+                                              PatientUID = p.PatientUID,
+                                              PatientVisitUID = p.PatientVisitUID,
+                                              CareproviderUID = p.CareproviderUID,
+                                              CareProviderName = p.CareProviderName,
+                                              CONSTSUID = p.CONSTSUID,
+                                              VISTYUID = p.VISTYUID,
+                                              RecordedDttm = p.RecordedDttm,
+                                              Comments = p.Comments
+                                            }).ToList();
+
+            return data;
+        }
+
         [Route("ManageAppointmentRequest")]
         [HttpPost]
         public HttpResponseMessage ManageAppointmentRequest(List<AppointmentRequestModel> appointmentRequests, int userUID)
@@ -4331,6 +4461,8 @@ namespace MediTechWebApi.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
             }
         }
+
+        
 
         #endregion
 

@@ -142,12 +142,19 @@
                                       ItemsSource="{Binding PrioritySource}"
                                       SelectedItem="{Binding SelectedPriority}"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="แพทย์">
+                <dxlc:LayoutItem Label="{Binding CareproviderLabel}">
                     <dxe:ComboBoxEdit DisplayMember="FullName"
                                       NullValueButtonPlacement="EditBox"
                                       ValueMember="CareproviderUID"
                                       ItemsSource="{Binding CareproviderSource}"
                                       SelectedItem="{Binding SelectedCareprovider}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="แพทย์ GP" Visibility="{Binding VisibilityCareprovider2}">
+                    <dxe:ComboBoxEdit DisplayMember="FullName"
+                                      NullValueButtonPlacement="EditBox"
+                                      ValueMember="CareproviderUID"                                     
+                                      ItemsSource="{Binding CareproviderSource}"
+                                      SelectedItem="{Binding SelectedCareprovider2}"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="หมายเหตุถึงแพทย์" LabelVerticalAlignment="Top">
                     <TextBox Name="txtDetail"   Text="{Binding CommentDoctor,Mode=TwoWay}"
