@@ -296,8 +296,8 @@ namespace MediTech.Reports.Operating.Cashier
 
             foreach (var item in listbill)
             {
-                amountTotal_net = amountTotal_net +item.Amount ?? 0;
-                discountTotal_Net = discountTotal_Net + item.Discount ?? 0;
+                amountTotal_net = amountTotal_net + (item.Amount ?? 0);
+                discountTotal_Net = discountTotal_Net + (item.Discount ?? 0);
                 cashTotal_net = cashTotal_net + item.NetAmount.Value;
 
             }

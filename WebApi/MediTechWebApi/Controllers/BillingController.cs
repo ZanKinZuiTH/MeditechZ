@@ -1091,8 +1091,10 @@ namespace MediTechWebApi.Controllers
                             patientBilledItem.BillableItemUID = item.BillableItemUID ?? 0;
                             patientBilledItem.Amount = (item.Amount ?? 0.0);
                             patientBilledItem.PatientBillableItemUID = item.PatientBillableItemUID;
-                            patientBilledItem.Discount = Math.Round(item.Discount ?? 0.0);
-                            patientBilledItem.NetAmount = item.Amount - Math.Round(item.Discount ?? 0.0); 
+                            patientBilledItem.Discount = item.Discount;
+                            patientBilledItem.NetAmount = item.NetAmount;
+                            //patientBilledItem.Discount = Math.Round(item.Discount ?? 0.0);
+                            //patientBilledItem.NetAmount = item.Amount - Math.Round(item.Discount ?? 0.0);
                             patientBilledItem.DoctorFee = doctorFee;
                             patientBilledItem.ItemMultiplier = item.Quantity;
                             patientBilledItem.BSMDDUID = item.BSMDDUID;

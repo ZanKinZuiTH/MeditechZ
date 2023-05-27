@@ -65,11 +65,11 @@ namespace MediTech.ViewModels
 
                     if (PatientBillableItemsAccounts != null && PatientBillableItemsAccounts.Count > 0)
                     {
-                        foreach(var item in PatientBillableItemsAccounts)
-                        {
-                            item.Discount = Math.Round(item.Discount ?? 0);
-                            item.NetAmount = item.Amount - item.Discount;
-                        }
+                        //foreach(var item in PatientBillableItemsAccounts)
+                        //{
+                        //    item.Discount = Math.Round(item.Discount ?? 0);
+                        //    item.NetAmount = item.Amount - item.Discount;
+                        //}
 
                         Amount = PatientBillableItemsAccounts.Sum(p => p.Amount ?? 0);
                         DiscountAmount = PatientBillableItemsAccounts.Sum(p => p.Discount ?? 0);
@@ -418,8 +418,10 @@ namespace MediTech.ViewModels
                 generateBill.PatientVisitUID = SelectPateintVisit.PatientVisitUID;
                 generateBill.BillGenerateDttm = DateTime.Now;
                 generateBill.TotalAmount = Amount;
-                generateBill.DiscountAmount = Math.Round(DiscountAmount ?? 0);
-                generateBill.NetAmount = Amount - Math.Round(DiscountAmount ?? 0);
+                //generateBill.DiscountAmount = Math.Round(DiscountAmount ?? 0);
+                //generateBill.NetAmount = Amount - Math.Round(DiscountAmount ?? 0);
+                generateBill.DiscountAmount = DiscountAmount;
+                generateBill.NetAmount = NetAmount;
                 generateBill.PBTYPUID = SelectPatientVisitPayor.PBTYPUID;
                 generateBill.BLTYPUID = SelectPatientVisitPayor.BLTYPUID;
                 generateBill.PatientVisitPayorUID = SelectPatientVisitPayor.PatientVisitPayorUID;
