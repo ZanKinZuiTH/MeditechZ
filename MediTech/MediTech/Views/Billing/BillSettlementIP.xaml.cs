@@ -1,5 +1,6 @@
 ﻿using DevExpress.Xpf.Core;
 using DevExpress.Xpf.Editors;
+using DevExpress.Xpf.Editors.Helpers;
 using DevExpress.Xpf.PivotGrid.Internal;
 using MediTech.ViewModels;
 using System;
@@ -68,6 +69,17 @@ namespace MediTech.Views
                     viewModel.CallAllocatedBillableItem(long.Parse(bt.CommandParameter.ToString()));
                 }
 
+            }
+        }
+
+        private void pivotGrid_CustomCellValue(object sender, DevExpress.Xpf.PivotGrid.PivotCellValueEventArgs e)
+        {
+            if (e.RowValueType == DevExpress.Xpf.PivotGrid.FieldValueType.Total || e.RowValueType == DevExpress.Xpf.PivotGrid.FieldValueType.GrandTotal)
+            {
+                if (e.DataField.FieldName == "Discount" || e.DataField.FieldName == "NetAmount")
+                {
+                    e.Value = Math.Round(e.Value.TryConvertToDouble());
+                }
             }
         }
     }

@@ -158,7 +158,7 @@
                 </dxlc:LayoutGroup>
                 <dxpg:PivotGridControl x:Name="pivotGrid" DataSource="{Binding Path= AllocatedPatientBillableItems,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectMode="SolidSelection" 
             RowTreeWidth="243" ShowBorder="False" ShowColumnHeaders="False" ShowRowHeaders="False" ShowDataHeaders="False" AllowDrop="False" AllowDrag="False" ShowColumnGrandTotals="True"
-                                           ShowFilterHeaders="False">
+                                           ShowFilterHeaders="False" CustomCellValue="pivotGrid_CustomCellValue">
                     <dxpg:PivotGridControl.Fields>
 
                         <dxpg:PivotGridField  FieldName="GroupName" Area="RowArea" AllowFilter="False"
@@ -170,7 +170,7 @@
                         <dxpg:PivotGridField FieldName="TotalAmount" Area="DataArea" AllowFilter="False"
                                 AreaIndex="2" Width="80" Caption="Total" CellFormat="f2"/>
                         <dxpg:PivotGridField FieldName="Discount" Area="DataArea" AllowFilter="False"
-                                AreaIndex="3" Width="80" Caption="Discount" CellFormat="f2" />
+                                AreaIndex="3" Width="80" Caption="Discount" CellFormat="f2" GrandTotalCellFormat="f2" />
                         <dxpg:PivotGridField FieldName="NetAmount" Area="DataArea" AllowFilter="False"
                                 AreaIndex="4" Width="80" Caption="Net Amount" CellFormat="f2" />
                         <dxpg:PivotGridField FieldName="PayorName" Area="ColumnArea" Width="150" AllowFilter="False"

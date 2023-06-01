@@ -158,7 +158,7 @@
             
             <dxpg:PivotGridControl x:Name="pivotGrid" DataSource="{Binding Path= AllocatedPatientBillableItems,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectMode="SolidSelection" 
             RowTreeWidth="243" ShowBorder="False" ShowColumnHeaders="False" ShowRowHeaders="False" ShowDataHeaders="False" AllowDrop="False" AllowDrag="False" ShowColumnGrandTotals="True"
-                                           ShowFilterHeaders="False">
+                                           ShowFilterHeaders="False" CustomCellValue="pivotGrid_CustomCellValue">
                 <dxpg:PivotGridControl.Fields>
 
                     <dxpg:PivotGridField  FieldName="GroupName" Area="RowArea" AllowFilter="False"

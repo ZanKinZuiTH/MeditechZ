@@ -302,6 +302,9 @@ namespace MediTech.Reports.Operating.Cashier
 
             }
 
+            discountTotal_Net = Math.Round(discountTotal_Net);
+            cashTotal_net = Math.Round(cashTotal_net);
+
             TBtotal_net.Text = string.Format("{0:#,#.00}", cashTotal_net);
             Tb_Total_copy.Text = TBtotal_net.Text;
             //xrTableCell32.Text = TBtotal_net.Text;
