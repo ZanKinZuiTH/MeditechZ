@@ -169,6 +169,7 @@
     <Compile Include="Patient\PatientAlertModel.cs" />
     <Compile Include="Patient\PatientAllergyModel.cs" />
     <Compile Include="Patient\PatientBannerModel.cs" />
+    <Compile Include="Patient\PatientConsultationModel.cs" />
     <Compile Include="Patient\PatientDemographicLogModel.cs" />
     <Compile Include="Patient\PatientInsuranceDetailModel.cs" />
     <Compile Include="Patient\PatientMergeDetailModel.cs" />

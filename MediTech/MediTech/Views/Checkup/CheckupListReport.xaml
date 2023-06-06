@@ -162,6 +162,7 @@
                     <dxg:GridColumn FieldName="Gender" Header="เพศ"/>
                     <dxg:GridColumn FieldName="BirthDttm" Header="วัน เดือน ปี เกิด"/>
                     <dxg:GridColumn FieldName="Age" Header="อายุ"/>
+                    <dxg:GridColumn FieldName="VisitType" Header="ประเภท Visit"/>
                     <dxg:GridColumn FieldName="NationalID" Header="รหัส ปชช."/>
                     <dxg:GridColumn FieldName="IsIdentityOnBLIFE" Header="ยืนยันตัวตนบน B-Life"/>
                     <dxg:GridColumn FieldName="OnBLIFE" Header="ส่งขึ้น B-Life"/>
