@@ -239,6 +239,21 @@ namespace MediTechWebApi.Controllers
             }
             return data;
         }
+
+
+        [Route("GetDoctorfeeReport2")]
+        [HttpGet]
+        public List<DoctorFeeReportModel> GetDoctorfeeReport2(DateTime dateFrom, DateTime dateTo, int? careproviderUID)
+        {
+            List<DoctorFeeReportModel> data = null;
+            DataTable dt = SqlDirectStore.pRPTDoctorFee2(dateFrom, dateTo, careproviderUID);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                data = new List<DoctorFeeReportModel>();
+                data = dt.ToList<DoctorFeeReportModel>();
+            }
+            return data;
+        }
         #endregion
 
         #region Patient

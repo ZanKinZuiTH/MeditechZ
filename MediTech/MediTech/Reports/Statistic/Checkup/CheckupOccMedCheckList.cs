@@ -163,11 +163,14 @@ namespace MediTech.Reports.Statistic.Checkup
                 branchModel.DateTo = Convert.ToDateTime(this.Parameters["DateTo"].Value); ;
             }
             var dataSummary = dbService.Reports.CheckupSummary(branchModel);
-            foreach (var dataRow in dataSummary)
+            if (dataSummary != null)
             {
-                string name1 = dataRow.GroupName.Substring(0, dataRow.GroupName.IndexOf(' '));
-                string name2 = dataRow.GroupName.Substring(dataRow.GroupName.IndexOf(' '), dataRow.GroupName.Length - name1.Length);
-                dataRow.GroupName = name1 + Environment.NewLine + name2;
+                foreach (var dataRow in dataSummary)
+                {
+                    string name1 = dataRow.GroupName.Substring(0, dataRow.GroupName.IndexOf(' '));
+                    string name2 = dataRow.GroupName.Substring(dataRow.GroupName.IndexOf(' '), dataRow.GroupName.Length - name1.Length);
+                    dataRow.GroupName = name1 + Environment.NewLine + name2;
+                }
             }
             this.DataSource = dataSummary;
         }
