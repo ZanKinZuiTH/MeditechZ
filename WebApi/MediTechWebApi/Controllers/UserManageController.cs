@@ -439,6 +439,8 @@ namespace MediTechWebApi.Controllers
                                                       && lt.Description != "Pac_Bed"
                                                       && j.LoginUID == loginUID
                                                       && h.HealthOrganisationUID == organisationUID
+                                                      && (lt.ActiveFrom == null || DbFunctions.TruncateTime(lt.ActiveFrom) <= DbFunctions.TruncateTime(dateNow))
+                                                      && (lt.ActiveTo == null || DbFunctions.TruncateTime(lt.ActiveTo) >= DbFunctions.TruncateTime(dateNow))
                                                       && (h.ActiveFrom == null || DbFunctions.TruncateTime(h.ActiveFrom) <= DbFunctions.TruncateTime(dateNow))
                                                       && (h.ActiveTo == null || DbFunctions.TruncateTime(h.ActiveTo) >= DbFunctions.TruncateTime(dateNow))
                                                       select new RoleProfileModel
