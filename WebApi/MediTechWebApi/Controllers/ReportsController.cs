@@ -254,6 +254,20 @@ namespace MediTechWebApi.Controllers
             }
             return data;
         }
+
+        [Route("GetUltrasoundFee")]
+        [HttpGet]
+        public List<DoctorFeeReportModel> GetUltrasoundFee(DateTime dateFrom, DateTime dateTo, int? careproviderUID)
+        {
+            List<DoctorFeeReportModel> data = null;
+            DataTable dt = SqlDirectStore.pRPTUltrasoundFee(dateFrom, dateTo, careproviderUID);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                data = new List<DoctorFeeReportModel>();
+                data = dt.ToList<DoctorFeeReportModel>();
+            }
+            return data;
+        }
         #endregion
 
         #region Patient
