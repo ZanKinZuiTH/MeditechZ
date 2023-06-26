@@ -245,7 +245,7 @@
             this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel8.SizeF = new System.Drawing.SizeF(27.99998F, 20F);
             this.xrLabel8.StylePriority.UseFont = false;
-            this.xrLabel8.Text = "BN :";
+            this.xrLabel8.Text = "HN :";
             // 
             // TopMargin
             // 
@@ -292,7 +292,7 @@
             this.OrderName,
             this.OrganisationUID,
             this.Payor});
-            this.Version = "20.2";
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }

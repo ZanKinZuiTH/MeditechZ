@@ -484,7 +484,7 @@
             this.xrLabel28.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel28.SizeF = new System.Drawing.SizeF(45.11905F, 23F);
             this.xrLabel28.StylePriority.UseFont = false;
-            this.xrLabel28.Text = "BN:";
+            this.xrLabel28.Text = "HN:";
             // 
             // xrLabel10
             // 
