@@ -503,8 +503,11 @@ namespace MediTechWebApi.Controllers
                                             CUserAppointment = SqlFunction.fGetCareProviderName(b.CUser),
                                             PatientReminderMessage = SqlFunction.fGetRfValDescription(b.PATMSGUID ?? 0),
                                             DrugAllergy = SqlFunction.fGetPatientAllergy(pa.UID),
-                                            DOB = pa.DOBDttm.ToString(),
+                                            DOB = pa.DeathDttm.ToString(),
+                                            DOBDate = pa.DOBDttm.Value,
                                             strVisitData = pv.StartDttm.ToString(),
+                                            VisitDate = pv.StartDttm.Value,
+                                            CWhenAppointmentDttm = b.CWhen
                                         }).FirstOrDefault();
 
 

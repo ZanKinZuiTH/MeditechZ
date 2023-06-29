@@ -15,6 +15,7 @@ namespace MediTech.Model.Report
         public string PatientName { get; set; }
         public string Age { get; set; }
         public string DOB { get; set; }
+        public DateTime DOBDate { get; set; }
         public long PatientVisitUID { get; set; }
         public string VisitID { get; set; }
         public DateTime VisitDate { get; set; }
