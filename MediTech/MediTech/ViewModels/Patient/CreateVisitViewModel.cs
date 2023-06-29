@@ -109,7 +109,7 @@ namespace MediTech.ViewModels
                     VisibiltyEmployerAddress = Visibility.Collapsed;
                     VisibilityCareprovider2 = Visibility.Collapsed;
                     CareproviderLabel = "แพทย์";
-                    if (SelectedVisitType.ValueCode == "MBCHK" || SelectedVisitType.ValueCode == "CHKUP" || SelectedVisitType.ValueCode == "CHKIN")
+                    if (SelectedVisitType.ValueCode == "MBCHK" || SelectedVisitType.ValueCode == "CHKUP" || SelectedVisitType.ValueCode == "CHKIN" || SelectedVisitType.ValueCode == "CHKIN5")
                     {
                         if (CheckupJobSource == null)
                         {
@@ -123,7 +123,7 @@ namespace MediTech.ViewModels
                         VisibiltyEmployerAddress = Visibility.Visible;
                     }
 
-                    if (SelectedVisitType.ValueCode == "CHKIN4")
+                    if (SelectedVisitType.ValueCode == "CHKIN4" || SelectedVisitType.ValueCode == "CHKIN5")
                     {
                         VisibilityCareprovider2 = Visibility.Visible;
                         CareproviderLabel = "แพทย์อาชีว";
