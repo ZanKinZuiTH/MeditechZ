@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraReports.UI;
 using MediTech.DataService;
+using MediTech.Model;
 using System;
 using System.Collections;
 using System.ComponentModel;
@@ -21,7 +22,17 @@ namespace MediTech.Reports.Operating.Patient
             int OrganisationUID = int.Parse(this.Parameters["OrganisationUID"].Value.ToString());
             int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
             var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(30);
-            var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+            //var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+            HealthOrganisationModel OrganisationDefault = new HealthOrganisationModel();
+            if (OrganisationUID == 17)
+            {
+                OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(30);
+            }
+            else
+            {
+                OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+            }
+
             string textType = "ไม่ค้างคืน";
 
             if (this.Parameters["PatientVisitUID"].Value != null)
@@ -105,10 +116,10 @@ namespace MediTech.Reports.Operating.Patient
                     string email = SelectOrganisation.Email != null ? "e-mail:" + SelectOrganisation.Email.ToString() : "";
 
 
-                    lbHeadAddress1.Text = OrganisationDefault.Address?.ToString() + " " + mobile1 + " " + email;
-                    lbHeadAddress2.Text = OrganisationDefault.Address2?.ToString() + " " + mobile2 + " " + email;
-                    lbAddress1.Text = OrganisationDefault.Address?.ToString() + " " + mobile1 + " " + email;
-                    lbAddress2.Text = OrganisationDefault.Address2?.ToString() + " " + mobile2 + " " + email;
+                    lbHeadAddress1.Text = SelectOrganisation.Address?.ToString() + " " + mobile1 + " " + email;
+                    lbHeadAddress2.Text = SelectOrganisation.Address2?.ToString() + " " + mobile2 + " " + email;
+                    lbAddress1.Text = SelectOrganisation.Address?.ToString() + " " + mobile1 + " " + email;
+                    lbAddress2.Text = SelectOrganisation.Address2?.ToString() + " " + mobile2 + " " + email;
 
 
                     //infoOrganisation.Text = SelectOrganisation.Description?.ToString();

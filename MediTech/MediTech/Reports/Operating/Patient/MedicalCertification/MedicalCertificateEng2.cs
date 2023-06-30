@@ -35,9 +35,18 @@ namespace MediTech.Reports.Operating.Patient
             var model = (new ReportsService()).PrintConfinedSpaceCertificate(PatientVisitUID);
             int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
             var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(30);
-            var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+            //var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+            HealthOrganisationModel OrganisationDefault = new HealthOrganisationModel();
+            if (OrganisationUID == 17)
+            {
+                OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(30);
+            }
+            else
+            {
+                OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+            }
 
-            if( model.BPSys != null && model.BPDio != null)
+            if ( model.BPSys != null && model.BPDio != null)
             {
                 Bloodpressure.Text = model.BPSys.ToString() + "/" + model.BPDio.ToString();
             }

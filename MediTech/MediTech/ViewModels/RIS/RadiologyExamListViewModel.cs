@@ -705,7 +705,7 @@ namespace MediTech.ViewModels
             Logos.Add(new LookupItemModel { Key = 2, Display = "BRXG Hospital" });
             Logos.Add(new LookupItemModel { Key = 3, Display = "แม่ฟ้าหลวง" });
             
-            if (AppUtil.Current.OwnerOrganisationUID == 30 || AppUtil.Current.OwnerOrganisationUID == 8)
+            if (AppUtil.Current.OwnerOrganisationUID == 17 || AppUtil.Current.OwnerOrganisationUID == 30 || AppUtil.Current.OwnerOrganisationUID == 8)
             {
                 SelectLogo = Logos[2];
             }

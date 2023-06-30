@@ -49,27 +49,27 @@ namespace MediTech.Reports.Operating.Lab
 
                 if (logoType == 0)
                 {
-                    if(logoHead == 17)
-                    {
-                        var SelectHead = (new MasterDataService()).GetHealthOrganisationByUID(logoHead);
-                        if (SelectHead != null)
-                        {
-                            lbLicenseNo.Text = SelectHead.Description?.ToString();
-                            //lbLicenseNo.Text = SelectOrganisation.LicenseNo != null ? "ใบอนุญาตเลขที่ " + SelectOrganisation.LicenseNo.ToString() : "";
-                            if (SelectHead.LicenseNo != null)
-                            {
-                                lbLicenseNo.Text = lbLicenseNo.Text + "\r\nใบอนุญาตเลขที่ " + SelectHead.LicenseNo.ToString();
-                            }
-                            string mobile1 = SelectHead.MobileNo != null ? "โทรศัพท์ " + SelectHead.MobileNo.ToString() : "";
-                            string email = SelectHead.Email != null ? "e-mail:" + SelectHead.Email.ToString() : "";
+                    //if(logoHead == 17)
+                    //{
+                    //    var SelectHead = (new MasterDataService()).GetHealthOrganisationByUID(logoHead);
+                    //    if (SelectHead != null)
+                    //    {
+                    //        lbLicenseNo.Text = SelectHead.Description?.ToString();
+                    //        //lbLicenseNo.Text = SelectOrganisation.LicenseNo != null ? "ใบอนุญาตเลขที่ " + SelectOrganisation.LicenseNo.ToString() : "";
+                    //        if (SelectHead.LicenseNo != null)
+                    //        {
+                    //            lbLicenseNo.Text = lbLicenseNo.Text + "\r\nใบอนุญาตเลขที่ " + SelectHead.LicenseNo.ToString();
+                    //        }
+                    //        string mobile1 = SelectHead.MobileNo != null ? "โทรศัพท์ " + SelectHead.MobileNo.ToString() : "";
+                    //        string email = SelectHead.Email != null ? "e-mail:" + SelectHead.Email.ToString() : "";
 
-                            xrLabel19.Text = SelectHead.Address?.ToString() + " " + mobile1;
-                            MemoryStream ms = new MemoryStream(SelectHead.LogoImage);
-                            logo.Image = Image.FromStream(ms);
-                        }
+                    //        xrLabel19.Text = SelectHead.Address?.ToString() + " " + mobile1;
+                    //        MemoryStream ms = new MemoryStream(SelectHead.LogoImage);
+                    //        logo.Image = Image.FromStream(ms);
+                    //    }
                        
-                    }
-                    if(logoHead == 30)
+                    //}
+                    if(logoHead == 30 || logoHead == 17)
                     {
                         var SelectHead = (new MasterDataService()).GetHealthOrganisationByUID(logoHead);
                         if (SelectHead != null)

@@ -36,7 +36,17 @@ namespace MediTech.Reports.Operating.Patient
             var model = (new ReportsService()).PrintMedicalCertificate(PatientVisitUID);
             int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
             var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);
-            var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+            //var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+            HealthOrganisationModel OrganisationDefault = new HealthOrganisationModel();
+            if (OrganisationUID == 17)
+            {
+                OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(30);
+            }
+            else
+            {
+                OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+            }
+
             int selectCovidTest = int.Parse(this.Parameters["CovidTest"].Value.ToString());
             string textType = "ไม่ค้างคืน";
 

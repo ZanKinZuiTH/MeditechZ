@@ -67,7 +67,17 @@ namespace MediTech.Reports.Operating.Patient
 
             if (logoType == 0)
             { 
-                var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+                //var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+                HealthOrganisationModel OrganisationDefault = new HealthOrganisationModel();
+                if (OrganisationUID == 17)
+                {
+                    OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(30);
+                }
+                else
+                {
+                    OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+                }
+
                 lbOgenisation.Text = OrganisationDefault.Description?.ToString();
                 lbOrganisationPlace.Text = OrganisationDefault.Description.ToString() != null ? "สถานที่ตรวจ " + OrganisationDefault.Description.ToString() : "";
                 lbLicenseNo.Text = OrganisationDefault.LicenseNo != null ? "ใบอนุญาตเลขที่ " + OrganisationDefault.LicenseNo.ToString() : "";
