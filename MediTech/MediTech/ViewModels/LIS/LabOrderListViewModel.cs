@@ -582,6 +582,15 @@ namespace MediTech.ViewModels
             LogoLists = new List<LookupItemModel>();
             LogoLists.Add(new LookupItemModel { Key = 30, Display = "BRXG Hospital" });
             LogoLists.Add(new LookupItemModel { Key = 17, Display = "BRXG Polyclinic" });
+
+            if (AppUtil.Current.OwnerOrganisationUID == 17 || AppUtil.Current.OwnerOrganisationUID == 30)
+            {
+                SelectLogo = LogoLists[0];
+            }
+            else
+            {
+                SelectLogo = LogoLists.FirstOrDefault();
+            }
         }
 
         private void SearchLabOrder()

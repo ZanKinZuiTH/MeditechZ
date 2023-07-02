@@ -6,6 +6,7 @@ using DevExpress.XtraReports.UI;
 using MediTech.DataService;
 using MediTech.Reports.Operating.Patient.MedicalCertification;
 using System.IO;
+using MediTech.Model;
 
 namespace MediTech.Reports.Operating.Patient
 {
@@ -25,8 +26,16 @@ namespace MediTech.Reports.Operating.Patient
             var model = (new ReportsService()).PrintMedicalCertificate(PatientVisitUID);
             int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
             var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);
-            var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
-
+           // var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+            HealthOrganisationModel OrganisationDefault = new HealthOrganisationModel();
+            if (OrganisationUID == 17)
+            {
+                OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(30);
+            }
+            else
+            {
+                OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+            }
 
             if (model != null)
             {
@@ -87,7 +96,7 @@ namespace MediTech.Reports.Operating.Patient
                     string email = SelectOrganisation.Email != null ? "e-mail:" + SelectOrganisation.Email.ToString() : "";
 
 
-                    lbHeadAddress1.Text = OrganisationDefault.Address?.ToString() + " " + mobile1 + " " + email;
+                    lbHeadAddress1.Text = SelectOrganisation.Address?.ToString() + " " + mobile1 + " " + email;
                
 
                     //infoOrganisation.Text = SelectOrganisation.Description?.ToString();

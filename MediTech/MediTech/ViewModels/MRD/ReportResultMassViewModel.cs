@@ -483,7 +483,16 @@ namespace MediTech.ViewModels
             Logos.Add(new LookupItemModel { Key = 3, Display = "แม่ฟ้าหลวง"});
             Logos.Add(new LookupItemModel { Key = 4, Display = "โรงพยาบาลบ้านแพ้ว" });
             Logos.Add(new LookupItemModel { Key = 5, Display = "BRXG Hospital" });
-            SelectLogo = Logos.FirstOrDefault();
+            //SelectLogo = Logos.FirstOrDefault();
+
+            if (AppUtil.Current.OwnerOrganisationUID == 17 || AppUtil.Current.OwnerOrganisationUID == 30)
+            {
+                SelectLogo = Logos[5];
+            }
+            else
+            {
+                SelectLogo = Logos.FirstOrDefault();
+            }
 
             ResultStatus = DataService.Technical.GetReferenceValueMany("RABSTS");
             //SelectResultStatus = ResultStatus.FirstOrDefault();
