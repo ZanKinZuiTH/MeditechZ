@@ -68,6 +68,7 @@
                 <dxg:GridColumn Header="ลักษณะการจ่ายเงิน (Agreement)" FieldName="PayorAgreement"/>
                 <dxg:GridColumn Header="Orderset ที่ใช้" FieldName="OrderSet"/>
                 <dxg:GridColumn Header="Order แยกที่ใช้" FieldName="ItemName"/>
+                <dxg:GridColumn Header="Order Comments" FieldName="OrderComments"/>
                 <dxg:GridColumn Header="ราคาขายออก" FieldName="NetAmount"/>
                 <dxg:GridColumn Header="ต้นทุนต่อหน่วย" FieldName="ItemCost" Visible="{Binding VisibiltyCost}" />
                 <dxg:GridColumn Header="Note Cashier" FieldName="NoteCashier"/>

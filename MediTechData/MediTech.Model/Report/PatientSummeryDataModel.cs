@@ -60,6 +60,7 @@ namespace MediTech.Model.Report
         public string NoteCashier { get; set; }
         public string CancelBillReason { get; set; }
         public string TypeOrder { get; set; }
+        public string OrderComments { get; set; }
 
     }
 }
