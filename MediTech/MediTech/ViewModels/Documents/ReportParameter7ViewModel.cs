@@ -91,12 +91,17 @@ namespace MediTech.ViewModels
             DateFrom = DateTime.Now;
             DateTo = DateTime.Now;
             Doctors = DataService.UserManage.GetCareproviderDoctor();
-            if (AppUtil.Current.IsDoctor ?? false)
+            if ((AppUtil.Current.IsDoctor ?? false))
             {
                 SelectDoctor = Doctors.FirstOrDefault(p => p.CareproviderUID == AppUtil.Current.UserID);
                 IsEnabledDoctor = false;
             }
             else
+            {
+                IsEnabledDoctor = true;
+            }
+
+            if (AppUtil.Current.IsAdmin ?? false)
             {
                 IsEnabledDoctor = true;
             }
