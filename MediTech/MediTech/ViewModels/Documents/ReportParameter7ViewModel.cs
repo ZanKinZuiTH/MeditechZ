@@ -91,7 +91,8 @@ namespace MediTech.ViewModels
             DateFrom = DateTime.Now;
             DateTo = DateTime.Now;
             Doctors = DataService.UserManage.GetCareproviderDoctor();
-            if (AppUtil.Current.IsDoctor ?? false)
+            //hardcode สำหรับหมอตั้ง
+            if ((AppUtil.Current.IsDoctor ?? false) && AppUtil.Current.UserID != 2)
             {
                 SelectDoctor = Doctors.FirstOrDefault(p => p.CareproviderUID == AppUtil.Current.UserID);
                 IsEnabledDoctor = false;
