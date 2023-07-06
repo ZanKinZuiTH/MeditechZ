@@ -47,9 +47,9 @@ namespace MediTech
         void LoginScreen_Loaded(object sender, RoutedEventArgs e)
         {
 #if DEBUG
-            //txtUserName.Text = "admin";
-            //txtPassword.Text = "abc123";
-            //btnLoginButton_Click(null, null);
+            txtUserName.Text = "admin";
+            txtPassword.Text = "abc123";
+            btnLoginButton_Click(null, null);
 #endif
 
             //#if DEBUG
