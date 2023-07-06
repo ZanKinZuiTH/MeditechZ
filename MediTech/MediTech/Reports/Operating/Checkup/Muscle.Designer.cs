@@ -166,12 +166,12 @@
             this.xrLabel3,
             this.xrLabel2,
             this.xrTable1});
-            this.Detail.HeightF = 562.5F;
+            this.Detail.HeightF = 650F;
             this.Detail.Name = "Detail";
             // 
             // xrTable4
             // 
-            this.xrTable4.LocationFloat = new DevExpress.Utils.PointFloat(75F, 462.5F);
+            this.xrTable4.LocationFloat = new DevExpress.Utils.PointFloat(75F, 325F);
             this.xrTable4.Name = "xrTable4";
             this.xrTable4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             this.xrTable4.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
@@ -283,7 +283,7 @@
             // 
             // xrTable3
             // 
-            this.xrTable3.LocationFloat = new DevExpress.Utils.PointFloat(75F, 325F);
+            this.xrTable3.LocationFloat = new DevExpress.Utils.PointFloat(75F, 462.5F);
             this.xrTable3.Name = "xrTable3";
             this.xrTable3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             this.xrTable3.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
