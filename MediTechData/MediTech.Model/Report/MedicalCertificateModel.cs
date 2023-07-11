@@ -27,6 +27,8 @@ namespace MediTech.Model.Report
         public DateTime? DateOfBirth { get; set; }
         public string Doctor { get; set; }
         public string DoctorEngName { get; set; }
+        public string Doctor2 { get; set; }
+        public string DoctorEngName2 { get; set; }
         public Nullable<int> CareProviderUID { get; set; }
         public string Comments { get; set; }
         public long PatientVisitUID { get; set; }
@@ -35,6 +37,7 @@ namespace MediTech.Model.Report
         public DateTime? strVisitData { get; set; }
         public string PatientAddress { get; set; }
         public string DoctorLicenseNo { get; set; }
+        public string DoctorLicenseNo2 { get; set; }
         public string MobilePhone { get; set; }
         public string PatientPayor { get; set; }
         public string PatientEmail { get; set; }
@@ -42,6 +45,8 @@ namespace MediTech.Model.Report
         public string CompanyName { get; set; }
         public string Nationality { get; set; }
         public string EmployerAddress { get; set; }
+        public string VisitCodeType { get; set; }
+        public int VisitTypeUID { get; set; }
 
     }
 }

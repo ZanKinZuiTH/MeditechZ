@@ -36,13 +36,35 @@ namespace MediTech.Reports.Operating.Patient
             int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
 
             var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);
+
+            if (dataSource.VisitCodeType == "CHKIN4" || dataSource.VisitCodeType == "CHKIN5")
+            {
+                xrLabel66.Text = dataSource.DoctorEngName2;
+                xrLabel75.Text = dataSource.DoctorLicenseNo2;
+                xrLabel67.Text = dataSource.DoctorEngName2;
+            }
+            else
+            {
+                xrLabel66.Text = dataSource.DoctorEngName;
+                xrLabel75.Text = dataSource.DoctorLicenseNo;
+                xrLabel67.Text = dataSource.DoctorEngName;
+            }
+
             if (logoType == 0)
             {
                 //var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
                 HealthOrganisationModel OrganisationDefault = new HealthOrganisationModel();
                 if (OrganisationUID == 17)
                 {
-                    OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(30);
+                    var visitType = new PatientIdentityService().GetPatientVisitByUID(PatientVisitUID);
+                    if (visitType.VISTYUID == 4867)
+                    {
+                        OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(30);
+                    }
+                    else
+                    {
+                        OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+                    }
                 }
                 else
                 {

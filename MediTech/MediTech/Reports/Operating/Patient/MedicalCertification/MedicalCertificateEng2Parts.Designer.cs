@@ -282,15 +282,12 @@
             // xrLabel75
             // 
             this.xrLabel75.CanGrow = false;
-            this.xrLabel75.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "DoctorLicenseNo")});
             this.xrLabel75.Font = new System.Drawing.Font("Angsana New", 12F);
             this.xrLabel75.LocationFloat = new DevExpress.Utils.PointFloat(142.5417F, 395.9169F);
             this.xrLabel75.Name = "xrLabel75";
             this.xrLabel75.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel75.SizeF = new System.Drawing.SizeF(49.79141F, 23F);
             this.xrLabel75.StylePriority.UseFont = false;
-            this.xrLabel75.Text = "xrLabel75";
             // 
             // infoAddress
             // 
@@ -384,8 +381,6 @@
             // 
             // xrLabel67
             // 
-            this.xrLabel67.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "DoctorEngName")});
             this.xrLabel67.Font = new System.Drawing.Font("Angsana New", 12F);
             this.xrLabel67.LocationFloat = new DevExpress.Utils.PointFloat(497.0833F, 851.5834F);
             this.xrLabel67.Name = "xrLabel67";
@@ -393,21 +388,17 @@
             this.xrLabel67.SizeF = new System.Drawing.SizeF(128.302F, 20.5F);
             this.xrLabel67.StylePriority.UseFont = false;
             this.xrLabel67.StylePriority.UseTextAlignment = false;
-            this.xrLabel67.Text = "xrLabel66";
             this.xrLabel67.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // xrLabel66
             // 
             this.xrLabel66.CanGrow = false;
-            this.xrLabel66.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "DoctorEngName")});
             this.xrLabel66.Font = new System.Drawing.Font("Angsana New", 12F);
             this.xrLabel66.LocationFloat = new DevExpress.Utils.PointFloat(73.12304F, 373.5029F);
             this.xrLabel66.Name = "xrLabel66";
             this.xrLabel66.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel66.SizeF = new System.Drawing.SizeF(251.3768F, 20.41379F);
             this.xrLabel66.StylePriority.UseFont = false;
-            this.xrLabel66.Text = "xrLabel66";
             // 
             // xrLabel61
             // 
@@ -1629,7 +1620,7 @@
             this.PatientUID,
             this.OrganisationUID,
             this.LogoType});
-            this.Version = "20.2";
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();

@@ -22,16 +22,7 @@ namespace MediTech.Reports.Operating.Patient
             int OrganisationUID = int.Parse(this.Parameters["OrganisationUID"].Value.ToString());
             int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
             var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(30);
-            //var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
-            HealthOrganisationModel OrganisationDefault = new HealthOrganisationModel();
-            if (OrganisationUID == 17)
-            {
-                OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(30);
-            }
-            else
-            {
-                OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
-            }
+            var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
 
             string textType = "ไม่ค้างคืน";
 

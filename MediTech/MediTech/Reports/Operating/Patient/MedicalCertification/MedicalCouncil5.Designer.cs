@@ -112,6 +112,7 @@
             this.ReportName = new DevExpress.XtraReports.Parameters.Parameter();
             this.MDtext = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
             ((System.ComponentModel.ISupportInitialize)(this.forMobile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -372,8 +373,6 @@
             // 
             // xrLabel41
             // 
-            this.xrLabel41.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "DoctorLicenseNo")});
             this.xrLabel41.Font = new System.Drawing.Font("Angsana New", 12F);
             this.xrLabel41.LocationFloat = new DevExpress.Utils.PointFloat(283.1667F, 92.33332F);
             this.xrLabel41.Name = "xrLabel41";
@@ -383,8 +382,6 @@
             // 
             // xrLabel40
             // 
-            this.xrLabel40.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Doctor")});
             this.xrLabel40.Font = new System.Drawing.Font("Angsana New", 12F);
             this.xrLabel40.LocationFloat = new DevExpress.Utils.PointFloat(381.1246F, 689.7501F);
             this.xrLabel40.Name = "xrLabel40";
@@ -392,20 +389,16 @@
             this.xrLabel40.SizeF = new System.Drawing.SizeF(236.3807F, 23F);
             this.xrLabel40.StylePriority.UseFont = false;
             this.xrLabel40.StylePriority.UseTextAlignment = false;
-            this.xrLabel40.Text = "xrLabel39";
             this.xrLabel40.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // xrLabel39
             // 
-            this.xrLabel39.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Doctor")});
             this.xrLabel39.Font = new System.Drawing.Font("Angsana New", 12F);
             this.xrLabel39.LocationFloat = new DevExpress.Utils.PointFloat(193.9166F, 66.99999F);
             this.xrLabel39.Name = "xrLabel39";
             this.xrLabel39.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel39.SizeF = new System.Drawing.SizeF(427.5F, 23F);
             this.xrLabel39.StylePriority.UseFont = false;
-            this.xrLabel39.Text = "xrLabel39";
             // 
             // xrLabel34
             // 
@@ -1047,6 +1040,11 @@
             this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.MedicalCertificateModel);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
+            // formattingRule1
+            // 
+            this.formattingRule1.DataMember = "Detail";
+            this.formattingRule1.Name = "formattingRule1";
+            // 
             // MedicalCouncil5
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1059,6 +1057,8 @@
             this.objectDataSource1});
             this.DataMember = "Detail";
             this.DataSource = this.objectDataSource1;
+            this.FormattingRuleSheet.AddRange(new DevExpress.XtraReports.UI.FormattingRule[] {
+            this.formattingRule1});
             this.Margins = new System.Drawing.Printing.Margins(60, 60, 59, 52);
             this.PageHeight = 1169;
             this.PageWidth = 827;
@@ -1167,5 +1167,6 @@
         public DevExpress.XtraReports.UI.XRRichText forMobile;
         private DevExpress.XtraReports.UI.XRLabel xrLabel3;
         private DevExpress.XtraReports.Parameters.Parameter MDtext;
+        private DevExpress.XtraReports.UI.FormattingRule formattingRule1;
     }
 }

@@ -585,6 +585,19 @@ namespace MediTechWebApi.Controllers
                                                 key2 = pvs.StatusFlag
                                             } into lefpvs
                                             from j in lefpvs.DefaultIfEmpty()
+                                            join ptcs in db.PatientConsultation on
+                                            new
+                                            {
+                                                key1 = pv.UID,
+                                                key2 = "A"
+
+                                            } equals
+                                                  new
+                                                  {
+                                                      key1 = ptcs.PatientVisitUID,
+                                                      key2 = ptcs.StatusFlag
+                                                  } into ptcs
+                                            from c in ptcs.DefaultIfEmpty()
                                             where pa.StatusFlag == "A"
                                              && pv.StatusFlag == "A"
                                              && pv.UID == patientVisitUID
@@ -593,6 +606,8 @@ namespace MediTechWebApi.Controllers
                                                 No = pv.UID,
                                                 IDCard = pa.IDCard,
                                                 VisitID = pv.VisitID,
+                                                VisitTypeUID = pv.VISTYUID ?? 0,
+                                                VisitCodeType = SqlFunction.fGetRfValCode(pv.VISTYUID ?? 0),
                                                 AgeString = pa.DOBDttm != null ? SqlFunction.fGetAgeString(pa.DOBDttm.Value) : "",
                                                 AgeYear = pa.DOBDttm != null ? SqlFunction.fGetAge(pa.DOBDttm.Value) : "",
                                                 Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
@@ -603,6 +618,9 @@ namespace MediTechWebApi.Controllers
                                                 Doctor = SqlFunction.fGetCareProviderName(pv.CareProviderUID ?? 0),
                                                 DoctorEngName = SqlFunction.fGetCareProviderEngName(pv.CareProviderUID ?? 0),
                                                 DoctorLicenseNo = SqlFunction.fGetCareProviderLicenseNo(pv.CareProviderUID ?? 0),
+                                                Doctor2 = SqlFunction.fGetCareProviderName(c.CareproviderUID),
+                                                DoctorEngName2 = SqlFunction.fGetCareProviderEngName(c.CareproviderUID),
+                                                DoctorLicenseNo2 = SqlFunction.fGetCareProviderLicenseNo(c.CareproviderUID),
                                                 PatientAddress = SqlFunction.fGetAddressPatient(pv.PatientUID),
                                                 VitalSignRecordDttm = j.RecordedDttm,
                                                 Weight = j.Weight,

@@ -30,7 +30,15 @@ namespace MediTech.Reports.Operating.Patient
             HealthOrganisationModel OrganisationDefault = new HealthOrganisationModel();
             if (OrganisationUID == 17)
             {
-                OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(30);
+                var visitType = new PatientIdentityService().GetPatientVisitByUID(PatientVisitUID);
+                if (visitType.VISTYUID == 4867)
+                {
+                    OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(30);
+                }
+                else
+                {
+                    OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+                }
             }
             else
             {

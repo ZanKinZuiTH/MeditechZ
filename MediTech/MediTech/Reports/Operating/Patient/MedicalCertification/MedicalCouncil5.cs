@@ -49,6 +49,19 @@ namespace MediTech.Reports.Operating.Patient
 
             var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);
 
+            if(dataSource.VisitCodeType == "CHKIN4" || dataSource.VisitCodeType == "CHKIN5")
+            {
+                xrLabel39.Text = dataSource.Doctor2;
+                xrLabel41.Text = dataSource.DoctorLicenseNo2;
+                xrLabel40.Text = dataSource.Doctor2;
+            }
+            else
+            {
+                xrLabel39.Text = dataSource.Doctor;
+                xrLabel41.Text = dataSource.DoctorLicenseNo;
+                xrLabel40.Text = dataSource.Doctor;
+            }
+
             if (ReportName == "ใบรับรองแพทย์ 5 โรค (Mobile)")
             {
                 forMobile.Text = "ร่างกายแข็งแรงดี ไม่เป็นอุปสรรคต่อการทำงาน สามารถปฏิบัติงานได้";
@@ -71,7 +84,15 @@ namespace MediTech.Reports.Operating.Patient
                 HealthOrganisationModel OrganisationDefault = new HealthOrganisationModel();
                 if (OrganisationUID == 17)
                 {
-                    OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(30);
+                    var visitType = new PatientIdentityService().GetPatientVisitByUID(PatientVisitUID);
+                    if (visitType.VISTYUID == 4867)
+                    {
+                        OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(30);
+                    }
+                    else
+                    {
+                        OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+                    }
                 }
                 else
                 {

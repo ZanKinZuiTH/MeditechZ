@@ -37,9 +37,29 @@ namespace MediTech.Reports.Operating.Patient
             var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(30);
             //var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
             HealthOrganisationModel OrganisationDefault = new HealthOrganisationModel();
+
+            if (model.VisitCodeType == "CHKIN4" || model.VisitCodeType == "CHKIN5")
+            {
+                xrLabel39.Text = model.DoctorEngName2;
+                xrLabel40.Text = model.DoctorLicenseNo2;
+            }
+            else
+            {
+                xrLabel39.Text = model.DoctorEngName;
+                xrLabel40.Text = model.DoctorLicenseNo;
+            }
+
             if (OrganisationUID == 17)
             {
-                OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(30);
+                var visitType = new PatientIdentityService().GetPatientVisitByUID(PatientVisitUID);
+                if (visitType.VISTYUID == 4867)
+                {
+                    OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(30);
+                }
+                else
+                {
+                    OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+                }
             }
             else
             {

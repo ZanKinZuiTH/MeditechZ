@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MedicalCertificate2Parts));
             DevExpress.XtraReports.Parameters.StaticListLookUpSettings staticListLookUpSettings1 = new DevExpress.XtraReports.Parameters.StaticListLookUpSettings();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.autoMDText = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel36 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel18 = new DevExpress.XtraReports.UI.XRLabel();
             this.infoOrganisation1 = new DevExpress.XtraReports.UI.XRLabel();
@@ -145,7 +146,6 @@
             this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
             this.MDtext = new DevExpress.XtraReports.Parameters.Parameter();
-            this.autoMDText = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -212,6 +212,17 @@
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // autoMDText
+            // 
+            this.autoMDText.Font = new System.Drawing.Font("Angsana New", 12F);
+            this.autoMDText.LocationFloat = new DevExpress.Utils.PointFloat(88.75262F, 721.3813F);
+            this.autoMDText.Name = "autoMDText";
+            this.autoMDText.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.autoMDText.SizeF = new System.Drawing.SizeF(476.1151F, 23F);
+            this.autoMDText.StylePriority.UseFont = false;
+            this.autoMDText.StylePriority.UseTextAlignment = false;
+            this.autoMDText.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // xrLabel36
             // 
@@ -336,15 +347,12 @@
             // xrLabel70
             // 
             this.xrLabel70.CanGrow = false;
-            this.xrLabel70.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "DoctorLicenseNo")});
             this.xrLabel70.Font = new System.Drawing.Font("Angsana New", 12F);
             this.xrLabel70.LocationFloat = new DevExpress.Utils.PointFloat(220.5874F, 417.5102F);
             this.xrLabel70.Name = "xrLabel70";
             this.xrLabel70.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel70.SizeF = new System.Drawing.SizeF(45.79697F, 23F);
             this.xrLabel70.StylePriority.UseFont = false;
-            this.xrLabel70.Text = "xrLabel70";
             // 
             // xrLabel69
             // 
@@ -387,8 +395,6 @@
             // xrLabel66
             // 
             this.xrLabel66.CanGrow = false;
-            this.xrLabel66.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Doctor")});
             this.xrLabel66.Font = new System.Drawing.Font("Angsana New", 12F);
             this.xrLabel66.LocationFloat = new DevExpress.Utils.PointFloat(418.0001F, 823.8055F);
             this.xrLabel66.Name = "xrLabel66";
@@ -396,7 +402,6 @@
             this.xrLabel66.SizeF = new System.Drawing.SizeF(191.4999F, 23.00006F);
             this.xrLabel66.StylePriority.UseFont = false;
             this.xrLabel66.StylePriority.UseTextAlignment = false;
-            this.xrLabel66.Text = "สรุปความเห็นและข้อแนะนา ของแพทย";
             this.xrLabel66.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // xrLabel14
@@ -465,8 +470,6 @@
             // xrLabel53
             // 
             this.xrLabel53.CanGrow = false;
-            this.xrLabel53.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Doctor")});
             this.xrLabel53.Font = new System.Drawing.Font("Angsana New", 12F);
             this.xrLabel53.LocationFloat = new DevExpress.Utils.PointFloat(101.3026F, 393.8435F);
             this.xrLabel53.Name = "xrLabel53";
@@ -1293,17 +1296,6 @@
             this.MDtext.Name = "MDtext";
             this.MDtext.Type = typeof(int);
             this.MDtext.ValueInfo = "0";
-            // 
-            // autoMDText
-            // 
-            this.autoMDText.Font = new System.Drawing.Font("Angsana New", 12F);
-            this.autoMDText.LocationFloat = new DevExpress.Utils.PointFloat(88.75262F, 721.3813F);
-            this.autoMDText.Name = "autoMDText";
-            this.autoMDText.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.autoMDText.SizeF = new System.Drawing.SizeF(476.1151F, 23F);
-            this.autoMDText.StylePriority.UseFont = false;
-            this.autoMDText.StylePriority.UseTextAlignment = false;
-            this.autoMDText.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // MedicalCertificate2Parts
             // 
