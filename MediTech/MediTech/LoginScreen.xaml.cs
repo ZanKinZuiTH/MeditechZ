@@ -48,7 +48,7 @@ namespace MediTech
         {
 #if DEBUG
             txtUserName.Text = "admin";
-            txtPassword.Text = "abc123";
+            txtPassword.Text = "123456";
             btnLoginButton_Click(null, null);
 #endif
 

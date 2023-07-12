@@ -73,7 +73,8 @@ namespace MediTech.ViewModels
 
                         Amount = PatientBillableItemsAccounts.Sum(p => p.Amount ?? 0);
                         DiscountAmount = Math.Round(PatientBillableItemsAccounts.Sum(p => p.Discount ?? 0));
-                        NetAmount = Math.Round(PatientBillableItemsAccounts.Sum(p => p.NetAmount ?? 0));
+                        //NetAmount = Math.Round(PatientBillableItemsAccounts.Sum(p => p.NetAmount ?? 0));
+                        NetAmount = Amount - DiscountAmount;
 
                         calculateBalance();
                     }
