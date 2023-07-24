@@ -685,6 +685,14 @@ namespace MediTech.DataService
             return dataRequest;
         }
 
+        public List<PayorDetailModel> GetPayorDetailByInsuranceCompanyUID(int InsuranceCompanyUID)
+        {
+            string requestApi = string.Format("Api/Billing/GetPayorDetailByInsuranceCompanyUID?InsuranceCompanyUID={0}", InsuranceCompanyUID);
+            List<PayorDetailModel> dataRequest = MeditechApiHelper.Get<List<PayorDetailModel>>(requestApi);
+
+            return dataRequest;
+        }
+
         public PayorDetailModel GetPayorDetailByCode(string payorCode)
         {
             string requestApi = string.Format("Api/Billing/GetPayorDetailByCode?payorCode={0}", payorCode);

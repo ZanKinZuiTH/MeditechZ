@@ -13,6 +13,7 @@ using System.Data.OleDb;
 using System.Data;
 using DevExpress.Xpf.Grid;
 using System.Windows.Data;
+using DevExpress.Data.Extensions;
 
 namespace MediTech.ViewModels
 {
@@ -99,7 +100,29 @@ namespace MediTech.ViewModels
         public InsuranceCompanyModel SelectInsuranceCompany
         {
             get { return _SelectInsuranceCompany; }
-            set { Set(ref _SelectInsuranceCompany, value); }
+            set { Set(ref _SelectInsuranceCompany, value); 
+            if(SelectInsuranceCompany != null)
+                {
+                    PayorDetail = DataService.Billing.GetPayorDetailByInsuranceCompanyUID(SelectInsuranceCompany.InsuranceCompanyUID);
+                    SelectPayorDetail = PayorDetail.FirstOrDefault();
+                }
+            }
+        }
+
+        private List<PayorDetailModel> _PayorDetail;
+
+        public List<PayorDetailModel> PayorDetail
+        {
+            get { return _PayorDetail; }
+            set { Set(ref _PayorDetail, value); }
+        }
+
+        private PayorDetailModel _SelectPayorDetail;
+
+        public PayorDetailModel SelectPayorDetail
+        {
+            get { return _SelectPayorDetail; }
+            set { Set(ref _SelectPayorDetail, value); }
         }
 
         private List<RequestItemModel> _RequestItems;
@@ -636,6 +659,11 @@ namespace MediTech.ViewModels
                 WarningDialog("กรุณาเลือกรายการ Payor");
                 return;
             }
+            if (SelectPayorDetail == null)
+            {
+                WarningDialog("กรุณาเลือกบริษัท");
+                return;
+            }
             if (SelectYearSource == null)
             {
                 WarningDialog("กรุณาเลือกรายการปี");
@@ -647,10 +675,10 @@ namespace MediTech.ViewModels
                 int? LocationUID = SelectLocation != null ? SelectLocation.LocationUID: (int?)null;
                 string codeLab = SelectedRequestItem.Code;
                 int year = Convert.ToInt32(SelectYearSource);
-                int insuranceCompanyUID = SelectInsuranceCompany.InsuranceCompanyUID;
+                int payorDetailUID = SelectPayorDetail.PayorDetailUID;
                 DateTime resultDate = new DateTime(year,01, 01);
 
-                var payorAgreements = DataService.Billing.GetAgreementByInsuranceUID(insuranceCompanyUID);
+                var payorAgreements = DataService.Billing.GetAgreementByInsuranceUID(SelectInsuranceCompany.InsuranceCompanyUID);
                 int payorAgreementsUID = payorAgreements.Where(p => p.Name.Contains("เงินสด")).Select(p => p.PayorAgreementUID).FirstOrDefault();
                 
                 if(payorAgreementsUID == 0)
@@ -716,7 +744,7 @@ namespace MediTech.ViewModels
 
                         }
 
-                        DataService.Checkup.SaveOldLabResult(labResult, labResult.PatientUID, insuranceCompanyUID, resultDate, codeLab, AppUtil.Current.UserID, OrganisationsUID, payorAgreementsUID, LocationUID);
+                        DataService.Checkup.SaveOldLabResult(labResult, labResult.PatientUID, payorDetailUID, resultDate, codeLab, AppUtil.Current.UserID, OrganisationsUID, payorAgreementsUID, LocationUID);
                         rowView.Row["IsSave"] = "Success";
                     }
 
