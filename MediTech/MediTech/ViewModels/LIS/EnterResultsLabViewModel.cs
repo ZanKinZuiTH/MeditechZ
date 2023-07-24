@@ -12,12 +12,14 @@ using System.Windows.Forms;
 using MediTech.Views;
 using System.IO;
 using System.Diagnostics;
+using MediTech.Converter;
+using DevExpress.Charts.Native;
+using DevExpress.Mvvm.Xpf;
 
 namespace MediTech.ViewModels
 {
     public class EnterResultsLabViewModel : MediTechViewModelBase
     {
-
         #region Properties
         public List<CareproviderModel> Careprovider { get; set; }
         private CareproviderModel _SelectCareprovider;
@@ -57,7 +59,7 @@ namespace MediTech.ViewModels
         public List<RequestDetailItemModel> RequestDetailLabs
         {
             get { return _RequestDetailLabs; }
-            set { Set(ref _RequestDetailLabs, value); }
+            set { Set(ref _RequestDetailLabs, value);  }
         }
 
         private ResultComponentModel _SelectResultComponent;
@@ -65,7 +67,8 @@ namespace MediTech.ViewModels
         public ResultComponentModel SelectResultComponent
         {
             get { return _SelectResultComponent; }
-            set { Set(ref _SelectResultComponent, value); }
+            set { Set(ref _SelectResultComponent, value);
+            }
         }
 
         private bool _Permission;
@@ -170,7 +173,7 @@ namespace MediTech.ViewModels
 
         }
 
-
+        
 
         #endregion
 
@@ -370,6 +373,115 @@ namespace MediTech.ViewModels
             {
                 SelectResultComponent.ResultValue = string.Empty;
                 SelectResultComponent.ImageContent = null;
+            }
+        }
+
+        public void CalculateEGFR(double SCr)
+        {
+            if (SCr == 0)
+            {
+                var data = RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents;
+                if (data.Where(p => p.ResultItemCode == "C0073").FirstOrDefault().ResultValue != null)
+                {
+                    RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0073").FirstOrDefault().ResultValue = null;
+
+                }
+
+                if (data.Where(p => p.ResultItemCode == "C0074").FirstOrDefault().ResultValue != null)
+                {
+                    RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0074").FirstOrDefault().ResultValue = null;
+
+                }
+
+                if (data.Where(p => p.ResultItemCode == "C0075").FirstOrDefault().ResultValue != null)
+                {
+                    RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0075").FirstOrDefault().ResultValue = null;
+
+                }
+
+            }
+            else
+            {
+                var ptNation = DataService.PatientIdentity.GetPatientByHN(RequestLab.PatientID);
+
+                var age = double.Parse(this.RequestLab.PatientAge);
+                double eGFRval;
+                bool isFemale = this.RequestLab.SEXXXUID == 2 ? true : false;
+                bool Africa = false;
+                bool NonTHNonAf = false;
+                bool IsThai = false;
+                var val = 175 * Math.Pow(SCr, -1.154) * Math.Pow(age, -0.203);
+
+                if (ptNation.NATNLUID != null)
+                {
+                    var NationalString = DataService.Technical.GetReferenceValue(ptNation.NATNLUID ?? 0);
+                    if (NationalString.Display.Contains("แอฟริกา"))
+                    {
+                        Africa = true;
+
+                    }
+
+                    if (NationalString.Display.Contains("ไทย"))
+                    {
+                        IsThai = true;
+                    }
+
+                    if (!NationalString.Display.Contains("แอฟริกา") && !NationalString.Display.Contains("ไทย"))
+                    {
+                        NonTHNonAf = true;
+                    }
+                }
+                else
+                {
+                    IsThai = true;
+                }
+
+                if (SCr != 0)
+                {
+
+                    if (isFemale == true)
+                    {
+
+                        eGFRval = Math.Round(val * 0.742, 2);
+
+                        if (Africa == true)
+                        {
+                            double eGFRvalAF;
+                            eGFRvalAF = Math.Round(eGFRval * 1.212, 2);
+                            RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0074").FirstOrDefault().ResultValue = eGFRvalAF.ToString();
+                        }
+
+                        if (IsThai == true)
+                        {
+                            RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0073").FirstOrDefault().ResultValue = eGFRval.ToString();
+                        }
+
+                        if (NonTHNonAf == true)
+                        {
+                            RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0075").FirstOrDefault().ResultValue = eGFRval.ToString();
+                        }
+                    }
+
+                    if (isFemale != true)
+                    {
+                        if (Africa == true)
+                        {
+                            double eGFRvalAF;
+                            eGFRvalAF = Math.Round(val * 1.212, 2);
+                            RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0074").FirstOrDefault().ResultValue = eGFRvalAF.ToString();
+                        }
+
+                        if (IsThai == true)
+                        {
+                            RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0073").FirstOrDefault().ResultValue = Math.Round(val, 2).ToString();
+                        }
+
+                        if (NonTHNonAf == true)
+                        {
+                            RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0075").FirstOrDefault().ResultValue = Math.Round(val, 2).ToString();
+                        }
+                    }
+                }
             }
         }
 

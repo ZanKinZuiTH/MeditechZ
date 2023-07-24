@@ -269,14 +269,15 @@
                                                        ToolTip="View PACS" Command="{Binding GetRangeCommand}"/>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
-            <dxg:TreeListControl x:Name="treeControl"   
+            <dxg:TreeListControl x:Name="treeControl"
                                  SelectedItem="{Binding SelectResultComponent}"
                                  ItemsSource="{Binding Path=RequestDetailLabs}">
                 <dxg:TreeListControl.View>
-                    <dxg:TreeListView x:Name="treeView" TreeDerivationMode="HierarchicalDataTemplate"  
-                                      IsTabStop="False" AllowLeaveFocusOnTab="False"
+                    <dxg:TreeListView x:Name="treeView" TreeDerivationMode="HierarchicalDataTemplate" AllowEditing="True" 
+                                      IsTabStop="False" AllowLeaveFocusOnTab="False" NodeChanged="ChangeVal"
                                       SelectedRowsSource="{Binding SelectResultComponent}"
-                                      ShowIndicator="False" ShowColumnHeaders="False"/>
+                                      ShowIndicator="False" ShowColumnHeaders="False" >
+                    </dxg:TreeListView>
                 </dxg:TreeListControl.View>
             </dxg:TreeListControl>
             <dxlc:LayoutGroup HorizontalAlignment="Right">

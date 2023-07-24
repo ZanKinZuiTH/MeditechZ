@@ -3467,6 +3467,39 @@ namespace MediTechWebApi.Controllers
         }
 
 
+        [Route("GetPayorDetailByInsuranceCompanyUID")]
+        [HttpGet]
+        public List<PayorDetailModel> GetPayorDetailByInsuranceCompanyUID(int InsuranceCompanyUID)
+        {
+            List<PayorDetailModel> data = db.PayorDetail.Where(p => p.StatusFlag == "A" && p.InsuranceCompanyUID == InsuranceCompanyUID).Select(p => new PayorDetailModel()
+            {
+                PayorDetailUID = p.UID,
+                Code = p.Code,
+                PayorName = p.PayorName,
+                AmphurUID = p.AmphurUID,
+                AddressFull = SqlFunction.fGetAddressPayorDetail(p.UID),
+                GovernmentNo = p.GovernmentNo,
+                Address1 = p.Address1,
+                Address2 = p.Address2,
+                ProvinceUID = p.AmphurUID,
+                ContactPersonName = p.ContactPersonName,
+                PYRACATUID = p.PYRACATUID,
+                PayorCategory = SqlFunction.fGetRfValDescription(p.PYRACATUID ?? 0),
+                PhoneNumber = p.PhoneNumber,
+                MobileNumber = p.MobileNumber,
+                ActiveFrom = p.ActiveFrom,
+                ActiveTo = p.ActiveTo,
+                CUser = p.CUser,
+                CWhen = p.CWhen,
+                MUser = p.MUser,
+                MWhen = p.MWhen,
+                StatusFlag = p.StatusFlag
+            }).ToList();
+
+            return data;
+        }
+
+
         [Route("GetPayorDetailByCode")]
         [HttpGet]
         public PayorDetailModel GetPayorDetailByCode(string payorCode)
