@@ -1198,6 +1198,7 @@ namespace MediTech.ViewModels
                             newOrder.DoctorFee = billItem.DoctorFee;
                             newOrder.UnitPrice = billItemPrice.Price;
                             newOrder.DisplayPrice = billItemPrice.Price;
+                            newOrder.OriginalUnitPrice = billItemPrice.Price;
 
                             newOrder.FRQNCUID = itemDrug.FRQNCUID;
                             newOrder.Quantity = itemDrug.Quantity;
