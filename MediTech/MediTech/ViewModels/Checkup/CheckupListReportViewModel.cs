@@ -295,7 +295,8 @@ namespace MediTech.ViewModels
             ReportsList.Add(new ReportsModel { Name = "ผลตรวจสมรรถภาพปอด", NamespaceName = "MediTech.Reports.Operating.Checkup.Pulmonary" });
             ReportsList.Add(new ReportsModel { Name = "ผลตรวจสมรรถภาพการมองเห็น", NamespaceName = "MediTech.Reports.Operating.Checkup.Occupational" });
             ReportsList.Add(new ReportsModel { Name = "ผลตรวจสมรรถภาพกล้ามเนื้อ", NamespaceName = "MediTech.Reports.Operating.Checkup.Muscle" });
-            ReportsList.Add(new ReportsModel { Name = "ผลการตรวจสายตาทั่วไป ", NamespaceName = "MediTech.Reports.Operating.Checkup.VisionTest" });
+            ReportsList.Add(new ReportsModel { Name = "ผลการตรวจสายตาทั่วไป", NamespaceName = "MediTech.Reports.Operating.Checkup.VisionTest" });
+            ReportsList.Add(new ReportsModel { Name = "ใบรายงานผลการตรวจสุขภาพ", NamespaceName = "MediTech.Reports.Operating.Checkup.MedReport1" });
             ReportsList.Add(new ReportsModel { Name = "ใบรับรองแพทย์สำหรับทำงานที่อับอากาศ", NamespaceName = "MediTech.Reports.Operating.Patient.ConfinedSpaceCertificate1" });
             ReportsList.Add(new ReportsModel { Name = "รายงานตรวจสุขภาพCSR", NamespaceName = "MediTech.Reports.Operating.Checkup.CheckupCSR" });
             ReportsList.Add(new ReportsModel { Name = "รายงานตรวจPapSmear", NamespaceName = "MediTech.Reports.Operating.Checkup.Papsmear" });
@@ -391,11 +392,11 @@ namespace MediTech.ViewModels
                         rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
 
                         if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคล" || SelectReport.Name == "เล่มความเสี่ยง" || SelectReport.Name == "เล่มความเสี่ยง2563" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มเล็ก"
-                            || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5"
+                            || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5" || SelectReport.Name == "ใบรายงานผลการตรวจสุขภาพ"
                             || SelectReport.Name == "รายงานตรวจสุขภาพCSR" || SelectReport.Name == "รายงานตรวจPapSmear" ||
                             SelectReport.Name == "รายงานการตรวจปัจจัยเสี่ยงUACJ")
                             rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
-                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มเล็ก" || SelectReport.Name == "ผลตรวจสมรรถภาพการได้ยินเบื้องต้น"
+                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5" || SelectReport.Name == "ใบรายงานผลการตรวจสุขภาพ" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มเล็ก" || SelectReport.Name == "ผลตรวจสมรรถภาพการได้ยินเบื้องต้น"
                             || SelectReport.Name == "รายงานตรวจสุขภาพCSR" || SelectReport.Name == "เล่มความเสี่ยง" || SelectReport.Name == "เล่มความเสี่ยง2563" || SelectReport.Name == "รายงานตรวจPapSmear" 
                             || SelectReport.Name == "ผลตรวจสมรรถภาพการมองเห็น" || SelectReport.Name == "ผลตรวจสมรรถภาพปอด" 
                             || SelectReport.Name == "ผลการตรวจสายตาทั่วไป" || SelectReport.Name == "ผลตรวจสมรรถภาพกล้ามเนื้อ")
@@ -479,12 +480,12 @@ namespace MediTech.ViewModels
                     rpt.Parameters["PatientUID"].Value = item.PatientUID;
                     rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
                     if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคล" || SelectReport.Name == "เล่มความเสี่ยง" || SelectReport.Name == "เล่มความเสี่ยง2563" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มเล็ก"
-                             || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5"
+                             || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5" || SelectReport.Name == "ใบรายงานผลการตรวจสุขภาพ"
                              || SelectReport.Name == "รายงานตรวจสุขภาพCSR"  || SelectReport.Name == "รายงานตรวจPapSmear" ||
                              SelectReport.Name == "รายงานการตรวจปัจจัยเสี่ยงUACJ")
                         rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
 
-                    if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มเล็ก" || SelectReport.Name == "ผลตรวจสมรรถภาพการได้ยินเบื้องต้น"
+                    if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5" || SelectReport.Name == "ใบรายงานผลการตรวจสุขภาพ" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มเล็ก" || SelectReport.Name == "ผลตรวจสมรรถภาพการได้ยินเบื้องต้น"
                         || SelectReport.Name == "รายงานตรวจสุขภาพCSR" || SelectReport.Name == "เล่มความเสี่ยง" || SelectReport.Name == "เล่มความเสี่ยง2563" || SelectReport.Name == "รายงานตรวจPapSmear"
                         || SelectReport.Name == "ผลตรวจสมรรถภาพการมองเห็น" || SelectReport.Name == "ผลตรวจสมรรถภาพปอด"
                         || SelectReport.Name == "ผลการตรวจสายตาทั่วไป" || SelectReport.Name == "ผลตรวจสมรรถภาพกล้ามเนื้อ")
@@ -528,12 +529,12 @@ namespace MediTech.ViewModels
                         rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
 
                         if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคล" || SelectReport.Name == "เล่มความเสี่ยง" || SelectReport.Name == "เล่มความเสี่ยง2563" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มเล็ก"
-                            || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5"
+                            || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5" || SelectReport.Name == "ใบรายงานผลการตรวจสุขภาพ"
                             || SelectReport.Name == "รายงานตรวจสุขภาพCSR" || SelectReport.Name == "รายงานตรวจPapSmear" ||
                             SelectReport.Name == "รายงานการตรวจปัจจัยเสี่ยงUACJ")
                             rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
                    
-                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มเล็ก" || SelectReport.Name == "ผลตรวจสมรรถภาพการได้ยินเบื้องต้น"
+                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5" || SelectReport.Name == "ใบรายงานผลการตรวจสุขภาพ" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มเล็ก" || SelectReport.Name == "ผลตรวจสมรรถภาพการได้ยินเบื้องต้น"
                             || SelectReport.Name == "รายงานตรวจสุขภาพCSR" || SelectReport.Name == "เล่มความเสี่ยง" || SelectReport.Name == "เล่มความเสี่ยง2563" || SelectReport.Name == "รายงานตรวจPapSmear"
                             || SelectReport.Name == "ผลตรวจสมรรถภาพการมองเห็น" || SelectReport.Name == "ผลตรวจสมรรถภาพปอด"
                             || SelectReport.Name == "ผลการตรวจสายตาทั่วไป" || SelectReport.Name == "ผลตรวจสมรรถภาพกล้ามเนื้อ")
@@ -578,11 +579,11 @@ namespace MediTech.ViewModels
                         rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
 
                         if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคล" || SelectReport.Name == "เล่มความเสี่ยง" || SelectReport.Name == "เล่มความเสี่ยง2563" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มเล็ก"
-                            || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5"
+                            || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5" || SelectReport.Name == "ใบรายงานผลการตรวจสุขภาพ"
                             || SelectReport.Name == "รายงานตรวจสุขภาพCSR" || SelectReport.Name == "รายงานตรวจPapSmear" ||
                             SelectReport.Name == "รายงานการตรวจปัจจัยเสี่ยงUACJ")
                             rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
-                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มเล็ก" || SelectReport.Name == "ผลตรวจสมรรถภาพการได้ยินเบื้องต้น"
+                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5" || SelectReport.Name == "ใบรายงานผลการตรวจสุขภาพ" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มเล็ก" || SelectReport.Name == "ผลตรวจสมรรถภาพการได้ยินเบื้องต้น"
                             || SelectReport.Name == "รายงานตรวจสุขภาพCSR" || SelectReport.Name == "เล่มความเสี่ยง" || SelectReport.Name == "เล่มความเสี่ยง2563" || SelectReport.Name == "รายงานตรวจPapSmear"
                             || SelectReport.Name == "ผลตรวจสมรรถภาพการมองเห็น" || SelectReport.Name == "ผลตรวจสมรรถภาพปอด"
                             || SelectReport.Name == "ผลการตรวจสายตาทั่วไป" || SelectReport.Name == "ผลตรวจสมรรถภาพกล้ามเนื้อ")
