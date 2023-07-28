@@ -689,9 +689,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             || p.RequestItemCode.Contains("LAB225")
                             || p.RequestItemCode.Contains("LAB226")
                             || p.RequestItemCode.Contains("LAB227")
-                            )
-
-                             .OrderByDescending(p => p.Year);
+                            ).OrderByDescending(p => p.Year);
                         GenerateLiverFunction(LiverTestSet);
                         #endregion
 

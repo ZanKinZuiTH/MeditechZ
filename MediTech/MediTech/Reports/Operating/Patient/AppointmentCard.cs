@@ -65,6 +65,7 @@ namespace MediTech.Reports.Operating.Patient
                 }
                 if (OrganisationUID == 26)
                 {
+                    this.logo.SizeF = new System.Drawing.SizeF(190.4585F, 85.16669F); ;
                     textFooter.Text = "หากท่านมีความผิดปกติ หรือต้องการเปลี่ยนแปลงนัดหมาย กรุณาติดต่อ 097-4655997\r\nIf you have any problem or change appointment, please contact 097-4655997\r\nเปิดทำการทุกวัน  หยุดวันจันทร์ และวันศุกร์ (8.00-19.00 น.)\r\nOpen every day, except Monday and Friday (8 AM – 7 PM) \r\n";
                 }
                 else
@@ -101,10 +102,12 @@ namespace MediTech.Reports.Operating.Patient
                 }
                 if (logoType == 26)
                 {
+                    this.logo.SizeF = new System.Drawing.SizeF(190.4585F, 85.16669F);
                     textFooter.Text = "หากท่านมีความผิดปกติ หรือต้องการเปลี่ยนแปลงนัดหมาย กรุณาติดต่อ 097-4655997\r\nIf you have any problem or change appointment, please contact 097-4655997\r\nเปิดทำการทุกวัน  หยุดวันจันทร์ และวันศุกร์ (8.00-19.00 น.)\r\nOpen every day, except Monday and Friday (8 AM – 7 PM) \r\n";
                 }
                 else
                 {
+                    this.logo.SizeF = new System.Drawing.SizeF(211.4585F, 74.16669F);
                     textFooter.Text = "ผู้ป่วยที่ใช้สิทธิต่างๆกรุณาแจ้งที่เคาร์เตอร์ลงทะเบียน ก่อนเข้ารับบริการ กรณีมีนัดหมายตรวจเลือด หรือเอกซเรย์ กรุณามาก่อนเวลานัด 1 ชั่วโมง\r\nPlease contact registration department and reach the hospital 1 prior 1 hour of appointment time in case of blood test or x-ray.\r\nหากท่านมีความผิดปกติกรุณาติดต่อกลับมาที่คลินิกก่อนเวลานัดหมาย Please return earlier if worsening symptom.\r\nกรณีเปลี่ยนแปลงนัดหมาย กรุณาติดต่อ 033 060 399 If you enable to keep appointment. Please call 033 060 399 เปิดทุกวัน เวลา 7:00 น. ถึง 18:00 น.  \r\n";
                 }
 
