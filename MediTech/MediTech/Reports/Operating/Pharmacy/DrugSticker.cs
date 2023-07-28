@@ -35,14 +35,14 @@ namespace MediTech.Reports.Operating.Pharmacy
                 {
                     if (languageType.ToUpper() == "EN")
                     {
-                        if(!string.IsNullOrEmpty(item.ItemUnitEn))
+                        if(!string.IsNullOrEmpty(item.PrescriptionUnitEn))
                         {
-                            item.ItemUnit = item.ItemUnitEn;
+                            item.PrescriptionUnit = item.PrescriptionUnitEn;
                         }
 
                         if (item.NumericValue == null || item.NumericValue == 0)
                         {
-                            item.DrugLable = item.DrugLableEN + " " + item.Dosage + " " + item.ItemUnit;
+                            item.DrugLable = item.DrugLableEN + " " + item.Dosage + " " + item.PrescriptionUnit;
                         }
                         else
                         {
@@ -59,7 +59,7 @@ namespace MediTech.Reports.Operating.Pharmacy
                     {
                         if (item.NumericValue == null || item.NumericValue == 0)
                         {
-                            item.DrugLable = item.DrugLable + " " + item.Dosage + " " + item.ItemUnit;
+                            item.DrugLable = item.DrugLable + " " + item.Dosage + " " + item.PrescriptionUnit;
                         }
                     }
 

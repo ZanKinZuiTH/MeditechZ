@@ -24,6 +24,9 @@ namespace MediTech.Model.Report
         public double? Dosage { get; set; }
         public string ItemUnit { get; set; }
         public string ItemUnitEn { get; set; }
+        public string PrescriptionUnit { get; set; }
+        public string PrescriptionUnitEn { get; set; }
+
         public string OrganisationCode { get; set; }
         public string OrganisationName { get; set; }
         public string LicenseNo { get; set; }

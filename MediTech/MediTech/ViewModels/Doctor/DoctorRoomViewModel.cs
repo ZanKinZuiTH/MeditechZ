@@ -1185,6 +1185,8 @@ namespace MediTech.ViewModels
                                 newOrder.DFORMUID = itemMaster.FORMMUID;
                                 newOrder.ROUTEUID = itemMaster.ROUTEUID;
                                 newOrder.PDSTSUID = itemMaster.PDSTSUID;
+                                newOrder.ORDPRUID = 440; //Normal
+                                newOrder.PRSTYPUID = 4768; //Routine Order
                                 newOrder.QNUOMUID = itemMaster.BaseUOM;
 
                             }
