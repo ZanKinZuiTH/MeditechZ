@@ -330,7 +330,9 @@ namespace MediTech.Reports.Operating.Checkup
                             || p.RequestItemCode.Contains("LAB483") //Amphetamine
                             || p.RequestItemCode.Contains("LAB490") //Amphetamine (strip)
                             || p.RequestItemCode.Contains("LAB441") //hbs ag
-                            || p.RequestItemCode.Contains("LAB481") //anti hbs-ag
+                            || p.RequestItemCode.Contains("LAB451") //anti hbs-ag
+                            || p.RequestItemCode.Contains("LAB595") //Hepatitis B surface Antigen (CMIA)
+                            || p.RequestItemCode.Contains("LAB596") //Hepatitis B surface Antibody (CMIA)
                             || p.RequestItemCode.Contains("LAB281") //afp
                             || p.RequestItemCode.Contains("LAB282") //ca19-9
                             || p.RequestItemCode.Contains("LAB283") //cea
@@ -423,7 +425,7 @@ namespace MediTech.Reports.Operating.Checkup
                 cellLymphocyte1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0050" && p.Year == year1)?.ResultValue;
 
                 cellMonocyteRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0060")?.ReferenceRange;
-                cellPlateletsCount1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0060" && p.Year == year1)?.ResultValue;
+                cellMonocyte1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0060" && p.Year == year1)?.ResultValue;
 
                 cellEosinophilRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0070")?.ReferenceRange;
                 cellEosinophil1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0070" && p.Year == year1)?.ResultValue;
