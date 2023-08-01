@@ -86,7 +86,7 @@ namespace MediTech.ViewModels
                     VisibiltyEmployerAddress = Visibility.Collapsed;
                     VisibilityCareprovider2 = Visibility.Collapsed;
                     CareproviderLabel = "แพทย์";
-                    if (SelectedVisitType.ValueCode == "MBCHK" || SelectedVisitType.ValueCode == "CHKUP" || SelectedVisitType.ValueCode == "CHKIN" || SelectedVisitType.ValueCode == "CHKIN5")
+                    if (SelectedVisitType.ValueCode == "MBCHK" || SelectedVisitType.ValueCode == "CHKUP" || SelectedVisitType.ValueCode == "CHKIN" || SelectedVisitType.ValueCode == "CHKIN5" || SelectedVisitType.ValueCode == "CHKIN6")
                     {
                         if (CheckupJobSource == null)
                         {
