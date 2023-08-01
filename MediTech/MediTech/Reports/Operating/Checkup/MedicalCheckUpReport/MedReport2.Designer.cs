@@ -141,19 +141,26 @@
             this.xrTableCell41 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell42 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell43 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTable3 = new DevExpress.XtraReports.UI.XRTable();
+            this.xrTableRow13 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.hn2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Name2 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // TopMargin
             // 
-            this.TopMargin.HeightF = 54.16667F;
+            this.TopMargin.HeightF = 50.83333F;
             this.TopMargin.Name = "TopMargin";
             // 
             // BottomMargin
             // 
-            this.BottomMargin.HeightF = 52.22262F;
+            this.BottomMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrTable3});
+            this.BottomMargin.HeightF = 46.96442F;
             this.BottomMargin.Name = "BottomMargin";
             // 
             // Detail
@@ -1722,6 +1729,37 @@
             this.xrTableCell43.StylePriority.UseFont = false;
             this.xrTableCell43.Weight = 2.7758620268723062D;
             // 
+            // xrTable3
+            // 
+            this.xrTable3.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.xrTable3.LocationFloat = new DevExpress.Utils.PointFloat(37.5F, 0F);
+            this.xrTable3.Name = "xrTable3";
+            this.xrTable3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrTable3.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
+            this.xrTableRow13});
+            this.xrTable3.SizeF = new System.Drawing.SizeF(325F, 25F);
+            this.xrTable3.StylePriority.UseFont = false;
+            // 
+            // xrTableRow13
+            // 
+            this.xrTableRow13.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.hn2,
+            this.Name2});
+            this.xrTableRow13.Name = "xrTableRow13";
+            this.xrTableRow13.Weight = 1D;
+            // 
+            // hn2
+            // 
+            this.hn2.Multiline = true;
+            this.hn2.Name = "hn2";
+            this.hn2.Weight = 0.99999999999999978D;
+            // 
+            // Name2
+            // 
+            this.Name2.Multiline = true;
+            this.Name2.Name = "Name2";
+            this.Name2.Weight = 3.3333333333333335D;
+            // 
             // MedReport2
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1729,7 +1767,7 @@
             this.BottomMargin,
             this.Detail});
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(0, 1, 54, 52);
+            this.Margins = new System.Drawing.Printing.Margins(0, 1, 51, 47);
             this.PageHeight = 1169;
             this.PageWidth = 827;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
@@ -1738,6 +1776,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -1857,5 +1896,9 @@
         public DevExpress.XtraReports.UI.XRTableCell R6;
         public DevExpress.XtraReports.UI.XRTableCell R7;
         public DevExpress.XtraReports.UI.XRTableCell lbAudioRight;
+        private DevExpress.XtraReports.UI.XRTable xrTable3;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow13;
+        public DevExpress.XtraReports.UI.XRTableCell hn2;
+        public DevExpress.XtraReports.UI.XRTableCell Name2;
     }
 }
