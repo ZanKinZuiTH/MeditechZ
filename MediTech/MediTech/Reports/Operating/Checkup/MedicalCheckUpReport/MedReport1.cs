@@ -143,6 +143,8 @@ namespace MediTech.Reports.Operating.Checkup
                 lbWaist.Text = patient.WaistCircumference != null ? patient.WaistCircumference.ToString() : "";
                 lbHip.Text = patient.HipCircumference != null ? patient.HipCircumference.ToString() : "";
 
+                page2.hn2.Text = "HN : " + patient.PatientID;
+                page2.Name2.Text = patient.PatientName;
                 #endregion
 
                 #region Result Wellness
