@@ -123,7 +123,7 @@ namespace MediTech.ViewModels
                         VisibiltyEmployerAddress = Visibility.Visible;
                     }
 
-                    if (SelectedVisitType.ValueCode == "CHKIN4" || SelectedVisitType.ValueCode == "CHKIN5")
+                    if (SelectedVisitType.ValueCode == "CHKIN4" || SelectedVisitType.ValueCode == "CHKIN5" || SelectedVisitType.ValueCode == "CHKIN6")
                     {
                         VisibilityCareprovider2 = Visibility.Visible;
                         CareproviderLabel = "แพทย์อาชีว";
