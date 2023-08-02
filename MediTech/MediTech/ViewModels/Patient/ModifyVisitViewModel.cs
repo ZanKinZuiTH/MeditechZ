@@ -357,7 +357,7 @@ namespace MediTech.ViewModels
             SelectedPriority = PrioritySource.FirstOrDefault(p => p.Key == SelectPatientVisit.PRITYUID);
             SelectedCareprovider = CareproviderSource.FirstOrDefault(p => p.CareproviderUID == SelectPatientVisit.CareProviderUID);
 
-            if (visitModel.VISTYUID == 4867) //ใบรับรองแพทย์อับอากาศ
+            if (visitModel.VISTYUID == 4867 || visitModel.VISTYUID == 4875 || visitModel.VISTYUID == 4877) //มีหมออาชีว
             {
                 var careMedical = DataService.PatientIdentity.GetPatientConsultationMedicalCertificate(visitModel.PatientUID, visitModel.PatientVisitUID);
                 if (careMedical != null && careMedical.Count > 0)
