@@ -120,6 +120,8 @@ namespace MediTechWebApi.Controllers
                     WHRValue = p.WHRValue,
                     IsPregnant = p.IsPregnant,
                     Comments = p.Comments,
+                    CWhen = p.CWhen,
+                    MWhen = p.MWhen,
                     RecordedBy = SqlFunction.fGetCareProviderName(p.CUser)
                 }).ToList();
 

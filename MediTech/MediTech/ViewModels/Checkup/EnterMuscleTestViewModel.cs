@@ -72,6 +72,11 @@ namespace MediTech.ViewModels
 
         public void AssignModel(RequestListModel request)
         {
+            var dt = DataService.PatientHistory.GetPatientVitalSignByVisitUID(request.PatientVisitUID).OrderByDescending(p => p.MWhen).FirstOrDefault();
+            if(dt != null)
+            {
+                request.Weight = dt.Weight ?? 0;
+            }
             this.RequestModel = request;
             RequestItemName = this.RequestModel.RequestItemName;
             var dataList = DataService.Checkup.GetResultItemByRequestDetailUID(request.RequestDetailUID);
