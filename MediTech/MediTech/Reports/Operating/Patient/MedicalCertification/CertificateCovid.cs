@@ -110,7 +110,7 @@ namespace MediTech.Reports.Operating.Patient
 
                 }
                 string name = OrganisationDefault.HealthOrganisationUID == 17 ? "บีอาร์เอ็กซ์จีสหคลินิก" : OrganisationDefault.Name?.ToString();
-                TextboxPlace.Text = name + " ที่อยู่ " + OrganisationBRXG.Address?.ToString() + "\nเลขที่ใบอนุญาต " + OrganisationDefault.LicenseNo.ToString() + " เบอร์โทรศัพท์ " + OrganisationBRXG.MobileNo + " E-mail " + OrganisationBRXG.Email.ToString();
+                TextboxPlace.Text = name + " ที่อยู่ " + OrganisationDefault.Address?.ToString() + "\nเลขที่ใบอนุญาต " + OrganisationDefault.LicenseNo.ToString() + " เบอร์โทรศัพท์ " + OrganisationDefault.MobileNo + " E-mail " + OrganisationDefault.Email.ToString();
 
                 if (OrganisationDefault.HOTYPUID == 3079)
                     textType = "ค้างคืน";
