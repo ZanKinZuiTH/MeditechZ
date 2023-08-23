@@ -949,11 +949,11 @@ namespace MediTech.ViewModels
             #region RowColor
             if (CurrentData.BN != "")
             {
-                CurrentData.RowColor = Colors.DarkBlue.ToString();
+                CurrentData.RowColor = Colors.BlueViolet.ToString(); 
             }
             else
             {
-                CurrentData.RowColor = Colors.BlueViolet.ToString();
+                CurrentData.RowColor = Colors.DarkBlue.ToString();
             }
 
             if (CurrentImportedData.HasVisitToday)
