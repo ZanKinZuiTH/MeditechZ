@@ -161,7 +161,9 @@
                     <dxdo:LayoutPanel ShowCaption="False" AllowDockToCurrentItem="False">
                         <dxlc:LayoutControl>
                             <dxlc:LayoutGroup Orientation="Vertical">
-                                <dxg:GridControl x:Name="PatientGrid" ItemsSource="{Binding PatientVisits}">
+                                <dxg:GridControl x:Name="PatientGrid" ItemsSource="{Binding PatientVisits}"
+                                                 SelectionMode="Row"
+                                                 SelectedItems="{Binding SelectPatientVisits}">
                                     <dxg:GridColumn FieldName="No" Width="30" Fixed="Left">
                                         <dxg:GridColumn.CellTemplate>
                                             <DataTemplate>
@@ -190,13 +192,13 @@
                                     <dxg:GridColumn Header="หมายเหตุ" FieldName="Note" ReadOnly="True"/>
                                     <!--<dxg:GridColumn Header="Payor" FieldName="PayorName" ReadOnly="True"/>-->
                                     <dxg:GridControl.View>
-                                        <dxg:TableView ShowGroupPanel="False"/>
+                                        <dxg:TableView 
+                                            ShowCheckBoxSelectorColumn="True" 
+                                            ShowCheckBoxSelectorInGroupRow="True"
+                                            ShowGroupPanel="False"/>
                                     </dxg:GridControl.View>
                                 </dxg:GridControl>
-                                <dxlc:LayoutItem HorizontalAlignment="Left"  Label="Select All" >
-                                    <CheckBox VerticalAlignment="Center" HorizontalAlignment="Left" 
-                                              Name="SelectAll" IsChecked="{Binding Path=SelectAll,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="50"></CheckBox>
-                                </dxlc:LayoutItem>
+
                             </dxlc:LayoutGroup>
                         </dxlc:LayoutControl>
                     </dxdo:LayoutPanel>
@@ -447,7 +449,7 @@
                             </dxlc:LayoutControl>
                         </dxdo:LayoutPanel>
                     </dxdo:TabbedGroup>
- 
+
                 </dxdo:LayoutGroup>
             </dxdo:DockLayoutManager>
         </dxlc:LayoutControl>

@@ -239,7 +239,7 @@ namespace MediTech.ViewModels
         }
 
 
- 
+
 
         private List<LocationModel> _LocationOrders;
 
@@ -338,12 +338,25 @@ namespace MediTech.ViewModels
         }
 
 
-        private ObservableCollection<PatientVisitModel> __PatientVisits;
+        private ObservableCollection<PatientVisitModel> _PatientVisits;
 
         public ObservableCollection<PatientVisitModel> PatientVisits
         {
-            get { return __PatientVisits; }
-            set { Set(ref __PatientVisits, value); }
+            get { return _PatientVisits; }
+            set { Set(ref _PatientVisits, value); }
+        }
+
+        private ObservableCollection<PatientVisitModel> _SelectPatientVisits;
+
+        public ObservableCollection<PatientVisitModel> SelectPatientVisits
+        {
+            get
+            {
+                return _SelectPatientVisits
+                    ?? (_SelectPatientVisits = new ObservableCollection<PatientVisitModel>());
+            }
+
+            set { Set(ref _SelectPatientVisits, value); }
         }
 
         private Visibility _VisitStatusDoctorVisibility = Visibility.Collapsed;
@@ -384,42 +397,6 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectReport, value); }
         }
 
-        private bool _SelectAll;
-
-        public bool SelectAll
-        {
-            get { return _SelectAll; }
-            set
-            {
-                if (_SelectAll != value)
-                {
-                    _SelectAll = value;
-                    if (SelectAll == true)
-                    {
-                        if (PatientVisits != null && PatientVisits.Count > 0)
-                        {
-                            foreach (var patientVisit in PatientVisits)
-                            {
-                                patientVisit.Select = true;
-                            }
-                        }
-                    }
-                    else if (SelectAll == false)
-                    {
-                        if (PatientVisits != null && PatientVisits.Count > 0)
-                        {
-                            foreach (var patientVisit in PatientVisits)
-                            {
-                                patientVisit.Select = false;
-                            }
-                        }
-                    }
-                    PatientVisitMass view = (PatientVisitMass)this.View;
-                    view.PatientGrid.RefreshData();
-                }
-                Set(ref _SelectAll, value);
-            }
-        }
 
         private List<LookupReferenceValueModel> _BillingCategory;
 
@@ -635,8 +612,8 @@ namespace MediTech.ViewModels
             int? careproviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : (int?)null;
             int? ownerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
             int? locationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
-            int ? insuranceCompanyUID = (SelectInsuranceCompany != null && SelectInsuranceCompany.InsuranceCompanyUID != 0) ? SelectInsuranceCompany.InsuranceCompanyUID : (int?)null;
-            PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchPatientVisit(BN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, ownerOrganisationUID,locationUID, insuranceCompanyUID, null, encounterList));
+            int? insuranceCompanyUID = (SelectInsuranceCompany != null && SelectInsuranceCompany.InsuranceCompanyUID != 0) ? SelectInsuranceCompany.InsuranceCompanyUID : (int?)null;
+            PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchPatientVisit(BN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, ownerOrganisationUID, locationUID, insuranceCompanyUID, null, encounterList));
 
         }
 
@@ -657,72 +634,69 @@ namespace MediTech.ViewModels
                         PatientVisitMass view = (PatientVisitMass)this.View;
                         int upperlimit = 0;
                         int loopCounter = 0;
-                        foreach (var currentData in PatientVisits)
+                        foreach (var currentData in SelectPatientVisits)
                         {
-                            if (currentData.Select == true)
-                            {
-                                upperlimit++;
-                            }
+                            upperlimit++;
                         }
 
                         view.SetProgressBarLimits(0, upperlimit);
 
-                        foreach (var patientVisit in PatientVisits)
+                        foreach (var patientVisit in SelectPatientVisits.ToList())
                         {
-                            if (patientVisit.Select)
+
+
+
+                            if (patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
                             {
-
-
-                                if (patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
-                                {
-                                    WarningDialog("ผู้ป่วย " + patientVisit.PatientName + "ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
-                                    patientVisit.Select = false;
-                                    OnUpdateEvent();
-                                    continue;
-                                }
-                                int userUID = AppUtil.Current.UserID;
-                                List<PatientOrderDetailModel> saveOrders = new List<PatientOrderDetailModel>();
-
-                                foreach (var patientOrder in PatientOrders)
-                                {
-                                    BillableItemModel billItem = DataService.MasterData.GetBillableItemByUID(patientOrder.BillableItemUID);
-                                    var listOrderAlert = DataService.OrderProcessing.CriteriaOrderAlert(patientVisit.PatientUID, patientVisit.PatientVisitUID, billItem);
-                                    if (listOrderAlert != null && listOrderAlert.Count > 0)
-                                    {
-                                        WarningDialog("ผู้ป่วย " + patientVisit.PatientName + " รายการ " + billItem.ItemName + " นี้มีแจ้งเตือนการคีย์");
-                                        OrderAlert viewOrderAlert = new OrderAlert();
-                                        OrderAlertViewModel viewModel = (OrderAlertViewModel)ShowModalDialogUsingViewModel(viewOrderAlert, new OrderAlertViewModel(listOrderAlert), true);
-                                        if (viewModel.ResultDialog != ActionDialog.Save)
-                                        {
-                                            patientVisit.Select = false;
-                                            OnUpdateEvent();
-                                            continue;
-                                        }
-                                        patientOrder.PatientOrderAlert = viewModel.OrderAlerts;
-                                    }
-
-                                    if (patientOrder.DoctorFee != null && patientOrder.DoctorFee != 0)
-                                    {
-                                        if (patientOrder.CareproviderUID == null)
-                                        {
-                                            patientOrder.CareproviderUID = patientVisit.CareProviderUID;
-                                            patientOrder.CareproviderName = patientVisit.CareProviderName;
-                                        }
-                                    }
-                                    patientOrder.OwnerOrganisationUID = patientVisit.OwnerOrganisationUID ?? 0;
-
-                                    saveOrders.Add(patientOrder);
-                                }
-
-
-                                var locationUID = SelectLocationOrder.LocationUID;
-                                int ownerorganisationUID = AppUtil.Current.OwnerOrganisationUID;
-                                DataService.OrderProcessing.CreateOrder(patientVisit.PatientUID, patientVisit.PatientVisitUID, userUID, locationUID, ownerorganisationUID, saveOrders);
-                                patientVisit.Select = false;
-                                loopCounter = loopCounter + 1;
-                                view.SetProgressBarValue(loopCounter);
-
+                                WarningDialog("ผู้ป่วย " + patientVisit.PatientName + "ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
+                                SelectPatientVisits.Remove(patientVisit);
+                                OnUpdateEvent();
+                                continue;
                             }
+                            int userUID = AppUtil.Current.UserID;
+                            List<PatientOrderDetailModel> saveOrders = new List<PatientOrderDetailModel>();
+
+                            foreach (var patientOrder in PatientOrders)
+                            {
+                                BillableItemModel billItem = DataService.MasterData.GetBillableItemByUID(patientOrder.BillableItemUID);
+                                var listOrderAlert = DataService.OrderProcessing.CriteriaOrderAlert(patientVisit.PatientUID, patientVisit.PatientVisitUID, billItem);
+                                if (listOrderAlert != null && listOrderAlert.Count > 0)
+                                {
+                                    WarningDialog("ผู้ป่วย " + patientVisit.PatientName + " รายการ " + billItem.ItemName + " นี้มีแจ้งเตือนการคีย์");
+                                    OrderAlert viewOrderAlert = new OrderAlert();
+                                    OrderAlertViewModel viewModel = (OrderAlertViewModel)ShowModalDialogUsingViewModel(viewOrderAlert, new OrderAlertViewModel(listOrderAlert), true);
+                                    if (viewModel.ResultDialog != ActionDialog.Save)
+                                    {
+                                        SelectPatientVisits.Remove(patientVisit);
+                                        OnUpdateEvent();
+                                        continue;
+                                    }
+                                    patientOrder.PatientOrderAlert = viewModel.OrderAlerts;
+                                }
+
+                                if (patientOrder.DoctorFee != null && patientOrder.DoctorFee != 0)
+                                {
+                                    if (patientOrder.CareproviderUID == null)
+                                    {
+                                        patientOrder.CareproviderUID = patientVisit.CareProviderUID;
+                                        patientOrder.CareproviderName = patientVisit.CareProviderName;
+                                    }
+                                }
+                                patientOrder.OwnerOrganisationUID = patientVisit.OwnerOrganisationUID ?? 0;
+
+                                saveOrders.Add(patientOrder);
+                            }
+
+
+                            var locationUID = SelectLocationOrder.LocationUID;
+                            int ownerorganisationUID = AppUtil.Current.OwnerOrganisationUID;
+                            DataService.OrderProcessing.CreateOrder(patientVisit.PatientUID, patientVisit.PatientVisitUID, userUID, locationUID, ownerorganisationUID, saveOrders);
+
+                            SelectPatientVisits.Remove(patientVisit);
+                            loopCounter = loopCounter + 1;
+                            view.SetProgressBarValue(loopCounter);
+
+
                         }
 
                         view.SetProgressBarValue(upperlimit);
@@ -749,16 +723,13 @@ namespace MediTech.ViewModels
                 {
                     if (SelectSaveVisitStatusList != null)
                     {
-                       
+
                         PatientVisitMass view = (PatientVisitMass)this.View;
                         int upperlimit = 0;
                         int loopCounter = 0;
-                        foreach (var currentData in PatientVisits)
+                        foreach (var currentData in SelectPatientVisits)
                         {
-                            if (currentData.Select == true)
-                            {
-                                upperlimit++;
-                            }
+                            upperlimit++;
                         }
 
                         view.SetProgressBarLimits(0, upperlimit);
@@ -776,141 +747,140 @@ namespace MediTech.ViewModels
 
                             CareProviderUID = SelectDoctorSaveVisitStatus.CareproviderUID;
                         }
-                        foreach (var patientVisit in PatientVisits)
+                        foreach (var patientVisit in SelectPatientVisits.ToList())
                         {
-                            if (patientVisit.Select)
+
+                            if (selectVisitStatus != FINDIS)
                             {
-                                if (selectVisitStatus != FINDIS)
+                                if (selectVisitStatus == CANCEL && patientVisit.VISTSUID != FINDIS)
                                 {
-                                    if (selectVisitStatus == CANCEL && patientVisit.VISTSUID != FINDIS)
+                                    var orderLists = DataService.OrderProcessing.GetOrderAllByVisitUID(patientVisit.PatientVisitUID);
+                                    if (orderLists != null)
                                     {
-                                        var orderLists = DataService.OrderProcessing.GetOrderAllByVisitUID(patientVisit.PatientVisitUID);
-                                        if (orderLists != null)
+                                        var reviewOrder = orderLists.Where(p => p.OrderDetailStatus == "Reviewed");
+                                        var dispensedOrder = orderLists.Where(p => p.OrderDetailStatus == "Dispensed");
+                                        if (reviewOrder != null && reviewOrder.Count() > 0)
                                         {
-                                            var reviewOrder = orderLists.Where(p => p.OrderDetailStatus == "Reviewed");
-                                            var dispensedOrder = orderLists.Where(p => p.OrderDetailStatus == "Dispensed");
-                                            if (reviewOrder != null && reviewOrder.Count() > 0)
-                                            {
-                                                WarningDialog("ผู้ป่วย " + patientVisit.PatientName + "มี Order สถานะ Reviewed กรุณาทำการ Cancel Order");
-                                                return;
-                                            }
-                                            if (dispensedOrder != null && dispensedOrder.Count() > 0)
-                                            {
-                                                WarningDialog("ผู้ป่วย " + patientVisit.PatientName + "มี Order สถานะ Dispensed กรุณาทำการ ยกเลิกการจ่ายยา ที่หน้าใบสั่งยา");
-                                                return;
-                                            }
-                                        }
-                                        DataService.PatientIdentity.CancelVisit(patientVisit.PatientVisitUID, AppUtil.Current.UserID);
-                                    }
-                                    else
-                                    {
-                                        //if (selectVisitStatus == SNDDOC && patientVisit.VISTSUID != REGST)
-                                        //{
-                                        //    WarningDialog("ผู้ป่วย " + patientVisit.PatientName + "ไม่สามารถดำเนินการ Send To Doctor ได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
-                                        //    patientVisit.Select = false;
-                                        //    OnUpdateEvent();
-                                        //    continue;
-                                        //}
-                                        if (selectVisitStatus == CHKOUT && (patientVisit.VISTSUID == CHKOUT || patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL))
-                                        {
-                                            WarningDialog("ผู้ป่วย " + patientVisit.PatientName + "ไม่สามารถดำเนินการ ปิด Medical Discharge ได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
+                                            WarningDialog("ผู้ป่วย " + patientVisit.PatientName + "มี Order สถานะ Reviewed กรุณาทำการ Cancel Order");
                                             return;
                                         }
-
-                                        if (selectVisitStatus == REGST && patientVisit.VISTSUID != CHKOUT)
+                                        if (dispensedOrder != null && dispensedOrder.Count() > 0)
                                         {
-                                            WarningDialog("ผู้ป่วย " + patientVisit.PatientName + "ไม่สามารถดำเนินการ Registerได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
+                                            WarningDialog("ผู้ป่วย " + patientVisit.PatientName + "มี Order สถานะ Dispensed กรุณาทำการ ยกเลิกการจ่ายยา ที่หน้าใบสั่งยา");
+                                            return;
                                         }
-
-                                        if (selectVisitStatus == CANCEL && patientVisit.VISTSUID == FINDIS)
-                                        {
-                                            WarningDialog("ผู้ป่วย " + patientVisit.PatientName + "ไม่สามารถดำเนินการ Cancel ได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
-                                        }
-                                        if (selectVisitStatus != SNDDOC)
-                                        {
-                                            CareProviderUID = patientVisit.CareProviderUID;
-                                        }
-                                        DataService.PatientIdentity.ChangeVisitStatus(patientVisit.PatientVisitUID, selectVisitStatus, CareProviderUID, patientVisit.LocationUID, arriveTime, AppUtil.Current.UserID, null, null);
                                     }
+                                    DataService.PatientIdentity.CancelVisit(patientVisit.PatientVisitUID, AppUtil.Current.UserID);
                                 }
-                                    //else
+                                else
+                                {
+                                    //if (selectVisitStatus == SNDDOC && patientVisit.VISTSUID != REGST)
                                     //{
-                                    //    List<PatientOrderDetailModel> orderAll = new List<PatientOrderDetailModel>();
-                                    //    List<PatientOrderDetailModel> DrugOrderList = new List<PatientOrderDetailModel>();
-                                    //    orderAll = DataService.OrderProcessing.GetOrderAllByVisitUID(patientVisit.PatientVisitUID);
-                                    //    orderAll = orderAll.Where(p => p.ORDSTUID != 2848).ToList();
-                                    //    ObservableCollection<PatientBilledItemModel> OrderAllList = new ObservableCollection<PatientBilledItemModel>(orderAll.Select(p => new PatientBilledItemModel
-                                    //    {
-                                    //        BillableItemUID = p.BillableItemUID,
-                                    //        PatientOrderDetailUID = p.PatientOrderDetailUID,
-                                    //        ItemName = p.ItemName,
-                                    //        Amount = p.NetAmount,
-                                    //        Discount = p.Discount ?? 0,
-                                    //        NetAmount = p.NetAmount,
-                                    //        ItemMutiplier = p.Quantity ?? 1,
-                                    //        BSMDDUID = p.BSMDDUID,
-                                    //        DoctorFee = p.DoctorFee,
-                                    //        CareproviderUID = p.CareproviderUID,
-                                    //        IdentifyingUID = p.IdentifyingUID,
-                                    //        BillingService = p.BillingService
-                                    //    }));
-
-                                    //    var TempDrugList = orderAll.Where(p => p.IdentifyingType.ToUpper() == "PRESCRIPTIONITEM").ToList();
-                                    //    foreach (var drugItem in TempDrugList)
-                                    //    {
-                                    //        List<PatientOrderDetailModel> drugDetails = DataService.Pharmacy.GetDrugStoreDispense(drugItem.IdentifyingUID ?? 0);
-                                    //        foreach (var item in drugDetails)
-                                    //        {
-                                    //            item.LocalInstructionText = drugItem.LocalInstructionText;
-                                    //            item.UnitPrice = drugItem.UnitPrice;
-                                    //            item.BillingService = drugItem.BillingService;
-                                    //        }
-                                    //        DrugOrderList.AddRange(drugDetails);
-                                    //    }
-
-                                    //    if (DrugOrderList != null)
-                                    //    {
-                                    //        foreach (var drugItem in DrugOrderList)
-                                    //        {
-                                    //            if (drugItem.StockUID == null || drugItem.StockUID == 0)
-                                    //            {
-                                    //                WarningDialog("รายการ " + drugItem.ItemName + " ไม่มีในคลังสินค้า โปรดตรวจสอบ หรือ ติดต่อ Admin");
-                                    //                return;
-                                    //            }
-                                    //        }
-                                    //    }
-
-                                    //    Double TotalAmount = OrderAllList.Sum(p => p.NetAmount) ?? 0;
-
-                                    //    PatientBillModel patbill = new PatientBillModel();
-                                    //    patbill.PatientBilledItems = new List<PatientBilledItemModel>();
-
-
-                                    //    //patbill.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
-                                    //    patbill.OwnerOrganisationUID = patientVisit.OwnerOrganisationUID ?? AppUtil.Current.OwnerOrganisationUID;
-                                    //    patbill.CUser = AppUtil.Current.UserID;
-                                    //    patbill.MUser = AppUtil.Current.UserID;
-                                    //    patbill.PaidAmount = TotalAmount;
-                                    //    patbill.Comments = "From Visit Mass";
-                                    //    patbill.PatientName = patientVisit.PatientName;
-                                    //    patbill.PatientUID = patientVisit.PatientUID;
-                                    //    patbill.PatientVisitUID = patientVisit.PatientVisitUID;
-                                    //    patbill.PatientID = patientVisit.PatientID;
-                                    //    patbill.VisitID = patientVisit.VisitID;
-                                    //    patbill.VisitDttm = patientVisit.StartDttm.Value;
-                                    //    patbill.TotalAmount = TotalAmount;
-                                    //    patbill.NetAmount = TotalAmount;
-
-                                    //    patbill.PatientBilledItems.AddRange(OrderAllList);
-
-
-                                    //    PatientBillModel patBillResult = DataService.Billing.GeneratePatientBill(patbill);
+                                    //    WarningDialog("ผู้ป่วย " + patientVisit.PatientName + "ไม่สามารถดำเนินการ Send To Doctor ได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
+                                    //    patientVisit.Select = false;
+                                    //    OnUpdateEvent();
+                                    //    continue;
                                     //}
+                                    if (selectVisitStatus == CHKOUT && (patientVisit.VISTSUID == CHKOUT || patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL))
+                                    {
+                                        WarningDialog("ผู้ป่วย " + patientVisit.PatientName + "ไม่สามารถดำเนินการ ปิด Medical Discharge ได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
+                                        return;
+                                    }
 
-                                    patientVisit.Select = false;
-                                loopCounter = loopCounter + 1;
-                                view.SetProgressBarValue(loopCounter);
+                                    if (selectVisitStatus == REGST && patientVisit.VISTSUID != CHKOUT)
+                                    {
+                                        WarningDialog("ผู้ป่วย " + patientVisit.PatientName + "ไม่สามารถดำเนินการ Registerได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
+                                    }
+
+                                    if (selectVisitStatus == CANCEL && patientVisit.VISTSUID == FINDIS)
+                                    {
+                                        WarningDialog("ผู้ป่วย " + patientVisit.PatientName + "ไม่สามารถดำเนินการ Cancel ได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
+                                    }
+                                    if (selectVisitStatus != SNDDOC)
+                                    {
+                                        CareProviderUID = patientVisit.CareProviderUID;
+                                    }
+                                    DataService.PatientIdentity.ChangeVisitStatus(patientVisit.PatientVisitUID, selectVisitStatus, CareProviderUID, patientVisit.LocationUID, arriveTime, AppUtil.Current.UserID, null, null);
+                                }
                             }
+                            //else
+                            //{
+                            //    List<PatientOrderDetailModel> orderAll = new List<PatientOrderDetailModel>();
+                            //    List<PatientOrderDetailModel> DrugOrderList = new List<PatientOrderDetailModel>();
+                            //    orderAll = DataService.OrderProcessing.GetOrderAllByVisitUID(patientVisit.PatientVisitUID);
+                            //    orderAll = orderAll.Where(p => p.ORDSTUID != 2848).ToList();
+                            //    ObservableCollection<PatientBilledItemModel> OrderAllList = new ObservableCollection<PatientBilledItemModel>(orderAll.Select(p => new PatientBilledItemModel
+                            //    {
+                            //        BillableItemUID = p.BillableItemUID,
+                            //        PatientOrderDetailUID = p.PatientOrderDetailUID,
+                            //        ItemName = p.ItemName,
+                            //        Amount = p.NetAmount,
+                            //        Discount = p.Discount ?? 0,
+                            //        NetAmount = p.NetAmount,
+                            //        ItemMutiplier = p.Quantity ?? 1,
+                            //        BSMDDUID = p.BSMDDUID,
+                            //        DoctorFee = p.DoctorFee,
+                            //        CareproviderUID = p.CareproviderUID,
+                            //        IdentifyingUID = p.IdentifyingUID,
+                            //        BillingService = p.BillingService
+                            //    }));
+
+                            //    var TempDrugList = orderAll.Where(p => p.IdentifyingType.ToUpper() == "PRESCRIPTIONITEM").ToList();
+                            //    foreach (var drugItem in TempDrugList)
+                            //    {
+                            //        List<PatientOrderDetailModel> drugDetails = DataService.Pharmacy.GetDrugStoreDispense(drugItem.IdentifyingUID ?? 0);
+                            //        foreach (var item in drugDetails)
+                            //        {
+                            //            item.LocalInstructionText = drugItem.LocalInstructionText;
+                            //            item.UnitPrice = drugItem.UnitPrice;
+                            //            item.BillingService = drugItem.BillingService;
+                            //        }
+                            //        DrugOrderList.AddRange(drugDetails);
+                            //    }
+
+                            //    if (DrugOrderList != null)
+                            //    {
+                            //        foreach (var drugItem in DrugOrderList)
+                            //        {
+                            //            if (drugItem.StockUID == null || drugItem.StockUID == 0)
+                            //            {
+                            //                WarningDialog("รายการ " + drugItem.ItemName + " ไม่มีในคลังสินค้า โปรดตรวจสอบ หรือ ติดต่อ Admin");
+                            //                return;
+                            //            }
+                            //        }
+                            //    }
+
+                            //    Double TotalAmount = OrderAllList.Sum(p => p.NetAmount) ?? 0;
+
+                            //    PatientBillModel patbill = new PatientBillModel();
+                            //    patbill.PatientBilledItems = new List<PatientBilledItemModel>();
+
+
+                            //    //patbill.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+                            //    patbill.OwnerOrganisationUID = patientVisit.OwnerOrganisationUID ?? AppUtil.Current.OwnerOrganisationUID;
+                            //    patbill.CUser = AppUtil.Current.UserID;
+                            //    patbill.MUser = AppUtil.Current.UserID;
+                            //    patbill.PaidAmount = TotalAmount;
+                            //    patbill.Comments = "From Visit Mass";
+                            //    patbill.PatientName = patientVisit.PatientName;
+                            //    patbill.PatientUID = patientVisit.PatientUID;
+                            //    patbill.PatientVisitUID = patientVisit.PatientVisitUID;
+                            //    patbill.PatientID = patientVisit.PatientID;
+                            //    patbill.VisitID = patientVisit.VisitID;
+                            //    patbill.VisitDttm = patientVisit.StartDttm.Value;
+                            //    patbill.TotalAmount = TotalAmount;
+                            //    patbill.NetAmount = TotalAmount;
+
+                            //    patbill.PatientBilledItems.AddRange(OrderAllList);
+
+
+                            //    PatientBillModel patBillResult = DataService.Billing.GeneratePatientBill(patbill);
+                            //}
+
+                            SelectPatientVisits.Remove(patientVisit);
+                            loopCounter = loopCounter + 1;
+                            view.SetProgressBarValue(loopCounter);
+
                         }
 
                         view.SetProgressBarValue(upperlimit);
@@ -1265,70 +1235,66 @@ namespace MediTech.ViewModels
                     PatientVisitMass view = (PatientVisitMass)this.View;
                     int upperlimit = 0;
                     int loopCounter = 0;
-                    foreach (var currentData in PatientVisits)
+                    foreach (var currentData in SelectPatientVisits)
                     {
-                        if (currentData.Select == true)
-                        {
-                            upperlimit++;
-                        }
+                        upperlimit++;
                     }
                     view.SetProgressBarLimits(0, upperlimit);
-                    foreach (var patientVisit in PatientVisits)
+                    foreach (var patientVisit in SelectPatientVisits.ToList())
                     {
-                        if (patientVisit.Select)
+
+
+                        var myReport = Activator.CreateInstance(Type.GetType(SelectReport.NamespaceName));
+                        XtraReport report = (XtraReport)myReport;
+                        ReportPrintTool printTool = new ReportPrintTool(report);
+
+                        if (SelectReport.Name == "ปริ้น Sticker" || SelectReport.Name == "ปริ้น Sticker Large")
                         {
-
-                            var myReport = Activator.CreateInstance(Type.GetType(SelectReport.NamespaceName));
-                            XtraReport report = (XtraReport)myReport;
-                            ReportPrintTool printTool = new ReportPrintTool(report);          
-
-                            if (SelectReport.Name == "ปริ้น Sticker" || SelectReport.Name == "ปริ้น Sticker Large")
-                            {
-                                report.Parameters["OrganisationUID"].Value = patientVisit.OwnerOrganisationUID;
-                                report.Parameters["HN"].Value = patientVisit.PatientID;
-                                report.Parameters["PatientName"].Value = patientVisit.PatientName;
-                                report.Parameters["Age"].Value = patientVisit.Age;
-                                report.Parameters["BirthDate"].Value = patientVisit.BirthDttm != null ? patientVisit.BirthDttm.Value.ToString("dd/MM/yyyy") : null;
-                                report.Parameters["Payor"].Value = patientVisit.PayorName;
-                                report.RequestParameters = false;
-                                report.ShowPrintMarginsWarning = false;
-                                printTool.Print(SelectPrinter.Display);
-                            }
-                            else if (SelectReport.Name == "ใบรับรองแพทย์ 5 โรค (Mobile)")
-                            {
-                                report.Parameters["OrganisationUID"].Value = patientVisit.OwnerOrganisationUID;
-                                report.Parameters["PatientUID"].Value = patientVisit.PatientUID;
-                                report.Parameters["PatientVisitUID"].Value = patientVisit.PatientVisitUID;
-                                report.Parameters["ReportName"].Value = SelectReport.Name;
-                                report.RequestParameters = false;
-                                report.ShowPrintMarginsWarning = false;
-                                printTool.Print(SelectPrinter.Display);
-                            }
-
-                            else if (SelectReport.Name == "รายงานตรวจPapSmear")
-                            {
-                                report.Parameters["PayorDetailUID"].Value = patientVisit.PayorDetailUID;
-                                report.Parameters["PatientUID"].Value = patientVisit.PatientUID;
-                                report.Parameters["PatientVisitUID"].Value = patientVisit.PatientVisitUID;
-                                report.RequestParameters = false;
-                                report.ShowPrintMarginsWarning = false;
-                                printTool.Print(SelectPrinter.Display);
-                            }
-
-                            else
-                            {
-                                report.Parameters["OrganisationUID"].Value = patientVisit.OwnerOrganisationUID;
-                                report.Parameters["PatientUID"].Value = patientVisit.PatientUID;
-                                report.Parameters["PatientVisitUID"].Value = patientVisit.PatientVisitUID;
-                                report.RequestParameters = false;
-                                report.ShowPrintMarginsWarning = false;
-                                printTool.Print(SelectPrinter.Display);
-                            }
-
-                            patientVisit.Select = false;
-                            loopCounter = loopCounter + 1;
-                            view.SetProgressBarValue(loopCounter);
+                            report.Parameters["OrganisationUID"].Value = patientVisit.OwnerOrganisationUID;
+                            report.Parameters["HN"].Value = patientVisit.PatientID;
+                            report.Parameters["PatientName"].Value = patientVisit.PatientName;
+                            report.Parameters["Age"].Value = patientVisit.Age;
+                            report.Parameters["BirthDate"].Value = patientVisit.BirthDttm != null ? patientVisit.BirthDttm.Value.ToString("dd/MM/yyyy") : null;
+                            report.Parameters["Payor"].Value = patientVisit.PayorName;
+                            report.RequestParameters = false;
+                            report.ShowPrintMarginsWarning = false;
+                            printTool.Print(SelectPrinter.Display);
                         }
+                        else if (SelectReport.Name == "ใบรับรองแพทย์ 5 โรค (Mobile)")
+                        {
+                            report.Parameters["OrganisationUID"].Value = patientVisit.OwnerOrganisationUID;
+                            report.Parameters["PatientUID"].Value = patientVisit.PatientUID;
+                            report.Parameters["PatientVisitUID"].Value = patientVisit.PatientVisitUID;
+                            report.Parameters["ReportName"].Value = SelectReport.Name;
+                            report.RequestParameters = false;
+                            report.ShowPrintMarginsWarning = false;
+                            printTool.Print(SelectPrinter.Display);
+                        }
+
+                        else if (SelectReport.Name == "รายงานตรวจPapSmear")
+                        {
+                            report.Parameters["PayorDetailUID"].Value = patientVisit.PayorDetailUID;
+                            report.Parameters["PatientUID"].Value = patientVisit.PatientUID;
+                            report.Parameters["PatientVisitUID"].Value = patientVisit.PatientVisitUID;
+                            report.RequestParameters = false;
+                            report.ShowPrintMarginsWarning = false;
+                            printTool.Print(SelectPrinter.Display);
+                        }
+
+                        else
+                        {
+                            report.Parameters["OrganisationUID"].Value = patientVisit.OwnerOrganisationUID;
+                            report.Parameters["PatientUID"].Value = patientVisit.PatientUID;
+                            report.Parameters["PatientVisitUID"].Value = patientVisit.PatientVisitUID;
+                            report.RequestParameters = false;
+                            report.ShowPrintMarginsWarning = false;
+                            printTool.Print(SelectPrinter.Display);
+                        }
+
+                        SelectPatientVisits.Remove(patientVisit);
+                        loopCounter = loopCounter + 1;
+                        view.SetProgressBarValue(loopCounter);
+
                     }
                     view.SetProgressBarValue(upperlimit);
                     view.PatientGrid.RefreshData();
