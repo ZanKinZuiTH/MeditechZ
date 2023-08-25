@@ -447,8 +447,8 @@ namespace MediTech.ViewModels
                 generateBill.PayorDetailUID = SelectPatientVisitPayor.PayorDetailUID;
                 generateBill.PayorAgreementUID = SelectPatientVisitPayor.PayorAgreementUID;
                 generateBill.UserUID = AppUtil.Current.UserID;
-                generateBill.DateFrom = SelectPateintVisit.CWhen.Date;
-                generateBill.DateTo = DateTime.Now;
+                generateBill.DateFrom = DateFrom ?? SelectPateintVisit.CWhen.Date;
+                generateBill.DateTo = DateTo ?? DateTime.Now;
                 generateBill.Comments = Comments;
 
                 if (SelectPateintVisit.ENTYPUID == EncounterTypes.FirstOrDefault(p => p.ValueCode == "INPAT").Key)
