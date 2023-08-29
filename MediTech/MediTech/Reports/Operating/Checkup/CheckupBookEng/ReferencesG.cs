@@ -12,6 +12,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookEng
         {
             InitializeComponent();
         }
-
+        
     }
 }

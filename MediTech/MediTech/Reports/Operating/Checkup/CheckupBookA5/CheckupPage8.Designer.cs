@@ -50,7 +50,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.tbRediology = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow18 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell129 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.headRadiology = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell130 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow23 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell131 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -370,7 +370,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // xrTableRow18
             // 
             this.xrTableRow18.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell129,
+            this.headRadiology,
             this.xrTableCell130});
             this.xrTableRow18.Name = "xrTableRow18";
             this.xrTableRow18.StylePriority.UseBorders = false;
@@ -378,21 +378,21 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableRow18.StylePriority.UseFont = false;
             this.xrTableRow18.Weight = 0.58339073906375949D;
             // 
-            // xrTableCell129
+            // headRadiology
             // 
-            this.xrTableCell129.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.headRadiology.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell129.CanGrow = false;
-            this.xrTableCell129.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell129.Name = "xrTableCell129";
-            this.xrTableCell129.StylePriority.UseBorders = false;
-            this.xrTableCell129.StylePriority.UseBorderWidth = false;
-            this.xrTableCell129.StylePriority.UseFont = false;
-            this.xrTableCell129.StylePriority.UseTextAlignment = false;
-            this.xrTableCell129.Text = "รายการ";
-            this.xrTableCell129.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell129.Weight = 0.72836972187097293D;
+            this.headRadiology.CanGrow = false;
+            this.headRadiology.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
+            this.headRadiology.Name = "headRadiology";
+            this.headRadiology.StylePriority.UseBorders = false;
+            this.headRadiology.StylePriority.UseBorderWidth = false;
+            this.headRadiology.StylePriority.UseFont = false;
+            this.headRadiology.StylePriority.UseTextAlignment = false;
+            this.headRadiology.Text = "รายการ";
+            this.headRadiology.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.headRadiology.Weight = 0.72836972187097293D;
             // 
             // xrTableCell130
             // 
@@ -1676,7 +1676,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
         private DevExpress.XtraReports.UI.XRTable tbRediology;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow18;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell129;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell130;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow23;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell131;
@@ -1783,5 +1782,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow2;
         public DevExpress.XtraReports.UI.XRTableCell lbEKGResult;
         public DevExpress.XtraReports.UI.XRTableCell lbEKGRecommend;
+        public DevExpress.XtraReports.UI.XRTableCell headRadiology;
     }
 }
