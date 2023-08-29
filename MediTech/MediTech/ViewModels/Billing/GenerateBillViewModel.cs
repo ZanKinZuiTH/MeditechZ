@@ -23,6 +23,22 @@ namespace MediTech.ViewModels
         int CASHH = 2933;
         private int _currentIndex = 0;
 
+        private DateTime? _DateFrom;
+
+        public DateTime? DateFrom
+        {
+            get { return _DateFrom; }
+            set { _DateFrom = value; }
+        }
+
+
+        private DateTime? _DateTo;
+
+        public DateTime? DateTo
+        {
+            get { return _DateTo; }
+            set { _DateTo = value; }
+        }
 
         private PatientVisitModel _SelectPateintVisit;
 
@@ -60,7 +76,7 @@ namespace MediTech.ViewModels
                     BalanceAmount = null;
 
                     var patBillableItems = DataService.Billing.GetPatientBillableItemsAccount(SelectPateintVisit.PatientUID, SelectPateintVisit.PatientVisitUID, null, _SelectPatientVisitPayor.PatientVisitPayorUID
-                        , SelectPateintVisit.CWhen.Date, DateTime.Now.Date, null, null, null);
+                        , DateFrom ?? SelectPateintVisit.CWhen.Date,DateTo ?? DateTime.Now.Date, null, null, null);
                     PatientBillableItemsAccounts = new ObservableCollection<AllocatedPatBillableItemsAccountResultModel>(patBillableItems);
 
                     if (PatientBillableItemsAccounts != null && PatientBillableItemsAccounts.Count > 0)
@@ -281,9 +297,11 @@ namespace MediTech.ViewModels
             BillCatagory = refValList.Where(p => p.DomainCode == "BLCAT").ToList();
             EncounterTypes = refValList.Where(p => p.DomainCode == "ENTYP").ToList();
         }
-        public void AssingGenerateBill(PatientVisitModel patientVisit)
+        public void AssingGenerateBill(PatientVisitModel patientVisit,DateTime? dateFrom = null,DateTime? dateTo = null)
         {
             this.SelectPateintVisit = patientVisit;
+            this.DateFrom = dateFrom;
+            this.DateTo = dateTo;
             PatientVisitPayors = DataService.PatientIdentity.GetPatientVisitPayorByVisitUID(SelectPateintVisit.PatientVisitUID);
         }
 
@@ -429,8 +447,8 @@ namespace MediTech.ViewModels
                 generateBill.PayorDetailUID = SelectPatientVisitPayor.PayorDetailUID;
                 generateBill.PayorAgreementUID = SelectPatientVisitPayor.PayorAgreementUID;
                 generateBill.UserUID = AppUtil.Current.UserID;
-                generateBill.DateFrom = SelectPateintVisit.CWhen.Date;
-                generateBill.DateTo = DateTime.Now;
+                generateBill.DateFrom = DateFrom ?? SelectPateintVisit.CWhen.Date;
+                generateBill.DateTo = DateTo ?? DateTime.Now;
                 generateBill.Comments = Comments;
 
                 if (SelectPateintVisit.ENTYPUID == EncounterTypes.FirstOrDefault(p => p.ValueCode == "INPAT").Key)

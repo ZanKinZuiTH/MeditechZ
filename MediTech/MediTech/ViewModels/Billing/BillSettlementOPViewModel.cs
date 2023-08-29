@@ -421,7 +421,7 @@ namespace MediTech.ViewModels
                 }
                 GenerateBill pageview = new GenerateBill();
                 var viewModel = (pageview.DataContext as GenerateBillViewModel);
-                viewModel.AssingGenerateBill(SelectPatientVisit);
+                viewModel.AssingGenerateBill(SelectPatientVisit,DateFrom,DateTo);
                 GenerateBillViewModel result = (GenerateBillViewModel)LaunchViewDialogNonPermiss(pageview, false);
                 if (result != null && result.ResultDialog == ActionDialog.Save)
                 {
