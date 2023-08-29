@@ -346,14 +346,14 @@
             // 
             // xrTable13
             // 
-            this.xrTable13.LocationFloat = new DevExpress.Utils.PointFloat(1.315786F, 749.4115F);
+            this.xrTable13.LocationFloat = new DevExpress.Utils.PointFloat(0F, 749.4115F);
             this.xrTable13.Name = "xrTable13";
             this.xrTable13.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             this.xrTable13.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow6,
             this.xrTableRow7,
             this.xrTableRow34});
-            this.xrTable13.SizeF = new System.Drawing.SizeF(523.6842F, 75F);
+            this.xrTable13.SizeF = new System.Drawing.SizeF(525.0001F, 75F);
             // 
             // xrTableRow6
             // 
@@ -1019,7 +1019,7 @@
             this.xrTableCell1.StylePriority.UseTextAlignment = false;
             this.xrTableCell1.Text = "(1) White Blood Count (WBC) ";
             this.xrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            this.xrTableCell1.Weight = 0.77885105432755819D;
+            this.xrTableCell1.Weight = 0.79004706392705626D;
             // 
             // xrTableCell2
             // 
@@ -1032,7 +1032,7 @@
             this.xrTableCell2.Text = "is the total white blood cell count In 1 cubic millimeter, if the WBC value is ab" +
     "normal,";
             this.xrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            this.xrTableCell2.Weight = 2.2211485901278416D;
+            this.xrTableCell2.Weight = 2.209952580528344D;
             // 
             // xrTableRow2
             // 
