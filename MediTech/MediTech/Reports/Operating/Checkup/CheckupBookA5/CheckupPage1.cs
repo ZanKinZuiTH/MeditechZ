@@ -14,6 +14,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Media.Imaging;
 using System.IO;
+using MediTech.Reports.Operating.Checkup.CheckupBookEng;
 
 namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
 {
@@ -48,6 +49,16 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         LabG labG = new LabG();
         LabH labH = new LabH();
 
+        ReferencesA labEngA = new ReferencesA();
+        ReferencesB labEngB = new ReferencesB();
+        ReferencesC labEngC = new ReferencesC();
+        ReferencesD labEngD = new ReferencesD();
+        ReferencesE labEngE = new ReferencesE();
+        ReferencesF labEngF = new ReferencesF();
+        ReferencesG labEngG = new ReferencesG();
+        ReferencesH labEngH = new ReferencesH();
+
+        bool isEng = false;
 
         public CheckupPage1()
         {
@@ -412,6 +423,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         {
                             if (patient.SPOKLUID == 4240)
                             {
+
                                 string chestEN = chestXray.PlainText;
                                 string[] ChestResult = chestEN.Split(new string[] { "IMPRESSION", "Impression", "impression" }, StringSplitOptions.None);
                                 if (ChestResult.Length > 1)
@@ -853,6 +865,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 }
                 if (patient.SPOKLUID == 4240)
                 {
+                    isEng = true;
                     page12.TitleResultWellness2.Text = "Summary";
                     page11.TitleResultWellness.Text = "Summary";
                     TitleObesity.Text = "BMI Interpretation";
@@ -977,6 +990,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         page2.lbUnderlying.Text = "Hypertension";
                     }
 
+                    page8.headRadiology.Text = "List";
+                    page8.lbEKGResult.Text = "Summary/ Suggestion";
+
                     page9.TitlePulmonaryResult.Text = "Summary";
                     page9.TitlePulmonaryRecommend.Text = "Suggestion";
 
@@ -990,6 +1006,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         page9.lbLungResult.Text = "Abnormal";
                     }
 
+                    page9.headLeft.Text = "Left";
+                    page9.headRight.Text = "Right";
                     page9.TitleFarVision.Text = "Far Test";
                     page9.TitleNearVision.Text = "Near Test";
                     page9.Title3DVision.Text = "3D Test";
@@ -3241,6 +3259,19 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             labF.CreateDocument();
             labG.CreateDocument();
             labH.CreateDocument();
+
+            if(isEng == true)
+            {
+                labEngA.CreateDocument();
+                labEngB.CreateDocument();
+                labEngC.CreateDocument();
+                labEngD.CreateDocument();
+                labEngE.CreateDocument();
+                labEngF.CreateDocument();
+                labEngG.CreateDocument();
+                labEngH.CreateDocument();
+            }
+
             page7.CreateDocument();
             page8.CreateDocument();
             page9.CreateDocument();
@@ -3252,14 +3283,31 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.Pages.AddRange(page4.Pages);
             this.Pages.AddRange(page5.Pages);
             this.Pages.AddRange(page6.Pages);
-            this.Pages.AddRange(labA.Pages);
-            this.Pages.AddRange(labB.Pages);
-            this.Pages.AddRange(labC.Pages);
-            this.Pages.AddRange(labD.Pages);
-            this.Pages.AddRange(labE.Pages);
-            this.Pages.AddRange(labF.Pages);
-            this.Pages.AddRange(labG.Pages);
-            this.Pages.AddRange(labH.Pages);
+            
+            if (isEng == true)
+            {
+                this.Pages.AddRange(labEngA.Pages);
+                this.Pages.AddRange(labEngB.Pages);
+                this.Pages.AddRange(labEngC.Pages);
+                this.Pages.AddRange(labEngD.Pages);
+                this.Pages.AddRange(labEngE.Pages);
+                this.Pages.AddRange(labEngF.Pages);
+                this.Pages.AddRange(labEngG.Pages);
+                this.Pages.AddRange(labEngH.Pages);
+            }
+
+            if (isEng == false)
+            {
+                this.Pages.AddRange(labA.Pages);
+                this.Pages.AddRange(labB.Pages);
+                this.Pages.AddRange(labC.Pages);
+                this.Pages.AddRange(labD.Pages);
+                this.Pages.AddRange(labE.Pages);
+                this.Pages.AddRange(labF.Pages);
+                this.Pages.AddRange(labG.Pages);
+                this.Pages.AddRange(labH.Pages);
+            }
+
             this.Pages.AddRange(page7.Pages);
             this.Pages.AddRange(page8.Pages);
             this.Pages.AddRange(page9.Pages);
