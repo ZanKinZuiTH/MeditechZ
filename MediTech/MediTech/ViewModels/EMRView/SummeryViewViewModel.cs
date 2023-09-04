@@ -683,7 +683,7 @@ namespace MediTech.ViewModels
             {
 
                 ListOrder = new ObservableCollection<PatientOrderDetailModel>(ListOrder.OrderByDescending(p => p.StartDttm));
-                ListDrugProfile = new ObservableCollection<PatientOrderDetailModel>(ListOrder.Where(p => p.BSMDDUID == 2826 && p.ORDSTUID == 2861));
+                ListDrugProfile = new ObservableCollection<PatientOrderDetailModel>(ListOrder.Where(p => p.BSMDDUID == 2826 && p.ORDSTUID != 2848));
             }
 
             DateFromOrderDetail = SelectedPatientVisit.StartDttm;
@@ -735,7 +735,7 @@ namespace MediTech.ViewModels
             }
             if (ListDrugProfileMaximized != null && ListDrugProfileMaximized.Count > 0)
             {
-                ListDrugProfileMaximized = new ObservableCollection<PatientOrderDetailModel>(ListDrugProfileMaximized.Where(p => p.ORDSTUID == 2861).OrderByDescending(p => p.StartDttm));
+                ListDrugProfileMaximized = new ObservableCollection<PatientOrderDetailModel>(ListDrugProfileMaximized.Where(p => p.ORDSTUID != 2848).OrderByDescending(p => p.StartDttm));
             }
         }
 
