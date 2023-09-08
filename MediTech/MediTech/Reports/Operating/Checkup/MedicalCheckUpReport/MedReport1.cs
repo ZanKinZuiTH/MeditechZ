@@ -743,7 +743,7 @@ namespace MediTech.Reports.Operating.Checkup
         {
             if (occmedGroupResult != null && occmedGroupResult.Count() > 0)
             {
-                page2.lbLungResult.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST33")?.ResultStatus.ToString();
+                page2.lbLungResult.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST33")?.Conclusion.ToString();
                
 
                 string eyeOccmedConclustion = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST26")?.Conclusion.ToString();
@@ -767,7 +767,7 @@ namespace MediTech.Reports.Operating.Checkup
                         }
                     }
 
-                    page2.lbVisionOccmedResult.Text = description;
+                    page2.lbVisionOccmedResult.Text = description + " " + recommand;
                     //page2.lbVisionOccmedRecommend.Text = recommand;
                 }
 
