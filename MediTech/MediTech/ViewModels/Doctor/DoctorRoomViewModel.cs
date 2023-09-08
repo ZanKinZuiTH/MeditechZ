@@ -670,8 +670,9 @@ namespace MediTech.ViewModels
 
             int? careproviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : (int?)null;
             string patientID = (SelectedPateintSearch != null && SearchPatientCriteria != "") ? SelectedPateintSearch.PatientID : "";
-            int? ownerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
-            PatientVisits = DataService.PatientIdentity.SearchPatientVisit(patientID, "", "", careproviderUID, statusList, VisitDate, null, null, ownerOrganisationUID,null,null, null, outPatientType);
+            int? ownerOrganisationUID = null;
+            int userUID = AppUtil.Current.UserID;
+            PatientVisits = DataService.PatientIdentity.SearchPatientVisit(patientID, "", "", careproviderUID, statusList, VisitDate, null, null, ownerOrganisationUID,null,null, null, outPatientType, userUID);
         }
 
         private void VisitMedical()
@@ -707,7 +708,8 @@ namespace MediTech.ViewModels
             int careproviderUID = AppUtil.Current.UserID;
             int? ownerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
             string inPatientType = EncounterType?.Where(P => P.ValueCode == "INPAT").FirstOrDefault().Key.ToString();
-            PatientVisits = DataService.PatientIdentity.SearchPatientVisit("", "", "", careproviderUID, null, null, null, null, ownerOrganisationUID, null, null, null, inPatientType);
+            int userUID = AppUtil.Current.UserID;
+            PatientVisits = DataService.PatientIdentity.SearchPatientVisit("", "", "", careproviderUID, null, null, null, null, ownerOrganisationUID, null, null, null, inPatientType, userUID);
         }
 
         public void PatientSearch()

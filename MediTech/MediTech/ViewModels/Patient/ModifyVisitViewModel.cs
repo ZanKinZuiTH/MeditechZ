@@ -46,25 +46,48 @@ namespace MediTech.ViewModels
             set { Set(ref _StartTime, value); }
         }
 
-        //private List<LocationModel> _Locations;
+        private List<HealthOrganisationModel> _Organisations;
 
-        //public List<LocationModel> Locations
-        //{
-        //    get { return _Locations; }
-        //    set { Set(ref _Locations, value); }
-        //}
+        public List<HealthOrganisationModel> Organisations
+        {
+            get { return _Organisations; }
+            set { Set(ref _Organisations, value); }
+        }
 
-        //private LocationModel _SelectLocation;
+        private HealthOrganisationModel _SelectOrganisation;
 
-        //public LocationModel SelectLocation
-        //{
-        //    get { return _SelectLocation; }
-        //    set
-        //    {
-        //        Set(ref _SelectLocation, value);
-        //    }
-        //}
-        
+        public HealthOrganisationModel SelectOrganisation
+        {
+            get { return _SelectOrganisation; }
+            set
+            {
+                Set(ref _SelectOrganisation, value);
+                Locations = null;
+                if (SelectOrganisation != null)
+                {
+                    var loct = DataService.MasterData.GetLocationRoleByOrganisationUID(SelectOrganisation.HealthOrganisationUID, AppUtil.Current.UserID);
+                    Locations = loct.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+                }
+            }
+        }
+
+        private List<LocationModel> _Locations;
+        public List<LocationModel> Locations
+        {
+            get { return _Locations; }
+            set
+            {
+                Set(ref _Locations, value);
+            }
+        }
+
+        private LocationModel _SelectLocation;
+        public LocationModel SelectLocation
+        {
+            get { return _SelectLocation; }
+            set { Set(ref _SelectLocation, value); }
+        }
+
         private List<LookupReferenceValueModel> _VisitTypeSource;
 
         public List<LookupReferenceValueModel> VisitTypeSource
@@ -255,6 +278,9 @@ namespace MediTech.ViewModels
             //var LocationSource = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
             //Locations = LocationSource.Where(p => p.IsRegistrationAllowed == "Y").ToList();
             CareproviderSource = DataService.UserManage.GetCareproviderDoctor();
+
+            Organisations = GetHealthOrganisationRole();
+            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
         }
         private void Save()
         {
@@ -279,7 +305,8 @@ namespace MediTech.ViewModels
                     visitInfo.Comments = CommentDoctor;
                     visitInfo.CompanyName = Company;
                     visitInfo.EmployerAddress = EmployerAddress;
-                    //visitInfo.LocationUID = SelectLocation.LocationUID;
+                    visitInfo.OwnerOrganisationUID = SelectOrganisation.HealthOrganisationUID;
+                    visitInfo.LocationUID = SelectLocation.LocationUID;
                     if (SelectedCareprovider != null)
                         visitInfo.CareProviderUID = SelectedCareprovider.CareproviderUID;
 
@@ -357,6 +384,9 @@ namespace MediTech.ViewModels
             SelectedPriority = PrioritySource.FirstOrDefault(p => p.Key == SelectPatientVisit.PRITYUID);
             SelectedCareprovider = CareproviderSource.FirstOrDefault(p => p.CareproviderUID == SelectPatientVisit.CareProviderUID);
 
+            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == SelectPatientVisit.OwnerOrganisationUID);
+            SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == SelectPatientVisit.LocationUID);
+
             if (visitModel.VISTYUID == 4867 || visitModel.VISTYUID == 4875 || visitModel.VISTYUID == 4877) //มีหมออาชีว
             {
                 var careMedical = DataService.PatientIdentity.GetPatientConsultationMedicalCertificate(visitModel.PatientUID, visitModel.PatientVisitUID);
@@ -386,12 +416,17 @@ namespace MediTech.ViewModels
 
         public bool ValidateVisitData()
         {
+            if (SelectOrganisation == null)
+            {
+                WarningDialog("กรุณาเลือก สถานประกอบการ");
+                return true;
+            }
 
-            //if (SelectLocation == null)
-            //{
-            //    WarningDialog("กรุณาเลือก แผนก");
-            //    return true;
-            //}
+            if (SelectLocation == null)
+            {
+                WarningDialog("กรุณาเลือก แผนก");
+                return true;
+            }
             if (SelectedVisitType == null)
             {
                 WarningDialog("กรุณาเลือก ประเภท Visit");

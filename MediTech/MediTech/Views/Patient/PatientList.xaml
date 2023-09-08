@@ -310,9 +310,19 @@
                                       NullValueButtonPlacement="EditBox"
                                       ImmediatePopup="True"/>
                                 </dxlc:LayoutItem>-->
+                                <dxlc:LayoutItem Label="สถานประกอบการ">
+                                    <dxe:ComboBoxEdit x:Name="cmbOrganisation"
+              ItemsSource="{Binding Organisations}" 
+              SelectedItem="{Binding SelectOrganisation}"
+              ValueMember="HealthOrganisationUID"
+              DisplayMember="Name"
+              AutoComplete="True"
+              NullValueButtonPlacement="EditBox"
+              ImmediatePopup="True"/>
+                                </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="แผนก">
                                     <dxe:ComboBoxEdit x:Name="cmbLocation" 
-                                      ItemsSource="{Binding Location}" 
+                                      ItemsSource="{Binding Locations}" 
                                       SelectedItem="{Binding SelectLocation}"
                                       ValueMember="LocationUID" 
                                       DisplayMember="Name"
@@ -377,12 +387,13 @@
                                         </dxe:ComboBoxEdit.StyleSettings>
                                     </dxe:ComboBoxEdit>
                                 </dxlc:LayoutItem>
-                                <dxlc:LayoutItem >
-                                    <dx:SimpleButton x:Name="btnSearch" Width="80" Height="25" Content="ค้นหา"
+
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutItem >
+                                <dx:SimpleButton x:Name="btnSearch" Width="80" Height="25" Content="ค้นหา"
                                      Command="{Binding SearchCommand}"
                                      HorizontalAlignment="Right"/>
-                                </dxlc:LayoutItem>
-                            </dxlc:LayoutGroup>
+                            </dxlc:LayoutItem>
                             <!--<dxlc:LayoutGroup>
                                 <dx:SimpleButton x:Name="btnSearch" Width="80" Height="25" Content="ค้นหา"
                                      Command="{Binding SearchCommand}"

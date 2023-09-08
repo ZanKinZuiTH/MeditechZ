@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
@@ -1551,7 +1552,7 @@ namespace MediTechWebApi.Controllers
             foreach (var OrderSet in data)
             {
                 var orderSetBillableItems = db.OrderSetBillableItem.Where(p => p.OrderSetUID == OrderSet.OrderSetUID && p.ActiveTo == null && p.StatusFlag == "A").ToList();
-                var price  = orderSetBillableItems.Sum(p => p.Price);
+                var price = orderSetBillableItems.Sum(p => p.Price);
                 OrderSet.Price = price ?? 0;
             }
 
@@ -2189,6 +2190,40 @@ namespace MediTechWebApi.Controllers
                 EMRZONUID = p.EMZONEUID,
                 OwnerOrganisationUID = p.OwnerOrganisationUID,
             }).ToList();
+
+            return data;
+        }
+
+        [Route("GetLocationRoleByOrganisationUID")]
+        [HttpGet]
+        public List<LocationModel> GetLocationRoleByOrganisationUID(int ownerOrganisationUID, int userUID)
+        {
+            DateTime now = DateTime.Now;
+            var data = (from i in db.Location
+                        join j in db.CareproviderLocation on i.UID equals j.LocationUID
+                        where i.StatusFlag == "A"
+                        && i.OwnerOrganisationUID == ownerOrganisationUID
+                        && (i.ActiveTo == null || DbFunctions.TruncateTime(i.ActiveTo) >= DbFunctions.TruncateTime(now))
+                        && j.StatusFlag == "A"
+                        && j.CareproviderUID == userUID
+
+                        select new LocationModel
+                        {
+                            LocationUID = i.UID,
+                            Name = i.Name,
+                            Description = i.Description,
+                            LOTYPUID = i.LOTYPUID,
+                            LocationType = SqlFunction.fGetRfValDescription(i.LOTYPUID),
+                            DisplayOrder = i.DisplayOrder ?? 1,
+                            ParentLocationUID = i.ParentLocationUID,
+                            PhoneNumber = i.PhoneNumber,
+                            IsRegistrationAllowed = i.IsRegistrationAllowed,
+                            IsCanOrder = i.IsCanOrder,
+                            IsTemporaryBed = i.IsTemporaryBed,
+                            LCTSTUID = i.LCTSTUID,
+                            EMRZONUID = i.EMZONEUID,
+                            OwnerOrganisationUID = i.OwnerOrganisationUID,
+                        }).ToList();
 
             return data;
         }

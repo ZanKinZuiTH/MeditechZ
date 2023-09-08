@@ -484,6 +484,13 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<LocationModel> GetLocationRoleByOrganisationUID(int ownerOrganisationUID,int userUID)
+        {
+            string requestApi = string.Format("Api/MasterData/GetLocationRoleByOrganisationUID?ownerOrganisationUID={0}&userUID={1}", ownerOrganisationUID, userUID);
+            List<LocationModel> data = MeditechApiHelper.Get<List<LocationModel>>(requestApi);
+            return data;
+        }
+
         public List<LocationModel> GetLocationIsRegister(int ownerOrganisationUID)
         {
             string requestApi = string.Format("Api/MasterData/GetLocationIsRegister?ownerOrganisationUID={0}", ownerOrganisationUID);

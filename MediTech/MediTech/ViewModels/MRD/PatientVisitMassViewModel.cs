@@ -613,7 +613,8 @@ namespace MediTech.ViewModels
             int? ownerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
             int? locationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
             int? insuranceCompanyUID = (SelectInsuranceCompany != null && SelectInsuranceCompany.InsuranceCompanyUID != 0) ? SelectInsuranceCompany.InsuranceCompanyUID : (int?)null;
-            PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchPatientVisit(BN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, ownerOrganisationUID, locationUID, insuranceCompanyUID, null, encounterList));
+            int userUID = AppUtil.Current.UserID;
+            PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchPatientVisit(BN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, ownerOrganisationUID, locationUID, insuranceCompanyUID, null, encounterList, userUID));
 
         }
 

@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using DevExpress.Xpf.Core.DragDrop.Native;
+using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
 using System;
 using System.Collections.Generic;
@@ -116,8 +117,7 @@ namespace MediTech.ViewModels
             SelectStatus = StatusSource.FirstOrDefault(p => p.ValueCode == "ARRVD");
             Doctors = DataService.UserManage.GetCareproviderDoctor();
             Doctors = Doctors.Where(p => p.IsDoctor == true).ToList();
-            var org = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
-            Locations = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+
             StartTime = DateTime.Now;
         }
 
@@ -131,6 +131,9 @@ namespace MediTech.ViewModels
                 SelectStatus = StatusSource.FirstOrDefault(p => p.ValueCode == "SNDDOC");
                 SelectDoctor = Doctors.FirstOrDefault(p => p.CareproviderUID == model.CareProviderUID);
             }
+
+            var org = DataService.MasterData.GetLocationRoleByOrganisationUID(model.OwnerOrganisationUID, AppUtil.Current.UserID);
+            Locations = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
 
             SelectLocations = Locations.FirstOrDefault(p => p.LocationUID == model.LocationUID);
         }

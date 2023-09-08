@@ -1432,7 +1432,8 @@ namespace MediTech.ViewModels
             }
 
             payorDetailUID = SelectInsuranceCompany2 != null ? SelectInsuranceCompany2.InsuranceCompanyUID : (int?)null;
-            PatientVisits = DataService.PatientIdentity.SearchPatientVisit(patientID, null, null, null, null, DateFrom, DateTo,null, null, null, payorDetailUID, null,"");
+            int userUID = AppUtil.Current.UserID;
+            PatientVisits = DataService.PatientIdentity.SearchPatientVisit(patientID, null, null, null, null, DateFrom, DateTo,null, null, null, payorDetailUID, null,"", userUID);
         }
 
         public void PatientSearch()

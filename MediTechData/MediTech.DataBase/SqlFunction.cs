@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -1497,7 +1498,7 @@ namespace MediTech.DataBase
 
         public static DataTable pSearchPatientVisit(string hn, string firstName, string lastName, int? careproviderUID
      , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID, int? locationUID
-            , int? insuranceCompanyUID, int? checkupJobUID, string encounter)
+            , int? insuranceCompanyUID, int? checkupJobUID, string encounter,int userUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchPatientVisit", entities.Database.Connection.ConnectionString);
@@ -1516,6 +1517,7 @@ namespace MediTech.DataBase
             adp.SelectCommand.Parameters.AddWithValue("@InsuranceCompanyUID", insuranceCompanyUID != null ? insuranceCompanyUID : (Object)(DBNull.Value));
             adp.SelectCommand.Parameters.AddWithValue("@CheckupJobUID", checkupJobUID != null ? checkupJobUID : (Object)(DBNull.Value));
             adp.SelectCommand.Parameters.AddWithValue("@Encounter", encounter ?? "");
+            adp.SelectCommand.Parameters.AddWithValue("@UserUID", userUID);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
@@ -3332,7 +3334,7 @@ and GPRSTUID in (Select Name from dbo.splitstring(@GPRSTUID))";
             return dt;
         }
 
-        public static DataTable BLIFEVerifyPatientIdentity(string firstName,string lastName,int sexxxUID,DateTime birthDttm)
+        public static DataTable BLIFEVerifyPatientIdentity(string firstName,string lastName,int sexxxUID,DateTime? birthDttm)
         {
             DataTable dt = new DataTable();
             var blifeConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["BlifeDatabase"].ToString();
@@ -3344,12 +3346,22 @@ and GPRSTUID in (Select Name from dbo.splitstring(@GPRSTUID))";
                 SqlCommand command = new SqlCommand();
                 command.CommandType = CommandType.Text;
                 command.Connection = con;
-                command.CommandText = @"Select UID,FirstName,LastName,IsPatientIdentity,CitizenID From users 
-                Where StatusFlag = 'A' and Firstname = @Firstname and LastName = @LastName and SEXXXUID = @SEXXXUID and Convert(date,BirthDttm) = Convert(date,@BirthDttm)";
+                string selectstring = "Select UID,FirstName,LastName,IsPatientIdentity,CitizenID From users Where StatusFlag = 'A'";
+                string whereString = " and Firstname = @Firstname and LastName = @LastName and SEXXXUID = @SEXXXUID";
+
                 command.Parameters.AddWithValue("@Firstname", firstName);
                 command.Parameters.AddWithValue("@LastName", lastName);
                 command.Parameters.AddWithValue("@SEXXXUID", sexxxUID);
-                command.Parameters.AddWithValue("@BirthDttm", birthDttm);
+                if (birthDttm != null)
+                {
+                    whereString += " and Convert(date,BirthDttm) = Convert(date,@BirthDttm)";
+                    command.Parameters.AddWithValue("@BirthDttm", birthDttm);
+                }
+
+                command.CommandText = selectstring + whereString;
+
+
+
 
                 dt.Load(command.ExecuteReader());
 

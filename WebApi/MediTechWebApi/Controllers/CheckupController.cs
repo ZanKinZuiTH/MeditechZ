@@ -1240,7 +1240,7 @@ namespace MediTechWebApi.Controllers
                         //var citizenID = ShareLibrary.Encryption.EncryptBLifeAccess(item.NationalID);
                         //var dtBlife = SqlStatement.BLIFEGetUsersByNationalID(citizenID);
 
-                        var dtBlife = SqlStatement.BLIFEVerifyPatientIdentity(item.FirstName,item.LastName,item.SEXXXUID ?? 0,item.BirthDttm ?? DateTime.MinValue);
+                        var dtBlife = SqlStatement.BLIFEVerifyPatientIdentity(item.FirstName,item.LastName,item.SEXXXUID ?? 0,item.BirthDttm);
 
                         if (dtBlife != null && dtBlife.Rows.Count > 0)
                         {

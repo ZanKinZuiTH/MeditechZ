@@ -986,9 +986,9 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<PatientVisitModel> SearchPatientVisit(string hn, string firstName, string lastName, int? careproviderUID
             , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID, int? locationUID
-            , int? insuranceCompanyUID, int? checkupJobUID, string encounter)
+            , int? insuranceCompanyUID, int? checkupJobUID, string encounter,int userUID)
         {
-            DataTable dataTable = SqlDirectStore.pSearchPatientVisit(hn, firstName, lastName, careproviderUID, statusList, dateFrom, dateTo, arrivedDttm, ownerOrganisationUID, locationUID, insuranceCompanyUID, checkupJobUID, encounter);
+            DataTable dataTable = SqlDirectStore.pSearchPatientVisit(hn, firstName, lastName, careproviderUID, statusList, dateFrom, dateTo, arrivedDttm, ownerOrganisationUID, locationUID, insuranceCompanyUID, checkupJobUID, encounter, userUID);
 
             List<PatientVisitModel> data = dataTable.ToList<PatientVisitModel>();
 
@@ -1907,6 +1907,9 @@ namespace MediTechWebApi.Controllers
                     patientVisit.EmployerAddress = patientVisitInfo.EmployerAddress;
                     patientVisit.MUser = userID;
                     patientVisit.MWhen = now;
+
+                    patientVisit.OwnerOrganisationUID = patientVisitInfo.OwnerOrganisationUID;
+                    patientVisit.LocationUID  = patientVisitInfo.LocationUID;
 
 
                     if (patientVisitInfo.CareProvider2UID != null)

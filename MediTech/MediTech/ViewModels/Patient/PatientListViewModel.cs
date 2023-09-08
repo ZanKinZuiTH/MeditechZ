@@ -153,46 +153,46 @@ namespace MediTech.ViewModels
             }
         }
 
-        //private List<HealthOrganisationModel> _Organisations;
+        private List<HealthOrganisationModel> _Organisations;
 
-        //public List<HealthOrganisationModel> Organisations
-        //{
-        //    get { return _Organisations; }
-        //    set { Set(ref _Organisations, value); }
-        //}
-
-        //private HealthOrganisationModel _SelectOrganisation;
-
-        //public HealthOrganisationModel SelectOrganisation
-        //{
-        //    get { return _SelectOrganisation; }
-        //    set { Set(ref _SelectOrganisation, value);
-        //        if (SelectOrganisation != null)
-        //        {
-        //            Location = DataService.MasterData.GetLocationIsRegister(SelectOrganisation.HealthOrganisationUID);
-
-        //        }
-        //        else
-        //        {
-        //            Location = null;
-        //            SelectLocation = null;
-        //        }
-        //    }
-        //}
-
-        private List<LocationModel> _Location;
-        public List<LocationModel> Location
+        public List<HealthOrganisationModel> Organisations
         {
-            get { return _Location; }
-            set { Set(ref _Location, value);
-            //if(Location != null)
-            //    {
-            //        var data = Location.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
-            //        if(data != null)
-            //        {
-            //            SelectLocation = Location.FirstOrDefault(p => p.LocationUID == data.LocationUID);
-            //        }
-            //    }
+            get { return _Organisations; }
+            set { Set(ref _Organisations, value); }
+        }
+
+        private HealthOrganisationModel _SelectOrganisation;
+
+        public HealthOrganisationModel SelectOrganisation
+        {
+            get { return _SelectOrganisation; }
+            set
+            {
+                Set(ref _SelectOrganisation, value);
+                Locations = null;
+                if (SelectOrganisation != null)
+                {                
+                    var loct = DataService.MasterData.GetLocationRoleByOrganisationUID(SelectOrganisation.HealthOrganisationUID, AppUtil.Current.UserID);
+                    Locations = loct.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+                }
+            }
+        }
+
+        private List<LocationModel> _Locations;
+        public List<LocationModel> Locations
+        {
+            get { return _Locations; }
+            set
+            {
+                Set(ref _Locations, value);
+                if (Locations != null)
+                {
+                    var data = Locations.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
+                    if (data != null)
+                    {
+                        SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == data.LocationUID);
+                    }
+                }
             }
         }
 
@@ -295,7 +295,7 @@ namespace MediTech.ViewModels
             get { return _ExportToExcelCommand ?? (_ExportToExcelCommand = new RelayCommand(ExportToExcel)); }
         }
 
-        
+
         private RelayCommand _PatientTrackingCommand;
         public RelayCommand PatientTrackingCommand
         {
@@ -307,7 +307,7 @@ namespace MediTech.ViewModels
         {
             get { return _ModifyVisitPayorCommand ?? (_ModifyVisitPayorCommand = new RelayCommand(ModifyVisitPayor)); }
         }
- 
+
 
 
         private RelayCommand _ArrivedCommand;
@@ -344,9 +344,10 @@ namespace MediTech.ViewModels
             DateTypes.Add(new LookupItemModel { Key = 2, Display = "อาทิตย์ล่าสุด" });
             DateTypes.Add(new LookupItemModel { Key = 3, Display = "เดือนนี้" });
             SelectDateType = DateTypes.FirstOrDefault();
-            var org = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
-            Location = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
-            SelectLocation = Location.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
+            Organisations = GetHealthOrganisationRole();
+            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+            //Locations = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+            //SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
             //Organisations = GetHealthOrganisationMedical();
             //SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
             InsuranceCompany = DataService.Billing.GetInsuranceCompanyAll();
@@ -371,7 +372,7 @@ namespace MediTech.ViewModels
                     else
                     {
                         statusList += "," + item.ToString();
-                        
+
                     }
                 }
             }
@@ -395,9 +396,10 @@ namespace MediTech.ViewModels
 
             int? insuranceCompanyUID = SelectInsuranceCompany != null ? SelectInsuranceCompany.InsuranceCompanyUID : (int?)null;
             int? careproviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : (int?)null;
+            int? organisationUID = SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : (int?)null;
             int? locationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
-            int? ownerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
-            PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchPatientVisit(LN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, ownerOrganisationUID,locationUID, insuranceCompanyUID, null, encounterList));
+            int userUID = AppUtil.Current.UserID;
+            PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchPatientVisit(LN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, organisationUID, locationUID, insuranceCompanyUID, null, encounterList, userUID));
         }
 
         private void VitalSign()
@@ -480,7 +482,7 @@ namespace MediTech.ViewModels
 
                 ScannedDocument pageview = new ScannedDocument();
                 (pageview.DataContext as ScannedDocumentViewModel).AssingPatientVisit(SelectPatientVisit);
-                ScannedDocumentViewModel result = (ScannedDocumentViewModel)LaunchViewDialog(pageview, "PATSCD",false);
+                ScannedDocumentViewModel result = (ScannedDocumentViewModel)LaunchViewDialog(pageview, "PATSCD", false);
                 if (result != null && result.ResultDialog == ActionDialog.Save)
                 {
                     SaveSuccessDialog();
@@ -517,7 +519,7 @@ namespace MediTech.ViewModels
                     OnUpdateEvent();
                     return;
                 }
-                PatientStatus arrived = new PatientStatus(SelectPatientVisit, PatientStatusType.Arrive,null);
+                PatientStatus arrived = new PatientStatus(SelectPatientVisit, PatientStatusType.Arrive, null);
                 arrived.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
                 arrived.Owner = MainWindow;
                 arrived.ShowDialog();
@@ -543,7 +545,7 @@ namespace MediTech.ViewModels
                     OnUpdateEvent();
                     return;
                 }
-                PatientStatus sendToDoctor = new PatientStatus(SelectPatientVisit, PatientStatusType.SendToDoctor,null);
+                PatientStatus sendToDoctor = new PatientStatus(SelectPatientVisit, PatientStatusType.SendToDoctor, null);
                 sendToDoctor.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
                 sendToDoctor.Owner = MainWindow;
                 sendToDoctor.ShowDialog();
@@ -569,7 +571,7 @@ namespace MediTech.ViewModels
                     OnUpdateEvent();
                     return;
                 }
-                PatientStatus medicalDischarge = new PatientStatus(SelectPatientVisit, PatientStatusType.MedicalDischarge,null);
+                PatientStatus medicalDischarge = new PatientStatus(SelectPatientVisit, PatientStatusType.MedicalDischarge, null);
                 medicalDischarge.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
                 medicalDischarge.Owner = MainWindow;
                 medicalDischarge.ShowDialog();
@@ -621,7 +623,7 @@ namespace MediTech.ViewModels
             {
                 PatientTracking pageview = new PatientTracking();
                 (pageview.DataContext as PatientTrackingViewModel).AssingModel(SelectPatientVisit);
-                PatientTrackingViewModel result = (PatientTrackingViewModel)LaunchViewDialog(pageview, "PATRCK", false);  
+                PatientTrackingViewModel result = (PatientTrackingViewModel)LaunchViewDialog(pageview, "PATRCK", false);
             }
         }
 
