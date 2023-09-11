@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfinedSpaceCertificate2));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.expText = new DevExpress.XtraReports.UI.XRLabel();
             this.lbOrganisationPlace = new DevExpress.XtraReports.UI.XRLabel();
             this.lbDate = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel43 = new DevExpress.XtraReports.UI.XRLabel();
@@ -117,13 +118,12 @@
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.logo2 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel44 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel44,
+            this.expText,
             this.lbOrganisationPlace,
             this.lbDate,
             this.xrLabel43,
@@ -208,6 +208,16 @@
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.StylePriority.UseFont = false;
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // expText
+            // 
+            this.expText.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.expText.LocationFloat = new DevExpress.Utils.PointFloat(57.83335F, 827.0002F);
+            this.expText.Name = "expText";
+            this.expText.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.expText.SizeF = new System.Drawing.SizeF(623.3334F, 22.99994F);
+            this.expText.StylePriority.UseFont = false;
+            this.expText.Text = "หมายเหตุ ใบรับรองแพทย์ฉบับนี้ ให้ใช้ได้ 6 เดือน นับตั้งแต่วันที่ตรวจร่างกาย";
             // 
             // lbOrganisationPlace
             // 
@@ -910,16 +920,6 @@
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.Text = "ใบรับรองแพทย์สำหรับทำงานที่อับอากาศ";
             // 
-            // xrLabel44
-            // 
-            this.xrLabel44.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrLabel44.LocationFloat = new DevExpress.Utils.PointFloat(57.83335F, 827.0001F);
-            this.xrLabel44.Name = "xrLabel44";
-            this.xrLabel44.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel44.SizeF = new System.Drawing.SizeF(513.7381F, 23F);
-            this.xrLabel44.StylePriority.UseFont = false;
-            this.xrLabel44.Text = "หมายเหตุ ใบรับรองแพทย์ฉบับนี้ ให้ใช้ได้ 6 เดือน นับตั้งแต่วันที่ตรวจร่างกาย";
-            // 
             // ConfinedSpaceCertificate2
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1027,6 +1027,6 @@
         public DevExpress.XtraReports.UI.XRLabel lbAddress2Page2;
         public DevExpress.XtraReports.UI.XRLabel lbAddressPage2;
         public DevExpress.XtraReports.UI.XRPictureBox logo2;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel44;
+        public DevExpress.XtraReports.UI.XRLabel expText;
     }
 }

@@ -58,6 +58,9 @@ namespace MediTech.Reports.Operating.Patient
                 page2.lbBMI.Text = model.BMI.ToString();
                 page2.lbBP.Text = model.BPSys != null ? model.BPSys.ToString() + "/" + model.BPDio.ToString() : "";
                 page2.lbPuls.Text = model.Pulse.ToString();
+
+                var exp = model.strVisitData.Value.AddMonths(6);
+                page2.expText.Text = "หมายเหตุ ใบรับรองแพทย์ฉบับนี้ ให้ใช้ได้ 6 เดือน นับตั้งแต่วันที่ตรวจร่างกาย เอกสารนี้ใช้ได้ตั้งแต่ " + model.strVisitData?.ToString("dd'/'MM'/'yyyy") + " วันหมดอายุ " + exp.ToString("dd'/'MM'/'yyyy");
             }
 
             var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);
