@@ -4,6 +4,7 @@ using System.Collections;
 using System.ComponentModel;
 using DevExpress.XtraReports.UI;
 using MediTech.DataService;
+using System.IO;
 
 namespace MediTech.Reports.Operating.Patient
 {
@@ -38,6 +39,22 @@ namespace MediTech.Reports.Operating.Patient
                     lbAddress1.Text = Organisation.Address?.ToString() + " " + mobile1 + " " + email;
                     lbAddress2.Text = Organisation.Address2?.ToString() + " " + mobile2 + " " + email;
                     
+                }
+                var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);
+                if (Organisation.LogoImage != null && Organisation.HealthOrganisationUID != 27)
+                {
+                    MemoryStream ms = new MemoryStream(Organisation.LogoImage);
+                    xrPictureBox1.Image = Image.FromStream(ms);
+                }
+                else if (Organisation.LogoImage != null && Organisation.HealthOrganisationUID == 27)
+                {
+                    MemoryStream ms = new MemoryStream(OrganisationBRXG.LogoImage);
+                    xrPictureBox1.Image = Image.FromStream(ms);
+                }
+                else
+                {
+                    MemoryStream ms = new MemoryStream(OrganisationBRXG.LogoImage);
+                    xrPictureBox1.Image = Image.FromStream(ms);
                 }
             }
             else
