@@ -43,12 +43,13 @@
         </DataTemplate>
         <DataTemplate x:Key="ListBoxCheckEdit">
             <dxe:ListBoxEdit ShowCustomItems="False" EditValueChanged="ListBoxEdit_EditValueChanged"
-                             ItemsSource="{Binding RowData.Row.AutoValueList}" ShowBorder="False"
+                             ItemsSource="{Binding RowData.Row.AutoValueList}" ShowBorder="False" Padding="10,0,10,0"
                              EditValue="{Binding RowData.Row.CheckDataList,Mode=TwoWay}"
                              FontWeight="Bold" FontSize="16">
                 <dxe:ListBoxEdit.Resources>
                     <Style x:Key="{dxet:EditorListBoxThemeKey ResourceKey=CheckBoxItemStyle, IsThemeIndependent=True}" TargetType="{x:Type dxe:ListBoxEditItem}" BasedOn="{StaticResource {dxet:EditorListBoxThemeKey ResourceKey=CheckBoxItemStyle}}" >
-                        <Setter Property="Margin" Value="0,5,0,5"/>
+                        <Setter Property="Margin" Value="0,5,20,5"/>
+                        <!--<Setter Property="Padding" Value="0,0,50,0"/>-->
                     </Style>
                 </dxe:ListBoxEdit.Resources>
                 <dxe:ListBoxEdit.ItemsPanel>
@@ -57,7 +58,7 @@
                     </ItemsPanelTemplate>
                 </dxe:ListBoxEdit.ItemsPanel>
                 <dxe:ListBoxEdit.StyleSettings>
-                    <dxe:CheckedListBoxEditStyleSettings />
+                    <dxe:CheckedListBoxEditStyleSettings/>
                 </dxe:ListBoxEdit.StyleSettings>
             </dxe:ListBoxEdit>
         </DataTemplate>
