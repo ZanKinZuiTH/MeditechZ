@@ -28,6 +28,26 @@ namespace MediTech.ViewModels
             set { Set(ref _IsEnableControl, value); }
         }
 
+
+        private List<HealthOrganisationModel> _Organisations;
+
+        public List<HealthOrganisationModel> Organisations
+        {
+            get { return _Organisations; }
+            set { Set(ref _Organisations, value); }
+        }
+
+        private HealthOrganisationModel _SelectOrganisation;
+
+        public HealthOrganisationModel SelectOrganisation
+        {
+            get { return _SelectOrganisation; }
+            set
+            {
+                Set(ref _SelectOrganisation, value);
+            }
+        }
+
         public List<CareproviderModel> Doctors { get; set; }
         private CareproviderModel _SelectDoctor;
 
@@ -614,7 +634,9 @@ namespace MediTech.ViewModels
         int FINDIS = 421;
         public DoctorRoomViewModel()
         {
-            Doctors = DataService.UserManage.GetCareProviderDoctorByOrganisation(AppUtil.Current.OwnerOrganisationUID);
+            Organisations = GetHealthOrganisationRole();
+            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+            Doctors = DataService.UserManage.GetCareProviderDoctorByOrganisation(SelectOrganisation?.HealthOrganisationUID ?? AppUtil.Current.OwnerOrganisationUID);
             var refData = DataService.Technical.GetReferenceValueList("VISTS,DIAGTYP,ENTYP,PBLCT");
             VisitStatus = new ObservableCollection<LookupReferenceValueModel>(refData.Where(p => p.DomainCode == "VISTS"));
             EncounterType = new ObservableCollection<LookupReferenceValueModel>(refData.Where(p => p.DomainCode == "ENTYP"));
@@ -670,9 +692,9 @@ namespace MediTech.ViewModels
 
             int? careproviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : (int?)null;
             string patientID = (SelectedPateintSearch != null && SearchPatientCriteria != "") ? SelectedPateintSearch.PatientID : "";
-            int? ownerOrganisationUID = null;
+            int? organisationUID = SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : (int?)null;
             int userUID = AppUtil.Current.UserID;
-            PatientVisits = DataService.PatientIdentity.SearchPatientVisit(patientID, "", "", careproviderUID, statusList, VisitDate, null, null, ownerOrganisationUID,null,null, null, outPatientType, userUID);
+            PatientVisits = DataService.PatientIdentity.SearchPatientVisit(patientID, "", "", careproviderUID, statusList, VisitDate, null, null, organisationUID, null,null, null, outPatientType, userUID);
         }
 
         private void VisitMedical()

@@ -66,7 +66,7 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <dxlc:LayoutControl Orientation="Vertical"
-                                MaxWidth="230"
+                                MaxWidth="280"
                                 Padding="0">
                 <dxlc:LayoutGroup Orientation="Vertical" Padding="-5"
                                   View="GroupBox" Header="ค้นหา">
@@ -84,6 +84,16 @@
 
                             </cc:AutoCompleteTextBox.InputBindings>
                         </cc:AutoCompleteTextBox>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="สถานประกอบการ">
+                        <dxe:ComboBoxEdit x:Name="cmbOrganisation"
+ItemsSource="{Binding Organisations}" 
+SelectedItem="{Binding SelectOrganisation}"
+ValueMember="HealthOrganisationUID"
+DisplayMember="Name"
+AutoComplete="True"
+NullValueButtonPlacement="EditBox"
+ImmediatePopup="True"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="แพทย์">
                         <dxe:ComboBoxEdit x:Name="cmbDoctor"
