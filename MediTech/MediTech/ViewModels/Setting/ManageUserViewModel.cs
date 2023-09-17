@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MediTech.DataService;
+using MediTech.Helpers;
 using MediTech.Model;
 using MediTech.Views;
 using System;
@@ -7,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Windows.Media.Imaging;
 
 namespace MediTech.ViewModels
 {
@@ -122,6 +125,19 @@ namespace MediTech.ViewModels
         {
             get { return _IsDoctor; }
             set { Set(ref _IsDoctor, value); }
+        }
+
+        private BitmapImage _LicenseImage;
+        public BitmapImage LicenseImage
+        {
+            get
+            {
+                return _LicenseImage;
+            }
+            set
+            {
+                Set(ref _LicenseImage, value);
+            }
         }
 
         private bool _IsRadiologist;
@@ -353,6 +369,13 @@ namespace MediTech.ViewModels
                     ?? (_CancelCommand = new RelayCommand(Cancel));
             }
         }
+
+        private RelayCommand _UploadCommand;
+        public RelayCommand UploadCommand
+        {
+            get { return _UploadCommand ?? (_UploadCommand = new RelayCommand(Upload)); }
+        }
+
         #endregion
 
         #region variable
@@ -506,6 +529,19 @@ namespace MediTech.ViewModels
                 RoleProfiles = modelCareprovider.loginModel.RoleProfiles;
 
             }
+
+            if (modelCareprovider.LicenseImage != null)
+            {
+                if (modelCareprovider.LicenseImage.Length > 0)
+                {
+                    LicenseImage = ImageHelpers.ConvertByteToBitmap(modelCareprovider.LicenseImage);
+                }
+
+            }
+            else
+            {
+                LicenseImage = null;
+            }
         }
 
         public void AssingPropertiesToModel()
@@ -548,6 +584,16 @@ namespace MediTech.ViewModels
             modelCareprovider.loginModel.RoleUID = SelectRole != null ? SelectRole.Key.Value : 0;
             modelCareprovider.CPTYPUID = SelectCareproviderType != null ? SelectCareproviderType.Key :(int?)null;
             modelCareprovider.loginModel.RoleProfiles = RoleProfiles;
+
+            if (LicenseImage != null)
+            {
+                byte[] patImage = ImageHelpers.ResizeImage(ImageHelpers.ConvertBitmapToByte(LicenseImage), 600, 400, true);
+                modelCareprovider.LicenseImage = patImage;
+            }
+            else
+            {
+                modelCareprovider.LicenseImage = null;
+            }
 
         }
 
@@ -593,6 +639,17 @@ namespace MediTech.ViewModels
             }
 
             return false;
+        }
+
+        private void Upload()
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Filter = "(*.bmp;*.jpg;*.jpeg,*.png)|*.BMP;*.JPG;*.JPEG;*.PNG";
+            if (op.ShowDialog() == DialogResult.OK)
+            {
+                LicenseImage = new BitmapImage(new Uri(op.FileName));
+            }
+
         }
 
         #endregion

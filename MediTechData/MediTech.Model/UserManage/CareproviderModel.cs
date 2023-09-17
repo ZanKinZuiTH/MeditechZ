@@ -43,5 +43,6 @@ namespace MediTech.Model
         public int VISTYUID { get; set; }
         public int? CPTYPUID { get; set; }
         public string Qualification { get; set; }
+        public byte[] LicenseImage { get; set; }
     }
 }

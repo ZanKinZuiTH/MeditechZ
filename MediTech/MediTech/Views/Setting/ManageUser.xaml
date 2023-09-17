@@ -113,6 +113,15 @@
                         <dxlc:LayoutItem Label="LineID">
                             <dxe:TextEdit Text="{Binding LineID}"/>
                         </dxlc:LayoutItem>
+                        <dxlc:LayoutItem/>
+                        <dxlc:LayoutItem>
+                            <dxe:ImageEdit Height="150" HorizontalAlignment="Right" Width="300"
+                                   Source="{Binding LicenseImage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem>
+                            <dx:SimpleButton Width="100" Command="{Binding UploadCommand}" HorizontalAlignment="Right"
+                                     Height="25" Content="Upload Logo"/>
+                        </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
 
                 </dxlc:LayoutGroup>

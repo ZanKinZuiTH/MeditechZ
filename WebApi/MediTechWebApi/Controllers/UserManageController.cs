@@ -288,6 +288,7 @@ namespace MediTechWebApi.Controllers
                                           ActiveFrom = ca.ActiveFrom,
                                           ActiveTo = ca.ActiveTo,
                                           MWhen = ca.MWhen,
+                                          LicenseImage = ca.LicenseImage,
                                           loginModel = jologin == null ? null : new LoginModel
                                           {
                                               LoginUID = jologin.UID,
@@ -502,6 +503,7 @@ namespace MediTechWebApi.Controllers
                     careprovider.StatusFlag = "A";
                     careprovider.MUser = userID;
                     careprovider.MWhen = now;
+                    careprovider.LicenseImage = careproviderData.LicenseImage;
                     careprovider.Qualification = careproviderData.Qualification;
 
                     db.Careprovider.AddOrUpdate(careprovider);
