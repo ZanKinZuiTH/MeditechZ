@@ -311,8 +311,10 @@
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbWeight = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell23 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbHeight = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell21 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbBMI = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -320,12 +322,16 @@
             this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbBP = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell25 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbPulse = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell22 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbWaist = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell31 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell17 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbHip = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell29 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTable2 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow4 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -337,6 +343,7 @@
             this.lbPatientName = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell24 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbAge = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell33 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell26 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbGender = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell27 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -353,13 +360,14 @@
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PayorDetailUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrTableCell21 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell22 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell23 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell25 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell29 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell31 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell33 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.rowCholinesteraseBlood = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell34 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.CholinesterasebloodRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Cholinesteraseblood = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell37 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell38 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell39 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell40 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
@@ -404,7 +412,7 @@
             // xrTable6
             // 
             this.xrTable6.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
-            this.xrTable6.LocationFloat = new DevExpress.Utils.PointFloat(50F, 875F);
+            this.xrTable6.LocationFloat = new DevExpress.Utils.PointFloat(50F, 887.5F);
             this.xrTable6.Name = "xrTable6";
             this.xrTable6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             this.xrTable6.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
@@ -2363,8 +2371,9 @@
             this.xrTableRow32,
             this.xrTableRow33,
             this.xrTableRow34,
-            this.xrTableRow35});
-            this.xrTable4.SizeF = new System.Drawing.SizeF(737.5F, 333.9744F);
+            this.xrTableRow35,
+            this.rowCholinesteraseBlood});
+            this.xrTable4.SizeF = new System.Drawing.SizeF(737.5F, 356.2394F);
             this.xrTable4.StylePriority.UseFont = false;
             // 
             // xrTableRow21
@@ -4310,6 +4319,21 @@
             this.lbWeight.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             this.lbWeight.Weight = 0.44630117001823189D;
             // 
+            // xrTableCell23
+            // 
+            this.xrTableCell23.BorderColor = System.Drawing.Color.Gray;
+            this.xrTableCell23.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right)));
+            this.xrTableCell23.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.xrTableCell23.ForeColor = System.Drawing.Color.Black;
+            this.xrTableCell23.Multiline = true;
+            this.xrTableCell23.Name = "xrTableCell23";
+            this.xrTableCell23.StylePriority.UseBorderColor = false;
+            this.xrTableCell23.StylePriority.UseBorders = false;
+            this.xrTableCell23.StylePriority.UseFont = false;
+            this.xrTableCell23.StylePriority.UseForeColor = false;
+            this.xrTableCell23.Text = "กิโลกรัม";
+            this.xrTableCell23.Weight = 0.46914275319011245D;
+            // 
             // xrTableCell4
             // 
             this.xrTableCell4.BorderColor = System.Drawing.Color.Gray;
@@ -4340,6 +4364,21 @@
             this.lbHeight.StylePriority.UseTextAlignment = false;
             this.lbHeight.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             this.lbHeight.Weight = 0.343563902094284D;
+            // 
+            // xrTableCell21
+            // 
+            this.xrTableCell21.BorderColor = System.Drawing.Color.Gray;
+            this.xrTableCell21.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right)));
+            this.xrTableCell21.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.xrTableCell21.ForeColor = System.Drawing.Color.Black;
+            this.xrTableCell21.Multiline = true;
+            this.xrTableCell21.Name = "xrTableCell21";
+            this.xrTableCell21.StylePriority.UseBorderColor = false;
+            this.xrTableCell21.StylePriority.UseBorders = false;
+            this.xrTableCell21.StylePriority.UseFont = false;
+            this.xrTableCell21.StylePriority.UseForeColor = false;
+            this.xrTableCell21.Text = "เซนติเมตร ";
+            this.xrTableCell21.Weight = 0.36014967987380314D;
             // 
             // xrTableCell5
             // 
@@ -4453,6 +4492,22 @@
             this.lbBP.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             this.lbBP.Weight = 0.44630125975795432D;
             // 
+            // xrTableCell25
+            // 
+            this.xrTableCell25.BorderColor = System.Drawing.Color.Gray;
+            this.xrTableCell25.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell25.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.xrTableCell25.ForeColor = System.Drawing.Color.Black;
+            this.xrTableCell25.Multiline = true;
+            this.xrTableCell25.Name = "xrTableCell25";
+            this.xrTableCell25.StylePriority.UseBorderColor = false;
+            this.xrTableCell25.StylePriority.UseBorders = false;
+            this.xrTableCell25.StylePriority.UseFont = false;
+            this.xrTableCell25.StylePriority.UseForeColor = false;
+            this.xrTableCell25.Text = "มิลลิเมตรปรอท";
+            this.xrTableCell25.Weight = 0.46914274748255835D;
+            // 
             // xrTableCell13
             // 
             this.xrTableCell13.BorderColor = System.Drawing.Color.Gray;
@@ -4484,6 +4539,22 @@
             this.lbPulse.StylePriority.UseTextAlignment = false;
             this.lbPulse.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             this.lbPulse.Weight = 0.34830257302764839D;
+            // 
+            // xrTableCell22
+            // 
+            this.xrTableCell22.BorderColor = System.Drawing.Color.Gray;
+            this.xrTableCell22.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell22.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.xrTableCell22.ForeColor = System.Drawing.Color.Black;
+            this.xrTableCell22.Multiline = true;
+            this.xrTableCell22.Name = "xrTableCell22";
+            this.xrTableCell22.StylePriority.UseBorderColor = false;
+            this.xrTableCell22.StylePriority.UseBorders = false;
+            this.xrTableCell22.StylePriority.UseFont = false;
+            this.xrTableCell22.StylePriority.UseForeColor = false;
+            this.xrTableCell22.Text = "ครั้งต่อนาที";
+            this.xrTableCell22.Weight = 0.35541091349316251D;
             // 
             // xrTableCell15
             // 
@@ -4517,6 +4588,22 @@
             this.lbWaist.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             this.lbWaist.Weight = 0.45350438211175031D;
             // 
+            // xrTableCell31
+            // 
+            this.xrTableCell31.BorderColor = System.Drawing.Color.Gray;
+            this.xrTableCell31.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell31.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.xrTableCell31.ForeColor = System.Drawing.Color.Black;
+            this.xrTableCell31.Multiline = true;
+            this.xrTableCell31.Name = "xrTableCell31";
+            this.xrTableCell31.StylePriority.UseBorderColor = false;
+            this.xrTableCell31.StylePriority.UseBorders = false;
+            this.xrTableCell31.StylePriority.UseFont = false;
+            this.xrTableCell31.StylePriority.UseForeColor = false;
+            this.xrTableCell31.Text = "เซนติเมตร ";
+            this.xrTableCell31.Weight = 0.31276164616593871D;
+            // 
             // xrTableCell17
             // 
             this.xrTableCell17.BorderColor = System.Drawing.Color.Gray;
@@ -4548,6 +4635,22 @@
             this.lbHip.StylePriority.UseTextAlignment = false;
             this.lbHip.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             this.lbHip.Weight = 0.6255227430019803D;
+            // 
+            // xrTableCell29
+            // 
+            this.xrTableCell29.BorderColor = System.Drawing.Color.Gray;
+            this.xrTableCell29.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell29.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.xrTableCell29.ForeColor = System.Drawing.Color.Black;
+            this.xrTableCell29.Multiline = true;
+            this.xrTableCell29.Name = "xrTableCell29";
+            this.xrTableCell29.StylePriority.UseBorderColor = false;
+            this.xrTableCell29.StylePriority.UseBorders = false;
+            this.xrTableCell29.StylePriority.UseFont = false;
+            this.xrTableCell29.StylePriority.UseForeColor = false;
+            this.xrTableCell29.Text = "เซนติเมตร";
+            this.xrTableCell29.Weight = 0.31276196659233169D;
             // 
             // xrTable2
             // 
@@ -4654,6 +4757,15 @@
             this.lbAge.Name = "lbAge";
             this.lbAge.StylePriority.UseFont = false;
             this.lbAge.Weight = 0.30508474197253926D;
+            // 
+            // xrTableCell33
+            // 
+            this.xrTableCell33.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell33.Multiline = true;
+            this.xrTableCell33.Name = "xrTableCell33";
+            this.xrTableCell33.StylePriority.UseFont = false;
+            this.xrTableCell33.Text = "ปี";
+            this.xrTableCell33.Weight = 0.44009343172359849D;
             // 
             // xrTableCell26
             // 
@@ -4792,108 +4904,111 @@
             this.LogoType.ValueInfo = "0";
             this.LogoType.Visible = false;
             // 
-            // xrTableCell21
+            // rowCholinesteraseBlood
             // 
-            this.xrTableCell21.BorderColor = System.Drawing.Color.Gray;
-            this.xrTableCell21.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right)));
-            this.xrTableCell21.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrTableCell21.ForeColor = System.Drawing.Color.Black;
-            this.xrTableCell21.Multiline = true;
-            this.xrTableCell21.Name = "xrTableCell21";
-            this.xrTableCell21.StylePriority.UseBorderColor = false;
-            this.xrTableCell21.StylePriority.UseBorders = false;
-            this.xrTableCell21.StylePriority.UseFont = false;
-            this.xrTableCell21.StylePriority.UseForeColor = false;
-            this.xrTableCell21.Text = "เซนติเมตร ";
-            this.xrTableCell21.Weight = 0.36014967987380314D;
+            this.rowCholinesteraseBlood.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell34,
+            this.CholinesterasebloodRange,
+            this.Cholinesteraseblood,
+            this.xrTableCell37,
+            this.xrTableCell38,
+            this.xrTableCell39,
+            this.xrTableCell40});
+            this.rowCholinesteraseBlood.Name = "rowCholinesteraseBlood";
+            this.rowCholinesteraseBlood.Weight = 1.0434787869948638D;
             // 
-            // xrTableCell22
+            // xrTableCell34
             // 
-            this.xrTableCell22.BorderColor = System.Drawing.Color.Gray;
-            this.xrTableCell22.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTableCell34.BorderColor = System.Drawing.Color.Gray;
+            this.xrTableCell34.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell22.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrTableCell22.ForeColor = System.Drawing.Color.Black;
-            this.xrTableCell22.Multiline = true;
-            this.xrTableCell22.Name = "xrTableCell22";
-            this.xrTableCell22.StylePriority.UseBorderColor = false;
-            this.xrTableCell22.StylePriority.UseBorders = false;
-            this.xrTableCell22.StylePriority.UseFont = false;
-            this.xrTableCell22.StylePriority.UseForeColor = false;
-            this.xrTableCell22.Text = "ครั้งต่อนาที";
-            this.xrTableCell22.Weight = 0.35541091349316251D;
+            this.xrTableCell34.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.xrTableCell34.Multiline = true;
+            this.xrTableCell34.Name = "xrTableCell34";
+            this.xrTableCell34.StylePriority.UseBorderColor = false;
+            this.xrTableCell34.StylePriority.UseBorders = false;
+            this.xrTableCell34.StylePriority.UseFont = false;
+            this.xrTableCell34.Text = "Cholinesterase in blood";
+            this.xrTableCell34.Weight = 1.2193880060756792D;
             // 
-            // xrTableCell23
+            // CholinesterasebloodRange
             // 
-            this.xrTableCell23.BorderColor = System.Drawing.Color.Gray;
-            this.xrTableCell23.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right)));
-            this.xrTableCell23.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrTableCell23.ForeColor = System.Drawing.Color.Black;
-            this.xrTableCell23.Multiline = true;
-            this.xrTableCell23.Name = "xrTableCell23";
-            this.xrTableCell23.StylePriority.UseBorderColor = false;
-            this.xrTableCell23.StylePriority.UseBorders = false;
-            this.xrTableCell23.StylePriority.UseFont = false;
-            this.xrTableCell23.StylePriority.UseForeColor = false;
-            this.xrTableCell23.Text = "กิโลกรัม";
-            this.xrTableCell23.Weight = 0.46914275319011245D;
-            // 
-            // xrTableCell25
-            // 
-            this.xrTableCell25.BorderColor = System.Drawing.Color.Gray;
-            this.xrTableCell25.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.CholinesterasebloodRange.BorderColor = System.Drawing.Color.Gray;
+            this.CholinesterasebloodRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell25.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrTableCell25.ForeColor = System.Drawing.Color.Black;
-            this.xrTableCell25.Multiline = true;
-            this.xrTableCell25.Name = "xrTableCell25";
-            this.xrTableCell25.StylePriority.UseBorderColor = false;
-            this.xrTableCell25.StylePriority.UseBorders = false;
-            this.xrTableCell25.StylePriority.UseFont = false;
-            this.xrTableCell25.StylePriority.UseForeColor = false;
-            this.xrTableCell25.Text = "มิลลิเมตรปรอท";
-            this.xrTableCell25.Weight = 0.46914274748255835D;
+            this.CholinesterasebloodRange.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.CholinesterasebloodRange.Multiline = true;
+            this.CholinesterasebloodRange.Name = "CholinesterasebloodRange";
+            this.CholinesterasebloodRange.StylePriority.UseBorderColor = false;
+            this.CholinesterasebloodRange.StylePriority.UseBorders = false;
+            this.CholinesterasebloodRange.StylePriority.UseFont = false;
+            this.CholinesterasebloodRange.StylePriority.UseTextAlignment = false;
+            this.CholinesterasebloodRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.CholinesterasebloodRange.Weight = 1.2708729955414177D;
             // 
-            // xrTableCell29
+            // Cholinesteraseblood
             // 
-            this.xrTableCell29.BorderColor = System.Drawing.Color.Gray;
-            this.xrTableCell29.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.Cholinesteraseblood.BorderColor = System.Drawing.Color.Gray;
+            this.Cholinesteraseblood.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell29.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrTableCell29.ForeColor = System.Drawing.Color.Black;
-            this.xrTableCell29.Multiline = true;
-            this.xrTableCell29.Name = "xrTableCell29";
-            this.xrTableCell29.StylePriority.UseBorderColor = false;
-            this.xrTableCell29.StylePriority.UseBorders = false;
-            this.xrTableCell29.StylePriority.UseFont = false;
-            this.xrTableCell29.StylePriority.UseForeColor = false;
-            this.xrTableCell29.Text = "เซนติเมตร";
-            this.xrTableCell29.Weight = 0.31276196659233169D;
+            this.Cholinesteraseblood.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.Cholinesteraseblood.Multiline = true;
+            this.Cholinesteraseblood.Name = "Cholinesteraseblood";
+            this.Cholinesteraseblood.StylePriority.UseBorderColor = false;
+            this.Cholinesteraseblood.StylePriority.UseBorders = false;
+            this.Cholinesteraseblood.StylePriority.UseFont = false;
+            this.Cholinesteraseblood.StylePriority.UseTextAlignment = false;
+            this.Cholinesteraseblood.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.Cholinesteraseblood.Weight = 0.747892153065376D;
             // 
-            // xrTableCell31
+            // xrTableCell37
             // 
-            this.xrTableCell31.BorderColor = System.Drawing.Color.Gray;
-            this.xrTableCell31.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell31.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrTableCell31.ForeColor = System.Drawing.Color.Black;
-            this.xrTableCell31.Multiline = true;
-            this.xrTableCell31.Name = "xrTableCell31";
-            this.xrTableCell31.StylePriority.UseBorderColor = false;
-            this.xrTableCell31.StylePriority.UseBorders = false;
-            this.xrTableCell31.StylePriority.UseFont = false;
-            this.xrTableCell31.StylePriority.UseForeColor = false;
-            this.xrTableCell31.Text = "เซนติเมตร ";
-            this.xrTableCell31.Weight = 0.31276164616593871D;
+            this.xrTableCell37.Multiline = true;
+            this.xrTableCell37.Name = "xrTableCell37";
+            this.xrTableCell37.Weight = 0.043355309803110517D;
             // 
-            // xrTableCell33
+            // xrTableCell38
             // 
-            this.xrTableCell33.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell33.Multiline = true;
-            this.xrTableCell33.Name = "xrTableCell33";
-            this.xrTableCell33.StylePriority.UseFont = false;
-            this.xrTableCell33.Text = "ปี";
-            this.xrTableCell33.Weight = 0.44009343172359849D;
+            this.xrTableCell38.BorderColor = System.Drawing.Color.Gray;
+            this.xrTableCell38.Borders = DevExpress.XtraPrinting.BorderSide.Top;
+            this.xrTableCell38.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.xrTableCell38.Multiline = true;
+            this.xrTableCell38.Name = "xrTableCell38";
+            this.xrTableCell38.StylePriority.UseBorderColor = false;
+            this.xrTableCell38.StylePriority.UseBorders = false;
+            this.xrTableCell38.StylePriority.UseFont = false;
+            this.xrTableCell38.Weight = 1.0568029196640589D;
+            // 
+            // xrTableCell39
+            // 
+            this.xrTableCell39.BorderColor = System.Drawing.Color.Gray;
+            this.xrTableCell39.Borders = DevExpress.XtraPrinting.BorderSide.Top;
+            this.xrTableCell39.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.xrTableCell39.Multiline = true;
+            this.xrTableCell39.Name = "xrTableCell39";
+            this.xrTableCell39.StylePriority.UseBorderColor = false;
+            this.xrTableCell39.StylePriority.UseBorders = false;
+            this.xrTableCell39.StylePriority.UseFont = false;
+            this.xrTableCell39.StylePriority.UseTextAlignment = false;
+            this.xrTableCell39.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.xrTableCell39.Weight = 1.056803371178975D;
+            // 
+            // xrTableCell40
+            // 
+            this.xrTableCell40.BorderColor = System.Drawing.Color.Gray;
+            this.xrTableCell40.Borders = DevExpress.XtraPrinting.BorderSide.Top;
+            this.xrTableCell40.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.xrTableCell40.Multiline = true;
+            this.xrTableCell40.Name = "xrTableCell40";
+            this.xrTableCell40.StylePriority.UseBorderColor = false;
+            this.xrTableCell40.StylePriority.UseBorders = false;
+            this.xrTableCell40.StylePriority.UseFont = false;
+            this.xrTableCell40.StylePriority.UseTextAlignment = false;
+            this.xrTableCell40.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.xrTableCell40.Weight = 0.84002241700856972D;
             // 
             // MedReport1
             // 
@@ -5260,5 +5375,13 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell31;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell29;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell33;
+        private DevExpress.XtraReports.UI.XRTableRow rowCholinesteraseBlood;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell34;
+        private DevExpress.XtraReports.UI.XRTableCell CholinesterasebloodRange;
+        private DevExpress.XtraReports.UI.XRTableCell Cholinesteraseblood;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell37;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell38;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell39;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell40;
     }
 }
