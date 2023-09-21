@@ -147,6 +147,8 @@ namespace MediTech.Reports.Operating.Checkup
                 page2.Name2.Text = patient.PatientName;
                 #endregion
 
+                rowCholinesteraseBlood.Visible = false;
+
                 #region Result Wellness
 
                 string wellnessResult = string.Empty;
@@ -341,6 +343,7 @@ namespace MediTech.Reports.Operating.Checkup
                             || p.RequestItemCode.Contains("LAB284") //psa
                             || p.RequestItemCode.Contains("LAB285") //ca125
                             || p.RequestItemCode.Contains("LAB286") //ca153
+                            || p.RequestItemCode.Contains("LAB511") //Cholinesterase in blood
                             ).OrderByDescending(p => p.Year);
                         GenerateOtherFunction(OtherTestSet);
                         #endregion
@@ -667,6 +670,12 @@ namespace MediTech.Reports.Operating.Checkup
                     ca153_1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR203" && p.Year == year1)?.ResultValue;
                 }
 
+                if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR126") != null)
+                {
+                    rowCholinesteraseBlood.Visible = true;
+                    CholinesterasebloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR126")?.ReferenceRange;
+                    Cholinesteraseblood.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR126" && p.Year == year1)?.ResultValue;
+                }
             }
         }
         #endregion

@@ -23,6 +23,7 @@ namespace MediTech.DataBase
         public Nullable<int> SEXXXUID { get; set; }
         public string EnglishName { get; set; }
         public string ImgPath { get; set; }
+        public byte[] LicenseImage { get; set; }
         public string LicenseNo { get; set; }
         public Nullable<System.DateTime> LicenseIssueDttm { get; set; }
         public Nullable<System.DateTime> LicenseExpiryDttm { get; set; }
