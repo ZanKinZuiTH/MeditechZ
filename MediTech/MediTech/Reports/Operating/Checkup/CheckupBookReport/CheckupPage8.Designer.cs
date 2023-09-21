@@ -377,6 +377,12 @@
             this.FormadehydeY1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.FormadehydeY2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.FormadehydeY3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RowEthanolBlood = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell64 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RangeEthanolBlood = new DevExpress.XtraReports.UI.XRTableCell();
+            this.EthanolBlood1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.EthanolBlood2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.EthanolBlood3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
@@ -391,12 +397,12 @@
             this.lbName8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.RowEthanolBlood = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell64 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.RangeEthanolBlood = new DevExpress.XtraReports.UI.XRTableCell();
-            this.EthanolBlood1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.EthanolBlood2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.EthanolBlood3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.rowTinBlood = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell66 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellTinBloodRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellTinBlood1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellTinBlood2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellTinBlood3 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.tbOtherTest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
@@ -2185,8 +2191,9 @@
             this.RowBenzenettUrine,
             this.RowFluorine,
             this.RowFormadehyde,
-            this.RowEthanolBlood});
-            this.tbToxicology.SizeF = new System.Drawing.SizeF(363.5789F, 614.1728F);
+            this.RowEthanolBlood,
+            this.rowTinBlood});
+            this.tbToxicology.SizeF = new System.Drawing.SizeF(363.5789F, 633.0439F);
             this.tbToxicology.StylePriority.UseBorders = false;
             this.tbToxicology.StylePriority.UseBorderWidth = false;
             this.tbToxicology.StylePriority.UseFont = false;
@@ -4097,6 +4104,68 @@
             this.FormadehydeY3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.FormadehydeY3.Weight = 0.49654431607582589D;
             // 
+            // RowEthanolBlood
+            // 
+            this.RowEthanolBlood.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell64,
+            this.RangeEthanolBlood,
+            this.EthanolBlood1,
+            this.EthanolBlood2,
+            this.EthanolBlood3});
+            this.RowEthanolBlood.Name = "RowEthanolBlood";
+            this.RowEthanolBlood.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell64
+            // 
+            this.xrTableCell64.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell64.Multiline = true;
+            this.xrTableCell64.Name = "xrTableCell64";
+            this.xrTableCell64.StylePriority.UseFont = false;
+            this.xrTableCell64.StylePriority.UseTextAlignment = false;
+            this.xrTableCell64.Text = "Ethanol in Blood";
+            this.xrTableCell64.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell64.Weight = 1.0081393020274905D;
+            // 
+            // RangeEthanolBlood
+            // 
+            this.RangeEthanolBlood.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.RangeEthanolBlood.Multiline = true;
+            this.RangeEthanolBlood.Name = "RangeEthanolBlood";
+            this.RangeEthanolBlood.StylePriority.UseFont = false;
+            this.RangeEthanolBlood.StylePriority.UseTextAlignment = false;
+            this.RangeEthanolBlood.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.RangeEthanolBlood.Weight = 1.0314162206887314D;
+            // 
+            // EthanolBlood1
+            // 
+            this.EthanolBlood1.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.EthanolBlood1.Multiline = true;
+            this.EthanolBlood1.Name = "EthanolBlood1";
+            this.EthanolBlood1.StylePriority.UseFont = false;
+            this.EthanolBlood1.StylePriority.UseTextAlignment = false;
+            this.EthanolBlood1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.EthanolBlood1.Weight = 0.52909351643135161D;
+            // 
+            // EthanolBlood2
+            // 
+            this.EthanolBlood2.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.EthanolBlood2.Multiline = true;
+            this.EthanolBlood2.Name = "EthanolBlood2";
+            this.EthanolBlood2.StylePriority.UseFont = false;
+            this.EthanolBlood2.StylePriority.UseTextAlignment = false;
+            this.EthanolBlood2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.EthanolBlood2.Weight = 0.55147320971800662D;
+            // 
+            // EthanolBlood3
+            // 
+            this.EthanolBlood3.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.EthanolBlood3.Multiline = true;
+            this.EthanolBlood3.Name = "EthanolBlood3";
+            this.EthanolBlood3.StylePriority.UseFont = false;
+            this.EthanolBlood3.StylePriority.UseTextAlignment = false;
+            this.EthanolBlood3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.EthanolBlood3.Weight = 0.49654431607582589D;
+            // 
             // xrLabel1
             // 
             this.xrLabel1.Font = new System.Drawing.Font("Angsana New", 10F);
@@ -4242,67 +4311,67 @@
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // RowEthanolBlood
+            // rowTinBlood
             // 
-            this.RowEthanolBlood.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell64,
-            this.RangeEthanolBlood,
-            this.EthanolBlood1,
-            this.EthanolBlood2,
-            this.EthanolBlood3});
-            this.RowEthanolBlood.Name = "RowEthanolBlood";
-            this.RowEthanolBlood.Weight = 0.92341768297675519D;
+            this.rowTinBlood.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell66,
+            this.cellTinBloodRange,
+            this.cellTinBlood1,
+            this.cellTinBlood2,
+            this.cellTinBlood3});
+            this.rowTinBlood.Name = "rowTinBlood";
+            this.rowTinBlood.Weight = 0.92341768297675519D;
             // 
-            // xrTableCell64
+            // xrTableCell66
             // 
-            this.xrTableCell64.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell64.Multiline = true;
-            this.xrTableCell64.Name = "xrTableCell64";
-            this.xrTableCell64.StylePriority.UseFont = false;
-            this.xrTableCell64.StylePriority.UseTextAlignment = false;
-            this.xrTableCell64.Text = "Ethanol in Blood";
-            this.xrTableCell64.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell64.Weight = 1.0081393020274905D;
+            this.xrTableCell66.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell66.Multiline = true;
+            this.xrTableCell66.Name = "xrTableCell66";
+            this.xrTableCell66.StylePriority.UseFont = false;
+            this.xrTableCell66.StylePriority.UseTextAlignment = false;
+            this.xrTableCell66.Text = "Tin in Blood";
+            this.xrTableCell66.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell66.Weight = 1.0081393020274905D;
             // 
-            // RangeEthanolBlood
+            // cellTinBloodRange
             // 
-            this.RangeEthanolBlood.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.RangeEthanolBlood.Multiline = true;
-            this.RangeEthanolBlood.Name = "RangeEthanolBlood";
-            this.RangeEthanolBlood.StylePriority.UseFont = false;
-            this.RangeEthanolBlood.StylePriority.UseTextAlignment = false;
-            this.RangeEthanolBlood.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.RangeEthanolBlood.Weight = 1.0314162206887314D;
+            this.cellTinBloodRange.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.cellTinBloodRange.Multiline = true;
+            this.cellTinBloodRange.Name = "cellTinBloodRange";
+            this.cellTinBloodRange.StylePriority.UseFont = false;
+            this.cellTinBloodRange.StylePriority.UseTextAlignment = false;
+            this.cellTinBloodRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellTinBloodRange.Weight = 1.0314162206887314D;
             // 
-            // EthanolBlood1
+            // cellTinBlood1
             // 
-            this.EthanolBlood1.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.EthanolBlood1.Multiline = true;
-            this.EthanolBlood1.Name = "EthanolBlood1";
-            this.EthanolBlood1.StylePriority.UseFont = false;
-            this.EthanolBlood1.StylePriority.UseTextAlignment = false;
-            this.EthanolBlood1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.EthanolBlood1.Weight = 0.52909351643135161D;
+            this.cellTinBlood1.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.cellTinBlood1.Multiline = true;
+            this.cellTinBlood1.Name = "cellTinBlood1";
+            this.cellTinBlood1.StylePriority.UseFont = false;
+            this.cellTinBlood1.StylePriority.UseTextAlignment = false;
+            this.cellTinBlood1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellTinBlood1.Weight = 0.52909351643135161D;
             // 
-            // EthanolBlood2
+            // cellTinBlood2
             // 
-            this.EthanolBlood2.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.EthanolBlood2.Multiline = true;
-            this.EthanolBlood2.Name = "EthanolBlood2";
-            this.EthanolBlood2.StylePriority.UseFont = false;
-            this.EthanolBlood2.StylePriority.UseTextAlignment = false;
-            this.EthanolBlood2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.EthanolBlood2.Weight = 0.55147320971800662D;
+            this.cellTinBlood2.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.cellTinBlood2.Multiline = true;
+            this.cellTinBlood2.Name = "cellTinBlood2";
+            this.cellTinBlood2.StylePriority.UseFont = false;
+            this.cellTinBlood2.StylePriority.UseTextAlignment = false;
+            this.cellTinBlood2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellTinBlood2.Weight = 0.55147320971800662D;
             // 
-            // EthanolBlood3
+            // cellTinBlood3
             // 
-            this.EthanolBlood3.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.EthanolBlood3.Multiline = true;
-            this.EthanolBlood3.Name = "EthanolBlood3";
-            this.EthanolBlood3.StylePriority.UseFont = false;
-            this.EthanolBlood3.StylePriority.UseTextAlignment = false;
-            this.EthanolBlood3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.EthanolBlood3.Weight = 0.49654431607582589D;
+            this.cellTinBlood3.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.cellTinBlood3.Multiline = true;
+            this.cellTinBlood3.Name = "cellTinBlood3";
+            this.cellTinBlood3.StylePriority.UseFont = false;
+            this.cellTinBlood3.StylePriority.UseTextAlignment = false;
+            this.cellTinBlood3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellTinBlood3.Weight = 0.49654431607582589D;
             // 
             // CheckupPage8
             // 
@@ -4697,5 +4766,11 @@
         public DevExpress.XtraReports.UI.XRTableCell EthanolBlood1;
         public DevExpress.XtraReports.UI.XRTableCell EthanolBlood2;
         public DevExpress.XtraReports.UI.XRTableCell EthanolBlood3;
+        public DevExpress.XtraReports.UI.XRTableRow rowTinBlood;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell66;
+        public DevExpress.XtraReports.UI.XRTableCell cellTinBloodRange;
+        public DevExpress.XtraReports.UI.XRTableCell cellTinBlood1;
+        public DevExpress.XtraReports.UI.XRTableCell cellTinBlood2;
+        public DevExpress.XtraReports.UI.XRTableCell cellTinBlood3;
     }
 }

@@ -206,6 +206,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                 //page8.Rowfluoride.Visible = false;
                 page8.RowEthanolBlood.Visible = false;
                 page8.RowFormadehyde.Visible = false;
+                page8.rowTinBlood.Visible = false;
                 //page8.Row25Hexan.Visible = false;
                 //page8.RowManganese.Visible = false;
                 //page8.RowZinc.Visible = false;
@@ -702,7 +703,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                         || p.RequestItemCode.Contains("LAB568") //Benzene (t,t-Muconic acid) in Urine
                         || p.RequestItemCode.Contains("LAB488") //Mercury in blood
                         || p.RequestItemCode.Contains("LAB584") //Fluorine in urine
-                        || p.RequestItemCode.Contains("LAB513")) //formadehyde in Urine
+                        || p.RequestItemCode.Contains("LAB513") //formadehyde in Urine
+                        || p.RequestItemCode.Contains("LAB630") //Tin in blood
+                        ) 
                         .OrderByDescending(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
                     #endregion
@@ -1976,6 +1979,18 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                             page8.EthanolBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271" && p.Year == year3)?.ResultValue;
                         }
 
+                        #endregion
+
+                        #region Tin in Blood
+
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329") != null)
+                        {
+                            page8.rowTinBlood.Visible = true;
+                            page8.cellTinBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329")?.ReferenceRange;
+                            page8.cellTinBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329" && p.Year == year1)?.ResultValue;
+                            page8.cellTinBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329" && p.Year == year2)?.ResultValue;
+                            page8.cellTinBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329" && p.Year == year3)?.ResultValue;
+                        }
                         #endregion
                     }
                     else
