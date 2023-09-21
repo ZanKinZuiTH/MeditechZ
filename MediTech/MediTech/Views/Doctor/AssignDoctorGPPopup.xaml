@@ -5,7 +5,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MediTech.Views"
+             DataContext="{Binding Path=AssignDoctorGPPopupViewModel,Source={StaticResource Locator}}"
              mc:Ignorable="d" 
+             Height="300" Width="400"
              d:DesignHeight="300" d:DesignWidth="400">
     <AdornerDecorator>
         <dxlc:LayoutControl Orientation="Vertical">
@@ -32,7 +34,7 @@
                 <dxe:ListBoxEdit Name="edit"
                                  ItemsSource="{Binding CareproviderLists}"
                                  SelectedItem="{Binding SelectCareprovider}"
-                                 DisplayMember="CareproviderName" 
+                                 DisplayMember="FullName" 
                                  ValueMember="CareproviderUID" 
                              SelectedIndex="0">
                 </dxe:ListBoxEdit>

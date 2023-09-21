@@ -400,7 +400,7 @@ namespace MediTech.ViewModels.Doctor
         {
             try
             {
-                if (SelectPatientVisits == null)
+                if (SelectPatientVisits == null || SelectPatientVisits.Count <= 0)
                 {
                     WarningDialog("กรุณาเลือก Visit อย่างน้อย 1 Visit");
                     return;

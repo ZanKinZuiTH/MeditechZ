@@ -19,7 +19,7 @@ namespace MediTech.ViewModels
         public CareproviderModel SelectDoctor
         {
             get { return _SelectDoctor; }
-            set { _SelectDoctor = value; }
+            set { Set(ref _SelectDoctor, value); }
         }
 
 
@@ -27,8 +27,8 @@ namespace MediTech.ViewModels
 
         public ObservableCollection<CareproviderModel> CareproviderLists
         {
-            get { return _CareproviderLists ?? new ObservableCollection<CareproviderModel>(); }
-            set { _CareproviderLists = value; }
+            get { return _CareproviderLists ?? (_CareproviderLists = new ObservableCollection<CareproviderModel>()); }
+            set { Set(ref _CareproviderLists, value); }
         }
 
         private CareproviderModel _SelectCareprovider;
@@ -36,7 +36,7 @@ namespace MediTech.ViewModels
         public CareproviderModel SelectCareprovider
         {
             get { return _SelectCareprovider; }
-            set { _SelectCareprovider = value; }
+            set { Set(ref _SelectCareprovider, value); }
         }
 
         #endregion
@@ -103,13 +103,14 @@ namespace MediTech.ViewModels
         {
             if (SelectDoctor != null)
             {
-                if (CareproviderLists.FirstOrDefault(p => p.CareproviderUID == SelectCareprovider.CareproviderUID) != null)
+                if (CareproviderLists.FirstOrDefault(p => p.CareproviderUID == SelectDoctor.CareproviderUID) != null)
                 {
                     WarningDialog("ชื่อแพทย์ ซ้ำ");
                     return;
                 }
 
                 CareproviderLists.Add(SelectDoctor);
+                SelectDoctor = null;
             }
         }
 
@@ -126,6 +127,11 @@ namespace MediTech.ViewModels
         {
             try
             {
+                if (CareproviderLists == null || CareproviderLists.Count <= 0)
+                {
+                    WarningDialog("กรุณาเลือก แพทย์ อย่างน้อย 1 รายการ");
+                    return;
+                }
                 if (QuestionDialog("คุณต้องการบันทึกใช้หรื่อไม่") == System.Windows.MessageBoxResult.Yes)
                 {
                     CloseViewDialog(ActionDialog.Save);

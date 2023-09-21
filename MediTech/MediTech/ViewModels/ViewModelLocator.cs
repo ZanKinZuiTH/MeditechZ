@@ -650,7 +650,7 @@ namespace MediTech.ViewModels
             }
         }
 
-        public AssignDoctorGPPopupViewModel AssignDoctorGPPupupViewModel
+        public AssignDoctorGPPopupViewModel AssignDoctorGPPopupViewModel
         {
             get
             {
