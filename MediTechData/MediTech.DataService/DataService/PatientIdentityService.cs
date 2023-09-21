@@ -299,6 +299,19 @@ namespace MediTech.DataService
             }
         }
 
+        public void AssignDoctorGPList(List<PatientVisitModel> patvisitList, int userID)
+        {
+            try
+            {
+                string requestApi = string.Format("Api/PatientIdentity/AssignDoctorGPList?userID={0}", userID);
+                MeditechApiHelper.Put<List<PatientVisitModel>>(requestApi, patvisitList);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
 
         public void CancelVisit(long patientVisitUID, int userID)
         {

@@ -650,6 +650,17 @@ namespace MediTech.ViewModels
             }
         }
 
+        public AssignDoctorGPPopupViewModel AssignDoctorGPPupupViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<AssignDoctorGPPopupViewModel>())
+                    SimpleIoc.Default.Register<AssignDoctorGPPopupViewModel>();
+
+                return ServiceLocator.Current.GetInstance<AssignDoctorGPPopupViewModel>();
+            }
+        }
+
         #endregion
 
         #region EMRView

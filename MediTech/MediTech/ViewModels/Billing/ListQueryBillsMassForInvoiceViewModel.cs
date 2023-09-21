@@ -234,7 +234,7 @@ namespace MediTech.ViewModels
         {
             if (SelectPatientAllocates != null && SelectPatientAllocates.Count > 0)
             {
-                var patienttUnBillFinalized = SelectPatientAllocates.Where(p => p.IsBillFinalized == "N");
+                var patienttUnBillFinalized = SelectPatientAllocates.Where(p => p.IsBillFinalized == "N").ToList();
 
                 ListQueryBillsMassForInvoice view = (ListQueryBillsMassForInvoice)this.View;
                 int upperlimit = 0;
@@ -295,7 +295,7 @@ namespace MediTech.ViewModels
             }
             if (SelectPatientAllocates != null && SelectPatientAllocates.Count > 0)
             {
-                var patienttUnBillFinalized = SelectPatientAllocates.Where(p => p.IsAllocated == "Y");
+                var patienttUnBillFinalized = SelectPatientAllocates.Where(p => p.IsAllocated == "Y").ToList();
 
                 ListQueryBillsMassForInvoice view = (ListQueryBillsMassForInvoice)this.View;
                 int upperlimit = 0;

@@ -33,7 +33,7 @@ namespace MediTech.ViewModels
 
         private List<InsuranceCompanyModel> _InsuranceCompany;
 
-        public List<InsuranceCompanyModel> InsuranceCompany
+        public virtual List<InsuranceCompanyModel> InsuranceCompany
         {
             get { return _InsuranceCompany; }
             set { Set(ref _InsuranceCompany, value); }
@@ -41,7 +41,7 @@ namespace MediTech.ViewModels
 
         private InsuranceCompanyModel _SelectInsuranceCompany;
 
-        public InsuranceCompanyModel SelectInsuranceCompany
+        public  InsuranceCompanyModel SelectInsuranceCompany
         {
             get { return _SelectInsuranceCompany; }
             set { Set(ref _SelectInsuranceCompany, value); }

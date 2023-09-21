@@ -91,6 +91,7 @@ namespace MediTech.Model
         public List<CareproviderModel> SecondCareprovider { get; set; }
         public AdmissionEventModel AdmissionEvent { get; set; }
         public string ICD10 { get; set; }
+        public string DoctorGPName { get; set; }            
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyRaised(string propertyname)

@@ -83,26 +83,6 @@
                     <Grid Grid.Column="2" HorizontalAlignment="Right">
                         <StackPanel Orientation="Vertical" >
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Image Source="/MediTech;component/Resources/Images/Action/AssignTo.png" 
-                                   Width="30" Height="30"
-                                   Cursor="Hand"
-                                   ToolTip="Arrive">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.ArrivedCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientListForDoctor}}}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </Image>
-                                <!--<Image Source="/MediTech;component/Resources/Images/Action/AssignTo.png" 
-                                   Width="30" Height="30"
-                                   Cursor="Hand"
-                                   ToolTip="ส่งตรวจ">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.SendToDoctorCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientListForDoctor}}}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </Image>-->
                                 <Image Source="/MediTech;component/Resources/Images/Medical/VitalSign.png"
                                    Width="30" Height="30"
                                    Cursor="Hand"                                   
@@ -113,6 +93,16 @@
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
+                                <Image Source="/MediTech;component/Resources/Images/Document/EditProperty.png" 
+   Width="30" Height="30"
+   Cursor="Hand"
+   ToolTip="แก้ไข Visit">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.ModifyVisitCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientList}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
                                 <Image Source="/MediTech;component/Resources/Images/Medical/Allergy2.png"
                                    Width="30" Height="30"
                                    Cursor="Hand"                                   
@@ -120,16 +110,6 @@
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
                                             <mvvm:EventToCommand Command="{Binding DataContext.AllergyCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientListForDoctor}}}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </Image>
-                                <Image Source="/MediTech;component/Resources/Images/Fincace/modifypayor.png"
-                                   Width="30" Height="30"
-                                   Cursor="Hand"                                   
-                                   ToolTip="แก้ไข Payor">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.ModifyVisitPayorCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientListForDoctor}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
@@ -150,39 +130,6 @@
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
                                             <mvvm:EventToCommand Command="{Binding DataContext.MedicalDischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientListForDoctor}}}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </Image>
-
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Right">
-                                <Image Source="/MediTech;component/Resources/Images/Print/PrintVisitSlip.png"
-                                   Width="30" Height="30"
-                                   Cursor="Hand"                                   
-                                   ToolTip="พิมพ์ เอกสาร">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.RunPatientReportCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientListForDoctor}}}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </Image>
-                                <Image Source="/MediTech;component/Resources/Images/Document/EditProperty.png" 
-                                   Width="30" Height="30"
-                                   Cursor="Hand"
-                                   ToolTip="แก้ไข Visit">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.ModifyVisitCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientListForDoctor}}}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </Image>
-                                <Image Source="/MediTech;component/Resources/Images/Menu/ScannedDocument.png" 
-                                   Width="30" Height="30"
-                                   Cursor="Hand"
-                                   ToolTip="Scanned Document">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.ScannedDocumentCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientListForDoctor}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
@@ -287,25 +234,25 @@
                                 </dxlc:LayoutItem>
                             </dxlc:LayoutGroup>
                             <dxlc:LayoutGroup>
-                                <!--<dxlc:LayoutItem Label="สถานประกอบการ">
-                                    <dxe:ComboBoxEdit x:Name="cmbOrganisation" 
-                                      ItemsSource="{Binding Organisations}" 
-                                      SelectedItem="{Binding SelectOrganisation}"
-                                      ValueMember="HealthOrganisationUID"
-                                      DisplayMember="Name"
-                                      AutoComplete="True"
-                                      NullValueButtonPlacement="EditBox"
-                                      ImmediatePopup="True"/>
-                                </dxlc:LayoutItem>-->
+                                <dxlc:LayoutItem Label="สถานประกอบการ">
+                                    <dxe:ComboBoxEdit x:Name="cmbOrganisation"
+ItemsSource="{Binding Organisations}" 
+SelectedItem="{Binding SelectOrganisation}"
+ValueMember="HealthOrganisationUID"
+DisplayMember="Name"
+AutoComplete="True"
+NullValueButtonPlacement="EditBox"
+ImmediatePopup="True"/>
+                                </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="แผนก">
                                     <dxe:ComboBoxEdit x:Name="cmbLocation" 
-                                      ItemsSource="{Binding Location}" 
-                                      SelectedItem="{Binding SelectLocation}"
-                                      ValueMember="LocationUID" 
-                                      DisplayMember="Name"
-                                      AutoComplete="True"
-                                      NullValueButtonPlacement="EditBox"
-                                      ImmediatePopup="True"/>
+      ItemsSource="{Binding Locations}" 
+      SelectedItem="{Binding SelectLocation}"
+      ValueMember="LocationUID" 
+      DisplayMember="Name"
+      AutoComplete="True"
+      NullValueButtonPlacement="EditBox"
+      ImmediatePopup="True"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="Payor">
                                     <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding InsuranceCompany}" 
@@ -341,35 +288,50 @@
                                         </dxg:LookUpEdit.StyleSettings>
                                     </dxg:LookUpEdit>
                                 </dxlc:LayoutItem>
-                                <dxlc:LayoutItem Label="Encounter">
-                                    <!--<dxe:ComboBoxEdit x:Name="cmbEncounterType"
-                                                  DisplayMember="Display"
-                                                  ValueMember="Key"
-                                                  ItemsSource="{Binding EncounterType}"
-                                                  SelectedItem="{Binding SelectEncounterType}">
-                                        <Style TargetType="dxg:GridSearchControl">
-                                            <Style.Resources>
-                                                <Style TargetType="dxe:ComboBoxEdit"/>
-                                            </Style.Resources>
-                                        </Style>
-                                    </dxe:ComboBoxEdit>-->
-                                    <dxe:ComboBoxEdit x:Name="cmbEncounterType"
-                                              ItemsSource="{Binding EncounterType}"
-                                              IsTextEditable="False" 
-                                              DisplayMember="Display"
-                                              ValueMember="Key"
-                                              EditValue="{Binding SelectEncounterType, UpdateSourceTrigger=PropertyChanged}">
-                                        <dxe:ComboBoxEdit.StyleSettings>
-                                            <dxe:CheckedComboBoxStyleSettings />
-                                        </dxe:ComboBoxEdit.StyleSettings>
-                                    </dxe:ComboBoxEdit>
+                                <dxlc:LayoutItem Label="Job">
+                                    <dxg:LookUpEdit x:Name="lkeCompanyName" ItemsSource="{Binding CheckupJobContactList}" 
+                                    SelectedItem="{Binding SelectCheckupJobContact}"
+                                    ValueMember="CheckupJobContactUID"
+                                    DisplayMember="CompanyName"
+                                    NullValueButtonPlacement="EditBox"
+                                    AllowNullInput="True"
+                                    AutoComplete="True" 
+                                    ImmediatePopup="True"
+                                    FindButtonPlacement = "Popup"
+                                    FindMode = "Always"
+                                    PopupMinHeight="100"
+                                    PopupMinWidth="300"
+                                    PopupHeight="300" 
+                                    IsPopupAutoWidth="True"
+                                    AutoPopulateColumns="False">
+                                        <dxg:LookUpEdit.PopupContentTemplate>
+                                            <ControlTemplate>
+                                                <dxg:GridControl x:Name="PART_GridControl"  >
+                                                    <dxg:GridControl.View>
+                                                        <dxg:TableView
+                      x:Name="View"
+                      AutoWidth="True"
+                      ShowGroupedColumns="False" />
+                                                    </dxg:GridControl.View>
+                                                    <dxg:GridColumn Header="JobNumber" FieldName="JobNumber"/>
+                                                    <dxg:GridColumn Header="บริษัท" FieldName="CompanyName"/>
+                                                    <dxg:GridColumn Header="การให้บริการ" FieldName="ServiceName"/>
+                                                    <dxg:GridColumn Header="วันที่ตรวจ" FieldName="StartDttm"/>
+                                                </dxg:GridControl>
+                                            </ControlTemplate>
+                                        </dxg:LookUpEdit.PopupContentTemplate>
+                                        <dxg:LookUpEdit.StyleSettings>
+                                            <dxg:SearchLookUpEditStyleSettings/>
+                                        </dxg:LookUpEdit.StyleSettings>
+                                    </dxg:LookUpEdit>
                                 </dxlc:LayoutItem>
-                                <dxlc:LayoutItem >
-                                    <dx:SimpleButton x:Name="btnSearch" Width="80" Height="25" Content="ค้นหา"
-                                     Command="{Binding SearchCommand}"
-                                     HorizontalAlignment="Right"/>
-                                </dxlc:LayoutItem>
+
                             </dxlc:LayoutGroup>
+                            <dxlc:LayoutItem >
+                                <dx:SimpleButton x:Name="btnSearch" Width="80" Height="25" Content="ค้นหา"
+                 Command="{Binding SearchCommand}"
+                 HorizontalAlignment="Right"/>
+                            </dxlc:LayoutItem>
                             <!--<dxlc:LayoutGroup>
                                 <dx:SimpleButton x:Name="btnSearch" Width="80" Height="25" Content="ค้นหา"
                                      Command="{Binding SearchCommand}"
@@ -416,6 +378,8 @@
                     <dxg:GridColumn Header="เพศ" FieldName="Gender" ReadOnly="True"/>
                     <dxg:GridColumn Header="อายุ" FieldName="Age" ReadOnly="True"/>
                     <dxg:GridColumn Header="ICD10" FieldName="ICD10" ReadOnly="True"/>
+                    <dxg:GridColumn Header="แพทย์เจ้าของผู้ป่วย" FieldName="CareProviderName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="แพทย์ GP" FieldName="DoctorGPName" ReadOnly="True"/>
                     <dxg:GridColumn Header="สถานะ" FieldName="VisitStatus" ReadOnly="True"/>
                     <dxg:GridColumn Header="แผนก" FieldName="LocationName" ReadOnly="True"/>
                     <dxg:GridColumn Header="วันเดือนปีเกิด" FieldName="BirthDttm" ReadOnly="True"/>
@@ -427,7 +391,7 @@
                             <dxe:DateEditSettings DisplayFormat="dd/MM/yyyy HH:mm" />
                         </dxg:GridColumn.EditSettings>
                     </dxg:GridColumn>
-                    <dxg:GridColumn Header="แพทย์เจ้าของผู้ป่วย" FieldName="CareProviderName" ReadOnly="True"/>
+
                     <dxg:GridColumn Header="VisitID" FieldName="VisitID" ReadOnly="True"/>
                     <dxg:GridColumn Header="สถานประกอบการ" FieldName="OwnerOrganisation" ReadOnly="True"/>
                     <dxg:GridColumn Header="Primary Payor" FieldName="PayorName" ReadOnly="True"/>
@@ -438,6 +402,9 @@
                 </dxg:GridControl>
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <dxlc:LayoutItem>
+                    <dx:SimpleButton Command="{Binding AssignDoctorGPCommand}" Content="จัดสรรแพทย์ GP" Width="120" Height="30"/>
+                </dxlc:LayoutItem>
                 <dxlc:LayoutItem>
                     <dx:SimpleButton Command="{Binding DiagnosisCommand}" Content="ICD 10 แบบกลุ่ม" Width="120" Height="30"/>
                 </dxlc:LayoutItem>

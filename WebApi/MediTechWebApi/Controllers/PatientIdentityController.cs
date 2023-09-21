@@ -1994,6 +1994,102 @@ namespace MediTechWebApi.Controllers
             }
         }
 
+        [Route("AssignDoctorGPList")]
+        [HttpPut]
+        public HttpResponseMessage AssignDoctorGPList(List<PatientVisitModel> patvisitList, int userID)
+        {
+            try
+            {
+                if (patvisitList != null)
+                {
+                    DateTime now = DateTime.Now;
+
+                    foreach (var patvisit in patvisitList)
+                    {
+                        if (patvisit.CareProvider2UID != null)
+                        {
+                            var careproviderName2 = (from cr in db.Careprovider
+                                                     where cr.UID == patvisit.CareProvider2UID
+                                                     select new
+                                                     {
+                                                         careproviderName = SqlFunction.fGetCareProviderName(cr.UID)
+                                                     }).FirstOrDefault()?.careproviderName;
+
+                            var patConsult = db.PatientConsultation.Where(p => p.StatusFlag == "A"
+                            && p.PatientVisitUID == patvisit.PatientVisitUID
+                            && p.Comments == "ใบรับรองแพทย์อับอากาศ"
+                            && p.CareproviderUID == patvisit.CareProvider2UID).FirstOrDefault();
+                            if (patConsult == null)
+                            {
+                                var oldConsults = db.PatientConsultation.Where(p => p.StatusFlag == "A" && p.PatientVisitUID == patvisit.PatientVisitUID && p.Comments == "ใบรับรองแพทย์อับอากาศ");
+
+                                if (oldConsults != null)
+                                {
+                                    foreach (var oldDt in oldConsults)
+                                    {
+                                        db.PatientConsultation.Attach(oldDt);
+                                        oldDt.MUser = userID;
+                                        oldDt.MWhen = now;
+                                        oldDt.StatusFlag = "D";
+                                    }
+                                    db.SaveChanges();
+                                }
+
+                                patConsult = new PatientConsultation();
+                                patConsult.PatientUID = patvisit.PatientUID;
+                                patConsult.PatientVisitUID = patvisit.PatientVisitUID;
+                                patConsult.CareProviderName = careproviderName2;
+                                patConsult.RecordedDttm = now;
+                                patConsult.MUser = userID;
+                                patConsult.MWhen = now;
+                                patConsult.Comments = "ใบรับรองแพทย์อับอากาศ";
+                                patConsult.CareproviderUID = patvisit.CareProvider2UID ?? 0;
+                                patConsult.OwnerOrganisationUID = patvisit.OwnerOrganisationUID ?? 0;
+                                patConsult.VISTYUID = 4654;
+                                patConsult.CONSTSUID = 4868;
+                                patConsult.StartDttm = now;
+                                patConsult.EndDttm = now;
+                                patConsult.MUser = userID;
+                                patConsult.MWhen = now;
+                                patConsult.CUser = userID;
+                                patConsult.CWhen = now;
+                                patConsult.StatusFlag = "A";
+
+                                db.PatientConsultation.AddOrUpdate(patConsult);
+
+                            }
+
+                        }
+                        else
+                        {
+                            var oldConsults = db.PatientConsultation.Where(p => p.StatusFlag == "A" && p.PatientVisitUID == patvisit.PatientVisitUID && p.Comments == "ใบรับรองแพทย์อับอากาศ");
+
+                            if (oldConsults != null)
+                            {
+                                foreach (var oldDt in oldConsults)
+                                {
+                                    db.PatientConsultation.Attach(oldDt);
+                                    oldDt.MUser = userID;
+                                    oldDt.MWhen = now;
+                                    oldDt.StatusFlag = "D";
+                                }
+                                db.SaveChanges();
+                            }
+                        }
+                    }
+
+                }
+
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
         [Route("CancelVisit")]
         [HttpPut]
         public HttpResponseMessage CancelVisit(long patientVisitUID, int userID)
