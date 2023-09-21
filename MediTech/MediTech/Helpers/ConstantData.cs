@@ -37,6 +37,7 @@ namespace MediTech.Helpers
             ListPatientReports.Add(new ReportsModel { Name = "ปริ้น Sticker", NamespaceName = "MediTech.Reports.Operating.Patient.PatientSticker" });
             ListPatientReports.Add(new ReportsModel { Name = "ปริ้น Sticker Large", NamespaceName = "MediTech.Reports.Operating.Patient.PatientLargSticker" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ต่างด้าว", NamespaceName = "MediTech.Reports.Operating.Patient.Alien" });
+            ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ต่างชาติ", NamespaceName = "MediTech.Reports.Operating.Patient.Alien" });
             ListPatientReports.Add(new ReportsModel { Name = "รายงานตรวจPapSmear", NamespaceName = "MediTech.Reports.Operating.Checkup.Papsmear" });
            
 

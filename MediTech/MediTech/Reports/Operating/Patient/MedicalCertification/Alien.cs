@@ -25,11 +25,17 @@ namespace MediTech.Reports.Operating.Patient
             // Image imageCheckbox = null;
             int OrganisationUID = int.Parse(this.Parameters["OrganisationUID"].Value.ToString());
             long PatientVisitUID = long.Parse(this.Parameters["PatientVisitUID"].Value.ToString());
+            String reportName = this.Parameters["ReportName"].Value.ToString(); 
             long PatientUID = long.Parse(this.Parameters["PatientUID"].Value.ToString());
             var medicalData = (new ReportsService()).PrintConfinedSpaceCertificate(PatientVisitUID);
             // var VatalSignData = (new PatientHistoryService()).GetPatientVitalSignByVisitUID(PatientVisitUID);
 
             xrLabel75.Text = medicalData.PassportID;
+            if(reportName == "ใบรับรองแพทย์ต่างชาติ")
+            {
+                lbReportName.Text = "ตรวจสุขภาพคนต่างชาติ";
+            }
+            
 
             this.DataSource = medicalData;
 
