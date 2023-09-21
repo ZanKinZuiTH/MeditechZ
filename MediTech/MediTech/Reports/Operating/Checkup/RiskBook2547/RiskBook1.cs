@@ -465,6 +465,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2547
                 page3.RowTrichloroUrine.Visible = false;
                 page3.rowDirectToluene.Visible = false;
                 page3.RowEthanolBlood.Visible = false;
+                page3.rowTinBlood.Visible = false;
                 #endregion
 
                 var occmed = data.MobileResult;
@@ -621,8 +622,10 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2547
                         || p.RequestItemCode.Contains("LAB620") //direct Toluene 
                         || p.RequestItemCode.Contains("LAB619")
                         || p.RequestItemCode.Contains("LAB589")
-                        || p.RequestItemCode.Contains("LAB543")//copper blood
-                        || p.RequestItemCode.Contains("LAB606"))
+                        || p.RequestItemCode.Contains("LAB543") //copper blood
+                        || p.RequestItemCode.Contains("LAB606")
+                        || p.RequestItemCode.Contains("LAB630") //Tin in blood
+                        )
                         .OrderByDescending(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
                     #endregion
@@ -1558,6 +1561,18 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2547
                         page3.EthanolBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271" && p.Year == year1)?.ResultValue;
                         page3.EthanolBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271" && p.Year == year2)?.ResultValue;
                         page3.EthanolBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271" && p.Year == year3)?.ResultValue;
+                    }
+                    #endregion
+
+                    #region Tin in Blood
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329") != null)
+                    {
+                        page3.rowTinBlood.Visible = true;
+                        page3.cellTinBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329")?.ReferenceRange;
+                        page3.cellTinBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329" && p.Year == year1)?.ResultValue;
+                        page3.cellTinBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329" && p.Year == year2)?.ResultValue;
+                        page3.cellTinBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329" && p.Year == year3)?.ResultValue;
                     }
                     #endregion
                 }

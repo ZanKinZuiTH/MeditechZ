@@ -611,6 +611,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page7.RowEthylAcetate.Visible = false;
                 page7.RowVinylAcetate.Visible = false;
                 page7.toxicoComment.Visible = false;
+                page7.rowTinBlood.Visible = false;
 
                 page6.aboGroupRow.Visible = false;
                 page6.RowHpylori.Visible = false;
@@ -784,17 +785,19 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             || p.RequestItemCode.Contains("LAB547") // Zinc in zerum
                             || p.RequestItemCode.Contains("LAB463") // Iron zerum
                             || p.RequestItemCode.Contains("LAB542") // chro zerum
-                            || p.RequestItemCode.Contains("LAB575")// Ammo
+                            || p.RequestItemCode.Contains("LAB575") // Ammo
                             || p.RequestItemCode.Contains("LAB487") //Lead in Urin 
                             || p.RequestItemCode.Contains("LAB511")
                             || p.RequestItemCode.Contains("LAB620") //direct Toluene 
                             || p.RequestItemCode.Contains("LAB619")
                             || p.RequestItemCode.Contains("LAB589")
-                            || p.RequestItemCode.Contains("LAB543")//copper blood
+                            || p.RequestItemCode.Contains("LAB543") //copper blood
                             || p.RequestItemCode.Contains("LAB628")
                             || p.RequestItemCode.Contains("LAB626")
                             || p.RequestItemCode.Contains("LAB627")
-                            || p.RequestItemCode.Contains("LAB606"))
+                            || p.RequestItemCode.Contains("LAB606")
+                            || p.RequestItemCode.Contains("LAB630") //Tin in blood
+                            )
                              .OrderByDescending(p => p.Year);
                         GenerateToxicology(ToxicoTestSet);
                         #endregion
@@ -2643,6 +2646,18 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             page7.DirectToluene1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307" && p.Year == year1)?.ResultValue;
                             page7.DirectToluene2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307" && p.Year == year2)?.ResultValue;
                             page7.DirectToluene3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307" && p.Year == year3)?.ResultValue;
+                        }
+                        #endregion
+
+                        #region Tin in Blood
+
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329") != null)
+                        {
+                            page7.rowTinBlood.Visible = true;
+                            page7.cellTinBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329")?.ReferenceRange;
+                            page7.cellTinBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329" && p.Year == year1)?.ResultValue;
+                            page7.cellTinBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329" && p.Year == year2)?.ResultValue;
+                            page7.cellTinBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329" && p.Year == year3)?.ResultValue;
                         }
                         #endregion
 

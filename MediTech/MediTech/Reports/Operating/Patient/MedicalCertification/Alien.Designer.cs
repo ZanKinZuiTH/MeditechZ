@@ -158,13 +158,14 @@ namespace MediTech.Reports.Operating.Patient
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.xrLabel66 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
+            this.lbReportName = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.ReportName = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -1612,7 +1613,7 @@ namespace MediTech.Reports.Operating.Patient
             this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrLabel66,
             this.xrLabel3,
-            this.xrLabel2,
+            this.lbReportName,
             this.xrPictureBox1,
             this.xrLabel1});
             this.PageHeader.HeightF = 109.1667F;
@@ -1644,19 +1645,19 @@ namespace MediTech.Reports.Operating.Patient
             this.xrLabel3.Text = "วันที่ตรวจ ...............................................................";
             this.xrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // xrLabel2
+            // lbReportName
             // 
-            this.xrLabel2.CanGrow = false;
-            this.xrLabel2.Font = new System.Drawing.Font("Angsana New", 14F, System.Drawing.FontStyle.Bold);
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(291.9444F, 58.59818F);
-            this.xrLabel2.Name = "xrLabel2";
-            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel2.SizeF = new System.Drawing.SizeF(226.3889F, 23F);
-            this.xrLabel2.StylePriority.UseFont = false;
-            this.xrLabel2.StylePriority.UseTextAlignment = false;
-            this.xrLabel2.Text = "ตรวจสุขภาพคนต่างด้าว/แรงงานต่างด้าว";
-            this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            this.xrLabel2.WordWrap = false;
+            this.lbReportName.CanGrow = false;
+            this.lbReportName.Font = new System.Drawing.Font("Angsana New", 14F, System.Drawing.FontStyle.Bold);
+            this.lbReportName.LocationFloat = new DevExpress.Utils.PointFloat(291.9444F, 58.59818F);
+            this.lbReportName.Name = "lbReportName";
+            this.lbReportName.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbReportName.SizeF = new System.Drawing.SizeF(226.3889F, 23F);
+            this.lbReportName.StylePriority.UseFont = false;
+            this.lbReportName.StylePriority.UseTextAlignment = false;
+            this.lbReportName.Text = "ตรวจสุขภาพคนต่างด้าว/แรงงานต่างด้าว";
+            this.lbReportName.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.lbReportName.WordWrap = false;
             // 
             // xrPictureBox1
             // 
@@ -1711,6 +1712,14 @@ namespace MediTech.Reports.Operating.Patient
             this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.MedicalCertificateModel);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
+            // ReportName
+            // 
+            this.ReportName.Description = "Parameter1";
+            this.ReportName.Name = "ReportName";
+            this.ReportName.Type = typeof(int);
+            this.ReportName.ValueInfo = "0";
+            this.ReportName.Visible = false;
+            // 
             // Alien
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1733,7 +1742,8 @@ namespace MediTech.Reports.Operating.Patient
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.OrganisationUID,
             this.PatientVisitUID,
-            this.PatientUID});
+            this.PatientUID,
+            this.ReportName});
             this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -1748,7 +1758,7 @@ namespace MediTech.Reports.Operating.Patient
         private DevExpress.XtraReports.UI.PageHeaderBand PageHeader;
         private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox1;
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel2;
+        private DevExpress.XtraReports.UI.XRLabel lbReportName;
         private DevExpress.XtraReports.UI.XRLabel xrLabel3;
         private DevExpress.XtraReports.UI.XRLabel xrLabel4;
         private DevExpress.XtraReports.UI.XRLabel xrLabel5;
@@ -1861,5 +1871,6 @@ namespace MediTech.Reports.Operating.Patient
         private XRLabel xrLabel77;
         private XRLabel xrLabel80;
         private XRLabel xrLabel82;
+        private Parameter ReportName;
     }
 }
