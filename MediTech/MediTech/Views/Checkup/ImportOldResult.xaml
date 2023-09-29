@@ -127,11 +127,42 @@
                                                   SelectedItem="{Binding SelectYearSource}"
                                                   />
                 </dxlc:LayoutItem>
-                
+                <dxlc:LayoutGroup.Style>
+                    <Style TargetType="{x:Type dxlc:LayoutGroup}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectTabIndex}" Value="0">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding SelectTabIndex}" Value="1">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding SelectTabIndex}" Value="2">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </dxlc:LayoutGroup.Style>
             </dxlc:LayoutGroup>
+            
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutGroup HorizontalAlignment="Right">
-                    <dx:SimpleButton Width="80" Height="25" Content="นำเข้าข้อมูล" Command="{Binding ImportCommand}"/>
+                    <dx:SimpleButton Width="80" Height="25" Content="นำเข้าข้อมูล">
+                        <dx:SimpleButton.Style>
+                            <Style TargetType="{x:Type dx:SimpleButton}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectTabIndex}" Value="0">
+                                        <Setter Property="Command" Value="{Binding ImportCommand}"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SelectTabIndex}" Value="1">
+                                        <Setter Property="Command" Value="{Binding ImportRiskCommand}"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SelectTabIndex}" Value="2">
+                                        <Setter Property="Command" Value="{Binding ImportInjuryCommand}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </dx:SimpleButton.Style>
+                    </dx:SimpleButton>
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
 
@@ -151,10 +182,12 @@
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup Orientation="Horizontal">
-                <dxlc:LayoutGroup Width="230" Orientation="Vertical"
+            <dxlc:LayoutGroup  View="Tabs" SelectedTabIndex="{Binding SelectTabIndex,Mode=TwoWay}">
+                <dxlc:LayoutGroup Header="ผลห้องปฏิบัติการ" >
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutGroup Width="230" Orientation="Vertical"
                                   dxlc:LayoutControl.AllowHorizontalSizing="True">
-                    <dxe:SearchControl
+                            <dxe:SearchControl
                             Height="25"
                             Margin="0"
                             ShowMRUButton="False"
@@ -162,55 +195,119 @@
                             FilterCondition="Contains"
                             FilterByColumnsMode="Custom"
                             x:Name="searchControl">
-                        <dxe:SearchControl.ColumnProvider>
-                            <dxe:SelectorEditColumnProvider>
-                                <dxe:SelectorEditColumnProvider.CustomColumns>
-                                    <sys:String>ItemName</sys:String>
-                                </dxe:SelectorEditColumnProvider.CustomColumns>
-                            </dxe:SelectorEditColumnProvider>
-                        </dxe:SearchControl.ColumnProvider>
-                    </dxe:SearchControl>
-                    <dxe:ListBoxEdit ItemsSource="{Binding RequestItems}"
+                                <dxe:SearchControl.ColumnProvider>
+                                    <dxe:SelectorEditColumnProvider>
+                                        <dxe:SelectorEditColumnProvider.CustomColumns>
+                                            <sys:String>ItemName</sys:String>
+                                        </dxe:SelectorEditColumnProvider.CustomColumns>
+                                    </dxe:SelectorEditColumnProvider>
+                                </dxe:SearchControl.ColumnProvider>
+                            </dxe:SearchControl>
+                            <dxe:ListBoxEdit ItemsSource="{Binding RequestItems}"
                                      FilterCriteria="{Binding FilterCriteria, ElementName=searchControl}"
                                      SelectedItem="{Binding SelectedRequestItem}">
-                        <dxe:ListBoxEdit.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding ItemName}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </dxe:ListBoxEdit.ItemTemplate>
-                    </dxe:ListBoxEdit>
-                </dxlc:LayoutGroup>
-                <dxlc:LayoutGroup Orientation="Vertical">
-                    <dxg:GridControl Name="gcTestParameter" ColumnsSource="{Binding ColumnsResultItems,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                <dxe:ListBoxEdit.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding ItemName}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </dxe:ListBoxEdit.ItemTemplate>
+                            </dxe:ListBoxEdit>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Vertical">
+                            <dxg:GridControl Name="gcTestParameter" ColumnsSource="{Binding ColumnsResultItems,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                      ColumnGeneratorTemplate="{StaticResource DefaultColumnTemplate}">
-                        <dxg:GridControl.View>
-                            <dxg:TableView Name="gvTestParameter"  ShowGroupPanel="False" >
-                                <dxg:TableView.FormatConditions>
-                                    <dxg:FormatCondition ApplyToRow="True" Expression="[PatientID] = 'ไม่พบข้อมูล'" FieldName="PatientID">
-                                        <dx:Format Background="#FFEE8D3D"/>
-                                    </dxg:FormatCondition>
-                                    <dxg:FormatCondition ApplyToRow="True" Expression="[PatientID] = 'ผู้ป่วยมี HN มากกว่า 1 HN'" FieldName="PatientID">
-                                        <dx:Format Background="Yellow"/>
-                                    </dxg:FormatCondition>
-                                    <dxg:FormatCondition ApplyToRow="True" Expression="[IsSave] = 'Success'" FieldName="IsSave">
-                                        <dx:Format Background="#D1E8FE"/>
-                                    </dxg:FormatCondition>
-                                </dxg:TableView.FormatConditions>
-                            </dxg:TableView>
-                        </dxg:GridControl.View>
-                    </dxg:GridControl>
-                    <dxlc:LayoutGroup Orientation="Horizontal">
-                        <dxlc:LayoutItem HorizontalAlignment="Left">
-                            <dx:SimpleButton Width="80" Height="25" Content="Export" Command="{Binding ExportCommand}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem HorizontalAlignment="Right">
-                            <dx:SimpleButton Width="80" Height="25" Content="บันทึกข้อมูล" Command="{Binding SaveCommand}"/>
-                        </dxlc:LayoutItem>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView Name="gvTestParameter"  ShowGroupPanel="False" >
+                                        <dxg:TableView.FormatConditions>
+                                            <dxg:FormatCondition ApplyToRow="True" Expression="[PatientID] = 'ไม่พบข้อมูล'" FieldName="PatientID">
+                                                <dx:Format Background="#FFEE8D3D"/>
+                                            </dxg:FormatCondition>
+                                            <dxg:FormatCondition ApplyToRow="True" Expression="[PatientID] = 'ผู้ป่วยมี HN มากกว่า 1 HN'" FieldName="PatientID">
+                                                <dx:Format Background="Yellow"/>
+                                            </dxg:FormatCondition>
+                                            <dxg:FormatCondition ApplyToRow="True" Expression="[IsSave] = 'Success'" FieldName="IsSave">
+                                                <dx:Format Background="#D1E8FE"/>
+                                            </dxg:FormatCondition>
+                                        </dxg:TableView.FormatConditions>
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:LayoutItem HorizontalAlignment="Left">
+                                    <dx:SimpleButton Width="80" Height="25" Content="Export" Command="{Binding ExportCommand}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem HorizontalAlignment="Right">
+                                    <dx:SimpleButton Width="80" Height="25" Content="บันทึกข้อมูล" Command="{Binding SaveCommand}"/>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutGroup>
+
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
 
+                <dxlc:LayoutGroup Header="ผลข้อมูลความเสี่ยง" >
+                    <dxlc:LayoutGroup Orientation="Vertical">
+                        <dxg:GridControl Name="gcRiskHistory" ColumnsSource="{Binding ColumnsRiskItems,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                     ColumnGeneratorTemplate="{StaticResource DefaultColumnTemplate}">
+                            <dxg:GridControl.View>
+                                <dxg:TableView Name="gvRiskHistory"  ShowGroupPanel="False" >
+                                    <dxg:TableView.FormatConditions>
+                                        <dxg:FormatCondition ApplyToRow="True" Expression="[PatientID] = 'ไม่พบข้อมูล'" FieldName="PatientID">
+                                            <dx:Format Background="#FFEE8D3D"/>
+                                        </dxg:FormatCondition>
+                                        <dxg:FormatCondition ApplyToRow="True" Expression="[PatientID] = 'ผู้ป่วยมี HN มากกว่า 1 HN'" FieldName="PatientID">
+                                            <dx:Format Background="Yellow"/>
+                                        </dxg:FormatCondition>
+                                        <dxg:FormatCondition ApplyToRow="True" Expression="[IsSave] = 'Success'" FieldName="IsSave">
+                                            <dx:Format Background="#D1E8FE"/>
+                                        </dxg:FormatCondition>
+                                    </dxg:TableView.FormatConditions>
+                                </dxg:TableView>
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton Width="80" Height="25" Content="Export" Command="{Binding ExportRiskCommand}"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Right">
+                                <dx:SimpleButton Width="80" Height="25" Content="บันทึกข้อมูล" Command="{Binding SaveRiskCommand}"/>
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Header="บันทึกอาการบาดเจ็บ" >
+                    <dxlc:LayoutGroup Orientation="Vertical">
+                        <dxg:GridControl Name="gcInjuryHistory" ColumnsSource="{Binding ColumnsInjuryItems,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                     ColumnGeneratorTemplate="{StaticResource DefaultColumnTemplate}">
+                            <dxg:GridControl.View>
+                                <dxg:TableView Name="gvInjuryHistory"  ShowGroupPanel="False" >
+                                    <dxg:TableView.FormatConditions>
+                                        <dxg:FormatCondition ApplyToRow="True" Expression="[PatientID] = 'ไม่พบข้อมูล'" FieldName="PatientID">
+                                            <dx:Format Background="#FFEE8D3D"/>
+                                        </dxg:FormatCondition>
+                                        <dxg:FormatCondition ApplyToRow="True" Expression="[PatientID] = 'ผู้ป่วยมี HN มากกว่า 1 HN'" FieldName="PatientID">
+                                            <dx:Format Background="Yellow"/>
+                                        </dxg:FormatCondition>
+                                        <dxg:FormatCondition ApplyToRow="True" Expression="[IsSave] = 'Success'" FieldName="IsSave">
+                                            <dx:Format Background="#D1E8FE"/>
+                                        </dxg:FormatCondition>
+                                    </dxg:TableView.FormatConditions>
+                                </dxg:TableView>
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton Width="80" Height="25" Content="Export" Command="{Binding ExportInjuryCommand}"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Right">
+                                <dx:SimpleButton Width="80" Height="25" Content="บันทึกข้อมูล" Command="{Binding SaveInjuryCommand}"/>
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
         </dxlc:LayoutControl>
     </Grid>

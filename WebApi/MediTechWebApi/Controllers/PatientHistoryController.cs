@@ -891,6 +891,11 @@ namespace MediTechWebApi.Controllers
 
                 data = new PatientMedicalHistoryModel();
                 data.PatientMedicalHistoryUID = medicalData.UID;
+                data.LungDisease = medicalData.LungDisease;
+                data.Unconscious = medicalData.Unconscious;
+                data.Epilepsy = medicalData.Epilepsy;
+                data.Hypertension = medicalData.Hypertension;
+                data.Anemia = medicalData.Anemia;
                 data.PatientUID = medicalData.PatientUID;
                 data.ChronicDisease = medicalData.ChronicDisease;
                 data.SurgicalDetail = medicalData.SurgicalDetail;

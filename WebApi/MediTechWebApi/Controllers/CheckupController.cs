@@ -2334,6 +2334,105 @@ namespace MediTechWebApi.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
             }
         }
+
+        [Route("SaveRiskHistory")]
+        [HttpPost]
+        public HttpResponseMessage SaveRiskHistory(PatientMedicalHistoryModel patientMedical, long patientUID, int userID)
+        {
+            try
+            {
+                using (var tran = new TransactionScope())
+                {
+                    var now = DateTime.Now;
+
+                    PatientMedicalHistory patientMedicalHistory = new PatientMedicalHistory(); ;
+                    if (patientMedical != null)
+                    {
+                        patientMedicalHistory.PatientUID = patientUID;
+                        patientMedicalHistory.LungDisease = patientMedical.LungDisease;
+                        patientMedicalHistory.Epilepsy = patientMedical.Epilepsy;
+                        patientMedicalHistory.Unconscious = patientMedical.Unconscious;
+                        patientMedicalHistory.Hypertension = patientMedical.Hypertension;
+                        patientMedicalHistory.Anemia = patientMedical.Anemia;
+                        patientMedicalHistory.Alcohol = patientMedical.Alcohol;
+                        patientMedicalHistory.AlcohoPeriodMonth = patientMedical.AlcohoPeriodMonth;
+                        patientMedicalHistory.AlcohoPeriodYear = patientMedical.AlcohoPeriodYear;
+                        patientMedicalHistory.AllergyDescription = patientMedical.AllergyDescription;
+                        patientMedicalHistory.BFQuitSmoke = patientMedical.BFQuitSmoke;
+                        patientMedicalHistory.ChronicDisease = patientMedical.ChronicDisease;
+                        patientMedicalHistory.Familyhistory = patientMedical.Familyhistory;
+                        patientMedicalHistory.ImmunizationDetail = patientMedical.ImmunizationDetail;
+                        patientMedicalHistory.LongTemMedication = patientMedical.LongTemMedication;
+                        patientMedicalHistory.Narcotic = patientMedical.Narcotic;
+                        patientMedicalHistory.Smoke = patientMedical.Smoke;
+                        patientMedicalHistory.SmokePeriodMonth = patientMedical.SmokePeriodMonth;
+                        patientMedicalHistory.SmokePeriodYear = patientMedical.SmokePeriodYear;
+                        patientMedicalHistory.SurgicalDetail = patientMedical.SurgicalDetail;
+                        patientMedicalHistory.Comments = patientMedical.Comments;
+                        patientMedicalHistory.CUser = userID;
+                        patientMedicalHistory.CWhen = now;
+                        patientMedicalHistory.MUser = userID;
+                        patientMedicalHistory.MWhen = now;
+                        patientMedicalHistory.StatusFlag = "A";
+
+                        db.PatientMedicalHistory.Add(patientMedicalHistory);
+                        db.SaveChanges();
+
+                    }
+
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("SaveInjuryHistory")]
+        [HttpPost]
+        public HttpResponseMessage SaveInjuryHistory(PatientInjuryModel injuryModel, long patientUID, int userID)
+        {
+            try
+            {
+                using (var tran = new TransactionScope())
+                {
+                    var now = DateTime.Now;
+
+                    PatientInjury patientInjury  = new PatientInjury(); ;
+                    if (injuryModel != null)
+                    {
+                        patientInjury.PatientUID = patientUID;
+                        patientInjury.BodyLocation = injuryModel.BodyLocation;
+                        patientInjury.InjuryDetail = injuryModel.InjuryDetail;
+                        patientInjury.OccuredDate = injuryModel.OccuredDate;
+                        patientInjury.INRYSEVUID = injuryModel.INRYSEVUID;
+                        patientInjury.Comments = injuryModel.Comments;
+                        patientInjury.CUser = userID;
+                        patientInjury.CWhen = now;
+                        patientInjury.MUser = userID;
+                        patientInjury.MWhen = now;
+                        patientInjury.StatusFlag = "A";
+
+                        db.PatientInjury.Add(patientInjury);
+                        db.SaveChanges();
+
+                    }
+
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
         #endregion
     }
 }

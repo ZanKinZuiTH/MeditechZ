@@ -511,5 +511,33 @@ namespace MediTech.DataService
             }
 
         }
+
+        public void SaveRiskHistory(PatientMedicalHistoryModel patientMedical, long patientUID, int userID)
+        {
+            try
+            {
+                string requestApi = string.Format("Api/Checkup/SaveRiskHistory?patientUID={0}&userID={1}", patientUID, userID);
+                MeditechApiHelper.Post<PatientMedicalHistoryModel>(requestApi, patientMedical);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public void SaveInjuryHistory(PatientInjuryModel patientInjury, long patientUID, int userID)
+        {
+            try
+            {
+                string requestApi = string.Format("Api/Checkup/SaveInjuryHistory?patientUID={0}&userID={1}", patientUID, userID);
+                MeditechApiHelper.Post<PatientInjuryModel>(requestApi, patientInjury);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

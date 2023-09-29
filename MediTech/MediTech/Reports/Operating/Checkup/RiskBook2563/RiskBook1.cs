@@ -215,7 +215,10 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2563
                                 page3.xrTable1.Rows[i + 3].Cells[5].Text = "/";
                                 break;
                             case "หยุดงานเกิน 3 วัน":
-                                page3.xrTable1.Rows[i + 3].Cells[6].Text = "/";
+                                page3.xrTable1.Rows[i + 3].Cells[5].Text = "/";
+                                break;
+                            case "ทำงานไม่ได้ชั่วคราว":
+                                page3.xrTable1.Rows[i + 3].Cells[5].Text = "/";
                                 break;
                             default:
                                 break;
@@ -266,33 +269,105 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2563
                         foreach (var medical in MedicalHistory.PastMedicalHistorys)
                         {
                             page2.lbPastMedical1.Text = medical.MedicalName;
-                            page2.lbPastMedicalDttm1.Text = medical.MedicalDttm != null ? (medical.MedicalDttm.Value.Year + 543).ToString() : "";
+                            //page2.lbPastMedicalDttm1.Text = medical.MedicalDttm != null ? (medical.MedicalDttm.Value.Year + 543).ToString() : "";
                         }
                     }
+
+                    if (!string.IsNullOrEmpty(MedicalHistory.LungDisease))
+                    {
+                        if (MedicalHistory.LungDisease.Trim() == "ไม่มี" || MedicalHistory.LungDisease.Trim() == "ไม่เคย")
+                        {
+                            page2.checkLungDiseaseNo.Checked = true;
+                        }
+                        else
+                        {
+                            page2.checkLungDiseaseYes.Checked = true;
+
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(MedicalHistory.Epilepsy))
+                    {
+                        if (MedicalHistory.Epilepsy.Trim() == "ไม่มี" || MedicalHistory.Epilepsy.Trim() == "ไม่เคย")
+                        {
+                            page2.checkEpilepsyNo.Checked = true;
+                        }
+                        else
+                        {
+                            page2.checkEpilepsyYes.Checked = true;
+
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(MedicalHistory.Unconscious))
+                    {
+                        if (MedicalHistory.Unconscious.Trim() == "ไม่มี" || MedicalHistory.Unconscious.Trim() == "ไม่เคย")
+                        {
+                            page2.checkUnconsciousNo.Checked = true;
+                        }
+                        else
+                        {
+                            page2.checkUnconsciousYes.Checked = true;
+
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(MedicalHistory.Hypertension))
+                    {
+                        if (MedicalHistory.Hypertension.Trim() == "ไม่มี" || MedicalHistory.Hypertension.Trim() == "ไม่เคย")
+                        {
+                            page2.checkHypertensionNo.Checked = true;
+                        }
+                        else
+                        {
+                            page2.checkHypertensionYes.Checked = true;
+
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(MedicalHistory.Anemia))
+                    {
+                        if (MedicalHistory.Anemia.Trim() == "ไม่มี" || MedicalHistory.Anemia.Trim() == "ไม่เคย")
+                        {
+                            page2.checkAnemiaNo.Checked = true;
+                        }
+                        else
+                        {
+                            page2.checkAnemiaYes.Checked = true;
+
+                        }
+                    }
+
                     if (!string.IsNullOrEmpty(MedicalHistory.ChronicDisease))
                     {
-                        if (MedicalHistory.ChronicDisease.Trim() == "ไม่มี")
+                        if (MedicalHistory.ChronicDisease.Trim() == "ไม่มี" || MedicalHistory.ChronicDisease.Trim() == "ไม่เคย")
                         {
                             page2.CheckChronicNo.Checked = true;
                         }
                         else
                         {
                             page2.CheckChronicYes.Checked = true;
-                            page2.ChronicDisease.Text = MedicalHistory.ChronicDisease;
+                            if (MedicalHistory.ChronicDisease.Trim() != "มี" && MedicalHistory.ChronicDisease.Trim() != "เคย")
+                            {
+                                page2.ChronicDisease.Text = MedicalHistory.ChronicDisease;
+                            }
                         }
 
                     }
 
                     if (!string.IsNullOrEmpty(MedicalHistory.SurgicalDetail))
                     {
-                        if (MedicalHistory.SurgicalDetail.Trim() == "ไม่เคย")
+                        if (MedicalHistory.SurgicalDetail.Trim() == "ไม่เคย" || MedicalHistory.SurgicalDetail.Trim() == "ไม่มี")
                         {
                             page2.CheckSurgicalNo.Checked = true;
                         }
                         else
                         {
                             page2.CheckSurgicalYes.Checked = true;
-                            page2.SurgicalDetail.Text = MedicalHistory.SurgicalDetail;
+                            if (MedicalHistory.SurgicalDetail.Trim() != "มี" && MedicalHistory.SurgicalDetail.Trim() != "เคย")
+                            {
+                                page2.SurgicalDetail.Text = MedicalHistory.SurgicalDetail;
+                            }
                         }
 
                     }
@@ -300,14 +375,17 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2563
 
                     if (!string.IsNullOrEmpty(MedicalHistory.ImmunizationDetail))
                     {
-                        if (MedicalHistory.ImmunizationDetail.Trim() == "ไม่เคย")
+                        if (MedicalHistory.ImmunizationDetail.Trim() == "ไม่เคย" || MedicalHistory.ImmunizationDetail.Trim() == "ไม่มี")
                         {
                             page2.CheckImmunizationNo.Checked = true;
                         }
                         else
                         {
                             page2.CheckImmunizationYes.Checked = true;
-                            page2.ImmunizationDetail.Text = MedicalHistory.ImmunizationDetail;
+                            if (MedicalHistory.ImmunizationDetail.Trim() != "เคย" && MedicalHistory.ImmunizationDetail.Trim() != "มี")
+                            {
+                                page2.ImmunizationDetail.Text = MedicalHistory.ImmunizationDetail;
+                            }
                         }
 
                     }
@@ -315,14 +393,17 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2563
 
                     if (!string.IsNullOrEmpty(MedicalHistory.Familyhistory))
                     {
-                        if (MedicalHistory.Familyhistory.Trim() == "ไม่มี")
+                        if (MedicalHistory.Familyhistory.Trim() == "ไม่มี" || MedicalHistory.Familyhistory.Trim() == "ไม่เคย")
                         {
                             page2.CheckFamilyhistoryNo.Checked = true;
                         }
                         else
                         {
                             page2.CheckFamilyhistoryY.Checked = true;
-                            page2.Familyhistory.Text = MedicalHistory.Familyhistory;
+                            if (MedicalHistory.Familyhistory.Trim() != "มี" && MedicalHistory.Familyhistory.Trim() != "เคย")
+                            {
+                                page2.Familyhistory.Text = MedicalHistory.Familyhistory;
+                            }
                         }
 
                     }
@@ -330,14 +411,17 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2563
 
                     if (!string.IsNullOrEmpty(MedicalHistory.LongTemMedication))
                     {
-                        if (MedicalHistory.LongTemMedication.Trim() == "ไม่มี")
+                        if (MedicalHistory.LongTemMedication.Trim() == "ไม่มี" || MedicalHistory.LongTemMedication.Trim() == "ไม่เคย")
                         {
                             page3.CheckLongTemMedicationNo.Checked = true;
                         }
                         else
                         {
                             page3.CheckLongTemMedicationYes.Checked = true;
-                            page3.LongTemMedication.Text = MedicalHistory.LongTemMedication;
+                            if (MedicalHistory.LongTemMedication.Trim() != "มี" && MedicalHistory.LongTemMedication.Trim() != "เคย")
+                            {
+                                page3.LongTemMedication.Text = MedicalHistory.LongTemMedication;
+                            }
                         }
 
                     }
@@ -345,14 +429,17 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2563
 
                     if (!string.IsNullOrEmpty(MedicalHistory.AllergyDescription))
                     {
-                        if (MedicalHistory.AllergyDescription.Trim() == "ไม่มี")
+                        if (MedicalHistory.AllergyDescription.Trim() == "ไม่มี" || MedicalHistory.AllergyDescription.Trim() == "ไม่เคย")
                         {
                             page3.CheckAllergyDescriptionNo.Checked = true;
                         }
                         else
                         {
                             page3.CheckAllergyDescriptionYes.Checked = true;
-                            page3.AllergyDescription.Text = MedicalHistory.AllergyDescription;
+                            if (MedicalHistory.AllergyDescription.Trim() != "มี" && MedicalHistory.AllergyDescription.Trim() != "เคย")
+                            {
+                                page3.AllergyDescription.Text = MedicalHistory.AllergyDescription;
+                            }
                         }
 
                     }
@@ -360,14 +447,17 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2563
 
                     if (!string.IsNullOrEmpty(MedicalHistory.Narcotic))
                     {
-                        if (MedicalHistory.Narcotic.Trim() == "ไม่เคย")
+                        if (MedicalHistory.Narcotic.Trim() == "ไม่เคย" || MedicalHistory.Narcotic.Trim() == "ไม่มี")
                         {
                             page3.CheckNarcoticNo.Checked = true;
                         }
                         else
                         {
                             page3.CheckNarcoticYes.Checked = true;
-                            page3.Narcotic.Text = MedicalHistory.Narcotic;
+                            if (MedicalHistory.Narcotic.Trim() != "เคย" && MedicalHistory.Narcotic.Trim() != "มี")
+                            {
+                                page3.Narcotic.Text = MedicalHistory.Narcotic;
+                            }
                         }
 
                     }
@@ -400,7 +490,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2563
                         {
                             page3.CheckAlcoholNo.Checked = true;
                         }
-                        else if (MedicalHistory.Alcohol?.Trim() == "ดื่มน้อยกว่า 1 ครั้งต่อสัปดาห์")
+                        else if (MedicalHistory.Alcohol?.Trim() == "ดื่มน้อยกว่า 1 ครั้งต่อสัปดาห์" || MedicalHistory.Alcohol?.Trim() == "ดื่มน้อยกว่า 1 ครั้ง/สัปดาห์")
                         {
                             page3.CheckAlcoholLess1Week.Checked = true;
                         }
