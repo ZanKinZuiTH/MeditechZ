@@ -52,6 +52,15 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectCareprovider, value); }
         }
 
+        public List<CareproviderModel> QCCareprovider { get; set; }
+        private CareproviderModel _SelectQCCareprovider;
+
+        public CareproviderModel SelectQCCareprovider
+        {
+            get { return _SelectQCCareprovider; }
+            set { Set(ref _SelectQCCareprovider, value); }
+        }
+
         private string _FileLocation;
 
         public string FileLocation
@@ -455,6 +464,7 @@ namespace MediTech.ViewModels
             SelectDateType = DateTypes.FirstOrDefault();
             int labTechnicianUID = DataService.Technical.GetReferenceValueByCode("CPTYP", "CPTEN06").Key ?? 0;
             Careprovider = DataService.UserManage.GetCareProviderByType(labTechnicianUID);
+            QCCareprovider = DataService.UserManage.GetCareProviderByType(labTechnicianUID);
         }
 
         private void ChooseFile()
@@ -786,6 +796,10 @@ namespace MediTech.ViewModels
                         if (labResult.ResultComponents.Count() > 0)
                         {
                             List<RequestDetailItemModel> sendLabResult = new List<RequestDetailItemModel>();
+                            //labResult.ResultEnterUID = SelectCareprovider.CareproviderUID;
+                            //labResult.ResultedEnterBy = SelectCareprovider.FullName;
+                            //labResult.ResultQCUID = SelectQCCareprovider.CareproviderUID;
+                            //labResult.ResultedQCBy = SelectQCCareprovider.FullName;
                             sendLabResult.Add(labResult);
 
                             DataService.Lab.ReviewLabResult(sendLabResult, careproviderUID, AppUtil.Current.UserID);

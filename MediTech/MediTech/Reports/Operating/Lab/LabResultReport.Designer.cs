@@ -80,8 +80,10 @@
             this.xrLabel25 = new DevExpress.XtraReports.UI.XRLabel();
             this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
             this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.logoHead = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel26 = new DevExpress.XtraReports.UI.XRLabel();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -524,21 +526,21 @@
             // 
             this.xrLabel4.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "ResultEnteredDttm", "{0:dd/MM/yyyy HH:mm}")});
-            this.xrLabel4.Font = new System.Drawing.Font("Angsana New", 14F, System.Drawing.FontStyle.Bold);
-            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(673.6664F, 11.33333F);
+            this.xrLabel4.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(694.2865F, 11.33332F);
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel4.SizeF = new System.Drawing.SizeF(125.6667F, 23F);
+            this.xrLabel4.SizeF = new System.Drawing.SizeF(105.0466F, 23F);
             this.xrLabel4.StylePriority.UseFont = false;
             this.xrLabel4.Text = "xrLabel4";
             // 
             // xrLabel5
             // 
-            this.xrLabel5.Font = new System.Drawing.Font("Angsana New", 14F);
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(571.3333F, 11.33333F);
+            this.xrLabel5.Font = new System.Drawing.Font("Angsana New", 12F);
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(614.7399F, 11.33332F);
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel5.SizeF = new System.Drawing.SizeF(101.6667F, 23F);
+            this.xrLabel5.SizeF = new System.Drawing.SizeF(79.54663F, 23F);
             this.xrLabel5.StylePriority.UseFont = false;
             this.xrLabel5.Text = "เวลารายงานผล :";
             // 
@@ -559,6 +561,8 @@
             // PageFooter
             // 
             this.PageFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel1,
+            this.xrLabel26,
             this.xrLabel24,
             this.xrLabel25,
             this.xrLabel4,
@@ -568,11 +572,11 @@
             // 
             // xrLabel24
             // 
-            this.xrLabel24.Font = new System.Drawing.Font("Angsana New", 14F);
-            this.xrLabel24.LocationFloat = new DevExpress.Utils.PointFloat(22.5F, 11.3333F);
+            this.xrLabel24.Font = new System.Drawing.Font("Angsana New", 12F);
+            this.xrLabel24.LocationFloat = new DevExpress.Utils.PointFloat(22.5F, 11.33329F);
             this.xrLabel24.Name = "xrLabel24";
             this.xrLabel24.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel24.SizeF = new System.Drawing.SizeF(91.91183F, 22.99999F);
+            this.xrLabel24.SizeF = new System.Drawing.SizeF(77.87675F, 22.99999F);
             this.xrLabel24.StylePriority.UseFont = false;
             this.xrLabel24.Text = "รายงานผลโดย :";
             // 
@@ -580,11 +584,11 @@
             // 
             this.xrLabel25.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "ResultEnteredBy")});
-            this.xrLabel25.Font = new System.Drawing.Font("Angsana New", 14F, System.Drawing.FontStyle.Bold);
-            this.xrLabel25.LocationFloat = new DevExpress.Utils.PointFloat(114.4118F, 11.3333F);
+            this.xrLabel25.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
+            this.xrLabel25.LocationFloat = new DevExpress.Utils.PointFloat(100.3767F, 11.33328F);
             this.xrLabel25.Name = "xrLabel25";
             this.xrLabel25.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel25.SizeF = new System.Drawing.SizeF(263.3824F, 23F);
+            this.xrLabel25.SizeF = new System.Drawing.SizeF(220.8579F, 23F);
             this.xrLabel25.StylePriority.UseFont = false;
             // 
             // LogoType
@@ -601,11 +605,6 @@
             this.OrganisationUID.ValueInfo = "0";
             this.OrganisationUID.Visible = false;
             // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.PatientLabResult);
-            this.objectDataSource1.Name = "objectDataSource1";
-            // 
             // logoHead
             // 
             this.logoHead.Description = "logoHead";
@@ -613,6 +612,32 @@
             this.logoHead.Type = typeof(int);
             this.logoHead.ValueInfo = "0";
             this.logoHead.Visible = false;
+            // 
+            // xrLabel1
+            // 
+            this.xrLabel1.Font = new System.Drawing.Font("Angsana New", 12F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(321.2346F, 11.1667F);
+            this.xrLabel1.Name = "xrLabel1";
+            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(88.13312F, 22.99999F);
+            this.xrLabel1.StylePriority.UseFont = false;
+            this.xrLabel1.Text = "ตรวจสอบผลโดย :";
+            // 
+            // xrLabel26
+            // 
+            this.xrLabel26.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "ResultQCBy")});
+            this.xrLabel26.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
+            this.xrLabel26.LocationFloat = new DevExpress.Utils.PointFloat(409.3677F, 11.16671F);
+            this.xrLabel26.Name = "xrLabel26";
+            this.xrLabel26.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel26.SizeF = new System.Drawing.SizeF(204.7769F, 23F);
+            this.xrLabel26.StylePriority.UseFont = false;
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.PatientLabResult);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // LabResultReport
             // 
@@ -701,5 +726,7 @@
         private DevExpress.XtraReports.Parameters.Parameter OrganisationUID;
         private DevExpress.XtraReports.UI.XRLabel lbLicenseNo;
         private DevExpress.XtraReports.Parameters.Parameter logoHead;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel1;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel26;
     }
 }

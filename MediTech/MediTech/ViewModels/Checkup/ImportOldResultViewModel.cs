@@ -18,6 +18,7 @@ using System.Text.RegularExpressions;
 using DevExpress.XtraRichEdit.API.Native;
 using DevExpress.Xpf.WindowsUI.Navigation;
 using DevExpress.XtraRichEdit.Import.Html;
+using DevExpress.DataAccess.DataFederation;
 
 namespace MediTech.ViewModels
 {
@@ -50,6 +51,7 @@ namespace MediTech.ViewModels
                     ColumnsRiskItems.Add(new Column() { Header = "เคยมีอาการเป็นลม หมดสติ หรือวูบหรือไม่", FieldName = "เคยมีอาการเป็นลม หมดสติ หรือวูบหรือไม่", VisibleIndex = 8 });
                     ColumnsRiskItems.Add(new Column() { Header = "เคยมีประวัติเป็นโรคหัวใจหรือความดันสูงหรือไม่", FieldName = "เคยมีประวัติเป็นโรคหัวใจหรือความดันสูงหรือไม่", VisibleIndex = 9 });
                     ColumnsRiskItems.Add(new Column() { Header = "เคยมีประวัติเป็นโรคโลหิตจางหรือไม่", FieldName = "เคยมีประวัติเป็นโรคโลหิตจางหรือไม่", VisibleIndex = 10 });
+                    ColumnsRiskItems.Add(new Column() { Header = "โรคอื่นๆ", FieldName = "โรคอื่นๆ", VisibleIndex = 20 });
 
 
                     ColumnsRiskItems.Add(new Column() { Header = "ท่านมีโรคประจำตัวหรือโรคเรื้อรังหรือไม่", FieldName = "ท่านมีโรคประจำตัวหรือโรคเรื้อรังหรือไม่", VisibleIndex = 11 });
@@ -1277,6 +1279,69 @@ namespace MediTech.ViewModels
                                 riskData.Smoke = matchesSmoke[0].Value.ToString();
                             }
                         }
+                        else if (smokeData.Contains("ปี") || smokeData.Contains("เดือน"))
+                        {
+                            riskData.Smoke = "เคยแต่เลิกแล้ว";
+                            if (smokeData.Contains("ปี"))
+                            {
+                                int begin = smokeData.IndexOf("ปี") - 4;
+                                int end = smokeData.LastIndexOf("ปี");
+                                string resultYear = smokeData.Substring(begin, end - begin + 2);
+
+                                var SmokeYearRange = Regex.Matches(resultYear, @"\d+[_-]+\d+");
+                                var matchesYearSmoke = Regex.Matches(resultYear, @"\d+");
+
+                                if (SmokeYearRange != null || matchesYearSmoke != null)
+                                {
+
+                                    if (SmokeYearRange.Count > 0)
+                                    {
+                                        riskData.SmokePeriodYear = SmokeYearRange[0].Value.ToString();
+                                    }
+                                    else
+                                    {
+                                        riskData.SmokePeriodYear = matchesYearSmoke[0].Value.ToString();
+                                    }
+                                }
+                            }
+
+                            if (smokeData.Contains("เดือน"))
+                            {
+                                int begin = smokeData.IndexOf("เดือน") - 4;
+                                int end = smokeData.LastIndexOf("เดือน");
+                                string resultMonth = smokeData.Substring(begin, end - begin + 5);
+
+                                var SmokeMonthRange = Regex.Matches(resultMonth, @"\d+[_-]+\d+");
+                                var matchesMonthSmoke = Regex.Matches(resultMonth, @"\d+");
+
+                                if (SmokeMonthRange != null || matchesMonthSmoke != null)
+                                {
+                                    if (SmokeMonthRange.Count > 0)
+                                    {
+                                        riskData.SmokePeriodMonth = SmokeMonthRange[0].Value.ToString();
+                                    }
+                                    else
+                                    {
+                                        riskData.SmokePeriodMonth = matchesMonthSmoke[0].Value.ToString();
+                                    }
+                                }
+                            }
+
+                        }
+                        else if(smokeData.Contains("ก่อนเลิก"))
+                        {
+                            riskData.Smoke = "เคยแต่เลิกแล้ว";
+                            var SmokeDayRange = Regex.Matches(smokeData, @"\d+[_-]+\d+");
+                            var matchesSmoke = Regex.Matches(smokeData, @"\d+");
+                            if (SmokeDayRange.Count > 0)
+                            {
+                                riskData.BFQuitSmoke = SmokeDayRange[0].Value.ToString();
+                            }
+                            else
+                            {
+                                riskData.BFQuitSmoke = matchesSmoke[0].Value.ToString();
+                            }
+                        }
                         else
                         { 
                             riskData.Smoke = rowData["เคยสูบบุหรี่บ้างหรือไม่"].ToString();
@@ -1284,36 +1349,67 @@ namespace MediTech.ViewModels
 
                         var alcoholData = rowData["ดื่มสุรา เบียร์ หรือเครื่องดื่มที่มีแอลกอฮอล์บ้างหรือไม่"].ToString();
 
-                        if (alcoholData.Contains("ปี"))
+                        if (alcoholData.Contains("ปี") || alcoholData.Contains("เดือน"))
                         {
-                            //var matchesAlcoho = Regex.Matches(alcoholData, @"\d+");
-                        }
-                        else if (alcoholData.Contains("เดือน"))
-                        {
+                            riskData.Alcohol = "เคยแต่เลิกแล้ว";
 
+                            if (alcoholData.Contains("ปี"))
+                            {
+                                int begin = alcoholData.IndexOf("ปี") - 4;
+                                int end = alcoholData.LastIndexOf("ปี");
+                                string resultYear = alcoholData.Substring(begin, end - begin + 2);
+                            
+                                var AlcohoDayRange = Regex.Matches(resultYear, @"\d+[_-]+\d+");
+                                var matchesAlcoho = Regex.Matches(resultYear, @"\d+");
+                                if (AlcohoDayRange.Count > 0)
+                                {
+                                    riskData.AlcohoPeriodYear = AlcohoDayRange[0].Value.ToString();
+                                }
+                                else
+                                {
+                                    riskData.AlcohoPeriodYear = matchesAlcoho[0].Value.ToString();
+                                }
+                            }
+
+                            if (alcoholData.Contains("เดือน"))
+                            {
+                                int begin = alcoholData.IndexOf("เดือน") - 4;
+                                int end = alcoholData.LastIndexOf("เดือน");
+                                string resultMonth = alcoholData.Substring(begin, end - begin + 5);
+
+                                var AlcohoMonthRange = Regex.Matches(resultMonth, @"\d+[_-]+\d+");
+                                var matchesAlcoho = Regex.Matches(resultMonth, @"\d+");
+
+                                if (AlcohoMonthRange.Count > 0)
+                                {
+                                    riskData.AlcohoPeriodMonth = AlcohoMonthRange[0].Value.ToString();
+                                }
+                                else
+                                {
+                                    riskData.AlcohoPeriodMonth = matchesAlcoho[0].Value.ToString();
+                                }
+                            }
                         }
                         else
                         {
                             riskData.Alcohol = rowData["ดื่มสุรา เบียร์ หรือเครื่องดื่มที่มีแอลกอฮอล์บ้างหรือไม่"].ToString();
                         }
+
                         riskData.Comments = "migrate risk history";
+
+                        var pastHistory = rowData["โรคอื่นๆ"].ToString();
+                        if(pastHistory != "")
+                        {
+                            PastMedicalHistoryModel dataPast = new PastMedicalHistoryModel();
+                            dataPast.MedicalName = pastHistory;
+                            riskData.PastMedicalHistorys = new List<PastMedicalHistoryModel> { dataPast };
+                        }
+
 
                         DataService.Checkup.SaveRiskHistory(riskData, riskData.PatientUID,AppUtil.Current.UserID);
                         rowView.Row["IsSave"] = "Success";
 
-                        //ColumnsRiskItems.Add(new Column() { Header = "ท่านมีโรคประจำตัวหรือโรคเรื้อรังหรือไม่", FieldName = "ChronicDisease", VisibleIndex = 6 });
-                        //ColumnsRiskItems.Add(new Column() { Header = "ท่านเคยได้รับการผ่าตัดหรือไม่", FieldName = "SurgicalDetail", VisibleIndex = 7 });
-                        //ColumnsRiskItems.Add(new Column() { Header = "ท่านเคยได้รับภูมิคุ้มกันกรณีเกิดโรคระบาดหรือเพื่อป้องกันโรคติดต่อหรือไม่", FieldName = "ImmunizationDetail", VisibleIndex = 8 });
-                        //ColumnsRiskItems.Add(new Column() { Header = "ประวัติการเจ็บป่วยของสมาชิกในครอบครัว", FieldName = "Familyhistory", VisibleIndex = 9 });
-                        //ColumnsRiskItems.Add(new Column() { Header = "ปัจจุบันมียาที่ต้องรับประทานเป็นประจำหรือไม่", FieldName = "LongTemMedication", VisibleIndex = 10 });
-                        //ColumnsRiskItems.Add(new Column() { Header = "มีประวัติแพ้ยาหรือไม่", FieldName = "AllergyDescription", VisibleIndex = 11 });
-                        //ColumnsRiskItems.Add(new Column() { Header = "เคยสูบบุหรี่บ้างหรือไม่", FieldName = "Smoke", VisibleIndex = 12 });
-                        //ColumnsRiskItems.Add(new Column() { Header = "ดื่มสุรา เบียร์ หรือเครื่องดื่มที่มีแอลกอฮอล์บ้างหรือไม่", FieldName = "Alcohol", VisibleIndex = 13 });
-                        //ColumnsRiskItems.Add(new Column() { Header = "เคยเสพยาเสพติดใด ๆ บ้างหรือไม่", FieldName = "Narcotic", VisibleIndex = 14 });
-                        //ColumnsRiskItems.Add(new Column() { Header = "SmokePeriodYear", FieldName = "SmokePeriodYear", VisibleIndex = 13 });
-                        //ColumnsRiskItems.Add(new Column() { Header = "SmokePeriodMonth", FieldName = "SmokePeriodMonth", VisibleIndex = 14 });
-                        //ColumnsRiskItems.Add(new Column() { Header = "BFQuitSmoke", FieldName = "BFQuitSmoke", VisibleIndex = 15 });  
-                    }
+                     }
                 
                     pgBarCounter = pgBarCounter + 1;
                     TotalRecord = pgBarCounter;

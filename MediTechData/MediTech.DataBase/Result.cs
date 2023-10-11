@@ -20,6 +20,9 @@ namespace MediTech.DataBase
         public long PatientVisitUID { get; set; }
         public Nullable<System.DateTime> ResultEnteredDttm { get; set; }
         public Nullable<int> ResultEnteredUserUID { get; set; }
+        public string ResultEnteredName { get; set; }
+        public Nullable<int> ResultQCUserUID { get; set; }
+        public string ResultQCName { get; set; }
         public int ORDSTUID { get; set; }
         public string ResultNumber { get; set; }
         public Nullable<int> RABSTSUID { get; set; }

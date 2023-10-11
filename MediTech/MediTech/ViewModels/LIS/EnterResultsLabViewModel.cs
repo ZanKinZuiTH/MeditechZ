@@ -30,6 +30,16 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectCareprovider, value); }
         }
 
+        public List<CareproviderModel> QCCareprovider { get; set; }
+
+        private CareproviderModel _SelectQCCareprovider;
+
+        public CareproviderModel SelectQCCareprovider
+        {
+            get { return _SelectQCCareprovider; }
+            set { Set(ref _SelectQCCareprovider, value); }
+        }
+
         private List<LookupReferenceValueModel> _ResultItemRanges;
 
         public List<LookupReferenceValueModel> ResultItemRanges
@@ -185,6 +195,7 @@ namespace MediTech.ViewModels
             SelectResultItemRange = ResultItemRanges.FirstOrDefault();
             int labTechnicianUID = DataService.Technical.GetReferenceValueByCode("CPTYP", "CPTEN06").Key ?? 0;
             Careprovider = DataService.UserManage.GetCareProviderByType(labTechnicianUID);
+            QCCareprovider = DataService.UserManage.GetCareProviderByType(labTechnicianUID);
             Permission = RoleIsConfidential();
         }
 
@@ -192,11 +203,23 @@ namespace MediTech.ViewModels
         {
             try
             {
-                //if(SelectCareprovider == null)
+                //ไม่ใช่คลินิกหัวใจ
+                //if (AppUtil.Current.OwnerOrganisationUID != 26)
                 //{
-                //    WarningDialog("กรุณาเลือกนักเทคนิคห้องปฏิบัติการ");
-                //    return;
+                //    if (SelectCareprovider == null)
+                //    {
+                //        WarningDialog("กรุณาเลือกนักเทคนิคห้องปฏิบัติการ");
+                //        return;
+                //    }
+
+                //    if (SelectQCCareprovider == null)
+                //    {
+                //        WarningDialog("กรุณาเลือกเจ้าหน้าที่ตรวจสอบผล");
+                //        return;
+                //    }
                 //}
+
+                int careproviderUID = SelectCareprovider != null ? SelectCareprovider.CareproviderUID : 0;
 
                 List<RequestDetailItemModel> reviewRequestDetails = new List<RequestDetailItemModel>();
                 reviewRequestDetails = RequestDetailLabs.Where(p => p.ResultComponents.Count(f => !string.IsNullOrEmpty(f.ResultValue)) > 0).ToList();
@@ -207,10 +230,14 @@ namespace MediTech.ViewModels
                         reviewRequestDetail.ResultComponents = new ObservableCollection<ResultComponentModel>
                             (RequestDetailLabs.FirstOrDefault(p => p.RequestDetailUID == reviewRequestDetail.RequestDetailUID).ResultComponents.Where(p => p.RequestDetailUID == reviewRequestDetail.RequestDetailUID && !string.IsNullOrEmpty(p.ResultValue)).ToList());
                         
+                        //reviewRequestDetail.ResultEnterUID = SelectCareprovider.CareproviderUID;
+                        //reviewRequestDetail.ResultedEnterBy = SelectCareprovider.FullName;
+                        //reviewRequestDetail.ResultQCUID = SelectQCCareprovider.CareproviderUID;
+                        //reviewRequestDetail.ResultedQCBy = SelectQCCareprovider.FullName;
                     }
                 }
 
-                int careproviderUID = SelectCareprovider != null ? SelectCareprovider.CareproviderUID : 0;
+               
                 DataService.Lab.ReviewLabResult(reviewRequestDetails, careproviderUID, AppUtil.Current.UserID);
                 SaveSuccessDialog();
                 CloseViewDialog(ActionDialog.Save);
@@ -246,7 +273,9 @@ namespace MediTech.ViewModels
                 }
             }
             int resultBy = RequestDetailLabs.FirstOrDefault().ResultEnterUID ?? 0;
+            int qcBy = RequestDetailLabs.FirstOrDefault().ResultQCUID ?? 0;
             SelectCareprovider = Careprovider.FirstOrDefault(p => p.CareproviderUID == resultBy);
+            SelectQCCareprovider = QCCareprovider.FirstOrDefault(p => p.CareproviderUID == qcBy);
         }
         private void GetRange()
         {

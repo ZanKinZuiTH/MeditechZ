@@ -2378,8 +2378,25 @@ namespace MediTechWebApi.Controllers
                         db.PatientMedicalHistory.Add(patientMedicalHistory);
                         db.SaveChanges();
 
-                    }
+                        if(patientMedical.PastMedicalHistorys != null)
+                        {
+                            foreach (var item in patientMedical.PastMedicalHistorys)
+                            {
+                                PastMedicalHistory pastMedical = new PastMedicalHistory();
+                                pastMedical.PatientMedicalHistoryUID = patientMedicalHistory.UID;
+                                pastMedical.MedicalDttm = item.MedicalDttm;
+                                pastMedical.MedicalName = item.MedicalName;
+                                pastMedical.CUser = userID;
+                                pastMedical.CWhen = now;
+                                pastMedical.MUser = userID;
+                                pastMedical.MWhen = now;
+                                pastMedical.StatusFlag = "A";
 
+                                db.PastMedicalHistory.Add(pastMedical);
+                                db.SaveChanges();
+                            }
+                        }
+                    }
                     tran.Complete();
                 }
 

@@ -513,6 +513,7 @@ namespace MediTechWebApi.Controllers
                             IsConfidential = item.IsConfidential,
                             ResultedEnterBy = SqlFunction.fGetCareProviderName(rs.ResultEnteredUserUID ?? 0),
                             ResultEnterUID = rs.ResultEnteredUserUID ?? 0,
+                            ResultQCUID = rs.ResultQCUserUID ?? 0,
                             Comments = red.Comments
                         }).ToList();
 
@@ -838,7 +839,10 @@ namespace MediTechWebApi.Controllers
                         result.MUser = userID;
                         result.MWhen = now;
                         result.ResultEnteredDttm = now;
-                        result.ResultEnteredUserUID = careproviderUID;
+                        result.ResultEnteredUserUID = labRequestDetail.ResultEnterUID;
+                        result.ResultEnteredName = labRequestDetail.ResultedEnterBy;
+                        result.ResultQCUserUID = labRequestDetail.ResultQCUID;
+                        result.ResultQCName = labRequestDetail.ResultedQCBy;
                         result.ORDSTUID = reviewStatus;
                         result.PatientUID = labRequestDetail.PatientUID;
                         result.PatientVisitUID = labRequestDetail.PatientVisitUID;

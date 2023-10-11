@@ -16,6 +16,7 @@ namespace MediTech.Model
         public int RequestItemUID { get; set; }
         public string OrderStatus { get; set; }
         public string ResultedEnterBy { get; set; }
+        public string ResultedQCBy { get; set; }
         public DateTime? ResultEnteredDttm { get; set; }
         public string PriorityStatus { get; set; }
         public string Comments { get; set; }
@@ -30,6 +31,7 @@ namespace MediTech.Model
         public long PatientVisitUID { get; set; }
         public string IsConfidential { get; set; }
         public int? ResultEnterUID { get; set; }
+        public int? ResultQCUID { get; set; }
         public  ObservableCollection<ResultComponentModel> ResultComponents { get; set; }
     }
 }

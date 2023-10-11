@@ -1392,6 +1392,7 @@ namespace MediTechWebApi.Controllers
                                                ResultEnteredDttm = rs.ResultEnteredDttm,
                                                ResultItemName = rsc.ResultItemName,
                                                ResultEnteredBy = SqlFunction.fGetCareProviderName(rs.ResultEnteredUserUID ?? 0),
+                                               ResultQCBy = SqlFunction.fGetCareProviderName(rs.ResultQCUserUID ?? 0),
                                                //PrintOrder = rslk.PrintOrder ?? 0,
                                                IsConfidential = rit.IsConfidential,
                                                ResultUID = rs.UID,
