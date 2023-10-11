@@ -16,6 +16,11 @@ namespace MediTech.DataBase
     {
         public int UID { get; set; }
         public long PatientUID { get; set; }
+        public string LungDisease { get; set; }
+        public string Epilepsy { get; set; }
+        public string Unconscious { get; set; }
+        public string Hypertension { get; set; }
+        public string Anemia { get; set; }
         public string ChronicDisease { get; set; }
         public string SurgicalDetail { get; set; }
         public string ImmunizationDetail { get; set; }

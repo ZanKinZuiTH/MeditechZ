@@ -588,5 +588,72 @@ namespace MediTech.DataBase
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTCheckupLabCompareByGroupTest_Result>("pRPTCheckupLabCompareByGroupTest", p_PatientUIDParameter, p_PayorDetailUIDParameter, p_GPRSTUIDParameter, p_PatientVisitUIDParameter);
         }
+    
+        public virtual ObjectResult<pRPTDoctorFee2_Result> pRPTDoctorFee2(Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, Nullable<int> p_CareproviderUID)
+        {
+            var p_DateFromParameter = p_DateFrom.HasValue ?
+                new ObjectParameter("P_DateFrom", p_DateFrom) :
+                new ObjectParameter("P_DateFrom", typeof(System.DateTime));
+    
+            var p_DateToParameter = p_DateTo.HasValue ?
+                new ObjectParameter("P_DateTo", p_DateTo) :
+                new ObjectParameter("P_DateTo", typeof(System.DateTime));
+    
+            var p_CareproviderUIDParameter = p_CareproviderUID.HasValue ?
+                new ObjectParameter("P_CareproviderUID", p_CareproviderUID) :
+                new ObjectParameter("P_CareproviderUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTDoctorFee2_Result>("pRPTDoctorFee2", p_DateFromParameter, p_DateToParameter, p_CareproviderUIDParameter);
+        }
+    
+        public virtual ObjectResult<pRPTUltrasoundFee_Result> pRPTUltrasoundFee(Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, Nullable<int> p_CareproviderUID)
+        {
+            var p_DateFromParameter = p_DateFrom.HasValue ?
+                new ObjectParameter("P_DateFrom", p_DateFrom) :
+                new ObjectParameter("P_DateFrom", typeof(System.DateTime));
+    
+            var p_DateToParameter = p_DateTo.HasValue ?
+                new ObjectParameter("P_DateTo", p_DateTo) :
+                new ObjectParameter("P_DateTo", typeof(System.DateTime));
+    
+            var p_CareproviderUIDParameter = p_CareproviderUID.HasValue ?
+                new ObjectParameter("P_CareproviderUID", p_CareproviderUID) :
+                new ObjectParameter("P_CareproviderUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTUltrasoundFee_Result>("pRPTUltrasoundFee", p_DateFromParameter, p_DateToParameter, p_CareproviderUIDParameter);
+        }
+    
+        public virtual ObjectResult<pSearchPatientInvoiceForAllocateBill_Result> pSearchPatientInvoiceForAllocateBill(Nullable<long> p_PatientUID, Nullable<System.DateTime> p_BillFromDTTM, Nullable<System.DateTime> p_BillToDTTM, Nullable<int> p_InsuranceCompanyUID, Nullable<int> p_CheckupjobUID, Nullable<int> p_OwnerOrganisationUID, Nullable<int> p_UserUID)
+        {
+            var p_PatientUIDParameter = p_PatientUID.HasValue ?
+                new ObjectParameter("P_PatientUID", p_PatientUID) :
+                new ObjectParameter("P_PatientUID", typeof(long));
+    
+            var p_BillFromDTTMParameter = p_BillFromDTTM.HasValue ?
+                new ObjectParameter("P_BillFromDTTM", p_BillFromDTTM) :
+                new ObjectParameter("P_BillFromDTTM", typeof(System.DateTime));
+    
+            var p_BillToDTTMParameter = p_BillToDTTM.HasValue ?
+                new ObjectParameter("P_BillToDTTM", p_BillToDTTM) :
+                new ObjectParameter("P_BillToDTTM", typeof(System.DateTime));
+    
+            var p_InsuranceCompanyUIDParameter = p_InsuranceCompanyUID.HasValue ?
+                new ObjectParameter("P_InsuranceCompanyUID", p_InsuranceCompanyUID) :
+                new ObjectParameter("P_InsuranceCompanyUID", typeof(int));
+    
+            var p_CheckupjobUIDParameter = p_CheckupjobUID.HasValue ?
+                new ObjectParameter("P_CheckupjobUID", p_CheckupjobUID) :
+                new ObjectParameter("P_CheckupjobUID", typeof(int));
+    
+            var p_OwnerOrganisationUIDParameter = p_OwnerOrganisationUID.HasValue ?
+                new ObjectParameter("P_OwnerOrganisationUID", p_OwnerOrganisationUID) :
+                new ObjectParameter("P_OwnerOrganisationUID", typeof(int));
+    
+            var p_UserUIDParameter = p_UserUID.HasValue ?
+                new ObjectParameter("P_UserUID", p_UserUID) :
+                new ObjectParameter("P_UserUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSearchPatientInvoiceForAllocateBill_Result>("pSearchPatientInvoiceForAllocateBill", p_PatientUIDParameter, p_BillFromDTTMParameter, p_BillToDTTMParameter, p_InsuranceCompanyUIDParameter, p_CheckupjobUIDParameter, p_OwnerOrganisationUIDParameter, p_UserUIDParameter);
+        }
     }
 }

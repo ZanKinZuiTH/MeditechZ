@@ -26,6 +26,7 @@ namespace MediTech.DataBase
         public int IMUOMUID { get; set; }
         public Nullable<int> IssuedByStockUID { get; set; }
         public string BatchID { get; set; }
+        public Nullable<int> StockUID { get; set; }
         public Nullable<System.DateTime> ExpiryDttm { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }

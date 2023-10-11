@@ -13,6 +13,7 @@ namespace MediTech.Model.Report
         public string PatientName { get; set; }
         public string BillNumber { get; set; }
         public DateTime BillGeneratedDttm { get; set; }
+        public String VisitType { get; set; } 
         public string ItemCode { get; set; }
         public string ItemName { get; set; }
         public double ItemPrice { get; set; }
