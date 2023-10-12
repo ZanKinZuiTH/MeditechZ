@@ -473,6 +473,11 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2547
                             page3.CheckSmokeUsed.Checked = true;
 
                         }
+                        else if (MedicalHistory.Smoke?.Trim() == "เคยและปัจจุบันยังสูบอยู่")
+                        {
+                            page3.CheckSmokeDay.Checked = true;
+
+                        }
                         else if (MedicalHistory.Smoke?.Trim() != "")
                         {
                             page3.CheckSmokeDay.Checked = true;
