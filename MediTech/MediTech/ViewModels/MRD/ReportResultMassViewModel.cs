@@ -146,7 +146,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectReport, value);
                 if (SelectReport != null)
                 {
-                    if (SelectReport.Key == 0 || SelectReport.Key == 1)
+                    if (SelectReport.Key == 0 || SelectReport.Key == 1 || SelectReport.Key == 4)
                     {
                         LogoVisibility = Visibility.Visible;
                     }
@@ -474,6 +474,7 @@ namespace MediTech.ViewModels
             Reports.Add(new LookupItemModel { Key = 1, Display = "รายงานสองภาษา" });
             Reports.Add(new LookupItemModel { Key = 2, Display = "รายงานโรงพยาบาลเฉลิมพระเกียรติ หน่วยเชิงรุก" });
             Reports.Add(new LookupItemModel { Key = 3, Display = "รายงานโรงพยาบาลเฉลิมพระเกียรติ หน่วยมลพิษ" });
+            Reports.Add(new LookupItemModel { Key = 4, Display = "รายงานA5" });
             SelectReport = Reports.FirstOrDefault();
 
             Logos = new List<LookupItemModel>();
@@ -801,6 +802,18 @@ namespace MediTech.ViewModels
                                 rpt.ShowPrintMarginsWarning = false;
                                 printTool.Print();
                             }
+                            else if (SelectReport.Key == 4)
+                            {
+                                ImagingReportA5 rpt = new ImagingReportA5();
+                                rpt.LogoType = SelectLogo != null ? SelectLogo.Display : "";
+                                ReportPrintTool printTool = new ReportPrintTool(rpt);
+                                rpt.Parameters["ResultUID"].Value = item.ResultUID;
+                                rpt.Parameters["ResultThai"].Value = item.ThaiResult;
+
+                                rpt.RequestParameters = false;
+                                rpt.ShowPrintMarginsWarning = false;
+                                printTool.Print();
+                            }
                             else if (SelectReport.Key == 2 || SelectReport.Key == 3)
                             {
                                 ImagingReportV2 rpt = new ImagingReportV2();
@@ -877,6 +890,18 @@ namespace MediTech.ViewModels
                         else if (SelectReport.Key == 1)
                         {
                             ImagingReportThai rpt = new ImagingReportThai();
+                            rpt.LogoType = SelectLogo != null ? SelectLogo.Display : "";
+                            ReportPrintTool printTool = new ReportPrintTool(rpt);
+                            rpt.Parameters["ResultUID"].Value = item.ResultUID;
+                            rpt.Parameters["ResultThai"].Value = item.ThaiResult;
+
+                            rpt.RequestParameters = false;
+                            rpt.ShowPrintMarginsWarning = false;
+                            printTool.ShowPreviewDialog();
+                        }
+                        else if (SelectReport.Key == 4)
+                        {
+                            ImagingReportA5 rpt = new ImagingReportA5();
                             rpt.LogoType = SelectLogo != null ? SelectLogo.Display : "";
                             ReportPrintTool printTool = new ReportPrintTool(rpt);
                             rpt.Parameters["ResultUID"].Value = item.ResultUID;
@@ -1244,6 +1269,18 @@ namespace MediTech.ViewModels
                                 else if (SelectReport.Key == 1)
                                 {
                                     ImagingReportThai rpt = new ImagingReportThai();
+                                    rpt.LogoType = SelectLogo != null ? SelectLogo.Display : "";
+                                    rpt.Parameters["ResultUID"].Value = item.ResultUID;
+                                    rpt.Parameters["ResultThai"].Value = item.ThaiResult;
+
+                                    rpt.RequestParameters = false;
+                                    rpt.ShowPrintMarginsWarning = false;
+
+                                    rpt.ExportToPdf(path + "\\" + fileName);
+                                }
+                                else if (SelectReport.Key == 4)
+                                {
+                                    ImagingReportA5 rpt = new ImagingReportA5();
                                     rpt.LogoType = SelectLogo != null ? SelectLogo.Display : "";
                                     rpt.Parameters["ResultUID"].Value = item.ResultUID;
                                     rpt.Parameters["ResultThai"].Value = item.ThaiResult;

@@ -194,9 +194,16 @@ namespace MediTech.ViewModels
             ResultItemRanges = DataService.Technical.GetReferenceValueMany("LABRAM");
             SelectResultItemRange = ResultItemRanges.FirstOrDefault();
             int labTechnicianUID = DataService.Technical.GetReferenceValueByCode("CPTYP", "CPTEN06").Key ?? 0;
-            Careprovider = DataService.UserManage.GetCareProviderByType(labTechnicianUID);
-            QCCareprovider = DataService.UserManage.GetCareProviderByType(labTechnicianUID);
             Permission = RoleIsConfidential();
+
+            //ไม่ใช่คลินิกหัวใจ
+            if (AppUtil.Current.OwnerOrganisationUID != 26)
+            {
+                Careprovider = DataService.UserManage.GetCareProviderByType(labTechnicianUID);
+                SelectCareprovider = Careprovider.FirstOrDefault();
+                QCCareprovider = DataService.UserManage.GetCareProviderByType(labTechnicianUID);
+                SelectQCCareprovider = QCCareprovider.FirstOrDefault();
+            }
         }
 
         private  void SaveLabResult()
@@ -204,20 +211,20 @@ namespace MediTech.ViewModels
             try
             {
                 //ไม่ใช่คลินิกหัวใจ
-                //if (AppUtil.Current.OwnerOrganisationUID != 26)
-                //{
-                //    if (SelectCareprovider == null)
-                //    {
-                //        WarningDialog("กรุณาเลือกนักเทคนิคห้องปฏิบัติการ");
-                //        return;
-                //    }
+                if (AppUtil.Current.OwnerOrganisationUID != 26)
+                {
+                    if (SelectCareprovider == null)
+                    {
+                        WarningDialog("กรุณาเลือกนักเทคนิคห้องปฏิบัติการ");
+                        return;
+                    }
 
-                //    if (SelectQCCareprovider == null)
-                //    {
-                //        WarningDialog("กรุณาเลือกเจ้าหน้าที่ตรวจสอบผล");
-                //        return;
-                //    }
-                //}
+                    if (SelectQCCareprovider == null)
+                    {
+                        WarningDialog("กรุณาเลือกเจ้าหน้าที่ตรวจสอบผล");
+                        return;
+                    }
+                }
 
                 int careproviderUID = SelectCareprovider != null ? SelectCareprovider.CareproviderUID : 0;
 
@@ -229,11 +236,12 @@ namespace MediTech.ViewModels
                     {
                         reviewRequestDetail.ResultComponents = new ObservableCollection<ResultComponentModel>
                             (RequestDetailLabs.FirstOrDefault(p => p.RequestDetailUID == reviewRequestDetail.RequestDetailUID).ResultComponents.Where(p => p.RequestDetailUID == reviewRequestDetail.RequestDetailUID && !string.IsNullOrEmpty(p.ResultValue)).ToList());
+
+                            reviewRequestDetail.ResultEnterUID = SelectCareprovider?.CareproviderUID;
+                            reviewRequestDetail.ResultedEnterBy = SelectCareprovider?.FullName;
+                            reviewRequestDetail.ResultQCUID = SelectQCCareprovider?.CareproviderUID;
+                            reviewRequestDetail.ResultedQCBy = SelectQCCareprovider?.FullName;
                         
-                        //reviewRequestDetail.ResultEnterUID = SelectCareprovider.CareproviderUID;
-                        //reviewRequestDetail.ResultedEnterBy = SelectCareprovider.FullName;
-                        //reviewRequestDetail.ResultQCUID = SelectQCCareprovider.CareproviderUID;
-                        //reviewRequestDetail.ResultedQCBy = SelectQCCareprovider.FullName;
                     }
                 }
 
@@ -272,10 +280,14 @@ namespace MediTech.ViewModels
                     }
                 }
             }
-            int resultBy = RequestDetailLabs.FirstOrDefault().ResultEnterUID ?? 0;
-            int qcBy = RequestDetailLabs.FirstOrDefault().ResultQCUID ?? 0;
-            SelectCareprovider = Careprovider.FirstOrDefault(p => p.CareproviderUID == resultBy);
-            SelectQCCareprovider = QCCareprovider.FirstOrDefault(p => p.CareproviderUID == qcBy);
+            //ไม่ใช่คลินิกหัวใจ
+            if (AppUtil.Current.OwnerOrganisationUID != 26)
+            {
+                int? resultBy = RequestDetailLabs.FirstOrDefault().ResultEnterUID;
+                int? qcBy = RequestDetailLabs.FirstOrDefault().ResultQCUID;
+                SelectCareprovider = resultBy != 0 ? Careprovider.FirstOrDefault(p => p.CareproviderUID == resultBy) : Careprovider.FirstOrDefault();
+                SelectQCCareprovider = qcBy != 0 ? QCCareprovider.FirstOrDefault(p => p.CareproviderUID == qcBy) : QCCareprovider.FirstOrDefault();
+            }
         }
         private void GetRange()
         {

@@ -463,8 +463,15 @@ namespace MediTech.ViewModels
             DateTypes.Add(new LookupItemModel { Key = 90, Display = "90 วัน" });
             SelectDateType = DateTypes.FirstOrDefault();
             int labTechnicianUID = DataService.Technical.GetReferenceValueByCode("CPTYP", "CPTEN06").Key ?? 0;
-            Careprovider = DataService.UserManage.GetCareProviderByType(labTechnicianUID);
-            QCCareprovider = DataService.UserManage.GetCareProviderByType(labTechnicianUID);
+
+            //ไม่ใช่คลินิกหัวใจ
+            if (AppUtil.Current.OwnerOrganisationUID != 26) 
+            { 
+                Careprovider = DataService.UserManage.GetCareProviderByType(labTechnicianUID);
+                SelectCareprovider = Careprovider.FirstOrDefault();
+                QCCareprovider = DataService.UserManage.GetCareProviderByType(labTechnicianUID);
+                SelectQCCareprovider = QCCareprovider.FirstOrDefault();
+            }
         }
 
         private void ChooseFile()
@@ -770,11 +777,21 @@ namespace MediTech.ViewModels
             string hn = string.Empty;
             try
             {
-                //if (SelectCareprovider == null)
-                //{
-                //    WarningDialog("กรุณาเลือกนักเทคนิคห้องปฏิบัติการ");
-                //    return;
-                //}
+                //ไม่ใช่คลินิกหัวใจ
+                if (AppUtil.Current.OwnerOrganisationUID != 26)
+                {
+                    if (SelectCareprovider == null)
+                    {
+                        WarningDialog("กรุณาเลือกนักเทคนิคห้องปฏิบัติการ");
+                        return;
+                    }
+
+                    if (SelectQCCareprovider == null)
+                    {
+                        WarningDialog("กรุณาเลือกเจ้าหน้าที่ตรวจสอบผล");
+                        return;
+                    }
+                }
 
                 ImportLabResult view = (ImportLabResult)this.View;
                 if (view.gcTestParameter.ItemsSource == null)
@@ -796,10 +813,10 @@ namespace MediTech.ViewModels
                         if (labResult.ResultComponents.Count() > 0)
                         {
                             List<RequestDetailItemModel> sendLabResult = new List<RequestDetailItemModel>();
-                            //labResult.ResultEnterUID = SelectCareprovider.CareproviderUID;
-                            //labResult.ResultedEnterBy = SelectCareprovider.FullName;
-                            //labResult.ResultQCUID = SelectQCCareprovider.CareproviderUID;
-                            //labResult.ResultedQCBy = SelectQCCareprovider.FullName;
+                            labResult.ResultEnterUID = SelectCareprovider?.CareproviderUID;
+                            labResult.ResultedEnterBy = SelectCareprovider?.FullName;
+                            labResult.ResultQCUID = SelectQCCareprovider?.CareproviderUID;
+                            labResult.ResultedQCBy = SelectQCCareprovider?.FullName;
                             sendLabResult.Add(labResult);
 
                             DataService.Lab.ReviewLabResult(sendLabResult, careproviderUID, AppUtil.Current.UserID);
