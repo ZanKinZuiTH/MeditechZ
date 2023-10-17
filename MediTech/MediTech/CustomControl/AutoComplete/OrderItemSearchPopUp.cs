@@ -18,7 +18,7 @@ namespace MediTech.CustomControl
                 new Column() { FieldName = "Code", Header = "Code" },
                 new Column() { FieldName = "ItemName", Header = "ItemName" },
                 new Column() { FieldName = "TypeOrder", Header = "TypeOrder" },
-                new Column() { FieldName = "TradeName", Header = "TradeName" }
+                new Column() { FieldName = "Generic", Header = "Generic" }
             };
         }
     }
