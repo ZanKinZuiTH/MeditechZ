@@ -1,12 +1,15 @@
-﻿using DevExpress.XtraReports.Parameters;
+﻿using DevExpress.ClipboardSource.SpreadsheetML;
+using DevExpress.XtraReports.Parameters;
 using DevExpress.XtraReports.UI;
 using MediTech.DataService;
 using MediTech.Model;
+using MediTech.Model.Report;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 
 namespace MediTech.Reports.Operating.Patient
@@ -113,8 +116,28 @@ namespace MediTech.Reports.Operating.Patient
                     logoFooter.Image = Image.FromStream(ms);
                 }
             }
-
             this.DataSource = dataSource;
+            if (dataSource is MedicalCertificateModel)
+            {
+                DateTime? visitDate = ((MedicalCertificateModel)dataSource).strVisitData;
+                DateTime? doctorIssueDate = ((MedicalCertificateModel)dataSource).DoctorLicenseIssueDttm;
+
+                if (visitDate != null)
+                {
+                    lblVisitDateTH.Text = visitDate.Value.Date.ToString("dd MMMM", new CultureInfo("th-TH")) + " พ.ศ. "+ visitDate.Value.Date.ToString("yyyy", new CultureInfo("th-TH")); 
+                    lblVisitDateEN.Text = "Day " + visitDate.Value.Date.ToString("dd", new CultureInfo("en-US")) + " Month "+ visitDate.Value.Date.ToString("MMMM", new CultureInfo("en-US")) 
+                        + " B.E. " + visitDate.Value.Date.ToString("yyyy", new CultureInfo("en-US")); ;
+                    lblVisitDateEN2.Text = visitDate.Value.Date.ToString("dd MMMM yyyy", new CultureInfo("en-US"));
+                }
+
+                if (doctorIssueDate != null)
+                {
+                    lblLicenseIssueTH.Text = doctorIssueDate.Value.Date.ToString("dd MMMM", new CultureInfo("th-TH")) + " พ.ศ. " + doctorIssueDate.Value.Date.ToString("yyyy", new CultureInfo("th-TH")); ;
+                    lblLicenseIssueEN.Text = doctorIssueDate.Value.Date.ToString("dd", new CultureInfo("en-US")) + " Month " + doctorIssueDate.Value.Date.ToString("MMMM", new CultureInfo("en-US"))
+                        + " B.E. " + doctorIssueDate.Value.Date.ToString("yyyy", new CultureInfo("th-TH")); ; ;
+                }
+
+            }
         }
 
     }

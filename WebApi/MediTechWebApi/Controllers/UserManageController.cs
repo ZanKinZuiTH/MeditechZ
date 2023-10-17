@@ -1015,6 +1015,34 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetCareProviderLocationByUser")]
         [HttpGet]
+        public List<CareproviderLocationModel> GetCareProviderLocationByUser(int careproviderUID)
+        {
+            DateTime dateNow = DateTime.Now.Date;
+            List<CareproviderLocationModel> data = (from j in db.CareproviderLocation
+                                                    join i in db.Careprovider on j.CareproviderUID equals i.UID
+                                                    where j.StatusFlag == "A"
+                                                    && i.StatusFlag == "A"
+                                                    && i.UID == careproviderUID
+                                                    && (i.ActiveFrom == null || DbFunctions.TruncateTime(i.ActiveFrom) <= DbFunctions.TruncateTime(dateNow))
+                                                    && (i.ActiveTo == null || DbFunctions.TruncateTime(i.ActiveTo) >= DbFunctions.TruncateTime(dateNow))
+                                                    select new CareproviderLocationModel
+                                                    {
+                                                        CareproviderLocationUID = j.UID,
+                                                        LocationUID = j.LocationUID,
+                                                        LocationName = SqlFunction.fGetLocationName(j.LocationUID),
+                                                        HealthOrganisationUID = j.HealthOrganisationUID,
+                                                        HealthOrganisationName = SqlFunction.fGetHealthOrganisationName(j.HealthOrganisationUID),
+                                                        CareproviderUID = j.CareproviderUID,
+                                                        CareproviderName = SqlFunction.fGetCareProviderName(j.CareproviderUID),
+                                                        ActiveFrom = j.ActiveFrom,
+                                                        ActiveTo = j.ActiveTo
+                                                    }).ToList();
+
+            return data;
+        }
+
+        [Route("GetCareProviderLocationByUser")]
+        [HttpGet]
         public List<CareproviderLocationModel> GetCareProviderLocationByUser(int careproviderUID, int organisationUID)
         {
             DateTime dateNow = DateTime.Now.Date;

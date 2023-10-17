@@ -27,6 +27,7 @@ namespace MediTech.DataBase
         public Nullable<int> DrugDuration { get; set; }
         public Nullable<double> Quantity { get; set; }
         public Nullable<double> Dosage { get; set; }
+        public Nullable<int> PrescriptionUOM { get; set; }
         public string InstructionText { get; set; }
         public string LocalInstructionText { get; set; }
         public Nullable<int> ORDSTUID { get; set; }

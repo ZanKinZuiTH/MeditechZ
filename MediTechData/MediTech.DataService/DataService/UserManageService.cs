@@ -210,6 +210,13 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<CareproviderLocationModel> GetCareProviderLocationByUser(int careproviderUID)
+        {
+            string requestApi = string.Format("Api/UserManage/GetCareProviderLocationByUser?careproviderUID={0}", careproviderUID);
+            List<CareproviderLocationModel> data = MeditechApiHelper.Get<List<CareproviderLocationModel>>(requestApi);
+            return data;
+        }
+
         public List<CareproviderLocationModel> GetCareProviderLocationByUser(int careproviderUID, int organisationUID)
         {
             string requestApi = string.Format("Api/UserManage/GetCareProviderLocationByUser?careproviderUID={0}&organisationUID={1}", careproviderUID, organisationUID);

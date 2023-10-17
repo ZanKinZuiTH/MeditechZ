@@ -51,7 +51,8 @@ namespace MediTech.Model
         public string InstructionRoute { get; set; }
 
         public Nullable<double> Dosage { get; set; }
-        public string DosageUnit { get; set; }
+        public int? PrescriptionUOM { get; set; }
+        public string PrescriptionUnit { get; set; }
         public Nullable<int> DrugDuration { get; set; }
         public string InstructionText { get; set; }
         public string LocalInstructionText { get; set; }

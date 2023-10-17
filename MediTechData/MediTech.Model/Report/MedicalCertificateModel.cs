@@ -37,7 +37,9 @@ namespace MediTech.Model.Report
         public DateTime? strVisitData { get; set; }
         public string PatientAddress { get; set; }
         public string DoctorLicenseNo { get; set; }
+        public DateTime? DoctorLicenseIssueDttm { get; set; }
         public string DoctorLicenseNo2 { get; set; }
+        public DateTime? DoctorLicenseIssueDttm2 { get; set; }
         public string MobilePhone { get; set; }
         public string PatientPayor { get; set; }
         public string PatientEmail { get; set; }

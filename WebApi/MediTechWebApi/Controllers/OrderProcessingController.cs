@@ -678,6 +678,7 @@ namespace MediTechWebApi.Controllers
                                                 orderDetail.ItemCode = item.ItemCode;
                                                 orderDetail.ItemName = item.ItemName;
                                                 orderDetail.Dosage = item.Dosage;
+                                                orderDetail.PrescriptionUOM = item.PrescriptionUOM;
                                                 orderDetail.Quantity = item.Quantity;
                                                 orderDetail.QNUOMUID = item.QNUOMUID;
                                                 orderDetail.FRQNCUID = item.FRQNCUID;
@@ -838,6 +839,7 @@ namespace MediTechWebApi.Controllers
                                                     prescrItem.DFORMUID = item.DFORMUID;
                                                     prescrItem.DrugDuration = item.DrugDuration;
                                                     prescrItem.Dosage = item.Dosage;
+                                                    prescrItem.PrescriptionUOM = item.PrescriptionUOM;
                                                     prescrItem.Quantity = item.Quantity;
                                                     prescrItem.IMUOMUID = item.QNUOMUID;
                                                     prescrItem.PDSTSUID = item.PDSTSUID;

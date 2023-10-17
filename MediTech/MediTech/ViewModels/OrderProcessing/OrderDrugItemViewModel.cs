@@ -175,6 +175,23 @@ namespace MediTech.ViewModels
             }
         }
 
+        private List<LookupReferenceValueModel> _DosageUnits;
+
+        public List<LookupReferenceValueModel> DosageUnits
+        {
+            get { return _DosageUnits; }
+            set { Set(ref _DosageUnits, value); }
+        }
+
+        private LookupReferenceValueModel _SelectDosageUnit;
+
+        public LookupReferenceValueModel SelectDosageUnit
+        {
+            get { return _SelectDosageUnit; }
+            set { Set(ref _SelectDosageUnit, value); }
+        }
+
+
         private List<LookupReferenceValueModel> _PrescriptionTypes;
 
         public List<LookupReferenceValueModel> PrescriptionTypes
@@ -304,13 +321,7 @@ namespace MediTech.ViewModels
             set { Set(ref _DrugFrequencyText, value); }
         }
 
-        private string _DosageUnit;
 
-        public string DosageUnit
-        {
-            get { return _DosageUnit; }
-            set { Set(ref _DosageUnit, value); }
-        }
 
         private int? _Duration;
 
@@ -520,7 +531,7 @@ namespace MediTech.ViewModels
         private void BindingData()
         {
 
-            var refVale = DataService.Technical.GetReferenceValueList("PDSTS,FORMM,ROUTE,PRSTYP,ENTYP,RQPRT");
+            var refVale = DataService.Technical.GetReferenceValueList("PDSTS,FORMM,ROUTE,PRSTYP,ENTYP,RQPRT,IMUOM");
 
             var EncounterTypeList = refVale.Where(p => p.DomainCode == "ENTYP").ToList();
 
@@ -533,11 +544,12 @@ namespace MediTech.ViewModels
             }
 
             Priorities = refVale.Where(p => p.DomainCode == "RQPRT").ToList();
-
+            DosageUnits = refVale.Where(p => p.DomainCode == "IMUOM").ToList();
             DrugFORM = refVale.Where(p => p.DomainCode == "FORMM").ToList();
             DrugLabel = refVale.Where(p => p.DomainCode == "PDSTS").ToList();
             DrugRoute = refVale.Where(p => p.DomainCode == "ROUTE").ToList();
             DrugFrequency = DataService.Pharmacy.GetDrugFrequency();
+
             Units = DataService.Inventory.GetItemConvertUOM(ItemMaster.ItemMasterUID);
         }
         public void BindingFromBillableItem()
@@ -564,7 +576,8 @@ namespace MediTech.ViewModels
             DosageQuantity = ItemMaster.DoseQuantity ?? 1;
             Quantity = ItemMaster.MinSalesQty ?? 1;
             Duration = 1;
-            DosageUnit = ItemMaster.PrescriptionUnit;
+            SelectDosageUnit = DosageUnits.FirstOrDefault(p => p.Key == ItemMaster.PrescriptionUOM);
+            //DosageUnit = ItemMaster.PrescriptionUnit;
 
             if (!string.IsNullOrEmpty(ItemMaster.DispenseEnglish) && !string.IsNullOrEmpty(ItemMaster.DispenseLocal))
             {
@@ -612,6 +625,7 @@ namespace MediTech.ViewModels
             SelectDrugRoute = DrugRoute.FirstOrDefault(p => p.Key == PatientOrderDetail.ROUTEUID);
             SelectDrugLabel = DrugLabel.FirstOrDefault(p => p.Key == PatientOrderDetail.PDSTSUID);
             SelectUnit = Units.FirstOrDefault(p => p.ConversionUOMUID == PatientOrderDetail.QNUOMUID);
+            SelectDosageUnit = DosageUnits.FirstOrDefault(p => p.Key == PatientOrderDetail.PrescriptionUOM);
 
             SelectPrescriptionType = PrescriptionTypes.FirstOrDefault(p => p.Key == PatientOrderDetail.PRSTYPUID);
 
@@ -623,7 +637,7 @@ namespace MediTech.ViewModels
             SuppressQuantityEvent = true;
             Quantity = PatientOrderDetail.Quantity ?? 1;
 
-            DosageUnit = ItemMaster.PrescriptionUnit;
+
 
             if (!string.IsNullOrEmpty(ItemMaster.DispenseEnglish) && !string.IsNullOrEmpty(ItemMaster.DispenseLocal))
             {
@@ -716,7 +730,12 @@ namespace MediTech.ViewModels
                 PatientOrderDetail.EndDttm = EndDate != null ? EndDate?.Add(EndTime.Value.TimeOfDay) : null;
 
                 PatientOrderDetail.Dosage = DosageQuantity;
-                PatientOrderDetail.DosageUnit = DosageUnit;
+
+                if (SelectDosageUnit != null)
+                {
+                    PatientOrderDetail.PrescriptionUOM = SelectDosageUnit.Key;
+                }
+
                 PatientOrderDetail.Quantity = Quantity;
                 if (SelectUnit != null)
                 {

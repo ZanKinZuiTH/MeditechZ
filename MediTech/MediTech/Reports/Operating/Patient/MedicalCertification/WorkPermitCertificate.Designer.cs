@@ -33,10 +33,8 @@
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
-            this.xrLabel15 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel21 = new DevExpress.XtraReports.UI.XRLabel();
+            this.lblLicenseIssueTH = new DevExpress.XtraReports.UI.XRLabel();
             this.lbOrganisationPlace = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
@@ -71,7 +69,16 @@
             this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel18 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel19 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel22 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel23 = new DevExpress.XtraReports.UI.XRLabel();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.lblLicenseIssueEN = new DevExpress.XtraReports.UI.XRLabel();
+            this.lblVisitDateEN = new DevExpress.XtraReports.UI.XRLabel();
+            this.lblVisitDateEN2 = new DevExpress.XtraReports.UI.XRLabel();
+            this.lblVisitDateTH = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -88,10 +95,17 @@
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel15,
-            this.xrLabel21,
+            this.lblVisitDateTH,
+            this.lblVisitDateEN2,
+            this.lblVisitDateEN,
+            this.lblLicenseIssueEN,
+            this.xrLabel23,
+            this.xrLabel22,
+            this.xrLabel19,
+            this.xrLabel18,
+            this.xrLabel16,
+            this.lblLicenseIssueTH,
             this.lbOrganisationPlace,
-            this.xrLabel3,
             this.xrLabel13,
             this.xrLabel12,
             this.xrLabel11,
@@ -115,31 +129,16 @@
             this.Detail.HeightF = 714.5449F;
             this.Detail.Name = "Detail";
             // 
-            // xrLabel15
+            // lblLicenseIssueTH
             // 
-            this.xrLabel15.Font = new System.Drawing.Font("Angsana New", 14F);
-            this.xrLabel15.LocationFloat = new DevExpress.Utils.PointFloat(537.5F, 37.5F);
-            this.xrLabel15.Name = "xrLabel15";
-            this.xrLabel15.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel15.SizeF = new System.Drawing.SizeF(34.112F, 23F);
-            this.xrLabel15.StylePriority.UseFont = false;
-            this.xrLabel15.StylePriority.UseTextAlignment = false;
-            this.xrLabel15.Text = "วันที่";
-            this.xrLabel15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            // 
-            // xrLabel21
-            // 
-            this.xrLabel21.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "strVisitData", "{0:dd/MM/yyyy}")});
-            this.xrLabel21.Font = new System.Drawing.Font("Angsana New", 14F);
-            this.xrLabel21.LocationFloat = new DevExpress.Utils.PointFloat(572.6852F, 37.5F);
-            this.xrLabel21.Name = "xrLabel21";
-            this.xrLabel21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel21.SizeF = new System.Drawing.SizeF(80.15161F, 23F);
-            this.xrLabel21.StylePriority.UseFont = false;
-            this.xrLabel21.StylePriority.UseTextAlignment = false;
-            this.xrLabel21.Text = "xrLabel21";
-            this.xrLabel21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            this.lblLicenseIssueTH.Font = new System.Drawing.Font("Angsana New", 14F);
+            this.lblLicenseIssueTH.LocationFloat = new DevExpress.Utils.PointFloat(543F, 153F);
+            this.lblLicenseIssueTH.Name = "lblLicenseIssueTH";
+            this.lblLicenseIssueTH.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lblLicenseIssueTH.SizeF = new System.Drawing.SizeF(137.4999F, 23F);
+            this.lblLicenseIssueTH.StylePriority.UseFont = false;
+            this.lblLicenseIssueTH.StylePriority.UseTextAlignment = false;
+            this.lblLicenseIssueTH.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // lbOrganisationPlace
             // 
@@ -151,20 +150,6 @@
             this.lbOrganisationPlace.StylePriority.UseFont = false;
             this.lbOrganisationPlace.StylePriority.UseTextAlignment = false;
             this.lbOrganisationPlace.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            // 
-            // xrLabel3
-            // 
-            this.xrLabel3.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "strVisitData")});
-            this.xrLabel3.Font = new System.Drawing.Font("Angsana New", 14F);
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(525F, 200.4629F);
-            this.xrLabel3.Name = "xrLabel3";
-            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel3.SizeF = new System.Drawing.SizeF(112.5F, 25F);
-            this.xrLabel3.StylePriority.UseFont = false;
-            this.xrLabel3.StylePriority.UseTextAlignment = false;
-            this.xrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            this.xrLabel3.TextFormatString = "{0:dd/MM/yyyy}";
             // 
             // xrLabel13
             // 
@@ -274,7 +259,7 @@
             this.xrLabel20.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "PatientName")});
             this.xrLabel20.Font = new System.Drawing.Font("Angsana New", 14F);
-            this.xrLabel20.LocationFloat = new DevExpress.Utils.PointFloat(187.5F, 200.4629F);
+            this.xrLabel20.LocationFloat = new DevExpress.Utils.PointFloat(187.5F, 200F);
             this.xrLabel20.Name = "xrLabel20";
             this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel20.SizeF = new System.Drawing.SizeF(234.09F, 25F);
@@ -540,10 +525,122 @@
             this.PatientUID.ValueInfo = "0";
             this.PatientUID.Visible = false;
             // 
+            // xrLabel16
+            // 
+            this.xrLabel16.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "DoctorLicenseNo")});
+            this.xrLabel16.Font = new System.Drawing.Font("Angsana New", 14F);
+            this.xrLabel16.LocationFloat = new DevExpress.Utils.PointFloat(299.5F, 177.5F);
+            this.xrLabel16.Name = "xrLabel16";
+            this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel16.SizeF = new System.Drawing.SizeF(112.5F, 25F);
+            this.xrLabel16.StylePriority.UseFont = false;
+            this.xrLabel16.StylePriority.UseTextAlignment = false;
+            this.xrLabel16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
+            // xrLabel18
+            // 
+            this.xrLabel18.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PatientName")});
+            this.xrLabel18.Font = new System.Drawing.Font("Angsana New", 14F);
+            this.xrLabel18.LocationFloat = new DevExpress.Utils.PointFloat(187F, 225F);
+            this.xrLabel18.Name = "xrLabel18";
+            this.xrLabel18.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel18.SizeF = new System.Drawing.SizeF(234.09F, 25F);
+            this.xrLabel18.StylePriority.UseFont = false;
+            this.xrLabel18.StylePriority.UseTextAlignment = false;
+            this.xrLabel18.Text = "xrLabel20";
+            this.xrLabel18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
+            // xrLabel19
+            // 
+            this.xrLabel19.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PatientName")});
+            this.xrLabel19.Font = new System.Drawing.Font("Angsana New", 14F);
+            this.xrLabel19.LocationFloat = new DevExpress.Utils.PointFloat(187F, 250F);
+            this.xrLabel19.Name = "xrLabel19";
+            this.xrLabel19.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel19.SizeF = new System.Drawing.SizeF(234.09F, 25F);
+            this.xrLabel19.StylePriority.UseFont = false;
+            this.xrLabel19.StylePriority.UseTextAlignment = false;
+            this.xrLabel19.Text = "xrLabel20";
+            this.xrLabel19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
+            // xrLabel22
+            // 
+            this.xrLabel22.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PatientName")});
+            this.xrLabel22.Font = new System.Drawing.Font("Angsana New", 14F);
+            this.xrLabel22.LocationFloat = new DevExpress.Utils.PointFloat(188F, 275F);
+            this.xrLabel22.Name = "xrLabel22";
+            this.xrLabel22.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel22.SizeF = new System.Drawing.SizeF(234.09F, 25F);
+            this.xrLabel22.StylePriority.UseFont = false;
+            this.xrLabel22.StylePriority.UseTextAlignment = false;
+            this.xrLabel22.Text = "xrLabel20";
+            this.xrLabel22.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
+            // xrLabel23
+            // 
+            this.xrLabel23.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "DoctorEngName")});
+            this.xrLabel23.Font = new System.Drawing.Font("Angsana New", 14F);
+            this.xrLabel23.LocationFloat = new DevExpress.Utils.PointFloat(133F, 125.5F);
+            this.xrLabel23.Name = "xrLabel23";
+            this.xrLabel23.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel23.SizeF = new System.Drawing.SizeF(301.39F, 25F);
+            this.xrLabel23.StylePriority.UseFont = false;
+            this.xrLabel23.StylePriority.UseTextAlignment = false;
+            this.xrLabel23.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
             // objectDataSource1
             // 
             this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.MedicalCertificateModel);
             this.objectDataSource1.Name = "objectDataSource1";
+            // 
+            // lblLicenseIssueEN
+            // 
+            this.lblLicenseIssueEN.Font = new System.Drawing.Font("Angsana New", 14F);
+            this.lblLicenseIssueEN.LocationFloat = new DevExpress.Utils.PointFloat(542.5F, 177.5F);
+            this.lblLicenseIssueEN.Name = "lblLicenseIssueEN";
+            this.lblLicenseIssueEN.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lblLicenseIssueEN.SizeF = new System.Drawing.SizeF(137.4999F, 23F);
+            this.lblLicenseIssueEN.StylePriority.UseFont = false;
+            this.lblLicenseIssueEN.StylePriority.UseTextAlignment = false;
+            this.lblLicenseIssueEN.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
+            // lblVisitDateEN
+            // 
+            this.lblVisitDateEN.Font = new System.Drawing.Font("Angsana New", 14F);
+            this.lblVisitDateEN.LocationFloat = new DevExpress.Utils.PointFloat(437.5F, 36.5F);
+            this.lblVisitDateEN.Name = "lblVisitDateEN";
+            this.lblVisitDateEN.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lblVisitDateEN.SizeF = new System.Drawing.SizeF(214.9999F, 23F);
+            this.lblVisitDateEN.StylePriority.UseFont = false;
+            this.lblVisitDateEN.StylePriority.UseTextAlignment = false;
+            this.lblVisitDateEN.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
+            // lblVisitDateEN2
+            // 
+            this.lblVisitDateEN2.Font = new System.Drawing.Font("Angsana New", 14F);
+            this.lblVisitDateEN2.LocationFloat = new DevExpress.Utils.PointFloat(512.5F, 227F);
+            this.lblVisitDateEN2.Name = "lblVisitDateEN2";
+            this.lblVisitDateEN2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lblVisitDateEN2.SizeF = new System.Drawing.SizeF(152.4999F, 23F);
+            this.lblVisitDateEN2.StylePriority.UseFont = false;
+            this.lblVisitDateEN2.StylePriority.UseTextAlignment = false;
+            this.lblVisitDateEN2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
+            // lblVisitDateTH
+            // 
+            this.lblVisitDateTH.Font = new System.Drawing.Font("Angsana New", 14F);
+            this.lblVisitDateTH.LocationFloat = new DevExpress.Utils.PointFloat(516F, 202.5F);
+            this.lblVisitDateTH.Name = "lblVisitDateTH";
+            this.lblVisitDateTH.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lblVisitDateTH.SizeF = new System.Drawing.SizeF(152.4999F, 23F);
+            this.lblVisitDateTH.StylePriority.UseFont = false;
+            this.lblVisitDateTH.StylePriority.UseTextAlignment = false;
+            this.lblVisitDateTH.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // WorkPermitCertificate
             // 
@@ -614,9 +711,16 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel10;
         private DevExpress.XtraReports.UI.XRLabel xrLabel9;
         private DevExpress.XtraReports.UI.XRLabel xrLabel14;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel3;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel15;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel21;
+        private DevExpress.XtraReports.UI.XRLabel lblLicenseIssueTH;
         private DevExpress.XtraReports.UI.XRLabel lbOrganisationPlace;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel23;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel22;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel19;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel18;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel16;
+        private DevExpress.XtraReports.UI.XRLabel lblLicenseIssueEN;
+        private DevExpress.XtraReports.UI.XRLabel lblVisitDateEN2;
+        private DevExpress.XtraReports.UI.XRLabel lblVisitDateEN;
+        private DevExpress.XtraReports.UI.XRLabel lblVisitDateTH;
     }
 }

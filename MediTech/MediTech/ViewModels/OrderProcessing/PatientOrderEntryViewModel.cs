@@ -51,7 +51,7 @@ namespace MediTech.ViewModels
                 if (!string.IsNullOrEmpty(_SearchOrderCriteria) && _SearchOrderCriteria.Length >= 3)
                 {
                     int ownerOrganisationUID = 0;
-                    ownerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+                    ownerOrganisationUID = PatientVisit.OwnerOrganisationUID ?? AppUtil.Current.OwnerOrganisationUID;
                     OrderItems = DataService.OrderProcessing.SearchOrderItem(_SearchOrderCriteria, ownerOrganisationUID);
 
                 }
@@ -705,10 +705,10 @@ namespace MediTech.ViewModels
         {
             Careproviders = DataService.UserManage.GetCareproviderAll();
             SelectCareprovider = Careproviders.FirstOrDefault(p => p.CareproviderUID == AppUtil.Current.UserID);
-            var locationData = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
+            var locationData = GetLocatioinRole(PatientVisit.OwnerOrganisationUID ?? AppUtil.Current.OwnerOrganisationUID);
             Locations = locationData.Where(p => p.IsCanOrder == "Y").ToList();
-            SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
-            //SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == PatientVisit.LocationUID);
+            //SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
+            SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == PatientVisit.LocationUID);
 
             DateTime now = DateTime.Now;
             StartDate = now.Date;
@@ -891,7 +891,7 @@ namespace MediTech.ViewModels
                     //    owerOrganisationUID = PatientVisit.OwnerOrganisationUID ?? userUID;
                     //}
                     int locationUID = SelectLocation.LocationUID;
-                    int ownerorganisationUID = AppUtil.Current.OwnerOrganisationUID;
+                    int ownerorganisationUID = PatientVisit.OwnerOrganisationUID ?? AppUtil.Current.OwnerOrganisationUID;
                     var createOrderList = PatientOrders.ToList();
                     if (createOrderList.Count(p => p.IsContinuous == "Y") > 0)
                     {
@@ -1233,7 +1233,7 @@ namespace MediTech.ViewModels
                 if (orderItem.TypeOrder == "OrderSet")
                 {
                     OrderSetModel orderSet = DataService.MasterData.GetOrderSetByUID(orderItem.BillableItemUID);
-                    int ownerUID = AppUtil.Current.OwnerOrganisationUID;
+                    int ownerUID = PatientVisit.OwnerOrganisationUID ??  AppUtil.Current.OwnerOrganisationUID;
                     if (orderSet.OrderSetBillableItems != null)
                     {
                         var OrderSetBillItmActive = orderSet.OrderSetBillableItems
@@ -1346,6 +1346,7 @@ namespace MediTech.ViewModels
                                 newOrder.ROUTEUID = itemMaster.ROUTEUID;
                                 newOrder.PDSTSUID = itemMaster.PDSTSUID;
                                 newOrder.QNUOMUID = itemMaster.BaseUOM;
+                                newOrder.PrescriptionUOM = itemMaster.PrescriptionUOM;
 
 
                             }
@@ -1432,7 +1433,7 @@ namespace MediTech.ViewModels
                 }
 
 
-                int ownerUID = AppUtil.Current.OwnerOrganisationUID;
+                int ownerUID = PatientVisit.OwnerOrganisationUID ?? AppUtil.Current.OwnerOrganisationUID;
 
                 var patientVisitPayors = DataService.PatientIdentity.GetPatientVisitPayorByVisitUID(PatientVisit.PatientVisitUID);
 

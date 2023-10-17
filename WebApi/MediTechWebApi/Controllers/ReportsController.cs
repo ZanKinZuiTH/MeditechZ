@@ -573,6 +573,8 @@ namespace MediTechWebApi.Controllers
 
             MedicalCertificateModel data = (from pa in db.Patient
                                             join pv in db.PatientVisit on pa.UID equals pv.PatientUID
+                                            join care in db.Careprovider on pv.CareProviderUID equals care.UID into l
+                                            from pvcare in l.DefaultIfEmpty()
                                             join pvs in db.PatientVitalSign on
                                             new
                                             {
@@ -618,6 +620,7 @@ namespace MediTechWebApi.Controllers
                                                 Doctor = SqlFunction.fGetCareProviderName(pv.CareProviderUID ?? 0),
                                                 DoctorEngName = SqlFunction.fGetCareProviderEngName(pv.CareProviderUID ?? 0),
                                                 DoctorLicenseNo = SqlFunction.fGetCareProviderLicenseNo(pv.CareProviderUID ?? 0),
+                                                DoctorLicenseIssueDttm = pvcare.LicenseIssueDttm,
                                                 Doctor2 = SqlFunction.fGetCareProviderName(c.CareproviderUID),
                                                 DoctorEngName2 = SqlFunction.fGetCareProviderEngName(c.CareproviderUID),
                                                 DoctorLicenseNo2 = SqlFunction.fGetCareProviderLicenseNo(c.CareproviderUID),

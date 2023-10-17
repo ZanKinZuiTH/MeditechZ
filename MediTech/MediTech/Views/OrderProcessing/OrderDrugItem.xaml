@@ -77,7 +77,15 @@
                             </dxe:TextEdit>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Margin="5,0,0,0">
-                            <TextBlock Text="{Binding DosageUnit}" FontWeight="Bold" />
+                            <dxe:ComboBoxEdit ItemsSource="{Binding DosageUnits}"
+                           DisplayMember="Display"
+                           AutoComplete="True"                                    
+                           IsTextEditable="True"
+                           ValidateOnTextInput="False"
+                           IncrementalFiltering="True"
+                           ImmediatePopup="True"
+                           ValueMember="Key"
+                           SelectedItem="{Binding SelectDosageUnit}"/>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
 
