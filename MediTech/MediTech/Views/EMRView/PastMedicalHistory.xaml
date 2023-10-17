@@ -10,6 +10,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:vm="clr-namespace:MediTech.Views"
              xmlns:model="clr-namespace:MediTech.Model;assembly=MediTech.Model"
              mc:Ignorable="d"
              DataContext="{Binding Path=PastMedicalHistoryViewModel,Source={StaticResource Locator}}"
@@ -25,25 +26,78 @@
         </HierarchicalDataTemplate>
         <DataTemplate x:Name="ResultItemTemplate"  
                       DataType = "{x:Type model:ResultComponentModel}">
-            <dxlc:LayoutControl Orientation="Horizontal">
-                <dxlc:LayoutItem>
-                    <TextBlock  Text="{Binding Path=Row.ResultItemName}"/>
-                </dxlc:LayoutItem>
-                <dxlc:LayoutItem>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock FontWeight="Bold" Text="{Binding Path=Row.ResultValue}"/>
-                        <Label Content="{Binding Path=Row.UnitofMeasure}" Margin="10,0,0,0"/>
-                    </StackPanel>
-                </dxlc:LayoutItem>
-                <dxlc:LayoutItem>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Path=Row.ReferenceRange}" />
-                    </StackPanel>
-                </dxlc:LayoutItem>
-                <dxlc:LayoutItem>
-                    <TextBlock Text="{Binding Path=Row.IsAbnormal}" />
-                </dxlc:LayoutItem>
-            </dxlc:LayoutControl>
+            <DataTemplate.Resources>
+                <Style x:Key="Abnormal" TargetType="TextBlock">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=Row.IsAbnormal}" Value="H">
+                            <Setter Property="Foreground" Value="Red"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=Row.IsAbnormal}" Value="L">
+                            <Setter Property="Foreground" Value="Red"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataTemplate.Resources>
+            <ContentControl>
+                <ContentControl.Style>
+                    <Style TargetType="{x:Type ContentControl}">
+                        <Setter Property="Content" Value="{Binding}"/>
+                        <Setter Property="ContentTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <dxlc:LayoutControl Orientation="Horizontal">
+                                        <dxlc:LayoutItem>
+                                            <TextBlock  Text="{Binding Path=Row.ResultItemName}"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock FontWeight="Bold" Text="{Binding Path=Row.ResultValue}" Style="{StaticResource Abnormal}"/>
+                                                <Label Content="{Binding Path=Row.UnitofMeasure}" Margin="10,0,0,0"/>
+                                            </StackPanel>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Path=Row.ReferenceRange}" />
+                                            </StackPanel>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem>
+                                            <TextBlock Text="{Binding Path=Row.IsAbnormal}" />
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutControl>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=Row.ResultValueType}" Value="Image">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <dxlc:LayoutControl Orientation="Horizontal">
+                                                <dxlc:LayoutItem>
+                                                    <TextBlock  Text="{Binding Path=Row.ResultItemName}"/>
+                                                </dxlc:LayoutItem>
+                                                <dxlc:LayoutItem HorizontalAlignment="Left">
+                                                    <dxe:HyperlinkEdit EditValue="{Binding Path=Row.ResultValue}" HorizontalAlignment="Left">
+                                                        <i:Interaction.Triggers>
+                                                            <i:EventTrigger  EventName="RequestNavigation">
+                                                                <mvvm:EventToCommand CommandParameter="{Binding Path=Row.ResultComponentUID}" Command="{Binding DataContext.OpenLabImageCommand
+                                                            ,RelativeSource={RelativeSource AncestorType={x:Type vm:PastMedicalHistory}}}" />
+                                                            </i:EventTrigger>
+                                                        </i:Interaction.Triggers>
+                                                    </dxe:HyperlinkEdit>
+                                                </dxlc:LayoutItem>
+                                                <dxlc:LayoutItem/>
+                                                <dxlc:LayoutItem/>
+                                                <dxlc:LayoutItem/>
+                                            </dxlc:LayoutControl>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ContentControl.Style>
+            </ContentControl>
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
@@ -294,7 +348,8 @@
                                         <dxg:ContentDetailDescriptor.ContentTemplate>
                                             <DataTemplate>
                                                 <dxg:TreeListControl x:Name="PART_Editor"  Height="335"
-                                 ItemsSource="{Binding Path=RequestDetailLabs}">
+                                                                     SelectedItem="{Binding DataContext.SelectResultComponent,RelativeSource={RelativeSource AncestorType={x:Type vm:PastMedicalHistory}}}"    
+                                                                     ItemsSource="{Binding Path=RequestDetailLabs}">
                                                     <dxg:TreeListControl.View>
                                                         <dxg:TreeListView x:Name="treeView" TreeDerivationMode="HierarchicalDataTemplate" AutoExpandAllNodes="True"
                                       ShowIndicator="False" ShowColumnHeaders="False"/>

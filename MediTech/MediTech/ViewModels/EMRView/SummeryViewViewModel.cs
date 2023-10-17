@@ -868,10 +868,10 @@ namespace MediTech.ViewModels
                 process.StartInfo.Verb = "Open";
                 process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
                 process.EnableRaisingEvents = true;
-                process.Exited += delegate
-                {
-                    System.IO.File.Delete(filename);
-                };
+                //process.Exited += delegate
+                //{
+                //    System.IO.File.Delete(filename);
+                //};
                 process.Start();
 
                 // Clean up our temporary file...

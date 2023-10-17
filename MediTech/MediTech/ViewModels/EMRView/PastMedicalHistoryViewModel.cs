@@ -230,6 +230,15 @@ namespace MediTech.ViewModels
             set { Set(ref _IsEnableRemed, value); }
         }
 
+
+        private ResultComponentModel _SelectResultComponent;
+
+        public ResultComponentModel SelectResultComponent
+        {
+            get { return _SelectResultComponent; }
+            set { Set(ref _SelectResultComponent, value); }
+        }
+
         #endregion
 
         #region Command
@@ -271,6 +280,17 @@ namespace MediTech.ViewModels
                 return _CancelCommand
                     ?? (_CancelCommand = new RelayCommand(Cancel));
             }
+        }
+
+        private RelayCommand<long> _OpenLabImageCommand;
+        public RelayCommand<long> OpenLabImageCommand
+        {
+            get
+            {
+                return _OpenLabImageCommand
+                    ?? (_OpenLabImageCommand = new RelayCommand<long>(OpenLabImage));
+            }
+
         }
 
         #endregion
@@ -498,6 +518,42 @@ namespace MediTech.ViewModels
         private void Cancel()
         {
             CloseViewDialog(ActionDialog.Cancel);
+        }
+
+
+        private void OpenLabImage(long resultCompentUID)
+        {
+            try
+            {
+                var imageData = DataService.Lab.GetResultImageByComponentUID(resultCompentUID);
+
+                string extension = Path.GetExtension(SelectResultComponent.ResultValue); // "pdf", etc
+                string filename = System.IO.Path.GetTempFileName() + extension; // Makes something like "C:\Temp\blah.tmp.pdf"
+
+                File.WriteAllBytes(filename, imageData.ImageContent);
+
+
+                var process = new System.Diagnostics.Process();
+                process.StartInfo.FileName = filename;
+                process.StartInfo.Verb = "Open";
+                process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+                process.EnableRaisingEvents = true;
+                //process.Exited += delegate
+                //{
+                //    System.IO.File.Delete(filename);
+                //};
+                process.Start();
+
+                // Clean up our temporary file...
+
+
+            }
+            catch (Exception ex)
+            {
+
+                ErrorDialog(ex.Message);
+            }
+
         }
 
         #endregion
