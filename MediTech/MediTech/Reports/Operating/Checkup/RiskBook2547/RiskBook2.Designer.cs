@@ -190,6 +190,7 @@
             this.xrLabel64 = new DevExpress.XtraReports.UI.XRLabel();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
+            this.lbCompany2 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable8)).BeginInit();
@@ -198,6 +199,7 @@
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.lbCompany2,
             this.checkAnemiaYes,
             this.checkAnemiaNo,
             this.checkHypertensionNo,
@@ -1996,7 +1998,7 @@
             this.xrLabel67.LocationFloat = new DevExpress.Utils.PointFloat(30.00005F, 394.7184F);
             this.xrLabel67.Name = "xrLabel67";
             this.xrLabel67.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel67.SizeF = new System.Drawing.SizeF(224.0995F, 23.66666F);
+            this.xrLabel67.SizeF = new System.Drawing.SizeF(123.0578F, 23.66666F);
             this.xrLabel67.StylePriority.UseBorders = false;
             this.xrLabel67.StylePriority.UseFont = false;
             this.xrLabel67.StylePriority.UsePadding = false;
@@ -2395,6 +2397,20 @@
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
+            // lbCompany2
+            // 
+            this.lbCompany2.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.lbCompany2.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.lbCompany2.LocationFloat = new DevExpress.Utils.PointFloat(155.4721F, 394.7185F);
+            this.lbCompany2.Name = "lbCompany2";
+            this.lbCompany2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbCompany2.SizeF = new System.Drawing.SizeF(245.4735F, 23.66666F);
+            this.lbCompany2.StylePriority.UseBorders = false;
+            this.lbCompany2.StylePriority.UseFont = false;
+            this.lbCompany2.StylePriority.UsePadding = false;
+            this.lbCompany2.StylePriority.UseTextAlignment = false;
+            this.lbCompany2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            // 
             // RiskBook2
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -2576,5 +2592,6 @@
         public DevExpress.XtraReports.UI.XRCheckBox checkLungDiseaseNo;
         public DevExpress.XtraReports.UI.XRCheckBox checkEpilepsyYes;
         public DevExpress.XtraReports.UI.XRCheckBox checkEpilepsyNo;
+        public DevExpress.XtraReports.UI.XRLabel lbCompany2;
     }
 }

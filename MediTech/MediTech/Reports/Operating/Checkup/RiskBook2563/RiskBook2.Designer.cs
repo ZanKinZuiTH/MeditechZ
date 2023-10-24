@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RiskBook2));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.lbCompany2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel62 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel61 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel57 = new DevExpress.XtraReports.UI.XRLabel();
@@ -201,6 +202,7 @@
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.lbCompany2,
             this.xrLabel62,
             this.xrLabel61,
             this.xrLabel57,
@@ -334,6 +336,20 @@
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // lbCompany2
+            // 
+            this.lbCompany2.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.lbCompany2.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.lbCompany2.LocationFloat = new DevExpress.Utils.PointFloat(150.0176F, 362.8217F);
+            this.lbCompany2.Name = "lbCompany2";
+            this.lbCompany2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbCompany2.SizeF = new System.Drawing.SizeF(247.5642F, 23.66663F);
+            this.lbCompany2.StylePriority.UseBorders = false;
+            this.lbCompany2.StylePriority.UseFont = false;
+            this.lbCompany2.StylePriority.UsePadding = false;
+            this.lbCompany2.StylePriority.UseTextAlignment = false;
+            this.lbCompany2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrLabel62
             // 
@@ -2121,7 +2137,7 @@
             this.xrLabel67.LocationFloat = new DevExpress.Utils.PointFloat(25.91508F, 362.7576F);
             this.xrLabel67.Name = "xrLabel67";
             this.xrLabel67.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel67.SizeF = new System.Drawing.SizeF(224.0995F, 23.66666F);
+            this.xrLabel67.SizeF = new System.Drawing.SizeF(124.7406F, 23.66666F);
             this.xrLabel67.StylePriority.UseBorders = false;
             this.xrLabel67.StylePriority.UseFont = false;
             this.xrLabel67.StylePriority.UsePadding = false;
@@ -2629,5 +2645,6 @@
         public DevExpress.XtraReports.UI.XRCheckBox checkHypertensionNo;
         public DevExpress.XtraReports.UI.XRCheckBox checkAnemiaNo;
         public DevExpress.XtraReports.UI.XRCheckBox checkAnemiaYes;
+        public DevExpress.XtraReports.UI.XRLabel lbCompany2;
     }
 }

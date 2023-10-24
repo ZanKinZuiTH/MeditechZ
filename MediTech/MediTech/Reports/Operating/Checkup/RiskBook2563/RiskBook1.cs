@@ -65,6 +65,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2563
                 lbRunNo.Text = patient.PatientID;
                 lbName.Text = patient.PatientName;
                 lbCompany.Text = patient.PayorName;
+                page2.lbCompany2.Text = patient.PayorName;
                 lbBranch.Text = patient.CompanyName;
                 lbDeparment.Text = patient.Department;
                 lbEmployeeID.Text = patient.EmployeeID;
