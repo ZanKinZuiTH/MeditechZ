@@ -1106,11 +1106,12 @@ namespace MediTech.ViewModels
 
                         var firstVisitPayors = patientVisitPayors.FirstOrDefault();
 
-                        int? PBLCTUID = BillingCategory.FirstOrDefault(p => p.ValueCode == "OPDTRF")?.Key;
-
+                        int? PrimaryPBLCTUID = BillingCategory.FirstOrDefault(p => p.ValueCode == "OPDTRF")?.Key;
+                        int? secondaryPBLCTUID = null;
                         if (firstVisitPayors != null)
                         {
-                            PBLCTUID = firstVisitPayors.PrimaryPBLCTUID;
+                            PrimaryPBLCTUID = firstVisitPayors.PrimaryPBLCTUID;
+                            secondaryPBLCTUID = firstVisitPayors.SecondaryPBLCTUID;
                         }
 
 
@@ -1130,13 +1131,7 @@ namespace MediTech.ViewModels
                                 newOrder.PatientOrderAlert = viewModel.OrderAlerts;
                             }
 
-                            var billItemPrice = GetBillableItemPrice(billItem.BillableItemDetails, PBLCTUID, ownerUID ?? 0);
-
-                            if (billItemPrice == null)
-                            {
-                                WarningDialog("รายการ " + billItem.ItemName + " นี้ยังไม่ได้กำหนดราคาสำหรับขาย โปรดตรวจสอบ");
-                                return;
-                            }
+                            var billItemPrice = GetBillableItemPrice(billItem.BillableItemDetails, PrimaryPBLCTUID, ownerUID ?? 0) ?? GetBillableItemPrice(billItem.BillableItemDetails, secondaryPBLCTUID, ownerUID ?? 0);
 
                             if (billItemPrice == null)
                             {

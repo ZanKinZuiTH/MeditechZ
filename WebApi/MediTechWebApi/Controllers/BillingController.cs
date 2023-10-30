@@ -14,6 +14,7 @@ using System.Data.Entity;
 using MediTech.Model.Report;
 using System.Xml.Linq;
 using MediTechWebApi.Common;
+using System.Security.Cryptography;
 
 namespace MediTechWebApi.Controllers
 {
@@ -2350,6 +2351,12 @@ namespace MediTechWebApi.Controllers
                 OrderCategoryUID = p.OrderCategoryUID,
                 OrderSubCategoryUID = p.OrderSubCategoryUID,
                 OwnerOrganisationUID = p.OwnerOrganisationUID,
+                OrderCategory = (from n2 in db.OrderCategory
+                                 where n2.UID == p.OrderCategoryUID
+                                 select n2.Name).FirstOrDefault(),
+                OrderSubCategory = (from n2 in db.OrderSubCategory
+                                    where n2.UID == p.OrderSubCategoryUID
+                                    select n2.Name).FirstOrDefault()
             }).ToList();
 
             return data;

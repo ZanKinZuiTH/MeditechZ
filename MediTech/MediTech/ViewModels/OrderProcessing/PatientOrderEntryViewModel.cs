@@ -1439,14 +1439,15 @@ namespace MediTech.ViewModels
 
                 var firstVisitPayors = patientVisitPayors.FirstOrDefault();
 
-                int? PBLCTUID = BillingCategory.FirstOrDefault(p => p.ValueCode == "OPDTRF")?.Key;
-
+                int? PrimaryPBLCTUID = BillingCategory.FirstOrDefault(p => p.ValueCode == "OPDTRF")?.Key;
+                int? secondaryPBLCTUID = null;
                 if (firstVisitPayors != null)
                 {
-                    PBLCTUID = firstVisitPayors.PrimaryPBLCTUID;
+                    PrimaryPBLCTUID = firstVisitPayors.PrimaryPBLCTUID;
+                    secondaryPBLCTUID = firstVisitPayors.SecondaryPBLCTUID;
                 }
 
-                var billItemPrice = GetBillableItemPrice(billItem.BillableItemDetails, PBLCTUID, ownerUID);
+                var billItemPrice = GetBillableItemPrice(billItem.BillableItemDetails, PrimaryPBLCTUID, ownerUID) ?? GetBillableItemPrice(billItem.BillableItemDetails, secondaryPBLCTUID, ownerUID);
 
                 if (billItemPrice == null)
                 {
