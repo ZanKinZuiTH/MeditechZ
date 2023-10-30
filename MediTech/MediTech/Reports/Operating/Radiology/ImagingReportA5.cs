@@ -108,7 +108,7 @@ namespace MediTech.Reports.Operating.Radiology
                             enc.Save(outStream);
                             this.logo.Image = System.Drawing.Image.FromStream(outStream);
                         }
-                        this.logo.LocationFloat = new DevExpress.Utils.PointFloat(36.4584F, 33.41668F);
+                        this.logo.LocationFloat = new DevExpress.Utils.PointFloat(75.4584F, 20.41668F);
                         this.logo.SizeF = new System.Drawing.SizeF(125.5F, 49.5F);
                         this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
 
@@ -125,7 +125,7 @@ namespace MediTech.Reports.Operating.Radiology
                             enc.Save(outStream);
                             this.logo.Image = System.Drawing.Image.FromStream(outStream);
                         }
-                        this.logo.LocationFloat = new DevExpress.Utils.PointFloat(36.4584F, 33.41668F);
+                        this.logo.LocationFloat = new DevExpress.Utils.PointFloat(75.4584F, 20.41668F);
                         this.logo.SizeF = new System.Drawing.SizeF(125.5F, 49.5F);
                         this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
                     }
@@ -140,8 +140,8 @@ namespace MediTech.Reports.Operating.Radiology
                             enc.Save(outStream);
                             this.logo.Image = System.Drawing.Image.FromStream(outStream);
                         }
-                        this.logo.LocationFloat = new DevExpress.Utils.PointFloat(34.54167F, 33.41668F);
-                        this.logo.SizeF = new System.Drawing.SizeF(125.5F, 49.5F);
+                        this.logo.LocationFloat = new DevExpress.Utils.PointFloat(75.54167F, 20.41668F);
+                        this.logo.SizeF = new System.Drawing.SizeF(130.5F, 50.5F);
                         this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
 
                         this.lblOrganisationAddress.Text = OrganisationHospital.Address;
@@ -157,7 +157,7 @@ namespace MediTech.Reports.Operating.Radiology
                             enc.Save(outStream);
                             this.logo.Image = System.Drawing.Image.FromStream(outStream);
                         }
-                        this.logo.LocationFloat = new DevExpress.Utils.PointFloat(38.54F, 23F);
+                        this.logo.LocationFloat = new DevExpress.Utils.PointFloat(75.54F, 23F);
                         this.logo.SizeF = new System.Drawing.SizeF(64.83336F, 83.7084F);
                         this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
 
