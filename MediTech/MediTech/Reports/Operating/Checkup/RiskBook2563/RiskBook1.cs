@@ -722,6 +722,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2563
                         || p.RequestItemCode.Contains("LAB543")//copper blood
                         || p.RequestItemCode.Contains("LAB606")
                         || p.RequestItemCode.Contains("LAB630") //Tin in blood
+                        || p.RequestItemCode.Contains("LAB635") //Methanol in blood
                          )
                         .OrderByDescending(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
@@ -1670,6 +1671,16 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2563
                         page3.cellTinBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329" && p.Year == year1)?.ResultValue;
                         page3.cellTinBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329" && p.Year == year2)?.ResultValue;
                         page3.cellTinBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329" && p.Year == year3)?.ResultValue;
+                    }
+                    #endregion
+
+                    #region Methanol in blood
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332") != null)
+                    {
+                        page3.cellMethanolBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332")?.ReferenceRange;
+                        page3.cellMethanolBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332" && p.Year == year1)?.ResultValue;
+                        page3.cellMethanolBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332" && p.Year == year2)?.ResultValue;
+                        page3.cellMethanolBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332" && p.Year == year3)?.ResultValue;
                     }
                     #endregion
                 }

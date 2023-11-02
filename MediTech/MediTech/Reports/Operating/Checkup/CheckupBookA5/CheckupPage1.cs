@@ -795,7 +795,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             || p.RequestItemCode.Contains("LAB628")
                             || p.RequestItemCode.Contains("LAB626")
                             || p.RequestItemCode.Contains("LAB627")
-                            || p.RequestItemCode.Contains("LAB606")
+                            || p.RequestItemCode.Contains("LAB606") 
+                            || p.RequestItemCode.Contains("LAB635") //Methanol in blood
                             || p.RequestItemCode.Contains("LAB630") //Tin in blood
                             )
                              .OrderByDescending(p => p.Year);
@@ -2684,6 +2685,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         }
                         #endregion
 
+
                         #region Butyl Acrylate
                         if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1322") != null)
                         {
@@ -2707,6 +2709,16 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             page7.VinylAcetate2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1323" && p.Year == year2)?.ResultValue;
                             page7.VinylAcetate3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1323" && p.Year == year3)?.ResultValue;
 
+                        }
+                        #endregion
+
+                        #region Methanol in blood
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332") != null)
+                        {
+                            page7.cellMethanolBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332")?.ReferenceRange;
+                            page7.cellMethanolBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332" && p.Year == year1)?.ResultValue;
+                            page7.cellMethanolBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332" && p.Year == year2)?.ResultValue;
+                            page7.cellMethanolBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332" && p.Year == year3)?.ResultValue;
                         }
                         #endregion
 

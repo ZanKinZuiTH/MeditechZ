@@ -705,6 +705,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                         || p.RequestItemCode.Contains("LAB584") //Fluorine in urine
                         || p.RequestItemCode.Contains("LAB513") //formadehyde in Urine
                         || p.RequestItemCode.Contains("LAB630") //Tin in blood
+                        || p.RequestItemCode.Contains("LAB635") //Methanol in blood
                         ) 
                         .OrderByDescending(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
@@ -1990,6 +1991,16 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                             page8.cellTinBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329" && p.Year == year1)?.ResultValue;
                             page8.cellTinBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329" && p.Year == year2)?.ResultValue;
                             page8.cellTinBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329" && p.Year == year3)?.ResultValue;
+                        }
+                        #endregion
+
+                        #region Methanol in blood
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332") != null)
+                        {
+                            page8.cellMethanolBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332")?.ReferenceRange;
+                            page8.cellMethanolBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332" && p.Year == year1)?.ResultValue;
+                            page8.cellMethanolBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332" && p.Year == year2)?.ResultValue;
+                            page8.cellMethanolBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332" && p.Year == year3)?.ResultValue;
                         }
                         #endregion
                     }

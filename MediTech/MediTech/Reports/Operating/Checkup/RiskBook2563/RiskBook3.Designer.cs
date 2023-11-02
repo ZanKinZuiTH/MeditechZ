@@ -654,6 +654,12 @@
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
+            this.xrTableRow38 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellMethanolBloodRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellMethanolBlood1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellMethanolBlood2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellMethanolBlood3 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
@@ -3881,6 +3887,7 @@
             this.xrTableRow17,
             this.RowBenzene,
             this.RowMethanol,
+            this.xrTableRow38,
             this.RowMethyrene,
             this.RowAcetone,
             this.RowHexane,
@@ -3919,7 +3926,7 @@
             this.rowDirectToluene,
             this.RowEthanolBlood,
             this.rowTinBlood});
-            this.tbToxicology.SizeF = new System.Drawing.SizeF(369.5942F, 842.0977F);
+            this.tbToxicology.SizeF = new System.Drawing.SizeF(369.5942F, 860.9107F);
             this.tbToxicology.StylePriority.UseBorderColor = false;
             this.tbToxicology.StylePriority.UseBorders = false;
             this.tbToxicology.StylePriority.UseBorderWidth = false;
@@ -8571,6 +8578,70 @@
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
+            // xrTableRow38
+            // 
+            this.xrTableRow38.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell15,
+            this.cellMethanolBloodRange,
+            this.cellMethanolBlood1,
+            this.cellMethanolBlood2,
+            this.cellMethanolBlood3});
+            this.xrTableRow38.Name = "xrTableRow38";
+            this.xrTableRow38.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell15
+            // 
+            this.xrTableCell15.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell15.Multiline = true;
+            this.xrTableCell15.Name = "xrTableCell15";
+            this.xrTableCell15.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell15.StylePriority.UseFont = false;
+            this.xrTableCell15.StylePriority.UsePadding = false;
+            this.xrTableCell15.StylePriority.UseTextAlignment = false;
+            this.xrTableCell15.Text = "Methanol in Blood";
+            this.xrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell15.Weight = 1.2913566084432759D;
+            // 
+            // cellMethanolBloodRange
+            // 
+            this.cellMethanolBloodRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellMethanolBloodRange.Multiline = true;
+            this.cellMethanolBloodRange.Name = "cellMethanolBloodRange";
+            this.cellMethanolBloodRange.StylePriority.UseFont = false;
+            this.cellMethanolBloodRange.StylePriority.UseTextAlignment = false;
+            this.cellMethanolBloodRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellMethanolBloodRange.Weight = 0.93906236153056333D;
+            // 
+            // cellMethanolBlood1
+            // 
+            this.cellMethanolBlood1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellMethanolBlood1.Multiline = true;
+            this.cellMethanolBlood1.Name = "cellMethanolBlood1";
+            this.cellMethanolBlood1.StylePriority.UseFont = false;
+            this.cellMethanolBlood1.StylePriority.UseTextAlignment = false;
+            this.cellMethanolBlood1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellMethanolBlood1.Weight = 0.443296332132815D;
+            // 
+            // cellMethanolBlood2
+            // 
+            this.cellMethanolBlood2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellMethanolBlood2.Multiline = true;
+            this.cellMethanolBlood2.Name = "cellMethanolBlood2";
+            this.cellMethanolBlood2.StylePriority.UseFont = false;
+            this.cellMethanolBlood2.StylePriority.UseTextAlignment = false;
+            this.cellMethanolBlood2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellMethanolBlood2.Weight = 0.44329633245297495D;
+            // 
+            // cellMethanolBlood3
+            // 
+            this.cellMethanolBlood3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellMethanolBlood3.Multiline = true;
+            this.cellMethanolBlood3.Name = "cellMethanolBlood3";
+            this.cellMethanolBlood3.StylePriority.UseFont = false;
+            this.cellMethanolBlood3.StylePriority.UseTextAlignment = false;
+            this.cellMethanolBlood3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellMethanolBlood3.Weight = 0.44329635320818539D;
+            // 
             // RiskBook3
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -9221,5 +9292,11 @@
         public DevExpress.XtraReports.UI.XRTableCell cellTinBlood1;
         public DevExpress.XtraReports.UI.XRTableCell cellTinBlood2;
         public DevExpress.XtraReports.UI.XRTableCell cellTinBlood3;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow38;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell15;
+        public DevExpress.XtraReports.UI.XRTableCell cellMethanolBloodRange;
+        public DevExpress.XtraReports.UI.XRTableCell cellMethanolBlood1;
+        public DevExpress.XtraReports.UI.XRTableCell cellMethanolBlood2;
+        public DevExpress.XtraReports.UI.XRTableCell cellMethanolBlood3;
     }
 }
