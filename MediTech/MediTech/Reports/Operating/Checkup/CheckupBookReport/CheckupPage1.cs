@@ -207,6 +207,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                 page8.RowEthanolBlood.Visible = false;
                 page8.RowFormadehyde.Visible = false;
                 page8.rowTinBlood.Visible = false;
+                page8.rowlMethylhippuric.Visible = false;
                 //page8.Row25Hexan.Visible = false;
                 //page8.RowManganese.Visible = false;
                 //page8.RowZinc.Visible = false;
@@ -706,6 +707,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                         || p.RequestItemCode.Contains("LAB513") //formadehyde in Urine
                         || p.RequestItemCode.Contains("LAB630") //Tin in blood
                         || p.RequestItemCode.Contains("LAB635") //Methanol in blood
+                        || p.RequestItemCode.Contains("LAB636")
                         ) 
                         .OrderByDescending(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
@@ -2001,6 +2003,18 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                             page8.cellMethanolBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332" && p.Year == year1)?.ResultValue;
                             page8.cellMethanolBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332" && p.Year == year2)?.ResultValue;
                             page8.cellMethanolBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332" && p.Year == year3)?.ResultValue;
+                        }
+                        #endregion
+
+                        #region Methylhippuric acid in urine (ES)
+
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335") != null)
+                        {
+                            page8.rowlMethylhippuric.Visible  = true;
+                            page8.cellMethylhippuricRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335")?.ReferenceRange;
+                            page8.cellMethylhippuric1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335" && p.Year == year1)?.ResultValue;
+                            page8.cellMethylhippuric2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335" && p.Year == year2)?.ResultValue;
+                            page8.cellMethylhippuric3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335" && p.Year == year3)?.ResultValue;
                         }
                         #endregion
                     }

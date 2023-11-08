@@ -612,6 +612,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page7.RowVinylAcetate.Visible = false;
                 page7.toxicoComment.Visible = false;
                 page7.rowTinBlood.Visible = false;
+                page7.rowlMethylhippuric.Visible = false;
 
                 page6.aboGroupRow.Visible = false;
                 page6.RowHpylori.Visible = false;
@@ -798,6 +799,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             || p.RequestItemCode.Contains("LAB606") 
                             || p.RequestItemCode.Contains("LAB635") //Methanol in blood
                             || p.RequestItemCode.Contains("LAB630") //Tin in blood
+                            || p.RequestItemCode.Contains("LAB636")
                             )
                              .OrderByDescending(p => p.Year);
                         GenerateToxicology(ToxicoTestSet);
@@ -2661,6 +2663,19 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             page7.cellTinBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329" && p.Year == year3)?.ResultValue;
                         }
                         #endregion
+
+                        #region Methylhippuric acid in urine (ES)
+
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335") != null)
+                        {
+                            page7.rowlMethylhippuric.Visible = true;
+                            page7.cellMethylhippuricRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335")?.ReferenceRange;
+                            page7.cellMethylhippuric1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335" && p.Year == year1)?.ResultValue;
+                            page7.cellMethylhippuric2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335" && p.Year == year2)?.ResultValue;
+                            page7.cellMethylhippuric3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335" && p.Year == year3)?.ResultValue;
+                        }
+                        #endregion
+
 
                         #region Ethanol in blood
                         if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271") != null)
