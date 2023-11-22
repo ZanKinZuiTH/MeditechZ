@@ -15,6 +15,10 @@ using System.Text.RegularExpressions;
 using System.Windows.Media.Imaging;
 using System.IO;
 using MediTech.Reports.Operating.Checkup.CheckupBookEng;
+using System.Drawing.Imaging;
+using System.Windows.Forms;
+using static DevExpress.Utils.HashCodeHelper;
+using DevExpress.Xpf.Editors;
 
 namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
 {
@@ -179,6 +183,43 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             {
                 var patient = data.PatientInfomation;
                 var groupResult = data.GroupResult;
+
+                if (patient.OwnerOrganisationUID != 5)
+                {
+
+                    //2897    MBCHK Mobile Checkup
+                    //3110    CHKUP Checkup(เก็บตก)
+                    //3130    CHKIN Checkup Walk - In(แบบกลุ่ม)
+                    //4266    CHKIN2 Checkup Walk - In(รายบุคคล)
+                    //4296    CHKIN3 Checkup Walk - In(ต่างด้าว)
+                    //4867    CHKIN4 Checkup Walk - In(มีอาชีวะ)
+                    //4875    CHKIN5 Checkup(เก็บตก มีอาชีวะ)
+                    //4877    CHKIN6 Checkup walk -in (แบบกลุ่ม - มีอาชีวะ)
+
+                    if (patient.VISTYUID != 2897
+                        && patient.VISTYUID != 3110
+                        && patient.VISTYUID != 4875
+                        && patient.CareProviderUID != 6)
+                    {
+                        var modelData = DataService.UserManage.GetCareproviderByUID(patient.CareProviderUID ?? 0);
+                        if (modelData != null)
+                        {
+                            //var img = ImageHelpers.ConvertByteToBitmap(modelData.LicenseImage);
+                            //using (MemoryStream outStream = new MemoryStream())
+                            //{
+                            //    BitmapEncoder enc = new BmpBitmapEncoder();
+                            //    enc.Frames.Add(BitmapFrame.Create(img));
+                            //    enc.Save(outStream); 
+                            //    this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(343.21f, 699.54f);
+                            //    this.xrPictureBox1.SizeF = new System.Drawing.SizeF(193.63f, 84.69f);
+                            //    this.xrPictureBox1.Image = System.Drawing.Image.FromStream(outStream);
+                            //}
+                            this.xrPictureBox1.Visible = false;
+                            this.xrLabel4.Text = modelData.TitleDesc + " " + modelData.FirstName+ " "+ modelData.LastName+ " " +modelData.LicenseNo;
+                        }
+                    
+                    }
+                }
 
                 RN.Text = patient.PatientOtherID;
 
