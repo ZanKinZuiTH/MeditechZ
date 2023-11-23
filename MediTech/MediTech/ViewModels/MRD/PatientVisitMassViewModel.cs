@@ -1261,7 +1261,7 @@ namespace MediTech.ViewModels
                             report.ShowPrintMarginsWarning = false;
                             printTool.Print(SelectPrinter.Display);
                         }
-                        else if (SelectReport.Name == "ใบรับรองแพทย์ 5 โรค (Mobile)")
+                        else if (SelectReport.Name == "ใบรับรองแพทย์ 5 โรค (Mobile)" || SelectReport.Name == "ใบรับรองแพทย์ที่อับอากาศ (Mobile)")
                         {
                             report.Parameters["OrganisationUID"].Value = patientVisit.OwnerOrganisationUID;
                             report.Parameters["PatientUID"].Value = patientVisit.PatientUID;

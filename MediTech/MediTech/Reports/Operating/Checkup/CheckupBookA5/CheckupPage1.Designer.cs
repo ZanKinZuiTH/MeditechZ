@@ -109,18 +109,15 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableRow6 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell19 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbPhoneNumber = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTable5 = new DevExpress.XtraReports.UI.XRTable();
-            this.xrTableRow32 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell55 = new DevExpress.XtraReports.UI.XRTableCell();
             this.RowContact = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
+            this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
             this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PayorDetailUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.tbVatalSign)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbPatientDetail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // TopMargin
@@ -146,10 +143,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.tbVatalSign,
             this.xrLabel3,
             this.tbPatientDetail,
-            this.xrTable5,
             this.RowContact,
-            this.xrPictureBox1});
-            this.Detail.HeightF = 776.4546F;
+            this.xrPictureBox1,
+            this.xrLabel4});
+            this.Detail.HeightF = 816.7792F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(15, 15, 15, 15, 100F);
             this.Detail.StylePriority.UsePadding = false;
@@ -169,24 +166,24 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // xrLabel6
             // 
             this.xrLabel6.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
-            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(386.6541F, 730.1804F);
+            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(366.3416F, 740.2846F);
             this.xrLabel6.Multiline = true;
             this.xrLabel6.Name = "xrLabel6";
             this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel6.SizeF = new System.Drawing.SizeF(145.995F, 20.41626F);
+            this.xrLabel6.SizeF = new System.Drawing.SizeF(171.5158F, 20.41626F);
             this.xrLabel6.StylePriority.UseFont = false;
             this.xrLabel6.StylePriority.UseTextAlignment = false;
-            this.xrLabel6.Text = ".....................................................";
+            this.xrLabel6.Text = "..........................................................";
             this.xrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
             // xrLabel5
             // 
-            this.xrLabel5.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(314F, 730.1804F);
+            this.xrLabel5.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(292.243F, 740.2846F);
             this.xrLabel5.Multiline = true;
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel5.SizeF = new System.Drawing.SizeF(72.65411F, 20.41626F);
+            this.xrLabel5.SizeF = new System.Drawing.SizeF(82.55286F, 20.41626F);
             this.xrLabel5.StylePriority.UseFont = false;
             this.xrLabel5.StylePriority.UseTextAlignment = false;
             this.xrLabel5.Text = "ลายเซ็นแพทย์";
@@ -1223,37 +1220,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbPhoneNumber.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.lbPhoneNumber.Weight = 2.8977680765753218D;
             // 
-            // xrTable5
-            // 
-            this.xrTable5.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrTable5.LocationFloat = new DevExpress.Utils.PointFloat(325F, 730.1804F);
-            this.xrTable5.Name = "xrTable5";
-            this.xrTable5.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
-            this.xrTableRow32});
-            this.xrTable5.SizeF = new System.Drawing.SizeF(212.5F, 46.27422F);
-            this.xrTable5.StylePriority.UseBorderWidth = false;
-            // 
-            // xrTableRow32
-            // 
-            this.xrTableRow32.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell55});
-            this.xrTableRow32.Name = "xrTableRow32";
-            this.xrTableRow32.Weight = 1.4483768003240249D;
-            // 
-            // xrTableCell55
-            // 
-            this.xrTableCell55.BorderWidth = 0F;
-            this.xrTableCell55.CanGrow = false;
-            this.xrTableCell55.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
-            this.xrTableCell55.Multiline = true;
-            this.xrTableCell55.Name = "xrTableCell55";
-            this.xrTableCell55.StylePriority.UseBorderWidth = false;
-            this.xrTableCell55.StylePriority.UseFont = false;
-            this.xrTableCell55.StylePriority.UseTextAlignment = false;
-            this.xrTableCell55.Text = "แพทย์หญิง รุจิรา เทียบเทียม ว.43355\r\n(แพทย์อาชีวเวชศาสตร์)";
-            this.xrTableCell55.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            this.xrTableCell55.Weight = 1.6500003051757812D;
-            // 
             // RowContact
             // 
             this.RowContact.CanGrow = false;
@@ -1271,10 +1237,29 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // xrPictureBox1
             // 
             this.xrPictureBox1.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("xrPictureBox1.ImageSource"));
-            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(358.7702F, 663.8334F);
+            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(358.7702F, 693.1133F);
             this.xrPictureBox1.Name = "xrPictureBox1";
-            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(169.7298F, 104.5138F);
+            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(169.7298F, 85.33801F);
             this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+            // 
+            // xrLabel4
+            // 
+            this.xrLabel4.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLabel4.BorderWidth = 0F;
+            this.xrLabel4.CanGrow = false;
+            this.xrLabel4.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(314.5294F, 767.5638F);
+            this.xrLabel4.Multiline = true;
+            this.xrLabel4.Name = "xrLabel4";
+            this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            this.xrLabel4.SizeF = new System.Drawing.SizeF(212.5F, 46.27422F);
+            this.xrLabel4.StylePriority.UseBorders = false;
+            this.xrLabel4.StylePriority.UseBorderWidth = false;
+            this.xrLabel4.StylePriority.UseFont = false;
+            this.xrLabel4.StylePriority.UsePadding = false;
+            this.xrLabel4.StylePriority.UseTextAlignment = false;
+            this.xrLabel4.Text = "แพทย์หญิง รุจิรา เทียบเทียม ว.43355\r\n(แพทย์อาชีวเวชศาสตร์)";
+            this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // PatientUID
             // 
@@ -1332,7 +1317,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.tbVatalSign)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbPatientDetail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -1403,9 +1387,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow6;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell19;
         private DevExpress.XtraReports.UI.XRTableCell lbPhoneNumber;
-        private DevExpress.XtraReports.UI.XRTable xrTable5;
-        private DevExpress.XtraReports.UI.XRTableRow xrTableRow32;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell55;
         private DevExpress.XtraReports.UI.XRLabel RowContact;
         private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox1;
         private DevExpress.XtraReports.UI.XRLabel xrLabel2;
@@ -1427,5 +1408,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell22;
         private DevExpress.XtraReports.UI.XRTableCell lbWHR;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell24;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel4;
     }
 }

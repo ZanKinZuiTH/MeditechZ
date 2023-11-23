@@ -15,6 +15,10 @@ using System.Text.RegularExpressions;
 using System.Windows.Media.Imaging;
 using System.IO;
 using MediTech.Reports.Operating.Checkup.CheckupBookEng;
+using System.Drawing.Imaging;
+using System.Windows.Forms;
+using static DevExpress.Utils.HashCodeHelper;
+using DevExpress.Xpf.Editors;
 
 namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
 {
@@ -179,6 +183,43 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             {
                 var patient = data.PatientInfomation;
                 var groupResult = data.GroupResult;
+
+                if (patient.OwnerOrganisationUID != 5)
+                {
+
+                    //2897    MBCHK Mobile Checkup
+                    //3110    CHKUP Checkup(เก็บตก)
+                    //3130    CHKIN Checkup Walk - In(แบบกลุ่ม)
+                    //4266    CHKIN2 Checkup Walk - In(รายบุคคล)
+                    //4296    CHKIN3 Checkup Walk - In(ต่างด้าว)
+                    //4867    CHKIN4 Checkup Walk - In(มีอาชีวะ)
+                    //4875    CHKIN5 Checkup(เก็บตก มีอาชีวะ)
+                    //4877    CHKIN6 Checkup walk -in (แบบกลุ่ม - มีอาชีวะ)
+
+                    if (patient.VISTYUID != 2897
+                        && patient.VISTYUID != 3110
+                        && patient.VISTYUID != 4875
+                        && patient.CareProviderUID != 6)
+                    {
+                        var modelData = DataService.UserManage.GetCareproviderByUID(patient.CareProviderUID ?? 0);
+                        if (modelData != null)
+                        {
+                            //var img = ImageHelpers.ConvertByteToBitmap(modelData.LicenseImage);
+                            //using (MemoryStream outStream = new MemoryStream())
+                            //{
+                            //    BitmapEncoder enc = new BmpBitmapEncoder();
+                            //    enc.Frames.Add(BitmapFrame.Create(img));
+                            //    enc.Save(outStream); 
+                            //    this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(343.21f, 699.54f);
+                            //    this.xrPictureBox1.SizeF = new System.Drawing.SizeF(193.63f, 84.69f);
+                            //    this.xrPictureBox1.Image = System.Drawing.Image.FromStream(outStream);
+                            //}
+                            this.xrPictureBox1.Visible = false;
+                            this.xrLabel4.Text = modelData.TitleDesc + " " + modelData.FirstName+ " "+ modelData.LastName+ " " +modelData.LicenseNo;
+                        }
+                    
+                    }
+                }
 
                 RN.Text = patient.PatientOtherID;
 
@@ -612,6 +653,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page7.RowVinylAcetate.Visible = false;
                 page7.toxicoComment.Visible = false;
                 page7.rowTinBlood.Visible = false;
+                page7.rowlMethylhippuric.Visible = false;
 
                 page6.aboGroupRow.Visible = false;
                 page6.RowHpylori.Visible = false;
@@ -795,8 +837,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             || p.RequestItemCode.Contains("LAB628")
                             || p.RequestItemCode.Contains("LAB626")
                             || p.RequestItemCode.Contains("LAB627")
-                            || p.RequestItemCode.Contains("LAB606")
+                            || p.RequestItemCode.Contains("LAB606") 
+                            || p.RequestItemCode.Contains("LAB635") //Methanol in blood
                             || p.RequestItemCode.Contains("LAB630") //Tin in blood
+                            || p.RequestItemCode.Contains("LAB636")
                             )
                              .OrderByDescending(p => p.Year);
                         GenerateToxicology(ToxicoTestSet);
@@ -2661,6 +2705,19 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         }
                         #endregion
 
+                        #region Methylhippuric acid in urine (ES)
+
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335") != null)
+                        {
+                            page7.rowlMethylhippuric.Visible = true;
+                            page7.cellMethylhippuricRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335")?.ReferenceRange;
+                            page7.cellMethylhippuric1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335" && p.Year == year1)?.ResultValue;
+                            page7.cellMethylhippuric2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335" && p.Year == year2)?.ResultValue;
+                            page7.cellMethylhippuric3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335" && p.Year == year3)?.ResultValue;
+                        }
+                        #endregion
+
+
                         #region Ethanol in blood
                         if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271") != null)
                         {
@@ -2683,6 +2740,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             page7.EthylAcetate3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321" && p.Year == year3)?.ResultValue;
                         }
                         #endregion
+
 
                         #region Butyl Acrylate
                         if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1322") != null)
@@ -2707,6 +2765,16 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             page7.VinylAcetate2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1323" && p.Year == year2)?.ResultValue;
                             page7.VinylAcetate3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1323" && p.Year == year3)?.ResultValue;
 
+                        }
+                        #endregion
+
+                        #region Methanol in blood
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332") != null)
+                        {
+                            page7.cellMethanolBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332")?.ReferenceRange;
+                            page7.cellMethanolBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332" && p.Year == year1)?.ResultValue;
+                            page7.cellMethanolBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332" && p.Year == year2)?.ResultValue;
+                            page7.cellMethanolBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332" && p.Year == year3)?.ResultValue;
                         }
                         #endregion
 

@@ -297,6 +297,7 @@ namespace MediTech.ViewModels
             ReportsList.Add(new ReportsModel { Name = "ผลตรวจสมรรถภาพกล้ามเนื้อ", NamespaceName = "MediTech.Reports.Operating.Checkup.Muscle" });
             ReportsList.Add(new ReportsModel { Name = "ผลการตรวจสายตาทั่วไป", NamespaceName = "MediTech.Reports.Operating.Checkup.VisionTest" });
             ReportsList.Add(new ReportsModel { Name = "ใบรายงานผลการตรวจสุขภาพ", NamespaceName = "MediTech.Reports.Operating.Checkup.MedReport1" });
+            ReportsList.Add(new ReportsModel { Name = "ใบรับรองแพทย์ที่อับอากาศ (Mobile)", NamespaceName = "MediTech.Reports.Operating.Patient.ConfinedSpaceCertificate1" });
             ReportsList.Add(new ReportsModel { Name = "ใบรับรองแพทย์สำหรับทำงานที่อับอากาศ", NamespaceName = "MediTech.Reports.Operating.Patient.ConfinedSpaceCertificate1" });
             ReportsList.Add(new ReportsModel { Name = "รายงานตรวจสุขภาพCSR", NamespaceName = "MediTech.Reports.Operating.Checkup.CheckupCSR" });
             ReportsList.Add(new ReportsModel { Name = "รายงานตรวจPapSmear", NamespaceName = "MediTech.Reports.Operating.Checkup.Papsmear" });
@@ -404,9 +405,15 @@ namespace MediTech.ViewModels
                             rpt.Parameters["LogoType"].Value = SelectLogo != null ? SelectLogo.Key : 2;
 
                         }
-                        if(SelectReport.Name == "ใบรับรองแพทย์สำหรับทำงานที่อับอากาศ")
+                        if(SelectReport.Name == "ใบรับรองแพทย์ที่อับอากาศ (Mobile)")
                         {
                             int logoID = SelectLogo.Key == 3 ? 17 : 30; 
+                            rpt.Parameters["OrganisationUID"].Value = logoID;
+                            rpt.Parameters["ReportName"].Value = "ใบรับรองแพทย์ที่อับอากาศ (Mobile)";
+                        }
+                        if (SelectReport.Name == "ใบรับรองแพทย์สำหรับทำงานที่อับอากาศ")
+                        {
+                            int logoID = SelectLogo.Key == 3 ? 17 : 30;
                             rpt.Parameters["OrganisationUID"].Value = logoID;
                         }
 
@@ -494,9 +501,15 @@ namespace MediTech.ViewModels
                         rpt.Parameters["LogoType"].Value = SelectLogo != null ? SelectLogo.Key : 0;
 
                     }
-                    if (SelectReport.Name == "ใบรับรองแพทย์สำหรับทำงานที่อับอากาศ")
+                    if (SelectReport.Name == "ใบรับรองแพทย์ที่อับอากาศ (Mobile)")
                     {
                         int logoID = (SelectLogo != null && SelectLogo.Key == 3 )? 17 : 30;
+                        rpt.Parameters["OrganisationUID"].Value = logoID;
+                        rpt.Parameters["ReportName"].Value = "ใบรับรองแพทย์ที่อับอากาศ (Mobile)";
+                    }
+                    if (SelectReport.Name == "ใบรับรองแพทย์สำหรับทำงานที่อับอากาศ")
+                    {
+                        int logoID = SelectLogo.Key == 3 ? 17 : 30;
                         rpt.Parameters["OrganisationUID"].Value = logoID;
                     }
                     ReportPrintTool printTool = new ReportPrintTool(rpt);
@@ -543,9 +556,15 @@ namespace MediTech.ViewModels
                             rpt.Parameters["LogoType"].Value = SelectLogo != null ? SelectLogo.Key : 0;
 
                         }
-                        if (SelectReport.Name == "ใบรับรองแพทย์สำหรับทำงานที่อับอากาศ")
+                        if (SelectReport.Name == "ใบรับรองแพทย์ที่อับอากาศ (Mobile)")
                         {
                             int logoID = (SelectLogo != null && SelectLogo.Key == 3) ? 17 : 30;
+                            rpt.Parameters["OrganisationUID"].Value = logoID;
+                            rpt.Parameters["ReportName"].Value = "ใบรับรองแพทย์ที่อับอากาศ (Mobile)";
+                        }
+                        if (SelectReport.Name == "ใบรับรองแพทย์สำหรับทำงานที่อับอากาศ")
+                        {
+                            int logoID = SelectLogo.Key == 3 ? 17 : 30;
                             rpt.Parameters["OrganisationUID"].Value = logoID;
                         }
                         ReportPrintTool printTool = new ReportPrintTool(rpt);

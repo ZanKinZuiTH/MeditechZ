@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfinedSpaceCertificate1));
             DevExpress.XtraReports.Parameters.StaticListLookUpSettings staticListLookUpSettings1 = new DevExpress.XtraReports.Parameters.StaticListLookUpSettings();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.xrLabel44 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrCheckBox39 = new DevExpress.XtraReports.UI.XRCheckBox();
             this.xrCheckBox40 = new DevExpress.XtraReports.UI.XRCheckBox();
             this.xrCheckBox37 = new DevExpress.XtraReports.UI.XRCheckBox();
@@ -119,8 +120,8 @@
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel44 = new DevExpress.XtraReports.UI.XRLabel();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.ReportName = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -208,6 +209,16 @@
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.StylePriority.UseFont = false;
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // xrLabel44
+            // 
+            this.xrLabel44.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.xrLabel44.LocationFloat = new DevExpress.Utils.PointFloat(28.33346F, 806.8334F);
+            this.xrLabel44.Name = "xrLabel44";
+            this.xrLabel44.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel44.SizeF = new System.Drawing.SizeF(513.7381F, 23F);
+            this.xrLabel44.StylePriority.UseFont = false;
+            this.xrLabel44.Text = "หมายเหตุ ใบรับรองแพทย์ฉบับนี้ ให้ใช้ได้ 6 เดือน นับตั้งแต่วันที่ตรวจร่างกาย";
             // 
             // xrCheckBox39
             // 
@@ -890,20 +901,16 @@
             this.LogoType.ValueInfo = "0";
             this.LogoType.ValueSourceSettings = staticListLookUpSettings1;
             // 
-            // xrLabel44
-            // 
-            this.xrLabel44.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrLabel44.LocationFloat = new DevExpress.Utils.PointFloat(28.33346F, 806.8334F);
-            this.xrLabel44.Name = "xrLabel44";
-            this.xrLabel44.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel44.SizeF = new System.Drawing.SizeF(513.7381F, 23F);
-            this.xrLabel44.StylePriority.UseFont = false;
-            this.xrLabel44.Text = "หมายเหตุ ใบรับรองแพทย์ฉบับนี้ ให้ใช้ได้ 6 เดือน นับตั้งแต่วันที่ตรวจร่างกาย";
-            // 
             // objectDataSource1
             // 
             this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.MedicalCertificateModel);
             this.objectDataSource1.Name = "objectDataSource1";
+            // 
+            // ReportName
+            // 
+            this.ReportName.Description = "Parameter1";
+            this.ReportName.Name = "ReportName";
+            this.ReportName.Visible = false;
             // 
             // ConfinedSpaceCertificate1
             // 
@@ -925,7 +932,8 @@
             this.PatientUID,
             this.PatientVisitUID,
             this.OrganisationUID,
-            this.LogoType});
+            this.LogoType,
+            this.ReportName});
             this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -1024,5 +1032,6 @@
         private DevExpress.XtraReports.Parameters.Parameter OrganisationUID;
         private DevExpress.XtraReports.Parameters.Parameter LogoType;
         private DevExpress.XtraReports.UI.XRLabel xrLabel44;
+        private DevExpress.XtraReports.Parameters.Parameter ReportName;
     }
 }

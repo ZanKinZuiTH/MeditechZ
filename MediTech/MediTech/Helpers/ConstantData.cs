@@ -25,6 +25,7 @@ namespace MediTech.Helpers
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ 2 ส่วน (ภาษาอังกฤษ)", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCertificateEng2Parts" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองรังสีแพทย์", NamespaceName = "MediTech.Reports.Operating.Patient.RadilogyCertificate" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ที่อับอากาศ", NamespaceName = "MediTech.Reports.Operating.Patient.ConfinedSpaceCertificate1" });
+            ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ที่อับอากาศ (Mobile)", NamespaceName = "MediTech.Reports.Operating.Patient.ConfinedSpaceCertificate1" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ทำงานบนที่สูง", NamespaceName = "MediTech.Reports.Operating.Patient.WorkingHeightCertificate1" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ทำงานบนที่สูง (ภาษาอังกฤษ)", NamespaceName = "MediTech.Reports.Operating.Patient.WorkingHeightCertificateEng1" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ Work Permit", NamespaceName = "MediTech.Reports.Operating.Patient.WorkPermitCertificate" });
@@ -34,6 +35,7 @@ namespace MediTech.Helpers
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ สณ.11", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCouncil10" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ 5 โรค (Mobile)", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCouncil5" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ Fittnes", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalFitness" });
+            ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์สำหรับการขับรถเครน", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCertificateDriver2" });
             ListPatientReports.Add(new ReportsModel { Name = "ปริ้น Sticker", NamespaceName = "MediTech.Reports.Operating.Patient.PatientSticker" });
             ListPatientReports.Add(new ReportsModel { Name = "ปริ้น Sticker Large", NamespaceName = "MediTech.Reports.Operating.Patient.PatientLargSticker" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ต่างด้าว", NamespaceName = "MediTech.Reports.Operating.Patient.Alien" });

@@ -42,6 +42,7 @@ namespace MediTech.Reports.Operating.Patient
             long PatientVisitUID = long.Parse(this.Parameters["PatientVisitUID"].Value.ToString());
             model = (new ReportsService()).PrintConfinedSpaceCertificate(PatientVisitUID);
             int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
+            string ReportName = this.Parameters["ReportName"].Value.ToString();
 
             if (model != null)
             {
@@ -60,7 +61,17 @@ namespace MediTech.Reports.Operating.Patient
                 page2.lbPuls.Text = model.Pulse.ToString();
 
                 var exp = model.strVisitData.Value.AddMonths(6);
-                page2.expText.Text = "หมายเหตุ ใบรับรองแพทย์ฉบับนี้ ให้ใช้ได้ 6 เดือน นับตั้งแต่วันที่ตรวจร่างกาย เอกสารนี้ใช้ได้ตั้งแต่ " + model.strVisitData?.ToString("dd'/'MM'/'yyyy") + " วันหมดอายุ " + exp.ToString("dd'/'MM'/'yyyy");
+
+                if (ReportName == "ใบรับรองแพทย์ที่อับอากาศ (Mobile)")
+                {
+                    xrLabel44.Text = "หมายเหตุ ใบรับรองแพทย์ฉบับนี้ ให้ใช้ได้ ......................... เดือน นับตั้งแต่วันตรวจร่างกาย";
+                    page2.expText.Text = "หมายเหตุ ใบรับรองแพทย์ฉบับนี้ ให้ใช้ได้ ......................... เดือน นับตั้งแต่วันตรวจร่างกาย";
+                }
+                else
+                {
+                    xrLabel44.Text = "หมายเหตุ ใบรับรองแพทย์ฉบับนี้ ให้ใช้ได้ 6 เดือน นับตั้งแต่วันที่ตรวจร่างกาย เอกสารนี้ใช้ได้ตั้งแต่ " + model.strVisitData?.ToString("dd'/'MM'/'yyyy") + " วันหมดอายุ " + exp.ToString("dd'/'MM'/'yyyy");
+                    page2.expText.Text = "หมายเหตุ ใบรับรองแพทย์ฉบับนี้ ให้ใช้ได้ 6 เดือน นับตั้งแต่วันที่ตรวจร่างกาย เอกสารนี้ใช้ได้ตั้งแต่ " + model.strVisitData?.ToString("dd'/'MM'/'yyyy") + " วันหมดอายุ " + exp.ToString("dd'/'MM'/'yyyy");
+                }
             }
 
             var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);

@@ -587,7 +587,7 @@ namespace MediTech.ViewModels
 
             if (LicenseImage != null)
             {
-                byte[] patImage = ImageHelpers.ResizeImage(ImageHelpers.ConvertBitmapToByte(LicenseImage), 600, 400, true);
+                byte[] patImage = ImageHelpers.ConvertBitmapToByte(LicenseImage);
                 modelCareprovider.LicenseImage = patImage;
             }
             else
