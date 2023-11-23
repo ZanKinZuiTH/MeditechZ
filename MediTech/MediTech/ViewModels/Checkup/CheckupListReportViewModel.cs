@@ -437,6 +437,7 @@ namespace MediTech.ViewModels
                     {
                         WellnessDataModel WellnessData = new WellnessDataModel();
                         WellnessData.WellnessDataUID = patient.WellnessResultUID;
+                        WellnessData.PatientUID = patient.PatientUID;
                         DataService.PatientHistory.SendWellnessToBLIFE(WellnessData, AppUtil.Current.UserID);
                         SelectPatientCheckupResult.Remove(patient);
                     }
