@@ -502,7 +502,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbFumeComment.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.lbFumeComment.SizeF = new System.Drawing.SizeF(289.1667F, 22.16663F);
             this.lbFumeComment.StylePriority.UseFont = false;
-            this.lbFumeComment.Text = "(**ผลการตรวจสารเคมีในกลุ่มฟูมผงโลหะ)";
+            this.lbFumeComment.Text = "(**ตรวจทางอ้อมโดยการตรวจร่างกายโดยแพทย์ เอกซเรย์ปอด และเป่าปอด)";
             // 
             // toxicoComment
             // 
@@ -3932,7 +3932,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell32.StylePriority.UseFont = false;
             this.xrTableCell32.StylePriority.UsePadding = false;
             this.xrTableCell32.StylePriority.UseTextAlignment = false;
-            this.xrTableCell32.Text = "Nitric Acids";
+            this.xrTableCell32.Text = "**Nitric Acids";
             this.xrTableCell32.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell32.Weight = 1.2913566084432759D;
             // 
@@ -3996,7 +3996,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell68.StylePriority.UseFont = false;
             this.xrTableCell68.StylePriority.UsePadding = false;
             this.xrTableCell68.StylePriority.UseTextAlignment = false;
-            this.xrTableCell68.Text = "Sulphuric Acids";
+            this.xrTableCell68.Text = "**Sulphuric Acids";
             this.xrTableCell68.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell68.Weight = 1.2913566084432759D;
             // 
