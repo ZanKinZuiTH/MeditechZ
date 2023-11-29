@@ -39,6 +39,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbHN7 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbName7 = new DevExpress.XtraReports.UI.XRTableCell();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.lbFumeComment = new DevExpress.XtraReports.UI.XRLabel();
             this.toxicoComment = new DevExpress.XtraReports.UI.XRLabel();
             this.tbToxicology = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow22 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -327,6 +328,12 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.cellTinBlood1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellTinBlood2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellTinBlood3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.rowlMethylhippuric = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell20 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellMethylhippuricRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellMethylhippuric1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellMethylhippuric2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellMethylhippuric3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.RowEthylAcetate = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
             this.RangeEthylAcetate = new DevExpress.XtraReports.UI.XRTableCell();
@@ -345,6 +352,24 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.VinylAcetate1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.VinylAcetate2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.VinylAcetate3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.rowFume = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell21 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbFumeRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbFume1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbFume2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbFume3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.rowNitricAcids = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell32 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbNitricAcidsRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbNitricAcids1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbNitricAcids2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbNitricAcids3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.rowSulphuricAcids = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell68 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbSulphuricAcidsRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbSulphuricAcids1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbSulphuricAcids2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbSulphuricAcids3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrTable3 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow10 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -386,12 +411,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell63 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell66 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
-            this.rowlMethylhippuric = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell20 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellMethylhippuricRange = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellMethylhippuric1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellMethylhippuric2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellMethylhippuric3 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbToxicology)).BeginInit();
@@ -465,18 +484,30 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.lbFumeComment,
             this.toxicoComment,
             this.tbToxicology,
             this.xrLabel7,
             this.xrTable3,
             this.xrLabel4});
-            this.Detail.HeightF = 1484.445F;
+            this.Detail.HeightF = 1580.646F;
             this.Detail.Name = "Detail";
+            // 
+            // lbFumeComment
+            // 
+            this.lbFumeComment.Font = new System.Drawing.Font("EucrosiaUPC", 9.75F);
+            this.lbFumeComment.LocationFloat = new DevExpress.Utils.PointFloat(0F, 1558.48F);
+            this.lbFumeComment.Multiline = true;
+            this.lbFumeComment.Name = "lbFumeComment";
+            this.lbFumeComment.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbFumeComment.SizeF = new System.Drawing.SizeF(289.1667F, 22.16663F);
+            this.lbFumeComment.StylePriority.UseFont = false;
+            this.lbFumeComment.Text = "(**ผลการตรวจสารเคมีในกลุ่มฟูมผงโลหะ)";
             // 
             // toxicoComment
             // 
             this.toxicoComment.Font = new System.Drawing.Font("EucrosiaUPC", 9.75F);
-            this.toxicoComment.LocationFloat = new DevExpress.Utils.PointFloat(0F, 1462.278F);
+            this.toxicoComment.LocationFloat = new DevExpress.Utils.PointFloat(0F, 1536.313F);
             this.toxicoComment.Multiline = true;
             this.toxicoComment.Name = "toxicoComment";
             this.toxicoComment.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -544,8 +575,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.rowlMethylhippuric,
             this.RowEthylAcetate,
             this.RowButylAcrylate,
-            this.RowVinylAcetate});
-            this.tbToxicology.SizeF = new System.Drawing.SizeF(498F, 1196.746F);
+            this.RowVinylAcetate,
+            this.rowFume,
+            this.rowNitricAcids,
+            this.rowSulphuricAcids});
+            this.tbToxicology.SizeF = new System.Drawing.SizeF(498F, 1266.398F);
             this.tbToxicology.StylePriority.UseBorderColor = false;
             this.tbToxicology.StylePriority.UseBorders = false;
             this.tbToxicology.StylePriority.UseBorderWidth = false;
@@ -3558,6 +3592,70 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.cellTinBlood3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.cellTinBlood3.Weight = 0.44329635320818539D;
             // 
+            // rowlMethylhippuric
+            // 
+            this.rowlMethylhippuric.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell20,
+            this.cellMethylhippuricRange,
+            this.cellMethylhippuric1,
+            this.cellMethylhippuric2,
+            this.cellMethylhippuric3});
+            this.rowlMethylhippuric.Name = "rowlMethylhippuric";
+            this.rowlMethylhippuric.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell20
+            // 
+            this.xrTableCell20.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell20.Multiline = true;
+            this.xrTableCell20.Name = "xrTableCell20";
+            this.xrTableCell20.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell20.StylePriority.UseFont = false;
+            this.xrTableCell20.StylePriority.UsePadding = false;
+            this.xrTableCell20.StylePriority.UseTextAlignment = false;
+            this.xrTableCell20.Text = "Methylhippuric acid in Urine (ES)";
+            this.xrTableCell20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell20.Weight = 1.2913566084432759D;
+            // 
+            // cellMethylhippuricRange
+            // 
+            this.cellMethylhippuricRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellMethylhippuricRange.Multiline = true;
+            this.cellMethylhippuricRange.Name = "cellMethylhippuricRange";
+            this.cellMethylhippuricRange.StylePriority.UseFont = false;
+            this.cellMethylhippuricRange.StylePriority.UseTextAlignment = false;
+            this.cellMethylhippuricRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellMethylhippuricRange.Weight = 0.93906236153056333D;
+            // 
+            // cellMethylhippuric1
+            // 
+            this.cellMethylhippuric1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellMethylhippuric1.Multiline = true;
+            this.cellMethylhippuric1.Name = "cellMethylhippuric1";
+            this.cellMethylhippuric1.StylePriority.UseFont = false;
+            this.cellMethylhippuric1.StylePriority.UseTextAlignment = false;
+            this.cellMethylhippuric1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellMethylhippuric1.Weight = 0.443296332132815D;
+            // 
+            // cellMethylhippuric2
+            // 
+            this.cellMethylhippuric2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellMethylhippuric2.Multiline = true;
+            this.cellMethylhippuric2.Name = "cellMethylhippuric2";
+            this.cellMethylhippuric2.StylePriority.UseFont = false;
+            this.cellMethylhippuric2.StylePriority.UseTextAlignment = false;
+            this.cellMethylhippuric2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellMethylhippuric2.Weight = 0.44329633245297495D;
+            // 
+            // cellMethylhippuric3
+            // 
+            this.cellMethylhippuric3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellMethylhippuric3.Multiline = true;
+            this.cellMethylhippuric3.Name = "cellMethylhippuric3";
+            this.cellMethylhippuric3.StylePriority.UseFont = false;
+            this.cellMethylhippuric3.StylePriority.UseTextAlignment = false;
+            this.cellMethylhippuric3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellMethylhippuric3.Weight = 0.44329635320818539D;
+            // 
             // RowEthylAcetate
             // 
             this.RowEthylAcetate.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
@@ -3749,6 +3847,198 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.VinylAcetate3.StylePriority.UseTextAlignment = false;
             this.VinylAcetate3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.VinylAcetate3.Weight = 0.44329635320818539D;
+            // 
+            // rowFume
+            // 
+            this.rowFume.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell21,
+            this.lbFumeRange,
+            this.lbFume1,
+            this.lbFume2,
+            this.lbFume3});
+            this.rowFume.Name = "rowFume";
+            this.rowFume.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell21
+            // 
+            this.xrTableCell21.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell21.Multiline = true;
+            this.xrTableCell21.Name = "xrTableCell21";
+            this.xrTableCell21.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell21.StylePriority.UseFont = false;
+            this.xrTableCell21.StylePriority.UsePadding = false;
+            this.xrTableCell21.StylePriority.UseTextAlignment = false;
+            this.xrTableCell21.Text = "**ตรวจสารเคมีในกลุ่มฟูมผงโลหะได้แก่เหล็ก";
+            this.xrTableCell21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell21.Weight = 1.2913566084432759D;
+            // 
+            // lbFumeRange
+            // 
+            this.lbFumeRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbFumeRange.Multiline = true;
+            this.lbFumeRange.Name = "lbFumeRange";
+            this.lbFumeRange.StylePriority.UseFont = false;
+            this.lbFumeRange.StylePriority.UseTextAlignment = false;
+            this.lbFumeRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbFumeRange.Weight = 0.93906236153056333D;
+            // 
+            // lbFume1
+            // 
+            this.lbFume1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbFume1.Multiline = true;
+            this.lbFume1.Name = "lbFume1";
+            this.lbFume1.StylePriority.UseFont = false;
+            this.lbFume1.StylePriority.UseTextAlignment = false;
+            this.lbFume1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbFume1.Weight = 0.443296332132815D;
+            // 
+            // lbFume2
+            // 
+            this.lbFume2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbFume2.Multiline = true;
+            this.lbFume2.Name = "lbFume2";
+            this.lbFume2.StylePriority.UseFont = false;
+            this.lbFume2.StylePriority.UseTextAlignment = false;
+            this.lbFume2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbFume2.Weight = 0.44329633245297495D;
+            // 
+            // lbFume3
+            // 
+            this.lbFume3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbFume3.Multiline = true;
+            this.lbFume3.Name = "lbFume3";
+            this.lbFume3.StylePriority.UseFont = false;
+            this.lbFume3.StylePriority.UseTextAlignment = false;
+            this.lbFume3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbFume3.Weight = 0.44329635320818539D;
+            // 
+            // rowNitricAcids
+            // 
+            this.rowNitricAcids.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell32,
+            this.lbNitricAcidsRange,
+            this.lbNitricAcids1,
+            this.lbNitricAcids2,
+            this.lbNitricAcids3});
+            this.rowNitricAcids.Name = "rowNitricAcids";
+            this.rowNitricAcids.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell32
+            // 
+            this.xrTableCell32.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell32.Multiline = true;
+            this.xrTableCell32.Name = "xrTableCell32";
+            this.xrTableCell32.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell32.StylePriority.UseFont = false;
+            this.xrTableCell32.StylePriority.UsePadding = false;
+            this.xrTableCell32.StylePriority.UseTextAlignment = false;
+            this.xrTableCell32.Text = "Nitric Acids";
+            this.xrTableCell32.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell32.Weight = 1.2913566084432759D;
+            // 
+            // lbNitricAcidsRange
+            // 
+            this.lbNitricAcidsRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbNitricAcidsRange.Multiline = true;
+            this.lbNitricAcidsRange.Name = "lbNitricAcidsRange";
+            this.lbNitricAcidsRange.StylePriority.UseFont = false;
+            this.lbNitricAcidsRange.StylePriority.UseTextAlignment = false;
+            this.lbNitricAcidsRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbNitricAcidsRange.Weight = 0.93906236153056333D;
+            // 
+            // lbNitricAcids1
+            // 
+            this.lbNitricAcids1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbNitricAcids1.Multiline = true;
+            this.lbNitricAcids1.Name = "lbNitricAcids1";
+            this.lbNitricAcids1.StylePriority.UseFont = false;
+            this.lbNitricAcids1.StylePriority.UseTextAlignment = false;
+            this.lbNitricAcids1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbNitricAcids1.Weight = 0.443296332132815D;
+            // 
+            // lbNitricAcids2
+            // 
+            this.lbNitricAcids2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbNitricAcids2.Multiline = true;
+            this.lbNitricAcids2.Name = "lbNitricAcids2";
+            this.lbNitricAcids2.StylePriority.UseFont = false;
+            this.lbNitricAcids2.StylePriority.UseTextAlignment = false;
+            this.lbNitricAcids2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbNitricAcids2.Weight = 0.44329633245297495D;
+            // 
+            // lbNitricAcids3
+            // 
+            this.lbNitricAcids3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbNitricAcids3.Multiline = true;
+            this.lbNitricAcids3.Name = "lbNitricAcids3";
+            this.lbNitricAcids3.StylePriority.UseFont = false;
+            this.lbNitricAcids3.StylePriority.UseTextAlignment = false;
+            this.lbNitricAcids3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbNitricAcids3.Weight = 0.44329635320818539D;
+            // 
+            // rowSulphuricAcids
+            // 
+            this.rowSulphuricAcids.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell68,
+            this.lbSulphuricAcidsRange,
+            this.lbSulphuricAcids1,
+            this.lbSulphuricAcids2,
+            this.lbSulphuricAcids3});
+            this.rowSulphuricAcids.Name = "rowSulphuricAcids";
+            this.rowSulphuricAcids.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell68
+            // 
+            this.xrTableCell68.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell68.Multiline = true;
+            this.xrTableCell68.Name = "xrTableCell68";
+            this.xrTableCell68.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell68.StylePriority.UseFont = false;
+            this.xrTableCell68.StylePriority.UsePadding = false;
+            this.xrTableCell68.StylePriority.UseTextAlignment = false;
+            this.xrTableCell68.Text = "Sulphuric Acids";
+            this.xrTableCell68.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell68.Weight = 1.2913566084432759D;
+            // 
+            // lbSulphuricAcidsRange
+            // 
+            this.lbSulphuricAcidsRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbSulphuricAcidsRange.Multiline = true;
+            this.lbSulphuricAcidsRange.Name = "lbSulphuricAcidsRange";
+            this.lbSulphuricAcidsRange.StylePriority.UseFont = false;
+            this.lbSulphuricAcidsRange.StylePriority.UseTextAlignment = false;
+            this.lbSulphuricAcidsRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbSulphuricAcidsRange.Weight = 0.93906236153056333D;
+            // 
+            // lbSulphuricAcids1
+            // 
+            this.lbSulphuricAcids1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbSulphuricAcids1.Multiline = true;
+            this.lbSulphuricAcids1.Name = "lbSulphuricAcids1";
+            this.lbSulphuricAcids1.StylePriority.UseFont = false;
+            this.lbSulphuricAcids1.StylePriority.UseTextAlignment = false;
+            this.lbSulphuricAcids1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbSulphuricAcids1.Weight = 0.443296332132815D;
+            // 
+            // lbSulphuricAcids2
+            // 
+            this.lbSulphuricAcids2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbSulphuricAcids2.Multiline = true;
+            this.lbSulphuricAcids2.Name = "lbSulphuricAcids2";
+            this.lbSulphuricAcids2.StylePriority.UseFont = false;
+            this.lbSulphuricAcids2.StylePriority.UseTextAlignment = false;
+            this.lbSulphuricAcids2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbSulphuricAcids2.Weight = 0.44329633245297495D;
+            // 
+            // lbSulphuricAcids3
+            // 
+            this.lbSulphuricAcids3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbSulphuricAcids3.Multiline = true;
+            this.lbSulphuricAcids3.Name = "lbSulphuricAcids3";
+            this.lbSulphuricAcids3.StylePriority.UseFont = false;
+            this.lbSulphuricAcids3.StylePriority.UseTextAlignment = false;
+            this.lbSulphuricAcids3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbSulphuricAcids3.Weight = 0.44329635320818539D;
             // 
             // xrLabel7
             // 
@@ -4312,70 +4602,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel4.Text = "การเพาะเชื้อจากอุจจาระ (Stool Culture) ";
             this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
-            // rowlMethylhippuric
-            // 
-            this.rowlMethylhippuric.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell20,
-            this.cellMethylhippuricRange,
-            this.cellMethylhippuric1,
-            this.cellMethylhippuric2,
-            this.cellMethylhippuric3});
-            this.rowlMethylhippuric.Name = "rowlMethylhippuric";
-            this.rowlMethylhippuric.Weight = 0.92341768297675519D;
-            // 
-            // xrTableCell20
-            // 
-            this.xrTableCell20.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell20.Multiline = true;
-            this.xrTableCell20.Name = "xrTableCell20";
-            this.xrTableCell20.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
-            this.xrTableCell20.StylePriority.UseFont = false;
-            this.xrTableCell20.StylePriority.UsePadding = false;
-            this.xrTableCell20.StylePriority.UseTextAlignment = false;
-            this.xrTableCell20.Text = "Methylhippuric acid in Urine (ES)";
-            this.xrTableCell20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell20.Weight = 1.2913566084432759D;
-            // 
-            // cellMethylhippuricRange
-            // 
-            this.cellMethylhippuricRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.cellMethylhippuricRange.Multiline = true;
-            this.cellMethylhippuricRange.Name = "cellMethylhippuricRange";
-            this.cellMethylhippuricRange.StylePriority.UseFont = false;
-            this.cellMethylhippuricRange.StylePriority.UseTextAlignment = false;
-            this.cellMethylhippuricRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellMethylhippuricRange.Weight = 0.93906236153056333D;
-            // 
-            // cellMethylhippuric1
-            // 
-            this.cellMethylhippuric1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.cellMethylhippuric1.Multiline = true;
-            this.cellMethylhippuric1.Name = "cellMethylhippuric1";
-            this.cellMethylhippuric1.StylePriority.UseFont = false;
-            this.cellMethylhippuric1.StylePriority.UseTextAlignment = false;
-            this.cellMethylhippuric1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellMethylhippuric1.Weight = 0.443296332132815D;
-            // 
-            // cellMethylhippuric2
-            // 
-            this.cellMethylhippuric2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.cellMethylhippuric2.Multiline = true;
-            this.cellMethylhippuric2.Name = "cellMethylhippuric2";
-            this.cellMethylhippuric2.StylePriority.UseFont = false;
-            this.cellMethylhippuric2.StylePriority.UseTextAlignment = false;
-            this.cellMethylhippuric2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellMethylhippuric2.Weight = 0.44329633245297495D;
-            // 
-            // cellMethylhippuric3
-            // 
-            this.cellMethylhippuric3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.cellMethylhippuric3.Multiline = true;
-            this.cellMethylhippuric3.Name = "cellMethylhippuric3";
-            this.cellMethylhippuric3.StylePriority.UseFont = false;
-            this.cellMethylhippuric3.StylePriority.UseTextAlignment = false;
-            this.cellMethylhippuric3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellMethylhippuric3.Weight = 0.44329635320818539D;
-            // 
             // CheckupPage7
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -4760,5 +4986,24 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         public DevExpress.XtraReports.UI.XRTableCell cellMethylhippuric2;
         public DevExpress.XtraReports.UI.XRTableCell cellMethylhippuric3;
         public DevExpress.XtraReports.UI.XRTableRow rowlMethylhippuric;
+        public DevExpress.XtraReports.UI.XRLabel lbFumeComment;
+        public DevExpress.XtraReports.UI.XRTableRow rowFume;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell21;
+        public DevExpress.XtraReports.UI.XRTableCell lbFumeRange;
+        public DevExpress.XtraReports.UI.XRTableCell lbFume1;
+        public DevExpress.XtraReports.UI.XRTableCell lbFume2;
+        public DevExpress.XtraReports.UI.XRTableCell lbFume3;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell32;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell68;
+        public DevExpress.XtraReports.UI.XRTableRow rowNitricAcids;
+        public DevExpress.XtraReports.UI.XRTableCell lbNitricAcidsRange;
+        public DevExpress.XtraReports.UI.XRTableCell lbNitricAcids1;
+        public DevExpress.XtraReports.UI.XRTableCell lbNitricAcids2;
+        public DevExpress.XtraReports.UI.XRTableCell lbNitricAcids3;
+        public DevExpress.XtraReports.UI.XRTableRow rowSulphuricAcids;
+        public DevExpress.XtraReports.UI.XRTableCell lbSulphuricAcidsRange;
+        public DevExpress.XtraReports.UI.XRTableCell lbSulphuricAcids1;
+        public DevExpress.XtraReports.UI.XRTableCell lbSulphuricAcids2;
+        public DevExpress.XtraReports.UI.XRTableCell lbSulphuricAcids3;
     }
 }

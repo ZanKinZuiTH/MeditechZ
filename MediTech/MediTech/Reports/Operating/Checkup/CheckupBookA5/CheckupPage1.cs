@@ -654,7 +654,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page7.toxicoComment.Visible = false;
                 page7.rowTinBlood.Visible = false;
                 page7.rowlMethylhippuric.Visible = false;
-
+                page7.rowFume.Visible = false;
+                page7.lbFumeComment.Visible = false;
+                page7.rowNitricAcids.Visible = false;
+                page7.rowSulphuricAcids.Visible = false;
+    
                 page6.aboGroupRow.Visible = false;
                 page6.RowHpylori.Visible = false;
                 page6.RowPhosphorus.Visible = false;
@@ -841,6 +845,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             || p.RequestItemCode.Contains("LAB635") //Methanol in blood
                             || p.RequestItemCode.Contains("LAB630") //Tin in blood
                             || p.RequestItemCode.Contains("LAB636")
+                            || p.RequestItemCode.Contains("LAB640") //Nitric acids
+                            || p.RequestItemCode.Contains("LAB641") //fume
+                            || p.RequestItemCode.Contains("LAB639") //Sulphuric acids
                             )
                              .OrderByDescending(p => p.Year);
                         GenerateToxicology(ToxicoTestSet);
@@ -2734,7 +2741,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         {
                             page7.toxicoComment.Visible = true;
                             page7.RowEthylAcetate.Visible = true;
-                            page7.RangeEthanolBlood.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321")?.ReferenceRange;
+                            page7.RangeEthylAcetate.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321")?.ReferenceRange;
                             page7.EthylAcetate1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321" && p.Year == year1)?.ResultValue;
                             page7.EthylAcetate2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321" && p.Year == year2)?.ResultValue;
                             page7.EthylAcetate3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321" && p.Year == year3)?.ResultValue;
@@ -2777,6 +2784,41 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             page7.cellMethanolBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332" && p.Year == year3)?.ResultValue;
                         }
                         #endregion
+
+                        #region Fume
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1340") != null)
+                        {
+                            page7.lbFumeComment.Visible = true;
+                            page7.rowFume.Visible = true;
+                            page7.lbFumeRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1340")?.ReferenceRange;
+                            page7.lbFume1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1340" && p.Year == year1)?.ResultValue;
+                            page7.lbFume2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1340" && p.Year == year2)?.ResultValue;
+                            page7.lbFume3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1340" && p.Year == year3)?.ResultValue;
+                        }
+                        #endregion
+
+                        #region Nitric Acids
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1339") != null)
+                        {
+                            page7.rowNitricAcids.Visible = true;
+                            page7.lbNitricAcidsRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1339")?.ReferenceRange;
+                            page7.lbNitricAcids1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1339" && p.Year == year1)?.ResultValue;
+                            page7.lbNitricAcids2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1339" && p.Year == year2)?.ResultValue;
+                            page7.lbNitricAcids3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1339" && p.Year == year3)?.ResultValue;
+                        }
+                        #endregion
+
+                        #region Sulphuric Acids
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1338") != null)
+                        {
+                            page7.rowSulphuricAcids.Visible = true;
+                            page7.lbSulphuricAcidsRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1338")?.ReferenceRange;
+                            page7.lbSulphuricAcids1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1338" && p.Year == year1)?.ResultValue;
+                            page7.lbSulphuricAcids2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1338" && p.Year == year2)?.ResultValue;
+                            page7.lbSulphuricAcids3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1338" && p.Year == year3)?.ResultValue;
+                        }
+                        #endregion
+
 
                     }
                     else
