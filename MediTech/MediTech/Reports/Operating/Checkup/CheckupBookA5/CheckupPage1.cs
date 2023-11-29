@@ -3341,12 +3341,18 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                     string recommand = "";
                     foreach (var item in results)
                     {
-                        if (item.Contains("ควร") || item.Contains("Should"))
+                        if (item.Contains("ควร"))
                         {
                             int index = item.IndexOf("ควร");
                             description += string.IsNullOrEmpty(description) ? item.Substring(0, index).Trim() : " " + item.Substring(0, index).Trim();
                             recommand = item.Substring(index).Trim();
 
+                        }
+                        else if (item.Contains("Should"))
+                        {
+                            int index = item.IndexOf("Should");
+                            description += string.IsNullOrEmpty(description) ? item.Substring(0, index).Trim() : " " + item.Substring(0, index).Trim();
+                            recommand = item.Substring(index).Trim();
                         }
                         else if(item != null)
                         {
