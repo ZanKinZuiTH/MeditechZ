@@ -2599,8 +2599,9 @@ namespace MediTechWebApi.Controllers
             DateTime now = DateTime.Now;
             var data = db.InsuranceCompany
                 .Where(p => p.StatusFlag == "A"
-                && p.ActiveFrom == null || DbFunctions.TruncateTime(p.ActiveFrom) <= DbFunctions.TruncateTime(now)
-                && p.ActiveTo == null || DbFunctions.TruncateTime(p.ActiveTo) >= DbFunctions.TruncateTime(now))
+                && (p.ActiveFrom == null || DbFunctions.TruncateTime(p.ActiveFrom) <= DbFunctions.TruncateTime(now))
+                && (p.ActiveTo == null || DbFunctions.TruncateTime(p.ActiveTo) >= DbFunctions.TruncateTime(now))
+                )
                 .Select(p => new InsuranceCompanyModel
                 {
                     InsuranceCompanyUID = p.UID,
