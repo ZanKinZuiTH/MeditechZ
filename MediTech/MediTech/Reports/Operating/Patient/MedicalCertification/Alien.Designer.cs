@@ -166,12 +166,14 @@ namespace MediTech.Reports.Operating.Patient
             this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.ReportName = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel2,
             this.xrLabel80,
             this.xrLabel77,
             this.xrLabel76,
@@ -1720,6 +1722,23 @@ namespace MediTech.Reports.Operating.Patient
             this.ReportName.ValueInfo = "0";
             this.ReportName.Visible = false;
             // 
+            // xrLabel2
+            // 
+            this.xrLabel2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[PatientID]")});
+            this.xrLabel2.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.xrLabel2.ForeColor = System.Drawing.Color.DimGray;
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(11.38884F, 899.1667F);
+            this.xrLabel2.Multiline = true;
+            this.xrLabel2.Name = "xrLabel2";
+            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel2.SizeF = new System.Drawing.SizeF(152.0833F, 23F);
+            this.xrLabel2.StylePriority.UseFont = false;
+            this.xrLabel2.StylePriority.UseForeColor = false;
+            this.xrLabel2.StylePriority.UseTextAlignment = false;
+            this.xrLabel2.Text = "xrLabel2";
+            this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
             // Alien
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1872,5 +1891,6 @@ namespace MediTech.Reports.Operating.Patient
         private XRLabel xrLabel80;
         private XRLabel xrLabel82;
         private Parameter ReportName;
+        private XRLabel xrLabel2;
     }
 }
