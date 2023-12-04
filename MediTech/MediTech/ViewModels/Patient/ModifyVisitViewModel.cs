@@ -400,7 +400,7 @@ namespace MediTech.ViewModels
             SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == SelectPatientVisit.OwnerOrganisationUID);
             SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == SelectPatientVisit.LocationUID);
 
-            if (visitModel.VISTYUID == 4867 || visitModel.VISTYUID == 4875 || visitModel.VISTYUID == 4877) //มีหมออาชีว
+            if (visitModel.VISTYUID == 4867 || visitModel.VISTYUID == 4875 || visitModel.VISTYUID == 4877 || visitModel.VISTYUID == 4296) //มีหมออาชีว และ ต่างด้าว
             {
                 var careMedical = DataService.PatientIdentity.GetPatientConsultationMedicalCertificate(visitModel.PatientUID, visitModel.PatientVisitUID);
                 if (careMedical != null && careMedical.Count > 0)
