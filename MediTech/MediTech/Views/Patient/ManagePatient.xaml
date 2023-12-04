@@ -201,7 +201,8 @@
                                                 <ControlTemplate>
                                                     <dxg:GridControl x:Name="PART_GridControl"  >
                                                         <dxg:GridControl.Columns>
-                                                            <dxg:GridColumn Name="colDisplay" FieldName="Display"/>
+                                                                <dxg:GridColumn Name="colValCode" Width="25" FieldName="ValueCode"/>
+                                                                <dxg:GridColumn Name="colDisplay" FieldName="Display"/>
                                                         </dxg:GridControl.Columns>
                                                         <dxg:GridControl.View>
                                                             <dxg:TableView

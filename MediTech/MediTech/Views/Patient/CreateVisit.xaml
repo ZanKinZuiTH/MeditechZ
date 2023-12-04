@@ -166,7 +166,7 @@
                                       ItemsSource="{Binding CareproviderSource}"
                                       SelectedItem="{Binding SelectedCareprovider}"/>
                     </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="แพทย์ GP" Visibility="{Binding VisibilityCareprovider2}">
+                    <dxlc:LayoutItem Label="{Binding CareproviderLabel2}" Visibility="{Binding VisibilityCareprovider2}">
                         <dxe:ComboBoxEdit DisplayMember="FullName"
                                       NullValueButtonPlacement="EditBox"
                                       ValueMember="CareproviderUID"
