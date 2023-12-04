@@ -636,6 +636,8 @@ namespace MediTechWebApi.Controllers
                                                 Temp = j.Temprature,
                                                 CompanyName = pv.CompanyName,
                                                 EmployerAddress = pv.EmployerAddress,
+                                                Skin = j.Skin,
+                                                MentalHealth = j.MentalHealth,
                                                 Nationality = SqlFunction.fGetRfValDescription(pa.NATNLUID ?? 0)
                                             }).OrderByDescending(p => p.VitalSignRecordDttm).FirstOrDefault();
 

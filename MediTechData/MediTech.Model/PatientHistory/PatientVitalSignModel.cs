@@ -28,6 +28,8 @@ namespace MediTech.Model
         public Nullable<double> WHRValue { get; set; }
         public bool? IsPregnant { get; set; }
         public string Comments { get; set; }
+        public string Skin { get; set; }
+        public string MentalHealth { get; set; }
         public System.DateTime CWhen { get; set; }
         public int CUser { get; set; }
         public System.DateTime MWhen { get; set; }

@@ -2800,6 +2800,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         #region Nitric Acids
                         if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1339") != null)
                         {
+                            page7.lbFumeComment.Visible = true;
                             page7.rowNitricAcids.Visible = true;
                             page7.lbNitricAcidsRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1339")?.ReferenceRange;
                             page7.lbNitricAcids1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1339" && p.Year == year1)?.ResultValue;
@@ -2811,6 +2812,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         #region Sulphuric Acids
                         if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1338") != null)
                         {
+                            page7.lbFumeComment.Visible = true;
                             page7.rowSulphuricAcids.Visible = true;
                             page7.lbSulphuricAcidsRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1338")?.ReferenceRange;
                             page7.lbSulphuricAcids1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1338" && p.Year == year1)?.ResultValue;
