@@ -878,8 +878,8 @@ namespace MediTech.ViewModels
                                     PatientVisitModel visitInfo = result.PatientVisitInfo;
                                     visitInfo.PatientUID = currentData.PatientUID;
                                     visitInfo.VISTSUID = 418; //Medical Discharge
-                                    visitInfo.CompanyName = currentData.Company != "" ? currentData.Company : result.Company;
-                                    visitInfo.EmployerAddress = currentData.EmployerAddress != "" ? currentData.EmployerAddress : result.EmployerAddress;
+                                    visitInfo.CompanyName = !string.IsNullOrEmpty(currentData.Company) ? currentData.Company : result.Company;
+                                    visitInfo.EmployerAddress = !string.IsNullOrEmpty(currentData.EmployerAddress) ? currentData.EmployerAddress : result.EmployerAddress;
                                     visitInfo.Program = currentData.Program != "" ? currentData.Program : null;
                                     visitInfo.RefNo = currentData.No;
                                     visitInfo.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
