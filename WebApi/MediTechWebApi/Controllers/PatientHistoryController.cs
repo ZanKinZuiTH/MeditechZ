@@ -120,6 +120,8 @@ namespace MediTechWebApi.Controllers
                     WHRValue = p.WHRValue,
                     IsPregnant = p.IsPregnant,
                     Comments = p.Comments,
+                    Skin = p.Skin,
+                    MentalHealth = p.MentalHealth,
                     CWhen = p.CWhen,
                     MWhen = p.MWhen,
                     RecordedBy = SqlFunction.fGetCareProviderName(p.CUser)
@@ -163,6 +165,8 @@ namespace MediTechWebApi.Controllers
                 vitalsign.HipCircumference = model.HipCircumference;
                 vitalsign.WHRValue = model.WHRValue;
                 vitalsign.IsPregnant = model.IsPregnant;
+                vitalsign.Skin = model.Skin;
+                vitalsign.MentalHealth = model.MentalHealth;
                 vitalsign.Comments = model.Comments;
                 vitalsign.MUser = userID;
                 vitalsign.MWhen = now;

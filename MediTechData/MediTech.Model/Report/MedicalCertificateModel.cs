@@ -49,6 +49,8 @@ namespace MediTech.Model.Report
         public string EmployerAddress { get; set; }
         public string VisitCodeType { get; set; }
         public int VisitTypeUID { get; set; }
+        public string Skin { get; set; }
+        public string MentalHealth { get; set; }
 
     }
 }

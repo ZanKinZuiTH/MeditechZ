@@ -1768,6 +1768,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2547
                     #region Nitric Acids
                     if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1339") != null)
                     {
+                        page3.lbFumeComment.Visible = true;
                         page3.rowNitricAcids.Visible = true;
                         page3.lbNitricAcidsRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1339")?.ReferenceRange;
                         page3.lbNitricAcids1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1339" && p.Year == year1)?.ResultValue;
@@ -1779,6 +1780,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2547
                     #region Sulphuric Acids
                     if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1338") != null)
                     {
+                        page3.lbFumeComment.Visible = true;
                         page3.rowSulphuricAcids.Visible = true;
                         page3.lbSulphuricAcidsRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1338")?.ReferenceRange;
                         page3.lbSulphuricAcids1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1338" && p.Year == year1)?.ResultValue;
@@ -1822,11 +1824,19 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2547
                 Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 - 1;
-                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 - 1;
+                int? year2 = countYear >= 2 ? (Years.ElementAtOrDefault(1) != null ? Years[1] : year1 - 1) : null;
+                int? year3 = countYear >= 3 ? (Years.ElementAtOrDefault(2) != null ? Years[2] : year2 - 1) : null;
+                //int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
+                //int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 - 1;
+                //int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 - 1;
                 page3.VisionYear1.Text = "ปี" + " " + (year1 + 543).ToString();
                 page3.VisionYear2.Text = "ปี" + " " + (year2 + 543).ToString();
                 page3.VisionYear3.Text = "ปี" + " " + (year3 + 543).ToString();
+
+                //int countYear = Years.Count();
+                //int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
+                //int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 - 1;
+                //int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 - 1;
 
                 page3.lbFarVision1.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS19" && p.Year == year1)?.ResultValue;
                 page3.lbNearVision1.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS20" && p.Year == year1)?.ResultValue;

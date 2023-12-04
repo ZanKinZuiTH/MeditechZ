@@ -32,6 +32,8 @@ namespace MediTech.DataBase
         public Nullable<double> WaistCircumference { get; set; }
         public Nullable<double> WHRValue { get; set; }
         public Nullable<bool> IsPregnant { get; set; }
+        public string Skin { get; set; }
+        public string MentalHealth { get; set; }
         public string Comments { get; set; }
         public System.DateTime CWhen { get; set; }
         public int CUser { get; set; }

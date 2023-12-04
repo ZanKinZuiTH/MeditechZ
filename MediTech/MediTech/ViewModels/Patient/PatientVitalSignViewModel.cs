@@ -314,6 +314,38 @@ namespace MediTech.ViewModels
             get { return _CommentRe; }
             set { Set(ref _CommentRe, value); }
         }
+
+        public List<LookupReferenceValueModel> SkinSource { get; set; }
+
+        private LookupReferenceValueModel _SelectedSkin;
+        public LookupReferenceValueModel SelectedSkin
+        {
+            get { return _SelectedSkin; }
+            set { Set(ref _SelectedSkin, value); }
+        }
+
+        private LookupReferenceValueModel _SelectedSkinRe;
+        public LookupReferenceValueModel SelectedSkinRe
+        {
+            get { return _SelectedSkin; }
+            set { Set(ref _SelectedSkin, value); }
+        }
+
+        public List<LookupReferenceValueModel> MentalHealthSource { get; set; }
+
+        private LookupReferenceValueModel _SelectedMentalHealth;
+        public LookupReferenceValueModel SelectedMentalHealth
+        {
+            get { return _SelectedMentalHealth; }
+            set { Set(ref _SelectedMentalHealth, value); }
+        }
+
+        private LookupReferenceValueModel _SelectedMentalHealthRe;
+        public LookupReferenceValueModel SelectedMentalHealthRe
+        {
+            get { return _SelectedMentalHealthRe; }
+            set { Set(ref _SelectedMentalHealthRe, value); }
+        }
         #endregion
 
         #region Command
@@ -356,6 +388,8 @@ namespace MediTech.ViewModels
         {
             StampDate = DateTime.Now;
             StampTime = StampDate;
+            SkinSource = DataService.Technical.GetReferenceValueMany("SKTY");
+            MentalHealthSource = DataService.Technical.GetReferenceValueMany("PHMTH");
         }
 
         void OpenVitalSignsChart()
@@ -408,7 +442,8 @@ namespace MediTech.ViewModels
                     WaistCircumferenceRe = null;
                     IsPregnant = false;
                     CommentRe = null;
-
+                    SelectedSkinRe = null;
+                    SelectedMentalHealthRe = null;
 
                     RecentVitals.Remove(SelectRecentVital);
                     OnUpdateEvent();
@@ -444,6 +479,8 @@ namespace MediTech.ViewModels
             StampTimeRe = model.RecordedDttm;
             WaistCircumferenceRe = model.WaistCircumference;
             IsPregnantRe = model.IsPregnant ?? false;
+            SelectedSkinRe = model.Skin != null ? SkinSource.FirstOrDefault(p => p.Display == model.Skin) : null;
+            SelectedMentalHealthRe = model.MentalHealth != null ? MentalHealthSource.FirstOrDefault(p => p.Display == model.MentalHealth) : null;
             CommentRe = model.Comments;
         }
 
@@ -467,6 +504,8 @@ namespace MediTech.ViewModels
                 model.RecordedDttm = DateTime.Now;
                 model.WaistCircumference = WaistCircumference;
                 model.IsPregnant = IsPregnant;
+                model.Skin = SelectedSkin?.Display;
+                model.MentalHealth = SelectedMentalHealth?.Display;
                 model.RecordedDttm = DateTime.Parse(StampDate.Value.ToString("dd/MM/yyyy") + " " + StampTime.Value.ToString("HH:mm"));
                 model.Comments = !string.IsNullOrEmpty(Comment) ? Comment.Trim() : null;
             }
@@ -488,6 +527,8 @@ namespace MediTech.ViewModels
                     model.IsPregnant = IsPregnantRe;
                     model.RecordedDttm = DateTime.Parse(StampDateRe.Value.ToString("dd/MM/yyyy") + " " + StampTimeRe.Value.ToString("HH:mm"));
                     model.Comments = !string.IsNullOrEmpty(CommentRe) ? CommentRe.Trim() : null;
+                    model.Skin = SelectedSkinRe?.Display;
+                    model.MentalHealth = SelectedMentalHealthRe?.Display;
                 }
             }
         }
