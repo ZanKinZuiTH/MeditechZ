@@ -1590,135 +1590,132 @@ namespace MediTechWebApi.Controllers
                 double? NetAmount;
                 DateTime now = DateTime.Now;
                 int userUID = allocateModel.UserUID;
-                using (var tran = new TransactionScope())
+
+                SqlDirectStore.pAllocatePatientBillableItem(allocateModel.PatientUID, allocateModel.PatientVisitUID, allocateModel.IsAutoAllocate, allocateModel.GroupUID, allocateModel.SubGroupUID, allocateModel.PatientVisitPayorUID
+                , allocateModel.PayorAgreementUID, allocateModel.UserUID, allocateModel.AllocatedVisitPayorUID, allocateModel.PatientBillableItemUID, allocateModel.CanKeepDiscount, allocateModel.StartDate, allocateModel.EndDate);
+
+                var patientvisit = db.PatientVisit.Find(allocateModel.PatientVisitUID);
+
+                var patBillableItems = GetPatientBillableItemsAccount(allocateModel.PatientUID, allocateModel.PatientVisitUID, null, allocateModel.PatientVisitPayorUID
+, patientvisit.StartDttm.Value.Date, DateTime.Now.Date, null, null, null);
+
+                if (patBillableItems != null && patBillableItems.Count() > 0)
                 {
-                    SqlDirectStore.pAllocatePatientBillableItem(allocateModel.PatientUID, allocateModel.PatientVisitUID, allocateModel.IsAutoAllocate, allocateModel.GroupUID, allocateModel.SubGroupUID, allocateModel.PatientVisitPayorUID
-                    , allocateModel.PayorAgreementUID, allocateModel.UserUID, allocateModel.AllocatedVisitPayorUID, allocateModel.PatientBillableItemUID, allocateModel.CanKeepDiscount, allocateModel.StartDate, allocateModel.EndDate);
+                    Amount = patBillableItems.Sum(p => p.Amount ?? 0);
+                    DiscountAmount = patBillableItems.Sum(p => p.Discount ?? 0);
+                    NetAmount = patBillableItems.Sum(p => p.NetAmount ?? 0);
 
-                    var patientvisit = db.PatientVisit.Find(allocateModel.PatientVisitUID);
 
-                    var patBillableItems = GetPatientBillableItemsAccount(allocateModel.PatientUID, allocateModel.PatientVisitUID, null, allocateModel.PatientVisitPayorUID
-    , patientvisit.StartDttm.Value.Date, DateTime.Now.Date, null, null, null);
+                    var patientVisitPayor = db.PatientVisitPayor.Find(allocateModel.PatientVisitPayorUID);
+                    var payorAgreement = db.PayorAgreement.Find(patientVisitPayor.PayorAgreementUID);
 
-                    if (patBillableItems != null && patBillableItems.Count() > 0)
+                    GeneratePatientBillModel generateBill = new GeneratePatientBillModel();
+                    generateBill.PatientUID = allocateModel.PatientUID;
+                    generateBill.PatientVisitUID = allocateModel.PatientVisitUID;
+                    generateBill.BillGenerateDttm = DateTime.Now;
+                    generateBill.TotalAmount = Amount;
+                    generateBill.DiscountAmount = DiscountAmount;
+                    generateBill.NetAmount = NetAmount;
+
+                    generateBill.PBTYPUID = payorAgreement.PBTYPUID;
+                    generateBill.BLTYPUID = payorAgreement.BLTYPUID;
+                    generateBill.PatientVisitPayorUID = patientVisitPayor.UID;
+                    generateBill.PayorDetailUID = patientVisitPayor.PayorDetailUID;
+                    generateBill.PayorAgreementUID = patientVisitPayor.PayorAgreementUID;
+                    generateBill.UserUID = userUID;
+                    generateBill.DateFrom = patientvisit.StartDttm.Value;
+                    generateBill.DateTo = DateTime.Now;
+                    generateBill.Comments = "From Mass Generate Invoice";
+                    generateBill.BLCATUID = OPBILL;
+                    generateBill.PatientBillableItemsAccounts = patBillableItems.ToList();
+                    generateBill.PatientPaymentDetails = new List<PatientPaymentDetailModel>();
+
+                    GeneratePatientBill(generateBill);
+
+                    string isBillComplete = GetCompleteBill(patientvisit.UID);
+                    if (isBillComplete == "Y")
                     {
-                        Amount = patBillableItems.Sum(p => p.Amount ?? 0);
-                        DiscountAmount = patBillableItems.Sum(p => p.Discount ?? 0);
-                        NetAmount = patBillableItems.Sum(p => p.NetAmount ?? 0);
-
-
-                        var patientVisitPayor = db.PatientVisitPayor.Find(allocateModel.PatientVisitPayorUID);
-                        var payorAgreement = db.PayorAgreement.Find(patientVisitPayor.PayorAgreementUID);
-
-                        GeneratePatientBillModel generateBill = new GeneratePatientBillModel();
-                        generateBill.PatientUID = allocateModel.PatientUID;
-                        generateBill.PatientVisitUID = allocateModel.PatientVisitUID;
-                        generateBill.BillGenerateDttm = DateTime.Now;
-                        generateBill.TotalAmount = Amount;
-                        generateBill.DiscountAmount = DiscountAmount;
-                        generateBill.NetAmount = NetAmount;
-
-                        generateBill.PBTYPUID = payorAgreement.PBTYPUID;
-                        generateBill.BLTYPUID = payorAgreement.BLTYPUID;
-                        generateBill.PatientVisitPayorUID = patientVisitPayor.UID;
-                        generateBill.PayorDetailUID = patientVisitPayor.PayorDetailUID;
-                        generateBill.PayorAgreementUID = patientVisitPayor.PayorAgreementUID;
-                        generateBill.UserUID = userUID;
-                        generateBill.DateFrom = patientvisit.StartDttm.Value;
-                        generateBill.DateTo = DateTime.Now;
-                        generateBill.Comments = "From Mass Generate Invoice";
-                        generateBill.BLCATUID = OPBILL;
-                        generateBill.PatientBillableItemsAccounts = patBillableItems.ToList();
-                        generateBill.PatientPaymentDetails = new List<PatientPaymentDetailModel>();
-
-                        GeneratePatientBill(generateBill);
-
-                        string isBillComplete = GetCompleteBill(patientvisit.UID);
-                        if (isBillComplete == "Y")
+                        if (patientvisit != null)
                         {
-                            if (patientvisit != null)
+                            db.PatientVisit.Attach(patientvisit);
+
+                            patientvisit.CareProviderUID = patientvisit.CareProviderUID;
+                            patientvisit.VISTSUID = FINDIS;
+                            patientvisit.EndDttm = DateTime.Now;
+                            patientvisit.IsBillFinalized = "Y";
+                            patientvisit.MUser = userUID;
+                            patientvisit.MWhen = now;
+
+
+
+                            #region PatientServiceEvent
+                            PatientServiceEvent serviceEvent = new PatientServiceEvent();
+                            serviceEvent.PatientVisitUID = patientvisit.UID;
+                            serviceEvent.EventStartDttm = patientvisit.MWhen;
+                            serviceEvent.LocationUID = patientvisit.LocationUID;
+                            serviceEvent.VISTSUID = FINDIS;
+                            serviceEvent.MUser = userUID;
+                            serviceEvent.MWhen = now;
+                            serviceEvent.CUser = userUID;
+                            serviceEvent.CWhen = now;
+                            serviceEvent.StatusFlag = "A";
+
+                            db.PatientServiceEvent.Add(serviceEvent);
+
+                            //db.SaveChanges();
+                            #endregion
+
+                            #region PatientVisitCareProvider
+                            string careproviderName = string.Empty;
+                            if (patientvisit.CareProviderUID != null)
                             {
-                                db.PatientVisit.Attach(patientvisit);
+                                careproviderName = (from cr in db.Careprovider
+                                                    where cr.UID == patientvisit.CareProviderUID
+                                                    select new
+                                                    {
+                                                        careproviderName = SqlFunction.fGetCareProviderName(cr.UID)
+                                                    }).FirstOrDefault()?.careproviderName;
 
-                                patientvisit.CareProviderUID = patientvisit.CareProviderUID;
-                                patientvisit.VISTSUID = FINDIS;
-                                patientvisit.EndDttm = DateTime.Now;
-                                patientvisit.IsBillFinalized = "Y";
-                                patientvisit.MUser = userUID;
-                                patientvisit.MWhen = now;
-
-
-
-                                #region PatientServiceEvent
-                                PatientServiceEvent serviceEvent = new PatientServiceEvent();
-                                serviceEvent.PatientVisitUID = patientvisit.UID;
-                                serviceEvent.EventStartDttm = patientvisit.MWhen;
-                                serviceEvent.LocationUID = patientvisit.LocationUID;
-                                serviceEvent.VISTSUID = FINDIS;
-                                serviceEvent.MUser = userUID;
-                                serviceEvent.MWhen = now;
-                                serviceEvent.CUser = userUID;
-                                serviceEvent.CWhen = now;
-                                serviceEvent.StatusFlag = "A";
-
-                                db.PatientServiceEvent.Add(serviceEvent);
-
-                                //db.SaveChanges();
-                                #endregion
-
-                                #region PatientVisitCareProvider
-                                string careproviderName = string.Empty;
-                                if (patientvisit.CareProviderUID != null)
+                                PatientVisitCareProvider patientVisitCare = db.PatientVisitCareProvider.FirstOrDefault(p => p.PatientVisitUID == patientvisit.UID && p.LocationUID == patientvisit.LocationUID && p.StatusFlag == "A");
+                                if (patientVisitCare != null)
                                 {
-                                    careproviderName = (from cr in db.Careprovider
-                                                        where cr.UID == patientvisit.CareProviderUID
-                                                        select new
-                                                        {
-                                                            careproviderName = SqlFunction.fGetCareProviderName(cr.UID)
-                                                        }).FirstOrDefault()?.careproviderName;
+                                    db.PatientVisitCareProvider.Attach(patientVisitCare);
+                                    patientVisitCare.PACLSUID = FINDIS;
+                                    patientVisitCare.CareproviderUID = patientvisit.CareProviderUID;
+                                    patientVisitCare.CareProviderName = careproviderName;
+                                    patientVisitCare.LocationUID = patientvisit.LocationUID;
+                                    patientVisitCare.MUser = userUID;
+                                    patientVisitCare.MWhen = DateTime.Now;
 
-                                    PatientVisitCareProvider patientVisitCare = db.PatientVisitCareProvider.FirstOrDefault(p => p.PatientVisitUID == patientvisit.UID && p.LocationUID == patientvisit.LocationUID && p.StatusFlag == "A");
-                                    if (patientVisitCare != null)
-                                    {
-                                        db.PatientVisitCareProvider.Attach(patientVisitCare);
-                                        patientVisitCare.PACLSUID = FINDIS;
-                                        patientVisitCare.CareproviderUID = patientvisit.CareProviderUID;
-                                        patientVisitCare.CareProviderName = careproviderName;
-                                        patientVisitCare.LocationUID = patientvisit.LocationUID;
-                                        patientVisitCare.MUser = userUID;
-                                        patientVisitCare.MWhen = DateTime.Now;
-
-                                    }
-                                    else
-                                    {
-                                        patientVisitCare = new PatientVisitCareProvider();
-                                        db.PatientVisitCareProvider.Attach(patientVisitCare);
-                                        patientVisitCare.PatientVisitUID = patientvisit.UID;
-                                        patientVisitCare.StartDttm = patientvisit.MWhen;
-                                        patientVisitCare.PACLSUID = FINDIS;
-                                        patientVisitCare.CareproviderUID = patientvisit.CareProviderUID;
-                                        patientVisitCare.CareProviderName = careproviderName;
-                                        patientVisitCare.LocationUID = patientvisit.LocationUID;
-                                        patientVisitCare.CUser = userUID;
-                                        patientVisitCare.CWhen = DateTime.Now;
-                                        patientVisitCare.MUser = userUID;
-                                        patientVisitCare.MWhen = DateTime.Now;
-                                        patientVisitCare.OwnerOrganisationUID = patientvisit.OwnerOrganisationUID ?? 0;
-                                        patientVisitCare.StatusFlag = "A";
-
-                                        db.PatientVisitCareProvider.Add(patientVisitCare);
-                                    }
                                 }
-                                #endregion
+                                else
+                                {
+                                    patientVisitCare = new PatientVisitCareProvider();
+                                    db.PatientVisitCareProvider.Attach(patientVisitCare);
+                                    patientVisitCare.PatientVisitUID = patientvisit.UID;
+                                    patientVisitCare.StartDttm = patientvisit.MWhen;
+                                    patientVisitCare.PACLSUID = FINDIS;
+                                    patientVisitCare.CareproviderUID = patientvisit.CareProviderUID;
+                                    patientVisitCare.CareProviderName = careproviderName;
+                                    patientVisitCare.LocationUID = patientvisit.LocationUID;
+                                    patientVisitCare.CUser = userUID;
+                                    patientVisitCare.CWhen = DateTime.Now;
+                                    patientVisitCare.MUser = userUID;
+                                    patientVisitCare.MWhen = DateTime.Now;
+                                    patientVisitCare.OwnerOrganisationUID = patientvisit.OwnerOrganisationUID ?? 0;
+                                    patientVisitCare.StatusFlag = "A";
 
-                                db.SaveChanges();
+                                    db.PatientVisitCareProvider.Add(patientVisitCare);
+                                }
                             }
+                            #endregion
+
+                            db.SaveChanges();
                         }
                     }
-
-
-                    tran.Complete();
                 }
+
+
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception ex)
