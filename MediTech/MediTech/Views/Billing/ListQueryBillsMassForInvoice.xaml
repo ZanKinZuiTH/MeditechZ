@@ -150,6 +150,7 @@
             <dxg:GridColumn Header="IsBillFinalized" FieldName="IsBillFinalized" ReadOnly="True"/>
             <dxg:GridColumn Header="Payor" FieldName="PayorName" ReadOnly="True"/>
             <dxg:GridColumn Header="Office Name" FieldName="PolicyName" ReadOnly="True"/>
+            <dxg:GridColumn Header="Company Name" FieldName="CompanyName" ReadOnly="True"/>
             <dxg:GridColumn Header="Payor Agreement" FieldName="PayorAgreementName" ReadOnly="True"/>
             <dxg:GridColumn Header="VisitID" FieldName="VisitID"  ReadOnly="True"/>
             <dxg:GridColumn Header="Status" FieldName="VisitStatus"  ReadOnly="True"/>
