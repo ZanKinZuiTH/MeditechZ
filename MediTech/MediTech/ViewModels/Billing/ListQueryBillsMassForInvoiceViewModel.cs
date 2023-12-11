@@ -237,15 +237,15 @@ namespace MediTech.ViewModels
                 var patienttUnBillFinalized = SelectPatientAllocates.Where(p => p.IsBillFinalized == "N").ToList();
 
                 ListQueryBillsMassForInvoice view = (ListQueryBillsMassForInvoice)this.View;
-                int upperlimit = 0;
+                int upperlimit = patienttUnBillFinalized.Count();
                 int loopCounter = 0;
-                foreach (var currentData in patienttUnBillFinalized)
-                {
-                    if (currentData.Select == true)
-                    {
-                        upperlimit++;
-                    }
-                }
+                //foreach (var currentData in patienttUnBillFinalized)
+                //{
+                //    if (currentData.Select == true)
+                //    {
+                //        upperlimit++;
+                //    }
+                //}
                 view.SetProgressBarLimits(0, upperlimit);
 
                 foreach (var pateintAllocate in patienttUnBillFinalized.ToList())
@@ -262,7 +262,13 @@ namespace MediTech.ViewModels
                         allocateModel.UserUID = AppUtil.Current.UserID;
                         allocateModel.StartDate = DateFrom ?? pateintAllocate.StartDttm.Value;
                         allocateModel.EndDate = DateTo ?? DateTime.Now;
-                        DataService.Billing.AllocateAndGenerateInvoiceOnly(allocateModel);
+                        PatientBillModel patientBill = DataService.Billing.AllocateAndGenerateInvoiceOnly(allocateModel);
+                        if (patientBill != null)
+                        {
+                            pateintAllocate.PatientBillUID = patientBill.PatientBillUID;
+                            pateintAllocate.OwnerOrganisationUID = patientBill.OwnerOrganisationUID;
+                            pateintAllocate.IsBillFinalized = "Y";
+                        }
 
 
                     }
@@ -282,7 +288,7 @@ namespace MediTech.ViewModels
                 view.grdPatientList.RefreshData();
                 view.progressBar1.Value = 0;
 
-                Search();
+                //Search();
             }
         }
 

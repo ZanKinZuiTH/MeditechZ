@@ -286,21 +286,20 @@ namespace MediTech.DataService
 
         }
 
-        public bool AllocateAndGenerateInvoiceOnly(AllocatePatientBillableItemModel allocateModel)
+        public PatientBillModel AllocateAndGenerateInvoiceOnly(AllocatePatientBillableItemModel allocateModel)
         {
-            bool flag = false;
+            PatientBillModel returnData = null;
             try
             {
                 string requestApi = string.Format("Api/Billing/AllocateAndGenerateInvoiceOnly");
-                MeditechApiHelper.Post<AllocatePatientBillableItemModel>(requestApi, allocateModel);
-                flag = true;
+                returnData = MeditechApiHelper.Post<AllocatePatientBillableItemModel, PatientBillModel>(requestApi, allocateModel);
             }
             catch (Exception)
             {
 
                 throw;
             }
-            return flag;
+            return returnData;
 
         }
 

@@ -10,6 +10,7 @@ namespace MediTech.Model
     {
         public long PatientUID { get; set; }
         public long PatientVisitUID { get; set; }
+        public long PatientBillUID { get; set; }     
         public DateTime BillGenerateDttm { get; set; }
         public double? AdvanceAmount { get; set; }
 
@@ -29,6 +30,7 @@ namespace MediTech.Model
         public int? PayorAgreementUID { get; set; }
         public int UserUID { get; set; }
 
+        public int? OwnerOrganisationUID { get; set; } 
         public DateTime DateFrom { get; set; }
 
         public DateTime DateTo { get; set; }
