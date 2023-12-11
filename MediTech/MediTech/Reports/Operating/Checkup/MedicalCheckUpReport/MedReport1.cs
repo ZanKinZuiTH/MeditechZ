@@ -274,16 +274,16 @@ namespace MediTech.Reports.Operating.Checkup
                 #endregion
 
 
-                IOrderedEnumerable<PatientResultComponentModel> labCompare;
+                List<PatientResultComponentModel> labResult;
                 if (data.LabCompare != null)
                 {
-                    labCompare = data.LabCompare.OrderByDescending(p => p.Year);
+                    labResult = data.LabCompare.Where(p => p.PatientVisitUID == patientVisitUID).ToList();
 
-                    if (labCompare != null)
+                    if (labResult != null)
                     {
                         #region Complete Blood Count
 
-                        IEnumerable<PatientResultComponentModel> cbcTestSet = labCompare
+                        IEnumerable<PatientResultComponentModel> cbcTestSet = labResult
                         .Where(p => p.RequestItemName.Contains("CBC")
                         || p.RequestItemCode.Contains("LAB597"))
                         .OrderByDescending(p => p.Year);
@@ -291,14 +291,14 @@ namespace MediTech.Reports.Operating.Checkup
                         #endregion
 
                         #region Urinalysis
-                        IEnumerable<PatientResultComponentModel> uaTestSet = labCompare
+                        IEnumerable<PatientResultComponentModel> uaTestSet = labResult
                             .Where(p => p.RequestItemName.Contains("UA"))
                             .OrderByDescending(p => p.Year);
                         GenerateUrinalysis(uaTestSet);
                         #endregion
 
                         #region Chemical
-                        IEnumerable<PatientResultComponentModel> ChemicalTestSet = labCompare
+                        IEnumerable<PatientResultComponentModel> ChemicalTestSet = labResult
                             .Where(p => p.RequestItemCode.Contains("LAB231")
                             || p.RequestItemCode.Contains("LAB232")
                             || p.RequestItemCode.Contains("LAB212")
@@ -314,7 +314,7 @@ namespace MediTech.Reports.Operating.Checkup
                         #endregion
 
                         #region Liver Function
-                        IEnumerable<PatientResultComponentModel> LiverTestSet = labCompare
+                        IEnumerable<PatientResultComponentModel> LiverTestSet = labResult
                             .Where(p => p.RequestItemCode.Contains("LAB221")
                             || p.RequestItemCode.Contains("LAB222")
                             || p.RequestItemCode.Contains("LAB223")
@@ -329,7 +329,7 @@ namespace MediTech.Reports.Operating.Checkup
                         #endregion
 
                         #region other
-                        IEnumerable<PatientResultComponentModel> OtherTestSet = labCompare
+                        IEnumerable<PatientResultComponentModel> OtherTestSet = labResult
                             .Where(p => p.RequestItemCode.Contains("LAB318") //Amphetamine (Urine)
                             || p.RequestItemCode.Contains("LAB483") //Amphetamine
                             || p.RequestItemCode.Contains("LAB490") //Amphetamine (strip)
