@@ -101,6 +101,14 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<DoctorFeeReportModel> GetUCSAndForeignerFee(DateTime dateFrom, DateTime dateTo)
+        {
+            string requestApi = string.Format("Api/Report/GetUCSAndForeignerFee?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}", dateFrom, dateTo);
+            List<DoctorFeeReportModel> data = MeditechApiHelper.Get<List<DoctorFeeReportModel>>(requestApi);
+
+            return data;
+        }
+
         public List<DoctorFeeReportModel> GetDoctorfeeReport2(DateTime dateFrom, DateTime dateTo, int? careproviderUID)
         {
             string requestApi = string.Format("Api/Report/GetDoctorfeeReport2?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&careproviderUID={2}", dateFrom, dateTo, careproviderUID);

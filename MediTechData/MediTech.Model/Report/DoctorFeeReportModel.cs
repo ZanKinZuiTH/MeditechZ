@@ -8,6 +8,7 @@ namespace MediTech.Model.Report
 {
     public class DoctorFeeReportModel
     {
+        public int No { get; set; }
         public string CareproviderName { get; set; }
         public string PatientID { get; set; }
         public string PatientName { get; set; }

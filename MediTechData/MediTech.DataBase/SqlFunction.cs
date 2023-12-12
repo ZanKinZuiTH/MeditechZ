@@ -2143,6 +2143,18 @@ namespace MediTech.DataBase
             adp.Fill(ds);
             return ds.Tables[0];
         }
+        public static DataTable pRPTUCSAndForeignerFee(DateTime dateFrom, DateTime dateTo)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pRPTUCSAndForeignerFee", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 5000;
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
 
         public static DataTable pRPTUltrasoundFee(DateTime dateFrom, DateTime dateTo, int? careproviderUID)
         {

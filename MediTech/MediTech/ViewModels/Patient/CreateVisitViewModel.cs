@@ -119,7 +119,7 @@ namespace MediTech.ViewModels
 
                         VisibiltyCheckupCompany = Visibility.Visible;
                     }
-                    if (SelectedVisitType.ValueCode == "CHKIN3")
+                    if (SelectedVisitType.ValueCode == "CHKIN3" || SelectedVisitType.ValueCode == "UCS1" || SelectedVisitType.ValueCode == "UCS2" || SelectedVisitType.ValueCode == "UCS3")
                     {
                         VisibiltyEmployerAddress = Visibility.Visible;
                         VisibilityCareprovider2 = Visibility.Visible;
