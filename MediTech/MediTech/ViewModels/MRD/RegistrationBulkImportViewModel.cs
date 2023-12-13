@@ -597,7 +597,7 @@ namespace MediTech.ViewModels
                         else
                         {
                             patient = DataService.PatientIdentity.CheckDupicatePatient(CurrentImportedData.FirstName
-                                , CurrentImportedData.LastName);
+                                , CurrentImportedData.LastName,CurrentImportedData.BirthDttm);
                         }
 
                         if (patient != null)

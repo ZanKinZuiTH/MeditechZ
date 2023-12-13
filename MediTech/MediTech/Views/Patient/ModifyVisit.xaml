@@ -7,7 +7,7 @@
              xmlns:uc="clr-namespace:MediTech.CustomControl.Banner"
              mc:Ignorable="d" 
              DataContext="{Binding Path=ModifyVisitViewModel,Source={StaticResource Locator}}"
-             d:DesignHeight="400" d:DesignWidth="600">
+             d:DesignHeight="500" d:DesignWidth="600">
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">
             <dxlc:LayoutItem Name="Banner" Visibility="{Binding IsBanner}">

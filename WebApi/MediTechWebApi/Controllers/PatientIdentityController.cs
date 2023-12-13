@@ -972,9 +972,9 @@ namespace MediTechWebApi.Controllers
 
         [Route("CheckDupicatePatient")]
         [HttpGet]
-        public PatientInformationModel CheckDupicatePatient(string firstName, string lastName)
+        public PatientInformationModel CheckDupicatePatient(string firstName, string lastName, DateTime? birthDate)
         {
-            PatientInformationModel data = SqlDirectStore.pCheckDupicatePatient(firstName, lastName).ToList<PatientInformationModel>().FirstOrDefault();
+            PatientInformationModel data = SqlDirectStore.pCheckDupicatePatient(firstName, lastName, birthDate).ToList<PatientInformationModel>().FirstOrDefault();
             return data;
         }
 

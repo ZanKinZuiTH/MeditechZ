@@ -1165,7 +1165,7 @@ namespace MediTech.DataBase
         }
 
 
-        public static DataTable pCheckDupicatePatient(string firstName, string lastName)
+        public static DataTable pCheckDupicatePatient(string firstName, string lastName, DateTime? birthDate)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pCheckDupicatePatient", entities.Database.Connection.ConnectionString);
@@ -1173,6 +1173,7 @@ namespace MediTech.DataBase
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_FirstName", firstName);
             adp.SelectCommand.Parameters.AddWithValue("@P_LastName", !string.IsNullOrEmpty(lastName) ? lastName : (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_BirthDate", birthDate ?? (object)DBNull.Value);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
