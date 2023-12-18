@@ -31,6 +31,7 @@ namespace MediTech.Views
     /// </summary>
     public partial class EnterResultsLab : UserControl
     {
+        private bool isCheck;
         public EnterResultsLab()
         {
             InitializeComponent();
@@ -47,39 +48,57 @@ namespace MediTech.Views
             {
                 if (data.ResultItemCode == "C0070")
                 {
-                    if (data.ResultValue != null && type == nodeChangeType)
+                    if (isCheck == true)
                     {
-
-                        var Oldresult = (this.DataContext as EnterResultsLabViewModel).RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212");
-                        var status = Oldresult.OrderStatus;
-
-
-                        if (status != "Reviewed")
+                        if (data.ResultValue != null && type == nodeChangeType)
                         {
-                            if (data.ResultValue != "")
+
+                            var Oldresult = (this.DataContext as EnterResultsLabViewModel).RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212");
+                            var status = Oldresult.OrderStatus;
+
+
+                            if (status != "Reviewed")
                             {
-                                double Scr = (data.ResultValue != "") ? double.Parse(data.ResultValue) : 0;
-                                (this.DataContext as EnterResultsLabViewModel).CalculateEGFR(Scr);
+                                if (data.ResultValue != "")
+                                {
+                                    double Scr = (data.ResultValue != "") ? double.Parse(data.ResultValue) : 0;
+                                    (this.DataContext as EnterResultsLabViewModel).CalculateEGFR(Scr);
+                                }
                             }
-                        }
 
-                        if (status == "Reviewed")
-                       {
-                            (this.DataContext as EnterResultsLabViewModel).CalculateEGFR(0);
-                            var valThai2 = Oldresult.ResultComponents.Where(p => p.ResultItemCode == "C0073").FirstOrDefault().ResultValue;
-                            var valAfrica2 = Oldresult.ResultComponents.Where(p => p.ResultItemCode == "C0074").FirstOrDefault().ResultValue;
-                            var Non2 = Oldresult.ResultComponents.Where(p => p.ResultItemCode == "C0075").FirstOrDefault().ResultValue;
-
-                            if (valThai2 == null && valAfrica2 == null && Non2 == null)
+                            if (status == "Reviewed")
                             {
-                                double Scr = (data.ResultValue != "") ? double.Parse(data.ResultValue) : 0;
-                                (this.DataContext as EnterResultsLabViewModel).CalculateEGFR(Scr);
+                                (this.DataContext as EnterResultsLabViewModel).CalculateEGFR(0);
+                                var valThai2 = Oldresult.ResultComponents.Where(p => p.ResultItemCode == "C0073").FirstOrDefault().ResultValue;
+                                var valAfrica2 = Oldresult.ResultComponents.Where(p => p.ResultItemCode == "C0074").FirstOrDefault().ResultValue;
+                                var Non2 = Oldresult.ResultComponents.Where(p => p.ResultItemCode == "C0075").FirstOrDefault().ResultValue;
+
+                                if (valThai2 == null && valAfrica2 == null && Non2 == null)
+                                {
+                                    double Scr = (data.ResultValue != "") ? double.Parse(data.ResultValue) : 0;
+                                    (this.DataContext as EnterResultsLabViewModel).CalculateEGFR(Scr);
+                                }
                             }
                         }
                     }
 
                 }
             }
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+            bool IsActive = (bool)(sender as CheckBox).IsChecked;
+            if (IsActive)
+            {
+                isCheck = true;
+            }
+            else
+            {
+                isCheck = false;
+            }
+
         }
     }
 }

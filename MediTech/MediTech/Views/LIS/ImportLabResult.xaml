@@ -195,6 +195,16 @@
                     </dxe:ListBoxEdit>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup Orientation="Vertical">
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem HorizontalAlignment="Right">
+                            <dxlc:LayoutItem Visibility="{Binding Visiblelityegfr}">
+                                <CheckBox  IsChecked="{Binding Path=IseGRFAuto, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Center">
+                                    <TextBlock>calculate eGFR</TextBlock>
+                                </CheckBox>
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    
                     <dxg:GridControl Name="gcTestParameter" ColumnsSource="{Binding ColumnsResultItems,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                      ColumnGeneratorTemplate="{StaticResource DefaultColumnTemplate}">
                         <dxg:GridControl.View>
