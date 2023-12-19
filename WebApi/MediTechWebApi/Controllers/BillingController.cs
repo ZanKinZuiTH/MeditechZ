@@ -1640,6 +1640,16 @@ namespace MediTechWebApi.Controllers
                     generateBill.PatientBillableItemsAccounts = patBillableItems.ToList();
                     generateBill.PatientPaymentDetails = new List<PatientPaymentDetailModel>();
 
+                    if (generateBill.PBTYPUID == 2900) //Receipt Type
+                    {
+                        PatientPaymentDetailModel patientPaymentDetail = new PatientPaymentDetailModel();
+                        patientPaymentDetail.PAYMDUID = 2933; //CASHH
+                        patientPaymentDetail.CURNCUID = 2811;
+                        patientPaymentDetail.Amount = generateBill.NetAmount ?? 0;
+
+                        generateBill.PatientPaymentDetails.Add(patientPaymentDetail);
+                    }
+
                     patientBill = GenerateBill(generateBill);
 
 
@@ -2160,8 +2170,7 @@ namespace MediTechWebApi.Controllers
                 var activedpaymentMethods = paymentMethod.Where(p => p.StatusFlag == "A");
 
                 DateTime now = DateTime.Now;
-                using (var tran = new TransactionScope())
-                {
+
                     foreach (var deletedItem in deletedpaymentMethods)
                     {
                         PatientPaymentDetail patientPaymentDetail = db.PatientPaymentDetail.Find(deletedItem.PatientPaymentDetailUID);
@@ -2209,7 +2218,73 @@ namespace MediTechWebApi.Controllers
                         db.SaveChanges();
                     }
 
-                    tran.Complete();
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+
+        [Route("ManagePatientPaymentDetailForMass")]
+        [HttpPost]
+        public HttpResponseMessage ManagePatientPaymentDetailForMass(List<PatientPaymentDetailModel> paymentMethod, int userUID)
+        {
+            try
+            {
+                var activedpaymentMethods = paymentMethod.Where(p => p.StatusFlag == "A");
+
+                DateTime now = DateTime.Now; 
+                List<long?> patientbillUIDs = paymentMethod.Select(p => p.PatientBillUID).Distinct().ToList();
+
+                foreach (var billUID in patientbillUIDs)
+                {
+                    List<PatientPaymentDetail> deletedpayments = db.PatientPaymentDetail.Where(p => p.PatientBillUID == billUID && p.StatusFlag == "A").ToList() ;
+                    foreach (var payment in deletedpayments)
+                    {
+                        db.PatientPaymentDetail.Attach(payment);
+                        payment.StatusFlag = "D";
+                        payment.MUser = userUID;
+                        payment.MWhen = now;
+                        payment.Comments = "Delete From Mass";
+
+                        db.SaveChanges();
+                    }
+                }
+
+                foreach (var inPaymentDetail in activedpaymentMethods)
+                {
+                    PatientPaymentDetail patientPaymentDetail = db.PatientPaymentDetail.Find(inPaymentDetail.PatientPaymentDetailUID);
+                    if (patientPaymentDetail == null)
+                    {
+                        patientPaymentDetail = new PatientPaymentDetail();
+                        patientPaymentDetail.CUser = userUID;
+                        patientPaymentDetail.CWhen = now;
+                    }
+
+                    patientPaymentDetail.MUser = userUID;
+                    patientPaymentDetail.MWhen = now;
+                    patientPaymentDetail.StatusFlag = "A";
+                    patientPaymentDetail.OwnerOrganisationUID = inPaymentDetail.OwnerOrganisationUID;
+                    patientPaymentDetail.PatientBillUID = inPaymentDetail.PatientBillUID;
+                    patientPaymentDetail.PatientUID = inPaymentDetail.PatientUID;
+                    patientPaymentDetail.PatientVisitUID = inPaymentDetail.PatientVisitUID;
+                    patientPaymentDetail.PaidDttm = inPaymentDetail.PaidDttm;
+                    patientPaymentDetail.PAYMDUID = inPaymentDetail.PAYMDUID;
+                    patientPaymentDetail.CURNCUID = inPaymentDetail.CURNCUID;
+                    patientPaymentDetail.Amount = inPaymentDetail.Amount;
+                    patientPaymentDetail.CRDTYUID = inPaymentDetail.CRDTYUID;
+                    patientPaymentDetail.CardNumber = inPaymentDetail.CardNumber;
+                    patientPaymentDetail.CardExpiryDttm = inPaymentDetail.CardExpiryDttm;
+                    patientPaymentDetail.RecieptNumber = inPaymentDetail.RecieptNumber;
+                    patientPaymentDetail.BankName = inPaymentDetail.BankName;
+                    patientPaymentDetail.AuthorizationNumber = inPaymentDetail.AuthorizationNumber;
+                    patientPaymentDetail.BLCATUID = inPaymentDetail.BLCATUID;
+
+                    db.PatientPaymentDetail.AddOrUpdate(patientPaymentDetail);
+                    db.SaveChanges();
                 }
 
                 return Request.CreateResponse(HttpStatusCode.OK);

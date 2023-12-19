@@ -333,7 +333,7 @@ namespace MediTech.ViewModels
                     report.Parameters["PatientBillUID"].Value = pateintAllocate.PatientBillUID;
                     ReportPrintTool printTool = new ReportPrintTool(report);
                     report.ShowPrintMarginsWarning = false;
-                    printTool.ShowPreviewDialog();
+                    printTool.Print(SelectPrinter);
 
                     SelectPatientAllocates.Remove(pateintAllocate);
                     loopCounter = ++loopCounter;

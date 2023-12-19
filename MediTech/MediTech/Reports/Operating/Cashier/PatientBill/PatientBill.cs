@@ -39,7 +39,7 @@ namespace MediTech.Reports.Operating.Cashier
                 Languagelookup.LookUpValues.Add(new LookUpValue(item.ValueCode, item.Display));
             }
 
-            this.LogoType.LookUpSettings = lookupSettings;
+            this.LogoBillType.LookUpSettings = lookupSettings;
             this.LangType.LookUpSettings = Languagelookup;
             this.BeforePrint += PatientBill_BeforePrint;
         }
@@ -48,7 +48,7 @@ namespace MediTech.Reports.Operating.Cashier
         {
             int OrganisationUID = int.Parse(this.Parameters["OrganisationUID"].Value.ToString());
             int reportType = Convert.ToInt32(this.Parameters["ReportType"].Value.ToString());
-            int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
+            int logoType = Convert.ToInt32(this.Parameters["LogoBillType"].Value.ToString());
             string langType = this.Parameters["LangType"].Value.ToString();
             var listStatementBill = service.PrintStatementBill(Convert.ToInt64(this.Parameters["PatientBillUID"].Value.ToString()));
             this.DataSource = listStatementBill;

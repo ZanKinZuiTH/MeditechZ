@@ -74,8 +74,7 @@
                     </dxg:GridColumn.CellTemplate>
                 </dxg:GridColumn>-->
                 <dxg:GridColumn FieldName="No"  Width="30" Fixed="Left"/>
-                <dxg:GridColumn x:Name="Register" Fixed="Left" AllowPrinting="False"   Width="70"
-                               
+                <dxg:GridColumn x:Name="Register" Fixed="Left" AllowPrinting="False"   Width="70"                               
                                 AllowEditing="True" FieldName="Register"/>
                 <dxg:GridColumn Header="HN" FieldName="BN"/>
                 <dxg:GridColumn Header="Other ID" FieldName="PatientOtherID"/>

@@ -15,6 +15,7 @@
              d:DesignHeight="600" d:DesignWidth="900">
     <UserControl.Resources>
         <cv:NumericN2Formatter x:Key="NumericN2Formatter" />
+        <cv:AddValueConverter x:Key="AddValueConverter" />
         <cc:PatientSearchPopUp x:Key="PatientColumn" d:IsDataSource="True" />
         <DataTemplate x:Key="DetailCoreTemplate">
             <dx:MeasurePixelSnapper>
@@ -107,7 +108,7 @@
                 <dx:MeasurePixelSnapper>
                     <ContentPresenter x:Name="defaultRowPresenter" Content="{Binding}" ContentTemplate="{Binding View.DefaultDataRowTemplate}" />
                 </dx:MeasurePixelSnapper>
-                <dx:DXExpander IsExpanded="{Binding Path=IsSelected}" HorizontalExpand="None" VerticalExpand="FromTopToBottom">
+                <dx:DXExpander IsExpanded="{Binding IsFocused}" HorizontalExpand="None" VerticalExpand="FromTopToBottom">
                     <dxg:RowDetailContainerControl Template="{StaticResource detailContainerTemplate}" Content="{Binding}" ContentTemplate="{DynamicResource DetailCoreTemplate}" />
                 </dx:DXExpander>
             </StackPanel>
@@ -192,12 +193,45 @@
             </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>
-
+        <dxlc:LayoutGroup HorizontalAlignment="Right">
+            <dxlc:LayoutItem >
+                <StackPanel Orientation="Horizontal">
+                    <Border Background="Gainsboro"
+                                CornerRadius="3"
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Height="20" 
+                                Width="40"/>
+                    <TextBlock Text="Cancelled" Margin="3,0,0,0"/>
+                </StackPanel>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem >
+                <StackPanel Orientation="Horizontal">
+                    <Border Background="AliceBlue"
+                                CornerRadius="3"
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Height="20" 
+                                Width="40"/>
+                    <TextBlock Text="Billed" Margin="3,0,0,0"/>
+                </StackPanel>
+            </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>
         <dxlc:LayoutGroup>
+            
             <dxg:GridControl x:Name="grdPatBill"
-                                 ItemsSource="{Binding PatientBillSource}"
-                                 SelectedItem="{Binding SelectPatientBill}">
+                             ItemsSource="{Binding PatientBillSource}"
+                             SelectionMode="Row"
+                             SelectedItems="{Binding SelectPatientBills}"
+                             CurrentItem="{Binding SelectPatientBill, Mode=TwoWay}">
                 <dxg:GridControl.Columns>
+                    <dxg:GridColumn FieldName="No" Width="30" ReadOnly="True">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding RowData.RowHandle.Value, ConverterParameter=1, Converter={StaticResource AddValueConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
                     <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID"  ReadOnly="True"/>
                     <dxg:GridColumn Header="ชื่อผู้ป่วย" FieldName="PatientName" ReadOnly="True"/>
                     <dxg:GridColumn Header="Visit ID" FieldName="VisitID" ReadOnly="True"/>
@@ -227,10 +261,14 @@
                     <dxg:GridColumn Header="เหตุผลในการยกเลิกบิล" FieldName="CancelReason" ReadOnly="True"/>
                 </dxg:GridControl.Columns>
                 <dxg:GridControl.View>
-                    <dxg:TableView Name="gvPatBill" AllowScrollAnimation="True" UseLightweightTemplates="None"
-                                       ShowGroupPanel="False"
-                                       RowStyle="{StaticResource BackgroundStyle}"
-                                       DataRowTemplate="{StaticResource expandableRowDetailTemplate}" CellValueChanged="view_CellValueChanged">
+                    <dxg:TableView Name="gvPatBill" AllowScrollAnimation="True" 
+                                   UseLightweightTemplates="None"
+                                   NavigationStyle="Row"
+                                   ShowGroupPanel="False" 
+                                   ShowCheckBoxSelectorColumn="True" 
+                                   RowStyle="{StaticResource BackgroundStyle}"
+                                   DataRowTemplate="{StaticResource expandableRowDetailTemplate}" 
+                                   CellValueChanged="view_CellValueChanged">
                         <dxg:TableView.ColumnMenuCustomizations>
                             <dxb:BarButtonItem Name="exportItem1" Content="Export To Excel"
                                                    Command="{Binding DataContext.ExportToExcelCommand,RelativeSource={RelativeSource AncestorType={x:Type local:PatientBilledOP}}}"
@@ -243,30 +281,57 @@
             </dxg:GridControl>
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup HorizontalAlignment="Right">
-            <dxlc:LayoutItem >
-                <StackPanel Orientation="Horizontal">
-                    <Border Background="Gainsboro"
-                                CornerRadius="3"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Height="20" 
-                                Width="40"/>
-                    <TextBlock Text="Cancelled" Margin="3,0,0,0"/>
-                </StackPanel>
-            </dxlc:LayoutItem>
-            <dxlc:LayoutItem >
-                <StackPanel Orientation="Horizontal">
-                    <Border Background="AliceBlue"
-                                CornerRadius="3"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Height="20" 
-                                Width="40"/>
-                    <TextBlock Text="Billed" Margin="3,0,0,0"/>
-                </StackPanel>
-            </dxlc:LayoutItem>
+        <dxlc:LayoutGroup>
+            <dxlc:LayoutGroup HorizontalAlignment="Left">
+                <dx:SimpleButton Width="80" Command="{Binding CancelBillMassCommand}"
+                            Height="25" Content="ยกเลิก Bill"/>
+                <dx:SimpleButton Width="80" Command="{Binding PaymentMassCommand}"
+                            Height="25" Content="วิธีชำระเงิน"/>
+
+
+
+
+            </dxlc:LayoutGroup>
+
+
+            <dxlc:LayoutGroup HorizontalAlignment="Right">
+                <dxlc:LayoutGroup Orientation="Horizontal">
+                    <dxlc:LayoutItem Label="ปริ้นเตอร์" >
+                        <dxe:ComboBoxEdit ItemsSource="{Binding PrinterLists}"
+                                  SelectedItem="{Binding SelectPrinter}"
+                        Width="120" Height="25"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="ภาษา">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding LanguageBills}"
+                                          DisplayMember="Description"
+                                          ValueMember="Value"
+                             SelectedItem="{Binding SelectLanguageBills}"
+                   Width="120" Height="25"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Orientation="Horizontal">
+                    <dxlc:LayoutItem Label="รายงาน">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding BillTypes}"
+                                          DisplayMember="Description"
+                                          ValueMember="Value"
+                       SelectedItem="{Binding SelectBillType}"
+             Width="120" Height="25"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Logo">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding Organisations}"
+                                          ValueMember="HealthOrganisationUID"
+                                          DisplayMember="Name"
+                       SelectedItem="{Binding SelectOrganisationLogo}"
+             Width="120" Height="25"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dx:SimpleButton HorizontalAlignment="Right" Width="80" Command="{Binding PrintBillMassCommand}"
+                   Height="25" Content="ปริ้นในเสร็จ"/>
+            </dxlc:LayoutGroup>
+
         </dxlc:LayoutGroup>
+
 
 
     </dxlc:LayoutControl>

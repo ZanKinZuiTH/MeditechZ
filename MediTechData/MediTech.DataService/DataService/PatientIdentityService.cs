@@ -299,6 +299,19 @@ namespace MediTech.DataService
             }
         }
 
+        public void ModifyPatientVisitList(List<PatientVisitModel> patientVisitInfoList, int userID)
+        {
+            try
+            {
+                string requestApi = string.Format("Api/PatientIdentity/ModifyPatientVisitList?userID={0}", userID);
+                MeditechApiHelper.Put(requestApi, patientVisitInfoList);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public void AssignDoctorGPList(List<PatientVisitModel> patvisitList, int userID)
         {
             try
@@ -319,6 +332,19 @@ namespace MediTech.DataService
             {
                 string requestApi = string.Format("Api/PatientIdentity/CancelVisit?patientVisitUID={0}&userID={1}", patientVisitUID, userID);
                 MeditechApiHelper.Put(requestApi);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void CancelVisitList(List<long> patientVisitListUID, int userID)
+        {
+            try
+            {
+                string requestApi = string.Format("Api/PatientIdentity/CancelVisitList?userID={0}", userID);
+                MeditechApiHelper.Put(requestApi, patientVisitListUID);
             }
             catch (Exception)
             {

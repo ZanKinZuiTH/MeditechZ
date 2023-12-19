@@ -142,7 +142,7 @@
             this.TBtotal_net = new DevExpress.XtraReports.UI.XRTableCell();
             this.lblThaiText = new DevExpress.XtraReports.UI.XRLabel();
             this.ReportType = new DevExpress.XtraReports.Parameters.Parameter();
-            this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
+            this.LogoBillType = new DevExpress.XtraReports.Parameters.Parameter();
             this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
             this.LangType = new DevExpress.XtraReports.Parameters.Parameter();
@@ -1441,13 +1441,13 @@
             staticListLookUpSettings1.LookUpValues.Add(new DevExpress.XtraReports.Parameters.LookUpValue(3, "ใบเสร็จสำหรับ CAH"));
             this.ReportType.ValueSourceSettings = staticListLookUpSettings1;
             // 
-            // LogoType
+            // LogoBillType
             // 
-            this.LogoType.Description = "Logo";
-            this.LogoType.Name = "LogoType";
-            this.LogoType.Type = typeof(int);
-            this.LogoType.ValueInfo = "0";
-            this.LogoType.ValueSourceSettings = staticListLookUpSettings2;
+            this.LogoBillType.Description = "Logo";
+            this.LogoBillType.Name = "LogoBillType";
+            this.LogoBillType.Type = typeof(int);
+            this.LogoBillType.ValueInfo = "0";
+            this.LogoBillType.ValueSourceSettings = staticListLookUpSettings2;
             // 
             // OrganisationUID
             // 
@@ -1493,13 +1493,13 @@
             this.ParameterPanelLayoutItems.AddRange(new DevExpress.XtraReports.Parameters.ParameterPanelLayoutItem[] {
             new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.PatientBillUID, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
             new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.ReportType, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
-            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.LogoType, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.LogoBillType, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
             new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.OrganisationUID, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
             new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.LangType, DevExpress.XtraReports.Parameters.Orientation.Horizontal)});
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.PatientBillUID,
             this.ReportType,
-            this.LogoType,
+            this.LogoBillType,
             this.OrganisationUID,
             this.LangType});
             this.Version = "22.1";
@@ -1563,7 +1563,7 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel7;
         private DevExpress.XtraReports.UI.XRLabel xrLabel8;
         private DevExpress.XtraReports.UI.XRLabel HNLabel;
-        private DevExpress.XtraReports.Parameters.Parameter LogoType;
+        private DevExpress.XtraReports.Parameters.Parameter LogoBillType;
         private DevExpress.XtraReports.Parameters.Parameter OrganisationUID;
         private DevExpress.XtraReports.UI.XRLabel lbComment;
         private DevExpress.XtraReports.UI.XRLabel lbComment2;

@@ -16,6 +16,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <cv:NumericN2Formatter x:Key="NumericN2Formatter" />
+        <cv:AddValueConverter x:Key="AddValueConverter" />
         <cc:PatientSearchPopUp x:Key="PatientColumn" d:IsDataSource="True" />
         <DataTemplate x:Key="DetailCoreTemplate">
             <dx:MeasurePixelSnapper>
@@ -203,6 +204,13 @@
                                  ItemsSource="{Binding PatientBillSource}"
                                  SelectedItem="{Binding SelectPatientBill}">
                     <dxg:GridControl.Columns>
+                        <dxg:GridColumn FieldName="No" Width="30" ReadOnly="True">
+                            <dxg:GridColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding RowData.RowHandle.Value, ConverterParameter=1, Converter={StaticResource AddValueConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </DataTemplate>
+                            </dxg:GridColumn.CellTemplate>
+                        </dxg:GridColumn>
                         <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID"  ReadOnly="True"/>
                         <dxg:GridColumn Header="ชื่อผู้ป่วย" FieldName="PatientName" ReadOnly="True"/>
                         <dxg:GridColumn Header="Visit ID" FieldName="VisitID" ReadOnly="True"/>

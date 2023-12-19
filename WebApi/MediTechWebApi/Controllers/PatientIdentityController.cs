@@ -981,12 +981,276 @@ namespace MediTechWebApi.Controllers
         #endregion
 
         #region PatientVisit
+        private void ModifyPatientVisitData(PatientVisitModel patientVisitInfo, int userID)
+        {
+            try
+            {
+                PatientVisit patientVisit = db.PatientVisit.Find(patientVisitInfo.PatientVisitUID);
+                if (patientVisit != null)
+                {
+                    DateTime now = DateTime.Now;
+                    db.PatientVisit.Attach(patientVisit);
+                    patientVisit.VISTYUID = patientVisitInfo.VISTYUID;
+                    patientVisit.StartDttm = patientVisitInfo.StartDttm;
+                    patientVisit.PRITYUID = patientVisitInfo.PRITYUID;
+                    patientVisit.CareProviderUID = patientVisitInfo.CareProviderUID;
+                    patientVisit.CheckupJobUID = patientVisitInfo.CheckupJobUID;
+                    patientVisit.Comments = patientVisitInfo.Comments;
+                    patientVisit.CompanyName = patientVisitInfo.CompanyName;
+                    patientVisit.EmployerAddress = patientVisitInfo.EmployerAddress;
+                    patientVisit.MUser = userID;
+                    patientVisit.MWhen = now;
+
+                    patientVisit.OwnerOrganisationUID = patientVisitInfo.OwnerOrganisationUID;
+                    patientVisit.LocationUID = patientVisitInfo.LocationUID;
+
+
+                    if (patientVisitInfo.CareProvider2UID != null)
+                    {
+                        var careproviderName2 = (from cr in db.Careprovider
+                                                 where cr.UID == patientVisitInfo.CareProvider2UID
+                                                 select new
+                                                 {
+                                                     careproviderName = SqlFunction.fGetCareProviderName(cr.UID)
+                                                 }).FirstOrDefault()?.careproviderName;
+
+                        var patConsult = db.PatientConsultation.Where(p => p.StatusFlag == "A"
+                        && p.PatientVisitUID == patientVisit.UID
+                        && p.Comments == "ใบรับรองแพทย์อับอากาศ"
+                        && p.CareproviderUID == patientVisitInfo.CareProvider2UID).FirstOrDefault();
+                        if (patConsult == null)
+                        {
+                            var oldConsults = db.PatientConsultation.Where(p => p.StatusFlag == "A" && p.PatientVisitUID == patientVisit.UID && p.Comments == "ใบรับรองแพทย์อับอากาศ");
+
+                            if (oldConsults != null)
+                            {
+                                foreach (var oldDt in oldConsults)
+                                {
+                                    db.PatientConsultation.Attach(oldDt);
+                                    oldDt.MUser = userID;
+                                    oldDt.MWhen = now;
+                                    oldDt.StatusFlag = "D";
+                                }
+                                db.SaveChanges();
+                            }
+
+                            patConsult = new PatientConsultation();
+                            patConsult.PatientUID = patientVisit.PatientUID;
+                            patConsult.PatientVisitUID = patientVisit.UID;
+                            patConsult.CareProviderName = careproviderName2;
+                            patConsult.RecordedDttm = now;
+                            patConsult.MUser = userID;
+                            patConsult.MWhen = now;
+                            patConsult.Comments = "ใบรับรองแพทย์อับอากาศ";
+                            patConsult.CareproviderUID = patientVisitInfo.CareProvider2UID ?? 0;
+                            patConsult.OwnerOrganisationUID = patientVisit.OwnerOrganisationUID ?? 0;
+                            patConsult.VISTYUID = 4654;
+                            patConsult.CONSTSUID = 4868;
+                            patConsult.StartDttm = now;
+                            patConsult.EndDttm = now;
+                            patConsult.MUser = userID;
+                            patConsult.MWhen = now;
+                            patConsult.CUser = userID;
+                            patConsult.CWhen = now;
+                            patConsult.StatusFlag = "A";
+
+                            db.PatientConsultation.AddOrUpdate(patConsult);
+
+                        }
+
+                    }
+                    else
+                    {
+                        var oldConsults = db.PatientConsultation.Where(p => p.StatusFlag == "A" && p.PatientVisitUID == patientVisit.UID && p.Comments == "ใบรับรองแพทย์อับอากาศ");
+
+                        if (oldConsults != null)
+                        {
+                            foreach (var oldDt in oldConsults)
+                            {
+                                db.PatientConsultation.Attach(oldDt);
+                                oldDt.MUser = userID;
+                                oldDt.MWhen = now;
+                                oldDt.StatusFlag = "D";
+                            }
+                            db.SaveChanges();
+                        }
+                    }
+                }
+
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public void CancelVisitData(long patientVisitUID, int userID)
+        {
+            try
+            {
+
+                PatientVisit patientVisit = db.PatientVisit.Find(patientVisitUID);
+                if (patientVisit != null)
+                {
+                    db.PatientVisit.Attach(patientVisit);
+                    patientVisit.VISTSUID = 410; //Cancelled
+                    patientVisit.MUser = userID;
+                    patientVisit.MWhen = DateTime.Now;
+                    patientVisit.StatusFlag = "C";
+
+                    db.SaveChanges();
+                }
+                var patientVisitIDs = db.PatientVisitID.Where(p => p.PatientVisitUID == patientVisit.UID);
+
+                if (patientVisitIDs != null)
+                {
+                    foreach (var visitID in patientVisitIDs)
+                    {
+                        db.PatientVisitID.Attach(visitID);
+                        visitID.MUser = userID;
+                        visitID.MWhen = DateTime.Now;
+                        visitID.StatusFlag = "D";
+                        db.SaveChanges();
+                    }
+
+                }
+                var patientOrders = db.PatientOrder.Where(p => p.PatientVisitUID == patientVisit.UID);
+
+                if (patientOrders != null)
+                {
+                    foreach (var patOrder in patientOrders)
+                    {
+                        var patientOrderDetails = db.PatientOrderDetail.Where(p => p.PatientOrderUID == patOrder.UID);
+                        if (patientOrderDetails != null)
+                        {
+                            foreach (var patOrderDetail in patientOrderDetails)
+                            {
+                                var patientOrderDetail = db.PatientOrderDetail.Find(patOrderDetail.UID);
+                                if (patientOrderDetail != null)
+                                {
+                                    db.PatientOrderDetail.Attach(patientOrderDetail);
+                                    patientOrderDetail.MUser = userID;
+                                    patientOrderDetail.MWhen = DateTime.Now;
+                                    patientOrderDetail.StatusFlag = "D";
+                                    patientOrderDetail.Comments = "Cancel Visit";
+                                    db.SaveChanges();
+                                }
+                            }
+
+                        }
+
+                        var patientOrder = db.PatientOrder.Find(patOrder.UID);
+                        if (patientOrder != null)
+                        {
+                            db.PatientOrder.Attach(patientOrder);
+                            patientOrder.MUser = userID;
+                            patientOrder.MWhen = DateTime.Now;
+                            patientOrder.StatusFlag = "D";
+                            patientOrder.Comments = "Cancel Visit";
+                            db.SaveChanges();
+                        }
+                    }
+
+                }
+
+                var prescriptions = db.Prescription.Where(p => p.PatientVisitUID == patientVisit.UID);
+                if (prescriptions != null)
+                {
+                    foreach (var prescription in prescriptions)
+                    {
+                        var prescriptionItems = db.PrescriptionItem.Where(p => p.PrescriptionUID == prescription.UID);
+                        if (prescriptionItems != null)
+                        {
+                            foreach (var item in prescriptionItems)
+                            {
+                                var prescriptionItem = db.PrescriptionItem.Find(item.UID);
+                                if (prescriptionItem != null)
+                                {
+                                    db.PrescriptionItem.Attach(prescriptionItem);
+                                    prescriptionItem.MUser = userID;
+                                    prescriptionItem.MWhen = DateTime.Now;
+                                    prescriptionItem.StatusFlag = "D";
+                                    prescriptionItem.Comments = "Cancel Visit";
+                                    db.SaveChanges();
+                                }
+                            }
+
+                        }
+
+                        var presc = db.Prescription.Find(prescription.UID);
+                        if (presc != null)
+                        {
+                            db.Prescription.Attach(presc);
+                            presc.MUser = userID;
+                            presc.MWhen = DateTime.Now;
+                            presc.StatusFlag = "D";
+                            presc.Comments = "Cancel Visit";
+                            db.SaveChanges();
+                        }
+                    }
+
+                }
+
+                var requests = db.Request.Where(p => p.PatientVisitUID == patientVisit.UID);
+                if (requests != null)
+                {
+                    foreach (var request in requests)
+                    {
+                        var requestDetails = db.RequestDetail.Where(p => p.RequestUID == request.UID);
+                        if (requestDetails != null)
+                        {
+                            foreach (var requestDetail in requestDetails)
+                            {
+                                var patientRequestDetail = db.RequestDetail.Find(requestDetail.UID);
+                                if (patientRequestDetail != null)
+                                {
+                                    db.RequestDetail.Attach(patientRequestDetail);
+                                    patientRequestDetail.MUser = userID;
+                                    patientRequestDetail.MWhen = DateTime.Now;
+                                    patientRequestDetail.StatusFlag = "D";
+                                    patientRequestDetail.Comments = "Cancel Visit";
+                                    db.SaveChanges();
+                                }
+                            }
+
+                        }
+
+                        var patientRequest = db.Request.Find(request.UID);
+                        if (patientRequest != null)
+                        {
+                            db.Request.Attach(patientRequest);
+                            patientRequest.MUser = userID;
+                            patientRequest.MWhen = DateTime.Now;
+                            patientRequest.StatusFlag = "D";
+                            patientRequest.Comments = "Cancel Visit";
+                            db.SaveChanges();
+                        }
+                    }
+
+                }
+
+
+
+               
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        #region Method
+
+        #endregion
 
         [Route("SearchPatientVisit")]
         [HttpGet]
         public List<PatientVisitModel> SearchPatientVisit(string hn, string firstName, string lastName, int? careproviderUID
             , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID, int? locationUID
-            , int? insuranceCompanyUID, int? checkupJobUID, string encounter,int userUID)
+            , int? insuranceCompanyUID, int? checkupJobUID, string encounter, int userUID)
         {
             DataTable dataTable = SqlDirectStore.pSearchPatientVisit(hn, firstName, lastName, careproviderUID, statusList, dateFrom, dateTo, arrivedDttm, ownerOrganisationUID, locationUID, insuranceCompanyUID, checkupJobUID, encounter, userUID);
 
@@ -1892,100 +2156,28 @@ namespace MediTechWebApi.Controllers
         {
             try
             {
-                PatientVisit patientVisit = db.PatientVisit.Find(patientVisitInfo.PatientVisitUID);
-                if (patientVisit != null)
+                ModifyPatientVisitData(patientVisitInfo, userID);
+                return Request.CreateResponse(HttpStatusCode.OK, patientVisitInfo);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("ModifyPatientVisitList")]
+        [HttpPut]
+        public HttpResponseMessage ModifyPatientVisitList(List<PatientVisitModel> patientVisitInfoList, int userID)
+        {
+            try
+            {
+                foreach (var currentVisit in patientVisitInfoList)
                 {
-                    DateTime now = DateTime.Now;
-                    db.PatientVisit.Attach(patientVisit);
-                    patientVisit.VISTYUID = patientVisitInfo.VISTYUID;
-                    patientVisit.StartDttm = patientVisitInfo.StartDttm;
-                    patientVisit.PRITYUID = patientVisitInfo.PRITYUID;
-                    patientVisit.CareProviderUID = patientVisitInfo.CareProviderUID;
-                    patientVisit.CheckupJobUID = patientVisitInfo.CheckupJobUID;
-                    patientVisit.Comments = patientVisitInfo.Comments;
-                    patientVisit.CompanyName = patientVisitInfo.CompanyName;
-                    patientVisit.EmployerAddress = patientVisitInfo.EmployerAddress;
-                    patientVisit.MUser = userID;
-                    patientVisit.MWhen = now;
-
-                    patientVisit.OwnerOrganisationUID = patientVisitInfo.OwnerOrganisationUID;
-                    patientVisit.LocationUID  = patientVisitInfo.LocationUID;
-
-
-                    if (patientVisitInfo.CareProvider2UID != null)
-                    {
-                        var careproviderName2 = (from cr in db.Careprovider
-                                                 where cr.UID == patientVisitInfo.CareProvider2UID
-                                                 select new
-                                                 {
-                                                     careproviderName = SqlFunction.fGetCareProviderName(cr.UID)
-                                                 }).FirstOrDefault()?.careproviderName;
-
-                        var patConsult = db.PatientConsultation.Where(p => p.StatusFlag == "A"
-                        && p.PatientVisitUID == patientVisit.UID
-                        && p.Comments == "ใบรับรองแพทย์อับอากาศ"
-                        && p.CareproviderUID == patientVisitInfo.CareProvider2UID).FirstOrDefault();
-                        if (patConsult == null)
-                        {
-                            var oldConsults = db.PatientConsultation.Where(p => p.StatusFlag == "A" && p.PatientVisitUID == patientVisit.UID && p.Comments == "ใบรับรองแพทย์อับอากาศ");
-
-                            if (oldConsults != null)
-                            {
-                                foreach (var oldDt in oldConsults)
-                                {
-                                    db.PatientConsultation.Attach(oldDt);
-                                    oldDt.MUser = userID;
-                                    oldDt.MWhen = now;
-                                    oldDt.StatusFlag = "D";
-                                }
-                                db.SaveChanges();
-                            }
-
-                            patConsult = new PatientConsultation();
-                            patConsult.PatientUID = patientVisit.PatientUID;
-                            patConsult.PatientVisitUID = patientVisit.UID;
-                            patConsult.CareProviderName = careproviderName2;
-                            patConsult.RecordedDttm = now;
-                            patConsult.MUser = userID;
-                            patConsult.MWhen = now;
-                            patConsult.Comments = "ใบรับรองแพทย์อับอากาศ";
-                            patConsult.CareproviderUID = patientVisitInfo.CareProvider2UID ?? 0;
-                            patConsult.OwnerOrganisationUID = patientVisit.OwnerOrganisationUID ?? 0;
-                            patConsult.VISTYUID = 4654;
-                            patConsult.CONSTSUID = 4868;
-                            patConsult.StartDttm = now;
-                            patConsult.EndDttm = now;
-                            patConsult.MUser = userID;
-                            patConsult.MWhen = now;
-                            patConsult.CUser = userID;
-                            patConsult.CWhen = now;
-                            patConsult.StatusFlag = "A";
-
-                            db.PatientConsultation.AddOrUpdate(patConsult);
-
-                        }
-
-                    }
-                    else
-                    {
-                        var oldConsults = db.PatientConsultation.Where(p => p.StatusFlag == "A" && p.PatientVisitUID == patientVisit.UID && p.Comments == "ใบรับรองแพทย์อับอากาศ");
-
-                        if (oldConsults != null)
-                        {
-                            foreach (var oldDt in oldConsults)
-                            {
-                                db.PatientConsultation.Attach(oldDt);
-                                oldDt.MUser = userID;
-                                oldDt.MWhen = now;
-                                oldDt.StatusFlag = "D";
-                            }
-                            db.SaveChanges();
-                        }
-                    }
+                    ModifyPatientVisitData(currentVisit, userID);
                 }
 
-                db.SaveChanges();
-                return Request.CreateResponse(HttpStatusCode.OK, patientVisitInfo);
+                return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception ex)
             {
@@ -2096,150 +2288,28 @@ namespace MediTechWebApi.Controllers
         {
             try
             {
-                using (var tran = new TransactionScope())
+
+                CancelVisitData(patientVisitUID, userID);
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("CancelVisitList")]
+        [HttpPut]
+        public HttpResponseMessage CancelVisitList(List<long> patientVisitListUID, int userID)
+        {
+            try
+            {
+                foreach (var visitUID in patientVisitListUID)
                 {
-                    PatientVisit patientVisit = db.PatientVisit.Find(patientVisitUID);
-                    if (patientVisit != null)
-                    {
-                        db.PatientVisit.Attach(patientVisit);
-                        patientVisit.VISTSUID = 410; //Cancelled
-                        patientVisit.MUser = userID;
-                        patientVisit.MWhen = DateTime.Now;
-                        patientVisit.StatusFlag = "C";
-
-                        db.SaveChanges();
-                    }
-                    var patientVisitIDs = db.PatientVisitID.Where(p => p.PatientVisitUID == patientVisit.UID);
-
-                    if (patientVisitIDs != null)
-                    {
-                        foreach (var visitID in patientVisitIDs)
-                        {
-                            db.PatientVisitID.Attach(visitID);
-                            visitID.MUser = userID;
-                            visitID.MWhen = DateTime.Now;
-                            visitID.StatusFlag = "D";
-                            db.SaveChanges();
-                        }
-
-                    }
-                    var patientOrders = db.PatientOrder.Where(p => p.PatientVisitUID == patientVisit.UID);
-
-                    if (patientOrders != null)
-                    {
-                        foreach (var patOrder in patientOrders)
-                        {
-                            var patientOrderDetails = db.PatientOrderDetail.Where(p => p.PatientOrderUID == patOrder.UID);
-                            if (patientOrderDetails != null)
-                            {
-                                foreach (var patOrderDetail in patientOrderDetails)
-                                {
-                                    var patientOrderDetail = db.PatientOrderDetail.Find(patOrderDetail.UID);
-                                    if (patientOrderDetail != null)
-                                    {
-                                        db.PatientOrderDetail.Attach(patientOrderDetail);
-                                        patientOrderDetail.MUser = userID;
-                                        patientOrderDetail.MWhen = DateTime.Now;
-                                        patientOrderDetail.StatusFlag = "D";
-                                        patientOrderDetail.Comments = "Cancel Visit";
-                                        db.SaveChanges();
-                                    }
-                                }
-
-                            }
-
-                            var patientOrder = db.PatientOrder.Find(patOrder.UID);
-                            if (patientOrder != null)
-                            {
-                                db.PatientOrder.Attach(patientOrder);
-                                patientOrder.MUser = userID;
-                                patientOrder.MWhen = DateTime.Now;
-                                patientOrder.StatusFlag = "D";
-                                patientOrder.Comments = "Cancel Visit";
-                                db.SaveChanges();
-                            }
-                        }
-
-                    }
-
-                    var prescriptions = db.Prescription.Where(p => p.PatientVisitUID == patientVisit.UID);
-                    if (prescriptions != null)
-                    {
-                        foreach (var prescription in prescriptions)
-                        {
-                            var prescriptionItems = db.PrescriptionItem.Where(p => p.PrescriptionUID == prescription.UID);
-                            if (prescriptionItems != null)
-                            {
-                                foreach (var item in prescriptionItems)
-                                {
-                                    var prescriptionItem = db.PrescriptionItem.Find(item.UID);
-                                    if (prescriptionItem != null)
-                                    {
-                                        db.PrescriptionItem.Attach(prescriptionItem);
-                                        prescriptionItem.MUser = userID;
-                                        prescriptionItem.MWhen = DateTime.Now;
-                                        prescriptionItem.StatusFlag = "D";
-                                        prescriptionItem.Comments = "Cancel Visit";
-                                        db.SaveChanges();
-                                    }
-                                }
-
-                            }
-
-                            var presc = db.Prescription.Find(prescription.UID);
-                            if (presc != null)
-                            {
-                                db.Prescription.Attach(presc);
-                                presc.MUser = userID;
-                                presc.MWhen = DateTime.Now;
-                                presc.StatusFlag = "D";
-                                presc.Comments = "Cancel Visit";
-                                db.SaveChanges();
-                            }
-                        }
-
-                    }
-
-                    var requests = db.Request.Where(p => p.PatientVisitUID == patientVisit.UID);
-                    if (requests != null)
-                    {
-                        foreach (var request in requests)
-                        {
-                            var requestDetails = db.RequestDetail.Where(p => p.RequestUID == request.UID);
-                            if (requestDetails != null)
-                            {
-                                foreach (var requestDetail in requestDetails)
-                                {
-                                    var patientRequestDetail = db.RequestDetail.Find(requestDetail.UID);
-                                    if (patientRequestDetail != null)
-                                    {
-                                        db.RequestDetail.Attach(patientRequestDetail);
-                                        patientRequestDetail.MUser = userID;
-                                        patientRequestDetail.MWhen = DateTime.Now;
-                                        patientRequestDetail.StatusFlag = "D";
-                                        patientRequestDetail.Comments = "Cancel Visit";
-                                        db.SaveChanges();
-                                    }
-                                }
-
-                            }
-
-                            var patientRequest = db.Request.Find(request.UID);
-                            if (patientRequest != null)
-                            {
-                                db.Request.Attach(patientRequest);
-                                patientRequest.MUser = userID;
-                                patientRequest.MWhen = DateTime.Now;
-                                patientRequest.StatusFlag = "D";
-                                patientRequest.Comments = "Cancel Visit";
-                                db.SaveChanges();
-                            }
-                        }
-
-                    }
-
-                    tran.Complete();
+                    CancelVisitData(visitUID, userID);
                 }
+           
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception ex)
@@ -4290,15 +4360,15 @@ namespace MediTechWebApi.Controllers
                                             && p.StatusFlag == "A")
                                             .Select(p => new PatientConsultationModel()
                                             {
-                                              PatientConsultationUID = p.UID,
-                                              PatientUID = p.PatientUID,
-                                              PatientVisitUID = p.PatientVisitUID,
-                                              CareproviderUID = p.CareproviderUID,
-                                              CareProviderName = p.CareProviderName,
-                                              CONSTSUID = p.CONSTSUID,
-                                              VISTYUID = p.VISTYUID,
-                                              RecordedDttm = p.RecordedDttm,
-                                              Comments = p.Comments
+                                                PatientConsultationUID = p.UID,
+                                                PatientUID = p.PatientUID,
+                                                PatientVisitUID = p.PatientVisitUID,
+                                                CareproviderUID = p.CareproviderUID,
+                                                CareProviderName = p.CareProviderName,
+                                                CONSTSUID = p.CONSTSUID,
+                                                VISTYUID = p.VISTYUID,
+                                                RecordedDttm = p.RecordedDttm,
+                                                Comments = p.Comments
                                             }).ToList();
 
             return data;
@@ -4561,7 +4631,7 @@ namespace MediTechWebApi.Controllers
             }
         }
 
-        
+
 
         #endregion
 

@@ -17,6 +17,7 @@ using System.Drawing;
 using System.Collections.ObjectModel;
 using System.Windows.Forms;
 using DevExpress.XtraReports.UI;
+using System.Windows.Controls;
 
 namespace MediTech.ViewModels
 {
@@ -407,6 +408,242 @@ namespace MediTech.ViewModels
         }
 
 
+
+        #endregion
+
+
+        #region Proeperties ModifyVisit
+        public List<LookupReferenceValueModel> PrioritySource { get; set; }
+        private LookupReferenceValueModel _SelectedPriority;
+
+        public LookupReferenceValueModel SelectedPriority
+        {
+            get { return _SelectedPriority; }
+            set { Set(ref _SelectedPriority, value); }
+        }
+
+        private DateTime? _StartDate;
+
+        public DateTime? StartDate
+        {
+            get { return _StartDate; }
+            set { Set(ref _StartDate, value); }
+        }
+
+        private DateTime? _StartTime;
+        public DateTime? StartTime
+        {
+            get { return _StartTime; }
+            set { Set(ref _StartTime, value); }
+        }
+
+        private List<HealthOrganisationModel> _OrganisationModifyVisit;
+
+        public List<HealthOrganisationModel> OrganisationModifyVisit
+        {
+            get { return _OrganisationModifyVisit; }
+            set { Set(ref _OrganisationModifyVisit, value); }
+        }
+
+        private HealthOrganisationModel _SelectOrganisationModifyVisit;
+
+        public HealthOrganisationModel SelectOrganisationModifyVisit
+        {
+            get { return _SelectOrganisationModifyVisit; }
+            set
+            {
+                Set(ref _SelectOrganisationModifyVisit, value);
+                LocationModifyVisit = null;
+                if (SelectOrganisationModifyVisit != null)
+                {
+                    var loct = DataService.MasterData.GetLocationRoleByOrganisationUID(SelectOrganisationModifyVisit.HealthOrganisationUID, AppUtil.Current.UserID);
+                    LocationModifyVisit = loct.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+                }
+            }
+        }
+
+        private List<LocationModel> _LocationModifyVisit;
+        public List<LocationModel> LocationModifyVisit
+        {
+            get { return _LocationModifyVisit; }
+            set
+            {
+                Set(ref _LocationModifyVisit, value);
+            }
+        }
+
+        private LocationModel _SelectLocationModifyVisit;
+        public LocationModel SelectLocationModifyVisit
+        {
+            get { return _SelectLocationModifyVisit; }
+            set { Set(ref _SelectLocationModifyVisit, value); }
+        }
+
+        private List<LookupReferenceValueModel> _VisitTypeSource;
+
+        public List<LookupReferenceValueModel> VisitTypeSource
+        {
+            get { return _VisitTypeSource; }
+            set { Set(ref _VisitTypeSource, value); }
+        }
+
+        private LookupReferenceValueModel _SelectedVisitType;
+        public LookupReferenceValueModel SelectedVisitType
+        {
+            get { return _SelectedVisitType; }
+            set
+            {
+                Set(ref _SelectedVisitType, value);
+                if (_SelectedVisitType != null)
+                {
+                    VisibiltyCheckupCompany = Visibility.Collapsed;
+                    VisibiltyEmployerAddress = Visibility.Collapsed;
+                    VisibilityCareprovider2 = Visibility.Collapsed;
+                    CareproviderLabel = "แพทย์";
+                    CareproviderLabel2 = "";
+                    if (SelectedVisitType.ValueCode == "MBCHK" || SelectedVisitType.ValueCode == "CHKUP" || SelectedVisitType.ValueCode == "CHKIN" || SelectedVisitType.ValueCode == "CHKIN5" || SelectedVisitType.ValueCode == "CHKIN6")
+                    {
+                        if (CheckupJobSource == null)
+                        {
+                            CheckupJobSource = DataService.Checkup.GetCheckupJobContactAllActive();
+                        }
+                        VisibiltyCheckupCompany = Visibility.Visible;
+                    }
+                    else
+                    {
+                        CheckupJobSource = null;
+                    }
+                    if (SelectedVisitType.ValueCode == "CHKIN3" || SelectedVisitType.ValueCode == "UCS1" || SelectedVisitType.ValueCode == "UCS2" || SelectedVisitType.ValueCode == "UCS3")
+                    {
+                        VisibiltyEmployerAddress = Visibility.Visible;
+                        VisibilityCareprovider2 = Visibility.Visible;
+                        CareproviderLabel2 = "แพทย์ DRC";
+                    }
+                    if (SelectedVisitType.ValueCode == "CHKIN4" || SelectedVisitType.ValueCode == "CHKIN5" || SelectedVisitType.ValueCode == "CHKIN6")
+                    {
+                        VisibilityCareprovider2 = Visibility.Visible;
+                        CareproviderLabel = "แพทย์อาชีว";
+                        CareproviderLabel2 = "แพทย์ GP";
+                    }
+
+                }
+            }
+        }
+
+
+        private List<CareproviderModel> _CareproviderSource;
+
+        public List<CareproviderModel> CareproviderSource
+        {
+            get { return _CareproviderSource; }
+            set { Set(ref _CareproviderSource, value); }
+        }
+
+        private CareproviderModel _SelectedCareprovider;
+
+        public CareproviderModel SelectedCareprovider
+        {
+            get { return _SelectedCareprovider; }
+            set { Set(ref _SelectedCareprovider, value); }
+        }
+
+        private CareproviderModel _SelectedCareprovider2;
+
+        public CareproviderModel SelectedCareprovider2
+        {
+            get { return _SelectedCareprovider2; }
+            set { Set(ref _SelectedCareprovider2, value); }
+        }
+
+        private string _CareproviderLabel = "แพทย์";
+
+        public string CareproviderLabel
+        {
+            get { return _CareproviderLabel; }
+            set { Set(ref _CareproviderLabel, value); }
+        }
+
+        private string _CareproviderLabel2;
+
+        public string CareproviderLabel2
+        {
+            get { return _CareproviderLabel2; }
+            set { Set(ref _CareproviderLabel2, value); }
+        }
+
+        private string _CommentDoctor;
+
+        public string CommentDoctor
+        {
+            get { return _CommentDoctor; }
+            set { Set(ref _CommentDoctor, value); }
+        }
+
+        private string _Company;
+
+        public string Company
+        {
+            get { return _Company; }
+            set { Set(ref _Company, value); }
+        }
+
+        private string _EmployerAddress;
+
+        public string EmployerAddress
+        {
+            get { return _EmployerAddress; }
+            set { Set(ref _EmployerAddress, value); }
+        }
+
+        private bool _IsEnableFinancial;
+
+        public bool IsEnableFinancial
+        {
+            get { return _IsEnableFinancial; }
+            set { Set(ref _IsEnableFinancial, value); }
+        }
+
+        private Visibility _VisibilityCareprovider2 = Visibility.Collapsed;
+
+        public Visibility VisibilityCareprovider2
+        {
+            get { return _VisibilityCareprovider2; }
+            set { Set(ref _VisibilityCareprovider2, value); }
+        }
+
+        private Visibility _VisibiltyCheckupCompany = Visibility.Collapsed;
+
+        public Visibility VisibiltyCheckupCompany
+        {
+            get { return _VisibiltyCheckupCompany; }
+            set { Set(ref _VisibiltyCheckupCompany, value); }
+        }
+
+
+        private List<CheckupJobContactModel> _CheckupJobSource;
+
+        public List<CheckupJobContactModel> CheckupJobSource
+        {
+            get { return _CheckupJobSource; }
+            set { Set(ref _CheckupJobSource, value); }
+        }
+
+        private CheckupJobContactModel _SelectedCheckupJob;
+
+        public CheckupJobContactModel SelectedCheckupJob
+        {
+            get { return _SelectedCheckupJob; }
+            set { Set(ref _SelectedCheckupJob, value); }
+        }
+
+        private Visibility _VisibiltyEmployerAddress = Visibility.Collapsed;
+
+        public Visibility VisibiltyEmployerAddress
+        {
+            get { return _VisibiltyEmployerAddress; }
+            set { Set(ref _VisibiltyEmployerAddress, value); }
+        }
+
         #endregion
 
         #region Command
@@ -490,6 +727,25 @@ namespace MediTech.ViewModels
                 return _PrintAutoCommand
                     ?? (_PrintAutoCommand = new RelayCommand(PrintAuto));
             }
+        }
+        #endregion
+
+
+        #region Command ModifyVisit
+        private RelayCommand _SaveModifyVisitCommand;
+
+        public RelayCommand SaveModifyVisitCommand
+        {
+            get { return _SaveModifyVisitCommand ?? (_SaveModifyVisitCommand = new RelayCommand(SaveModifyVisit)); }
+        }
+
+
+
+        private RelayCommand _CancelVisitCommand;
+
+        public RelayCommand CancelVisitCommand
+        {
+            get { return _CancelVisitCommand ?? (_CancelVisitCommand = new RelayCommand(CancelVisit)); }
         }
         #endregion
 
@@ -1316,6 +1572,179 @@ namespace MediTech.ViewModels
             e.PrintDocument.PrinterSettings.FromPage = 2;
             e.PrintDocument.PrinterSettings.ToPage = 2;
         }
+
+        #endregion
+
+        #region MethodModifyVisit
+        private void SaveModifyVisit()
+        {
+            try
+            {
+                if (PatientVisits != null)
+                {
+
+                    if (ValidateVisitData())
+                    {
+                        return;
+                    }
+
+                    PatientVisitMass view = (PatientVisitMass)this.View;
+                    int upperlimit = 0;
+                    int loopCounter = 0;
+                    foreach (var currentData in SelectPatientVisits)
+                    {
+                        upperlimit++;
+                    }
+
+                    view.SetProgressBarLimits(0, upperlimit);
+
+                    foreach (var patientVisit in SelectPatientVisits.ToList())
+                    {
+                        PatientVisitModel visitInfo = new PatientVisitModel();
+                        visitInfo.PatientUID = patientVisit.PatientUID;
+                        visitInfo.PatientVisitUID = patientVisit.PatientVisitUID;
+                        visitInfo.StartDttm = DateTime.Parse(StartDate.Value.ToString("dd/MM/yyyy") + " " + StartTime.Value.ToString("HH:mm"));
+                        visitInfo.VISTYUID = SelectedVisitType.Key;
+                        visitInfo.PRITYUID = SelectedPriority.Key;
+
+                        visitInfo.CheckupJobUID = SelectedCheckupJob != null ? SelectedCheckupJob.CheckupJobContactUID : (int?)null;
+
+                        visitInfo.Comments = CommentDoctor;
+                        visitInfo.CompanyName = Company;
+                        visitInfo.EmployerAddress = EmployerAddress;
+                        visitInfo.OwnerOrganisationUID = SelectOrganisationModifyVisit.HealthOrganisationUID;
+                        visitInfo.LocationUID = SelectLocationModifyVisit.LocationUID;
+                        if (SelectedCareprovider != null)
+                            visitInfo.CareProviderUID = SelectedCareprovider.CareproviderUID;
+
+                        if (SelectedCareprovider2 != null && VisibilityCareprovider2 == Visibility.Visible)
+                        {
+                            visitInfo.CareProvider2UID = SelectedCareprovider2.CareproviderUID;
+                        }
+
+                        DataService.PatientIdentity.ModifyPatientVisit(visitInfo, AppUtil.Current.UserID);
+
+
+                        SelectPatientVisits.Remove(patientVisit);
+                        loopCounter = loopCounter + 1;
+                        view.SetProgressBarValue(loopCounter);
+                    }
+
+
+                    view.SetProgressBarValue(upperlimit);
+                    view.PatientGrid.RefreshData();
+                    SaveSuccessDialog();
+                    SearchPatientVisit();
+                    view.progressBar1.Value = 0;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                ErrorDialog(ex.Message);
+            }
+
+        }
+
+        private void CancelVisit()
+        {
+            try
+            {
+                if (PatientVisits != null)
+                {
+                    PatientVisitMass view = (PatientVisitMass)this.View;
+                    int upperlimit = 0;
+                    int loopCounter = 0;
+                    foreach (var currentData in SelectPatientVisits)
+                    {
+                        upperlimit++;
+                    }
+
+                    view.SetProgressBarLimits(0, upperlimit);
+
+                    foreach (var patientVisit in SelectPatientVisits.ToList())
+                    {
+                        var orderLists = DataService.OrderProcessing.GetOrderAllByVisitUID(patientVisit.PatientVisitUID);
+                        if (orderLists != null)
+                        {
+                            var reviewOrder = orderLists.Where(p => p.OrderDetailStatus == "Reviewed");
+                            var dispensedOrder = orderLists.Where(p => p.OrderDetailStatus == "Dispensed");
+                            if (reviewOrder != null && reviewOrder.Count() > 0)
+                            {
+                                WarningDialog(string.Format("ผุ้ป่วย:@PatientName HN:@HN ไม่สามารถ cancel ได้ เนื่องจากมี Order สถานะ Reviewed ค้างอยู่ กรุณาทำการ Cancel Order ก่อน", patientVisit.PatientName, patientVisit.PatientID));
+                                return;
+                            }
+                            if (dispensedOrder != null && dispensedOrder.Count() > 0)
+                            {
+                                WarningDialog(string.Format("ผุ้ป่วย:@PatientName HN:@HN ไม่สามารถ cancel ได้ เนื่องจากมี Order สถานะ Dispensed ค้างอยู่ กรุณาทำการ  ยกเลิกการจ่ายยา ที่หน้าใบสั่งยา ก่อน", patientVisit.PatientName, patientVisit.PatientID));
+                                return;
+                            }
+                        }
+
+                        DataService.PatientIdentity.CancelVisit(patientVisit.PatientVisitUID, AppUtil.Current.UserID);
+                        CloseViewDialog(ActionDialog.Save);
+
+
+                        SelectPatientVisits.Remove(patientVisit);
+                        loopCounter = loopCounter + 1;
+                        view.SetProgressBarValue(loopCounter);
+                    }
+
+
+                    view.SetProgressBarValue(upperlimit);
+                    view.PatientGrid.RefreshData();
+                    SaveSuccessDialog();
+                    SearchPatientVisit();
+                    view.progressBar1.Value = 0;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                ErrorDialog(ex.Message);
+            }
+        }
+
+        public bool ValidateVisitData()
+        {
+            if (SelectOrganisationModifyVisit == null)
+            {
+                WarningDialog("กรุณาเลือก สถานประกอบการ");
+                return true;
+            }
+
+            if (SelectLocationModifyVisit == null)
+            {
+                WarningDialog("กรุณาเลือก แผนก");
+                return true;
+            }
+            if (SelectedVisitType == null)
+            {
+                WarningDialog("กรุณาเลือก ประเภท Visit");
+                return true;
+            }
+
+
+            if (VisibiltyCheckupCompany == Visibility.Visible)
+            {
+                if (SelectedCheckupJob == null)
+                {
+                    WarningDialog("กรุณาเลือก Checkup Job");
+                    return true;
+                }
+            }
+
+            if (SelectedPriority == null)
+            {
+                WarningDialog("กรุณาเลือก ความสำคัญ");
+                return true;
+            }
+
+            return false;
+        }
+
 
         #endregion
     }

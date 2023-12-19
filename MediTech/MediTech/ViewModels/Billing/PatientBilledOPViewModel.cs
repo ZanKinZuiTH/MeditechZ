@@ -1,4 +1,6 @@
-﻿using DevExpress.XtraReports.Parameters;
+﻿using DevExpress.Pdf.Native.BouncyCastle.Asn1.X509;
+using DevExpress.Xpf;
+using DevExpress.XtraReports.Parameters;
 using DevExpress.XtraReports.UI;
 using GalaSoft.MvvmLight.Command;
 using MediTech.DataService;
@@ -84,7 +86,7 @@ namespace MediTech.ViewModels
         public DateTime? DateFrom
         {
             get { return _DateFrom; }
-            set { Set(ref _DateFrom , value); }
+            set { Set(ref _DateFrom, value); }
         }
 
         private DateTime? _DateTo;
@@ -111,6 +113,19 @@ namespace MediTech.ViewModels
             set { Set(ref _PatientBillSource, value); }
         }
 
+        private ObservableCollection<PatientBillModel> _SelectPatientBills;
+
+        public ObservableCollection<PatientBillModel> SelectPatientBills
+        {
+            get
+            {
+                return _SelectPatientBills
+                    ?? (_SelectPatientBills = new ObservableCollection<PatientBillModel>());
+            }
+
+            set { Set(ref _SelectPatientBills, value); }
+        }
+
         private PatientBillModel _SelectPatientBill;
 
         public PatientBillModel SelectPatientBill
@@ -134,6 +149,69 @@ namespace MediTech.ViewModels
             get { return _BillingCategory; }
             set { Set(ref _BillingCategory, value); }
         }
+
+
+        private List<string> _PrinterLists;
+
+        public List<string> PrinterLists
+        {
+            get { return _PrinterLists; }
+            set { Set(ref _PrinterLists, value); }
+        }
+
+        private string _SelectPrinter;
+
+        public string SelectPrinter
+        {
+            get { return _SelectPrinter; }
+            set { Set(ref _SelectPrinter, value); }
+        }
+
+
+        private List<LookUpValue> _LanguageBills;
+
+        public List<LookUpValue> LanguageBills
+        {
+            get { return _LanguageBills; }
+            set { Set(ref _LanguageBills, value); }
+        }
+
+        private LookUpValue _SelectLanguageBills;
+
+        public LookUpValue SelectLanguageBills
+        {
+            get { return _SelectLanguageBills; }
+            set { Set(ref _SelectLanguageBills, value); }
+        }
+
+        private List<LookUpValue> _BillTypes;
+
+        public List<LookUpValue> BillTypes
+        {
+            get { return _BillTypes; }
+            set { Set(ref _BillTypes, value); }
+        }
+
+        private LookUpValue _SelectBillType;
+
+        public LookUpValue SelectBillType
+        {
+            get { return _SelectBillType; }
+            set { Set(ref _SelectBillType, value); }
+        }
+
+
+        private HealthOrganisationModel _SelectOrganisationLogo;
+
+        public HealthOrganisationModel SelectOrganisationLogo
+        {
+            get { return _SelectOrganisationLogo; }
+            set
+            {
+                Set(ref _SelectOrganisationLogo, value);
+            }
+        }
+
 
         #endregion
 
@@ -188,6 +266,31 @@ namespace MediTech.ViewModels
         {
             get { return _ExportToExcelCommand ?? (_ExportToExcelCommand = new RelayCommand(ExportToExcel)); }
         }
+
+
+
+        private RelayCommand _CancelBillMassCommand;
+
+        public RelayCommand CancelBillMassCommand
+        {
+            get { return _CancelBillMassCommand ?? (_CancelBillMassCommand = new RelayCommand(CancelBillMass)); }
+        }
+
+        private RelayCommand _PaymentMassCommand;
+
+        public RelayCommand PaymentMassCommand
+        {
+            get { return _PaymentMassCommand ?? (_PaymentMassCommand = new RelayCommand(PaymentMass)); }
+        }
+
+        private RelayCommand _PrintBillMassCommand;
+
+        public RelayCommand PrintBillMassCommand
+        {
+            get { return _PrintBillMassCommand ?? (_PrintBillMassCommand = new RelayCommand(PrintBillMass)); }
+        }
+        
+
         #endregion
 
         #region Method
@@ -201,14 +304,31 @@ namespace MediTech.ViewModels
             ipdbill = BillingCategory.FirstOrDefault(p => p.ValueCode == "IPBILL").Key;
             Organisations = DataService.MasterData.GetHealthOrganisation();
             SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+            SelectOrganisationLogo = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
 
             int? cptUID = DataService.Technical.GetReferenceValueByCode("CPTYP", "FINCPT").Key;
             var fin = DataService.UserManage.GetCareproviderByUID(AppUtil.Current.UserID);
-            if(fin.CPTYPUID == cptUID)
+            if (fin.CPTYPUID == cptUID)
             {
                 VisibiltyOrganisations = Visibility.Visible;
             }
 
+            PrinterLists = new List<string>();
+            foreach (string printer in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
+            {
+                PrinterLists.Add(printer);
+            }
+            InitDataForBillReport();
+        }
+
+        void InitDataForBillReport()
+        {
+            LanguageBills = new List<LookUpValue>();
+            BillTypes = new List<LookUpValue>();
+            LanguageBills.AddRange(new List<LookUpValue>() { new LookUpValue { Value = "TH", Description = "Thai" }, new LookUpValue { Value = "EN", Description = "English" } });
+            BillTypes.AddRange(new List<LookUpValue>() { new LookUpValue { Value = 0, Description = "ใบเสร็จทั่วไป" }
+            , new LookUpValue { Value = 1, Description = "ใบเสร็จสำหรับประกัน" }, new LookUpValue { Value = 2, Description = "ใบเสร็จตรวจสุขภาพ" }
+            , new LookUpValue { Value = 3, Description = "ใบเสร็จสำหรับ CAH" } });
         }
 
         public override void OnLoaded()
@@ -225,7 +345,7 @@ namespace MediTech.ViewModels
                 patientUID = SelectedPateintSearch.PatientUID;
             }
             int? ownerOrganisationUID = SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : (int?)null;
-            PatientBillSource = new ObservableCollection<PatientBillModel>(DataService.Billing.SearchPatientBill(DateFrom, DateTo, patientUID, BillNumber,"N", ownerOrganisationUID, AppUtil.Current.UserID));
+            PatientBillSource = new ObservableCollection<PatientBillModel>(DataService.Billing.SearchPatientBill(DateFrom, DateTo, patientUID, BillNumber, "N", ownerOrganisationUID, AppUtil.Current.UserID));
         }
 
         public void ViewBill()
@@ -337,7 +457,7 @@ namespace MediTech.ViewModels
             }
         }
 
-        public void UpdatePatientBill(long patientBillUID,int PAYMDUID)
+        public void UpdatePatientBill(long patientBillUID, int PAYMDUID)
         {
             try
             {
@@ -403,7 +523,175 @@ namespace MediTech.ViewModels
 
         }
 
+        private void CancelBillMass()
+        {
+            try
+            {
+                if (SelectPatientBills != null)
+                {
+                    var billUnCancel = SelectPatientBills.Where(p => !p.IsCancel).ToList();
+                    if (billUnCancel != null && billUnCancel.Count() > 0)
+                    {
+                        CancelPopup cancelPO = new CancelPopup();
+                        CancelPopupViewModel result = (CancelPopupViewModel)LaunchViewDialog(cancelPO, "CANISS", true);
+                        if (result != null && result.ResultDialog == ActionDialog.Save)
+                        {
+                            if (string.IsNullOrEmpty(result.Comments))
+                            {
+                                WarningDialog("กรุณาระบุเหตุผลในการยกเลิกให้ครบถ้วน");
+                                return;
+                            }
 
+                            foreach (var bill in billUnCancel)
+                            {
+                                bill.Comments = result.Comments;
+                            }
+
+                            DataService.Billing.CancelBillLists(billUnCancel);
+                            SelectPatientBills = null;
+                            SearchPatientBill();
+                        }
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+
+                ErrorDialog(ex.Message);
+            }
+        }
+
+        private void PaymentMass()
+        {
+            try
+            {
+                if (SelectPatientBills != null)
+                {
+                    var billUnCancel = SelectPatientBills.Where(p => !p.IsCancel && p.BillType != "Invoice").ToList();
+                    if (billUnCancel != null && billUnCancel.Count() > 0)
+                    {
+                        ListBillPayment pageview = new ListBillPayment();
+                        var viewModel = (pageview.DataContext as ListBillPaymentViewModel);
+                        viewModel.TotalAmount = SelectPatientBill.NetAmount ?? 0;
+                        ListBillPaymentViewModel result = (ListBillPaymentViewModel)LaunchViewDialogNonPermiss(pageview, true);
+                        if (result.ResultDialog == ActionDialog.Save)
+                        {
+                            List<PatientPaymentDetailModel> PaymentDetailsList = new List<PatientPaymentDetailModel>();
+                            foreach (var bill in billUnCancel)
+                            {
+                                foreach (var item in result.PaymentDetailsList)
+                                {
+                                    PatientPaymentDetailModel newPayment =new PatientPaymentDetailModel();
+                                    newPayment.PatientBillUID = bill.PatientBillUID;
+                                    newPayment.PatientUID = bill.PatientUID;
+                                    newPayment.PatientVisitUID = bill.PatientVisitUID;
+                                    newPayment.PaidDttm = bill.BillGeneratedDttm ?? DateTime.Now;
+
+                                    newPayment.PAYMDUID = item.PAYMDUID;
+                                    newPayment.PaymentMode = item.PaymentMode;
+                                    newPayment.Amount = item.Amount;
+                                    newPayment.CURNCUID = item.CURNCUID;
+                                    newPayment.Currency = item.Currency;
+                                    newPayment.PaidDttm = item.PaidDttm;
+                                    newPayment.CardExpiryDttm = item.CardExpiryDttm;
+                                    newPayment.BankName = item.BankName;
+                                    newPayment.CardNumber = item.CardNumber;
+                                    newPayment.CRDTYUID = item.CRDTYUID;
+                                    newPayment.CardType = item.CardType;
+                                    newPayment.AuthorizationNumber = item.AuthorizationNumber;
+                                    newPayment.StatusFlag = "A";
+                                    newPayment.OwnerOrganisationUID = bill.OwnerOrganisationUID;
+                                    PaymentDetailsList.Add(newPayment);
+                                }
+                            }
+         
+
+
+
+                            DataService.Billing.ManagePatientPaymentDetailForMass(PaymentDetailsList, AppUtil.Current.UserID);
+                            SearchPatientBill();
+                        }
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ErrorDialog(ex.Message);
+            }
+        }
+
+        private void PrintBillMass()
+        {
+            try
+            {
+
+                if (SelectPatientBills != null)
+                {
+                    if (string.IsNullOrEmpty(SelectPrinter))
+                    {
+                        WarningDialog("กรุณาเลือก ปริ้นเตอร์");
+                        return;
+                    }
+                    if (SelectLanguageBills == null)
+                    {
+                        WarningDialog("กรุณาเลือก ภาษา");
+                        return;
+                    }
+
+                    if (SelectOrganisationLogo == null)
+                    {
+                        WarningDialog("กรุณาเลือก Logo");
+                        return;
+                    }
+
+
+                    if (SelectBillType == null)
+                    {
+                        WarningDialog("กรุณาเลือกรูปแบบ รายงาน");
+                        return;
+                    }
+                    var billUnCancel = SelectPatientBills.Where(p => !p.IsCancel).ToList();
+                    if (billUnCancel != null && billUnCancel.Count() > 0)
+                    {
+                        foreach (var billCancel in billUnCancel)
+                        {
+                            XtraReport report;
+                            if (SelectPatientBill.VisitType != "Non Medical")
+                            {
+                                report = new PatientBill();
+                            }
+                            else
+                            {
+                                report = new PatientBill2();
+                            }
+                            report.Parameters["OrganisationUID"].Value = SelectPatientBill.OwnerOrganisationUID;
+                            report.Parameters["PatientBillUID"].Value = SelectPatientBill.PatientBillUID;
+
+                            report.Parameters["ReportType"].Value = SelectBillType.Value;
+                            report.Parameters["LogoBillType"].Value = SelectOrganisationLogo.HealthOrganisationUID;
+                            report.Parameters["LangType"].Value = SelectLanguageBills.Value;
+                            report.RequestParameters = false;
+
+                            ReportPrintTool printTool = new ReportPrintTool(report);
+                            report.ShowPrintMarginsWarning = false;
+                            printTool.Print();
+                        }
+
+                    }
+                }
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+        }
         private void ExportToExcel()
         {
             try

@@ -347,11 +347,11 @@ ImmediatePopup="True"/>
                 <dxg:GridControl x:Name="grdVisitList"
                                  SelectionMode="Row"
                                  SelectedItems="{Binding SelectPatientVisits}"
+                                 CurrentItem="{Binding SelectPatientVisit, Mode=TwoWay}"
                          ItemsSource="{Binding PatientVisits}">
                     <dxg:GridControl.View>
                         <dxg:TableView x:Name="tableViewVisitList"
                                        ShowCheckBoxSelectorColumn="True"
-                                       FocusedRow="{Binding SelectPatientVisit, Mode=TwoWay}"
                                        NavigationStyle="Row"
                                        AllowScrollAnimation="True"                                     
                                        UseLightweightTemplates="None"
