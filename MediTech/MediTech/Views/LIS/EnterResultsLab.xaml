@@ -67,6 +67,21 @@
                                         <dxlc:LayoutItem>
                                             <TextBox Text="{Binding Path=Row.IsAbnormal}" Width="50"/>
                                         </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem>
+                                            <CheckBox Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"  VerticalAlignment="Center">
+                                                <TextBlock>calculate eGFR</TextBlock>
+                                            </CheckBox>
+                                            <dxlc:LayoutItem.Style>
+                                                <Style TargetType="{x:Type dxlc:LayoutItem}">
+                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Path=Row.ResultItemCode}" Value="C0070">
+                                                            <Setter Property="Visibility" Value="Visible" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </dxlc:LayoutItem.Style>
+                                        </dxlc:LayoutItem>
                                     </dxlc:LayoutControl>
                                 </DataTemplate>
                             </Setter.Value>

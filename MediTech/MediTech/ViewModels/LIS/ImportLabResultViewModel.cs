@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Data;
 using DevExpress.Xpf.Grid;
+using System.Windows;
 
 namespace MediTech.ViewModels
 {
@@ -356,6 +357,15 @@ namespace MediTech.ViewModels
                         }
                     }
 
+                    if (SelectedRequestItem.Code == "LAB212")
+                    {
+                        Visiblelityegfr = Visibility.Visible;
+                    }
+                    else
+                    {
+                        Visiblelityegfr = Visibility.Collapsed;
+                    }
+
                     foreach (var item in SelectedRequestItem.RequestResultLinks.OrderBy(p => p.PrintOrder))
                     {
                         string parameterName = item.ResultItemName +
@@ -384,6 +394,22 @@ namespace MediTech.ViewModels
         {
             get { return _ColumnsResultItems; }
             set { Set(ref _ColumnsResultItems, value); }
+        }
+
+        private Visibility _Visiblelityegfr = Visibility.Collapsed;
+        public Visibility Visiblelityegfr
+        {
+            get { return _Visiblelityegfr; }
+            set { Set(ref _Visiblelityegfr, value); }
+        }
+
+        private bool _IseGRFAuto;
+        public bool IseGRFAuto
+        {
+            get { return _IseGRFAuto; }
+            set { Set(ref _IseGRFAuto, value); 
+            
+            }
         }
 
         #endregion
@@ -646,100 +672,103 @@ namespace MediTech.ViewModels
                                 //Creatinine 
                                 if (SelectedRequestItem.Code == "LAB212")
                                 {
-                                    if (columnName == "eGFR for Thai ( ml/min/1#73 m2 )" || columnName == "eGFR (African-American) ( ml/min/1#73 m2 )" || columnName == "eGFR (Non African-American) ( ml/min/1#73 m2 )")
+                                    if (IseGRFAuto == true)
                                     {
-                                        double Scr = !item.IsNull("Creatinine ( mg/dl )") ? double.Parse(item["Creatinine ( mg/dl )"].ToString()) : 0;
-                                        if (item.IsNull(columnName))
+                                        if (columnName == "eGFR for Thai ( ml/min/1#73 m2 )" || columnName == "eGFR (African-American) ( ml/min/1#73 m2 )" || columnName == "eGFR (Non African-American) ( ml/min/1#73 m2 )")
                                         {
-                                            if (dataPatientRequest != null && Scr != 0)
+                                            double Scr = !item.IsNull("Creatinine ( mg/dl )") ? double.Parse(item["Creatinine ( mg/dl )"].ToString()) : 0;
+                                            if (item.IsNull(columnName))
                                             {
-                                                int? PtNation = dataPatientRequest.NATNLUID;
-                                                int? SEXXXUID = dataPatientRequest.SEXXXUID;
-                                                var age = double.Parse(dataPatientRequest.PatientAge);
-                                                double eGFRval;
-                                                bool isFemale = SEXXXUID == 2;
-                                                bool Africa = false;
-                                                bool NonTHNonAf = false;
-                                                bool IsThai = false;
-                                                var val = 175 * Math.Pow(Scr, -1.154) * Math.Pow(age, -0.203);
-
-                                                if (PtNation != null)
+                                                if (dataPatientRequest != null && Scr != 0)
                                                 {
-                                                    var NationalString = DataService.Technical.GetReferenceValue(PtNation ?? 0);
-                                                    if (NationalString.Display.Contains("แอฟริกา"))
-                                                    {
-                                                        Africa = true;
-                                                    }
+                                                    int? PtNation = dataPatientRequest.NATNLUID;
+                                                    int? SEXXXUID = dataPatientRequest.SEXXXUID;
+                                                    var age = double.Parse(dataPatientRequest.PatientAge);
+                                                    double eGFRval;
+                                                    bool isFemale = SEXXXUID == 2;
+                                                    bool Africa = false;
+                                                    bool NonTHNonAf = false;
+                                                    bool IsThai = false;
+                                                    var val = 175 * Math.Pow(Scr, -1.154) * Math.Pow(age, -0.203);
 
-                                                    if (NationalString.Display.Contains("ไทย"))
+                                                    if (PtNation != null)
+                                                    {
+                                                        var NationalString = DataService.Technical.GetReferenceValue(PtNation ?? 0);
+                                                        if (NationalString.Display.Contains("แอฟริกา"))
+                                                        {
+                                                            Africa = true;
+                                                        }
+
+                                                        if (NationalString.Display.Contains("ไทย"))
+                                                        {
+                                                            IsThai = true;
+                                                        }
+
+                                                        if (!NationalString.Display.Contains("แอฟริกา") && !NationalString.Display.Contains("ไทย"))
+                                                        {
+                                                            NonTHNonAf = true;
+                                                        }
+                                                    }
+                                                    else
                                                     {
                                                         IsThai = true;
                                                     }
 
-                                                    if (!NationalString.Display.Contains("แอฟริกา") && !NationalString.Display.Contains("ไทย"))
+                                                    if (isFemale == true)
                                                     {
-                                                        NonTHNonAf = true;
+                                                        eGFRval = Math.Round(val * 0.742, 2);
+
+                                                        if (Africa == true && item.IsNull("eGFR (African-American) ( ml/min/1#73 m2 )"))
+                                                        {
+                                                            double eGFRvalAF;
+                                                            eGFRvalAF = Math.Round(eGFRval * 1.212, 2);
+                                                            view.gcTestParameter.SetCellValue(newRowHandle, "eGFR (African-American) ( ml/min/1.73 m2 )", eGFRvalAF);
+                                                            continue;
+                                                        }
+
+                                                        if (IsThai == true && item.IsNull("eGFR for Thai ( ml/min/1#73 m2 )"))
+                                                        {
+                                                            view.gcTestParameter.SetCellValue(newRowHandle, "eGFR for Thai ( ml/min/1.73 m2 )", eGFRval);
+                                                            continue;
+                                                        }
+
+                                                        if (NonTHNonAf == true && item.IsNull("eGFR (Non African-American) ( ml/min/1#73 m2 )"))
+                                                        {
+                                                            view.gcTestParameter.SetCellValue(newRowHandle, "eGFR (Non African-American) ( ml/min/1.73 m2 )", eGFRval);
+                                                            continue;
+                                                        }
+                                                    }
+
+                                                    if (isFemale != true)
+                                                    {
+                                                        if (Africa == true && item.IsNull("eGFR (African-American) ( ml/min/1#73 m2 )"))
+                                                        {
+                                                            double eGFRvalAF;
+                                                            eGFRvalAF = Math.Round(val * 1.212, 2);
+                                                            view.gcTestParameter.SetCellValue(newRowHandle, "eGFR (African-American) ( ml/min/1.73 m2 )", eGFRvalAF);
+                                                            continue;
+                                                        }
+
+                                                        if (IsThai == true && item.IsNull("eGFR for Thai ( ml/min/1#73 m2 )"))
+                                                        {
+                                                            view.gcTestParameter.SetCellValue(newRowHandle, "eGFR for Thai ( ml/min/1.73 m2 )", Math.Round(val, 2));
+                                                            continue;
+                                                        }
+
+                                                        if (NonTHNonAf == true && item.IsNull("eGFR (Non African-American) ( ml/min/1#73 m2 )"))
+                                                        {
+                                                            view.gcTestParameter.SetCellValue(newRowHandle, "eGFR (Non African-American) ( ml/min/1.73 m2 )", Math.Round(val, 2));
+                                                            continue;
+                                                        }
                                                     }
                                                 }
-                                                else
-                                                {
-                                                    IsThai = true;
-                                                }
-
-                                                if (isFemale == true)
-                                                {
-                                                    eGFRval = Math.Round(val * 0.742, 2);
-
-                                                    if (Africa == true && item.IsNull("eGFR (African-American) ( ml/min/1#73 m2 )"))
-                                                    {
-                                                        double eGFRvalAF;
-                                                        eGFRvalAF = Math.Round(eGFRval * 1.212, 2);
-                                                        view.gcTestParameter.SetCellValue(newRowHandle, "eGFR (African-American) ( ml/min/1.73 m2 )", eGFRvalAF);
-                                                        continue;
-                                                    }
-
-                                                    if (IsThai == true && item.IsNull("eGFR for Thai ( ml/min/1#73 m2 )"))
-                                                    {
-                                                        view.gcTestParameter.SetCellValue(newRowHandle, "eGFR for Thai ( ml/min/1.73 m2 )", eGFRval);
-                                                        continue;
-                                                    }
-
-                                                    if (NonTHNonAf == true && item.IsNull("eGFR (Non African-American) ( ml/min/1#73 m2 )"))
-                                                    {
-                                                        view.gcTestParameter.SetCellValue(newRowHandle, "eGFR (Non African-American) ( ml/min/1.73 m2 )", eGFRval);
-                                                        continue;
-                                                    }
-                                                }
-
-                                                if (isFemale != true)
-                                                {
-                                                    if (Africa == true && item.IsNull("eGFR (African-American) ( ml/min/1#73 m2 )"))
-                                                    {
-                                                        double eGFRvalAF;
-                                                        eGFRvalAF = Math.Round(val * 1.212, 2);
-                                                        view.gcTestParameter.SetCellValue(newRowHandle, "eGFR (African-American) ( ml/min/1.73 m2 )", eGFRvalAF);
-                                                        continue;
-                                                    }
-
-                                                    if (IsThai == true && item.IsNull("eGFR for Thai ( ml/min/1#73 m2 )"))
-                                                    {
-                                                        view.gcTestParameter.SetCellValue(newRowHandle, "eGFR for Thai ( ml/min/1.73 m2 )", Math.Round(val, 2));
-                                                        continue;
-                                                    }
-
-                                                    if (NonTHNonAf == true && item.IsNull("eGFR (Non African-American) ( ml/min/1#73 m2 )"))
-                                                    {
-                                                        view.gcTestParameter.SetCellValue(newRowHandle, "eGFR (Non African-American) ( ml/min/1.73 m2 )", Math.Round(val, 2));
-                                                        continue;
-                                                    }
-                                                }
+                                                continue;
                                             }
-                                            continue;
-                                        }
-                                        else
-                                        {
-                                            view.gcTestParameter.SetCellValue(newRowHandle, columnName.Replace("#", "."), item[columnName].ToString());
-                                            continue;
+                                            else
+                                            {
+                                                view.gcTestParameter.SetCellValue(newRowHandle, columnName.Replace("#", "."), item[columnName].ToString());
+                                                continue;
+                                            }
                                         }
                                     }
                                 }
