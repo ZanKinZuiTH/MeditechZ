@@ -327,14 +327,18 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _SelectSaveVisitStatusList, value);
-                if (SelectSaveVisitStatusList.Key == SNDDOC)
+                if (SelectSaveVisitStatusList != null)
                 {
-                    VisitStatusDoctorVisibility = System.Windows.Visibility.Visible;
+                    if (SelectSaveVisitStatusList.Key == SNDDOC)
+                    {
+                        VisitStatusDoctorVisibility = System.Windows.Visibility.Visible;
+                    }
+                    else
+                    {
+                        VisitStatusDoctorVisibility = System.Windows.Visibility.Collapsed;
+                    }
                 }
-                else
-                {
-                    VisitStatusDoctorVisibility = System.Windows.Visibility.Collapsed;
-                }
+
             }
         }
 
@@ -357,7 +361,10 @@ namespace MediTech.ViewModels
                     ?? (_SelectPatientVisits = new ObservableCollection<PatientVisitModel>());
             }
 
-            set { Set(ref _SelectPatientVisits, value); }
+            set
+            {
+                Set(ref _SelectPatientVisits, value);
+            }
         }
 
         private Visibility _VisitStatusDoctorVisibility = Visibility.Collapsed;
@@ -595,13 +602,6 @@ namespace MediTech.ViewModels
             set { Set(ref _EmployerAddress, value); }
         }
 
-        private bool _IsEnableFinancial;
-
-        public bool IsEnableFinancial
-        {
-            get { return _IsEnableFinancial; }
-            set { Set(ref _IsEnableFinancial, value); }
-        }
 
         private Visibility _VisibilityCareprovider2 = Visibility.Collapsed;
 
@@ -740,13 +740,6 @@ namespace MediTech.ViewModels
         }
 
 
-
-        private RelayCommand _CancelVisitCommand;
-
-        public RelayCommand CancelVisitCommand
-        {
-            get { return _CancelVisitCommand ?? (_CancelVisitCommand = new RelayCommand(CancelVisit)); }
-        }
         #endregion
 
         #region Method
@@ -763,7 +756,7 @@ namespace MediTech.ViewModels
         public PatientVisitMassViewModel()
         {
             Doctors = DataService.UserManage.GetCareproviderDoctor();
-            var refVal = DataService.Technical.GetReferenceValueList("VISTS,ENTYP,PRSTYP,PBLCT,RQPRT");
+            var refVal = DataService.Technical.GetReferenceValueList("VISTS,ENTYP,PRSTYP,PBLCT,RQPRT,VISTY");
             VisitStatus = new ObservableCollection<LookupReferenceValueModel>(refVal.Where(p => p.DomainCode == "VISTS" && p.ValueCode != "FINDIS"));
             EncounterType = new ObservableCollection<LookupReferenceValueModel>(refVal.Where(p => p.DomainCode == "ENTYP"));
             BillingCategory = refVal.Where(p => p.DomainCode == "PBLCT").ToList();
@@ -795,6 +788,10 @@ namespace MediTech.ViewModels
 
             InsuranceCompany = DataService.Billing.GetInsuranceCompanyAll();
 
+
+            OrganisationModifyVisit = GetHealthOrganisationRole();
+            SelectOrganisationModifyVisit = OrganisationModifyVisit.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+            VisitTypeSource = refVal.Where(p => p.DomainCode == "VISTY").ToList();
 
             Careproviders = DataService.UserManage.GetCareproviderAll();
             SelectCareprovider = Careproviders.FirstOrDefault(p => p.CareproviderUID == AppUtil.Current.UserID);
@@ -1647,65 +1644,6 @@ namespace MediTech.ViewModels
 
         }
 
-        private void CancelVisit()
-        {
-            try
-            {
-                if (PatientVisits != null)
-                {
-                    PatientVisitMass view = (PatientVisitMass)this.View;
-                    int upperlimit = 0;
-                    int loopCounter = 0;
-                    foreach (var currentData in SelectPatientVisits)
-                    {
-                        upperlimit++;
-                    }
-
-                    view.SetProgressBarLimits(0, upperlimit);
-
-                    foreach (var patientVisit in SelectPatientVisits.ToList())
-                    {
-                        var orderLists = DataService.OrderProcessing.GetOrderAllByVisitUID(patientVisit.PatientVisitUID);
-                        if (orderLists != null)
-                        {
-                            var reviewOrder = orderLists.Where(p => p.OrderDetailStatus == "Reviewed");
-                            var dispensedOrder = orderLists.Where(p => p.OrderDetailStatus == "Dispensed");
-                            if (reviewOrder != null && reviewOrder.Count() > 0)
-                            {
-                                WarningDialog(string.Format("ผุ้ป่วย:@PatientName HN:@HN ไม่สามารถ cancel ได้ เนื่องจากมี Order สถานะ Reviewed ค้างอยู่ กรุณาทำการ Cancel Order ก่อน", patientVisit.PatientName, patientVisit.PatientID));
-                                return;
-                            }
-                            if (dispensedOrder != null && dispensedOrder.Count() > 0)
-                            {
-                                WarningDialog(string.Format("ผุ้ป่วย:@PatientName HN:@HN ไม่สามารถ cancel ได้ เนื่องจากมี Order สถานะ Dispensed ค้างอยู่ กรุณาทำการ  ยกเลิกการจ่ายยา ที่หน้าใบสั่งยา ก่อน", patientVisit.PatientName, patientVisit.PatientID));
-                                return;
-                            }
-                        }
-
-                        DataService.PatientIdentity.CancelVisit(patientVisit.PatientVisitUID, AppUtil.Current.UserID);
-                        CloseViewDialog(ActionDialog.Save);
-
-
-                        SelectPatientVisits.Remove(patientVisit);
-                        loopCounter = loopCounter + 1;
-                        view.SetProgressBarValue(loopCounter);
-                    }
-
-
-                    view.SetProgressBarValue(upperlimit);
-                    view.PatientGrid.RefreshData();
-                    SaveSuccessDialog();
-                    SearchPatientVisit();
-                    view.progressBar1.Value = 0;
-                }
-
-            }
-            catch (Exception ex)
-            {
-
-                ErrorDialog(ex.Message);
-            }
-        }
 
         public bool ValidateVisitData()
         {
