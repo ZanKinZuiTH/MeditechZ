@@ -497,6 +497,7 @@ namespace MediTech.ViewModels
                         CurrentImportedData.TITLEUID = GetTitleID(preName, titleDataSource);
 
                         string nationalCode = drow["Nationality"].ToString().Trim().ToUpper();
+                        CurrentImportedData.Nationality = drow["Nationality"].ToString().Trim().ToUpper();
                         CurrentImportedData.NATNLUID = natinalDataSource.FirstOrDefault(p => p.ValueCode == nationalCode) != null ? natinalDataSource.FirstOrDefault(p => p.ValueCode == nationalCode).Key : null;
 
                         bool valid = DateTime.TryParse(CurrentImportedData.DateOfBirth, out birthdttm);
