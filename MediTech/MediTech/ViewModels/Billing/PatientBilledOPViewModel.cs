@@ -388,6 +388,7 @@ namespace MediTech.ViewModels
                     WarningDialog("บิลนี้เป็นประเภทการชำระเงินแบบวางบิล ไม่สามารถทำการแก้ไขรูปแบบการชำระเงินได้");
                     return;
                 }
+
                 if (SelectPatientBill.IsCancel)
                 {
                     ListPaymentDetails view = new ListPaymentDetails();

@@ -48,7 +48,8 @@ namespace MediTech.Models
         public string Age { get; set; }
         public string Gender { get; set; }
         public int? SEXXXUID { get; set; }
-        public int? NATNLUID { get; set; }     
+        public int? NATNLUID { get; set; }
+        public string Nationality { get; set; } 
         public int? TITLEUID { get; set; }
         public string LastName { get; set; }
         public string PreName { get; set; }
