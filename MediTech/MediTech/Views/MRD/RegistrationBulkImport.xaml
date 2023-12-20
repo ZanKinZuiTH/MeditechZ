@@ -86,6 +86,7 @@
                 <dxg:GridColumn Header="Birth Date" FieldName="DateOfBirth"/>
                 <dxg:GridColumn Header="Age" FieldName="Age"/>
                 <dxg:GridColumn Header="IDCard" FieldName="IDCard"/>
+                <dxg:GridColumn Header="Nationality" FieldName="Nationality"/>
                 <dxg:GridColumn Header="IDPassport" FieldName="IDPassport"/>
                 <dxg:GridColumn Header="MobilePhone" FieldName="MobilePhone"/>
                 <dxg:GridColumn Header="EN" FieldName="VisitID"/>
@@ -95,7 +96,7 @@
                 <dxg:GridColumn Header="Group" FieldName="Group"/>
                 <dxg:GridColumn Header="Program" FieldName="Program"/>
                 <dxg:GridColumn Header="CheckupDttm" FieldName="CheckupDttm"/>
-                <dxg:GridColumn Header="EmployerAddress" FieldName="EmployerAddress"/>
+                <dxg:GridColumn Header="EmployerAddress"  FieldName="EmployerAddress"/>
                 <dxg:GridControl.View>
                     <dxg:TableView x:Name="tableView" ShowGroupPanel="False"
                                    UseLightweightTemplates="None"

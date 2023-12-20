@@ -1802,7 +1802,7 @@ namespace MediTechWebApi.Controllers
                         db.SaveChanges();
 
 
-                        var patPaymentDetails = db.PatientPaymentDetail.Where(p => p.StatusFlag == "A" && p.PatientBillUID == patientBill.UID);
+                        var patPaymentDetails = db.PatientPaymentDetail.Where(p => p.StatusFlag == "A" && p.PatientBillUID == patientBill.UID).ToList();
                         if (patPaymentDetails != null && patPaymentDetails.Count() > 0)
                         {
                             foreach (var patPay in patPaymentDetails)
@@ -2032,7 +2032,7 @@ namespace MediTechWebApi.Controllers
                         }
 
 
-                        var patPaymentDetails = db.PatientPaymentDetail.Where(p => p.StatusFlag == "A" && p.PatientBillUID == patBill.UID);
+                        var patPaymentDetails = db.PatientPaymentDetail.Where(p => p.StatusFlag == "A" && p.PatientBillUID == patBill.UID).ToList();
                         if (patPaymentDetails != null && patPaymentDetails.Count() > 0)
                         {
                             foreach (var patPay in patPaymentDetails)

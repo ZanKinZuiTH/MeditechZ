@@ -173,8 +173,8 @@
                                             </DataTemplate>
                                         </dxg:GridColumn.CellTemplate>
                                     </dxg:GridColumn>
-                                    <dxg:GridColumn x:Name="colSelect" Fixed="Left" Header=" " AllowPrinting="False" Width="70"
-                                            AllowEditing="True" FieldName="Select"/>
+                                    <!--<dxg:GridColumn x:Name="colSelect" Fixed="Left" Header=" " AllowPrinting="False" Width="70"
+                                            AllowEditing="True" FieldName="Select"/>-->
                                     <dxg:GridColumn Header="HN" FieldName="PatientID" ReadOnly="True"/>
                                     <dxg:GridColumn Header="EmployeeID" FieldName="EmployeeID" ReadOnly="True"/>
                                     <dxg:GridColumn Header="ชื่อ-นามสกุล" FieldName="PatientName" ReadOnly="True"/>

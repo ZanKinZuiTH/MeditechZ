@@ -1020,7 +1020,7 @@ namespace MediTechWebApi.Controllers
                         && p.CareproviderUID == patientVisitInfo.CareProvider2UID).FirstOrDefault();
                         if (patConsult == null)
                         {
-                            var oldConsults = db.PatientConsultation.Where(p => p.StatusFlag == "A" && p.PatientVisitUID == patientVisit.UID && p.Comments == "ใบรับรองแพทย์อับอากาศ");
+                            var oldConsults = db.PatientConsultation.Where(p => p.StatusFlag == "A" && p.PatientVisitUID == patientVisit.UID && p.Comments == "ใบรับรองแพทย์อับอากาศ").ToList();
 
                             if (oldConsults != null)
                             {
@@ -1061,7 +1061,7 @@ namespace MediTechWebApi.Controllers
                     }
                     else
                     {
-                        var oldConsults = db.PatientConsultation.Where(p => p.StatusFlag == "A" && p.PatientVisitUID == patientVisit.UID && p.Comments == "ใบรับรองแพทย์อับอากาศ");
+                        var oldConsults = db.PatientConsultation.Where(p => p.StatusFlag == "A" && p.PatientVisitUID == patientVisit.UID && p.Comments == "ใบรับรองแพทย์อับอากาศ").ToList();
 
                         if (oldConsults != null)
                         {
@@ -1102,7 +1102,7 @@ namespace MediTechWebApi.Controllers
 
                     db.SaveChanges();
                 }
-                var patientVisitIDs = db.PatientVisitID.Where(p => p.PatientVisitUID == patientVisit.UID);
+                var patientVisitIDs = db.PatientVisitID.Where(p => p.PatientVisitUID == patientVisit.UID).ToList();
 
                 if (patientVisitIDs != null)
                 {
@@ -1116,13 +1116,13 @@ namespace MediTechWebApi.Controllers
                     }
 
                 }
-                var patientOrders = db.PatientOrder.Where(p => p.PatientVisitUID == patientVisit.UID);
+                var patientOrders = db.PatientOrder.Where(p => p.PatientVisitUID == patientVisit.UID).ToList();
 
                 if (patientOrders != null)
                 {
                     foreach (var patOrder in patientOrders)
                     {
-                        var patientOrderDetails = db.PatientOrderDetail.Where(p => p.PatientOrderUID == patOrder.UID);
+                        var patientOrderDetails = db.PatientOrderDetail.Where(p => p.PatientOrderUID == patOrder.UID).ToList();
                         if (patientOrderDetails != null)
                         {
                             foreach (var patOrderDetail in patientOrderDetails)
@@ -1155,7 +1155,7 @@ namespace MediTechWebApi.Controllers
 
                 }
 
-                var prescriptions = db.Prescription.Where(p => p.PatientVisitUID == patientVisit.UID);
+                var prescriptions = db.Prescription.Where(p => p.PatientVisitUID == patientVisit.UID).ToList();
                 if (prescriptions != null)
                 {
                     foreach (var prescription in prescriptions)
@@ -1193,7 +1193,7 @@ namespace MediTechWebApi.Controllers
 
                 }
 
-                var requests = db.Request.Where(p => p.PatientVisitUID == patientVisit.UID);
+                var requests = db.Request.Where(p => p.PatientVisitUID == patientVisit.UID).ToList();
                 if (requests != null)
                 {
                     foreach (var request in requests)
