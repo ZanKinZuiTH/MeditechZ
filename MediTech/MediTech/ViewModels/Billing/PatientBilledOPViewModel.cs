@@ -656,10 +656,10 @@ namespace MediTech.ViewModels
                         WarningDialog("กรุณาเลือกรูปแบบ รายงาน");
                         return;
                     }
-                    var billUnCancel = SelectPatientBills.Where(p => !p.IsCancel).ToList();
-                    if (billUnCancel != null && billUnCancel.Count() > 0)
+                    //var billUnCancel = SelectPatientBills.Where(p => !p.IsCancel).ToList();
+                    if (SelectPatientBills != null && SelectPatientBills.Count() > 0)
                     {
-                        foreach (var billCancel in billUnCancel)
+                        foreach (var billCancel in SelectPatientBills)
                         {
                             XtraReport report;
                             if (SelectPatientBill.VisitType != "Non Medical")
