@@ -660,7 +660,7 @@ namespace MediTech.ViewModels
                     //var billUnCancel = SelectPatientBills.Where(p => !p.IsCancel).ToList();
                     if (SelectPatientBills != null && SelectPatientBills.Count() > 0)
                     {
-                        foreach (var billCancel in SelectPatientBills)
+                        foreach (var bill in SelectPatientBills)
                         {
                             XtraReport report;
                             if (SelectPatientBill.VisitType != "Non Medical")
@@ -671,8 +671,8 @@ namespace MediTech.ViewModels
                             {
                                 report = new PatientBill2();
                             }
-                            report.Parameters["OrganisationUID"].Value = SelectPatientBill.OwnerOrganisationUID;
-                            report.Parameters["PatientBillUID"].Value = SelectPatientBill.PatientBillUID;
+                            report.Parameters["OrganisationUID"].Value = bill.OwnerOrganisationUID;
+                            report.Parameters["PatientBillUID"].Value = bill.PatientBillUID;
 
                             report.Parameters["ReportType"].Value = SelectBillType.Value;
                             report.Parameters["LogoBillType"].Value = SelectOrganisationLogo.HealthOrganisationUID;
