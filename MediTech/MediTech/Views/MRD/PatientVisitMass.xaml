@@ -186,7 +186,8 @@
                                             <dxe:DateEditSettings DisplayFormat="dd/MM/yyyy HH:mm" />
                                         </dxg:GridColumn.EditSettings>
                                     </dxg:GridColumn>
-                                    <dxg:GridColumn Header="แพทย์เจ้าของผู้ป่วย" FieldName="CareProviderName" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="Primery Doctor" FieldName="CareProviderName" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="Secondary Doctor" FieldName="DoctorGPName" ReadOnly="True"/>
                                     <dxg:GridColumn Header="EN" FieldName="VisitID" ReadOnly="True"/>
                                     <dxg:GridColumn Header="Program" FieldName="Program" ReadOnly="True"/>
                                     <dxg:GridColumn Header="หมายเหตุ" FieldName="Note" ReadOnly="True"/>
@@ -612,14 +613,14 @@ ImmediatePopup="True"/>
                                       NullValueButtonPlacement="EditBox"
                                       ValueMember="CareproviderUID"
                                       ItemsSource="{Binding CareproviderSource}"
-                                      SelectedItem="{Binding SelectedCareprovider}"/>
+                                      SelectedItem="{Binding SelectedCareproviderDoctor}"/>
 								</dxlc:LayoutItem>
 								<dxlc:LayoutItem Label="{Binding CareproviderLabel2}" Visibility="{Binding VisibilityCareprovider2}">
 									<dxe:ComboBoxEdit DisplayMember="FullName"
                                       NullValueButtonPlacement="EditBox"
                                       ValueMember="CareproviderUID"
                                       ItemsSource="{Binding CareproviderSource}"
-                                      SelectedItem="{Binding SelectedCareprovider2}"/>
+                                      SelectedItem="{Binding SelectedCareproviderDoctor2}"/>
 								</dxlc:LayoutItem>
 								<dxlc:LayoutItem Label="หมายเหตุถึงแพทย์" LabelVerticalAlignment="Top">
 									<TextBox Name="txtDetail"   Text="{Binding CommentDoctor,Mode=TwoWay}"
@@ -627,11 +628,8 @@ ImmediatePopup="True"/>
                                                      AcceptsReturn="True"
                                                      TextWrapping="Wrap" />
 								</dxlc:LayoutItem>
-								<dxlc:LayoutGroup VerticalAlignment="Bottom">
-									<dx:SimpleButton Content="ยกเลิกการลงทะเบียน" Width="120" Height="25" Command="{Binding CancelVisitCommand}" HorizontalAlignment="Left"
-                                     IsEnabled="{Binding IsEnableFinancial}"
-                                     Foreground="Red"/>
-									<dx:SimpleButton Content="บันทึก" Width="100" Height="25" Command="{Binding SaveModifyVisitCommand}" HorizontalAlignment="Right"/>
+                                <dxlc:LayoutGroup VerticalAlignment="Bottom">
+                                    <dx:SimpleButton Content="บันทึก" Width="100" Height="25" Command="{Binding SaveModifyVisitCommand}" HorizontalAlignment="Right"/>
 								</dxlc:LayoutGroup>
 
 							</dxlc:LayoutControl>

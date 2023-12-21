@@ -446,8 +446,8 @@
                             <dxe:DateEditSettings DisplayFormat="dd/MM/yyyy HH:mm" />
                         </dxg:GridColumn.EditSettings>
                     </dxg:GridColumn>
-                    <dxg:GridColumn Header="แพทย์เจ้าของผู้ป่วย" FieldName="CareProviderName" ReadOnly="True"/>
-                    <dxg:GridColumn Header="แพทย์ GP" FieldName="DoctorGPName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Primery Doctor" FieldName="CareProviderName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Secondary Doctor" FieldName="DoctorGPName" ReadOnly="True"/>
                     <dxg:GridColumn Header="VisitID" FieldName="VisitID" ReadOnly="True"/>
                     <dxg:GridColumn Header="สถานประกอบการ" FieldName="OwnerOrganisation" ReadOnly="True"/>
                     <dxg:GridColumn Header="Primary Payor" FieldName="PayorName" ReadOnly="True"/>

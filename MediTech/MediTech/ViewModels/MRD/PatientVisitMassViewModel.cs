@@ -546,20 +546,20 @@ namespace MediTech.ViewModels
             set { Set(ref _CareproviderSource, value); }
         }
 
-        private CareproviderModel _SelectedCareprovider;
+        private CareproviderModel _SelectedCareproviderDoctor;
 
-        public CareproviderModel SelectedCareprovider
+        public CareproviderModel SelectedCareproviderDoctor
         {
-            get { return _SelectedCareprovider; }
-            set { Set(ref _SelectedCareprovider, value); }
+            get { return _SelectedCareproviderDoctor; }
+            set { Set(ref _SelectedCareproviderDoctor, value); }
         }
 
-        private CareproviderModel _SelectedCareprovider2;
+        private CareproviderModel _SelectedCareproviderDoctor2;
 
-        public CareproviderModel SelectedCareprovider2
+        public CareproviderModel SelectedCareproviderDoctor2
         {
-            get { return _SelectedCareprovider2; }
-            set { Set(ref _SelectedCareprovider2, value); }
+            get { return _SelectedCareproviderDoctor2; }
+            set { Set(ref _SelectedCareproviderDoctor2, value); }
         }
 
         private string _CareproviderLabel = "แพทย์";
@@ -792,8 +792,12 @@ namespace MediTech.ViewModels
             OrganisationModifyVisit = GetHealthOrganisationRole();
             SelectOrganisationModifyVisit = OrganisationModifyVisit.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
             VisitTypeSource = refVal.Where(p => p.DomainCode == "VISTY").ToList();
+            PrioritySource = refVal.Where(p => p.DomainCode == "RQPRT").ToList();
+
+            CareproviderSource = DataService.UserManage.GetCareproviderDoctor();
 
             Careproviders = DataService.UserManage.GetCareproviderAll();
+
             SelectCareprovider = Careproviders.FirstOrDefault(p => p.CareproviderUID == AppUtil.Current.UserID);
 
             LocationOrders = org.Where(p => p.IsCanOrder == "Y").ToList();
@@ -1611,12 +1615,12 @@ namespace MediTech.ViewModels
                         visitInfo.EmployerAddress = EmployerAddress;
                         visitInfo.OwnerOrganisationUID = SelectOrganisationModifyVisit.HealthOrganisationUID;
                         visitInfo.LocationUID = SelectLocationModifyVisit.LocationUID;
-                        if (SelectedCareprovider != null)
-                            visitInfo.CareProviderUID = SelectedCareprovider.CareproviderUID;
+                        if (SelectedCareproviderDoctor != null)
+                            visitInfo.CareProviderUID = SelectedCareproviderDoctor.CareproviderUID;
 
-                        if (SelectedCareprovider2 != null && VisibilityCareprovider2 == Visibility.Visible)
+                        if (SelectedCareproviderDoctor2 != null && VisibilityCareprovider2 == Visibility.Visible)
                         {
-                            visitInfo.CareProvider2UID = SelectedCareprovider2.CareproviderUID;
+                            visitInfo.CareProvider2UID = SelectedCareproviderDoctor2.CareproviderUID;
                         }
 
                         DataService.PatientIdentity.ModifyPatientVisit(visitInfo, AppUtil.Current.UserID);
