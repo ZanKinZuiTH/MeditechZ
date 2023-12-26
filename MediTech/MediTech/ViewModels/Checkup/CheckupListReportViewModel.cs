@@ -299,6 +299,7 @@ namespace MediTech.ViewModels
             ReportsList.Add(new ReportsModel { Name = "ใบรายงานผลการตรวจสุขภาพ", NamespaceName = "MediTech.Reports.Operating.Checkup.MedReport1" });
             ReportsList.Add(new ReportsModel { Name = "ใบรับรองแพทย์ที่อับอากาศ (Mobile)", NamespaceName = "MediTech.Reports.Operating.Patient.ConfinedSpaceCertificate1" });
             ReportsList.Add(new ReportsModel { Name = "ใบรับรองแพทย์สำหรับทำงานที่อับอากาศ", NamespaceName = "MediTech.Reports.Operating.Patient.ConfinedSpaceCertificate1" });
+            ReportsList.Add(new ReportsModel { Name = "ผลแลป Amphetamine", NamespaceName = "MediTech.Reports.Operating.Checkup.LabResultAmphe" });
             ReportsList.Add(new ReportsModel { Name = "รายงานตรวจสุขภาพCSR", NamespaceName = "MediTech.Reports.Operating.Checkup.CheckupCSR" });
             ReportsList.Add(new ReportsModel { Name = "รายงานตรวจPapSmear", NamespaceName = "MediTech.Reports.Operating.Checkup.Papsmear" });
             ReportsList.Add(new ReportsModel { Name = "รายงานการตรวจปัจจัยเสี่ยงUACJ", NamespaceName = "MediTech.Reports.Operating.Checkup.RiskMobileCheckup" });
@@ -416,6 +417,14 @@ namespace MediTech.ViewModels
                             int logoID = SelectLogo.Key == 3 ? 17 : 30;
                             rpt.Parameters["OrganisationUID"].Value = logoID;
                         }
+                        if (SelectReport.Name == "ผลแลป Amphetamine")
+                        {
+                            int logoID = SelectLogo.Key == 3 ? 17 : 30;
+                            rpt.Parameters["OrganisationUID"].Value = logoID;
+                            rpt.Parameters["logoHead"].Value = logoID;
+                            rpt.Parameters["StartDate"].Value = DateFrom;
+                            rpt.Parameters["EndDate"].Value = DateTo;
+                        }
 
                         ReportPrintTool printTool = new ReportPrintTool(rpt);
                         rpt.RequestParameters = false;
@@ -512,6 +521,15 @@ namespace MediTech.ViewModels
                         int logoID = SelectLogo.Key == 3 ? 17 : 30;
                         rpt.Parameters["OrganisationUID"].Value = logoID;
                     }
+                    if (SelectReport.Name == "ผลแลป Amphetamine")
+                    {
+                        int logoID = SelectLogo.Key == 3 ? 17 : 30;
+                        rpt.Parameters["OrganisationUID"].Value = logoID;
+                        rpt.Parameters["logoHead"].Value = logoID;
+                        rpt.Parameters["StartDate"].Value = DateFrom;
+                        rpt.Parameters["EndDate"].Value = DateTo;
+                    }
+
                     ReportPrintTool printTool = new ReportPrintTool(rpt);
                     rpt.RequestParameters = false;
                     rpt.ShowPrintMarginsWarning = false;
@@ -566,6 +584,14 @@ namespace MediTech.ViewModels
                         {
                             int logoID = SelectLogo.Key == 3 ? 17 : 30;
                             rpt.Parameters["OrganisationUID"].Value = logoID;
+                        }
+                        if (SelectReport.Name == "ผลแลป Amphetamine")
+                        {
+                            int logoID = SelectLogo.Key == 3 ? 17 : 30;
+                            rpt.Parameters["OrganisationUID"].Value = logoID;
+                            rpt.Parameters["logoHead"].Value = logoID;
+                            rpt.Parameters["StartDate"].Value = DateFrom;
+                            rpt.Parameters["EndDate"].Value = DateTo;
                         }
                         ReportPrintTool printTool = new ReportPrintTool(rpt);
                         rpt.RequestParameters = false;
