@@ -82,6 +82,7 @@ namespace MediTech.Model
         public string IsReAdmisstion { get; set; }
         public string IsAllocated { get; set; }
         public long PatientBillUID { get; set; }
+        public string BillNumber { get; set; }
         public List<PatientVisitPayorModel> PatientVisitPayors { get; set; }
         public PatientVisitPayorModel PatientVisitPayorsAdmit { get; set; }
         public PatientAEAdmissionModel AEAdmission { get; set; }
