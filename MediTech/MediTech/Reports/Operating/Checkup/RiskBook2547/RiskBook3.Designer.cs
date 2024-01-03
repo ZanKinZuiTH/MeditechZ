@@ -772,7 +772,7 @@
             this.sssss,
             this.xrLabel8,
             this.xrLabel5});
-            this.Detail.HeightF = 1690.494F;
+            this.Detail.HeightF = 1697.549F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -781,7 +781,7 @@
             // toxicoComment
             // 
             this.toxicoComment.Font = new System.Drawing.Font("EucrosiaUPC", 9.75F);
-            this.toxicoComment.LocationFloat = new DevExpress.Utils.PointFloat(24.50007F, 1646.16F);
+            this.toxicoComment.LocationFloat = new DevExpress.Utils.PointFloat(24.50007F, 1643.441F);
             this.toxicoComment.Multiline = true;
             this.toxicoComment.Name = "toxicoComment";
             this.toxicoComment.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -792,7 +792,7 @@
             // lbFumeComment
             // 
             this.lbFumeComment.Font = new System.Drawing.Font("EucrosiaUPC", 9.75F);
-            this.lbFumeComment.LocationFloat = new DevExpress.Utils.PointFloat(24.50007F, 1668.327F);
+            this.lbFumeComment.LocationFloat = new DevExpress.Utils.PointFloat(24.50007F, 1665.608F);
             this.lbFumeComment.Multiline = true;
             this.lbFumeComment.Name = "lbFumeComment";
             this.lbFumeComment.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -862,7 +862,7 @@
             this.rowFume,
             this.rowNitricAcids,
             this.rowSulphuricAcids});
-            this.tbToxicology.SizeF = new System.Drawing.SizeF(369.5942F, 992.6022F);
+            this.tbToxicology.SizeF = new System.Drawing.SizeF(369.5942F, 992.602F);
             this.tbToxicology.StylePriority.UseBorderColor = false;
             this.tbToxicology.StylePriority.UseBorders = false;
             this.tbToxicology.StylePriority.UseBorderWidth = false;
@@ -9162,7 +9162,7 @@
             // 
             // BottomMargin
             // 
-            this.BottomMargin.HeightF = 5F;
+            this.BottomMargin.HeightF = 0F;
             this.BottomMargin.Name = "BottomMargin";
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -9173,7 +9173,7 @@
             this.Detail,
             this.TopMargin,
             this.BottomMargin});
-            this.Margins = new System.Drawing.Printing.Margins(0, 0, 0, 5);
+            this.Margins = new System.Drawing.Printing.Margins(0, 0, 0, 0);
             this.PageHeight = 1169;
             this.PageWidth = 827;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;

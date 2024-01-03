@@ -2500,14 +2500,14 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         #endregion
 
                         #region formadehyde in Urine
-                        //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237") != null)
-                        //{
-                        //    page6.RowFormadehyde.Visible = true;
-                        //    page6.formadehydeRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237")?.ReferenceRange;
-                        //    page6.formadehydeY1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year1)?.ResultValue;
-                        //    page6.formadehydeY2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year2)?.ResultValue;
-                        //    page6.formadehydeY3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year3)?.ResultValue;
-                        //}
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1342") != null)
+                        {
+                            page7.RowFormadehyde.Visible = true;
+                            page7.formadehydeRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1342")?.ReferenceRange;
+                            page7.formadehydeY1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1342" && p.Year == year1)?.ResultValue;
+                            page7.formadehydeY2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1342" && p.Year == year2)?.ResultValue;
+                            page7.formadehydeY3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1342" && p.Year == year3)?.ResultValue;
+                        }
                         #endregion
 
                         #region 2,5 Hexanedion in urine

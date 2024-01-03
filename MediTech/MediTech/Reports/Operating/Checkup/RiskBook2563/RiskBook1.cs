@@ -1789,6 +1789,17 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2563
                         page3.lbSulphuricAcids3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1338" && p.Year == year3)?.ResultValue;
                     }
                     #endregion
+
+                    #region formadehyde in Urine
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1342") != null)
+                    {
+                        page3.RowFormadehyde.Visible = true;
+                        page3.formadehydeRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1342")?.ReferenceRange;
+                        page3.formadehydeY1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1342" && p.Year == year1)?.ResultValue;
+                        page3.formadehydeY2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1342" && p.Year == year2)?.ResultValue;
+                        page3.formadehydeY3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1342" && p.Year == year3)?.ResultValue;
+                    }
+                    #endregion
                 }
             }
         }
