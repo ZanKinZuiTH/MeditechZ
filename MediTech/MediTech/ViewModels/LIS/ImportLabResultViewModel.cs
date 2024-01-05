@@ -674,7 +674,7 @@ namespace MediTech.ViewModels
                                 {
                                     if (IseGRFAuto == true)
                                     {
-                                        if (columnName == "eGFR for Thai ( ml/min/1#73 m2 )" || columnName == "eGFR (African-American) ( ml/min/1#73 m2 )" || columnName == "eGFR (Non African-American) ( ml/min/1#73 m2 )")
+                                        if (columnName == "eGFR (CKD-EPI) ( ml/min/1#73 m2 )" || columnName == "eGFR (African-American) ( ml/min/1#73 m2 )" || columnName == "eGFR (Non African-American) ( ml/min/1#73 m2 )")
                                         {
                                             double Scr = !item.IsNull("Creatinine ( mg/dl )") ? double.Parse(item["Creatinine ( mg/dl )"].ToString()) : 0;
                                             if (item.IsNull(columnName))
@@ -716,7 +716,24 @@ namespace MediTech.ViewModels
 
                                                     if (isFemale == true)
                                                     {
+                                                        #region eGFR (CKD-EPI)
+                                                        var valScr = Scr / 0.7;
+                                                        double val2 = 0;
+                                                        if (Scr <= 0.7)
+                                                        {
+
+                                                             val2 = 144 * Math.Pow(valScr, -0.329) * Math.Pow(0.993, age);
+                                                        }
+
+                                                        if (Scr > 0.7)
+                                                        {
+                                                            val2 = 144 * Math.Pow(valScr, -1.209) * Math.Pow(0.993, age);
+                                                        }
+
+                                                        #endregion
+
                                                         eGFRval = Math.Round(val * 0.742, 2);
+                                                        var valFe = Math.Round(val2, 2);
 
                                                         if (Africa == true && item.IsNull("eGFR (African-American) ( ml/min/1#73 m2 )"))
                                                         {
@@ -726,9 +743,9 @@ namespace MediTech.ViewModels
                                                             continue;
                                                         }
 
-                                                        if (IsThai == true && item.IsNull("eGFR for Thai ( ml/min/1#73 m2 )"))
+                                                        if (IsThai == true && item.IsNull("eGFR (CKD-EPI) ( ml/min/1#73 m2 )"))
                                                         {
-                                                            view.gcTestParameter.SetCellValue(newRowHandle, "eGFR for Thai ( ml/min/1.73 m2 )", eGFRval);
+                                                            view.gcTestParameter.SetCellValue(newRowHandle, "eGFR (CKD-EPI) ( ml/min/1.73 m2 )", valFe);
                                                             continue;
                                                         }
 
@@ -741,17 +758,35 @@ namespace MediTech.ViewModels
 
                                                     if (isFemale != true)
                                                     {
+                                                        #region eGFR (CKD-EPI)
+                                                        var valScr = Scr / 0.9;
+                                                        double val2 = 0;
+                                                        if (Scr <= 0.9)
+                                                        {
+
+                                                            val2 = 141 * Math.Pow(valScr, -0.411) * Math.Pow(0.993, age);
+                                                        }
+
+                                                        if (Scr > 0.9)
+                                                        {
+                                                            val2 = 141 * Math.Pow(valScr, -1.209) * Math.Pow(0.993, age);
+                                                        }
+
+                                                        #endregion
+
                                                         if (Africa == true && item.IsNull("eGFR (African-American) ( ml/min/1#73 m2 )"))
                                                         {
                                                             double eGFRvalAF;
                                                             eGFRvalAF = Math.Round(val * 1.212, 2);
+                                                            
+
                                                             view.gcTestParameter.SetCellValue(newRowHandle, "eGFR (African-American) ( ml/min/1.73 m2 )", eGFRvalAF);
                                                             continue;
                                                         }
 
-                                                        if (IsThai == true && item.IsNull("eGFR for Thai ( ml/min/1#73 m2 )"))
+                                                        if (IsThai == true && item.IsNull("eGFR (CKD-EPI) ( ml/min/1#73 m2 )"))
                                                         {
-                                                            view.gcTestParameter.SetCellValue(newRowHandle, "eGFR for Thai ( ml/min/1.73 m2 )", Math.Round(val, 2));
+                                                            view.gcTestParameter.SetCellValue(newRowHandle, "eGFR (CKD-EPI) ( ml/min/1.73 m2 )", Math.Round(val2, 2));
                                                             continue;
                                                         }
 
