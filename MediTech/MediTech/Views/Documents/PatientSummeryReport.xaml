@@ -33,10 +33,16 @@
                         </dxe:ComboBoxEdit.StyleSettings>
                     </dxe:ComboBoxEdit>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem >
-                    <dx:SimpleButton Width="80" Command="{Binding SearchCommand}" HorizontalAlignment="Right" 
-                                     Height="25" Content="ค้นหา"/>
-                </dxlc:LayoutItem>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit IsChecked="{Binding IsFinancial}" FontWeight="Bold" Content="ดึงตามเวลา Financial Discharge"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem >
+                        <dx:SimpleButton Width="80" Command="{Binding SearchCommand}" HorizontalAlignment="Right" 
+                                Height="25" Content="ค้นหา"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+     
             </dxlc:LayoutGroup>
             <dxg:GridControl x:Name="grdPatientSummary" ItemsSource="{Binding PatientSummaryDatas}">
                 <dxg:GridColumn Header="HN" FieldName="HN"/>
@@ -55,12 +61,12 @@
                 <dxg:GridColumn Header="ประเภท Visit" FieldName="VisitType"/>
                 <dxg:GridColumn Header="ยอดซื้อรวมแต่ละ Visit" FieldName="NetAmountVisit"/>
                 <dxg:GridColumn Header="ประเภท Order" FieldName="TypeOrder"/>
-                <dxg:GridColumn Header="แพทย์ที่เข้าพบ" FieldName="Doctor"/>
+                <dxg:GridColumn Header="แพทย์ที่ลง ICD10" FieldName="Doctor"/>
+                <dxg:GridColumn Header="แพทย์หลัก" FieldName="PrimaryDoctor"/>
+                <dxg:GridColumn Header="แพทย์ที่รอง" FieldName="SecondaryDoctor"/>
                 <dxg:GridColumn Header="Payor" FieldName="PayorName"/>
                 <dxg:GridColumn Header="ยาที่แพ้" FieldName="Allergy"/>
                 <dxg:GridColumn Header="วันที่นัด" FieldName="AppointmentDttm">
-                    
-                    
                     <dxg:GridColumn.EditSettings>
                         <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy"  MaskType="DateTime"/>
                     </dxg:GridColumn.EditSettings>

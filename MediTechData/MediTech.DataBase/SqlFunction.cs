@@ -1980,7 +1980,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTPatientSummaryData(DateTime dateFrom, DateTime dateTo, string organisationList)
+        public static DataTable pRPTPatientSummaryData(DateTime dateFrom, DateTime dateTo, string organisationList,bool isFinancial)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTPatientSummaryData", entities.Database.Connection.ConnectionString);
@@ -1989,6 +1989,7 @@ namespace MediTech.DataBase
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
             adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
+            adp.SelectCommand.Parameters.AddWithValue("@P_IsFinance", isFinancial ? "Y" : "N");
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];

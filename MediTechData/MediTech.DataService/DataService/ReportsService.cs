@@ -173,9 +173,9 @@ namespace MediTech.DataService
             return data;
         }
 
-        public List<PatientSummaryDataModel> PatientSummaryData(DateTime dateFrom, DateTime dateTo, string organisationList)
+        public List<PatientSummaryDataModel> PatientSummaryData(DateTime dateFrom, DateTime dateTo, string organisationList,bool isFinancial)
         {
-            string requestApi = string.Format("Api/Report/PatientSummaryData?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationList={2}", dateFrom, dateTo, organisationList);
+            string requestApi = string.Format("Api/Report/PatientSummaryData?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationList={2}&isFinancial={3}", dateFrom, dateTo, organisationList, isFinancial);
             List<PatientSummaryDataModel> data = MeditechApiHelper.Get<List<PatientSummaryDataModel>>(requestApi);
 
             return data;

@@ -61,6 +61,7 @@ namespace MediTech.Model.Report
         public string CancelBillReason { get; set; }
         public string TypeOrder { get; set; }
         public string OrderComments { get; set; }
-
+        public string PrimaryDoctor { get; set; }
+        public string SecondaryDoctor { get; set; }
     }
 }
