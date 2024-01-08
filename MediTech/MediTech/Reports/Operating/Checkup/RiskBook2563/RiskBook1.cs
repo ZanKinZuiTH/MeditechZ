@@ -569,6 +569,8 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2563
                 page3.RowEthylAcetate.Visible = false;
                 page3.RowVinylAcetate.Visible = false;
                 page3.rowFume.Visible = false;
+                page3.rowNaphtha.Visible = false;
+                page3.rowSodiumhydroxide.Visible = false;
 
                 page3.toxicoComment.Visible = false;
                 page3.lbFumeComment.Visible = false;
@@ -742,6 +744,8 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2563
                         || p.RequestItemCode.Contains("LAB640") //Nitric acids
                         || p.RequestItemCode.Contains("LAB641") //fume
                         || p.RequestItemCode.Contains("LAB639") //Sulphuric acids
+                        || p.RequestItemCode.Contains("LAB643") //Sodium hydroxide ( NaOH) 
+                        || p.RequestItemCode.Contains("LAB644") //naphtha
                          )
                         .OrderByDescending(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
@@ -1800,6 +1804,31 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2563
                         page3.formadehydeY3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1342" && p.Year == year3)?.ResultValue;
                     }
                     #endregion
+
+                    #region Naphtha
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1345") != null)
+                    {
+                        page3.lbFumeComment.Visible = true;
+                        page3.rowNaphtha.Visible = true;
+                        page3.lbNaphthaRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1345")?.ReferenceRange;
+                        page3.lbNaphtha1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1345" && p.Year == year1)?.ResultValue;
+                        page3.lbNaphtha2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1345" && p.Year == year2)?.ResultValue;
+                        page3.lbNaphtha3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1345" && p.Year == year3)?.ResultValue;
+                    }
+                    #endregion
+
+                    #region Sodium hydroxide (NaOH)
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1344") != null)
+                    {
+                        page3.lbFumeComment.Visible = true;
+                        page3.rowSodiumhydroxide.Visible = true;
+                        page3.lbSodiumhydroxideRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1344")?.ReferenceRange;
+                        page3.lbSodiumhydroxide1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1344" && p.Year == year1)?.ResultValue;
+                        page3.lbSodiumhydroxide2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1344" && p.Year == year2)?.ResultValue;
+                        page3.lbSodiumhydroxide3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1344" && p.Year == year3)?.ResultValue;
+                    }
+                    #endregion
+
                 }
             }
         }

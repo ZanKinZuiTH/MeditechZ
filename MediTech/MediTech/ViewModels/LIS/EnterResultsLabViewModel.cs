@@ -452,6 +452,7 @@ namespace MediTech.ViewModels
                 bool NonTHNonAf = false;
                 bool IsThai = false;
                 var val = 175 * Math.Pow(SCr, -1.154) * Math.Pow(age, -0.203);
+                
 
                 if (ptNation.NATNLUID != null)
                 {
@@ -479,10 +480,23 @@ namespace MediTech.ViewModels
 
                 if (SCr != 0)
                 {
-
+                    double val2 = 0;
                     if (isFemale == true)
                     {
+                        #region eGFR (CKD-EPI)
+                        var valScr = SCr / 0.7;
+                        if (SCr <= 0.7)
+                        {
 
+                            val2 = 144 * Math.Pow(valScr, -0.329) * Math.Pow(0.993, age);
+                        }
+
+                        if (SCr > 0.7)
+                        {
+                            val2 = 144 * Math.Pow(valScr, -1.209) * Math.Pow(0.993, age);
+                        }
+
+                        #endregion
                         eGFRval = Math.Round(val * 0.742, 2);
 
                         if (Africa == true)
@@ -494,7 +508,9 @@ namespace MediTech.ViewModels
 
                         if (IsThai == true)
                         {
-                            RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0073").FirstOrDefault().ResultValue = eGFRval.ToString();
+                            var valFemale = Math.Round(val2, 2);
+                            //RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0073").FirstOrDefault().ResultValue = eGFRval.ToString();
+                            RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0073").FirstOrDefault().ResultValue = valFemale.ToString();
                         }
 
                         if (NonTHNonAf == true)
@@ -505,6 +521,22 @@ namespace MediTech.ViewModels
 
                     if (isFemale != true)
                     {
+                        #region eGFR (CKD-EPI)
+                        var valScr = SCr / 0.9;
+                        double valMale = 0;
+                        if (SCr <= 0.9)
+                        {
+
+                            valMale = 141 * Math.Pow(valScr, -0.411) * Math.Pow(0.993, age);
+                        }
+
+                        if (SCr > 0.9)
+                        {
+                            valMale = 141 * Math.Pow(valScr, -1.209) * Math.Pow(0.993, age);
+                        }
+
+                        #endregion
+
                         if (Africa == true)
                         {
                             double eGFRvalAF;
@@ -514,7 +546,8 @@ namespace MediTech.ViewModels
 
                         if (IsThai == true)
                         {
-                            RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0073").FirstOrDefault().ResultValue = Math.Round(val, 2).ToString();
+                            //RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0073").FirstOrDefault().ResultValue = Math.Round(val, 2).ToString();
+                            RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0073").FirstOrDefault().ResultValue = Math.Round(valMale, 2).ToString();
                         }
 
                         if (NonTHNonAf == true)

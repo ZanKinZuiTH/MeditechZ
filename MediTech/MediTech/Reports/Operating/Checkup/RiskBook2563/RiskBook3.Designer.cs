@@ -558,6 +558,18 @@
             this.lbSulphuricAcids1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbSulphuricAcids2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbSulphuricAcids3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.rowNaphtha = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell51 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbNaphthaRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbNaphtha1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbNaphtha2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbNaphtha3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.rowSodiumhydroxide = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell59 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbSodiumhydroxideRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbSodiumhydroxide1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbSodiumhydroxide2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbSodiumhydroxide3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.Narcotic = new DevExpress.XtraReports.UI.XRLabel();
             this.AlcohoPeriodMonth = new DevExpress.XtraReports.UI.XRLabel();
             this.AlcohoPeriodYear = new DevExpress.XtraReports.UI.XRLabel();
@@ -772,7 +784,7 @@
             this.sssss,
             this.xrLabel8,
             this.xrLabel5});
-            this.Detail.HeightF = 1694.955F;
+            this.Detail.HeightF = 1730.892F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -781,7 +793,7 @@
             // lbFumeComment
             // 
             this.lbFumeComment.Font = new System.Drawing.Font("EucrosiaUPC", 9.75F);
-            this.lbFumeComment.LocationFloat = new DevExpress.Utils.PointFloat(24.50007F, 1665.608F);
+            this.lbFumeComment.LocationFloat = new DevExpress.Utils.PointFloat(24.50007F, 1703.234F);
             this.lbFumeComment.Multiline = true;
             this.lbFumeComment.Name = "lbFumeComment";
             this.lbFumeComment.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -792,7 +804,7 @@
             // toxicoComment
             // 
             this.toxicoComment.Font = new System.Drawing.Font("EucrosiaUPC", 9.75F);
-            this.toxicoComment.LocationFloat = new DevExpress.Utils.PointFloat(24.50007F, 1643.441F);
+            this.toxicoComment.LocationFloat = new DevExpress.Utils.PointFloat(24.50007F, 1681.067F);
             this.toxicoComment.Multiline = true;
             this.toxicoComment.Name = "toxicoComment";
             this.toxicoComment.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -4000,8 +4012,10 @@
             this.RowVinylAcetate,
             this.rowFume,
             this.rowNitricAcids,
-            this.rowSulphuricAcids});
-            this.tbToxicology.SizeF = new System.Drawing.SizeF(369.5942F, 992.6022F);
+            this.rowSulphuricAcids,
+            this.rowNaphtha,
+            this.rowSodiumhydroxide});
+            this.tbToxicology.SizeF = new System.Drawing.SizeF(369.5942F, 1030.228F);
             this.tbToxicology.StylePriority.UseBorderColor = false;
             this.tbToxicology.StylePriority.UseBorders = false;
             this.tbToxicology.StylePriority.UseBorderWidth = false;
@@ -4030,7 +4044,7 @@
             this.xrTableCell33.StylePriority.UseFont = false;
             this.xrTableCell33.StylePriority.UseTextAlignment = false;
             this.xrTableCell33.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell33.Weight = 1.2913565758087551D;
+            this.xrTableCell33.Weight = 1.3876867647830469D;
             // 
             // xrTableCell1
             // 
@@ -4043,7 +4057,7 @@
             this.xrTableCell1.StylePriority.UseTextAlignment = false;
             this.xrTableCell1.Text = "ค่าปกติ";
             this.xrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell1.Weight = 0.93906239416508419D;
+            this.xrTableCell1.Weight = 0.8427322051907925D;
             // 
             // cellToxicoYear1
             // 
@@ -4114,7 +4128,7 @@
             this.xrTableCell28.StylePriority.UseTextAlignment = false;
             this.xrTableCell28.Text = "Nickel in blood";
             this.xrTableCell28.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell28.Weight = 1.2913566084432759D;
+            this.xrTableCell28.Weight = 1.3876867974175677D;
             // 
             // cellNickelRange
             // 
@@ -4123,7 +4137,7 @@
             this.cellNickelRange.StylePriority.UseFont = false;
             this.cellNickelRange.StylePriority.UseTextAlignment = false;
             this.cellNickelRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellNickelRange.Weight = 0.93906236153056333D;
+            this.cellNickelRange.Weight = 0.84273217255627164D;
             // 
             // cellNickel1
             // 
@@ -4173,7 +4187,7 @@
             this.xrTableCell29.StylePriority.UseTextAlignment = false;
             this.xrTableCell29.Text = "Chromium in Urine";
             this.xrTableCell29.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell29.Weight = 1.2913566084432759D;
+            this.xrTableCell29.Weight = 1.3876867974175677D;
             // 
             // cellChromiumRange
             // 
@@ -4182,7 +4196,7 @@
             this.cellChromiumRange.StylePriority.UseFont = false;
             this.cellChromiumRange.StylePriority.UseTextAlignment = false;
             this.cellChromiumRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellChromiumRange.Weight = 0.93906236153056333D;
+            this.cellChromiumRange.Weight = 0.84273217255627164D;
             // 
             // cellChromium1
             // 
@@ -4232,7 +4246,7 @@
             this.xrTableCell25.StylePriority.UseTextAlignment = false;
             this.xrTableCell25.Text = "Aluminium in Urine";
             this.xrTableCell25.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell25.Weight = 1.2913566084432759D;
+            this.xrTableCell25.Weight = 1.3876867974175677D;
             // 
             // cellAluminiumRange
             // 
@@ -4241,7 +4255,7 @@
             this.cellAluminiumRange.StylePriority.UseFont = false;
             this.cellAluminiumRange.StylePriority.UseTextAlignment = false;
             this.cellAluminiumRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellAluminiumRange.Weight = 0.93906236153056333D;
+            this.cellAluminiumRange.Weight = 0.84273217255627164D;
             // 
             // cellAluminium1
             // 
@@ -4291,7 +4305,7 @@
             this.xrTableCell26.StylePriority.UseTextAlignment = false;
             this.xrTableCell26.Text = "Lead in Blood";
             this.xrTableCell26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell26.Weight = 1.2913566084432759D;
+            this.xrTableCell26.Weight = 1.3876867974175677D;
             // 
             // cellLeadRange
             // 
@@ -4300,7 +4314,7 @@
             this.cellLeadRange.StylePriority.UseFont = false;
             this.cellLeadRange.StylePriority.UseTextAlignment = false;
             this.cellLeadRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellLeadRange.Weight = 0.93906236153056333D;
+            this.cellLeadRange.Weight = 0.84273217255627164D;
             // 
             // cellLead1
             // 
@@ -4350,7 +4364,7 @@
             this.xrTableCell27.StylePriority.UseTextAlignment = false;
             this.xrTableCell27.Text = "Benzene in Urine";
             this.xrTableCell27.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell27.Weight = 1.2913566084432759D;
+            this.xrTableCell27.Weight = 1.3876867974175677D;
             // 
             // cellBenzeneRange
             // 
@@ -4359,7 +4373,7 @@
             this.cellBenzeneRange.StylePriority.UseFont = false;
             this.cellBenzeneRange.StylePriority.UseTextAlignment = false;
             this.cellBenzeneRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellBenzeneRange.Weight = 0.93906236153056333D;
+            this.cellBenzeneRange.Weight = 0.84273217255627164D;
             // 
             // cellBenzene1
             // 
@@ -4409,7 +4423,7 @@
             this.xrTableCell68.StylePriority.UseTextAlignment = false;
             this.xrTableCell68.Text = "Methanol in Urine";
             this.xrTableCell68.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell68.Weight = 1.2913566084432759D;
+            this.xrTableCell68.Weight = 1.3876867974175677D;
             // 
             // cellMethanolRange
             // 
@@ -4418,7 +4432,7 @@
             this.cellMethanolRange.StylePriority.UseFont = false;
             this.cellMethanolRange.StylePriority.UseTextAlignment = false;
             this.cellMethanolRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellMethanolRange.Weight = 0.93906236153056333D;
+            this.cellMethanolRange.Weight = 0.84273217255627164D;
             // 
             // cellMethanol1
             // 
@@ -4469,7 +4483,7 @@
             this.xrTableCell15.StylePriority.UseTextAlignment = false;
             this.xrTableCell15.Text = "Methanol in Blood";
             this.xrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell15.Weight = 1.2913566084432759D;
+            this.xrTableCell15.Weight = 1.3876867974175677D;
             // 
             // cellMethanolBloodRange
             // 
@@ -4479,7 +4493,7 @@
             this.cellMethanolBloodRange.StylePriority.UseFont = false;
             this.cellMethanolBloodRange.StylePriority.UseTextAlignment = false;
             this.cellMethanolBloodRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellMethanolBloodRange.Weight = 0.93906236153056333D;
+            this.cellMethanolBloodRange.Weight = 0.84273217255627164D;
             // 
             // cellMethanolBlood1
             // 
@@ -4533,7 +4547,7 @@
             this.xrTableCell69.StylePriority.UseTextAlignment = false;
             this.xrTableCell69.Text = "Methyrene chloride in blood";
             this.xrTableCell69.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell69.Weight = 1.2913566084432759D;
+            this.xrTableCell69.Weight = 1.3876867974175677D;
             // 
             // cellMethyreneRange
             // 
@@ -4542,7 +4556,7 @@
             this.cellMethyreneRange.StylePriority.UseFont = false;
             this.cellMethyreneRange.StylePriority.UseTextAlignment = false;
             this.cellMethyreneRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellMethyreneRange.Weight = 0.93906236153056333D;
+            this.cellMethyreneRange.Weight = 0.84273217255627164D;
             // 
             // cellMethyrene1
             // 
@@ -4592,7 +4606,7 @@
             this.xrTableCell70.StylePriority.UseTextAlignment = false;
             this.xrTableCell70.Text = "Acetone in Urine";
             this.xrTableCell70.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell70.Weight = 1.2913566084432759D;
+            this.xrTableCell70.Weight = 1.3876867974175677D;
             // 
             // cellAcetoneRange
             // 
@@ -4601,7 +4615,7 @@
             this.cellAcetoneRange.StylePriority.UseFont = false;
             this.cellAcetoneRange.StylePriority.UseTextAlignment = false;
             this.cellAcetoneRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellAcetoneRange.Weight = 0.93906236153056333D;
+            this.cellAcetoneRange.Weight = 0.84273217255627164D;
             // 
             // cellAcetone1
             // 
@@ -4651,7 +4665,7 @@
             this.xrTableCell71.StylePriority.UseTextAlignment = false;
             this.xrTableCell71.Text = "Hexane in Urine";
             this.xrTableCell71.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell71.Weight = 1.2913566084432759D;
+            this.xrTableCell71.Weight = 1.3876867974175677D;
             // 
             // cellHexaneRange
             // 
@@ -4660,7 +4674,7 @@
             this.cellHexaneRange.StylePriority.UseFont = false;
             this.cellHexaneRange.StylePriority.UseTextAlignment = false;
             this.cellHexaneRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellHexaneRange.Weight = 0.93906236153056333D;
+            this.cellHexaneRange.Weight = 0.84273217255627164D;
             // 
             // cellHexane1
             // 
@@ -4710,7 +4724,7 @@
             this.cellToluene.StylePriority.UseTextAlignment = false;
             this.cellToluene.Text = "Toluene in Urine";
             this.cellToluene.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.cellToluene.Weight = 1.2913566084432759D;
+            this.cellToluene.Weight = 1.3876867974175677D;
             // 
             // cellTolueneRange
             // 
@@ -4719,7 +4733,7 @@
             this.cellTolueneRange.StylePriority.UseFont = false;
             this.cellTolueneRange.StylePriority.UseTextAlignment = false;
             this.cellTolueneRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellTolueneRange.Weight = 0.93906236153056333D;
+            this.cellTolueneRange.Weight = 0.84273217255627164D;
             // 
             // cellToluene1
             // 
@@ -4769,7 +4783,7 @@
             this.xrTableCell72.StylePriority.UseTextAlignment = false;
             this.xrTableCell72.Text = "Xylene in Urine";
             this.xrTableCell72.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell72.Weight = 1.2913566084432759D;
+            this.xrTableCell72.Weight = 1.3876867974175677D;
             // 
             // cellXyleneRange
             // 
@@ -4778,7 +4792,7 @@
             this.cellXyleneRange.StylePriority.UseFont = false;
             this.cellXyleneRange.StylePriority.UseTextAlignment = false;
             this.cellXyleneRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellXyleneRange.Weight = 0.93906236153056333D;
+            this.cellXyleneRange.Weight = 0.84273217255627164D;
             // 
             // cellXylene1
             // 
@@ -4828,7 +4842,7 @@
             this.xrTableCell73.StylePriority.UseTextAlignment = false;
             this.xrTableCell73.Text = "Carboxy";
             this.xrTableCell73.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell73.Weight = 1.2913566084432759D;
+            this.xrTableCell73.Weight = 1.3876867974175677D;
             // 
             // cellCarboxyRange
             // 
@@ -4837,7 +4851,7 @@
             this.cellCarboxyRange.StylePriority.UseFont = false;
             this.cellCarboxyRange.StylePriority.UseTextAlignment = false;
             this.cellCarboxyRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellCarboxyRange.Weight = 0.93906236153056333D;
+            this.cellCarboxyRange.Weight = 0.84273217255627164D;
             // 
             // cellCarboxy1
             // 
@@ -4887,7 +4901,7 @@
             this.xrTableCell74.StylePriority.UseTextAlignment = false;
             this.xrTableCell74.Text = "MEK";
             this.xrTableCell74.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell74.Weight = 1.2913566084432759D;
+            this.xrTableCell74.Weight = 1.3876867974175677D;
             // 
             // cellMekRange
             // 
@@ -4896,7 +4910,7 @@
             this.cellMekRange.StylePriority.UseFont = false;
             this.cellMekRange.StylePriority.UseTextAlignment = false;
             this.cellMekRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellMekRange.Weight = 0.93906236153056333D;
+            this.cellMekRange.Weight = 0.84273217255627164D;
             // 
             // cellMek1
             // 
@@ -4946,7 +4960,7 @@
             this.xrTableCell75.StylePriority.UseTextAlignment = false;
             this.xrTableCell75.Text = "Isopropanol in Urine";
             this.xrTableCell75.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell75.Weight = 1.2913566084432759D;
+            this.xrTableCell75.Weight = 1.3876867974175677D;
             // 
             // cellIsopropanolRange
             // 
@@ -4955,7 +4969,7 @@
             this.cellIsopropanolRange.StylePriority.UseFont = false;
             this.cellIsopropanolRange.StylePriority.UseTextAlignment = false;
             this.cellIsopropanolRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellIsopropanolRange.Weight = 0.93906236153056333D;
+            this.cellIsopropanolRange.Weight = 0.84273217255627164D;
             // 
             // cellIsopropanol1
             // 
@@ -5005,7 +5019,7 @@
             this.xrTableCell91.StylePriority.UseTextAlignment = false;
             this.xrTableCell91.Text = "Nickel in Urine";
             this.xrTableCell91.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell91.Weight = 1.2913566084432759D;
+            this.xrTableCell91.Weight = 1.3876867974175677D;
             // 
             // cellNickelUrineRange
             // 
@@ -5014,7 +5028,7 @@
             this.cellNickelUrineRange.StylePriority.UseFont = false;
             this.cellNickelUrineRange.StylePriority.UseTextAlignment = false;
             this.cellNickelUrineRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellNickelUrineRange.Weight = 0.93906236153056333D;
+            this.cellNickelUrineRange.Weight = 0.84273217255627164D;
             // 
             // cellNickelUrine1
             // 
@@ -5064,7 +5078,7 @@
             this.xrTableCell92.StylePriority.UseTextAlignment = false;
             this.xrTableCell92.Text = "Styrene in Urine";
             this.xrTableCell92.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell92.Weight = 1.2913566084432759D;
+            this.xrTableCell92.Weight = 1.3876867974175677D;
             // 
             // cellStyreneRange
             // 
@@ -5073,7 +5087,7 @@
             this.cellStyreneRange.StylePriority.UseFont = false;
             this.cellStyreneRange.StylePriority.UseTextAlignment = false;
             this.cellStyreneRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellStyreneRange.Weight = 0.93906236153056333D;
+            this.cellStyreneRange.Weight = 0.84273217255627164D;
             // 
             // cellStyrene1
             // 
@@ -5123,7 +5137,7 @@
             this.xrTableCell96.StylePriority.UseTextAlignment = false;
             this.xrTableCell96.Text = "Aluminium in Blood";
             this.xrTableCell96.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell96.Weight = 1.2913566084432759D;
+            this.xrTableCell96.Weight = 1.3876867974175677D;
             // 
             // AluminiumBloodRange
             // 
@@ -5132,7 +5146,7 @@
             this.AluminiumBloodRange.StylePriority.UseFont = false;
             this.AluminiumBloodRange.StylePriority.UseTextAlignment = false;
             this.AluminiumBloodRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.AluminiumBloodRange.Weight = 0.93906236153056333D;
+            this.AluminiumBloodRange.Weight = 0.84273217255627164D;
             // 
             // AluminiumBlood1
             // 
@@ -5182,7 +5196,7 @@
             this.xrTableCell98.StylePriority.UseTextAlignment = false;
             this.xrTableCell98.Text = "Arsenic in Urine";
             this.xrTableCell98.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell98.Weight = 1.2913566084432759D;
+            this.xrTableCell98.Weight = 1.3876867974175677D;
             // 
             // ArsenicRange
             // 
@@ -5191,7 +5205,7 @@
             this.ArsenicRange.StylePriority.UseFont = false;
             this.ArsenicRange.StylePriority.UseTextAlignment = false;
             this.ArsenicRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.ArsenicRange.Weight = 0.93906236153056333D;
+            this.ArsenicRange.Weight = 0.84273217255627164D;
             // 
             // Arsenic1
             // 
@@ -5241,7 +5255,7 @@
             this.xrTableCell107.StylePriority.UseTextAlignment = false;
             this.xrTableCell107.Text = "Cyclohexanone in Urine";
             this.xrTableCell107.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell107.Weight = 1.2913566084432759D;
+            this.xrTableCell107.Weight = 1.3876867974175677D;
             // 
             // CyclohexanoneRange
             // 
@@ -5250,7 +5264,7 @@
             this.CyclohexanoneRange.StylePriority.UseFont = false;
             this.CyclohexanoneRange.StylePriority.UseTextAlignment = false;
             this.CyclohexanoneRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.CyclohexanoneRange.Weight = 0.93906236153056333D;
+            this.CyclohexanoneRange.Weight = 0.84273217255627164D;
             // 
             // Cyclohexanone1
             // 
@@ -5300,7 +5314,7 @@
             this.xrTableCell108.StylePriority.UseTextAlignment = false;
             this.xrTableCell108.Text = "Phenol in Urine";
             this.xrTableCell108.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell108.Weight = 1.2913566084432759D;
+            this.xrTableCell108.Weight = 1.3876867974175677D;
             // 
             // PhenolRange
             // 
@@ -5309,7 +5323,7 @@
             this.PhenolRange.StylePriority.UseFont = false;
             this.PhenolRange.StylePriority.UseTextAlignment = false;
             this.PhenolRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.PhenolRange.Weight = 0.93906236153056333D;
+            this.PhenolRange.Weight = 0.84273217255627164D;
             // 
             // Phenol1
             // 
@@ -5360,7 +5374,7 @@
             this.xrTableCell111.StylePriority.UseTextAlignment = false;
             this.xrTableCell111.Text = "MIBK in Urine";
             this.xrTableCell111.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell111.Weight = 1.2913566084432759D;
+            this.xrTableCell111.Weight = 1.3876867974175677D;
             // 
             // cellMibkUrineRange
             // 
@@ -5370,7 +5384,7 @@
             this.cellMibkUrineRange.StylePriority.UseFont = false;
             this.cellMibkUrineRange.StylePriority.UseTextAlignment = false;
             this.cellMibkUrineRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellMibkUrineRange.Weight = 0.93906236153056333D;
+            this.cellMibkUrineRange.Weight = 0.84273217255627164D;
             // 
             // cellMibkUrine1
             // 
@@ -5424,7 +5438,7 @@
             this.xrTableCell114.StylePriority.UseTextAlignment = false;
             this.xrTableCell114.Text = "Cadmium in Urine";
             this.xrTableCell114.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell114.Weight = 1.2913566084432759D;
+            this.xrTableCell114.Weight = 1.3876867974175677D;
             // 
             // cellCadmiumUrineRange
             // 
@@ -5434,7 +5448,7 @@
             this.cellCadmiumUrineRange.StylePriority.UseFont = false;
             this.cellCadmiumUrineRange.StylePriority.UseTextAlignment = false;
             this.cellCadmiumUrineRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellCadmiumUrineRange.Weight = 0.93906236153056333D;
+            this.cellCadmiumUrineRange.Weight = 0.84273217255627164D;
             // 
             // cellCadmiumUrine1
             // 
@@ -5488,7 +5502,7 @@
             this.xrTableCell116.StylePriority.UseTextAlignment = false;
             this.xrTableCell116.Text = "Ethyl Benzene in Urine";
             this.xrTableCell116.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell116.Weight = 1.2913566084432759D;
+            this.xrTableCell116.Weight = 1.3876867974175677D;
             // 
             // cellEthylbenzeneUrineRange
             // 
@@ -5498,7 +5512,7 @@
             this.cellEthylbenzeneUrineRange.StylePriority.UseFont = false;
             this.cellEthylbenzeneUrineRange.StylePriority.UseTextAlignment = false;
             this.cellEthylbenzeneUrineRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellEthylbenzeneUrineRange.Weight = 0.93906236153056333D;
+            this.cellEthylbenzeneUrineRange.Weight = 0.84273217255627164D;
             // 
             // cellEthylbenzeneUrine1
             // 
@@ -5552,7 +5566,7 @@
             this.xrTableCell117.StylePriority.UseTextAlignment = false;
             this.xrTableCell117.Text = "Mercury in Urine";
             this.xrTableCell117.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell117.Weight = 1.2913566084432759D;
+            this.xrTableCell117.Weight = 1.3876867974175677D;
             // 
             // cellMercuryUrineRange
             // 
@@ -5562,7 +5576,7 @@
             this.cellMercuryUrineRange.StylePriority.UseFont = false;
             this.cellMercuryUrineRange.StylePriority.UseTextAlignment = false;
             this.cellMercuryUrineRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellMercuryUrineRange.Weight = 0.93906236153056333D;
+            this.cellMercuryUrineRange.Weight = 0.84273217255627164D;
             // 
             // cellMercuryUrine1
             // 
@@ -5616,7 +5630,7 @@
             this.xrTableCell122.StylePriority.UseTextAlignment = false;
             this.xrTableCell122.Text = "Mercury in Blood (EDTA)";
             this.xrTableCell122.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell122.Weight = 1.2913566084432759D;
+            this.xrTableCell122.Weight = 1.3876867974175677D;
             // 
             // cellMercuryBloodRange
             // 
@@ -5626,7 +5640,7 @@
             this.cellMercuryBloodRange.StylePriority.UseFont = false;
             this.cellMercuryBloodRange.StylePriority.UseTextAlignment = false;
             this.cellMercuryBloodRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellMercuryBloodRange.Weight = 0.93906236153056333D;
+            this.cellMercuryBloodRange.Weight = 0.84273217255627164D;
             // 
             // cellMercuryBlood1
             // 
@@ -5680,7 +5694,7 @@
             this.xrTableCell123.StylePriority.UseTextAlignment = false;
             this.xrTableCell123.Text = "Methylene Chloride in Urine";
             this.xrTableCell123.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell123.Weight = 1.2913566084432759D;
+            this.xrTableCell123.Weight = 1.3876867974175677D;
             // 
             // cellMethyreneUrineRange
             // 
@@ -5690,7 +5704,7 @@
             this.cellMethyreneUrineRange.StylePriority.UseFont = false;
             this.cellMethyreneUrineRange.StylePriority.UseTextAlignment = false;
             this.cellMethyreneUrineRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellMethyreneUrineRange.Weight = 0.93906236153056333D;
+            this.cellMethyreneUrineRange.Weight = 0.84273217255627164D;
             // 
             // cellMethyreneUrine1
             // 
@@ -5744,7 +5758,7 @@
             this.xrTableCell125.StylePriority.UseTextAlignment = false;
             this.xrTableCell125.Text = "Benzene (t,t-Muconic acid) in Urine";
             this.xrTableCell125.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell125.Weight = 1.2913566084432759D;
+            this.xrTableCell125.Weight = 1.3876867974175677D;
             // 
             // cellBenzenettUrineRange
             // 
@@ -5754,7 +5768,7 @@
             this.cellBenzenettUrineRange.StylePriority.UseFont = false;
             this.cellBenzenettUrineRange.StylePriority.UseTextAlignment = false;
             this.cellBenzenettUrineRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellBenzenettUrineRange.Weight = 0.93906236153056333D;
+            this.cellBenzenettUrineRange.Weight = 0.84273217255627164D;
             // 
             // cellBenzenettUrine1
             // 
@@ -5808,7 +5822,7 @@
             this.xrTableCell126.StylePriority.UseTextAlignment = false;
             this.xrTableCell126.Text = "Fluorine in urine";
             this.xrTableCell126.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell126.Weight = 1.2913566084432759D;
+            this.xrTableCell126.Weight = 1.3876867974175677D;
             // 
             // fluorideRange
             // 
@@ -5818,7 +5832,7 @@
             this.fluorideRange.StylePriority.UseFont = false;
             this.fluorideRange.StylePriority.UseTextAlignment = false;
             this.fluorideRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.fluorideRange.Weight = 0.93906236153056333D;
+            this.fluorideRange.Weight = 0.84273217255627164D;
             // 
             // fluorideY1
             // 
@@ -5872,7 +5886,7 @@
             this.xrTableCell128.StylePriority.UseTextAlignment = false;
             this.xrTableCell128.Text = "Formadehyde in Urine";
             this.xrTableCell128.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell128.Weight = 1.2913566084432759D;
+            this.xrTableCell128.Weight = 1.3876867974175677D;
             // 
             // formadehydeRange
             // 
@@ -5882,7 +5896,7 @@
             this.formadehydeRange.StylePriority.UseFont = false;
             this.formadehydeRange.StylePriority.UseTextAlignment = false;
             this.formadehydeRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.formadehydeRange.Weight = 0.93906236153056333D;
+            this.formadehydeRange.Weight = 0.84273217255627164D;
             // 
             // formadehydeY1
             // 
@@ -5936,7 +5950,7 @@
             this.xrTableCell129.StylePriority.UseTextAlignment = false;
             this.xrTableCell129.Text = "2,5 Hexanedion in urine";
             this.xrTableCell129.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell129.Weight = 1.2913566084432759D;
+            this.xrTableCell129.Weight = 1.3876867974175677D;
             // 
             // cell25HexanRange
             // 
@@ -5946,7 +5960,7 @@
             this.cell25HexanRange.StylePriority.UseFont = false;
             this.cell25HexanRange.StylePriority.UseTextAlignment = false;
             this.cell25HexanRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cell25HexanRange.Weight = 0.93906236153056333D;
+            this.cell25HexanRange.Weight = 0.84273217255627164D;
             // 
             // cell25Hexan1
             // 
@@ -6000,7 +6014,7 @@
             this.xrTableCell143.StylePriority.UseTextAlignment = false;
             this.xrTableCell143.Text = "Manganese in Blood ";
             this.xrTableCell143.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell143.Weight = 1.2913566084432759D;
+            this.xrTableCell143.Weight = 1.3876867974175677D;
             // 
             // ManganeseRange
             // 
@@ -6010,7 +6024,7 @@
             this.ManganeseRange.StylePriority.UseFont = false;
             this.ManganeseRange.StylePriority.UseTextAlignment = false;
             this.ManganeseRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.ManganeseRange.Weight = 0.93906236153056333D;
+            this.ManganeseRange.Weight = 0.84273217255627164D;
             // 
             // Manganes1
             // 
@@ -6064,7 +6078,7 @@
             this.xrTableCell144.StylePriority.UseTextAlignment = false;
             this.xrTableCell144.Text = "Zine";
             this.xrTableCell144.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell144.Weight = 1.2913566084432759D;
+            this.xrTableCell144.Weight = 1.3876867974175677D;
             // 
             // ZincRang
             // 
@@ -6074,7 +6088,7 @@
             this.ZincRang.StylePriority.UseFont = false;
             this.ZincRang.StylePriority.UseTextAlignment = false;
             this.ZincRang.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.ZincRang.Weight = 0.93906236153056333D;
+            this.ZincRang.Weight = 0.84273217255627164D;
             // 
             // Zinc1
             // 
@@ -6128,7 +6142,7 @@
             this.xrTableCell145.StylePriority.UseTextAlignment = false;
             this.xrTableCell145.Text = "Irom\r\n";
             this.xrTableCell145.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell145.Weight = 1.2913566084432759D;
+            this.xrTableCell145.Weight = 1.3876867974175677D;
             // 
             // IronRang
             // 
@@ -6138,7 +6152,7 @@
             this.IronRang.StylePriority.UseFont = false;
             this.IronRang.StylePriority.UseTextAlignment = false;
             this.IronRang.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.IronRang.Weight = 0.93906236153056333D;
+            this.IronRang.Weight = 0.84273217255627164D;
             // 
             // Iron1
             // 
@@ -6192,7 +6206,7 @@
             this.xrTableCell146.StylePriority.UseTextAlignment = false;
             this.xrTableCell146.Text = "Cadmium in Blood";
             this.xrTableCell146.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell146.Weight = 1.2913566084432759D;
+            this.xrTableCell146.Weight = 1.3876867974175677D;
             // 
             // CadinbRang
             // 
@@ -6202,7 +6216,7 @@
             this.CadinbRang.StylePriority.UseFont = false;
             this.CadinbRang.StylePriority.UseTextAlignment = false;
             this.CadinbRang.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.CadinbRang.Weight = 0.93906236153056333D;
+            this.CadinbRang.Weight = 0.84273217255627164D;
             // 
             // cadinb1
             // 
@@ -6256,7 +6270,7 @@
             this.xrTableCell147.StylePriority.UseTextAlignment = false;
             this.xrTableCell147.Text = "Chromium in Blood";
             this.xrTableCell147.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell147.Weight = 1.2913566084432759D;
+            this.xrTableCell147.Weight = 1.3876867974175677D;
             // 
             // ChroinBRang
             // 
@@ -6266,7 +6280,7 @@
             this.ChroinBRang.StylePriority.UseFont = false;
             this.ChroinBRang.StylePriority.UseTextAlignment = false;
             this.ChroinBRang.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.ChroinBRang.Weight = 0.93906236153056333D;
+            this.ChroinBRang.Weight = 0.84273217255627164D;
             // 
             // ChroinB1
             // 
@@ -6320,7 +6334,7 @@
             this.AmmoText.StylePriority.UseTextAlignment = false;
             this.AmmoText.Text = "Ammonia in Blood";
             this.AmmoText.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.AmmoText.Weight = 1.2913566084432759D;
+            this.AmmoText.Weight = 1.3876867974175677D;
             // 
             // AmmoRang
             // 
@@ -6330,7 +6344,7 @@
             this.AmmoRang.StylePriority.UseFont = false;
             this.AmmoRang.StylePriority.UseTextAlignment = false;
             this.AmmoRang.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.AmmoRang.Weight = 0.93906236153056333D;
+            this.AmmoRang.Weight = 0.84273217255627164D;
             // 
             // Ammo1
             // 
@@ -6385,7 +6399,7 @@
             this.LeadinUtxt.StylePriority.UseTextAlignment = false;
             this.LeadinUtxt.Text = "Lead in Urine";
             this.LeadinUtxt.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.LeadinUtxt.Weight = 1.2913566084432759D;
+            this.LeadinUtxt.Weight = 1.3876867974175677D;
             // 
             // LeadinURang
             // 
@@ -6395,7 +6409,7 @@
             this.LeadinURang.StylePriority.UseFont = false;
             this.LeadinURang.StylePriority.UseTextAlignment = false;
             this.LeadinURang.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.LeadinURang.Weight = 0.93906236153056333D;
+            this.LeadinURang.Weight = 0.84273217255627164D;
             // 
             // LeadinU1
             // 
@@ -6449,7 +6463,7 @@
             this.xrTableCell12.StylePriority.UseTextAlignment = false;
             this.xrTableCell12.Text = "Cholinesterase in Blood";
             this.xrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell12.Weight = 1.2913566084432759D;
+            this.xrTableCell12.Weight = 1.3876867974175677D;
             // 
             // CholinesterasebloodRange
             // 
@@ -6459,7 +6473,7 @@
             this.CholinesterasebloodRange.StylePriority.UseFont = false;
             this.CholinesterasebloodRange.StylePriority.UseTextAlignment = false;
             this.CholinesterasebloodRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.CholinesterasebloodRange.Weight = 0.93906236153056333D;
+            this.CholinesterasebloodRange.Weight = 0.84273217255627164D;
             // 
             // Cholinesteraseblood1
             // 
@@ -6513,7 +6527,7 @@
             this.xrTableCell37.StylePriority.UseTextAlignment = false;
             this.xrTableCell37.Text = "Thinner in Urine";
             this.xrTableCell37.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell37.Weight = 1.2913566084432759D;
+            this.xrTableCell37.Weight = 1.3876867974175677D;
             // 
             // ThinnerUrineRange
             // 
@@ -6523,7 +6537,7 @@
             this.ThinnerUrineRange.StylePriority.UseFont = false;
             this.ThinnerUrineRange.StylePriority.UseTextAlignment = false;
             this.ThinnerUrineRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.ThinnerUrineRange.Weight = 0.93906236153056333D;
+            this.ThinnerUrineRange.Weight = 0.84273217255627164D;
             // 
             // ThinnerUrine1
             // 
@@ -6577,7 +6591,7 @@
             this.xrTableCell32.StylePriority.UseTextAlignment = false;
             this.xrTableCell32.Text = "Copper in Blood";
             this.xrTableCell32.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell32.Weight = 1.2913566084432759D;
+            this.xrTableCell32.Weight = 1.3876867974175677D;
             // 
             // CopperbloodRange
             // 
@@ -6587,7 +6601,7 @@
             this.CopperbloodRange.StylePriority.UseFont = false;
             this.CopperbloodRange.StylePriority.UseTextAlignment = false;
             this.CopperbloodRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.CopperbloodRange.Weight = 0.93906236153056333D;
+            this.CopperbloodRange.Weight = 0.84273217255627164D;
             // 
             // CopperBlood1
             // 
@@ -6641,7 +6655,7 @@
             this.xrTableCell34.StylePriority.UseTextAlignment = false;
             this.xrTableCell34.Text = "Trichloro Methane in Urine";
             this.xrTableCell34.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell34.Weight = 1.2913566084432759D;
+            this.xrTableCell34.Weight = 1.3876867974175677D;
             // 
             // TrichloroUrineRange
             // 
@@ -6651,7 +6665,7 @@
             this.TrichloroUrineRange.StylePriority.UseFont = false;
             this.TrichloroUrineRange.StylePriority.UseTextAlignment = false;
             this.TrichloroUrineRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TrichloroUrineRange.Weight = 0.93906236153056333D;
+            this.TrichloroUrineRange.Weight = 0.84273217255627164D;
             // 
             // TrichloroUrine1
             // 
@@ -6705,7 +6719,7 @@
             this.xrTableCell35.StylePriority.UseTextAlignment = false;
             this.xrTableCell35.Text = "Direct Toluene in Urine";
             this.xrTableCell35.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell35.Weight = 1.2913566084432759D;
+            this.xrTableCell35.Weight = 1.3876867974175677D;
             // 
             // DirectTolueneRange
             // 
@@ -6715,7 +6729,7 @@
             this.DirectTolueneRange.StylePriority.UseFont = false;
             this.DirectTolueneRange.StylePriority.UseTextAlignment = false;
             this.DirectTolueneRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.DirectTolueneRange.Weight = 0.93906236153056333D;
+            this.DirectTolueneRange.Weight = 0.84273217255627164D;
             // 
             // DirectToluene1
             // 
@@ -6769,7 +6783,7 @@
             this.xrTableCell36.StylePriority.UseTextAlignment = false;
             this.xrTableCell36.Text = "Ethanol in Blood";
             this.xrTableCell36.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell36.Weight = 1.2913566084432759D;
+            this.xrTableCell36.Weight = 1.3876867974175677D;
             // 
             // RangeEthanolBlood
             // 
@@ -6779,7 +6793,7 @@
             this.RangeEthanolBlood.StylePriority.UseFont = false;
             this.RangeEthanolBlood.StylePriority.UseTextAlignment = false;
             this.RangeEthanolBlood.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.RangeEthanolBlood.Weight = 0.93906236153056333D;
+            this.RangeEthanolBlood.Weight = 0.84273217255627164D;
             // 
             // EthanolBlood1
             // 
@@ -6833,7 +6847,7 @@
             this.xrTableCell50.StylePriority.UseTextAlignment = false;
             this.xrTableCell50.Text = "Tin in Blood";
             this.xrTableCell50.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell50.Weight = 1.2913566084432759D;
+            this.xrTableCell50.Weight = 1.3876867974175677D;
             // 
             // cellTinBloodRange
             // 
@@ -6843,7 +6857,7 @@
             this.cellTinBloodRange.StylePriority.UseFont = false;
             this.cellTinBloodRange.StylePriority.UseTextAlignment = false;
             this.cellTinBloodRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellTinBloodRange.Weight = 0.93906236153056333D;
+            this.cellTinBloodRange.Weight = 0.84273217255627164D;
             // 
             // cellTinBlood1
             // 
@@ -6897,7 +6911,7 @@
             this.xrTableCell23.StylePriority.UseTextAlignment = false;
             this.xrTableCell23.Text = "Methylhippuric acid in Urine (ES)";
             this.xrTableCell23.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell23.Weight = 1.2913566084432759D;
+            this.xrTableCell23.Weight = 1.3876867974175677D;
             // 
             // cellMethylhippuricRange
             // 
@@ -6907,7 +6921,7 @@
             this.cellMethylhippuricRange.StylePriority.UseFont = false;
             this.cellMethylhippuricRange.StylePriority.UseTextAlignment = false;
             this.cellMethylhippuricRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellMethylhippuricRange.Weight = 0.93906236153056333D;
+            this.cellMethylhippuricRange.Weight = 0.84273217255627164D;
             // 
             // cellMethylhippuric1
             // 
@@ -6961,7 +6975,7 @@
             this.xrTableCell47.StylePriority.UseTextAlignment = false;
             this.xrTableCell47.Text = "*Ethyl Acetate";
             this.xrTableCell47.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell47.Weight = 1.2913566084432759D;
+            this.xrTableCell47.Weight = 1.3876867974175677D;
             // 
             // RangeEthylAcetate
             // 
@@ -6971,7 +6985,7 @@
             this.RangeEthylAcetate.StylePriority.UseFont = false;
             this.RangeEthylAcetate.StylePriority.UseTextAlignment = false;
             this.RangeEthylAcetate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.RangeEthylAcetate.Weight = 0.93906236153056333D;
+            this.RangeEthylAcetate.Weight = 0.84273217255627164D;
             // 
             // EthylAcetate1
             // 
@@ -7025,7 +7039,7 @@
             this.xrTableCell56.StylePriority.UseTextAlignment = false;
             this.xrTableCell56.Text = "*Butyl Acrylate";
             this.xrTableCell56.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell56.Weight = 1.2913566084432759D;
+            this.xrTableCell56.Weight = 1.3876867974175677D;
             // 
             // RangeButylAcrylate
             // 
@@ -7035,7 +7049,7 @@
             this.RangeButylAcrylate.StylePriority.UseFont = false;
             this.RangeButylAcrylate.StylePriority.UseTextAlignment = false;
             this.RangeButylAcrylate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.RangeButylAcrylate.Weight = 0.93906236153056333D;
+            this.RangeButylAcrylate.Weight = 0.84273217255627164D;
             // 
             // ButylAcrylate1
             // 
@@ -7089,7 +7103,7 @@
             this.xrTableCell62.StylePriority.UseTextAlignment = false;
             this.xrTableCell62.Text = "*Vinyl Acetate";
             this.xrTableCell62.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell62.Weight = 1.2913566084432759D;
+            this.xrTableCell62.Weight = 1.3876867974175677D;
             // 
             // RangeVinylAcetate
             // 
@@ -7099,7 +7113,7 @@
             this.RangeVinylAcetate.StylePriority.UseFont = false;
             this.RangeVinylAcetate.StylePriority.UseTextAlignment = false;
             this.RangeVinylAcetate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.RangeVinylAcetate.Weight = 0.93906236153056333D;
+            this.RangeVinylAcetate.Weight = 0.84273217255627164D;
             // 
             // lbVinylAcetate1
             // 
@@ -7153,7 +7167,7 @@
             this.xrTableCell67.StylePriority.UseTextAlignment = false;
             this.xrTableCell67.Text = "**ตรวจสารเคมีในกลุ่มฟูมผงโลหะได้แก่เหล็ก";
             this.xrTableCell67.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell67.Weight = 1.2913566084432759D;
+            this.xrTableCell67.Weight = 2.1340886315789036D;
             // 
             // lbFumeRange
             // 
@@ -7163,7 +7177,7 @@
             this.lbFumeRange.StylePriority.UseFont = false;
             this.lbFumeRange.StylePriority.UseTextAlignment = false;
             this.lbFumeRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbFumeRange.Weight = 0.93906236153056333D;
+            this.lbFumeRange.Weight = 0.096330338394935544D;
             // 
             // lbFume1
             // 
@@ -7215,9 +7229,9 @@
             this.xrTableCell151.StylePriority.UseFont = false;
             this.xrTableCell151.StylePriority.UsePadding = false;
             this.xrTableCell151.StylePriority.UseTextAlignment = false;
-            this.xrTableCell151.Text = "Nitric Acids";
+            this.xrTableCell151.Text = "**Nitric Acids";
             this.xrTableCell151.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell151.Weight = 1.2913566084432759D;
+            this.xrTableCell151.Weight = 1.3876867974175677D;
             // 
             // lbNitricAcidsRange
             // 
@@ -7227,7 +7241,7 @@
             this.lbNitricAcidsRange.StylePriority.UseFont = false;
             this.lbNitricAcidsRange.StylePriority.UseTextAlignment = false;
             this.lbNitricAcidsRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbNitricAcidsRange.Weight = 0.93906236153056333D;
+            this.lbNitricAcidsRange.Weight = 0.84273217255627164D;
             // 
             // lbNitricAcids1
             // 
@@ -7279,9 +7293,9 @@
             this.xrTableCell156.StylePriority.UseFont = false;
             this.xrTableCell156.StylePriority.UsePadding = false;
             this.xrTableCell156.StylePriority.UseTextAlignment = false;
-            this.xrTableCell156.Text = "Sulphuric Acids";
+            this.xrTableCell156.Text = "**Sulphuric Acids";
             this.xrTableCell156.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell156.Weight = 1.2913566084432759D;
+            this.xrTableCell156.Weight = 1.3876867974175677D;
             // 
             // lbSulphuricAcidsRange
             // 
@@ -7291,7 +7305,7 @@
             this.lbSulphuricAcidsRange.StylePriority.UseFont = false;
             this.lbSulphuricAcidsRange.StylePriority.UseTextAlignment = false;
             this.lbSulphuricAcidsRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbSulphuricAcidsRange.Weight = 0.93906236153056333D;
+            this.lbSulphuricAcidsRange.Weight = 0.84273217255627164D;
             // 
             // lbSulphuricAcids1
             // 
@@ -7322,6 +7336,134 @@
             this.lbSulphuricAcids3.StylePriority.UseTextAlignment = false;
             this.lbSulphuricAcids3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.lbSulphuricAcids3.Weight = 0.44329635320818539D;
+            // 
+            // rowNaphtha
+            // 
+            this.rowNaphtha.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell51,
+            this.lbNaphthaRange,
+            this.lbNaphtha1,
+            this.lbNaphtha2,
+            this.lbNaphtha3});
+            this.rowNaphtha.Name = "rowNaphtha";
+            this.rowNaphtha.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell51
+            // 
+            this.xrTableCell51.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell51.Multiline = true;
+            this.xrTableCell51.Name = "xrTableCell51";
+            this.xrTableCell51.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell51.StylePriority.UseFont = false;
+            this.xrTableCell51.StylePriority.UsePadding = false;
+            this.xrTableCell51.StylePriority.UseTextAlignment = false;
+            this.xrTableCell51.Text = "**Naphtha";
+            this.xrTableCell51.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell51.Weight = 1.3876867974175677D;
+            // 
+            // lbNaphthaRange
+            // 
+            this.lbNaphthaRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbNaphthaRange.Multiline = true;
+            this.lbNaphthaRange.Name = "lbNaphthaRange";
+            this.lbNaphthaRange.StylePriority.UseFont = false;
+            this.lbNaphthaRange.StylePriority.UseTextAlignment = false;
+            this.lbNaphthaRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbNaphthaRange.Weight = 0.84273217255627164D;
+            // 
+            // lbNaphtha1
+            // 
+            this.lbNaphtha1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbNaphtha1.Multiline = true;
+            this.lbNaphtha1.Name = "lbNaphtha1";
+            this.lbNaphtha1.StylePriority.UseFont = false;
+            this.lbNaphtha1.StylePriority.UseTextAlignment = false;
+            this.lbNaphtha1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbNaphtha1.Weight = 0.443296332132815D;
+            // 
+            // lbNaphtha2
+            // 
+            this.lbNaphtha2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbNaphtha2.Multiline = true;
+            this.lbNaphtha2.Name = "lbNaphtha2";
+            this.lbNaphtha2.StylePriority.UseFont = false;
+            this.lbNaphtha2.StylePriority.UseTextAlignment = false;
+            this.lbNaphtha2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbNaphtha2.Weight = 0.44329633245297495D;
+            // 
+            // lbNaphtha3
+            // 
+            this.lbNaphtha3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbNaphtha3.Multiline = true;
+            this.lbNaphtha3.Name = "lbNaphtha3";
+            this.lbNaphtha3.StylePriority.UseFont = false;
+            this.lbNaphtha3.StylePriority.UseTextAlignment = false;
+            this.lbNaphtha3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbNaphtha3.Weight = 0.44329635320818539D;
+            // 
+            // rowSodiumhydroxide
+            // 
+            this.rowSodiumhydroxide.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell59,
+            this.lbSodiumhydroxideRange,
+            this.lbSodiumhydroxide1,
+            this.lbSodiumhydroxide2,
+            this.lbSodiumhydroxide3});
+            this.rowSodiumhydroxide.Name = "rowSodiumhydroxide";
+            this.rowSodiumhydroxide.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell59
+            // 
+            this.xrTableCell59.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell59.Multiline = true;
+            this.xrTableCell59.Name = "xrTableCell59";
+            this.xrTableCell59.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell59.StylePriority.UseFont = false;
+            this.xrTableCell59.StylePriority.UsePadding = false;
+            this.xrTableCell59.StylePriority.UseTextAlignment = false;
+            this.xrTableCell59.Text = "**Sodium Hydroxide (NaOH)";
+            this.xrTableCell59.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell59.Weight = 1.3876867974175677D;
+            // 
+            // lbSodiumhydroxideRange
+            // 
+            this.lbSodiumhydroxideRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbSodiumhydroxideRange.Multiline = true;
+            this.lbSodiumhydroxideRange.Name = "lbSodiumhydroxideRange";
+            this.lbSodiumhydroxideRange.StylePriority.UseFont = false;
+            this.lbSodiumhydroxideRange.StylePriority.UseTextAlignment = false;
+            this.lbSodiumhydroxideRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbSodiumhydroxideRange.Weight = 0.84273217255627164D;
+            // 
+            // lbSodiumhydroxide1
+            // 
+            this.lbSodiumhydroxide1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbSodiumhydroxide1.Multiline = true;
+            this.lbSodiumhydroxide1.Name = "lbSodiumhydroxide1";
+            this.lbSodiumhydroxide1.StylePriority.UseFont = false;
+            this.lbSodiumhydroxide1.StylePriority.UseTextAlignment = false;
+            this.lbSodiumhydroxide1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbSodiumhydroxide1.Weight = 0.443296332132815D;
+            // 
+            // lbSodiumhydroxide2
+            // 
+            this.lbSodiumhydroxide2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbSodiumhydroxide2.Multiline = true;
+            this.lbSodiumhydroxide2.Name = "lbSodiumhydroxide2";
+            this.lbSodiumhydroxide2.StylePriority.UseFont = false;
+            this.lbSodiumhydroxide2.StylePriority.UseTextAlignment = false;
+            this.lbSodiumhydroxide2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbSodiumhydroxide2.Weight = 0.44329633245297495D;
+            // 
+            // lbSodiumhydroxide3
+            // 
+            this.lbSodiumhydroxide3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbSodiumhydroxide3.Multiline = true;
+            this.lbSodiumhydroxide3.Name = "lbSodiumhydroxide3";
+            this.lbSodiumhydroxide3.StylePriority.UseFont = false;
+            this.lbSodiumhydroxide3.StylePriority.UseTextAlignment = false;
+            this.lbSodiumhydroxide3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbSodiumhydroxide3.Weight = 0.44329635320818539D;
             // 
             // Narcotic
             // 
@@ -9865,5 +10007,17 @@
         public DevExpress.XtraReports.UI.XRTableCell lbSulphuricAcids1;
         public DevExpress.XtraReports.UI.XRTableCell lbSulphuricAcids2;
         public DevExpress.XtraReports.UI.XRTableCell lbSulphuricAcids3;
+        public DevExpress.XtraReports.UI.XRTableRow rowNaphtha;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell51;
+        public DevExpress.XtraReports.UI.XRTableCell lbNaphthaRange;
+        public DevExpress.XtraReports.UI.XRTableCell lbNaphtha1;
+        public DevExpress.XtraReports.UI.XRTableCell lbNaphtha2;
+        public DevExpress.XtraReports.UI.XRTableCell lbNaphtha3;
+        public DevExpress.XtraReports.UI.XRTableRow rowSodiumhydroxide;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell59;
+        public DevExpress.XtraReports.UI.XRTableCell lbSodiumhydroxideRange;
+        public DevExpress.XtraReports.UI.XRTableCell lbSodiumhydroxide1;
+        public DevExpress.XtraReports.UI.XRTableCell lbSodiumhydroxide2;
+        public DevExpress.XtraReports.UI.XRTableCell lbSodiumhydroxide3;
     }
 }
