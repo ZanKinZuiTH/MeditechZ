@@ -169,6 +169,19 @@ namespace MediTech.ViewModels
                 Set(ref _SelectPatientDataList, value);
             }
         }
+
+        private ObservableCollection<PatientRegistrationBulkData> _SelectPatientDataLists;
+        public ObservableCollection<PatientRegistrationBulkData> SelectPatientDataLists
+        {
+            get
+            {
+                return _SelectPatientDataLists ?? (_SelectPatientDataLists = new ObservableCollection<PatientRegistrationBulkData>());
+            }
+            set
+            {
+                Set(ref _SelectPatientDataLists, value);
+            }
+        }
         #endregion
 
         #region CurrentImportedData

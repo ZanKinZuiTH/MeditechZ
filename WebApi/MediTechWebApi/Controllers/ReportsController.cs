@@ -436,10 +436,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("PatientSummaryData")]
         [HttpGet]
-        public List<PatientSummaryDataModel> PatientSummaryData(DateTime dateFrom, DateTime dateTo, string organisationList)
+        public List<PatientSummaryDataModel> PatientSummaryData(DateTime dateFrom, DateTime dateTo, string organisationList,bool isFinancial)
         {
             List<PatientSummaryDataModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTPatientSummaryData(dateFrom, dateTo, organisationList);
+            DataTable dt = SqlDirectStore.pRPTPatientSummaryData(dateFrom, dateTo, organisationList, isFinancial);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<PatientSummaryDataModel>();

@@ -64,6 +64,15 @@ namespace MediTech.ViewModels
             set { Set(ref _VisibiltyCost, value); }
         }
 
+        private bool _IsFinancial;
+
+        public bool IsFinancial
+        {
+            get { return _IsFinancial; }
+            set { Set(ref _IsFinancial, value); }
+        }
+
+
         #endregion
 
         #region Command
@@ -140,7 +149,7 @@ namespace MediTech.ViewModels
                 }
             }
 
-            PatientSummaryDatas = DataService.Reports.PatientSummaryData(DateFrom, DateTo, healthOrganisationList);
+            PatientSummaryDatas = DataService.Reports.PatientSummaryData(DateFrom, DateTo, healthOrganisationList, IsFinancial);
         }
 
         void ExportToExcel()
