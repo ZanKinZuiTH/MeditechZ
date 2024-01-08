@@ -146,6 +146,7 @@
             </dxg:GridColumn>
             <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID" ReadOnly="True"/>
             <dxg:GridColumn Header="ชื่อ-นามสกุล" FieldName="PatientName" ReadOnly="True"/>
+            <dxg:GridColumn Header="Bill Number" FieldName="BillNumber" ReadOnly="True"/>
             <dxg:GridColumn Header="Allocated Billed" FieldName="IsAllocated" ReadOnly="True"/>
             <dxg:GridColumn Header="IsBillFinalized" FieldName="IsBillFinalized" ReadOnly="True"/>
             <dxg:GridColumn Header="Payor" FieldName="PayorName" ReadOnly="True"/>
