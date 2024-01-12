@@ -49,25 +49,25 @@
                                         <dxlc:LayoutItem>
                                             <TextBlock Text="{Binding Path=Row.ResultItemName}"/>
                                         </dxlc:LayoutItem>
-                                        <dxlc:LayoutItem>
-                                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                        <dxlc:LayoutItem Width="300">
+                                            <dxlc:LayoutGroup Orientation="Horizontal" >
                                                 <dxe:TextEdit Text="{Binding Path=Row.ResultValue,UpdateSourceTrigger=PropertyChanged}"  Width="200"/>
                                                 <Label Content="{Binding Path=Row.UnitofMeasure}"/>
                                             </dxlc:LayoutGroup>
                                         </dxlc:LayoutItem>
-                                        <dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Width="210">
                                             <StackPanel Orientation="Horizontal">
                                                 <dxe:TextEdit Mask="\d{0,9}(\R.\d{0,3})?"  MaskType="RegEx" AllowNullInput="True"
-                                      EditValue="{Binding Path=Row.Low}" Width="100"/>
-                                                <TextBlock Text="-"/>
+                                      EditValue="{Binding Path=Row.Low}" Width="95"/>
+                                                <TextBlock Text="-" Width="10"/>
                                                 <dxe:TextEdit Mask="\d{0,9}(\R.\d{0,3})?"  MaskType="RegEx" AllowNullInput="True"
-                                      EditValue="{Binding Path=Row.High}" Width="100"/>
+                                      EditValue="{Binding Path=Row.High}" Width="95"/>
                                             </StackPanel>
                                         </dxlc:LayoutItem>
-                                        <dxlc:LayoutItem>
+                                        <dxlc:LayoutItem >
                                             <TextBox Text="{Binding Path=Row.IsAbnormal}" Width="50"/>
                                         </dxlc:LayoutItem>
-                                        <dxlc:LayoutItem>
+                                        <dxlc:LayoutItem >
                                             <CheckBox Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"  VerticalAlignment="Center">
                                                 <TextBlock>calculate eGFR</TextBlock>
                                             </CheckBox>
@@ -95,18 +95,19 @@
                                                 <dxlc:LayoutItem>
                                                     <TextBlock Text="{Binding Path=Row.ResultItemName}"/>
                                                 </dxlc:LayoutItem>
-                                                <dxlc:LayoutItem>
+                                                <dxlc:LayoutItem Width="300">
                                                     <dxlc:LayoutGroup Orientation="Horizontal">
                                                         <dxe:TextEdit Text="{Binding Path=Row.ResultValue,UpdateSourceTrigger=PropertyChanged}"  Width="200"/>
-                                                        <Label Content="{Binding Path=Row.UnitofMeasure}"/>
+                                                        <Label Content="{Binding Path=Row.UnitofMeasure}" />
                                                     </dxlc:LayoutGroup>
                                                 </dxlc:LayoutItem>
-                                                <dxlc:LayoutItem>
+                                                <dxlc:LayoutItem Width="210">
                                                     <StackPanel Orientation="Horizontal">
                                                         <dxe:TextEdit Text="{Binding Path=Row.ReferenceRange,UpdateSourceTrigger=PropertyChanged}"  Width="200"/>
                                                     </StackPanel>
 
                                                 </dxlc:LayoutItem>
+                                                <dxlc:LayoutItem/>
                                                 <dxlc:LayoutItem/>
                                             </dxlc:LayoutControl>
                                         </DataTemplate>
