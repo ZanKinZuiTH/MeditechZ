@@ -372,10 +372,10 @@ namespace MediTech.ViewModels
         public void AssingModelToProperties()
         {
             SelectOrganisationFrom = OrganisationsFrom.FirstOrDefault(p => p.HealthOrganisationUID == model.OrganisationUID);
-            SelectLocationFrom = LocationFrom.FirstOrDefault(p => p.LocationUID == model.LocationUID);
-            SelectStoreFrom = StoresFrom.FirstOrDefault(p => p.StoreUID == model.StoreUID);
             SelectOrganisationTo = OrganisationsTo.FirstOrDefault(p => p.HealthOrganisationUID == model.RequestOnOrganistaionUID);
+            SelectLocationFrom = LocationFrom.FirstOrDefault(p => p.LocationUID == model.LocationUID);
             SelectLocationTo = LocationTo.FirstOrDefault(p => p.LocationUID == model.RequestOnLocationUID);
+            SelectStoreFrom = StoresFrom.FirstOrDefault(p => p.StoreUID == model.StoreUID);
             SelectStoreTo = StoresTo.FirstOrDefault(p => p.StoreUID == model.RequestOnStoreUID);
             RequestDate = model.RequestedDttm;
             SelectVendor = Vendors.FirstOrDefault(p => p.VendorDetailUID == (model.PreferredVendorUID ?? 0));
