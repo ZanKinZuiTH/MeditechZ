@@ -38,7 +38,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell44 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbHN7 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbName7 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.ib = new DevExpress.XtraReports.UI.DetailBand();
             this.lbFumeComment = new DevExpress.XtraReports.UI.XRLabel();
             this.toxicoComment = new DevExpress.XtraReports.UI.XRLabel();
             this.tbToxicology = new DevExpress.XtraReports.UI.XRTable();
@@ -370,6 +370,24 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbSulphuricAcids1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbSulphuricAcids2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbSulphuricAcids3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.rowNaphtha = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell37 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbNaphthaRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbNaphtha1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbNaphtha2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbNaphtha3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.rowSodiumhydroxide = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell70 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbSodiumhydroxideRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbSodiumhydroxide1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbSodiumhydroxide2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbSodiumhydroxide3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.rowTrichloroaceticAcid = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell38 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.TrichloroaceticAcidRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.TrichloroaceticAcid1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.TrichloroaceticAcid2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.TrichloroaceticAcid3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrTable3 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow10 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -411,22 +429,47 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell63 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell66 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
-            this.rowNaphtha = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell37 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.lbNaphthaRange = new DevExpress.XtraReports.UI.XRTableCell();
-            this.lbNaphtha1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.lbNaphtha2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.lbNaphtha3 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.rowSodiumhydroxide = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell70 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.lbSodiumhydroxideRange = new DevExpress.XtraReports.UI.XRTableCell();
-            this.lbSodiumhydroxide1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.lbSodiumhydroxide2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.lbSodiumhydroxide3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.tbWidal = new DevExpress.XtraReports.UI.XRTable();
+            this.xrTableRow3 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell42 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell61 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell69 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableRow4 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell72 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell74 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellWidalYear1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellWidalYear2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellWidalYear3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableRow52 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell77 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.widalORange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.widalO1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.widalO2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.widalO3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableRow53 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell78 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.widalHRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.widalH1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.widalH2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.widalH3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableRow54 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell80 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.widalARange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.widalA1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.widalA2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.widalA3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableRow7 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell81 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.widalBRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.widalB1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.widalB2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.widalB3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbWidal = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbToxicology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbWidal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // TopMargin
@@ -493,22 +536,24 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbName7.StylePriority.UseFont = false;
             this.lbName7.Weight = 1.858333430136522D;
             // 
-            // Detail
+            // ib
             // 
-            this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.ib.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.tbWidal,
+            this.lbWidal,
             this.lbFumeComment,
             this.toxicoComment,
             this.tbToxicology,
             this.xrLabel7,
             this.xrTable3,
             this.xrLabel4});
-            this.Detail.HeightF = 1623.44F;
-            this.Detail.Name = "Detail";
+            this.ib.HeightF = 1806.25F;
+            this.ib.Name = "ib";
             // 
             // lbFumeComment
             // 
             this.lbFumeComment.Font = new System.Drawing.Font("EucrosiaUPC", 9.75F);
-            this.lbFumeComment.LocationFloat = new DevExpress.Utils.PointFloat(0F, 1600.532F);
+            this.lbFumeComment.LocationFloat = new DevExpress.Utils.PointFloat(0F, 1623.75F);
             this.lbFumeComment.Multiline = true;
             this.lbFumeComment.Name = "lbFumeComment";
             this.lbFumeComment.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -519,7 +564,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // toxicoComment
             // 
             this.toxicoComment.Font = new System.Drawing.Font("EucrosiaUPC", 9.75F);
-            this.toxicoComment.LocationFloat = new DevExpress.Utils.PointFloat(0F, 1578.365F);
+            this.toxicoComment.LocationFloat = new DevExpress.Utils.PointFloat(0F, 1601.583F);
             this.toxicoComment.Multiline = true;
             this.toxicoComment.Name = "toxicoComment";
             this.toxicoComment.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -592,8 +637,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.rowNitricAcids,
             this.rowSulphuricAcids,
             this.rowNaphtha,
-            this.rowSodiumhydroxide});
-            this.tbToxicology.SizeF = new System.Drawing.SizeF(498F, 1312.833F);
+            this.rowSodiumhydroxide,
+            this.rowTrichloroaceticAcid});
+            this.tbToxicology.SizeF = new System.Drawing.SizeF(498F, 1336.051F);
             this.tbToxicology.StylePriority.UseBorderColor = false;
             this.tbToxicology.StylePriority.UseBorders = false;
             this.tbToxicology.StylePriority.UseBorderWidth = false;
@@ -3690,7 +3736,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell16.StylePriority.UseFont = false;
             this.xrTableCell16.StylePriority.UsePadding = false;
             this.xrTableCell16.StylePriority.UseTextAlignment = false;
-            this.xrTableCell16.Text = "*Ethyl Acetate";
+            this.xrTableCell16.Text = "Ethyl Acetate";
             this.xrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell16.Weight = 1.2913566084432759D;
             // 
@@ -4053,6 +4099,198 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbSulphuricAcids3.StylePriority.UseTextAlignment = false;
             this.lbSulphuricAcids3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.lbSulphuricAcids3.Weight = 0.44329635320818539D;
+            // 
+            // rowNaphtha
+            // 
+            this.rowNaphtha.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell37,
+            this.lbNaphthaRange,
+            this.lbNaphtha1,
+            this.lbNaphtha2,
+            this.lbNaphtha3});
+            this.rowNaphtha.Name = "rowNaphtha";
+            this.rowNaphtha.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell37
+            // 
+            this.xrTableCell37.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell37.Multiline = true;
+            this.xrTableCell37.Name = "xrTableCell37";
+            this.xrTableCell37.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell37.StylePriority.UseFont = false;
+            this.xrTableCell37.StylePriority.UsePadding = false;
+            this.xrTableCell37.StylePriority.UseTextAlignment = false;
+            this.xrTableCell37.Text = "**Naphtha";
+            this.xrTableCell37.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell37.Weight = 1.2913566084432759D;
+            // 
+            // lbNaphthaRange
+            // 
+            this.lbNaphthaRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbNaphthaRange.Multiline = true;
+            this.lbNaphthaRange.Name = "lbNaphthaRange";
+            this.lbNaphthaRange.StylePriority.UseFont = false;
+            this.lbNaphthaRange.StylePriority.UseTextAlignment = false;
+            this.lbNaphthaRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbNaphthaRange.Weight = 0.93906236153056333D;
+            // 
+            // lbNaphtha1
+            // 
+            this.lbNaphtha1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbNaphtha1.Multiline = true;
+            this.lbNaphtha1.Name = "lbNaphtha1";
+            this.lbNaphtha1.StylePriority.UseFont = false;
+            this.lbNaphtha1.StylePriority.UseTextAlignment = false;
+            this.lbNaphtha1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbNaphtha1.Weight = 0.443296332132815D;
+            // 
+            // lbNaphtha2
+            // 
+            this.lbNaphtha2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbNaphtha2.Multiline = true;
+            this.lbNaphtha2.Name = "lbNaphtha2";
+            this.lbNaphtha2.StylePriority.UseFont = false;
+            this.lbNaphtha2.StylePriority.UseTextAlignment = false;
+            this.lbNaphtha2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbNaphtha2.Weight = 0.44329633245297495D;
+            // 
+            // lbNaphtha3
+            // 
+            this.lbNaphtha3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbNaphtha3.Multiline = true;
+            this.lbNaphtha3.Name = "lbNaphtha3";
+            this.lbNaphtha3.StylePriority.UseFont = false;
+            this.lbNaphtha3.StylePriority.UseTextAlignment = false;
+            this.lbNaphtha3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbNaphtha3.Weight = 0.44329635320818539D;
+            // 
+            // rowSodiumhydroxide
+            // 
+            this.rowSodiumhydroxide.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell70,
+            this.lbSodiumhydroxideRange,
+            this.lbSodiumhydroxide1,
+            this.lbSodiumhydroxide2,
+            this.lbSodiumhydroxide3});
+            this.rowSodiumhydroxide.Name = "rowSodiumhydroxide";
+            this.rowSodiumhydroxide.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell70
+            // 
+            this.xrTableCell70.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell70.Multiline = true;
+            this.xrTableCell70.Name = "xrTableCell70";
+            this.xrTableCell70.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell70.StylePriority.UseFont = false;
+            this.xrTableCell70.StylePriority.UsePadding = false;
+            this.xrTableCell70.StylePriority.UseTextAlignment = false;
+            this.xrTableCell70.Text = "**Sodium Hydroxide (NaOH)";
+            this.xrTableCell70.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell70.Weight = 1.2913566084432759D;
+            // 
+            // lbSodiumhydroxideRange
+            // 
+            this.lbSodiumhydroxideRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbSodiumhydroxideRange.Multiline = true;
+            this.lbSodiumhydroxideRange.Name = "lbSodiumhydroxideRange";
+            this.lbSodiumhydroxideRange.StylePriority.UseFont = false;
+            this.lbSodiumhydroxideRange.StylePriority.UseTextAlignment = false;
+            this.lbSodiumhydroxideRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbSodiumhydroxideRange.Weight = 0.93906236153056333D;
+            // 
+            // lbSodiumhydroxide1
+            // 
+            this.lbSodiumhydroxide1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbSodiumhydroxide1.Multiline = true;
+            this.lbSodiumhydroxide1.Name = "lbSodiumhydroxide1";
+            this.lbSodiumhydroxide1.StylePriority.UseFont = false;
+            this.lbSodiumhydroxide1.StylePriority.UseTextAlignment = false;
+            this.lbSodiumhydroxide1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbSodiumhydroxide1.Weight = 0.443296332132815D;
+            // 
+            // lbSodiumhydroxide2
+            // 
+            this.lbSodiumhydroxide2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbSodiumhydroxide2.Multiline = true;
+            this.lbSodiumhydroxide2.Name = "lbSodiumhydroxide2";
+            this.lbSodiumhydroxide2.StylePriority.UseFont = false;
+            this.lbSodiumhydroxide2.StylePriority.UseTextAlignment = false;
+            this.lbSodiumhydroxide2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbSodiumhydroxide2.Weight = 0.44329633245297495D;
+            // 
+            // lbSodiumhydroxide3
+            // 
+            this.lbSodiumhydroxide3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbSodiumhydroxide3.Multiline = true;
+            this.lbSodiumhydroxide3.Name = "lbSodiumhydroxide3";
+            this.lbSodiumhydroxide3.StylePriority.UseFont = false;
+            this.lbSodiumhydroxide3.StylePriority.UseTextAlignment = false;
+            this.lbSodiumhydroxide3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbSodiumhydroxide3.Weight = 0.44329635320818539D;
+            // 
+            // rowTrichloroaceticAcid
+            // 
+            this.rowTrichloroaceticAcid.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell38,
+            this.TrichloroaceticAcidRange,
+            this.TrichloroaceticAcid1,
+            this.TrichloroaceticAcid2,
+            this.TrichloroaceticAcid3});
+            this.rowTrichloroaceticAcid.Name = "rowTrichloroaceticAcid";
+            this.rowTrichloroaceticAcid.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell38
+            // 
+            this.xrTableCell38.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell38.Multiline = true;
+            this.xrTableCell38.Name = "xrTableCell38";
+            this.xrTableCell38.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell38.StylePriority.UseFont = false;
+            this.xrTableCell38.StylePriority.UsePadding = false;
+            this.xrTableCell38.StylePriority.UseTextAlignment = false;
+            this.xrTableCell38.Text = "Trichloroacetic Acid in Urine";
+            this.xrTableCell38.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell38.Weight = 1.2913566084432759D;
+            // 
+            // TrichloroaceticAcidRange
+            // 
+            this.TrichloroaceticAcidRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.TrichloroaceticAcidRange.Multiline = true;
+            this.TrichloroaceticAcidRange.Name = "TrichloroaceticAcidRange";
+            this.TrichloroaceticAcidRange.StylePriority.UseFont = false;
+            this.TrichloroaceticAcidRange.StylePriority.UseTextAlignment = false;
+            this.TrichloroaceticAcidRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.TrichloroaceticAcidRange.Weight = 0.93906236153056333D;
+            // 
+            // TrichloroaceticAcid1
+            // 
+            this.TrichloroaceticAcid1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.TrichloroaceticAcid1.Multiline = true;
+            this.TrichloroaceticAcid1.Name = "TrichloroaceticAcid1";
+            this.TrichloroaceticAcid1.StylePriority.UseFont = false;
+            this.TrichloroaceticAcid1.StylePriority.UseTextAlignment = false;
+            this.TrichloroaceticAcid1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.TrichloroaceticAcid1.Weight = 0.443296332132815D;
+            // 
+            // TrichloroaceticAcid2
+            // 
+            this.TrichloroaceticAcid2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.TrichloroaceticAcid2.Multiline = true;
+            this.TrichloroaceticAcid2.Name = "TrichloroaceticAcid2";
+            this.TrichloroaceticAcid2.StylePriority.UseFont = false;
+            this.TrichloroaceticAcid2.StylePriority.UseTextAlignment = false;
+            this.TrichloroaceticAcid2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.TrichloroaceticAcid2.Weight = 0.44329633245297495D;
+            // 
+            // TrichloroaceticAcid3
+            // 
+            this.TrichloroaceticAcid3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.TrichloroaceticAcid3.Multiline = true;
+            this.TrichloroaceticAcid3.Name = "TrichloroaceticAcid3";
+            this.TrichloroaceticAcid3.StylePriority.UseFont = false;
+            this.TrichloroaceticAcid3.StylePriority.UseTextAlignment = false;
+            this.TrichloroaceticAcid3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.TrichloroaceticAcid3.Weight = 0.44329635320818539D;
             // 
             // xrLabel7
             // 
@@ -4616,140 +4854,430 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel4.Text = "การเพาะเชื้อจากอุจจาระ (Stool Culture) ";
             this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
-            // rowNaphtha
+            // tbWidal
             // 
-            this.rowNaphtha.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell37,
-            this.lbNaphthaRange,
-            this.lbNaphtha1,
-            this.lbNaphtha2,
-            this.lbNaphtha3});
-            this.rowNaphtha.Name = "rowNaphtha";
-            this.rowNaphtha.Weight = 0.92341768297675519D;
+            this.tbWidal.BorderColor = System.Drawing.Color.DarkGray;
+            this.tbWidal.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.tbWidal.LocationFloat = new DevExpress.Utils.PointFloat(0F, 1676.416F);
+            this.tbWidal.Name = "tbWidal";
+            this.tbWidal.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
+            this.xrTableRow3,
+            this.xrTableRow4,
+            this.xrTableRow52,
+            this.xrTableRow53,
+            this.xrTableRow54,
+            this.xrTableRow7});
+            this.tbWidal.SizeF = new System.Drawing.SizeF(498F, 122.9251F);
+            this.tbWidal.StylePriority.UseBorderColor = false;
+            this.tbWidal.StylePriority.UseBorders = false;
+            this.tbWidal.StylePriority.UseBorderWidth = false;
+            this.tbWidal.StylePriority.UseFont = false;
+            this.tbWidal.StylePriority.UseTextAlignment = false;
+            this.tbWidal.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
-            // xrTableCell37
+            // xrTableRow3
             // 
-            this.xrTableCell37.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell37.Multiline = true;
-            this.xrTableCell37.Name = "xrTableCell37";
-            this.xrTableCell37.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
-            this.xrTableCell37.StylePriority.UseFont = false;
-            this.xrTableCell37.StylePriority.UsePadding = false;
-            this.xrTableCell37.StylePriority.UseTextAlignment = false;
-            this.xrTableCell37.Text = "**Naphtha";
-            this.xrTableCell37.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell37.Weight = 1.2913566084432759D;
+            this.xrTableRow3.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell42,
+            this.xrTableCell61,
+            this.xrTableCell69});
+            this.xrTableRow3.Name = "xrTableRow3";
+            this.xrTableRow3.Weight = 0.72684445994126945D;
             // 
-            // lbNaphthaRange
+            // xrTableCell42
             // 
-            this.lbNaphthaRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.lbNaphthaRange.Multiline = true;
-            this.lbNaphthaRange.Name = "lbNaphthaRange";
-            this.lbNaphthaRange.StylePriority.UseFont = false;
-            this.lbNaphthaRange.StylePriority.UseTextAlignment = false;
-            this.lbNaphthaRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbNaphthaRange.Weight = 0.93906236153056333D;
+            this.xrTableCell42.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell42.CanGrow = false;
+            this.xrTableCell42.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell42.Name = "xrTableCell42";
+            this.xrTableCell42.RowSpan = 2;
+            this.xrTableCell42.StylePriority.UseBorders = false;
+            this.xrTableCell42.StylePriority.UseBorderWidth = false;
+            this.xrTableCell42.StylePriority.UseFont = false;
+            this.xrTableCell42.StylePriority.UseTextAlignment = false;
+            this.xrTableCell42.Text = "Test";
+            this.xrTableCell42.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell42.Weight = 1.0023526034122143D;
             // 
-            // lbNaphtha1
+            // xrTableCell61
             // 
-            this.lbNaphtha1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.lbNaphtha1.Multiline = true;
-            this.lbNaphtha1.Name = "lbNaphtha1";
-            this.lbNaphtha1.StylePriority.UseFont = false;
-            this.lbNaphtha1.StylePriority.UseTextAlignment = false;
-            this.lbNaphtha1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbNaphtha1.Weight = 0.443296332132815D;
+            this.xrTableCell61.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell61.CanGrow = false;
+            this.xrTableCell61.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell61.Name = "xrTableCell61";
+            this.xrTableCell61.RowSpan = 2;
+            this.xrTableCell61.StylePriority.UseBorders = false;
+            this.xrTableCell61.StylePriority.UseBorderWidth = false;
+            this.xrTableCell61.StylePriority.UseFont = false;
+            this.xrTableCell61.StylePriority.UseTextAlignment = false;
+            this.xrTableCell61.Text = "Normal Range";
+            this.xrTableCell61.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell61.Weight = 1.0606790749000989D;
             // 
-            // lbNaphtha2
+            // xrTableCell69
             // 
-            this.lbNaphtha2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.lbNaphtha2.Multiline = true;
-            this.lbNaphtha2.Name = "lbNaphtha2";
-            this.lbNaphtha2.StylePriority.UseFont = false;
-            this.lbNaphtha2.StylePriority.UseTextAlignment = false;
-            this.lbNaphtha2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbNaphtha2.Weight = 0.44329633245297495D;
+            this.xrTableCell69.CanGrow = false;
+            this.xrTableCell69.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell69.Name = "xrTableCell69";
+            this.xrTableCell69.StylePriority.UseBorders = false;
+            this.xrTableCell69.StylePriority.UseBorderWidth = false;
+            this.xrTableCell69.StylePriority.UseFont = false;
+            this.xrTableCell69.StylePriority.UseTextAlignment = false;
+            this.xrTableCell69.Text = "Report Result";
+            this.xrTableCell69.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell69.Weight = 1.58092816250469D;
             // 
-            // lbNaphtha3
+            // xrTableRow4
             // 
-            this.lbNaphtha3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.lbNaphtha3.Multiline = true;
-            this.lbNaphtha3.Name = "lbNaphtha3";
-            this.lbNaphtha3.StylePriority.UseFont = false;
-            this.lbNaphtha3.StylePriority.UseTextAlignment = false;
-            this.lbNaphtha3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbNaphtha3.Weight = 0.44329635320818539D;
+            this.xrTableRow4.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell72,
+            this.xrTableCell74,
+            this.cellWidalYear1,
+            this.cellWidalYear2,
+            this.cellWidalYear3});
+            this.xrTableRow4.Name = "xrTableRow4";
+            this.xrTableRow4.Weight = 0.658173399075732D;
             // 
-            // rowSodiumhydroxide
+            // xrTableCell72
             // 
-            this.rowSodiumhydroxide.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell70,
-            this.lbSodiumhydroxideRange,
-            this.lbSodiumhydroxide1,
-            this.lbSodiumhydroxide2,
-            this.lbSodiumhydroxide3});
-            this.rowSodiumhydroxide.Name = "rowSodiumhydroxide";
-            this.rowSodiumhydroxide.Weight = 0.92341768297675519D;
+            this.xrTableCell72.CanGrow = false;
+            this.xrTableCell72.Font = new System.Drawing.Font("Angsana New", 12F);
+            this.xrTableCell72.Name = "xrTableCell72";
+            this.xrTableCell72.StylePriority.UseBorders = false;
+            this.xrTableCell72.StylePriority.UseBorderWidth = false;
+            this.xrTableCell72.StylePriority.UseFont = false;
+            this.xrTableCell72.StylePriority.UseTextAlignment = false;
+            this.xrTableCell72.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell72.Weight = 1.0023526034122143D;
             // 
-            // xrTableCell70
+            // xrTableCell74
             // 
-            this.xrTableCell70.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell70.Multiline = true;
-            this.xrTableCell70.Name = "xrTableCell70";
-            this.xrTableCell70.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
-            this.xrTableCell70.StylePriority.UseFont = false;
-            this.xrTableCell70.StylePriority.UsePadding = false;
-            this.xrTableCell70.StylePriority.UseTextAlignment = false;
-            this.xrTableCell70.Text = "**Sodium Hydroxide (NaOH)";
-            this.xrTableCell70.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell70.Weight = 1.2913566084432759D;
+            this.xrTableCell74.CanGrow = false;
+            this.xrTableCell74.Font = new System.Drawing.Font("Angsana New", 12F);
+            this.xrTableCell74.Name = "xrTableCell74";
+            this.xrTableCell74.StylePriority.UseBorders = false;
+            this.xrTableCell74.StylePriority.UseBorderWidth = false;
+            this.xrTableCell74.StylePriority.UseFont = false;
+            this.xrTableCell74.StylePriority.UseTextAlignment = false;
+            this.xrTableCell74.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell74.Weight = 1.0606790749000987D;
             // 
-            // lbSodiumhydroxideRange
+            // cellWidalYear1
             // 
-            this.lbSodiumhydroxideRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.lbSodiumhydroxideRange.Multiline = true;
-            this.lbSodiumhydroxideRange.Name = "lbSodiumhydroxideRange";
-            this.lbSodiumhydroxideRange.StylePriority.UseFont = false;
-            this.lbSodiumhydroxideRange.StylePriority.UseTextAlignment = false;
-            this.lbSodiumhydroxideRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbSodiumhydroxideRange.Weight = 0.93906236153056333D;
+            this.cellWidalYear1.CanGrow = false;
+            this.cellWidalYear1.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.cellWidalYear1.Name = "cellWidalYear1";
+            this.cellWidalYear1.StylePriority.UseBorders = false;
+            this.cellWidalYear1.StylePriority.UseBorderWidth = false;
+            this.cellWidalYear1.StylePriority.UseFont = false;
+            this.cellWidalYear1.StylePriority.UseTextAlignment = false;
+            this.cellWidalYear1.Text = "ปีที่1";
+            this.cellWidalYear1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.cellWidalYear1.Weight = 0.52697601217558276D;
             // 
-            // lbSodiumhydroxide1
+            // cellWidalYear2
             // 
-            this.lbSodiumhydroxide1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.lbSodiumhydroxide1.Multiline = true;
-            this.lbSodiumhydroxide1.Name = "lbSodiumhydroxide1";
-            this.lbSodiumhydroxide1.StylePriority.UseFont = false;
-            this.lbSodiumhydroxide1.StylePriority.UseTextAlignment = false;
-            this.lbSodiumhydroxide1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbSodiumhydroxide1.Weight = 0.443296332132815D;
+            this.cellWidalYear2.CanGrow = false;
+            this.cellWidalYear2.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.cellWidalYear2.Name = "cellWidalYear2";
+            this.cellWidalYear2.StylePriority.UseBorders = false;
+            this.cellWidalYear2.StylePriority.UseBorderWidth = false;
+            this.cellWidalYear2.StylePriority.UseFont = false;
+            this.cellWidalYear2.StylePriority.UseTextAlignment = false;
+            this.cellWidalYear2.Text = "ปีที่2";
+            this.cellWidalYear2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.cellWidalYear2.Weight = 0.52697600129345268D;
             // 
-            // lbSodiumhydroxide2
+            // cellWidalYear3
             // 
-            this.lbSodiumhydroxide2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.lbSodiumhydroxide2.Multiline = true;
-            this.lbSodiumhydroxide2.Name = "lbSodiumhydroxide2";
-            this.lbSodiumhydroxide2.StylePriority.UseFont = false;
-            this.lbSodiumhydroxide2.StylePriority.UseTextAlignment = false;
-            this.lbSodiumhydroxide2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbSodiumhydroxide2.Weight = 0.44329633245297495D;
+            this.cellWidalYear3.CanGrow = false;
+            this.cellWidalYear3.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.cellWidalYear3.Name = "cellWidalYear3";
+            this.cellWidalYear3.StylePriority.UseBorders = false;
+            this.cellWidalYear3.StylePriority.UseBorderWidth = false;
+            this.cellWidalYear3.StylePriority.UseFont = false;
+            this.cellWidalYear3.StylePriority.UseTextAlignment = false;
+            this.cellWidalYear3.Text = "ปีที่3";
+            this.cellWidalYear3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.cellWidalYear3.Weight = 0.52697614903565448D;
             // 
-            // lbSodiumhydroxide3
+            // xrTableRow52
             // 
-            this.lbSodiumhydroxide3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.lbSodiumhydroxide3.Multiline = true;
-            this.lbSodiumhydroxide3.Name = "lbSodiumhydroxide3";
-            this.lbSodiumhydroxide3.StylePriority.UseFont = false;
-            this.lbSodiumhydroxide3.StylePriority.UseTextAlignment = false;
-            this.lbSodiumhydroxide3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbSodiumhydroxide3.Weight = 0.44329635320818539D;
+            this.xrTableRow52.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell77,
+            this.widalORange,
+            this.widalO1,
+            this.widalO2,
+            this.widalO3});
+            this.xrTableRow52.Name = "xrTableRow52";
+            this.xrTableRow52.Weight = 0.91176326182176781D;
+            // 
+            // xrTableCell77
+            // 
+            this.xrTableCell77.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell77.Name = "xrTableCell77";
+            this.xrTableCell77.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell77.StylePriority.UseFont = false;
+            this.xrTableCell77.StylePriority.UsePadding = false;
+            this.xrTableCell77.StylePriority.UseTextAlignment = false;
+            this.xrTableCell77.Text = "S. typhi O";
+            this.xrTableCell77.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell77.Weight = 1.0023526034122143D;
+            // 
+            // widalORange
+            // 
+            this.widalORange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.widalORange.Name = "widalORange";
+            this.widalORange.StylePriority.UseFont = false;
+            this.widalORange.StylePriority.UseTextAlignment = false;
+            this.widalORange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.widalORange.Weight = 1.0606790749000987D;
+            // 
+            // widalO1
+            // 
+            this.widalO1.CanGrow = false;
+            this.widalO1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.widalO1.Name = "widalO1";
+            this.widalO1.StylePriority.UseFont = false;
+            this.widalO1.StylePriority.UseTextAlignment = false;
+            this.widalO1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.widalO1.Weight = 0.52697601217558276D;
+            // 
+            // widalO2
+            // 
+            this.widalO2.CanGrow = false;
+            this.widalO2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.widalO2.Name = "widalO2";
+            this.widalO2.StylePriority.UseFont = false;
+            this.widalO2.StylePriority.UseTextAlignment = false;
+            this.widalO2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.widalO2.Weight = 0.52697600129345268D;
+            // 
+            // widalO3
+            // 
+            this.widalO3.CanGrow = false;
+            this.widalO3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.widalO3.Name = "widalO3";
+            this.widalO3.StylePriority.UseFont = false;
+            this.widalO3.StylePriority.UseTextAlignment = false;
+            this.widalO3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.widalO3.Weight = 0.52697614903565448D;
+            // 
+            // xrTableRow53
+            // 
+            this.xrTableRow53.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell78,
+            this.widalHRange,
+            this.widalH1,
+            this.widalH2,
+            this.widalH3});
+            this.xrTableRow53.Name = "xrTableRow53";
+            this.xrTableRow53.Weight = 0.91678080629563641D;
+            // 
+            // xrTableCell78
+            // 
+            this.xrTableCell78.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell78.Multiline = true;
+            this.xrTableCell78.Name = "xrTableCell78";
+            this.xrTableCell78.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell78.StylePriority.UseFont = false;
+            this.xrTableCell78.StylePriority.UsePadding = false;
+            this.xrTableCell78.StylePriority.UseTextAlignment = false;
+            this.xrTableCell78.Text = "S. typhi H";
+            this.xrTableCell78.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell78.Weight = 1.0023526034122143D;
+            // 
+            // widalHRange
+            // 
+            this.widalHRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.widalHRange.Name = "widalHRange";
+            this.widalHRange.StylePriority.UseFont = false;
+            this.widalHRange.StylePriority.UseTextAlignment = false;
+            this.widalHRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.widalHRange.Weight = 1.0606790749000987D;
+            // 
+            // widalH1
+            // 
+            this.widalH1.CanGrow = false;
+            this.widalH1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.widalH1.Name = "widalH1";
+            this.widalH1.StylePriority.UseFont = false;
+            this.widalH1.StylePriority.UseTextAlignment = false;
+            this.widalH1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.widalH1.Weight = 0.52697601217558276D;
+            // 
+            // widalH2
+            // 
+            this.widalH2.CanGrow = false;
+            this.widalH2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.widalH2.Name = "widalH2";
+            this.widalH2.StylePriority.UseFont = false;
+            this.widalH2.StylePriority.UseTextAlignment = false;
+            this.widalH2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.widalH2.Weight = 0.52697600129345268D;
+            // 
+            // widalH3
+            // 
+            this.widalH3.CanGrow = false;
+            this.widalH3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.widalH3.Name = "widalH3";
+            this.widalH3.StylePriority.UseFont = false;
+            this.widalH3.StylePriority.UseTextAlignment = false;
+            this.widalH3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.widalH3.Weight = 0.52697614903565448D;
+            // 
+            // xrTableRow54
+            // 
+            this.xrTableRow54.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell80,
+            this.widalARange,
+            this.widalA1,
+            this.widalA2,
+            this.widalA3});
+            this.xrTableRow54.Name = "xrTableRow54";
+            this.xrTableRow54.Weight = 0.91678080629563641D;
+            // 
+            // xrTableCell80
+            // 
+            this.xrTableCell80.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell80.Name = "xrTableCell80";
+            this.xrTableCell80.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell80.StylePriority.UseFont = false;
+            this.xrTableCell80.StylePriority.UsePadding = false;
+            this.xrTableCell80.StylePriority.UseTextAlignment = false;
+            this.xrTableCell80.Text = "S. paratyphi A";
+            this.xrTableCell80.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell80.Weight = 1.0023526034122143D;
+            // 
+            // widalARange
+            // 
+            this.widalARange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.widalARange.Name = "widalARange";
+            this.widalARange.StylePriority.UseFont = false;
+            this.widalARange.StylePriority.UseTextAlignment = false;
+            this.widalARange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.widalARange.Weight = 1.0606790749000987D;
+            // 
+            // widalA1
+            // 
+            this.widalA1.CanGrow = false;
+            this.widalA1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.widalA1.Name = "widalA1";
+            this.widalA1.StylePriority.UseFont = false;
+            this.widalA1.StylePriority.UseTextAlignment = false;
+            this.widalA1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.widalA1.Weight = 0.52697601217558276D;
+            // 
+            // widalA2
+            // 
+            this.widalA2.CanGrow = false;
+            this.widalA2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.widalA2.Name = "widalA2";
+            this.widalA2.StylePriority.UseFont = false;
+            this.widalA2.StylePriority.UseTextAlignment = false;
+            this.widalA2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.widalA2.Weight = 0.52697600129345268D;
+            // 
+            // widalA3
+            // 
+            this.widalA3.CanGrow = false;
+            this.widalA3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.widalA3.Name = "widalA3";
+            this.widalA3.StylePriority.UseFont = false;
+            this.widalA3.StylePriority.UseTextAlignment = false;
+            this.widalA3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.widalA3.Weight = 0.52697614903565448D;
+            // 
+            // xrTableRow7
+            // 
+            this.xrTableRow7.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell81,
+            this.widalBRange,
+            this.widalB1,
+            this.widalB2,
+            this.widalB3});
+            this.xrTableRow7.Name = "xrTableRow7";
+            this.xrTableRow7.Weight = 0.91678080629563641D;
+            // 
+            // xrTableCell81
+            // 
+            this.xrTableCell81.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell81.Multiline = true;
+            this.xrTableCell81.Name = "xrTableCell81";
+            this.xrTableCell81.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell81.StylePriority.UseFont = false;
+            this.xrTableCell81.StylePriority.UsePadding = false;
+            this.xrTableCell81.StylePriority.UseTextAlignment = false;
+            this.xrTableCell81.Text = "S. paratyphi B";
+            this.xrTableCell81.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell81.Weight = 1.0023526034122143D;
+            // 
+            // widalBRange
+            // 
+            this.widalBRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.widalBRange.Multiline = true;
+            this.widalBRange.Name = "widalBRange";
+            this.widalBRange.StylePriority.UseFont = false;
+            this.widalBRange.StylePriority.UseTextAlignment = false;
+            this.widalBRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.widalBRange.Weight = 1.0606790749000987D;
+            // 
+            // widalB1
+            // 
+            this.widalB1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.widalB1.Multiline = true;
+            this.widalB1.Name = "widalB1";
+            this.widalB1.StylePriority.UseFont = false;
+            this.widalB1.StylePriority.UseTextAlignment = false;
+            this.widalB1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.widalB1.Weight = 0.52697601217558276D;
+            // 
+            // widalB2
+            // 
+            this.widalB2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.widalB2.Multiline = true;
+            this.widalB2.Name = "widalB2";
+            this.widalB2.StylePriority.UseFont = false;
+            this.widalB2.StylePriority.UseTextAlignment = false;
+            this.widalB2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.widalB2.Weight = 0.52697600129345268D;
+            // 
+            // widalB3
+            // 
+            this.widalB3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.widalB3.Multiline = true;
+            this.widalB3.Name = "widalB3";
+            this.widalB3.StylePriority.UseFont = false;
+            this.widalB3.StylePriority.UseTextAlignment = false;
+            this.widalB3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.widalB3.Weight = 0.52697614903565448D;
+            // 
+            // lbWidal
+            // 
+            this.lbWidal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.lbWidal.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
+            this.lbWidal.LocationFloat = new DevExpress.Utils.PointFloat(130.2816F, 1645.916F);
+            this.lbWidal.Name = "lbWidal";
+            this.lbWidal.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbWidal.SizeF = new System.Drawing.SizeF(253.1231F, 28.83325F);
+            this.lbWidal.StylePriority.UseBackColor = false;
+            this.lbWidal.StylePriority.UseFont = false;
+            this.lbWidal.StylePriority.UseTextAlignment = false;
+            this.lbWidal.Text = "ผลการตรวจหาเชื้อไทฟอยด์ (Widal Test) ";
+            this.lbWidal.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // CheckupPage7
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.TopMargin,
             this.BottomMargin,
-            this.Detail});
+            this.ib});
             this.Font = new System.Drawing.Font("Arial", 9.75F);
             this.Margins = new System.Drawing.Printing.Margins(45, 39, 40, 40);
             this.PageHeight = 827;
@@ -4760,6 +5288,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbToxicology)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbWidal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -4768,7 +5297,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
 
         private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
         private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
-        private DevExpress.XtraReports.UI.DetailBand Detail;
         private DevExpress.XtraReports.UI.XRTable xrTable1;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow12;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell44;
@@ -5159,5 +5687,48 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         public DevExpress.XtraReports.UI.XRTableCell lbSodiumhydroxide1;
         public DevExpress.XtraReports.UI.XRTableCell lbSodiumhydroxide2;
         public DevExpress.XtraReports.UI.XRTableCell lbSodiumhydroxide3;
+        public DevExpress.XtraReports.UI.XRTableRow rowTrichloroaceticAcid;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell38;
+        public DevExpress.XtraReports.UI.XRTableCell TrichloroaceticAcidRange;
+        public DevExpress.XtraReports.UI.XRTableCell TrichloroaceticAcid1;
+        public DevExpress.XtraReports.UI.XRTableCell TrichloroaceticAcid2;
+        public DevExpress.XtraReports.UI.XRTableCell TrichloroaceticAcid3;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow3;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell42;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell61;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell69;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow4;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell72;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell74;
+        public DevExpress.XtraReports.UI.XRTableCell cellWidalYear1;
+        public DevExpress.XtraReports.UI.XRTableCell cellWidalYear2;
+        public DevExpress.XtraReports.UI.XRTableCell cellWidalYear3;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow52;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell77;
+        public DevExpress.XtraReports.UI.XRTableCell widalORange;
+        public DevExpress.XtraReports.UI.XRTableCell widalO1;
+        public DevExpress.XtraReports.UI.XRTableCell widalO2;
+        public DevExpress.XtraReports.UI.XRTableCell widalO3;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow53;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell78;
+        public DevExpress.XtraReports.UI.XRTableCell widalHRange;
+        public DevExpress.XtraReports.UI.XRTableCell widalH1;
+        public DevExpress.XtraReports.UI.XRTableCell widalH2;
+        public DevExpress.XtraReports.UI.XRTableCell widalH3;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow54;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell80;
+        public DevExpress.XtraReports.UI.XRTableCell widalARange;
+        public DevExpress.XtraReports.UI.XRTableCell widalA1;
+        public DevExpress.XtraReports.UI.XRTableCell widalA2;
+        public DevExpress.XtraReports.UI.XRTableCell widalA3;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow7;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell81;
+        public DevExpress.XtraReports.UI.XRTableCell widalBRange;
+        public DevExpress.XtraReports.UI.XRTableCell widalB1;
+        public DevExpress.XtraReports.UI.XRTableCell widalB2;
+        public DevExpress.XtraReports.UI.XRTableCell widalB3;
+        public DevExpress.XtraReports.UI.XRTable tbWidal;
+        private DevExpress.XtraReports.UI.DetailBand ib;
+        public DevExpress.XtraReports.UI.XRLabel lbWidal;
     }
 }

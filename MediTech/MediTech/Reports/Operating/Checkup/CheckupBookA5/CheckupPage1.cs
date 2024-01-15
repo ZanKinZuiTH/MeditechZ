@@ -660,6 +660,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page7.rowSulphuricAcids.Visible = false;
                 page7.rowNaphtha.Visible = false;
                 page7.rowSodiumhydroxide.Visible = false;
+                page7.rowTrichloroaceticAcid.Visible = false;
+
+                page7.lbWidal.Visible = false;
+                page7.tbWidal.Visible = false;
 
                 page6.aboGroupRow.Visible = false;
                 page6.RowHpylori.Visible = false;
@@ -852,9 +856,18 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             || p.RequestItemCode.Contains("LAB639") //Sulphuric acids
                             || p.RequestItemCode.Contains("LAB643") //Sodium hydroxide ( NaOH) 
                             || p.RequestItemCode.Contains("LAB644") //naphtha
+                            || p.RequestItemCode.Contains("LAB645") //Trichloroacetic Acid in urine
+                            || p.RequestItemCode.Contains("LAB612") //Widal Agglutination
                             )
                              .OrderByDescending(p => p.Year);
                         GenerateToxicology(ToxicoTestSet);
+                        #endregion
+
+                        #region Widal Teat
+                        IEnumerable<PatientResultComponentModel> WidalTestSet = labCompare
+                            .Where(p => p.RequestItemCode.Contains("LAB612")
+                             ).OrderByDescending(p => p.Year);
+                        GenerateWidal(WidalTestSet);
                         #endregion
 
                         #region Other Lab Teat
@@ -2852,6 +2865,16 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         }
                         #endregion
 
+                        #region Trichloroacetic Acid in urine
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1346") != null)
+                        {
+                            page7.rowTrichloroaceticAcid.Visible = true;
+                            page7.TrichloroaceticAcidRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1346")?.ReferenceRange;
+                            page7.TrichloroaceticAcid1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1346" && p.Year == year1)?.ResultValue;
+                            page7.TrichloroaceticAcid2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1346" && p.Year == year2)?.ResultValue;
+                            page7.TrichloroaceticAcid3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1346" && p.Year == year3)?.ResultValue;
+                        }
+                        #endregion
 
                     }
                     else
@@ -2872,6 +2895,104 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                     page7.cellToxicoYear2.Text = "ปี" + " " + (DateTime.Now.Year - 1);
                     page7.cellToxicoYear3.Text = "ปี" + " " + (DateTime.Now.Year - 2);
                 }
+            }
+        }
+
+        private void GenerateWidal(IEnumerable<PatientResultComponentModel> labTestSet)
+        {
+            if (labTestSet != null && labTestSet.Count() > 0)
+            {
+                List<int?> oneYears = labTestSet.Select(p => p.Year).Distinct().ToList();
+                if (oneYears.Count == 1)
+                {
+                    List<DateTime?> repeatYears = labTestSet.Select(p => p.StartDttm).Distinct().ToList();
+                    repeatYears.Sort();
+
+                    if (repeatYears.Count > 1)
+                    {
+                        DateTime? dateMax = DateTime.Now;
+                        DateTime? dateMin = repeatYears[0];
+                        foreach (DateTime dt in repeatYears)
+                        {
+
+                            if (dt > dateMin)
+                            {
+                                dateMax = dt;
+                            }
+                        }
+                        int yearMax = dateMax.Value.Year;
+                        int yearMin = yearMax - 1;
+
+                        labTestSet.Where(w => w.StartDttm == dateMin).ToList().ForEach(i => i.Year = yearMin);
+                    }
+                }
+
+                PatientResultComponentModel CheckGender = labTestSet.FirstOrDefault();
+                int thisYear = DateTime.Now.Year;
+                int? compare = thisYear - 2;
+                List<int?> Years = labTestSet.Select(p => p.Year).Where(p => p.Value >= compare).Distinct().ToList();
+                Years.OrderByDescending(p => ((uint?)p));
+                int countYear = Years.Count();
+
+                if (countYear != 0)
+                {
+                    int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
+                    int? year2 = countYear >= 2 ? (Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1) : year1 - 1;
+                    int? year3 = countYear >= 3 ? (Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1) : year2 - 1;
+                    page7.cellWidalYear1.Text = "ปี" + " " + year1.ToString();
+                    page7.cellWidalYear2.Text = "ปี" + " " + year2.ToString();
+                    page7.cellWidalYear3.Text = "ปี" + " " + year3.ToString();
+
+                    page7.lbWidal.Visible = true;
+                    page7.tbWidal.Visible = true;
+
+                    //page7.widalSpecimenRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1220")?.ReferenceRange;
+                    //page7.widalSpecimen1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1220" && p.Year == year1)?.ResultValue;
+                    //page7.widalSpecimen2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1220" && p.Year == year2)?.ResultValue;
+                    //page7.widalSpecimen3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1220" && p.Year == year3)?.ResultValue;
+
+                    page7.widalORange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1315")?.ReferenceRange;
+                    page7.widalO1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1315" && p.Year == year1)?.ResultValue;
+                    page7.widalO2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1315" && p.Year == year2)?.ResultValue;
+                    page7.widalO3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1315" && p.Year == year3)?.ResultValue;
+
+
+                    page7.widalHRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1316")?.ReferenceRange;
+                    page7.widalH1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1316" && p.Year == year1)?.ResultValue;
+                    page7.widalH2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1316" && p.Year == year2)?.ResultValue;
+                    page7.widalH3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1316" && p.Year == year3)?.ResultValue;
+
+                    page7.widalARange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1317")?.ReferenceRange;
+                    page7.widalA1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1317" && p.Year == year1)?.ResultValue;
+                    page7.widalA2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1317" && p.Year == year2)?.ResultValue;
+                    page7.widalA3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1317" && p.Year == year3)?.ResultValue;
+
+                    page7.widalBRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1318")?.ReferenceRange;
+                    page7.widalB1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1318" && p.Year == year1)?.ResultValue;
+                    page7.widalB2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1318" && p.Year == year2)?.ResultValue;
+                    page7.widalB3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1318" && p.Year == year3)?.ResultValue;
+
+                    //page7.widalResult.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR23")?.ResultValue;
+                    //page7.widalResult.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR67" && p.Year == year1)?.ResultValue;
+                    //page7.FreeT4_2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR23" && p.Year == year2)?.ResultValue;
+                    //page7.FreeT4_3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR23" && p.Year == year3)?.ResultValue;  
+
+                }
+                else
+                {
+                    page7.cellWidalYear1.Text = "ปี" + " " + DateTime.Now.Year;
+                    page7.cellWidalYear2.Text = "ปี" + " " + (DateTime.Now.Year - 1);
+                    page7.cellWidalYear3.Text = "ปี" + " " + (DateTime.Now.Year - 2);
+                }
+            }
+            else
+            {
+                List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
+                Years.OrderByDescending(p => ((uint?)p));
+                int countYear = Years.Count();
+                page7.cellWidalYear1.Text = "ปี" + " " + DateTime.Now.Year;
+                page7.cellWidalYear2.Text = "ปี" + " " + (DateTime.Now.Year - 1);
+                page7.cellWidalYear3.Text = "ปี" + " " + (DateTime.Now.Year - 2);
             }
         }
 

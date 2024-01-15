@@ -11,6 +11,7 @@ using MediTech.Helpers;
 using MediTech.Model.Report;
 using System.IO;
 using System.Windows.Media.Imaging;
+using DevExpress.Mvvm.ModuleInjection.Native;
 
 namespace MediTech.Reports.Operating.Checkup.RiskBook2547
 {
@@ -570,6 +571,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2547
                 page3.rowFume.Visible = false;
                 page3.rowNaphtha.Visible = false;
                 page3.rowSodiumhydroxide.Visible = false;
+                page3.rowTrichloroaceticAcid.Visible = false;
 
                 page3.toxicoComment.Visible = false;
                 page3.lbFumeComment.Visible = false;
@@ -746,6 +748,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2547
                         || p.RequestItemCode.Contains("LAB639") //Sulphuric acids
                         || p.RequestItemCode.Contains("LAB643") //Sodium hydroxide ( NaOH) 
                         || p.RequestItemCode.Contains("LAB644") //naphtha
+                        || p.RequestItemCode.Contains("LAB645") 
                         )
                         .OrderByDescending(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
@@ -1826,6 +1829,17 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2547
                         page3.lbSodiumhydroxide1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1344" && p.Year == year1)?.ResultValue;
                         page3.lbSodiumhydroxide2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1344" && p.Year == year2)?.ResultValue;
                         page3.lbSodiumhydroxide3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1344" && p.Year == year3)?.ResultValue;
+                    }
+                    #endregion
+
+                    #region Trichloroacetic Acid in urine
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1346") != null)
+                    {
+                        page3.rowTrichloroaceticAcid.Visible = true;
+                        page3.TrichloroaceticAcidRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1346")?.ReferenceRange;
+                        page3.TrichloroaceticAcid1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1346" && p.Year == year1)?.ResultValue;
+                        page3.TrichloroaceticAcid2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1346" && p.Year == year2)?.ResultValue;
+                        page3.TrichloroaceticAcid3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1346" && p.Year == year3)?.ResultValue;
                     }
                     #endregion
                 }
