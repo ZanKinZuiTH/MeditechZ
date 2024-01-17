@@ -1957,21 +1957,21 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2563
                 page4.L60002.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO14" && p.Year == year2)?.ResultValue;
                 page4.L80002.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO15" && p.Year == year2)?.ResultValue;
 
-                //page4.R5003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO1" && p.Year == year3)?.ResultValue;
-                //page4.R10003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO2" && p.Year == year3)?.ResultValue;
-                //page4.R20003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO3" && p.Year == year3)?.ResultValue;
-                //page4.R30003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO4" && p.Year == year3)?.ResultValue;
-                //page4.R40003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO5" && p.Year == year3)?.ResultValue;
-                //page4.R60003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO6" && p.Year == year3)?.ResultValue;
-                //page4.R80003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO7" && p.Year == year3)?.ResultValue;
+                page4.R5003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO1" && p.Year == year3)?.ResultValue;
+                page4.R10003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO2" && p.Year == year3)?.ResultValue;
+                page4.R20003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO3" && p.Year == year3)?.ResultValue;
+                page4.R30003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO4" && p.Year == year3)?.ResultValue;
+                page4.R40003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO5" && p.Year == year3)?.ResultValue;
+                page4.R60003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO6" && p.Year == year3)?.ResultValue;
+                page4.R80003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO7" && p.Year == year3)?.ResultValue;
 
-                //page4.L5003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO9" && p.Year == year3)?.ResultValue;
-                //page4.L10003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO10" && p.Year == year3)?.ResultValue;
-                //page4.L20003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO11" && p.Year == year3)?.ResultValue;
-                //page4.L30003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO12" && p.Year == year3)?.ResultValue;
-                //page4.L40003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO13" && p.Year == year3)?.ResultValue;
-                //page4.L60003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO14" && p.Year == year3)?.ResultValue;
-                //page4.L80003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO15" && p.Year == year3)?.ResultValue;
+                page4.L5003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO9" && p.Year == year3)?.ResultValue;
+                page4.L10003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO10" && p.Year == year3)?.ResultValue;
+                page4.L20003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO11" && p.Year == year3)?.ResultValue;
+                page4.L30003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO12" && p.Year == year3)?.ResultValue;
+                page4.L40003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO13" && p.Year == year3)?.ResultValue;
+                page4.L60003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO14" && p.Year == year3)?.ResultValue;
+                page4.L80003.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO15" && p.Year == year3)?.ResultValue;
 
             }
         }
