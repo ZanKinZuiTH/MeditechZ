@@ -570,6 +570,12 @@
             this.lbSodiumhydroxide1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbSodiumhydroxide2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbSodiumhydroxide3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.rowTrichloroaceticAcid = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell53 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.TrichloroaceticAcidRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.TrichloroaceticAcid1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.TrichloroaceticAcid2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.TrichloroaceticAcid3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.Narcotic = new DevExpress.XtraReports.UI.XRLabel();
             this.AlcohoPeriodMonth = new DevExpress.XtraReports.UI.XRLabel();
             this.AlcohoPeriodYear = new DevExpress.XtraReports.UI.XRLabel();
@@ -716,12 +722,12 @@
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.rowTrichloroaceticAcid = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell53 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.TrichloroaceticAcidRange = new DevExpress.XtraReports.UI.XRTableCell();
-            this.TrichloroaceticAcid1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.TrichloroaceticAcid2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.TrichloroaceticAcid3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RowMTBE = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell54 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.MTBERange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.MTBE1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.MTBE2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.MTBE3 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
@@ -790,7 +796,7 @@
             this.sssss,
             this.xrLabel8,
             this.xrLabel5});
-            this.Detail.HeightF = 1749.642F;
+            this.Detail.HeightF = 1762.975F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -799,7 +805,7 @@
             // lbFumeComment
             // 
             this.lbFumeComment.Font = new System.Drawing.Font("EucrosiaUPC", 9.75F);
-            this.lbFumeComment.LocationFloat = new DevExpress.Utils.PointFloat(24.50007F, 1722.047F);
+            this.lbFumeComment.LocationFloat = new DevExpress.Utils.PointFloat(24.50007F, 1740.809F);
             this.lbFumeComment.Multiline = true;
             this.lbFumeComment.Name = "lbFumeComment";
             this.lbFumeComment.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -810,7 +816,7 @@
             // toxicoComment
             // 
             this.toxicoComment.Font = new System.Drawing.Font("EucrosiaUPC", 9.75F);
-            this.toxicoComment.LocationFloat = new DevExpress.Utils.PointFloat(24.50007F, 1699.88F);
+            this.toxicoComment.LocationFloat = new DevExpress.Utils.PointFloat(24.50007F, 1718.642F);
             this.toxicoComment.Multiline = true;
             this.toxicoComment.Name = "toxicoComment";
             this.toxicoComment.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -4021,8 +4027,9 @@
             this.rowSulphuricAcids,
             this.rowNaphtha,
             this.rowSodiumhydroxide,
-            this.rowTrichloroaceticAcid});
-            this.tbToxicology.SizeF = new System.Drawing.SizeF(369.5942F, 1049.042F);
+            this.rowTrichloroaceticAcid,
+            this.RowMTBE});
+            this.tbToxicology.SizeF = new System.Drawing.SizeF(369.5942F, 1067.854F);
             this.tbToxicology.StylePriority.UseBorderColor = false;
             this.tbToxicology.StylePriority.UseBorders = false;
             this.tbToxicology.StylePriority.UseBorderWidth = false;
@@ -7472,6 +7479,70 @@
             this.lbSodiumhydroxide3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.lbSodiumhydroxide3.Weight = 0.44329635320818539D;
             // 
+            // rowTrichloroaceticAcid
+            // 
+            this.rowTrichloroaceticAcid.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell53,
+            this.TrichloroaceticAcidRange,
+            this.TrichloroaceticAcid1,
+            this.TrichloroaceticAcid2,
+            this.TrichloroaceticAcid3});
+            this.rowTrichloroaceticAcid.Name = "rowTrichloroaceticAcid";
+            this.rowTrichloroaceticAcid.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell53
+            // 
+            this.xrTableCell53.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell53.Multiline = true;
+            this.xrTableCell53.Name = "xrTableCell53";
+            this.xrTableCell53.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell53.StylePriority.UseFont = false;
+            this.xrTableCell53.StylePriority.UsePadding = false;
+            this.xrTableCell53.StylePriority.UseTextAlignment = false;
+            this.xrTableCell53.Text = "Trichloroacetic Acid in Urine";
+            this.xrTableCell53.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell53.Weight = 1.3876867974175677D;
+            // 
+            // TrichloroaceticAcidRange
+            // 
+            this.TrichloroaceticAcidRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.TrichloroaceticAcidRange.Multiline = true;
+            this.TrichloroaceticAcidRange.Name = "TrichloroaceticAcidRange";
+            this.TrichloroaceticAcidRange.StylePriority.UseFont = false;
+            this.TrichloroaceticAcidRange.StylePriority.UseTextAlignment = false;
+            this.TrichloroaceticAcidRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.TrichloroaceticAcidRange.Weight = 0.84273217255627164D;
+            // 
+            // TrichloroaceticAcid1
+            // 
+            this.TrichloroaceticAcid1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.TrichloroaceticAcid1.Multiline = true;
+            this.TrichloroaceticAcid1.Name = "TrichloroaceticAcid1";
+            this.TrichloroaceticAcid1.StylePriority.UseFont = false;
+            this.TrichloroaceticAcid1.StylePriority.UseTextAlignment = false;
+            this.TrichloroaceticAcid1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.TrichloroaceticAcid1.Weight = 0.443296332132815D;
+            // 
+            // TrichloroaceticAcid2
+            // 
+            this.TrichloroaceticAcid2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.TrichloroaceticAcid2.Multiline = true;
+            this.TrichloroaceticAcid2.Name = "TrichloroaceticAcid2";
+            this.TrichloroaceticAcid2.StylePriority.UseFont = false;
+            this.TrichloroaceticAcid2.StylePriority.UseTextAlignment = false;
+            this.TrichloroaceticAcid2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.TrichloroaceticAcid2.Weight = 0.44329633245297495D;
+            // 
+            // TrichloroaceticAcid3
+            // 
+            this.TrichloroaceticAcid3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.TrichloroaceticAcid3.Multiline = true;
+            this.TrichloroaceticAcid3.Name = "TrichloroaceticAcid3";
+            this.TrichloroaceticAcid3.StylePriority.UseFont = false;
+            this.TrichloroaceticAcid3.StylePriority.UseTextAlignment = false;
+            this.TrichloroaceticAcid3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.TrichloroaceticAcid3.Weight = 0.44329635320818539D;
+            // 
             // Narcotic
             // 
             this.Narcotic.CanGrow = false;
@@ -9314,69 +9385,69 @@
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // rowTrichloroaceticAcid
+            // RowMTBE
             // 
-            this.rowTrichloroaceticAcid.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell53,
-            this.TrichloroaceticAcidRange,
-            this.TrichloroaceticAcid1,
-            this.TrichloroaceticAcid2,
-            this.TrichloroaceticAcid3});
-            this.rowTrichloroaceticAcid.Name = "rowTrichloroaceticAcid";
-            this.rowTrichloroaceticAcid.Weight = 0.92341768297675519D;
+            this.RowMTBE.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell54,
+            this.MTBERange,
+            this.MTBE1,
+            this.MTBE2,
+            this.MTBE3});
+            this.RowMTBE.Name = "RowMTBE";
+            this.RowMTBE.Weight = 0.92341768297675519D;
             // 
-            // xrTableCell53
+            // xrTableCell54
             // 
-            this.xrTableCell53.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell53.Multiline = true;
-            this.xrTableCell53.Name = "xrTableCell53";
-            this.xrTableCell53.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
-            this.xrTableCell53.StylePriority.UseFont = false;
-            this.xrTableCell53.StylePriority.UsePadding = false;
-            this.xrTableCell53.StylePriority.UseTextAlignment = false;
-            this.xrTableCell53.Text = "Trichloroacetic Acid in Urine";
-            this.xrTableCell53.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell53.Weight = 1.3876867974175677D;
+            this.xrTableCell54.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell54.Multiline = true;
+            this.xrTableCell54.Name = "xrTableCell54";
+            this.xrTableCell54.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell54.StylePriority.UseFont = false;
+            this.xrTableCell54.StylePriority.UsePadding = false;
+            this.xrTableCell54.StylePriority.UseTextAlignment = false;
+            this.xrTableCell54.Text = "Methy tert-butly ether (MTBE)";
+            this.xrTableCell54.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell54.Weight = 1.3876867974175677D;
             // 
-            // TrichloroaceticAcidRange
+            // MTBERange
             // 
-            this.TrichloroaceticAcidRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.TrichloroaceticAcidRange.Multiline = true;
-            this.TrichloroaceticAcidRange.Name = "TrichloroaceticAcidRange";
-            this.TrichloroaceticAcidRange.StylePriority.UseFont = false;
-            this.TrichloroaceticAcidRange.StylePriority.UseTextAlignment = false;
-            this.TrichloroaceticAcidRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TrichloroaceticAcidRange.Weight = 0.84273217255627164D;
+            this.MTBERange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.MTBERange.Multiline = true;
+            this.MTBERange.Name = "MTBERange";
+            this.MTBERange.StylePriority.UseFont = false;
+            this.MTBERange.StylePriority.UseTextAlignment = false;
+            this.MTBERange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.MTBERange.Weight = 0.84273217255627164D;
             // 
-            // TrichloroaceticAcid1
+            // MTBE1
             // 
-            this.TrichloroaceticAcid1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.TrichloroaceticAcid1.Multiline = true;
-            this.TrichloroaceticAcid1.Name = "TrichloroaceticAcid1";
-            this.TrichloroaceticAcid1.StylePriority.UseFont = false;
-            this.TrichloroaceticAcid1.StylePriority.UseTextAlignment = false;
-            this.TrichloroaceticAcid1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TrichloroaceticAcid1.Weight = 0.443296332132815D;
+            this.MTBE1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.MTBE1.Multiline = true;
+            this.MTBE1.Name = "MTBE1";
+            this.MTBE1.StylePriority.UseFont = false;
+            this.MTBE1.StylePriority.UseTextAlignment = false;
+            this.MTBE1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.MTBE1.Weight = 0.443296332132815D;
             // 
-            // TrichloroaceticAcid2
+            // MTBE2
             // 
-            this.TrichloroaceticAcid2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.TrichloroaceticAcid2.Multiline = true;
-            this.TrichloroaceticAcid2.Name = "TrichloroaceticAcid2";
-            this.TrichloroaceticAcid2.StylePriority.UseFont = false;
-            this.TrichloroaceticAcid2.StylePriority.UseTextAlignment = false;
-            this.TrichloroaceticAcid2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TrichloroaceticAcid2.Weight = 0.44329633245297495D;
+            this.MTBE2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.MTBE2.Multiline = true;
+            this.MTBE2.Name = "MTBE2";
+            this.MTBE2.StylePriority.UseFont = false;
+            this.MTBE2.StylePriority.UseTextAlignment = false;
+            this.MTBE2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.MTBE2.Weight = 0.44329633245297495D;
             // 
-            // TrichloroaceticAcid3
+            // MTBE3
             // 
-            this.TrichloroaceticAcid3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.TrichloroaceticAcid3.Multiline = true;
-            this.TrichloroaceticAcid3.Name = "TrichloroaceticAcid3";
-            this.TrichloroaceticAcid3.StylePriority.UseFont = false;
-            this.TrichloroaceticAcid3.StylePriority.UseTextAlignment = false;
-            this.TrichloroaceticAcid3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TrichloroaceticAcid3.Weight = 0.44329635320818539D;
+            this.MTBE3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.MTBE3.Multiline = true;
+            this.MTBE3.Name = "MTBE3";
+            this.MTBE3.StylePriority.UseFont = false;
+            this.MTBE3.StylePriority.UseTextAlignment = false;
+            this.MTBE3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.MTBE3.Weight = 0.44329635320818539D;
             // 
             // RiskBook3
             // 
@@ -10096,5 +10167,11 @@
         public DevExpress.XtraReports.UI.XRTableCell TrichloroaceticAcid1;
         public DevExpress.XtraReports.UI.XRTableCell TrichloroaceticAcid2;
         public DevExpress.XtraReports.UI.XRTableCell TrichloroaceticAcid3;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell54;
+        public DevExpress.XtraReports.UI.XRTableRow RowMTBE;
+        public DevExpress.XtraReports.UI.XRTableCell MTBERange;
+        public DevExpress.XtraReports.UI.XRTableCell MTBE1;
+        public DevExpress.XtraReports.UI.XRTableCell MTBE2;
+        public DevExpress.XtraReports.UI.XRTableCell MTBE3;
     }
 }

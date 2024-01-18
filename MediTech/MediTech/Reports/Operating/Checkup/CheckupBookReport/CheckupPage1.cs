@@ -209,11 +209,12 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                 page8.rowTinBlood.Visible = false;
                 page8.rowlMethylhippuric.Visible = false;
                 //page8.Row25Hexan.Visible = false;
-                //page8.RowManganese.Visible = false;
-                //page8.RowZinc.Visible = false;
                 //page8.RowIron.Visible = false;
                 //page8.RowCadInb.Visible = false;
-                //page8.RowChroinB.Visible = false;
+                page8.RowChroinB.Visible = false;
+                page8.RowZinc.Visible = false;
+                page8.RowMTBE.Visible = false;
+                page8.RowManganese.Visible = false;
                 //page8.RowChroinS.Visible = false;
                 //page8.RowAmmo.Visible = false;
                 //page8.RowLeadInu.Visible = false;
@@ -708,6 +709,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                         || p.RequestItemCode.Contains("LAB630") //Tin in blood
                         || p.RequestItemCode.Contains("LAB635") //Methanol in blood
                         || p.RequestItemCode.Contains("LAB636")
+                        || p.RequestItemCode.Contains("LAB542") //Chromium in blood
+                        || p.RequestItemCode.Contains("LAB547") // Zinc in zerum
+                        || p.RequestItemCode.Contains("LAB642") // Methy tert-butly ether (MTBE)
+                        || p.RequestItemCode.Contains("LAB588") // Manganese in Blood 
                         ) 
                         .OrderByDescending(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
@@ -1887,6 +1892,54 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                         }
                         #endregion
 
+                        #region Chromiun in blood
+
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268") != null)
+                        {
+                            page8.RowChroinB.Visible = true;
+                            page8.ChroinBRang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268")?.ReferenceRange;
+                            page8.ChroinB1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268" && p.Year == year1)?.ResultValue;
+                            page8.ChroinB2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268" && p.Year == year2)?.ResultValue;
+                            page8.ChroinB3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268" && p.Year == year3)?.ResultValue;
+                        }
+
+                        #endregion
+
+                        #region Zinc Serum
+
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR141") != null)
+                        {
+                            page8.RowZinc.Visible = true;
+                            page8.ZincRang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR141")?.ReferenceRange;
+                            page8.Zinc1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR141" && p.Year == year1)?.ResultValue;
+                            page8.Zinc2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PPAR141" && p.Year == year2)?.ResultValue;
+                            page8.Zinc3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR141" && p.Year == year3)?.ResultValue;
+                        }
+                        #endregion
+
+                        #region RowMTBE
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1343") != null)
+                        {
+                            page8.RowMTBE.Visible = true;
+                            page8.MTBERange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1343")?.ReferenceRange;
+                            page8.MTBE1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1343" && p.Year == year1)?.ResultValue;
+                            page8.MTBE2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1343" && p.Year == year2)?.ResultValue;
+                            page8.MTBE3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1343" && p.Year == year3)?.ResultValue;
+                        }
+                        #endregion
+
+                        #region Manganese in Blood 
+
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270") != null)
+                        {
+                            page8.RowManganese.Visible = true;
+                            page8.ManganeseRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270")?.ReferenceRange;
+                            page8.Manganes1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270" && p.Year == year1)?.ResultValue;
+                            page8.Manganes2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270" && p.Year == year2)?.ResultValue;
+                            page8.Manganes3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270" && p.Year == year3)?.ResultValue;
+                        }
+                        #endregion
+
                         #region Ethyl benzene in Urine
 
                         if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1234") != null)
@@ -2246,7 +2299,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                 page8.cellOther2Year3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
             }
         }
-        #endregion
+#endregion
 
 
         private void GenerateTimus(IEnumerable<PatientResultComponentModel> TimusResult)

@@ -661,6 +661,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page7.rowNaphtha.Visible = false;
                 page7.rowSodiumhydroxide.Visible = false;
                 page7.rowTrichloroaceticAcid.Visible = false;
+                page7.RowMTBE.Visible = false;
 
                 page7.lbWidal.Visible = false;
                 page7.tbWidal.Visible = false;
@@ -858,6 +859,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             || p.RequestItemCode.Contains("LAB644") //naphtha
                             || p.RequestItemCode.Contains("LAB645") //Trichloroacetic Acid in urine
                             || p.RequestItemCode.Contains("LAB612") //Widal Agglutination
+                            || p.RequestItemCode.Contains("LAB642") // Methy tert-butly ether (MTBE)
                             )
                              .OrderByDescending(p => p.Year);
                         GenerateToxicology(ToxicoTestSet);
@@ -2873,6 +2875,17 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             page7.TrichloroaceticAcid1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1346" && p.Year == year1)?.ResultValue;
                             page7.TrichloroaceticAcid2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1346" && p.Year == year2)?.ResultValue;
                             page7.TrichloroaceticAcid3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1346" && p.Year == year3)?.ResultValue;
+                        }
+                        #endregion
+
+                        #region RowMTBE
+                        if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1343") != null)
+                        {
+                            page7.RowMTBE.Visible = true;
+                            page7.MTBERange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1343")?.ReferenceRange;
+                            page7.MTBE1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1343" && p.Year == year1)?.ResultValue;
+                            page7.MTBE2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1343" && p.Year == year2)?.ResultValue;
+                            page7.MTBE3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1343" && p.Year == year3)?.ResultValue;
                         }
                         #endregion
 
