@@ -49,18 +49,18 @@ namespace MediTech.Reports.Operating.Patient
 
             var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);
 
-            if(dataSource.VisitCodeType == "CHKIN4" || dataSource.VisitCodeType == "CHKIN5")
-            {
-                xrLabel39.Text = dataSource.Doctor2;
-                xrLabel41.Text = dataSource.DoctorLicenseNo2;
-                xrLabel40.Text = dataSource.Doctor2;
-            }
-            else
-            {
-                xrLabel39.Text = dataSource.Doctor;
-                xrLabel41.Text = dataSource.DoctorLicenseNo;
-                xrLabel40.Text = dataSource.Doctor;
-            }
+            //if(dataSource.VisitCodeType == "CHKIN4" || dataSource.VisitCodeType == "CHKIN5")
+            //{
+            //    xrLabel39.Text = dataSource.Doctor2;
+            //    xrLabel41.Text = dataSource.DoctorLicenseNo2;
+            //    xrLabel40.Text = dataSource.Doctor2;
+            //}
+            //else
+            //{
+            xrLabel39.Text = dataSource.Doctor;
+            xrLabel41.Text = dataSource.DoctorLicenseNo;
+            xrLabel40.Text = dataSource.Doctor;
+            //}
 
             if (ReportName == "ใบรับรองแพทย์ 5 โรค (Mobile)")
             {

@@ -46,18 +46,18 @@ namespace MediTech.Reports.Operating.Patient
             int valueText = Convert.ToInt32(this.Parameters["MDtext"].Value.ToString());
             var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);
 
-            if (dataSource.VisitCodeType == "CHKIN4" || dataSource.VisitCodeType == "CHKIN5")
-            {
-                xrLabel53.Text = dataSource.Doctor2;
-                xrLabel70.Text = dataSource.DoctorLicenseNo2;
-                xrLabel66.Text = dataSource.Doctor2;
-            }
-            else
-            {
-                xrLabel53.Text = dataSource.Doctor;
-                xrLabel70.Text = dataSource.DoctorLicenseNo;
-                xrLabel66.Text = dataSource.Doctor;
-            }
+            //if (dataSource.VisitCodeType == "CHKIN4" || dataSource.VisitCodeType == "CHKIN5")
+            //{
+            //    xrLabel53.Text = dataSource.Doctor2;
+            //    xrLabel70.Text = dataSource.DoctorLicenseNo2;
+            //    xrLabel66.Text = dataSource.Doctor2;
+            //}
+            //else
+            //{
+            xrLabel53.Text = dataSource.Doctor;
+            xrLabel70.Text = dataSource.DoctorLicenseNo;
+            xrLabel66.Text = dataSource.Doctor;
+            //}
             if (valueText != 0)
             {
                 autoMDText.Text = (new TechnicalService()).GetReferenceValue(valueText).AlternateName;
