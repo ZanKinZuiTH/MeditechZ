@@ -190,18 +190,18 @@ namespace MediTech.Reports.Operating.Lab
                                 process.StartInfo.Verb = "Open";
                                 process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
                                 process.EnableRaisingEvents = true;
-                                process.Exited += delegate
-                                {
-                                    try
-                                    {
-                                        System.IO.File.Delete(filename);
-                                    }
-                                    catch (IOException)
-                                    {
-                                        //file is currently locked
-                                    }
+                                //process.Exited += delegate
+                                //{
+                                //    try
+                                //    {
+                                //        System.IO.File.Delete(filename);
+                                //    }
+                                //    catch (IOException)
+                                //    {
+                                //        //file is currently locked
+                                //    }
 
-                                };
+                                //};
                                 process.Start();
                             }
 
