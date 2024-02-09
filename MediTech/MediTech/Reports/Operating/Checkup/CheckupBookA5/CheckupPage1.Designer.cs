@@ -90,7 +90,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableRow5 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbHN = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell14 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbDob = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbDateOfBirth = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbAge = new DevExpress.XtraReports.UI.XRTableCell();
@@ -965,7 +965,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableRow5.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell9,
             this.lbHN,
-            this.xrTableCell14,
+            this.lbDob,
             this.lbDateOfBirth,
             this.xrTableCell16,
             this.lbAge,
@@ -998,18 +998,18 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbHN.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.lbHN.Weight = 0.96857701723239265D;
             // 
-            // xrTableCell14
+            // lbDob
             // 
-            this.xrTableCell14.CanGrow = false;
-            this.xrTableCell14.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell14.Name = "xrTableCell14";
-            this.xrTableCell14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
-            this.xrTableCell14.StylePriority.UseFont = false;
-            this.xrTableCell14.StylePriority.UsePadding = false;
-            this.xrTableCell14.StylePriority.UseTextAlignment = false;
-            this.xrTableCell14.Text = "DOB :";
-            this.xrTableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell14.Weight = 0.36351183650237268D;
+            this.lbDob.CanGrow = false;
+            this.lbDob.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.lbDob.Name = "lbDob";
+            this.lbDob.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
+            this.lbDob.StylePriority.UseFont = false;
+            this.lbDob.StylePriority.UsePadding = false;
+            this.lbDob.StylePriority.UseTextAlignment = false;
+            this.lbDob.Text = "DOB :";
+            this.lbDob.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.lbDob.Weight = 0.36351183650237268D;
             // 
             // lbDateOfBirth
             // 
@@ -1368,7 +1368,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow5;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell9;
         private DevExpress.XtraReports.UI.XRTableCell lbHN;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell14;
+        private DevExpress.XtraReports.UI.XRTableCell lbDob;
         private DevExpress.XtraReports.UI.XRTableCell lbDateOfBirth;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell16;
         public DevExpress.XtraReports.UI.XRTableCell lbAge;

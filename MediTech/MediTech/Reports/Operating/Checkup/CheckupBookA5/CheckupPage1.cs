@@ -260,7 +260,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 lbPosition.Text = patient.Position;
                 lbCompany.Text = !string.IsNullOrEmpty(patient.CompanyName) ? patient.CompanyName : patient.PayorName;
                 //lbChildCompany.Text = patient.CompanyName;
-                lbDateOfBirth.Text = patient.BirthDttm != null ? patient.BirthDttm.Value.ToString("dd/MM/yyyy") : "";
+                lbDateOfBirth.Text = patient.BirthDttm != null && patient.DOBComputed != true ? patient.BirthDttm.Value.ToString("dd/MM/yyyy") : "";
                 lbAge.Text = patient.Age != null ? patient.Age : "";
                 lbGender.Text = patient.Gender;
                 lbAddress.Text = patient.PatientAddress != null ? patient.PatientAddress : "";
@@ -272,7 +272,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 lbBP.Text = (patient.BPSys != null ? patient.BPSys.ToString() : "") + (patient.BPDio != null ? "/" + patient.BPDio.ToString() : "");
                 lbPulse.Text = patient.Pulse != null ? patient.Pulse.ToString() : "";
                 lbWaist.Text = patient.WaistCircumference != null ? patient.WaistCircumference.ToString() : "";
-
+                
                 RowHip.Visible = false;
                 RowWHR.Visible = false;
 

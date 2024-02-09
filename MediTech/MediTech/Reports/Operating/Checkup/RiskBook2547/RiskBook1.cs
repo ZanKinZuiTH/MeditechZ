@@ -73,7 +73,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2547
                 lbDateVisit.Text = patient.StartDttm != null ? patient.StartDttm.Value.AddYears(543).ToString("dd/MM/yyyy") : "";
 
                 page2.lbNameP2.Text = patient.PatientName;
-                page2.lbBrithDateP2.Text = patient.BirthDttm != null ? patient.BirthDttm.Value.AddYears(543).ToString("dd/MM/yyyy") : "";
+                page2.lbBrithDateP2.Text = patient.BirthDttm != null && patient.DOBComputed != true ? patient.BirthDttm.Value.AddYears(543).ToString("dd/MM/yyyy") : "";
                 page2.lbIDCard.Text = patient.NationalID;
                 page2.lbGenderP2.Text = patient.Gender;
 
