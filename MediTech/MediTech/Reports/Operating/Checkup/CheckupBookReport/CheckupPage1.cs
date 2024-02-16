@@ -276,7 +276,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                 lbPosition.Text = patient.Position;
                 lbCompany.Text = !string.IsNullOrEmpty(patient.CompanyName) ? patient.CompanyName : patient.PayorName;
                 //lbChildCompany.Text = patient.CompanyName;
-                lbDateOfBirth.Text = patient.BirthDttm != null ? patient.BirthDttm.Value.ToString("dd/MM/yyyy") : "";
+                lbDateOfBirth.Text = patient.BirthDttm != null && patient.DOBComputed != true ? patient.BirthDttm.Value.ToString("dd/MM/yyyy") : "";
                 lbAge.Text = patient.Age != null ? patient.Age + " ปี" : "";
                 lbGender.Text = patient.Gender;
 
