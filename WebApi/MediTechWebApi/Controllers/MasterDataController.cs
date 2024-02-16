@@ -560,6 +560,7 @@ namespace MediTechWebApi.Controllers
                     ResultType = SqlFunction.fGetRfValDescription(p.RVTYPUID ?? 0),
                     IsCumulative = p.IsCumulative,
                     StatusFlag = p.StatusFlag,
+                    Comments = p.Comments,
                     CUser = p.CUser,
                     CWhen = p.CWhen,
                     MUser = p.MUser,
@@ -590,6 +591,7 @@ namespace MediTechWebApi.Controllers
                 IsCumulative = p.IsCumulative,
                 AutoValue = p.AutoValue,
                 StatusFlag = p.StatusFlag,
+                Comments = p.Comments,
                 CUser = p.CUser,
                 CWhen = p.CWhen,
                 MUser = p.MUser,
@@ -620,6 +622,7 @@ namespace MediTechWebApi.Controllers
                 IsCumulative = p.IsCumulative,
                 AutoValue = p.AutoValue,
                 StatusFlag = p.StatusFlag,
+                Comments = p.Comments,
                 CUser = p.CUser,
                 CWhen = p.CWhen,
                 MUser = p.MUser,
@@ -669,6 +672,7 @@ namespace MediTechWebApi.Controllers
                 IsCumulative = p.IsCumulative,
                 AutoValue = p.AutoValue,
                 StatusFlag = p.StatusFlag,
+                Comments = p.Comments,
                 CUser = p.CUser,
                 CWhen = p.CWhen,
                 MUser = p.MUser,
@@ -709,6 +713,7 @@ namespace MediTechWebApi.Controllers
                     resultItem.UnitofMeasure = resultItemModel.UnitofMeasure;
                     resultItem.IsCumulative = resultItemModel.IsCumulative;
                     resultItem.AutoValue = resultItemModel.AutoValue;
+                    resultItem.Comments = resultItemModel.Comments;
                     resultItem.MUser = userID;
                     resultItem.MWhen = now;
 
