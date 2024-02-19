@@ -16,6 +16,8 @@ namespace MediTech.Model
         public string RequestItemCode { get; set; }
         public string ResultItemCode { get; set; }
         public string ResultItemName { get; set; }
+        public string PrintAs { get; set; }
+        public string ResultItemComments { get; set; }
         public string ReferenceRange { get; set; }
         public string ResultValue { get; set; }
         public string ResultValueRange { get; set; }

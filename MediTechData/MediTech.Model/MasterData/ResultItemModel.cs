@@ -27,6 +27,7 @@ namespace MediTech.Model
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
 
+        public string Comments { get; set; }   
         public List<ResultItemRangeModel> ResultItemRanges { get; set; }
 
     }

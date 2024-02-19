@@ -130,6 +130,14 @@ namespace MediTech.ViewModels
             set { Set(ref _EffectiveTo, value); }
         }
 
+        private string _ResultItemComments;
+
+        public string ResultItemComments
+        {
+            get { return _ResultItemComments; }
+            set { Set(ref _ResultItemComments, value); }
+        }
+
 
         private bool __IsCumulative;
 
@@ -564,6 +572,7 @@ namespace MediTech.ViewModels
             EffectiveTo = Datamodel.EffectiveTo;
             IsCumulative = Datamodel.IsCumulative == "Y" ? true : false;
             AutoValue = Datamodel.AutoValue;
+            ResultItemComments = Datamodel.Comments;
             ListResultItemRange = Datamodel.ResultItemRanges;
 
             IsEnabledEdit = false;
@@ -585,7 +594,7 @@ namespace MediTech.ViewModels
             Datamodel.AutoValue = AutoValue;
             Datamodel.EffectiveFrom = EffectiveFrom;
             Datamodel.EffectiveTo = EffectiveTo;
-
+            Datamodel.Comments = ResultItemComments;
             if (SelectParameterType.Display == "Numeric" || SelectParameterType.Display == "Free Text Field")
             {
                 if (ListResultItemRange != null)

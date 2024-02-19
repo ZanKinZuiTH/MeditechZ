@@ -127,6 +127,9 @@
                             <dxlc:LayoutItem Label="ปิดการใช้งาน">
                                 <dxe:DateEdit EditValue="{Binding EffectiveTo}"/>
                             </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Comments">
+                                <dxe:TextEdit EditValue="{Binding ResultItemComments,Mode=TwoWay}"/>
+                            </dxlc:LayoutItem>
                             <dxlc:LayoutItem Label="Plot on Graph">
                                 <dxe:CheckEdit EditValue="{Binding IsCumulative}"/>
                             </dxlc:LayoutItem>
