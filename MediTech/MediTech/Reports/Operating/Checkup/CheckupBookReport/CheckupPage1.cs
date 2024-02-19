@@ -634,6 +634,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                     IEnumerable<PatientResultComponentModel> LiverTestSet = labCompare
                         .Where(p => p.RequestItemCode.Contains("LAB221")
                         || p.RequestItemCode.Contains("LAB222")
+                        || p.RequestItemCode.Contains("LAB22")
                         || p.RequestItemCode.Contains("LAB223")
                         || p.RequestItemCode.Contains("LAB474")
                         || p.RequestItemCode.Contains("LAB475")
