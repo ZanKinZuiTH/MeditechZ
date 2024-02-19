@@ -184,6 +184,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 var patient = data.PatientInfomation;
                 var groupResult = data.GroupResult;
 
+
                 if (patient.OwnerOrganisationUID != 5)
                 {
 
@@ -204,18 +205,27 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         var modelData = DataService.UserManage.GetCareproviderByUID(patient.CareProviderUID ?? 0);
                         if (modelData != null)
                         {
-                            //var img = ImageHelpers.ConvertByteToBitmap(modelData.LicenseImage);
-                            //using (MemoryStream outStream = new MemoryStream())
-                            //{
-                            //    BitmapEncoder enc = new BmpBitmapEncoder();
-                            //    enc.Frames.Add(BitmapFrame.Create(img));
-                            //    enc.Save(outStream); 
-                            //    this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(343.21f, 699.54f);
-                            //    this.xrPictureBox1.SizeF = new System.Drawing.SizeF(193.63f, 84.69f);
-                            //    this.xrPictureBox1.Image = System.Drawing.Image.FromStream(outStream);
-                            //}
-                            this.xrPictureBox1.Visible = false;
-                            this.xrLabel4.Text = modelData.TitleDesc + " " + modelData.FirstName+ " "+ modelData.LastName+ " " +modelData.LicenseNo;
+                            if (modelData.LicenseImage != null)
+                            {
+                                var img = ImageHelpers.ConvertByteToBitmap(modelData.LicenseImage);
+                                using (MemoryStream outStream = new MemoryStream())
+                                {
+                                    BitmapEncoder enc = new BmpBitmapEncoder();
+                                    enc.Frames.Add(BitmapFrame.Create(img));
+                                    enc.Save(outStream);
+                                    //this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(343.21f, 699.54f);
+                                    //this.xrPictureBox1.SizeF = new System.Drawing.SizeF(193.63f, 84.69f);
+                                    this.xrPictureBox1.Image = System.Drawing.Image.FromStream(outStream);
+                                    this.xrLabel4.Text = modelData.TitleDesc + " " + modelData.FirstName + " " + modelData.LastName + " " + modelData.LicenseNo;
+
+                                }
+                            }
+                            else
+                            {
+
+                                this.xrPictureBox1.Visible = false;
+                                this.xrLabel4.Text = modelData.TitleDesc + " " + modelData.FirstName + " " + modelData.LastName + " " + modelData.LicenseNo;
+                            }
                         }
                     
                     }
@@ -748,6 +758,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         IEnumerable<PatientResultComponentModel> LiverTestSet = labCompare
                             .Where(p => p.RequestItemCode.Contains("LAB221")
                             || p.RequestItemCode.Contains("LAB222")
+                            || p.RequestItemCode.Contains("LAB22")
                             || p.RequestItemCode.Contains("LAB223")
                             || p.RequestItemCode.Contains("LAB474")
                             || p.RequestItemCode.Contains("LAB475")
