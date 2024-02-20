@@ -2230,7 +2230,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         {
                             XRTableRow newRow = new XRTableRow();
                             newRow.HeightF = 23.22f;
-                            newRow.Weight = 0.70313200704530621D;
                             XRTableCell xRTableCell1 = new XRTableCell();
                             xRTableCell1.WidthF = 180.63f;
                             xRTableCell1.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
@@ -2270,7 +2269,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         {
                             XRTableRow newRow = new XRTableRow();
                             newRow.HeightF = 23.22f;
-                            newRow.Weight = 0.70313200704530621D;
                             XRTableCell xRTableCell1 = new XRTableCell();
                             xRTableCell1.Borders = DevExpress.XtraPrinting.BorderSide.None;
                             xRTableCell1.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
@@ -2988,7 +2986,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         {
                             XRTableRow newRow = new XRTableRow();
                             newRow.HeightF = 23.22f;
-                            newRow.Weight = 0.70313200704530621D;
                             XRTableCell xRTableCell1 = new XRTableCell();
                             xRTableCell1.WidthF = 180.63f;
                             xRTableCell1.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
@@ -3038,7 +3035,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                     {
                         XRTableRow newRow = new XRTableRow();
                         newRow.HeightF = 23.22f;
-                        newRow.Weight = 0.70313200704530621D;
                         XRTableCell xRTableCell1 = new XRTableCell();
                         xRTableCell1.WidthF = 180.63f;
                         xRTableCell1.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);

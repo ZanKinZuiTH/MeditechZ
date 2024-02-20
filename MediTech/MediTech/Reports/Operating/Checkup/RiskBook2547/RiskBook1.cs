@@ -525,59 +525,59 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2547
 
                 #region Hide Toxico
 
-                page3.RowIsopropanol.Visible = false;
-                page3.RowStyreneUrine.Visible = false;
-                page3.RowAluminiumBlood.Visible = false;
-                page3.RowArsenic.Visible = false;
-                page3.CyclohexanoneRow.Visible = false;
-                page3.RowPhenol.Visible = false;
-                page3.RowMibkUrine.Visible = false;
-                page3.RowCadmiumUrine.Visible = false;
-                page3.RowEthylbenzeneUrine.Visible = false;
-                page3.RowMercuryUrine.Visible = false;
-                page3.RowMEK.Visible = false;
-                page3.RowCarboxy.Visible = false;
-                page3.RowBenzene.Visible = false;
-                page3.RowMethanol.Visible = false;
-                page3.RowMethyrene.Visible = false;
-                page3.RowHexane.Visible = false;
-                page3.RowNickelUrine.Visible = false;
-                page3.RowMethyreneUrine.Visible = false;
-                page3.RowBenzenettUrine.Visible = false;
-                page3.RowMercuryBlood.Visible = false;
-                page3.Rowfluoride.Visible = false;
-                page3.RowFormadehyde.Visible = false;
-                page3.Row25Hexan.Visible = false;
-                page3.RowManganese.Visible = false;
-                page3.RowZinc.Visible = false;
-                page3.RowIron.Visible = false;
-                page3.RowCadInb.Visible = false;
-                page3.RowChroinB.Visible = false;
-                page3.RowAmmo.Visible = false;
-                page3.RowLeadinU.Visible = false;
-                page3.RowAlu.Visible = false;
-                page3.RowCholinesteraseBlood.Visible = false;
-                page3.RowThinnerUrine.Visible = false;
-                page3.RowCopperBlood.Visible = false;
-                page3.RowTrichloroUrine.Visible = false;
-                page3.rowDirectToluene.Visible = false;
-                page3.RowEthanolBlood.Visible = false;
-                page3.rowTinBlood.Visible = false;
-                page3.rowlMethylhippuric.Visible = false;
+                //page3.RowIsopropanol.Visible = false;
+                //page3.RowStyreneUrine.Visible = false;
+                //page3.RowAluminiumBlood.Visible = false;
+                //page3.RowArsenic.Visible = false;
+                //page3.CyclohexanoneRow.Visible = false;
+                //page3.RowPhenol.Visible = false;
+                //page3.RowMibkUrine.Visible = false;
+                //page3.RowCadmiumUrine.Visible = false;
+                //page3.RowEthylbenzeneUrine.Visible = false;
+                //page3.RowMercuryUrine.Visible = false;
+                //page3.RowMEK.Visible = false;
+                //page3.RowCarboxy.Visible = false;
+                //page3.RowBenzene.Visible = false;
+                //page3.RowMethanol.Visible = false;
+                //page3.RowMethyrene.Visible = false;
+                //page3.RowHexane.Visible = false;
+                //page3.RowNickelUrine.Visible = false;
+                //page3.RowMethyreneUrine.Visible = false;
+                //page3.RowBenzenettUrine.Visible = false;
+                //page3.RowMercuryBlood.Visible = false;
+                //page3.Rowfluoride.Visible = false;
+                //page3.RowFormadehyde.Visible = false;
+                //page3.Row25Hexan.Visible = false;
+                //page3.RowManganese.Visible = false;
+                //page3.RowZinc.Visible = false;
+                //page3.RowIron.Visible = false;
+                //page3.RowCadInb.Visible = false;
+                //page3.RowChroinB.Visible = false;
+                //page3.RowAmmo.Visible = false;
+                //page3.RowLeadinU.Visible = false;
+                //page3.RowAlu.Visible = false;
+                //page3.RowCholinesteraseBlood.Visible = false;
+                //page3.RowThinnerUrine.Visible = false;
+                //page3.RowCopperBlood.Visible = false;
+                //page3.RowTrichloroUrine.Visible = false;
+                //page3.rowDirectToluene.Visible = false;
+                //page3.RowEthanolBlood.Visible = false;
+                //page3.rowTinBlood.Visible = false;
+                //page3.rowlMethylhippuric.Visible = false;
 
-                page3.RowButylAcrylate.Visible = false;
-                page3.RowEthylAcetate.Visible = false;
-                page3.RowVinylAcetate.Visible = false;
-                page3.rowFume.Visible = false;
-                page3.rowNaphtha.Visible = false;
-                page3.rowSodiumhydroxide.Visible = false;
-                page3.rowTrichloroaceticAcid.Visible = false;
+                //page3.RowButylAcrylate.Visible = false;
+                //page3.RowEthylAcetate.Visible = false;
+                //page3.RowVinylAcetate.Visible = false;
+                //page3.rowFume.Visible = false;
+                //page3.rowNaphtha.Visible = false;
+                //page3.rowSodiumhydroxide.Visible = false;
+                //page3.rowTrichloroaceticAcid.Visible = false;
 
-                page3.toxicoComment.Visible = false;
-                page3.lbFumeComment.Visible = false;
+                //page3.toxicoComment.Visible = false;
+                //page3.lbFumeComment.Visible = false;
 
-                page3.rowNitricAcids.Visible = false;
-                page3.rowSulphuricAcids.Visible = false;
+                //page3.rowNitricAcids.Visible = false;
+                //page3.rowSulphuricAcids.Visible = false;
 
                 #endregion
 
@@ -689,68 +689,71 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2547
                         || p.RequestItemCode.Contains("LAB282"))
                         .OrderByDescending(p => p.Year);
                     GenerateTumorMarkerTestSet(TumorMarkerTestSet);
-                    #endregion            
+                    #endregion
 
                     #region Toxicology
                     IEnumerable<PatientResultComponentModel> ToxicoTestSet = labCompare
-                        .Where(p => p.RequestItemCode.Contains("LAB508") //Aluminium in Urine
-                        || p.RequestItemCode.Contains("LAB517")
-                        || p.RequestItemCode.Contains("LAB516")
-                        || p.RequestItemCode.Contains("LAB314")
-                        || p.RequestItemCode.Contains("LAB319")
-                        || p.RequestItemCode.Contains("LAB414")
-                        || p.RequestItemCode.Contains("LAB510")
-                        || p.RequestItemCode.Contains("LAB477")
-                        || p.RequestItemCode.Contains("LAB510")
-                        || p.RequestItemCode.Contains("LAB315")
-                        || p.RequestItemCode.Contains("LAB317")
-                        || p.RequestItemCode.Contains("LAB325")
-                        || p.RequestItemCode.Contains("LAB323")
-                        || p.RequestItemCode.Contains("LAB324")
-                        || p.RequestItemCode.Contains("LAB519")
-                        || p.RequestItemCode.Contains("LAB558")
-                        || p.RequestItemCode.Contains("LAB518")
-                        || p.RequestItemCode.Contains("LAB560")
-                        || p.RequestItemCode.Contains("LAB561") //Arsenic 
-                        || p.RequestItemCode.Contains("LAB562") //Cyclohexanone
-                        || p.RequestItemCode.Contains("LAB316") //Phenol
-                        || p.RequestItemCode.Contains("LAB570") //MIBK
-                        || p.RequestItemCode.Contains("LAB571") //Cadmium in Urine
-                        || p.RequestItemCode.Contains("LAB572") //Ethylbenzene
-                        || p.RequestItemCode.Contains("LAB489") //Mercury
-                        || p.RequestItemCode.Contains("LAB573") //Methyrene chloride in Urine
-                        || p.RequestItemCode.Contains("LAB568") //Benzene (t,t-Muconic acid) in Urine
-                        || p.RequestItemCode.Contains("LAB488") //Mercury in blood
-                        || p.RequestItemCode.Contains("LAB584") //fluoride  in Urine
-                        || p.RequestItemCode.Contains("LAB513") //formadehyde in Urine
-                        || p.RequestItemCode.Contains("LAB276") //25hex
-                        || p.RequestItemCode.Contains("LAB588") //Manganes in blood
-                        || p.RequestItemCode.Contains("LAB587") //Cadmium in Blood
-                        || p.RequestItemCode.Contains("LAB547") // Zinc in zerum
-                        || p.RequestItemCode.Contains("LAB463") // Iron zerum
-                        || p.RequestItemCode.Contains("LAB542") // chro zerum
-                        || p.RequestItemCode.Contains("LAB575") // Ammo
-                        || p.RequestItemCode.Contains("LAB487") // Lead in Urin 
-                        || p.RequestItemCode.Contains("LAB511")
-                        || p.RequestItemCode.Contains("LAB620") //direct Toluene 
-                        || p.RequestItemCode.Contains("LAB619")
-                        || p.RequestItemCode.Contains("LAB589")
-                        || p.RequestItemCode.Contains("LAB543") //copper blood
-                        || p.RequestItemCode.Contains("LAB628")
-                        || p.RequestItemCode.Contains("LAB626")
-                        || p.RequestItemCode.Contains("LAB627")
-                        || p.RequestItemCode.Contains("LAB606")
-                        || p.RequestItemCode.Contains("LAB630") //Tin in blood
-                        || p.RequestItemCode.Contains("LAB635") //Methanol in blood
-                        || p.RequestItemCode.Contains("LAB636")
-                        || p.RequestItemCode.Contains("LAB640") //Nitric acids
-                        || p.RequestItemCode.Contains("LAB641") //fume
-                        || p.RequestItemCode.Contains("LAB639") //Sulphuric acids
-                        || p.RequestItemCode.Contains("LAB643") //Sodium hydroxide ( NaOH) 
-                        || p.RequestItemCode.Contains("LAB644") //naphtha
-                        || p.RequestItemCode.Contains("LAB645") 
-                        )
-                        .OrderByDescending(p => p.Year);
+               .Where(p => p.Catagory.ToLower() == "toxicology")
+               .OrderByDescending(p => p.Year);
+                    //IEnumerable<PatientResultComponentModel> ToxicoTestSet = labCompare
+                    //    .Where(p => p.RequestItemCode.Contains("LAB508") //Aluminium in Urine
+                    //    || p.RequestItemCode.Contains("LAB517")
+                    //    || p.RequestItemCode.Contains("LAB516")
+                    //    || p.RequestItemCode.Contains("LAB314")
+                    //    || p.RequestItemCode.Contains("LAB319")
+                    //    || p.RequestItemCode.Contains("LAB414")
+                    //    || p.RequestItemCode.Contains("LAB510")
+                    //    || p.RequestItemCode.Contains("LAB477")
+                    //    || p.RequestItemCode.Contains("LAB510")
+                    //    || p.RequestItemCode.Contains("LAB315")
+                    //    || p.RequestItemCode.Contains("LAB317")
+                    //    || p.RequestItemCode.Contains("LAB325")
+                    //    || p.RequestItemCode.Contains("LAB323")
+                    //    || p.RequestItemCode.Contains("LAB324")
+                    //    || p.RequestItemCode.Contains("LAB519")
+                    //    || p.RequestItemCode.Contains("LAB558")
+                    //    || p.RequestItemCode.Contains("LAB518")
+                    //    || p.RequestItemCode.Contains("LAB560")
+                    //    || p.RequestItemCode.Contains("LAB561") //Arsenic 
+                    //    || p.RequestItemCode.Contains("LAB562") //Cyclohexanone
+                    //    || p.RequestItemCode.Contains("LAB316") //Phenol
+                    //    || p.RequestItemCode.Contains("LAB570") //MIBK
+                    //    || p.RequestItemCode.Contains("LAB571") //Cadmium in Urine
+                    //    || p.RequestItemCode.Contains("LAB572") //Ethylbenzene
+                    //    || p.RequestItemCode.Contains("LAB489") //Mercury
+                    //    || p.RequestItemCode.Contains("LAB573") //Methyrene chloride in Urine
+                    //    || p.RequestItemCode.Contains("LAB568") //Benzene (t,t-Muconic acid) in Urine
+                    //    || p.RequestItemCode.Contains("LAB488") //Mercury in blood
+                    //    || p.RequestItemCode.Contains("LAB584") //fluoride  in Urine
+                    //    || p.RequestItemCode.Contains("LAB513") //formadehyde in Urine
+                    //    || p.RequestItemCode.Contains("LAB276") //25hex
+                    //    || p.RequestItemCode.Contains("LAB588") //Manganes in blood
+                    //    || p.RequestItemCode.Contains("LAB587") //Cadmium in Blood
+                    //    || p.RequestItemCode.Contains("LAB547") // Zinc in zerum
+                    //    || p.RequestItemCode.Contains("LAB463") // Iron zerum
+                    //    || p.RequestItemCode.Contains("LAB542") // chro zerum
+                    //    || p.RequestItemCode.Contains("LAB575") // Ammo
+                    //    || p.RequestItemCode.Contains("LAB487") // Lead in Urin 
+                    //    || p.RequestItemCode.Contains("LAB511")
+                    //    || p.RequestItemCode.Contains("LAB620") //direct Toluene 
+                    //    || p.RequestItemCode.Contains("LAB619")
+                    //    || p.RequestItemCode.Contains("LAB589")
+                    //    || p.RequestItemCode.Contains("LAB543") //copper blood
+                    //    || p.RequestItemCode.Contains("LAB628")
+                    //    || p.RequestItemCode.Contains("LAB626")
+                    //    || p.RequestItemCode.Contains("LAB627")
+                    //    || p.RequestItemCode.Contains("LAB606")
+                    //    || p.RequestItemCode.Contains("LAB630") //Tin in blood
+                    //    || p.RequestItemCode.Contains("LAB635") //Methanol in blood
+                    //    || p.RequestItemCode.Contains("LAB636")
+                    //    || p.RequestItemCode.Contains("LAB640") //Nitric acids
+                    //    || p.RequestItemCode.Contains("LAB641") //fume
+                    //    || p.RequestItemCode.Contains("LAB639") //Sulphuric acids
+                    //    || p.RequestItemCode.Contains("LAB643") //Sodium hydroxide ( NaOH) 
+                    //    || p.RequestItemCode.Contains("LAB644") //naphtha
+                    //    || p.RequestItemCode.Contains("LAB645") 
+                    //    )
+                    //    .OrderByDescending(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
                     #endregion
                 }
@@ -1171,677 +1174,882 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2547
 
                 if (labTestSet != null && labTestSet.Count() > 0)
                 {
-                    List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
+                    List<int?> oneYears = labTestSet.Select(p => p.Year).Distinct().ToList();
+                    if (oneYears.Count == 1)
+                    {
+                        List<DateTime?> repeatYears = labTestSet.Select(p => p.StartDttm).Distinct().ToList();
+                        repeatYears.Sort();
+
+                        if (repeatYears.Count > 1)
+                        {
+                            DateTime? dateMax = DateTime.Now;
+                            DateTime? dateMin = repeatYears[0];
+                            foreach (DateTime dt in repeatYears)
+                            {
+
+                                if (dt > dateMin)
+                                {
+                                    dateMax = dt;
+                                }
+                            }
+                            int yearMax = dateMax.Value.Year;
+                            int yearMin = yearMax - 1;
+
+                            labTestSet.Where(w => w.StartDttm == dateMin).ToList().ForEach(i => i.Year = yearMin);
+                        }
+                    }
+
+                    int thisYear = DateTime.Now.Year;
+                    int? compare = thisYear - 2;
+                    List<int?> Years = labTestSet.Select(p => p.Year).Where(p => p.Value >= compare).Distinct().ToList();
                     Years.OrderByDescending(p => ((uint?)p));
                     int countYear = Years.Count();
-                    int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                    int? year2 = countYear >= 2 ? (Years.ElementAtOrDefault(1) != null ? Years[1] : year1 - 1) : null;
-                    int? year3 = countYear >= 3 ? (Years.ElementAtOrDefault(2) != null ? Years[2] : year2 - 1) : null;
-                    page3.cellToxicoYear1.Text = "ปี" + " " + (year1 + 543).ToString();
-                    page3.cellToxicoYear2.Text = "ปี" + " " + (year2 + 543).ToString();
-                    page3.cellToxicoYear3.Text = "ปี" + " " + (year3 + 543).ToString();
 
-                    #region Aluminium in Urin
 
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122") != null)
+
+                    if (countYear != 0)
                     {
-                        page3.RowAlu.Visible = true;
-                        page3.cellAluminiumRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122")?.ReferenceRange;
-                        page3.cellAluminium1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year1)?.ResultValue;
-                        page3.cellAluminium2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year2)?.ResultValue;
-                        page3.cellAluminium3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year3)?.ResultValue;
-                    }
+                        int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
+                        int? year2 = countYear >= 2 ? (Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1) : year1 - 1;
+                        int? year3 = countYear >= 3 ? (Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1) : year2 - 1;
+                        page3.cellToxicoYear1.Text = "ปี" + " " + (year1 + 543).ToString();
+                        page3.cellToxicoYear2.Text = "ปี" + " " + (year2 + 543).ToString();
+                        page3.cellToxicoYear3.Text = "ปี" + " " + (year3 + 543).ToString();
 
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1319") != null)
-                    {
-                        page3.RowAlu.Visible = true;
-                        page3.cellAluminiumRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1319")?.ReferenceRange;
-                        page3.cellAluminium1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1319" && p.Year == year1)?.ResultValue;
-                        page3.cellAluminium2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1319" && p.Year == year2)?.ResultValue;
-                        page3.cellAluminium3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1319" && p.Year == year3)?.ResultValue;
-                    }
+                        var labTestGroup = labTestSet
+                            .GroupBy(p => new { p.ResultItemCode, p.PrintAs, p.ReferenceRange })
+                            .Select(g => new
+                            {
+                                ResultItemCode = g.Key.ResultItemCode,
+                                PrintAs = g.Key.PrintAs,
+                                ReferenceRange = g.Key.ReferenceRange
+                            });
 
-                    #endregion
+                        var ResultItemComments = labTestSet
+                            .Where(p => !string.IsNullOrEmpty(p.ResultItemComments))
+                            .GroupBy(p => new { p.ResultItemComments })
+                            .Select(g => new
+                            {
+                                ResultItemComments = g.Key.ResultItemComments,
+                            });
 
-                    #region Toluene
+                        List<XRTableRow> newRows = new List<XRTableRow>();
+                        float heihtTableToxico = 14.33f;
+                        foreach (var item in labTestGroup)
+                        {
+                            XRTableRow newRow = new XRTableRow();
+                            newRow.HeightF = 18.81f;
+                            XRTableCell xRTableCell1 = new XRTableCell();
+                            xRTableCell1.WidthF = 144.06f;
+                            xRTableCell1.Font = new System.Drawing.Font("Angsana New", 9f);
+                            xRTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+                            xRTableCell1.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+                            XRTableCell xRTableCell2 = new XRTableCell();
+                            xRTableCell2.WidthF = 87.48f;
+                            xRTableCell2.Font = new System.Drawing.Font("Angsana New", 9f);
+                            xRTableCell2.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+                            XRTableCell xRTableCell3 = new XRTableCell();
+                            xRTableCell3.WidthF = 46.02f;
+                            xRTableCell3.Font = new System.Drawing.Font("Angsana New", 9f);
+                            xRTableCell3.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+                            XRTableCell xRTableCell4 = new XRTableCell();
+                            xRTableCell4.WidthF = 46.02f;
+                            xRTableCell4.Font = new System.Drawing.Font("Angsana New", 9f);
+                            xRTableCell4.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+                            XRTableCell xRTableCell5 = new XRTableCell();
+                            xRTableCell5.WidthF = 46.02f;
+                            xRTableCell5.Font = new System.Drawing.Font("Angsana New", 9f);
+                            xRTableCell5.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
 
-                    page3.cellTolueneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR124")?.ReferenceRange;
-                    page3.cellToluene1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR124" && p.Year == year1)?.ResultValue;
-                    page3.cellToluene2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR124" && p.Year == year2)?.ResultValue;
-                    page3.cellToluene3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR124" && p.Year == year3)?.ResultValue;
+                            xRTableCell1.Text = item?.PrintAs;
+                            xRTableCell2.Text = item?.ReferenceRange;
+                            xRTableCell3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == item.ResultItemCode && p.Year == year1)?.ResultValue;
+                            xRTableCell4.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == item.ResultItemCode && p.Year == year2)?.ResultValue;
+                            xRTableCell5.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == item.ResultItemCode && p.Year == year3)?.ResultValue;
 
-                    #endregion
+                            newRow.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {xRTableCell1,xRTableCell2,
+                                xRTableCell3,xRTableCell4,xRTableCell5});
 
-                    #region Xylene
+                            newRows.Add(newRow);
+                            heihtTableToxico += newRow.HeightF;
+                        }
 
-                    page3.cellXyleneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR125")?.ReferenceRange;
-                    page3.cellXylene1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR125" && p.Year == year1)?.ResultValue;
-                    page3.cellXylene2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR125" && p.Year == year2)?.ResultValue;
-                    page3.cellXylene3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR125" && p.Year == year3)?.ResultValue;
+                        foreach (var item in ResultItemComments)
+                        {
+                            XRTableRow newRow = new XRTableRow();
+                            newRow.HeightF = 18.81f;
+                            XRTableCell xRTableCell1 = new XRTableCell();
+                            xRTableCell1.Borders = DevExpress.XtraPrinting.BorderSide.None;
+                            xRTableCell1.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+                            xRTableCell1.Font = new System.Drawing.Font("Angsana New", 9.75F);
+                            xRTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+                            xRTableCell1.Text = "(" + item?.ResultItemComments + ")";
+                            newRow.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] { xRTableCell1 });
+                            newRows.Add(newRow);
+                            heihtTableToxico += newRow.HeightF;
+                        }
+                        page3.tbToxicology.Rows.AddRange(newRows.ToArray());
+                        page3.tbToxicology.SizeF = new System.Drawing.SizeF(369.59f, heihtTableToxico);
 
 
-                    #endregion
 
-                    #region Lead in blood 
-                    page3.cellLeadRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR75")?.ReferenceRange;
-                    page3.cellLead1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR75" && p.Year == year1)?.ResultValue;
-                    page3.cellLead2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR75" && p.Year == year2)?.ResultValue;
-                    page3.cellLead3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR75" && p.Year == year3)?.ResultValue;
-
-                    #endregion
-
-                    #region Carboxy
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR120") != null)
-                    {
-                        page3.RowCarboxy.Visible = true;
-                        page3.cellCarboxyRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR120")?.ReferenceRange;
-                        page3.cellCarboxy1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR120" && p.Year == year1)?.ResultValue;
-                        page3.cellCarboxy2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR120" && p.Year == year2)?.ResultValue;
-                        page3.cellCarboxy3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR120" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Mek
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR127") != null)
-                    {
-                        page3.RowMEK.Visible = true;
-                        page3.cellMekRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR127")?.ReferenceRange;
-                        page3.cellMek1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR127" && p.Year == year1)?.ResultValue;
-                        page3.cellMek2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR127" && p.Year == year2)?.ResultValue;
-                        page3.cellMek3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR127" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Benzene
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR115") != null)
-                    {
-                        page3.RowBenzene.Visible = true;
-                        page3.cellBenzeneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR115")?.ReferenceRange;
-                        page3.cellBenzene1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR115" && p.Year == year1)?.ResultValue;
-                        page3.cellBenzene2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR115" && p.Year == year2)?.ResultValue;
-                        page3.cellBenzene3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR115" && p.Year == year3)?.ResultValue;
-
-                    }
-                    #endregion
-
-                    #region Methanol
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR116") != null)
-                    {
-                        page3.RowMethanol.Visible = true;
-                        page3.cellMethanolRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR116")?.ReferenceRange;
-                        page3.cellMethanol1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR116" && p.Year == year1)?.ResultValue;
-                        page3.cellMethanol2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR116" && p.Year == year2)?.ResultValue;
-                        page3.cellMethanol3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR116" && p.Year == year3)?.ResultValue;
-                    }
-
-                    #endregion
-
-                    #region Methyrene
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR119") != null)
-                    {
-                        page3.RowMethyrene.Visible = true;
-                        page3.cellMethyreneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR119")?.ReferenceRange;
-                        page3.cellMethyrene1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR119" && p.Year == year1)?.ResultValue;
-                        page3.cellMethyrene2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR119" && p.Year == year2)?.ResultValue;
-                        page3.cellMethyrene3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR119" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Styrene in Urine
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195") != null)
-                    {
-                        page3.RowStyreneUrine.Visible = true;
-                        page3.cellStyreneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195")?.ReferenceRange;
-                        page3.cellStyrene1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year1)?.ResultValue;
-                        page3.cellStyrene2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year2)?.ResultValue;
-                        page3.cellStyrene3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Hexane
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR118") != null)
-                    {
-                        page3.RowHexane.Visible = true;
-                        page3.cellHexaneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR118")?.ReferenceRange;
-                        page3.cellHexane1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR118" && p.Year == year1)?.ResultValue;
-                        page3.cellHexane2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR118" && p.Year == year2)?.ResultValue;
-                        page3.cellHexane3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR118" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Isopropanol
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130") != null)
-                    {
-                        page3.RowIsopropanol.Visible = true;
-                        page3.cellIsopropanolRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130")?.ReferenceRange;
-                        page3.cellIsopropanol1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130" && p.Year == year1)?.ResultValue;
-                        page3.cellIsopropanol2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130" && p.Year == year2)?.ResultValue;
-                        page3.cellIsopropanol3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Chromium 
-
-                    page3.cellChromiumRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR132")?.ReferenceRange;
-                    page3.cellChromium1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR132" && p.Year == year1)?.ResultValue;
-                    page3.cellChromium2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR132" && p.Year == year2)?.ResultValue;
-                    page3.cellChromium3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR132" && p.Year == year3)?.ResultValue;
-
-                    #endregion
-
-                    #region Nickel  in blood
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131") != null)
-                    {
-                        page3.RowNicinblood.Visible = true;
-                        page3.cellNickelRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131")?.ReferenceRange;
-                        page3.cellNickel1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131" && p.Year == year1)?.ResultValue;
-                        page3.cellNickel2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131" && p.Year == year2)?.ResultValue;
-                        page3.cellNickel3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Nickel In Urine
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188") != null)
-                    {
-                        page3.RowNickelUrine.Visible = true;
-                        page3.cellNickelUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188")?.ReferenceRange;
-                        page3.cellNickelUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188" && p.Year == year1)?.ResultValue;
-                        page3.cellNickelUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188" && p.Year == year2)?.ResultValue;
-                        page3.cellNickelUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Acetone 
-
-                    page3.cellAcetoneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117")?.ReferenceRange;
-                    page3.cellAcetone1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year1)?.ResultValue;
-                    page3.cellAcetone2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year2)?.ResultValue;
-                    page3.cellAcetone3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year3)?.ResultValue;
-
-                    #endregion
-
-                    #region Aluminium in bloob
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194") != null)
-                    {
-                        page3.RowAluminiumBlood.Visible = true;
-                        page3.AluminiumBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194")?.ReferenceRange;
-                        page3.AluminiumBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year1)?.ResultValue;
-                        page3.AluminiumBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year2)?.ResultValue;
-                        page3.AluminiumBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Arsenic
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199") != null)
-                    {
-                        page3.RowArsenic.Visible = true;
-                        page3.ArsenicRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199")?.ReferenceRange;
-                        page3.Arsenic1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199" && p.Year == year1)?.ResultValue;
-                        page3.Arsenic2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199" && p.Year == year2)?.ResultValue;
-                        page3.Arsenic3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199" && p.Year == year3)?.ResultValue;
-                    }
-
-                    #endregion
-
-                    #region Cyclohexanone
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR202") != null)
-                    {
-                        page3.CyclohexanoneRow.Visible = true;
-                        page3.CyclohexanoneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR202")?.ReferenceRange;
-                        page3.Cyclohexanone1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR202" && p.Year == year1)?.ResultValue;
-                        page3.Cyclohexanone2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR202" && p.Year == year2)?.ResultValue;
-                        page3.Cyclohexanone3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR202" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Phenol
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204") != null)
-                    {
-                        page3.RowPhenol.Visible = true;
-                        page3.PhenolRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204")?.ReferenceRange;
-                        page3.Phenol1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204" && p.Year == year1)?.ResultValue;
-                        page3.Phenol2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204" && p.Year == year2)?.ResultValue;
-                        page3.Phenol3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region MIBK Urine 
-
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1232") != null)
-                    {
-                        page3.RowMibkUrine.Visible = true;
-                        page3.cellMibkUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1232")?.ReferenceRange;
-                        page3.cellMibkUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1232" && p.Year == year1)?.ResultValue;
-                        page3.cellMibkUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1232" && p.Year == year2)?.ResultValue;
-                        page3.cellMibkUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1232" && p.Year == year3)?.ResultValue;
 
                     }
-                    #endregion
-
-                    #region Cadmium Urine 
-
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1233") != null)
+                    else
                     {
-                        page3.RowCadmiumUrine.Visible = true;
-                        page3.cellCadmiumUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1233")?.ReferenceRange;
-                        page3.cellCadmiumUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1233" && p.Year == year1)?.ResultValue;
-                        page3.cellCadmiumUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1233" && p.Year == year2)?.ResultValue;
-                        page3.cellCadmiumUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1233" && p.Year == year3)?.ResultValue;
 
-                    }
-                    #endregion
+                        List<XRTableRow> newRows = new List<XRTableRow>();
+                        float heihtTableToxico = 14.33f;
+                        for (int i = 0; i <= 5; i++)
+                        {
+                            XRTableRow newRow = new XRTableRow();
+                            newRow.HeightF = 18.81f;
+                            XRTableCell xRTableCell1 = new XRTableCell();
+                            xRTableCell1.WidthF = 144.06f;
+                            xRTableCell1.Font = new System.Drawing.Font("Angsana New", 9f);
+                            xRTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+                            xRTableCell1.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+                            XRTableCell xRTableCell2 = new XRTableCell();
+                            xRTableCell2.WidthF = 87.48f;
+                            xRTableCell2.Font = new System.Drawing.Font("Angsana New", 9f);
+                            xRTableCell2.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+                            XRTableCell xRTableCell3 = new XRTableCell();
+                            xRTableCell3.WidthF = 46.02f;
+                            xRTableCell3.Font = new System.Drawing.Font("Angsana New", 9f);
+                            xRTableCell3.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+                            XRTableCell xRTableCell4 = new XRTableCell();
+                            xRTableCell4.WidthF = 46.02f;
+                            xRTableCell4.Font = new System.Drawing.Font("Angsana New", 9f);
+                            xRTableCell4.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+                            XRTableCell xRTableCell5 = new XRTableCell();
+                            xRTableCell5.WidthF = 46.02f;
+                            xRTableCell5.Font = new System.Drawing.Font("Angsana New", 9f);
+                            xRTableCell5.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
 
-                    #region Ethyl benzene in Urine
+                            newRow.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {xRTableCell1,xRTableCell2,
+                                xRTableCell3,xRTableCell4,xRTableCell5});
 
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1234") != null)
-                    {
-                        page3.RowEthylbenzeneUrine.Visible = true;
-                        page3.cellEthylbenzeneUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1234")?.ReferenceRange;
-                        page3.cellEthylbenzeneUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1234" && p.Year == year1)?.ResultValue;
-                        page3.cellEthylbenzeneUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1234" && p.Year == year2)?.ResultValue;
-                        page3.cellEthylbenzeneUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1234" && p.Year == year3)?.ResultValue;
-
-                    }
-                    #endregion
-
-                    #region Mercury Urine
-
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1235") != null)
-                    {
-                        page3.RowMercuryUrine.Visible = true;
-                        page3.cellMercuryUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1235")?.ReferenceRange;
-                        page3.cellMercuryUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1235" && p.Year == year1)?.ResultValue;
-                        page3.cellMercuryUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1235" && p.Year == year2)?.ResultValue;
-                        page3.cellMercuryUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1235" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Methyrene chloride in Urine
-
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1236") != null)
-                    {
-                        page3.RowMethyreneUrine.Visible = true;
-                        page3.cellMethyreneUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1236")?.ReferenceRange;
-                        page3.cellMethyreneUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1236" && p.Year == year1)?.ResultValue;
-                        page3.cellMethyreneUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1236" && p.Year == year2)?.ResultValue;
-                        page3.cellMethyreneUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1236" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Benzene (t,t-Muconic acid) in Urine
-
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1215") != null)
-                    {
-                        page3.RowBenzenettUrine.Visible = true;
-                        page3.cellBenzenettUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1215")?.ReferenceRange;
-                        page3.cellBenzenettUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1215" && p.Year == year1)?.ResultValue;
-                        page3.cellBenzenettUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1215" && p.Year == year2)?.ResultValue;
-                        page3.cellBenzenettUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1215" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Mercury Blood (EDTA)
-
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237") != null)
-                    {
-                        page3.RowMercuryBlood.Visible = true;
-                        page3.cellMercuryBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237")?.ReferenceRange;
-                        page3.cellMercuryBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year1)?.ResultValue;
-                        page3.cellMercuryBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year2)?.ResultValue;
-                        page3.cellMercuryBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region fluoride  in Urine
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1261") != null)
-                    {
-                        page3.Rowfluoride.Visible = true;
-                        page3.fluorideRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1261")?.ReferenceRange;
-                        page3.fluorideY1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1261" && p.Year == year1)?.ResultValue;
-                        page3.fluorideY2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1261" && p.Year == year2)?.ResultValue;
-                        page3.fluorideY3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1261" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region 2,5 Hexanedion in urine
-
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242") != null)
-                    {
-                        page3.Row25Hexan.Visible = true;
-                        page3.cell25HexanRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242")?.ReferenceRange;
-                        page3.cell25Hexan1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242" && p.Year == year1)?.ResultValue;
-                        page3.cell25Hexan2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242" && p.Year == year2)?.ResultValue;
-                        page3.cell25Hexan3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Manganese in Blood 
-
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270") != null)
-                    {
-                        page3.RowManganese.Visible = true;
-                        page3.ManganeseRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270")?.ReferenceRange;
-                        page3.Manganes1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270" && p.Year == year1)?.ResultValue;
-                        page3.Manganes2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270" && p.Year == year2)?.ResultValue;
-                        page3.Manganes3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Zinc zerum
-
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR141") != null)
-                    {
-                        page3.RowZinc.Visible = true;
-                        page3.ZincRang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR141")?.ReferenceRange;
-                        page3.Zinc1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR141" && p.Year == year1)?.ResultValue;
-                        page3.Zinc2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PPAR141" && p.Year == year2)?.ResultValue;
-                        page3.Zinc3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR141" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region iron zerum 
-
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR142") != null)
-                    {
-                        page3.RowIron.Visible = true;
-                        page3.IronRang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR142")?.ReferenceRange;
-                        page3.Iron1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR142" && p.Year == year1)?.ResultValue;
-                        page3.Iron2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PPAR142" && p.Year == year2)?.ResultValue;
-                        page3.Iron3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR142" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region cadmiun in blood
-
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1269") != null)
-                    {
-                        page3.RowCadInb.Visible = true;
-                        page3.CadinbRang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1269")?.ReferenceRange;
-                        page3.cadinb1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1269" && p.Year == year1)?.ResultValue;
-                        page3.cadinb2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1269" && p.Year == year2)?.ResultValue;
-                        page3.cadinb3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1269" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Chromiun in blood
-
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268") != null)
-                    {
-                        page3.RowChroinB.Visible = true;
-                        page3.ChroinBRang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268")?.ReferenceRange;
-                        page3.ChroinB1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268" && p.Year == year1)?.ResultValue;
-                        page3.ChroinB2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268" && p.Year == year2)?.ResultValue;
-                        page3.ChroinB3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268" && p.Year == year3)?.ResultValue;
+                            newRows.Add(newRow);
+                            heihtTableToxico += newRow.HeightF;
+                        }
+                        page3.tbToxicology.Rows.AddRange(newRows.ToArray());
+                        page3.tbToxicology.SizeF = new System.Drawing.SizeF(369.59f, heihtTableToxico);
                     }
 
-                    #endregion
 
-                    #region Chromiun in blood
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171") != null)
+                    //#region Aluminium in Urin
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122") != null)
+                    //{
+                    //    page3.RowAlu.Visible = true;
+                    //    page3.cellAluminiumRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122")?.ReferenceRange;
+                    //    page3.cellAluminium1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year1)?.ResultValue;
+                    //    page3.cellAluminium2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year2)?.ResultValue;
+                    //    page3.cellAluminium3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year3)?.ResultValue;
+                    //}
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1319") != null)
+                    //{
+                    //    page3.RowAlu.Visible = true;
+                    //    page3.cellAluminiumRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1319")?.ReferenceRange;
+                    //    page3.cellAluminium1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1319" && p.Year == year1)?.ResultValue;
+                    //    page3.cellAluminium2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1319" && p.Year == year2)?.ResultValue;
+                    //    page3.cellAluminium3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1319" && p.Year == year3)?.ResultValue;
+                    //}
+
+                    //#endregion
+
+                    //#region Toluene
+
+                    //page3.cellTolueneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR124")?.ReferenceRange;
+                    //page3.cellToluene1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR124" && p.Year == year1)?.ResultValue;
+                    //page3.cellToluene2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR124" && p.Year == year2)?.ResultValue;
+                    //page3.cellToluene3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR124" && p.Year == year3)?.ResultValue;
+
+                    //#endregion
+
+                    //#region Xylene
+
+                    //page3.cellXyleneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR125")?.ReferenceRange;
+                    //page3.cellXylene1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR125" && p.Year == year1)?.ResultValue;
+                    //page3.cellXylene2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR125" && p.Year == year2)?.ResultValue;
+                    //page3.cellXylene3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR125" && p.Year == year3)?.ResultValue;
+
+
+                    //#endregion
+
+                    //#region Lead in blood 
+                    //page3.cellLeadRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR75")?.ReferenceRange;
+                    //page3.cellLead1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR75" && p.Year == year1)?.ResultValue;
+                    //page3.cellLead2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR75" && p.Year == year2)?.ResultValue;
+                    //page3.cellLead3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR75" && p.Year == year3)?.ResultValue;
+
+                    //#endregion
+
+                    //#region Carboxy
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR120") != null)
+                    //{
+                    //    page3.RowCarboxy.Visible = true;
+                    //    page3.cellCarboxyRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR120")?.ReferenceRange;
+                    //    page3.cellCarboxy1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR120" && p.Year == year1)?.ResultValue;
+                    //    page3.cellCarboxy2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR120" && p.Year == year2)?.ResultValue;
+                    //    page3.cellCarboxy3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR120" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Mek
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR127") != null)
+                    //{
+                    //    page3.RowMEK.Visible = true;
+                    //    page3.cellMekRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR127")?.ReferenceRange;
+                    //    page3.cellMek1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR127" && p.Year == year1)?.ResultValue;
+                    //    page3.cellMek2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR127" && p.Year == year2)?.ResultValue;
+                    //    page3.cellMek3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR127" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Benzene
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR115") != null)
+                    //{
+                    //    page3.RowBenzene.Visible = true;
+                    //    page3.cellBenzeneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR115")?.ReferenceRange;
+                    //    page3.cellBenzene1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR115" && p.Year == year1)?.ResultValue;
+                    //    page3.cellBenzene2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR115" && p.Year == year2)?.ResultValue;
+                    //    page3.cellBenzene3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR115" && p.Year == year3)?.ResultValue;
+
+                    //}
+                    //#endregion
+
+                    //#region Methanol
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR116") != null)
+                    //{
+                    //    page3.RowMethanol.Visible = true;
+                    //    page3.cellMethanolRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR116")?.ReferenceRange;
+                    //    page3.cellMethanol1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR116" && p.Year == year1)?.ResultValue;
+                    //    page3.cellMethanol2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR116" && p.Year == year2)?.ResultValue;
+                    //    page3.cellMethanol3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR116" && p.Year == year3)?.ResultValue;
+                    //}
+
+                    //#endregion
+
+                    //#region Methyrene
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR119") != null)
+                    //{
+                    //    page3.RowMethyrene.Visible = true;
+                    //    page3.cellMethyreneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR119")?.ReferenceRange;
+                    //    page3.cellMethyrene1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR119" && p.Year == year1)?.ResultValue;
+                    //    page3.cellMethyrene2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR119" && p.Year == year2)?.ResultValue;
+                    //    page3.cellMethyrene3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR119" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Styrene in Urine
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195") != null)
+                    //{
+                    //    page3.RowStyreneUrine.Visible = true;
+                    //    page3.cellStyreneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195")?.ReferenceRange;
+                    //    page3.cellStyrene1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year1)?.ResultValue;
+                    //    page3.cellStyrene2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year2)?.ResultValue;
+                    //    page3.cellStyrene3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Hexane
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR118") != null)
+                    //{
+                    //    page3.RowHexane.Visible = true;
+                    //    page3.cellHexaneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR118")?.ReferenceRange;
+                    //    page3.cellHexane1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR118" && p.Year == year1)?.ResultValue;
+                    //    page3.cellHexane2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR118" && p.Year == year2)?.ResultValue;
+                    //    page3.cellHexane3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR118" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Isopropanol
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130") != null)
+                    //{
+                    //    page3.RowIsopropanol.Visible = true;
+                    //    page3.cellIsopropanolRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130")?.ReferenceRange;
+                    //    page3.cellIsopropanol1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130" && p.Year == year1)?.ResultValue;
+                    //    page3.cellIsopropanol2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130" && p.Year == year2)?.ResultValue;
+                    //    page3.cellIsopropanol3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Chromium 
+
+                    //page3.cellChromiumRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR132")?.ReferenceRange;
+                    //page3.cellChromium1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR132" && p.Year == year1)?.ResultValue;
+                    //page3.cellChromium2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR132" && p.Year == year2)?.ResultValue;
+                    //page3.cellChromium3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR132" && p.Year == year3)?.ResultValue;
+
+                    //#endregion
+
+                    //#region Nickel  in blood
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131") != null)
+                    //{
+                    //    page3.RowNicinblood.Visible = true;
+                    //    page3.cellNickelRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131")?.ReferenceRange;
+                    //    page3.cellNickel1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131" && p.Year == year1)?.ResultValue;
+                    //    page3.cellNickel2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131" && p.Year == year2)?.ResultValue;
+                    //    page3.cellNickel3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Nickel In Urine
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188") != null)
+                    //{
+                    //    page3.RowNickelUrine.Visible = true;
+                    //    page3.cellNickelUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188")?.ReferenceRange;
+                    //    page3.cellNickelUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188" && p.Year == year1)?.ResultValue;
+                    //    page3.cellNickelUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188" && p.Year == year2)?.ResultValue;
+                    //    page3.cellNickelUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Acetone 
+
+                    //page3.cellAcetoneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117")?.ReferenceRange;
+                    //page3.cellAcetone1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year1)?.ResultValue;
+                    //page3.cellAcetone2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year2)?.ResultValue;
+                    //page3.cellAcetone3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year3)?.ResultValue;
+
+                    //#endregion
+
+                    //#region Aluminium in bloob
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194") != null)
+                    //{
+                    //    page3.RowAluminiumBlood.Visible = true;
+                    //    page3.AluminiumBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194")?.ReferenceRange;
+                    //    page3.AluminiumBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year1)?.ResultValue;
+                    //    page3.AluminiumBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year2)?.ResultValue;
+                    //    page3.AluminiumBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Arsenic
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199") != null)
+                    //{
+                    //    page3.RowArsenic.Visible = true;
+                    //    page3.ArsenicRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199")?.ReferenceRange;
+                    //    page3.Arsenic1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199" && p.Year == year1)?.ResultValue;
+                    //    page3.Arsenic2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199" && p.Year == year2)?.ResultValue;
+                    //    page3.Arsenic3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199" && p.Year == year3)?.ResultValue;
+                    //}
+
+                    //#endregion
+
+                    //#region Cyclohexanone
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR202") != null)
+                    //{
+                    //    page3.CyclohexanoneRow.Visible = true;
+                    //    page3.CyclohexanoneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR202")?.ReferenceRange;
+                    //    page3.Cyclohexanone1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR202" && p.Year == year1)?.ResultValue;
+                    //    page3.Cyclohexanone2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR202" && p.Year == year2)?.ResultValue;
+                    //    page3.Cyclohexanone3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR202" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Phenol
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204") != null)
+                    //{
+                    //    page3.RowPhenol.Visible = true;
+                    //    page3.PhenolRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204")?.ReferenceRange;
+                    //    page3.Phenol1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204" && p.Year == year1)?.ResultValue;
+                    //    page3.Phenol2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204" && p.Year == year2)?.ResultValue;
+                    //    page3.Phenol3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region MIBK Urine 
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1232") != null)
+                    //{
+                    //    page3.RowMibkUrine.Visible = true;
+                    //    page3.cellMibkUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1232")?.ReferenceRange;
+                    //    page3.cellMibkUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1232" && p.Year == year1)?.ResultValue;
+                    //    page3.cellMibkUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1232" && p.Year == year2)?.ResultValue;
+                    //    page3.cellMibkUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1232" && p.Year == year3)?.ResultValue;
+
+                    //}
+                    //#endregion
+
+                    //#region Cadmium Urine 
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1233") != null)
+                    //{
+                    //    page3.RowCadmiumUrine.Visible = true;
+                    //    page3.cellCadmiumUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1233")?.ReferenceRange;
+                    //    page3.cellCadmiumUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1233" && p.Year == year1)?.ResultValue;
+                    //    page3.cellCadmiumUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1233" && p.Year == year2)?.ResultValue;
+                    //    page3.cellCadmiumUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1233" && p.Year == year3)?.ResultValue;
+
+                    //}
+                    //#endregion
+
+                    //#region Ethyl benzene in Urine
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1234") != null)
+                    //{
+                    //    page3.RowEthylbenzeneUrine.Visible = true;
+                    //    page3.cellEthylbenzeneUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1234")?.ReferenceRange;
+                    //    page3.cellEthylbenzeneUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1234" && p.Year == year1)?.ResultValue;
+                    //    page3.cellEthylbenzeneUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1234" && p.Year == year2)?.ResultValue;
+                    //    page3.cellEthylbenzeneUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1234" && p.Year == year3)?.ResultValue;
+
+                    //}
+                    //#endregion
+
+                    //#region Mercury Urine
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1235") != null)
+                    //{
+                    //    page3.RowMercuryUrine.Visible = true;
+                    //    page3.cellMercuryUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1235")?.ReferenceRange;
+                    //    page3.cellMercuryUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1235" && p.Year == year1)?.ResultValue;
+                    //    page3.cellMercuryUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1235" && p.Year == year2)?.ResultValue;
+                    //    page3.cellMercuryUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1235" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Methyrene chloride in Urine
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1236") != null)
+                    //{
+                    //    page3.RowMethyreneUrine.Visible = true;
+                    //    page3.cellMethyreneUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1236")?.ReferenceRange;
+                    //    page3.cellMethyreneUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1236" && p.Year == year1)?.ResultValue;
+                    //    page3.cellMethyreneUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1236" && p.Year == year2)?.ResultValue;
+                    //    page3.cellMethyreneUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1236" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Benzene (t,t-Muconic acid) in Urine
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1215") != null)
+                    //{
+                    //    page3.RowBenzenettUrine.Visible = true;
+                    //    page3.cellBenzenettUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1215")?.ReferenceRange;
+                    //    page3.cellBenzenettUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1215" && p.Year == year1)?.ResultValue;
+                    //    page3.cellBenzenettUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1215" && p.Year == year2)?.ResultValue;
+                    //    page3.cellBenzenettUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1215" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Mercury Blood (EDTA)
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237") != null)
+                    //{
+                    //    page3.RowMercuryBlood.Visible = true;
+                    //    page3.cellMercuryBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237")?.ReferenceRange;
+                    //    page3.cellMercuryBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year1)?.ResultValue;
+                    //    page3.cellMercuryBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year2)?.ResultValue;
+                    //    page3.cellMercuryBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region fluoride  in Urine
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1261") != null)
+                    //{
+                    //    page3.Rowfluoride.Visible = true;
+                    //    page3.fluorideRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1261")?.ReferenceRange;
+                    //    page3.fluorideY1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1261" && p.Year == year1)?.ResultValue;
+                    //    page3.fluorideY2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1261" && p.Year == year2)?.ResultValue;
+                    //    page3.fluorideY3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1261" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region 2,5 Hexanedion in urine
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242") != null)
+                    //{
+                    //    page3.Row25Hexan.Visible = true;
+                    //    page3.cell25HexanRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242")?.ReferenceRange;
+                    //    page3.cell25Hexan1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242" && p.Year == year1)?.ResultValue;
+                    //    page3.cell25Hexan2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242" && p.Year == year2)?.ResultValue;
+                    //    page3.cell25Hexan3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Manganese in Blood 
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270") != null)
+                    //{
+                    //    page3.RowManganese.Visible = true;
+                    //    page3.ManganeseRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270")?.ReferenceRange;
+                    //    page3.Manganes1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270" && p.Year == year1)?.ResultValue;
+                    //    page3.Manganes2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270" && p.Year == year2)?.ResultValue;
+                    //    page3.Manganes3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Zinc zerum
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR141") != null)
+                    //{
+                    //    page3.RowZinc.Visible = true;
+                    //    page3.ZincRang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR141")?.ReferenceRange;
+                    //    page3.Zinc1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR141" && p.Year == year1)?.ResultValue;
+                    //    page3.Zinc2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PPAR141" && p.Year == year2)?.ResultValue;
+                    //    page3.Zinc3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR141" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region iron zerum 
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR142") != null)
+                    //{
+                    //    page3.RowIron.Visible = true;
+                    //    page3.IronRang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR142")?.ReferenceRange;
+                    //    page3.Iron1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR142" && p.Year == year1)?.ResultValue;
+                    //    page3.Iron2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PPAR142" && p.Year == year2)?.ResultValue;
+                    //    page3.Iron3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR142" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region cadmiun in blood
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1269") != null)
+                    //{
+                    //    page3.RowCadInb.Visible = true;
+                    //    page3.CadinbRang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1269")?.ReferenceRange;
+                    //    page3.cadinb1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1269" && p.Year == year1)?.ResultValue;
+                    //    page3.cadinb2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1269" && p.Year == year2)?.ResultValue;
+                    //    page3.cadinb3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1269" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Chromiun in blood
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268") != null)
+                    //{
+                    //    page3.RowChroinB.Visible = true;
+                    //    page3.ChroinBRang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268")?.ReferenceRange;
+                    //    page3.ChroinB1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268" && p.Year == year1)?.ResultValue;
+                    //    page3.ChroinB2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268" && p.Year == year2)?.ResultValue;
+                    //    page3.ChroinB3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268" && p.Year == year3)?.ResultValue;
+                    //}
+
+                    //#endregion
+
+                    //#region Chromiun in blood
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171") != null)
+                    //{
+                    //    page3.RowChroinB.Visible = true;
+                    //    page3.ChroinBRang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171")?.ReferenceRange;
+                    //    page3.ChroinB1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171" && p.Year == year1)?.ResultValue;
+                    //    page3.ChroinB2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171" && p.Year == year2)?.ResultValue;
+                    //    page3.ChroinB3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Ammo in blood
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1245") != null)
+                    //{
+                    //    page3.RowAmmo.Visible = true;
+                    //    page3.AmmoRang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1245")?.ReferenceRange;
+                    //    page3.Ammo1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1245" && p.Year == year1)?.ResultValue;
+                    //    page3.Ammo2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1245" && p.Year == year2)?.ResultValue;
+                    //    page3.Ammo3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1245" && p.Year == year3)?.ResultValue;
+                    //}
+
+                    //#endregion
+
+                    //#region lead in urin
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1278") != null)
+                    //{
+                    //    page3.RowLeadinU.Visible = true;
+                    //    page3.LeadinURang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1278")?.ReferenceRange;
+                    //    page3.LeadinU1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1278" && p.Year == year1)?.ResultValue;
+                    //    page3.LeadinU2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1278" && p.Year == year2)?.ResultValue;
+                    //    page3.LeadinU3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1278" && p.Year == year3)?.ResultValue;
+                    //}
+
+                    //#endregion
+
+                    //#region Cholinesterase in blood
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR126") != null)
+                    //{
+                    //    page3.RowCholinesteraseBlood.Visible = true;
+                    //    page3.CholinesterasebloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR126")?.ReferenceRange;
+                    //    page3.Cholinesteraseblood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR126" && p.Year == year1)?.ResultValue;
+                    //    page3.Cholinesteraseblood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR126" && p.Year == year2)?.ResultValue;
+                    //    page3.Cholinesteraseblood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR126" && p.Year == year3)?.ResultValue;
+                    //}
+
+                    //#endregion
+
+                    //#region Thinner in urine
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285") != null)
+                    //{
+                    //    page3.RowThinnerUrine.Visible = true;
+                    //    page3.ThinnerUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285")?.ReferenceRange;
+                    //    page3.ThinnerUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285" && p.Year == year1)?.ResultValue;
+                    //    page3.ThinnerUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285" && p.Year == year2)?.ResultValue;
+                    //    page3.ThinnerUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285" && p.Year == year3)?.ResultValue;
+                    //}
+
+                    //#endregion
+
+                    //#region Copper in blood
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR139") != null)
+                    //{
+                    //    page3.RowCopperBlood.Visible = true;
+                    //    page3.CopperbloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR139")?.ReferenceRange;
+                    //    page3.CopperBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR139" && p.Year == year1)?.ResultValue;
+                    //    page3.CopperBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PPAR139" && p.Year == year2)?.ResultValue;
+                    //    page3.CopperBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1139" && p.Year == year3)?.ResultValue;
+                    //}
+
+                    //#endregion
+
+                    //#region Trichloro Urine
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1300") != null)
+                    //{
+                    //    page3.RowTrichloroUrine.Visible = true;
+                    //    page3.TrichloroUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1300")?.ReferenceRange;
+                    //    page3.TrichloroUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1300" && p.Year == year1)?.ResultValue;
+                    //    page3.TrichloroUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1300" && p.Year == year2)?.ResultValue;
+                    //    page3.TrichloroUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1300" && p.Year == year3)?.ResultValue;
+                    //}
+
+                    //#endregion
+
+                    //#region Direct Toluene in urine
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307") != null)
+                    //{
+                    //    page3.rowDirectToluene.Visible = true;
+                    //    page3.DirectTolueneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307")?.ReferenceRange;
+                    //    page3.DirectToluene1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307" && p.Year == year1)?.ResultValue;
+                    //    page3.DirectToluene2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307" && p.Year == year2)?.ResultValue;
+                    //    page3.DirectToluene3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Ethanol in blood
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271") != null)
+                    //{
+                    //    page3.RowEthanolBlood.Visible = true;
+                    //    page3.RangeEthanolBlood.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271")?.ReferenceRange;
+                    //    page3.EthanolBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271" && p.Year == year1)?.ResultValue;
+                    //    page3.EthanolBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271" && p.Year == year2)?.ResultValue;
+                    //    page3.EthanolBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Tin in Blood
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329") != null)
+                    //{
+                    //    page3.rowTinBlood.Visible = true;
+                    //    page3.cellTinBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329")?.ReferenceRange;
+                    //    page3.cellTinBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329" && p.Year == year1)?.ResultValue;
+                    //    page3.cellTinBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329" && p.Year == year2)?.ResultValue;
+                    //    page3.cellTinBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Methanol in blood
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332") != null)
+                    //{
+                    //    page3.cellMethanolBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332")?.ReferenceRange;
+                    //    page3.cellMethanolBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332" && p.Year == year1)?.ResultValue;
+                    //    page3.cellMethanolBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332" && p.Year == year2)?.ResultValue;
+                    //    page3.cellMethanolBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+
+                    //#region Methylhippuric acid in urine (ES)
+
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335") != null)
+                    //{
+                    //    page3.rowlMethylhippuric.Visible = true;
+                    //    page3.cellMethylhippuricRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335")?.ReferenceRange;
+                    //    page3.cellMethylhippuric1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335" && p.Year == year1)?.ResultValue;
+                    //    page3.cellMethylhippuric2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335" && p.Year == year2)?.ResultValue;
+                    //    page3.cellMethylhippuric3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Ethyl Acetate
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321") != null)
+                    //{
+                    //    page3.toxicoComment.Visible = true;
+                    //    page3.RowEthylAcetate.Visible = true;
+                    //    page3.RangeEthylAcetate.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321")?.ReferenceRange;
+                    //    page3.EthylAcetate1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321" && p.Year == year1)?.ResultValue;
+                    //    page3.EthylAcetate2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321" && p.Year == year2)?.ResultValue;
+                    //    page3.EthylAcetate3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Butyl Acrylate
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1322") != null)
+                    //{
+                    //    page3.toxicoComment.Visible = true;
+                    //    page3.RowButylAcrylate.Visible = true;
+                    //    page3.RangeButylAcrylate.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1322")?.ReferenceRange;
+                    //    page3.ButylAcrylate1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1322" && p.Year == year1)?.ResultValue;
+                    //    page3.ButylAcrylate2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1322" && p.Year == year2)?.ResultValue;
+                    //    page3.ButylAcrylate3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1322" && p.Year == year3)?.ResultValue;
+
+                    //}
+                    //#endregion
+
+                    //#region Vinyl Acetate
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1323") != null)
+                    //{
+                    //    page3.toxicoComment.Visible = true;
+                    //    page3.RowVinylAcetate.Visible = true;
+                    //    page3.RangeVinylAcetate.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1323")?.ReferenceRange;
+                    //    page3.lbVinylAcetate1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1323" && p.Year == year1)?.ResultValue;
+                    //    page3.lbVinylAcetate2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1323" && p.Year == year2)?.ResultValue;
+                    //    page3.lbVinylAcetate3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1323" && p.Year == year3)?.ResultValue;
+
+                    //}
+                    //#endregion
+
+                    //#region Fume
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1340") != null)
+                    //{
+                    //    page3.lbFumeComment.Visible = true;
+                    //    page3.rowFume.Visible = true;
+                    //    page3.lbFumeRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1340")?.ReferenceRange;
+                    //    page3.lbFume1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1340" && p.Year == year1)?.ResultValue;
+                    //    page3.lbFume2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1340" && p.Year == year2)?.ResultValue;
+                    //    page3.lbFume3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1340" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Nitric Acids
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1339") != null)
+                    //{
+                    //    page3.lbFumeComment.Visible = true;
+                    //    page3.rowNitricAcids.Visible = true;
+                    //    page3.lbNitricAcidsRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1339")?.ReferenceRange;
+                    //    page3.lbNitricAcids1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1339" && p.Year == year1)?.ResultValue;
+                    //    page3.lbNitricAcids2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1339" && p.Year == year2)?.ResultValue;
+                    //    page3.lbNitricAcids3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1339" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Sulphuric Acids
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1338") != null)
+                    //{
+                    //    page3.lbFumeComment.Visible = true;
+                    //    page3.rowSulphuricAcids.Visible = true;
+                    //    page3.lbSulphuricAcidsRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1338")?.ReferenceRange;
+                    //    page3.lbSulphuricAcids1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1338" && p.Year == year1)?.ResultValue;
+                    //    page3.lbSulphuricAcids2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1338" && p.Year == year2)?.ResultValue;
+                    //    page3.lbSulphuricAcids3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1338" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region formadehyde in Urine
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1342") != null)
+                    //{
+                    //    page3.RowFormadehyde.Visible = true;
+                    //    page3.formadehydeRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1342")?.ReferenceRange;
+                    //    page3.formadehydeY1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1342" && p.Year == year1)?.ResultValue;
+                    //    page3.formadehydeY2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1342" && p.Year == year2)?.ResultValue;
+                    //    page3.formadehydeY3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1342" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Naphtha
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1345") != null)
+                    //{
+                    //    page3.lbFumeComment.Visible = true;
+                    //    page3.rowNaphtha.Visible = true;
+                    //    page3.lbNaphthaRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1345")?.ReferenceRange;
+                    //    page3.lbNaphtha1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1345" && p.Year == year1)?.ResultValue;
+                    //    page3.lbNaphtha2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1345" && p.Year == year2)?.ResultValue;
+                    //    page3.lbNaphtha3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1345" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Sodium hydroxide (NaOH)
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1344") != null)
+                    //{
+                    //    page3.lbFumeComment.Visible = true;
+                    //    page3.rowSodiumhydroxide.Visible = true;
+                    //    page3.lbSodiumhydroxideRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1344")?.ReferenceRange;
+                    //    page3.lbSodiumhydroxide1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1344" && p.Year == year1)?.ResultValue;
+                    //    page3.lbSodiumhydroxide2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1344" && p.Year == year2)?.ResultValue;
+                    //    page3.lbSodiumhydroxide3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1344" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region Trichloroacetic Acid in urine
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1346") != null)
+                    //{
+                    //    page3.rowTrichloroaceticAcid.Visible = true;
+                    //    page3.TrichloroaceticAcidRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1346")?.ReferenceRange;
+                    //    page3.TrichloroaceticAcid1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1346" && p.Year == year1)?.ResultValue;
+                    //    page3.TrichloroaceticAcid2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1346" && p.Year == year2)?.ResultValue;
+                    //    page3.TrichloroaceticAcid3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1346" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                    //#region RowMTBE
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1343") != null)
+                    //{
+                    //    page3.RowMTBE.Visible = true;
+                    //    page3.MTBERange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1343")?.ReferenceRange;
+                    //    page3.MTBE1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1343" && p.Year == year1)?.ResultValue;
+                    //    page3.MTBE2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1343" && p.Year == year2)?.ResultValue;
+                    //    page3.MTBE3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1343" && p.Year == year3)?.ResultValue;
+                    //}
+                    //#endregion
+
+                }
+                else
+                {
+
+                    List<XRTableRow> newRows = new List<XRTableRow>();
+                    float heihtTableToxico = 14.33f;
+                    for (int i = 0; i <= 5; i++)
                     {
-                        page3.RowChroinB.Visible = true;
-                        page3.ChroinBRang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171")?.ReferenceRange;
-                        page3.ChroinB1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171" && p.Year == year1)?.ResultValue;
-                        page3.ChroinB2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171" && p.Year == year2)?.ResultValue;
-                        page3.ChroinB3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171" && p.Year == year3)?.ResultValue;
+                        XRTableRow newRow = new XRTableRow();
+                        newRow.HeightF = 18.81f;
+                        XRTableCell xRTableCell1 = new XRTableCell();
+                        xRTableCell1.WidthF = 144.06f;
+                        xRTableCell1.Font = new System.Drawing.Font("Angsana New", 9f, System.Drawing.FontStyle.Bold);
+                        xRTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+                        xRTableCell1.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+                        XRTableCell xRTableCell2 = new XRTableCell();
+                        xRTableCell2.WidthF = 87.48f;
+                        xRTableCell2.Font = new System.Drawing.Font("Angsana New", 9f);
+                        xRTableCell2.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+                        XRTableCell xRTableCell3 = new XRTableCell();
+                        xRTableCell3.WidthF = 46.02f;
+                        xRTableCell3.Font = new System.Drawing.Font("Angsana New", 9f);
+                        xRTableCell3.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+                        XRTableCell xRTableCell4 = new XRTableCell();
+                        xRTableCell4.WidthF = 46.02f;
+                        xRTableCell4.Font = new System.Drawing.Font("Angsana New", 9f);
+                        xRTableCell4.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+                        XRTableCell xRTableCell5 = new XRTableCell();
+                        xRTableCell5.WidthF = 46.02f;
+                        xRTableCell5.Font = new System.Drawing.Font("Angsana New", 9f);
+                        xRTableCell5.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+
+                        newRow.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {xRTableCell1,xRTableCell2,
+                                xRTableCell3,xRTableCell4,xRTableCell5});
+
+                        newRows.Add(newRow);
+                        heihtTableToxico += newRow.HeightF;
                     }
-                    #endregion
-
-                    #region Ammo in blood
-
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1245") != null)
-                    {
-                        page3.RowAmmo.Visible = true;
-                        page3.AmmoRang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1245")?.ReferenceRange;
-                        page3.Ammo1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1245" && p.Year == year1)?.ResultValue;
-                        page3.Ammo2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1245" && p.Year == year2)?.ResultValue;
-                        page3.Ammo3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1245" && p.Year == year3)?.ResultValue;
-                    }
-
-                    #endregion
-
-                    #region lead in urin
-
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1278") != null)
-                    {
-                        page3.RowLeadinU.Visible = true;
-                        page3.LeadinURang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1278")?.ReferenceRange;
-                        page3.LeadinU1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1278" && p.Year == year1)?.ResultValue;
-                        page3.LeadinU2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1278" && p.Year == year2)?.ResultValue;
-                        page3.LeadinU3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1278" && p.Year == year3)?.ResultValue;
-                    }
-
-                    #endregion
-
-                    #region Cholinesterase in blood
-
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR126") != null)
-                    {
-                        page3.RowCholinesteraseBlood.Visible = true;
-                        page3.CholinesterasebloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR126")?.ReferenceRange;
-                        page3.Cholinesteraseblood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR126" && p.Year == year1)?.ResultValue;
-                        page3.Cholinesteraseblood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR126" && p.Year == year2)?.ResultValue;
-                        page3.Cholinesteraseblood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR126" && p.Year == year3)?.ResultValue;
-                    }
-
-                    #endregion
-
-                    #region Thinner in urine
-
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285") != null)
-                    {
-                        page3.RowThinnerUrine.Visible = true;
-                        page3.ThinnerUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285")?.ReferenceRange;
-                        page3.ThinnerUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285" && p.Year == year1)?.ResultValue;
-                        page3.ThinnerUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285" && p.Year == year2)?.ResultValue;
-                        page3.ThinnerUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285" && p.Year == year3)?.ResultValue;
-                    }
-
-                    #endregion
-
-                    #region Copper in blood
-
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR139") != null)
-                    {
-                        page3.RowCopperBlood.Visible = true;
-                        page3.CopperbloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR139")?.ReferenceRange;
-                        page3.CopperBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR139" && p.Year == year1)?.ResultValue;
-                        page3.CopperBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PPAR139" && p.Year == year2)?.ResultValue;
-                        page3.CopperBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1139" && p.Year == year3)?.ResultValue;
-                    }
-
-                    #endregion
-
-                    #region Trichloro Urine
-
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1300") != null)
-                    {
-                        page3.RowTrichloroUrine.Visible = true;
-                        page3.TrichloroUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1300")?.ReferenceRange;
-                        page3.TrichloroUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1300" && p.Year == year1)?.ResultValue;
-                        page3.TrichloroUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1300" && p.Year == year2)?.ResultValue;
-                        page3.TrichloroUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1300" && p.Year == year3)?.ResultValue;
-                    }
-
-                    #endregion
-
-                    #region Direct Toluene in urine
-
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307") != null)
-                    {
-                        page3.rowDirectToluene.Visible = true;
-                        page3.DirectTolueneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307")?.ReferenceRange;
-                        page3.DirectToluene1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307" && p.Year == year1)?.ResultValue;
-                        page3.DirectToluene2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307" && p.Year == year2)?.ResultValue;
-                        page3.DirectToluene3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1307" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Ethanol in blood
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271") != null)
-                    {
-                        page3.RowEthanolBlood.Visible = true;
-                        page3.RangeEthanolBlood.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271")?.ReferenceRange;
-                        page3.EthanolBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271" && p.Year == year1)?.ResultValue;
-                        page3.EthanolBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271" && p.Year == year2)?.ResultValue;
-                        page3.EthanolBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1271" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Tin in Blood
-
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329") != null)
-                    {
-                        page3.rowTinBlood.Visible = true;
-                        page3.cellTinBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329")?.ReferenceRange;
-                        page3.cellTinBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329" && p.Year == year1)?.ResultValue;
-                        page3.cellTinBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329" && p.Year == year2)?.ResultValue;
-                        page3.cellTinBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1329" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Methanol in blood
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332") != null)
-                    {
-                        page3.cellMethanolBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332")?.ReferenceRange;
-                        page3.cellMethanolBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332" && p.Year == year1)?.ResultValue;
-                        page3.cellMethanolBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332" && p.Year == year2)?.ResultValue;
-                        page3.cellMethanolBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1332" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Methylhippuric acid in urine (ES)
-
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335") != null)
-                    {
-                        page3.rowlMethylhippuric.Visible = true;
-                        page3.cellMethylhippuricRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335")?.ReferenceRange;
-                        page3.cellMethylhippuric1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335" && p.Year == year1)?.ResultValue;
-                        page3.cellMethylhippuric2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335" && p.Year == year2)?.ResultValue;
-                        page3.cellMethylhippuric3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1335" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Ethyl Acetate
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321") != null)
-                    {
-                        page3.toxicoComment.Visible = true;
-                        page3.RowEthylAcetate.Visible = true;
-                        page3.RangeEthylAcetate.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321")?.ReferenceRange;
-                        page3.EthylAcetate1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321" && p.Year == year1)?.ResultValue;
-                        page3.EthylAcetate2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321" && p.Year == year2)?.ResultValue;
-                        page3.EthylAcetate3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1321" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Butyl Acrylate
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1322") != null)
-                    {
-                        page3.toxicoComment.Visible = true;
-                        page3.RowButylAcrylate.Visible = true;
-                        page3.RangeButylAcrylate.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1322")?.ReferenceRange;
-                        page3.ButylAcrylate1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1322" && p.Year == year1)?.ResultValue;
-                        page3.ButylAcrylate2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1322" && p.Year == year2)?.ResultValue;
-                        page3.ButylAcrylate3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1322" && p.Year == year3)?.ResultValue;
-
-                    }
-                    #endregion
-
-                    #region Vinyl Acetate
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1323") != null)
-                    {
-                        page3.toxicoComment.Visible = true;
-                        page3.RowVinylAcetate.Visible = true;
-                        page3.RangeVinylAcetate.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1323")?.ReferenceRange;
-                        page3.lbVinylAcetate1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1323" && p.Year == year1)?.ResultValue;
-                        page3.lbVinylAcetate2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1323" && p.Year == year2)?.ResultValue;
-                        page3.lbVinylAcetate3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1323" && p.Year == year3)?.ResultValue;
-
-                    }
-                    #endregion
-
-                    #region formadehyde in Urine
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1342") != null)
-                    {
-                        page3.RowFormadehyde.Visible = true;
-                        page3.formadehydeRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1342")?.ReferenceRange;
-                        page3.formadehydeY1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1342" && p.Year == year1)?.ResultValue;
-                        page3.formadehydeY2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1342" && p.Year == year2)?.ResultValue;
-                        page3.formadehydeY3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1342" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Fume
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1340") != null)
-                    {
-                        page3.lbFumeComment.Visible = true;
-                        page3.rowFume.Visible = true;
-                        page3.lbFumeRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1340")?.ReferenceRange;
-                        page3.lbFume1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1340" && p.Year == year1)?.ResultValue;
-                        page3.lbFume2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1340" && p.Year == year2)?.ResultValue;
-                        page3.lbFume3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1340" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Nitric Acids
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1339") != null)
-                    {
-                        page3.lbFumeComment.Visible = true;
-                        page3.rowNitricAcids.Visible = true;
-                        page3.lbNitricAcidsRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1339")?.ReferenceRange;
-                        page3.lbNitricAcids1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1339" && p.Year == year1)?.ResultValue;
-                        page3.lbNitricAcids2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1339" && p.Year == year2)?.ResultValue;
-                        page3.lbNitricAcids3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1339" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Sulphuric Acids
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1338") != null)
-                    {
-                        page3.lbFumeComment.Visible = true;
-                        page3.rowSulphuricAcids.Visible = true;
-                        page3.lbSulphuricAcidsRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1338")?.ReferenceRange;
-                        page3.lbSulphuricAcids1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1338" && p.Year == year1)?.ResultValue;
-                        page3.lbSulphuricAcids2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1338" && p.Year == year2)?.ResultValue;
-                        page3.lbSulphuricAcids3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1338" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-                    
-                    #region Naphtha
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1345") != null)
-                    {
-                        page3.lbFumeComment.Visible = true;
-                        page3.rowNaphtha.Visible = true;
-                        page3.lbNaphthaRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1345")?.ReferenceRange;
-                        page3.lbNaphtha1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1345" && p.Year == year1)?.ResultValue;
-                        page3.lbNaphtha2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1345" && p.Year == year2)?.ResultValue;
-                        page3.lbNaphtha3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1345" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-
-                    #region Sodium hydroxide (NaOH)
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1344") != null)
-                    {
-                        page3.lbFumeComment.Visible = true;
-                        page3.rowSodiumhydroxide.Visible = true;
-                        page3.lbSodiumhydroxideRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1344")?.ReferenceRange;
-                        page3.lbSodiumhydroxide1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1344" && p.Year == year1)?.ResultValue;
-                        page3.lbSodiumhydroxide2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1344" && p.Year == year2)?.ResultValue;
-                        page3.lbSodiumhydroxide3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1344" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
-
-                    #region Trichloroacetic Acid in urine
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1346") != null)
-                    {
-                        page3.rowTrichloroaceticAcid.Visible = true;
-                        page3.TrichloroaceticAcidRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1346")?.ReferenceRange;
-                        page3.TrichloroaceticAcid1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1346" && p.Year == year1)?.ResultValue;
-                        page3.TrichloroaceticAcid2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1346" && p.Year == year2)?.ResultValue;
-                        page3.TrichloroaceticAcid3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1346" && p.Year == year3)?.ResultValue;
-                    }
-                    #endregion
+                    page3.tbToxicology.Rows.AddRange(newRows.ToArray());
+                    page3.tbToxicology.SizeF = new System.Drawing.SizeF(369.59f, heihtTableToxico);
                 }
             }
         }
