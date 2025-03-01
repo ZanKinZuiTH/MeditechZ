@@ -3,6 +3,12 @@ import { Link } from 'react-router-dom';
 import MedicalDocumentList from '../components/MedicalDocumentList';
 import MedicalCertificateList from '../components/MedicalCertificateList';
 import HealthCheckupBookList from '../components/HealthCheckupBookList';
+import { Box, Button } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import MedicalInformationIcon from '@mui/icons-material/MedicalInformation';
+import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
+import UploadFileIcon from '@mui/icons-material/UploadFile';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -45,42 +51,54 @@ const MedicalDocumentsPage: React.FC = () => {
           <p className="text-gray-600 mt-2">จัดการเอกสารทางการแพทย์ทั้งหมดในระบบ</p>
         </div>
         <div className="flex space-x-2">
-          {tabValue === 0 && (
-            <Link to="/medical-documents/documents/create">
-              <button className="btn btn-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
-                </svg>
-                สร้างเอกสารใหม่
-              </button>
-            </Link>
-          )}
-          {tabValue === 1 && (
-            <Link to="/medical-documents/certificates/create">
-              <button className="btn btn-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
-                </svg>
-                สร้างใบรับรองแพทย์
-              </button>
-            </Link>
-          )}
-          {tabValue === 2 && (
-            <Link to="/medical-documents/checkup-books/create">
-              <button className="btn btn-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
-                </svg>
-                สร้างสมุดตรวจสุขภาพ
-              </button>
-            </Link>
-          )}
-          <Link 
-            to="/medical-documents/ai-assistant" 
-            className="btn btn-primary"
-          >
-            <span className="mr-2">🤖</span> ผู้ช่วย AI
-          </Link>
+          <Box sx={{ display: 'flex', gap: 2, mb: 3 }}>
+            <Button
+              component={Link}
+              to="/medical-documents/documents/create"
+              variant="contained"
+              startIcon={<AddIcon />}
+            >
+              สร้างเอกสารใหม่
+            </Button>
+            
+            <Button
+              component={Link}
+              to="/medical-documents/certificates/create"
+              variant="contained"
+              startIcon={<MedicalInformationIcon />}
+            >
+              ออกใบรับรองแพทย์
+            </Button>
+            
+            <Button
+              component={Link}
+              to="/medical-documents/checkup-books/create"
+              variant="contained"
+              startIcon={<HealthAndSafetyIcon />}
+            >
+              สร้างสมุดตรวจสุขภาพ
+            </Button>
+            
+            <Button
+              component={Link}
+              to="/medical-documents/ai-assistant"
+              variant="contained"
+              color="secondary"
+              startIcon={<SmartToyIcon />}
+            >
+              ผู้ช่วย AI
+            </Button>
+            
+            <Button
+              component={Link}
+              to="/medical-documents/import"
+              variant="contained"
+              color="info"
+              startIcon={<UploadFileIcon />}
+            >
+              นำเข้าเอกสารด้วย AI
+            </Button>
+          </Box>
         </div>
       </div>
 

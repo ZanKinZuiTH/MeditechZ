@@ -18,7 +18,8 @@ from backend.api.api_v1.endpoints import (
     appointments,
     medical_records,
     ai_diagnosis,  # เพิ่ม import สำหรับ ai_diagnosis
-    medical_documents
+    medical_documents,
+    document_import
 )
 
 api_router = APIRouter()
@@ -30,4 +31,5 @@ api_router.include_router(patients.router, prefix="/patients", tags=["Patients"]
 api_router.include_router(appointments.router, prefix="/appointments", tags=["Appointments"])
 api_router.include_router(medical_records.router, prefix="/medical-records", tags=["Medical Records"])
 api_router.include_router(ai_diagnosis.router, prefix="/ai-diagnosis", tags=["AI Diagnosis"])  # เพิ่ม router สำหรับ ai_diagnosis 
-api_router.include_router(medical_documents.router, prefix="/medical-documents", tags=["Medical Documents"]) 
+api_router.include_router(medical_documents.router, prefix="/medical-documents", tags=["Medical Documents"])
+api_router.include_router(document_import.router, prefix="/document-import", tags=["document-import"]) 
