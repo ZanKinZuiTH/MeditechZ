@@ -29,29 +29,36 @@ htmlcov/
 .tox/
 .nox/
 .hypothesis/
-
-# Node.js / JavaScript / TypeScript
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-.npm
-.yarn
-.pnp.*
-.eslintcache
-.node_repl_history
-*.tsbuildinfo
-.next/
-out/
-.nuxt/
+.coverage.*
 .cache/
-.parcel-cache/
-.docusaurus/
-jspm_packages/
-bower_components/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
 
-# IDE / Editors
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.pnpm-debug.log
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE
 .idea/
 .vscode/
 *.swp
@@ -69,8 +76,36 @@ bower_components/
 # Logs
 logs/
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build
+/dist
+/build
+/out
+/.next
+/.nuxt
+/.vuepress/dist
+/.serverless
+/.fusebox
+/.dynamodb
+
+# Storage
+/storage
+/uploads
+/media
+
+# AI Models
+/ai_models/models/*
+!/ai_models/models/.gitkeep
+
+# Docker
+.docker/
+docker-compose.override.yml
 
 # Database
+*.sqlite
 *.sqlite3
 *.db
 
@@ -83,27 +118,9 @@ logs/
 ehthumbs.db
 Thumbs.db
 
-# Build outputs
-/build/
-/dist/
-/out/
-/coverage/
-/.nyc_output
-
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
 # Temporary files
 *.tmp
 *.temp
-
-# Docker
-.docker/
-docker-compose.override.yml
 
 # Secrets
 *.pem
@@ -111,18 +128,7 @@ docker-compose.override.yml
 *.cert
 *.crt
 
-# AI Models
-*.pt
-*.pth
-*.h5
-*.onnx
-*.tflite
-*.pb
-*.savedmodel
-
 # Specific to this project
-/uploads/
-/media/
 /static/
 /staticfiles/
 /temp/
