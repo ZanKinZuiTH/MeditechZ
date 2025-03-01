@@ -12,6 +12,7 @@ import EditMedicalCertificatePage from './pages/EditMedicalCertificatePage';
 import HealthCheckupBookDetailPage from './pages/HealthCheckupBookDetailPage';
 import CreateHealthCheckupBookPage from './pages/CreateHealthCheckupBookPage';
 import EditHealthCheckupBookPage from './pages/EditHealthCheckupBookPage';
+import MedicalDocumentsAIPage from '../ai/pages/MedicalDocumentsAIPage';
 
 export const medicalDocumentsRoutes: RouteObject[] = [
   {
@@ -56,6 +57,11 @@ export const medicalDocumentsRoutes: RouteObject[] = [
   {
     path: '/medical-documents/checkup-books/:id/edit',
     element: <EditHealthCheckupBookPage />,
+  },
+  // AI Assistant routes
+  {
+    path: '/medical-documents/ai-assistant',
+    element: <MedicalDocumentsAIPage />,
   },
 ];
 

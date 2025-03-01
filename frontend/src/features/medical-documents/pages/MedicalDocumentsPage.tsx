@@ -75,6 +75,12 @@ const MedicalDocumentsPage: React.FC = () => {
               </button>
             </Link>
           )}
+          <Link 
+            to="/medical-documents/ai-assistant" 
+            className="btn btn-primary"
+          >
+            <span className="mr-2">🤖</span> ผู้ช่วย AI
+          </Link>
         </div>
       </div>
 

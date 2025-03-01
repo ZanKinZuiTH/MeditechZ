@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { formatThaiDate } from '../../../lib/utils';
 import useMedicalDocumentsApi, { HealthCheckupBookCreate, HealthCheckupBook } from '../hooks/useMedicalDocumentsApi';
+import HealthCheckupAIAssistant from '../../ai/components/HealthCheckupAIAssistant';
 
 interface HealthCheckupBookFormProps {
   isEdit: boolean;
@@ -55,6 +56,8 @@ const HealthCheckupBookForm: React.FC<HealthCheckupBookFormProps> = ({ isEdit })
   const [spirometryResultsText, setSpirometryResultsText] = useState<string>('');
   const [audiometryResultsText, setAudiometryResultsText] = useState<string>('');
   const [visionTestResultsText, setVisionTestResultsText] = useState<string>('');
+
+  const [showAIAssistant, setShowAIAssistant] = useState<boolean>(false);
 
   useEffect(() => {
     if (isEdit && id) {
@@ -128,6 +131,21 @@ const HealthCheckupBookForm: React.FC<HealthCheckupBookFormProps> = ({ isEdit })
   const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>, setter: React.Dispatch<React.SetStateAction<string>>) => {
     const { value } = e.target;
     setter(value);
+  };
+
+  const handleDiagnosisComplete = (diagnosisData: any) => {
+    // นำผลการวินิจฉัยมาใส่ในฟอร์ม
+    const recommendations = diagnosisData.recommendations.join('\n');
+    const conclusion = `${diagnosisData.disease} (ความมั่นใจ: ${Math.round(diagnosisData.confidence * 100)}%)\n${diagnosisData.description}`;
+    
+    setFormData({
+      ...formData,
+      conclusion,
+      recommendations
+    });
+    
+    // ซ่อน AI Assistant หลังจากนำผลไปใช้
+    setShowAIAssistant(false);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -205,6 +223,28 @@ const HealthCheckupBookForm: React.FC<HealthCheckupBookFormProps> = ({ isEdit })
             <span>{isEdit ? 'บันทึกการแก้ไขเรียบร้อยแล้ว' : 'สร้างสมุดตรวจสุขภาพเรียบร้อยแล้ว'}</span>
           </div>
         )}
+
+        <div className="mb-6">
+          <button
+            type="button"
+            className="btn btn-secondary w-full"
+            onClick={() => setShowAIAssistant(!showAIAssistant)}
+          >
+            {showAIAssistant ? 'ซ่อน' : 'แสดง'} ผู้ช่วย AI สำหรับการวินิจฉัย
+          </button>
+          
+          {showAIAssistant && (
+            <div className="mt-4">
+              <HealthCheckupAIAssistant 
+                patientData={{
+                  patient_id: formData.patient_id,
+                  vital_signs: formData.vital_signs
+                }}
+                onDiagnosisComplete={handleDiagnosisComplete}
+              />
+            </div>
+          )}
+        </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -450,18 +490,23 @@ const HealthCheckupBookForm: React.FC<HealthCheckupBookFormProps> = ({ isEdit })
 
           <div className="divider">ข้อสรุปและคำแนะนำ</div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6">
             <div className="form-control">
               <label className="label">
-                <span className="label-text">ข้อสรุป</span>
+                <span className="label-text">ผลสรุป</span>
               </label>
               <textarea
                 name="conclusion"
                 className="textarea textarea-bordered h-24"
                 value={formData.conclusion || ''}
                 onChange={handleInputChange}
-              ></textarea>
+                placeholder="สรุปผลการตรวจสุขภาพโดยรวม"
+              />
+              <label className="label">
+                <span className="label-text-alt text-gray-500">สามารถใช้ AI ช่วยในการวินิจฉัยและสรุปผลได้</span>
+              </label>
             </div>
+            
             <div className="form-control">
               <label className="label">
                 <span className="label-text">คำแนะนำ</span>
@@ -471,7 +516,8 @@ const HealthCheckupBookForm: React.FC<HealthCheckupBookFormProps> = ({ isEdit })
                 className="textarea textarea-bordered h-24"
                 value={formData.recommendations || ''}
                 onChange={handleInputChange}
-              ></textarea>
+                placeholder="คำแนะนำสำหรับผู้ป่วย"
+              />
             </div>
           </div>
 

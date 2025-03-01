@@ -1,6 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import useMedicalDocumentsApi, { MedicalCertificateCreate, MedicalCertificate } from '../hooks/useMedicalDocumentsApi';
+import { 
+  Box, 
+  Button, 
+  Card, 
+  CardContent, 
+  Chip, 
+  Divider, 
+  FormControl, 
+  FormHelperText, 
+  Grid, 
+  InputLabel, 
+  MenuItem, 
+  Select, 
+  Stack, 
+  TextField, 
+  Typography,
+  Alert,
+  CircularProgress,
+  Autocomplete,
+  Paper
+} from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { th } from 'date-fns/locale';
+import { usePatients } from '../../patients/hooks/usePatientsApi';
+import { useUsers } from '../../users/hooks/useUsersApi';
+import { useAiDiagnosis } from '../../ai/hooks/useAiDiagnosis';
+import { SymptomSelector } from '../../ai/components/SymptomSelector';
+import { DiagnosisResult } from '../../ai/components/DiagnosisResult';
+import MedicalCertificateAIAssistant from '../../ai/components/MedicalCertificateAIAssistant';
 
 interface MedicalCertificateFormProps {
   isEdit: boolean;
@@ -40,6 +71,21 @@ const MedicalCertificateForm: React.FC<MedicalCertificateFormProps> = ({ isEdit 
 
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
+
+  const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
+  const [showDiagnosisResult, setShowDiagnosisResult] = useState(false);
+  const [aiDiagnosisApplied, setAiDiagnosisApplied] = useState(false);
+
+  const { patients, isLoading: isLoadingPatients } = usePatients();
+  const { doctors, isLoading: isLoadingDoctors } = useUsers({ role: 'doctor' });
+  const { 
+    diagnose, 
+    diagnosisResult, 
+    isLoading: isDiagnosing, 
+    error: diagnosisError 
+  } = useAiDiagnosis();
+
+  const [showAIAssistant, setShowAIAssistant] = useState<boolean>(false);
 
   useEffect(() => {
     if (isEdit && id) {
@@ -97,6 +143,71 @@ const MedicalCertificateForm: React.FC<MedicalCertificateFormProps> = ({ isEdit 
     }
   };
 
+  const handleSelectChange = (e: React.ChangeEvent<{ name?: string; value: unknown }>) => {
+    const name = e.target.name as keyof MedicalCertificateCreate;
+    const value = e.target.value;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleDateChange = (name: string, date: Date | null) => {
+    if (date) {
+      setFormData(prev => ({ ...prev, [name]: date }));
+    }
+  };
+
+  const handleSymptomChange = (symptoms: string[]) => {
+    setSelectedSymptoms(symptoms);
+  };
+
+  const handleDiagnose = async () => {
+    if (selectedSymptoms.length > 0) {
+      await diagnose(selectedSymptoms, formData.patient_id ? { patient_id: formData.patient_id } : undefined);
+      setShowDiagnosisResult(true);
+    }
+  };
+
+  const handleApplyDiagnosis = () => {
+    if (diagnosisResult) {
+      setFormData(prev => ({
+        ...prev,
+        diagnosis: diagnosisResult.disease + ': ' + diagnosisResult.description,
+        comments: [
+          prev.comments || '',
+          'การวินิจฉัยด้วย AI:',
+          `- โรค: ${diagnosisResult.disease} (ความมั่นใจ: ${diagnosisResult.confidence * 100}%)`,
+          `- คำอธิบาย: ${diagnosisResult.description}`,
+          '- คำแนะนำ:',
+          ...diagnosisResult.recommendations.map(rec => `  * ${rec}`)
+        ].join('\n')
+      }));
+      setAiDiagnosisApplied(true);
+    }
+  };
+
+  const handleDiagnosisComplete = (diagnosisData: any) => {
+    const diagnosis = `${diagnosisData.disease} (ความมั่นใจ: ${Math.round(diagnosisData.confidence * 100)}%)\n${diagnosisData.description}`;
+    const treatment = diagnosisData.recommendations.join('\n');
+    const rest_period_days = diagnosisData.rest_period_days || 0;
+    
+    const today = new Date();
+    const rest_period_start = today.toISOString().split('T')[0];
+    
+    const endDate = new Date(today);
+    endDate.setDate(today.getDate() + rest_period_days);
+    const rest_period_end = endDate.toISOString().split('T')[0];
+    
+    setFormData({
+      ...formData,
+      diagnosis,
+      treatment,
+      rest_period_days,
+      rest_period_start,
+      rest_period_end
+    });
+    
+    setShowAIAssistant(false);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -131,337 +242,351 @@ const MedicalCertificateForm: React.FC<MedicalCertificateFormProps> = ({ isEdit 
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="bg-white rounded-lg shadow-sm p-6">
-        <h1 className="text-2xl font-bold mb-2">
-          {isEdit ? 'แก้ไขใบรับรองแพทย์' : 'สร้างใบรับรองแพทย์ใหม่'}
-        </h1>
-        <p className="text-gray-600 mb-6">
-          {isEdit ? 'แก้ไขข้อมูลในใบรับรองแพทย์' : 'กรอกข้อมูลเพื่อสร้างใบรับรองแพทย์ใหม่'}
-        </p>
-
-        {error && (
-          <div className="alert alert-error mb-6">
-            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            <span>{error}</span>
-          </div>
-        )}
-
-        {apiError && (
-          <div className="alert alert-error mb-6">
-            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            <span>{apiError}</span>
-          </div>
-        )}
-
-        {success && (
-          <div className="alert alert-success mb-6">
-            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            <span>{isEdit ? 'บันทึกการแก้ไขเรียบร้อยแล้ว' : 'สร้างใบรับรองแพทย์เรียบร้อยแล้ว'}</span>
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">รหัสผู้ป่วย</span>
-              </label>
-              <input
-                type="number"
-                name="patient_id"
-                className="input input-bordered"
-                value={formData.patient_id}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">รหัสแพทย์</span>
-              </label>
-              <input
-                type="number"
-                name="doctor_id"
-                className="input input-bordered"
-                value={formData.doctor_id}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">รหัสการเข้ารับบริการ (ถ้ามี)</span>
-              </label>
-              <input
-                type="number"
-                name="visit_id"
-                className="input input-bordered"
-                value={formData.visit_id || ''}
-                onChange={handleInputChange}
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">วันที่ออกใบรับรอง</span>
-              </label>
-              <input
-                type="date"
-                name="certificate_date"
-                className="input input-bordered"
-                value={formData.certificate_date}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">ประเภทใบรับรอง</span>
-              </label>
-              <select
-                name="certificate_type"
-                className="select select-bordered"
-                value={formData.certificate_type}
-                onChange={handleInputChange}
-                required
+    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={th}>
+      <form onSubmit={handleSubmit}>
+        <Card>
+          <CardContent>
+            <Typography variant="h6" gutterBottom>
+              ข้อมูลทั่วไป
+            </Typography>
+            
+            <Grid container spacing={3}>
+              <Grid item xs={12} md={6}>
+                <FormControl fullWidth required>
+                  <InputLabel id="patient-label">ผู้ป่วย</InputLabel>
+                  <Select
+                    labelId="patient-label"
+                    name="patient_id"
+                    value={formData.patient_id || ''}
+                    onChange={handleSelectChange}
+                    label="ผู้ป่วย"
+                    disabled={loading}
+                  >
+                    {isLoadingPatients ? (
+                      <MenuItem value="">
+                        <CircularProgress size={20} /> กำลังโหลด...
+                      </MenuItem>
+                    ) : (
+                      patients?.map(patient => (
+                        <MenuItem key={patient.id} value={patient.id}>
+                          {patient.first_name} {patient.last_name} (HN: {patient.hn})
+                        </MenuItem>
+                      ))
+                    )}
+                  </Select>
+                </FormControl>
+              </Grid>
+              
+              <Grid item xs={12} md={6}>
+                <FormControl fullWidth required>
+                  <InputLabel id="doctor-label">แพทย์</InputLabel>
+                  <Select
+                    labelId="doctor-label"
+                    name="doctor_id"
+                    value={formData.doctor_id || ''}
+                    onChange={handleSelectChange}
+                    label="แพทย์"
+                    disabled={loading}
+                  >
+                    {isLoadingDoctors ? (
+                      <MenuItem value="">
+                        <CircularProgress size={20} /> กำลังโหลด...
+                      </MenuItem>
+                    ) : (
+                      doctors?.map(doctor => (
+                        <MenuItem key={doctor.id} value={doctor.id}>
+                          {doctor.first_name} {doctor.last_name}
+                        </MenuItem>
+                      ))
+                    )}
+                  </Select>
+                </FormControl>
+              </Grid>
+              
+              <Grid item xs={12} md={6}>
+                <DatePicker
+                  label="วันที่ออกใบรับรอง"
+                  value={formData.certificate_date}
+                  onChange={(date) => handleDateChange('certificate_date', date)}
+                  disabled={loading}
+                  slotProps={{ textField: { fullWidth: true, required: true } }}
+                />
+              </Grid>
+              
+              <Grid item xs={12} md={6}>
+                <FormControl fullWidth required>
+                  <InputLabel id="certificate-type-label">ประเภทใบรับรอง</InputLabel>
+                  <Select
+                    labelId="certificate-type-label"
+                    name="certificate_type"
+                    value={formData.certificate_type}
+                    onChange={handleSelectChange}
+                    label="ประเภทใบรับรอง"
+                    disabled={loading}
+                  >
+                    <MenuItem value="sick_leave">ใบรับรองแพทย์ลาป่วย</MenuItem>
+                    <MenuItem value="health_certificate">ใบรับรองแพทย์ตรวจสุขภาพ</MenuItem>
+                    <MenuItem value="disability_certificate">ใบรับรองความพิการ</MenuItem>
+                    <MenuItem value="fitness_certificate">ใบรับรองความสมบูรณ์ทางร่างกาย</MenuItem>
+                    <MenuItem value="other">อื่นๆ</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+            </Grid>
+            
+            <Box mt={4}>
+              <Typography variant="h6" gutterBottom>
+                การวินิจฉัยด้วย AI
+              </Typography>
+              
+              <Paper variant="outlined" sx={{ p: 2, mb: 3 }}>
+                <Typography variant="subtitle1" gutterBottom>
+                  เลือกอาการของผู้ป่วย
+                </Typography>
+                
+                <SymptomSelector 
+                  selectedSymptoms={selectedSymptoms}
+                  onChange={handleSymptomChange}
+                  disabled={loading || isDiagnosing}
+                />
+                
+                <Box mt={2} display="flex" justifyContent="flex-end">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleDiagnose}
+                    disabled={selectedSymptoms.length === 0 || loading || isDiagnosing}
+                    startIcon={isDiagnosing ? <CircularProgress size={20} color="inherit" /> : null}
+                  >
+                    {isDiagnosing ? 'กำลังวินิจฉัย...' : 'วินิจฉัยด้วย AI'}
+                  </Button>
+                </Box>
+                
+                {diagnosisError && (
+                  <Alert severity="error" sx={{ mt: 2 }}>
+                    เกิดข้อผิดพลาดในการวินิจฉัย: {diagnosisError}
+                  </Alert>
+                )}
+                
+                {showDiagnosisResult && diagnosisResult && (
+                  <Box mt={2}>
+                    <DiagnosisResult 
+                      result={diagnosisResult} 
+                      onApply={handleApplyDiagnosis}
+                      applied={aiDiagnosisApplied}
+                    />
+                  </Box>
+                )}
+              </Paper>
+            </Box>
+            
+            <Box mt={4}>
+              <Typography variant="h6" gutterBottom>
+                ข้อมูลการวินิจฉัยและการรักษา
+              </Typography>
+              
+              <Grid container spacing={3}>
+                <Grid item xs={12}>
+                  <TextField
+                    name="diagnosis"
+                    label="การวินิจฉัย"
+                    value={formData.diagnosis}
+                    onChange={handleInputChange}
+                    multiline
+                    rows={4}
+                    fullWidth
+                    required
+                    disabled={loading}
+                  />
+                </Grid>
+                
+                <Grid item xs={12}>
+                  <TextField
+                    name="treatment"
+                    label="การรักษา"
+                    value={formData.treatment}
+                    onChange={handleInputChange}
+                    multiline
+                    rows={4}
+                    fullWidth
+                    disabled={loading}
+                  />
+                </Grid>
+              </Grid>
+            </Box>
+            
+            <Box mt={4}>
+              <Typography variant="h6" gutterBottom>
+                ระยะเวลาพักฟื้น
+              </Typography>
+              
+              <Grid container spacing={3}>
+                <Grid item xs={12} md={4}>
+                  <TextField
+                    name="rest_period_days"
+                    label="จำนวนวันพักฟื้น"
+                    type="number"
+                    value={formData.rest_period_days}
+                    onChange={handleInputChange}
+                    fullWidth
+                    disabled={loading}
+                    InputProps={{ inputProps: { min: 0 } }}
+                  />
+                </Grid>
+                
+                <Grid item xs={12} md={4}>
+                  <DatePicker
+                    label="วันที่เริ่มพักฟื้น"
+                    value={formData.rest_period_start}
+                    onChange={(date) => handleDateChange('rest_period_start', date)}
+                    disabled={loading}
+                    slotProps={{ textField: { fullWidth: true } }}
+                  />
+                </Grid>
+                
+                <Grid item xs={12} md={4}>
+                  <DatePicker
+                    label="วันที่สิ้นสุดการพักฟื้น"
+                    value={formData.rest_period_end || null}
+                    onChange={(date) => handleDateChange('rest_period_end', date)}
+                    disabled={loading}
+                    slotProps={{ textField: { fullWidth: true } }}
+                  />
+                </Grid>
+              </Grid>
+            </Box>
+            
+            <Box mt={4}>
+              <Typography variant="h6" gutterBottom>
+                สัญญาณชีพ
+              </Typography>
+              
+              <Grid container spacing={3}>
+                <Grid item xs={12} md={3}>
+                  <TextField
+                    name="temperature"
+                    label="อุณหภูมิ (°C)"
+                    type="number"
+                    value={formData.vital_signs?.temperature || ''}
+                    onChange={(e) => handleNestedInputChange('vital_signs', 'temperature', e.target.value)}
+                    fullWidth
+                    disabled={loading}
+                    InputProps={{ inputProps: { step: 0.1 } }}
+                  />
+                </Grid>
+                
+                <Grid item xs={12} md={3}>
+                  <TextField
+                    name="pulse"
+                    label="ชีพจร (ครั้ง/นาที)"
+                    type="number"
+                    value={formData.vital_signs?.pulse || ''}
+                    onChange={(e) => handleNestedInputChange('vital_signs', 'pulse', e.target.value)}
+                    fullWidth
+                    disabled={loading}
+                  />
+                </Grid>
+                
+                <Grid item xs={12} md={3}>
+                  <TextField
+                    name="respiratory_rate"
+                    label="อัตราการหายใจ (ครั้ง/นาที)"
+                    type="number"
+                    value={formData.vital_signs?.respiratory_rate || ''}
+                    onChange={(e) => handleNestedInputChange('vital_signs', 'respiratory_rate', e.target.value)}
+                    fullWidth
+                    disabled={loading}
+                  />
+                </Grid>
+                
+                <Grid item xs={12} md={3}>
+                  <TextField
+                    name="blood_pressure"
+                    label="ความดันโลหิต (mmHg)"
+                    value={formData.vital_signs?.blood_pressure || ''}
+                    onChange={(e) => handleNestedInputChange('vital_signs', 'blood_pressure', e.target.value)}
+                    fullWidth
+                    disabled={loading}
+                    placeholder="120/80"
+                  />
+                </Grid>
+              </Grid>
+            </Box>
+            
+            <Box mt={4}>
+              <Typography variant="h6" gutterBottom>
+                ข้อมูลเพิ่มเติม
+              </Typography>
+              
+              <Grid container spacing={3}>
+                <Grid item xs={12}>
+                  <TextField
+                    name="doctor_license_no"
+                    label="เลขที่ใบอนุญาตประกอบวิชาชีพเวชกรรม"
+                    value={formData.doctor_license_no}
+                    onChange={handleInputChange}
+                    fullWidth
+                    disabled={loading}
+                  />
+                </Grid>
+                
+                <Grid item xs={12}>
+                  <TextField
+                    name="comments"
+                    label="หมายเหตุ"
+                    value={formData.comments}
+                    onChange={handleInputChange}
+                    multiline
+                    rows={4}
+                    fullWidth
+                    disabled={loading}
+                  />
+                </Grid>
+              </Grid>
+            </Box>
+            
+            <div className="mb-6">
+              <button
+                type="button"
+                className="btn btn-secondary w-full"
+                onClick={() => setShowAIAssistant(!showAIAssistant)}
               >
-                <option value="sick_leave">ใบรับรองแพทย์ลาป่วย</option>
-                <option value="health_certificate">ใบรับรองแพทย์ตรวจสุขภาพ</option>
-                <option value="disability_certificate">ใบรับรองความพิการ</option>
-                <option value="fitness_certificate">ใบรับรองความสมบูรณ์ทางร่างกาย</option>
-                <option value="other">อื่นๆ</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="divider">ข้อมูลการวินิจฉัยและการรักษา</div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">การวินิจฉัย</span>
-              </label>
-              <textarea
-                name="diagnosis"
-                className="textarea textarea-bordered h-24"
-                value={formData.diagnosis || ''}
-                onChange={handleInputChange}
-              ></textarea>
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">การรักษา</span>
-              </label>
-              <textarea
-                name="treatment"
-                className="textarea textarea-bordered h-24"
-                value={formData.treatment || ''}
-                onChange={handleInputChange}
-              ></textarea>
-            </div>
-          </div>
-
-          <div className="divider">ข้อมูลการพักฟื้น</div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">จำนวนวันพักฟื้น</span>
-              </label>
-              <input
-                type="number"
-                name="rest_period_days"
-                className="input input-bordered"
-                value={formData.rest_period_days || ''}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">วันที่เริ่มพักฟื้น</span>
-              </label>
-              <input
-                type="date"
-                name="rest_period_start"
-                className="input input-bordered"
-                value={formData.rest_period_start || ''}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">วันที่สิ้นสุดการพักฟื้น</span>
-              </label>
-              <input
-                type="date"
-                name="rest_period_end"
-                className="input input-bordered"
-                value={formData.rest_period_end || ''}
-                onChange={handleInputChange}
-              />
-            </div>
-          </div>
-
-          <div className="divider">สัญญาณชีพ</div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">อุณหภูมิ (°C)</span>
-              </label>
-              <input
-                type="text"
-                className="input input-bordered"
-                value={formData.vital_signs?.temperature || ''}
-                onChange={(e) => handleNestedInputChange('vital_signs', 'temperature', e.target.value)}
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">ชีพจร (ครั้ง/นาที)</span>
-              </label>
-              <input
-                type="text"
-                className="input input-bordered"
-                value={formData.vital_signs?.pulse || ''}
-                onChange={(e) => handleNestedInputChange('vital_signs', 'pulse', e.target.value)}
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">อัตราการหายใจ (ครั้ง/นาที)</span>
-              </label>
-              <input
-                type="text"
-                className="input input-bordered"
-                value={formData.vital_signs?.respiratory_rate || ''}
-                onChange={(e) => handleNestedInputChange('vital_signs', 'respiratory_rate', e.target.value)}
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">ความดันโลหิต (mmHg)</span>
-              </label>
-              <input
-                type="text"
-                className="input input-bordered"
-                value={formData.vital_signs?.blood_pressure || ''}
-                onChange={(e) => handleNestedInputChange('vital_signs', 'blood_pressure', e.target.value)}
-              />
-            </div>
-          </div>
-
-          <div className="divider">ข้อมูลแพทย์ผู้ออกใบรับรอง</div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">เลขที่ใบอนุญาตประกอบวิชาชีพเวชกรรม</span>
-              </label>
-              <input
-                type="text"
-                name="doctor_license_no"
-                className="input input-bordered"
-                value={formData.doctor_license_no || ''}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">วันที่ออกใบอนุญาต</span>
-              </label>
-              <input
-                type="date"
-                name="doctor_license_issue_date"
-                className="input input-bordered"
-                value={formData.doctor_license_issue_date || ''}
-                onChange={handleInputChange}
-              />
-            </div>
-          </div>
-
-          <div className="divider">ข้อมูลแพทย์ผู้ร่วมออกใบรับรอง (ถ้ามี)</div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">รหัสแพทย์</span>
-              </label>
-              <input
-                type="number"
-                name="doctor2_id"
-                className="input input-bordered"
-                value={formData.doctor2_id || ''}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">เลขที่ใบอนุญาตประกอบวิชาชีพเวชกรรม</span>
-              </label>
-              <input
-                type="text"
-                name="doctor2_license_no"
-                className="input input-bordered"
-                value={formData.doctor2_license_no || ''}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">วันที่ออกใบอนุญาต</span>
-              </label>
-              <input
-                type="date"
-                name="doctor2_license_issue_date"
-                className="input input-bordered"
-                value={formData.doctor2_license_issue_date || ''}
-                onChange={handleInputChange}
-              />
-            </div>
-          </div>
-
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">หมายเหตุ</span>
-            </label>
-            <textarea
-              name="comments"
-              className="textarea textarea-bordered h-24"
-              value={formData.comments || ''}
-              onChange={handleInputChange}
-            ></textarea>
-          </div>
-
-          <div className="flex justify-end space-x-4 mt-8">
-            <button
-              type="button"
-              className="btn btn-outline"
-              onClick={() => navigate('/medical-documents')}
-            >
-              ยกเลิก
-            </button>
-            <button
-              type="submit"
-              className="btn btn-primary"
-              disabled={loading}
-            >
-              {loading ? (
-                <>
-                  <span className="loading loading-spinner"></span>
-                  กำลังบันทึก...
-                </>
-              ) : (
-                'บันทึก'
+                {showAIAssistant ? 'ซ่อน' : 'แสดง'} ผู้ช่วย AI สำหรับการวินิจฉัย
+              </button>
+              
+              {showAIAssistant && (
+                <div className="mt-4">
+                  <MedicalCertificateAIAssistant 
+                    patientData={{
+                      patient_id: formData.patient_id,
+                    }}
+                    onDiagnosisComplete={handleDiagnosisComplete}
+                  />
+                </div>
               )}
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+            </div>
+            
+            {error && (
+              <Alert severity="error" sx={{ mt: 3 }}>
+                {error}
+              </Alert>
+            )}
+            
+            <Box mt={4} display="flex" justifyContent="flex-end">
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                disabled={loading}
+                startIcon={loading ? <CircularProgress size={20} color="inherit" /> : null}
+              >
+                {loading ? 'กำลังบันทึก...' : isEdit ? 'อัปเดต' : 'สร้างใบรับรองแพทย์'}
+              </Button>
+            </Box>
+          </CardContent>
+        </Card>
+      </form>
+    </LocalizationProvider>
   );
 };
 
