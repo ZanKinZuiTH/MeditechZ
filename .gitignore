@@ -19,69 +19,97 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+.env
+.venv
+venv/
+ENV/
 .pytest_cache/
 .coverage
 htmlcov/
 .tox/
 .nox/
 .hypothesis/
-.pytest_cache/
-cover/
-venv/
-ENV/
-env.bak/
-venv.bak/
 
-# Node.js
+# Node.js / JavaScript / TypeScript
 node_modules/
-npm-debug.log
+npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 .npm
+.yarn
+.pnp.*
 .eslintcache
-.yarn-integrity
-.env.development.local
-.env.test.local
-.env.production.local
-.env.local
+.node_repl_history
+*.tsbuildinfo
+.next/
+out/
+.nuxt/
+.cache/
+.parcel-cache/
+.docusaurus/
+jspm_packages/
+bower_components/
 
-# IDE
+# IDE / Editors
 .idea/
 .vscode/
 *.swp
 *.swo
-.DS_Store
-.env
-.env.local
-.env.development
-.env.test
-.env.production
+*~
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.sublime-project
+.history/
+
+# Logs
+logs/
+*.log
 
 # Database
 *.sqlite3
 *.db
 
-# Logs
-logs/
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-# Build
-dist/
-dist-ssr/
-*.local
-.output/
-
-# Frontend
+# OS generated files
 .DS_Store
-node_modules
-/dist
-/coverage
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Build outputs
+/build/
+/dist/
+/out/
+/coverage/
+/.nyc_output
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Temporary files
+*.tmp
+*.temp
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Secrets
+*.pem
+*.key
+*.cert
+*.crt
 
 # AI Models
 *.pt
@@ -92,11 +120,12 @@ node_modules
 *.pb
 *.savedmodel
 
-# Misc
-.DS_Store
-Thumbs.db
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local 
+# Specific to this project
+/uploads/
+/media/
+/static/
+/staticfiles/
+/temp/
+/tmp/
+.vercel
+.netlify 
