@@ -10,38 +10,31 @@
 
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { format } from 'date-fns';
+import { th } from 'date-fns/locale';
 
 /**
- * ฟังก์ชันสำหรับรวม class names เข้าด้วยกัน
- * ใช้ clsx และ tailwind-merge เพื่อจัดการกับ class ที่ซ้ำซ้อนหรือขัดแย้งกัน
- * 
- * @param inputs - รายการ class names ที่ต้องการรวม
- * @returns รายการ class names ที่รวมแล้ว
+ * ฟังก์ชันสำหรับรวม class names
  */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
 /**
- * ฟังก์ชันสำหรับฟอร์แมตวันที่เป็นภาษาไทย
- * 
- * @param date - วันที่ที่ต้องการฟอร์แมต
+ * ฟังก์ชันสำหรับแปลงวันที่เป็นรูปแบบภาษาไทย
+ * @param date วันที่ที่ต้องการแปลง
+ * @param formatStr รูปแบบการแสดงผล (ค่าเริ่มต้น: 'd MMMM yyyy')
  * @returns วันที่ในรูปแบบภาษาไทย
  */
-export function formatThaiDate(date: Date | string): string {
-  const d = typeof date === 'string' ? new Date(date) : date;
-  
-  const thaiMonths = [
-    'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
-    'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
-  ];
-  
-  const day = d.getDate();
-  const month = thaiMonths[d.getMonth()];
-  const year = d.getFullYear() + 543; // แปลงเป็นปี พ.ศ.
-  
-  return `${day} ${month} ${year}`;
-}
+export const formatThaiDate = (date: Date | string, formatStr: string = 'd MMMM yyyy'): string => {
+  try {
+    const dateObj = typeof date === 'string' ? new Date(date) : date;
+    return format(dateObj, formatStr, { locale: th });
+  } catch (error) {
+    console.error('Error formatting date:', error);
+    return 'วันที่ไม่ถูกต้อง';
+  }
+};
 
 /**
  * ฟังก์ชันสำหรับฟอร์แมตเวลาเป็นภาษาไทย
@@ -59,14 +52,91 @@ export function formatThaiTime(date: Date | string): string {
 }
 
 /**
- * ฟังก์ชันสำหรับฟอร์แมตวันที่และเวลาเป็นภาษาไทย
+ * ฟังก์ชันสำหรับแปลงวันที่เป็นรูปแบบภาษาไทยพร้อมเวลา
+ * สามารถกำหนดรูปแบบการแสดงผลได้ หรือใช้ค่าเริ่มต้น
  * 
  * @param date - วันที่และเวลาที่ต้องการฟอร์แมต
+ * @param formatStr - รูปแบบการแสดงผล (ถ้าไม่ระบุจะใช้ 'd MMMM yyyy เวลา HH:mm น.')
  * @returns วันที่และเวลาในรูปแบบภาษาไทย
  */
-export function formatThaiDateTime(date: Date | string): string {
-  return `${formatThaiDate(date)} ${formatThaiTime(date)}`;
+export function formatThaiDateTime(date: Date | string, formatStr?: string): string {
+  try {
+    const dateObj = typeof date === 'string' ? new Date(date) : date;
+    
+    if (formatStr) {
+      return format(dateObj, formatStr, { locale: th });
+    }
+    
+    return format(dateObj, 'd MMMM yyyy เวลา HH:mm น.', { locale: th });
+  } catch (error) {
+    console.error('Error formatting date time:', error);
+    return 'วันที่และเวลาไม่ถูกต้อง';
+  }
 }
+
+/**
+ * ฟังก์ชันสำหรับแปลงวันที่เป็นรูปแบบย่อภาษาไทย
+ * @param date วันที่ที่ต้องการแปลง
+ * @returns วันที่ในรูปแบบย่อภาษาไทย (วว/ดด/ปปปป)
+ */
+export const formatShortThaiDate = (date: Date | string): string => {
+  try {
+    const dateObj = typeof date === 'string' ? new Date(date) : date;
+    return format(dateObj, 'dd/MM/yyyy');
+  } catch (error) {
+    console.error('Error formatting short date:', error);
+    return 'วันที่ไม่ถูกต้อง';
+  }
+};
+
+/**
+ * ฟังก์ชันสำหรับแปลงวันที่จาก string เป็น Date object
+ * @param dateString string วันที่ในรูปแบบ ISO (YYYY-MM-DD)
+ * @returns Date object
+ */
+export const parseISODate = (dateString: string): Date => {
+  try {
+    return new Date(dateString);
+  } catch (error) {
+    console.error('Error parsing date:', error);
+    return new Date();
+  }
+};
+
+/**
+ * ฟังก์ชันสำหรับตรวจสอบว่าวันที่ถูกต้องหรือไม่
+ * @param date วันที่ที่ต้องการตรวจสอบ
+ * @returns boolean ค่าความถูกต้องของวันที่
+ */
+export const isValidDate = (date: any): boolean => {
+  if (!date) return false;
+  
+  const d = new Date(date);
+  return !isNaN(d.getTime());
+};
+
+/**
+ * ฟังก์ชันสำหรับคำนวณอายุจากวันเกิด
+ * @param birthDate วันเกิด
+ * @returns อายุเป็นปี
+ */
+export const calculateAge = (birthDate: Date | string): number => {
+  try {
+    const birthDateObj = typeof birthDate === 'string' ? new Date(birthDate) : birthDate;
+    const today = new Date();
+    let age = today.getFullYear() - birthDateObj.getFullYear();
+    const monthDiff = today.getMonth() - birthDateObj.getMonth();
+    
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDateObj.getDate())) {
+      age--;
+    }
+    
+    return age;
+  } catch (error) {
+    console.error('Error calculating age:', error);
+    return 0;
+  }
+};
 
 /**
  * ฟังก์ชันสำหรับแปลงเปอร์เซ็นต์เป็นสี

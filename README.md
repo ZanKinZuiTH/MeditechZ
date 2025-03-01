@@ -1,4 +1,5 @@
 # MeditechZ
+ระบบสารสนเทศทางการแพทย์สำหรับโรงพยาบาลและคลินิก
 
 ## ภาพรวมโครงการ
 โครงการ MeditechZ เป็นการพัฒนาต่อยอดจากระบบ MediTech เดิม โดยใช้เทคโนโลยีสมัยใหม่ด้วย Python เป็นหลัก เพื่อปรับปรุงประสิทธิภาพและเพิ่มความสามารถของระบบสารสนเทศทางการแพทย์
@@ -34,11 +35,47 @@ MeditechZ/
 ├── database/               # ส่วนจัดการฐานข้อมูล
 │   ├── migrations/         # Database migrations
 │   └── scripts/            # Database scripts
-├── ai_models/              # โมเดล AI
-│   ├── training/           # Training scripts
-│   └── inference/          # Inference scripts
+├── ai_models/              # โมเดล AI สำหรับการวินิจฉัยและวิเคราะห์
+│   ├── training/           # โค้ดสำหรับการเทรนโมเดล
+│   ├── inference/          # โค้ดสำหรับการใช้งานโมเดล
+│   └── models/             # โมเดลที่เทรนแล้ว
 └── utils/                  # Utility scripts
 ```
+
+## โมดูลหลักของระบบ
+
+### 1. การจัดการผู้ป่วย (Patient Management)
+- ลงทะเบียนผู้ป่วยใหม่
+- ค้นหาและแก้ไขข้อมูลผู้ป่วย
+- ประวัติการรักษา
+- การนัดหมาย
+
+### 2. การจัดการเวชระเบียน (Medical Records)
+- บันทึกการตรวจรักษา
+- ประวัติการรักษา
+- ผลการตรวจทางห้องปฏิบัติการ
+- การสั่งยาและการจ่ายยา
+
+### 3. ระบบนัดหมาย (Appointment System)
+- การนัดหมายผู้ป่วย
+- การแจ้งเตือนการนัดหมาย
+- การจัดการตารางแพทย์
+
+### 4. ระบบการเงิน (Financial System)
+- การออกใบเสร็จ
+- การเรียกเก็บเงิน
+- รายงานทางการเงิน
+
+### 5. ระบบเอกสารทางการแพทย์ (Medical Documents)
+- การจัดการเอกสารทางการแพทย์ทั่วไป
+- ใบรับรองแพทย์
+- สมุดตรวจสุขภาพ
+- การพิมพ์เอกสารและรายงาน
+
+### 6. ระบบวินิจฉัยด้วย AI (AI Diagnosis)
+- การวินิจฉัยโรคเบื้องต้นจากอาการ
+- การวิเคราะห์ภาพทางการแพทย์
+- การพยากรณ์ความเสี่ยงของโรค
 
 ## เทคโนโลยีที่ใช้
 
@@ -78,83 +115,48 @@ MeditechZ/
 - Python 3.9+
 - Node.js 16+
 - PostgreSQL 13+
-- Docker (optional)
+- Docker (แนะนำ)
 
 ### การติดตั้ง
-1. Clone repository
-```bash
-git clone https://github.com/ZanKinZuiTH/MeditechZ.git
-cd MeditechZ
-```
+1. โคลนโปรเจค
+   ```
+   git clone https://github.com/yourusername/MeditechZ.git
+   cd MeditechZ
+   ```
 
-2. ติดตั้ง dependencies สำหรับ backend
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate  # หรือ venv\Scripts\activate บน Windows
-pip install -r requirements.txt
-```
+2. ติดตั้ง Backend
+   ```
+   cd backend
+   python -m venv venv
+   source venv/bin/activate  # หรือ venv\Scripts\activate บน Windows
+   pip install -r requirements.txt
+   ```
 
-3. ติดตั้ง dependencies สำหรับ frontend
-```bash
-cd frontend
-npm install
-```
+3. ติดตั้ง Frontend
+   ```
+   cd frontend
+   npm install
+   ```
 
 4. ตั้งค่าฐานข้อมูล
-```bash
-cd database
-python setup_db.py
-```
+   ```
+   cd backend
+   alembic upgrade head
+   ```
 
-### การรัน
-1. รัน backend
-```bash
-cd backend
-uvicorn main:app --reload
-```
+5. รันระบบ
+   ```
+   # Terminal 1 (Backend)
+   cd backend
+   uvicorn main:app --reload
 
-2. รัน frontend
-```bash
-cd frontend
-npm run dev
-```
+   # Terminal 2 (Frontend)
+   cd frontend
+   npm run dev
+   ```
 
-## การพัฒนา
-
-### การสร้าง API ใหม่
-1. สร้าง model ใน `backend/models/`
-2. สร้าง schema ใน `backend/schemas/`
-3. สร้าง service ใน `backend/services/`
-4. สร้าง API endpoint ใน `backend/api/`
-
-### การสร้างหน้าใหม่
-1. สร้าง component ใน `frontend/components/`
-2. สร้าง page ใน `frontend/pages/`
-3. เพิ่ม route ใน router
-
-## การทดสอบ
-```bash
-# รัน unit tests
-cd tests
-pytest unit/
-
-# รัน integration tests
-pytest integration/
-
-# รัน e2e tests
-pytest e2e/
-```
-
-## การ Backup โปรเจคเดิม
-โปรเจค MediTech เดิมได้ถูกสำรองไว้ใน `MediTech_Backup/` ซึ่งประกอบด้วย:
-- `MediTech/`: Desktop Application (WPF)
-- `WebApi/`: Web API (ASP.NET)
-- `MediTechData/`: Data Layer (Entity Framework)
-- `MediTech_HealthCheckup/`: ระบบตรวจสุขภาพ (FastAPI, PyQt6)
-
-## ผู้พัฒนา
-- ทีมพัฒนา MediTech
+## การพัฒนาและการมีส่วนร่วม
+โปรดอ่านเอกสาร [CONTRIBUTING.md](CONTRIBUTING.md) สำหรับรายละเอียดเกี่ยวกับกระบวนการส่ง pull requests
 
 ## ลิขสิทธิ์
-© 2025 MeditechZ. All rights reserved. 
+โปรเจคนี้อยู่ภายใต้ลิขสิทธิ์ [MIT License](LICENSE) 
