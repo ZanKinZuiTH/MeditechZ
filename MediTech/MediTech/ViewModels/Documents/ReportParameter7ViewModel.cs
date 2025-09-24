@@ -18,6 +18,33 @@ namespace MediTech.ViewModels
 
         public ReportsModel ReportTemplate { get; set; }
 
+        private List<HealthOrganisationModel> _Organisations;
+
+        public List<HealthOrganisationModel> Organisations
+        {
+            get { return _Organisations; }
+            set { Set(ref _Organisations, value); }
+        }
+
+
+        private List<object> _SelectOrganisations;
+
+        public List<object> SelectOrganisations
+        {
+            get { return _SelectOrganisations ?? (_SelectOrganisations = new List<object>()); }
+            set { Set(ref _SelectOrganisations, value); }
+        }
+
+        public List<LookupReferenceValueModel> DoctorFeeTypeSource { get; set; }
+        private LookupReferenceValueModel _SelectedDoctorFeeType;
+
+        public LookupReferenceValueModel SelectedDoctorFeeType
+        {
+            get { return _SelectedDoctorFeeType; }
+            set { Set(ref _SelectedDoctorFeeType, value); }
+        }
+
+
         private List<CareproviderModel> _Doctors;
 
         public List<CareproviderModel> Doctors
@@ -68,8 +95,8 @@ namespace MediTech.ViewModels
         {
             get
             {
-                return  _PrintCommand
-                    ?? ( _PrintCommand = new RelayCommand(Print));
+                return _PrintCommand
+                    ?? (_PrintCommand = new RelayCommand(Print));
             }
         }
 
@@ -78,8 +105,8 @@ namespace MediTech.ViewModels
         {
             get
             {
-                return  _CancelCommand
-                    ?? ( _CancelCommand = new RelayCommand(Cancel));
+                return _CancelCommand
+                    ?? (_CancelCommand = new RelayCommand(Cancel));
             }
         }
         #endregion
@@ -90,6 +117,21 @@ namespace MediTech.ViewModels
         {
             DateFrom = DateTime.Now;
             DateTo = DateTime.Now;
+            Organisations = GetHealthOrganisationRole();
+            var SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+
+            foreach ( var organisation in Organisations)
+            {
+                SelectOrganisations.Add(organisation.HealthOrganisationUID);
+            }
+        
+            
+            DoctorFeeTypeSource = new List<LookupReferenceValueModel> {
+                new LookupReferenceValueModel(){Display="All",Key=0 }
+                ,new LookupReferenceValueModel(){Display="ค่าอ่านฟิล์ม",Key=1 }
+                , new LookupReferenceValueModel(){ Display="ค่าอื่นๆ",Key=2} };
+            SelectedDoctorFeeType = DoctorFeeTypeSource.FirstOrDefault();
+
             Doctors = DataService.UserManage.GetCareproviderDoctor();
             if ((AppUtil.Current.IsDoctor ?? false))
             {
@@ -111,6 +153,25 @@ namespace MediTech.ViewModels
         {
             var myReport = Activator.CreateInstance(Type.GetType(ReportTemplate.NamespaceName));
             XtraReport report = (XtraReport)myReport;
+            string healthOrganisationList = "";
+            if (SelectOrganisations != null)
+            {
+                foreach (object item in SelectOrganisations)
+                {
+                    if (item.ToString() != "0")
+                    {
+                        if (healthOrganisationList == "")
+                        {
+                            healthOrganisationList = item.ToString();
+                        }
+                        else
+                        {
+                            healthOrganisationList += "," + item.ToString();
+                        }
+                    }
+
+                }
+            }
 
             foreach (var item in report.Parameters)
             {
@@ -123,7 +184,13 @@ namespace MediTech.ViewModels
                         item.Value = DateTo;
                         break;
                     case "CareproviderUID":
-                        item.Value = (SelectDoctor != null ) ? SelectDoctor.CareproviderUID : (object)null;
+                        item.Value = (SelectDoctor != null) ? SelectDoctor.CareproviderUID : (object)null;
+                        break;
+                    case "DoctorFeeType":
+                        item.Value = (SelectedDoctorFeeType != null) ? SelectedDoctorFeeType.Display : (object)null;
+                        break;
+                    case "OrganisationList":
+                        item.Value = healthOrganisationList;
                         break;
                 }
             }

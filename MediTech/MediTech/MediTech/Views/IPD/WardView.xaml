@@ -1,0 +1,505 @@
+﻿<UserControl x:Class="MediTech.Views.WardView"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"  
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:MediTech.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <Binding Path="WardViewModel" Source="{StaticResource Locator}"/>
+    </UserControl.DataContext>
+    <dxlc:LayoutControl Orientation="Vertical">
+        <dxlc:LayoutGroup Orientation="Horizontal">
+            <dxlc:LayoutGroup Orientation="Vertical" Width="150">
+                <ListBox x:Name="listBox" ItemsSource="{Binding WardSource}" SelectedItem="{Binding SelectedWard}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Background="White" Orientation="Vertical">
+                <dxlc:LayoutGroup Margin="10">
+                    <dxlc:LayoutItem Label="{Binding Today,StringFormat='{}{0:dd/MM/yyyy}'}" HorizontalAlignment="Right" Padding="0,0,20,0">
+                        <dx:SimpleButton Width="50" Command="{Binding RefershCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MediTech;component/Resources/Images/Action/Refersh.png" Width="15" Height="15"/>
+                            </StackPanel>
+                        </dx:SimpleButton>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem  HorizontalAlignment="Center" Margin="10,20,10,20">
+                        <TextBlock FontWeight="SemiBold" FontSize="20" Text="{Binding WardName}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutGroup Margin="10,20,10,10" Orientation="Vertical" HorizontalAlignment="Right" Padding="10">
+                        <dxlc:LayoutItem Label="ว่าง" HorizontalAlignment="Right">
+                            <dxe:TextEdit Background="Gray" IsReadOnly="True" Width="50"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="Admit" HorizontalAlignment="Right">
+                            <dxe:TextEdit Background="LawnGreen" IsReadOnly="True" Width="50"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="Arrived" HorizontalAlignment="Right">
+                            <dxe:TextEdit Background="#FEC56B" IsReadOnly="True" Width="50"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="Discharge" HorizontalAlignment="Right">
+                            <dxe:TextEdit Background="#929BDC" IsReadOnly="True" Width="50"/>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+                <!--<Border BorderBrush="LightBlue" BorderThickness="1" CornerRadius="5" Background="#ECF2F1">
+                    <Grid Margin="3,3,3,3" Background="White" Width="150" Height="200" HorizontalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.Resources>
+                            <BooleanToVisibilityConverter x:Key="VisibilityConverter"/>
+                        </Grid.Resources>
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="12,10,12,0">
+                            <StackPanel Orientation="Horizontal" Margin="0,60,0,0">
+                                <Image x:Name="image" Width="120" Height="80">
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedLevel0.png" />
+                                            <Style.Triggers>
+                                                <DataTrigger Value="true" Binding="{Binding Isused}">
+                                                    <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedLevel1.png" />
+                                                </DataTrigger>
+                                                <DataTrigger Value="Arrived" Binding="{Binding EncounterStatus}">
+                                                    <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedArrived.png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Value="Discharged" Binding="{Binding EncounterStatus}">
+                                                    <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedDischarge.png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Value="Fit For Discharge" Binding="{Binding EncounterStatus}">
+                                                    <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedDischarge.png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Value="Discharge Advice" Binding="{Binding EncounterStatus}">
+                                                    <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedDischarge.png"/>
+                                                </DataTrigger>
+                                                
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </StackPanel>
+                            <WrapPanel Orientation="Horizontal" >
+                                <Image Margin="0.5" x:Name="imgContent" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/Alert.png" />
+                                <Image Margin="0.5" x:Name="imgContent2" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/Lab.png" />
+                                <Image Margin="0.5" x:Name="imgContent3" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/VIP.png" />
+                                <Image Margin="0.5" x:Name="imgContent4" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/x-rays.png" />
+                                <Image Margin="0.5" x:Name="imgContent5" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/Allergy.png" />
+                                <Image Margin="0.5" x:Name="imgContent6" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/HourlyCharges.png" />
+                                <Image Margin="0.5" x:Name="imgContent7" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/ExpectedDischarge.png" />
+                                <Image Margin="0.5" x:Name="imgContent8" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" Source="/MediTech;component/Resources/Images/Ward/dollar.png" />
+
+                            </WrapPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Column="0" VerticalAlignment="Top" Orientation="Vertical" Margin="10,10,10,10">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold" Margin="5,5,5,5" TextAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" Margin="0,0,0,4" Visibility="{Binding Isused, Converter={StaticResource VisibilityConverter}}">
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,4" >
+
+                                    <TextBlock FontWeight="SemiBold" Text="HN: "/>
+                                    <TextBlock Text="{Binding PatientName}"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" >
+
+                                    <TextBlock FontWeight="SemiBold" Text="ชื่อ: "/>
+                                    <TextBlock Text="{Binding PatientID}"/>
+
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Border>-->
+
+                <ListBox BorderThickness="0" ItemsSource="{Binding BedWardView}" Margin="50,10,50,10" HorizontalContentAlignment="Stretch" 
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled"  SelectedItem="{Binding SelectedBedWardView}" Name="ListBed">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Width="600"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="LightBlue" BorderThickness="1" CornerRadius="5" Background="#ECF2F1">
+                                <Grid Margin="3,3,3,3" Background="White" Width="150" Height="200" HorizontalAlignment="Stretch">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                <Grid.Resources>
+                                    <BooleanToVisibilityConverter x:Key="VisibilityConverter"/>
+                                </Grid.Resources>
+                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="12,10,12,0">
+                                        <StackPanel Orientation="Horizontal" Margin="0,60,0,0">
+                                            <Image x:Name="image" Width="120" Height="80">
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Setter Property="Source"  Value="/MediTech;component/Resources/Images/Ward/bedLevel0.png"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Value="true" Binding="{Binding Isused}">
+                                                                <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedLevel1.png"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Value="Arrived" Binding="{Binding EncounterStatus}">
+                                                                <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedArrived.png"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Value="Discharged" Binding="{Binding EncounterStatus}">
+                                                                <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedDischarge.png"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Value="Fit For Discharge" Binding="{Binding EncounterStatus}">
+                                                                <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedDischarge.png"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Value="Discharge Advice" Binding="{Binding EncounterStatus}">
+                                                                <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedDischarge.png"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                        <!--<Style.Triggers>
+                                                            <DataTrigger Value="Y" Binding="{Binding BedIsUse}">
+                                                                <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedLevel3.png"/>
+                                                            </DataTrigger>
+                                                           
+                                                            <DataTrigger Value="A" Binding="{Binding BedIsUse}">
+                                                                <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedLevel2.png"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>-->
+                                                    </Style>
+                                                </Image.Style>
+                                            </Image>
+                                        </StackPanel>
+                                        <WrapPanel Orientation="Horizontal" >
+                                            <Image Margin="0.5" Width="20" Height="20" Stretch="Fill" Source="/MediTech;component/Resources/Images/Ward/dollar.png">
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Setter Property="Visibility"  Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Value="true" Binding="{Binding IsBillingProgress}">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                                <Image.ToolTip>
+                                                    <ToolTip Content="Billing in Progress"/>
+                                                </Image.ToolTip>
+                                            </Image>
+
+                                            <Image Margin="0.5" Width="20" Height="20" Stretch="Fill" Source="/MediTech;component/Resources/Images/Ward/ExpectedDischarge.png">
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Setter Property="Visibility"  Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Value="true" Binding="{Binding IsExpectedDischarge}">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                                <Image.ToolTip>
+                                                    <ToolTip Content="ใกล้ครบกําหนด วันที่ Expected Discharge"/>
+                                                </Image.ToolTip>
+                                            </Image>
+
+                                            <Image Margin="0.5" Width="20" Height="20" Stretch="Fill" Source="/MediTech;component/Resources/Images/Ward/VIP.png">
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Setter Property="Visibility"  Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Value="true" Binding="{Binding IsVIP}">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                                <Image.ToolTip>
+                                                    <ToolTip Content="VIP Member"/>
+                                                </Image.ToolTip>
+                                            </Image>
+
+                                            <Image Margin="0.5" Width="20" Height="20" Stretch="Fill" Source="/MediTech;component/Resources/Images/Ward/Allergy.png">
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Setter Property="Visibility"  Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Value="true" Binding="{Binding IsAllergy}">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                                <Image.ToolTip>
+                                                    <ToolTip Content="มีการแพ้ยา"/>
+                                                </Image.ToolTip>
+                                            </Image>
+
+                                            <Image Margin="0.5" Width="20" Height="20" Stretch="Fill" Source="/MediTech;component/Resources/Images/Ward/HourlyCharges.png">
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Setter Property="Visibility"  Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Value="true" Binding="{Binding IsStandingOrder}">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                                <Image.ToolTip>
+                                                    <ToolTip Content="มีการใช้อุปกรณ์รายชั่วโมง"/>
+                                                </Image.ToolTip>
+                                            </Image>
+
+                                            <Image Margin="0.5" Width="20" Height="20" Stretch="Fill" Source="/MediTech;component/Resources/Images/Ward/money-bag.png">
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Setter Property="Visibility"  Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Value="true" Binding="{Binding IsFinancial}">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                                <Image.ToolTip>
+                                                    <ToolTip Content="ชำระเงินสำเร็จ"/>
+                                                </Image.ToolTip>
+                                            </Image>
+
+                                            <Image Margin="0.5" Width="20" Height="20" Stretch="Fill" Source="/MediTech;component/Resources/Images/Ward/lab.png">
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Setter Property="Visibility"  Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Value="true" Binding="{Binding IsLabResult}">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                                <Image.ToolTip>
+                                                    <ToolTip Content="มีผล Lab"/>
+                                                </Image.ToolTip>
+                                            </Image>
+
+                                            <Image Margin="0.5" Width="20" Height="20" Stretch="Fill" Source="/MediTech;component/Resources/Images/Ward/x-rays.png">
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Setter Property="Visibility"  Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Value="true" Binding="{Binding IsXrayResult}">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                                <Image.ToolTip>
+                                                    <ToolTip Content="มีผล X-ray"/>
+                                                </Image.ToolTip>
+                                            </Image>
+
+                                        </WrapPanel>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="0" VerticalAlignment="Top" Orientation="Vertical" Margin="10,10,10,10">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Name}" FontWeight="Bold" Margin="5,5,5,5" TextAlignment="Center" />
+                                    </StackPanel>
+                                        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" Margin="0,0,0,4" Visibility="{Binding Isused, Converter={StaticResource VisibilityConverter}}">
+                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,4" >
+
+                                                <TextBlock FontWeight="SemiBold" Text="HN: "/>
+                                                <TextBlock Text="{Binding PatientName}"/>
+                                            </StackPanel>
+
+                                            <StackPanel Orientation="Horizontal" >
+
+                                                <TextBlock FontWeight="SemiBold" Text="ชื่อ: "/>
+                                                <TextBlock Text="{Binding PatientID}"/>
+
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    
+                                    <Grid.ToolTip>
+                                        <ToolTip  Visibility="{Binding Isused, Converter={StaticResource VisibilityConverter}}" OverridesDefaultStyle="True" HasDropShadow="True">
+                                            <ToolTip.Template>
+                                                <ControlTemplate TargetType="ToolTip">
+                                                    <Border BorderBrush="Blue" Margin="15" BorderThickness="1" Background="AliceBlue" CornerRadius="5">
+                                                        <StackPanel Orientation="Vertical" Width="300" Margin="5">
+                                                            <StackPanel Orientation="Horizontal" Margin="10">
+                                                                <TextBlock FontWeight="Bold" Text="Name : "/>
+                                                                <TextBlock/>
+                                                                <TextBlock Text="{Binding PatientName}"/>
+                                                            </StackPanel>
+                                                            <StackPanel Orientation="Horizontal" Margin="10">
+                                                                <TextBlock FontWeight="Bold" Text="HN : "/>
+                                                                <TextBlock/>
+                                                                <TextBlock Text="{Binding PatientID}"/>
+                                                            </StackPanel>
+                                                            <StackPanel Orientation="Horizontal" Margin="10">
+                                                                <TextBlock FontWeight="Bold" Text="อายุ : "/>
+                                                                <TextBlock/>
+                                                                <TextBlock Text="{Binding AgeString}"/>
+                                                            </StackPanel>
+                                                            <StackPanel Orientation="Horizontal" Margin="10">
+                                                                <TextBlock FontWeight="Bold" Text="เพศ : "/>
+                                                                <TextBlock/>
+                                                                <TextBlock Text="{Binding Gender}"/>
+                                                            </StackPanel>
+                                                            <StackPanel Orientation="Horizontal" Margin="10">
+                                                                <TextBlock FontWeight="Bold" Text="Admit Date : "/>
+                                                                <TextBlock/>
+                                                                <TextBlock Text="{Binding AdmissionDate,StringFormat=dd/MM/yyy HH:mm}"/>
+                                                            </StackPanel>
+                                                            <StackPanel Orientation="Horizontal" Margin="10">
+                                                                <TextBlock FontWeight="Bold" Text="ExpDischarge Date : "/>
+                                                                <TextBlock/>
+                                                                <TextBlock Text="{Binding ExpDischargeDate,StringFormat=dd/MM/yyy HH:mm}"/>
+                                                            </StackPanel>
+                                                          </StackPanel>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </ToolTip.Template>
+                                        </ToolTip>
+                                    </Grid.ToolTip>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.Resources>
+                        <!-- Context Menu when right click on selected List Item -->
+                        <ContextMenu x:Key="ItemContextMenu">
+                            <MenuItem Header="New Order" Command="{Binding DataContext.CreateOrderCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="vital sign" Command="{Binding DataContext.VitalSignCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <!--<MenuItem Header="Lab Result" Command="{Binding DataContext.LabResultCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>-->
+                            <MenuItem Header="Print Document" Command="{Binding DataContext.PrintDocumentCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Patient Record" Command="{Binding DataContext.PatientRecordsCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Modify Payor" Command="{Binding DataContext.ModifyPayorCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <Separator/>
+                            <!--<MenuItem Header="Transfer">
+                                <MenuItem Header="BedTarnfer" Command="{Binding DataContext.TranferCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                                <MenuItem Header="Release Bed"/>
+                                <MenuItem Header="Department Transfer"/>
+                            </MenuItem>-->
+                            <MenuItem Header="Discharge">
+                                <MenuItem Header="Discharge Advice"  CommandParameter="DischargeAdvice" Command="{Binding DataContext.DischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                                <MenuItem Header="Medical Discharge" CommandParameter="MedicalDischarge"  Command="{Binding DataContext.DischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            </MenuItem>
+                            <Separator/>
+                            <MenuItem Header="Cancel Admission" Command="{Binding DataContext.CancelAdmissionCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Edit Exp. Discharged Date" Command="{Binding DataContext.EditExpDischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <Separator/>
+                            <MenuItem Header="Patient Tracking" Command="{Binding DataContext.PatientTrackingCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                        </ContextMenu>
+
+                        <ContextMenu x:Key="ItemMenuDischargeAdvice">
+                            <MenuItem Header="New Order" Command="{Binding DataContext.CreateOrderCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="vital sign" Command="{Binding DataContext.VitalSignCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <!--<MenuItem Header="Lab Result" Command="{Binding DataContext.LabResultCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>-->
+                            <MenuItem Header="Print Document" Command="{Binding DataContext.PrintDocumentCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Patient Record" Command="{Binding DataContext.PatientRecordsCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                           <Separator />
+                            <!--<MenuItem Header="Transfer">
+                                <MenuItem Header="BedTarnfer" Command="{Binding DataContext.TranferCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                                <MenuItem Header="Release Bed"/>
+                                <MenuItem Header="Department Transfer"/>
+                            </MenuItem>-->
+                            <MenuItem Header="Discharge">
+                                <MenuItem Header="Medical Discharge" CommandParameter="MedicalDischarge"  Command="{Binding DataContext.DischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            </MenuItem>
+                            <Separator/>
+                            <MenuItem Header="Cancel Discharge" Command="{Binding DataContext.CancelDischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Cancel Admission" Command="{Binding DataContext.CancelAdmissionCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Edit Exp. Discharged Date" Command="{Binding DataContext.EditExpDischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <Separator/>
+                            <MenuItem Header="Patient Tracking" Command="{Binding DataContext.PatientTrackingCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                        </ContextMenu>
+                        
+                        <ContextMenu x:Key="ItemMenuDischarge">
+                            <MenuItem Header="vital sign" Command="{Binding DataContext.VitalSignCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <!--<MenuItem Header="Lab Result" Command="{Binding DataContext.LabResultCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>-->
+                            <MenuItem Header="Print Document" Command="{Binding DataContext.PrintDocumentCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Patient Record" Command="{Binding DataContext.PatientRecordsCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <Separator />
+                            <!--<MenuItem Header="Transfer">
+                                <MenuItem Header="BedTarnfer" Command="{Binding DataContext.TranferCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                                <MenuItem Header="Release Bed"/>
+                                <MenuItem Header="Department Transfer"/>
+                            </MenuItem>-->
+                            <MenuItem Header="Discharge">
+                                <MenuItem Header="Discharge" CommandParameter="Discharge"  Command="{Binding DataContext.DischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            </MenuItem>
+                            <Separator />
+                            <MenuItem Header="Cancel Discharge" Command="{Binding DataContext.CancelDischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Cancel Admission" Command="{Binding DataContext.CancelAdmissionCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Edit Exp. Discharged Date" Command="{Binding DataContext.EditExpDischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <Separator/>
+                            <MenuItem Header="Patient Tracking" Command="{Binding DataContext.PatientTrackingCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                        </ContextMenu>
+
+
+                        <ContextMenu x:Key="ListContextMenu">
+                            <MenuItem Header="Direct Admit" Command="{Binding DataContext.DirectAdmitCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}" />
+                            <MenuItem Header="Bed Status Change" Command="{Binding DataContext.BedStatusChangeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="New EMR" Command="{Binding DataContext.NewEMRCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"  >
+                            </MenuItem>
+                        </ContextMenu>
+                        
+                        <ContextMenu x:Key="AdmitContextMenu">
+                            <MenuItem Header="Patient Arrived" Command="{Binding DataContext.ArrivedCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Bed Status Change" Command="{Binding DataContext.BedStatusChangeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}" />
+                            <MenuItem Header="New EMR" Command="{Binding DataContext.NewEMRCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}" />
+                        </ContextMenu>
+                       
+                        <Style TargetType="{x:Type ListBoxItem}">
+                            <Setter Property="ContextMenu" Value="{StaticResource ListContextMenu}"/>
+                            <Setter Property="Padding" Value="0"/>
+                            <Setter Property="Margin" Value="5"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Isused}" Value="True">
+                                    <Setter Property="ContextMenu" Value="{StaticResource AdmitContextMenu}"/>
+                                </DataTrigger>
+                                <DataTrigger Value="Arrived" Binding="{Binding EncounterStatus}">
+                                    <Setter Property="ContextMenu" Value="{StaticResource ItemContextMenu}"/>
+                                </DataTrigger>
+                                <DataTrigger Value="Discharge Advice" Binding="{Binding EncounterStatus}">
+                                    <Setter Property="ContextMenu" Value="{StaticResource ItemMenuDischargeAdvice}"/>
+                                </DataTrigger>
+                                <DataTrigger Value="Fit For Discharge" Binding="{Binding EncounterStatus}">
+                                    <Setter Property="ContextMenu" Value="{StaticResource ItemMenuDischarge}"/>
+                                </DataTrigger>
+                                <!--<DataTrigger Value="Discharged" Binding="{Binding EncounterStatus}">
+                                    <Setter Property="ContextMenu" Value="{StaticResource ItemMenuEnd}"/>
+                                </DataTrigger>-->
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Foreground" Value="Black" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.Resources>
+                </ListBox>
+            
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutGroup>
+    </dxlc:LayoutControl>
+  
+</UserControl>

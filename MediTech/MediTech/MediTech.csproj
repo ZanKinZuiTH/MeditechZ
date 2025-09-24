@@ -442,6 +442,54 @@
     <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabH.Designer.cs">
       <DependentUpon>LabH.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesA.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesA.Designer.cs">
+      <DependentUpon>ReferencesA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesB.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesB.Designer.cs">
+      <DependentUpon>ReferencesB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesC.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesC.Designer.cs">
+      <DependentUpon>ReferencesC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesD.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesD.Designer.cs">
+      <DependentUpon>ReferencesD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesE.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesE.Designer.cs">
+      <DependentUpon>ReferencesE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesF.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesF.Designer.cs">
+      <DependentUpon>ReferencesF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesG.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesG.Designer.cs">
+      <DependentUpon>ReferencesG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesH.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesH.Designer.cs">
+      <DependentUpon>ReferencesH.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge1.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -508,11 +556,29 @@
     <Compile Include="Reports\Operating\Checkup\CheckupCSR.Designer.cs">
       <DependentUpon>CheckupCSR.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Operating\Checkup\MedicalCheckUpReport\MedReport1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\MedicalCheckUpReport\MedReport1.Designer.cs">
+      <DependentUpon>MedReport1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\MedicalCheckUpReport\MedReport2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\MedicalCheckUpReport\MedReport2.Designer.cs">
+      <DependentUpon>MedReport2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Checkup\Muscle.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Operating\Checkup\Muscle.Designer.cs">
       <DependentUpon>Muscle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\Occupational.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\Occupational.Designer.cs">
+      <DependentUpon>Occupational.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Operating\Checkup\Papsmear.cs">
       <SubType>Component</SubType>
@@ -585,6 +651,12 @@
     </Compile>
     <Compile Include="Reports\Operating\Checkup\RiskMobileCheckup2.Designer.cs">
       <DependentUpon>RiskMobileCheckup2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\VisionTest.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\VisionTest.Designer.cs">
+      <DependentUpon>VisionTest.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Operating\Inventory\GoodReceiveReport.cs">
       <SubType>Component</SubType>
@@ -772,6 +844,12 @@
     <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificate2Parts.Designer.cs">
       <DependentUpon>MedicalCertificate2Parts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificateDriver2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificateDriver2.Designer.cs">
+      <DependentUpon>MedicalCertificateDriver2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificateEng.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -795,6 +873,12 @@
     </Compile>
     <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCouncil10.Designer.cs">
       <DependentUpon>MedicalCouncil10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCouncil8.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCouncil8.Designer.cs">
+      <DependentUpon>MedicalCouncil8.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalFitness.cs">
       <SubType>Component</SubType>
@@ -843,6 +927,12 @@
     </Compile>
     <Compile Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificateEng2.Designer.cs">
       <DependentUpon>WorkingHeightCertificateEng2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\WorkPermitCertificate.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\WorkPermitCertificate.Designer.cs">
+      <DependentUpon>WorkPermitCertificate.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Operating\Patient\MobileSticker.cs">
       <SubType>Component</SubType>
@@ -952,6 +1042,12 @@
     <Compile Include="Reports\Operating\Radiology\ImagingReport.Designer.cs">
       <DependentUpon>ImagingReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Operating\Radiology\ImagingReportA5.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Radiology\ImagingReportA5.Designer.cs">
+      <DependentUpon>ImagingReportA5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Radiology\ImagingReportThai.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -969,6 +1065,18 @@
     </Compile>
     <Compile Include="Reports\Statistic\Cashier\DataStockToEcount.Designer.cs">
       <DependentUpon>DataStockToEcount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\UCSAndForeignerFeeReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\UCSAndForeignerFeeReport.Designer.cs">
+      <DependentUpon>UCSAndForeignerFeeReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\UltrasoundFeeReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\UltrasoundFeeReport.Designer.cs">
+      <DependentUpon>UltrasoundFeeReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Cashier\DoctorFeeReport2.cs">
       <SubType>Component</SubType>
@@ -1204,6 +1312,12 @@
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupCopperBlood.Designer.cs">
       <DependentUpon>CheckupGroupCopperBlood.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupCReactive.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupCReactive.Designer.cs">
+      <DependentUpon>CheckupGroupCReactive.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupCyclohexanone.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1215,6 +1329,12 @@
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupEKG.Designer.cs">
       <DependentUpon>CheckupGroupEKG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupEthanolBlood.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupEthanolBlood.Designer.cs">
+      <DependentUpon>CheckupGroupEthanolBlood.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupEthylBenzene.cs">
       <SubType>Component</SubType>
@@ -1269,6 +1389,12 @@
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupHexane.Designer.cs">
       <DependentUpon>CheckupGroupHexane.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupHomocysteine.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupHomocysteine.Designer.cs">
+      <DependentUpon>CheckupGroupHomocysteine.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupHpylori.cs">
       <SubType>Component</SubType>
@@ -1703,12 +1829,14 @@
     <Compile Include="ViewModels\Checkup\ListCheckupJobViewModel.cs" />
     <Compile Include="ViewModels\Checkup\HealthExamListViewModel.cs" />
     <Compile Include="ViewModels\Checkup\EnterPhysicalExamViewModel.cs" />
+    <Compile Include="ViewModels\Doctor\AssignDoctorGPPupupViewModel.cs" />
     <Compile Include="ViewModels\Doctor\PatientListForDoctorViewModel.cs" />
     <Compile Include="ViewModels\Documents\CashierReportViewModel.cs" />
     <Compile Include="ViewModels\Documents\CheckupJobSummeryReportViewModel.cs" />
     <Compile Include="ViewModels\Documents\EcountReportViewModel.cs" />
     <Compile Include="ViewModels\Documents\PatientSummeryReportViewModel.cs" />
     <Compile Include="ViewModels\Documents\RadiologyReportViewModel.cs" />
+    <Compile Include="ViewModels\Documents\ReportParameter9ViewModel.cs" />
     <Compile Include="ViewModels\Documents\ReportParameter7ViewModel.cs" />
     <Compile Include="ViewModels\Documents\ReportParameter5ViewModel.cs" />
     <Compile Include="ViewModels\Documents\ReportParameter4ViewModel.cs" />
@@ -2020,6 +2148,9 @@
     <Compile Include="Views\Checkup\HealthExamList.xaml.cs">
       <DependentUpon>HealthExamList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Doctor\AssignDoctorGPPopup.xaml.cs">
+      <DependentUpon>AssignDoctorGPPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Doctor\PatientListForDoctor.xaml.cs">
       <DependentUpon>PatientListForDoctor.xaml</DependentUpon>
     </Compile>
@@ -2038,6 +2169,9 @@
     <Compile Include="Views\Documents\RadiologyReport.xaml.cs">
       <DependentUpon>RadiologyReport.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\Documents\ReportParameter9.xaml.cs">
+      <DependentUpon>ReportParameter9.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Documents\ReportParameter7.xaml.cs">
       <DependentUpon>ReportParameter7.xaml</DependentUpon>
@@ -2219,6 +2353,9 @@
     <Compile Include="Views\MRD\LabResultMass.xaml.cs">
       <DependentUpon>LabResultMass.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MRD\PatientVisitMass.xaml.cs">
+      <DependentUpon>PatientVisitMass.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OrderProcessing\AdjustOrderDetailForPackage.xaml.cs">
       <DependentUpon>AdjustOrderDetailForPackage.xaml</DependentUpon>
     </Compile>
@@ -2239,9 +2376,6 @@
     </Compile>
     <Compile Include="Views\Patient\ListPatMerge.xaml.cs">
       <DependentUpon>ListPatMerge.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MRD\PatientVisitMass.xaml.cs">
-      <DependentUpon>PatientVisitMass.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OrderProcessing\CancelOrder.xaml.cs">
       <DependentUpon>CancelOrder.xaml</DependentUpon>
@@ -2798,6 +2932,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Doctor\AssignDoctorGPPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Doctor\PatientListForDoctor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -2821,6 +2959,10 @@
     <Page Include="Views\Documents\RadiologyReport.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Views\Documents\ReportParameter9.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Documents\ReportParameter7.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -3062,6 +3204,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\MRD\PatientVisitMass.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
     <Page Include="Views\OrderProcessing\AdjustOrderDetailForPackage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -3087,10 +3233,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Patient\ListPatMerge.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MRD\PatientVisitMass.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -3649,6 +3791,30 @@
     <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\LabH.resx">
       <DependentUpon>LabH.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesA.resx">
+      <DependentUpon>ReferencesA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesB.resx">
+      <DependentUpon>ReferencesB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesC.resx">
+      <DependentUpon>ReferencesC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesD.resx">
+      <DependentUpon>ReferencesD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesE.resx">
+      <DependentUpon>ReferencesE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesF.resx">
+      <DependentUpon>ReferencesF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesG.resx">
+      <DependentUpon>ReferencesG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookEng\ReferencesH.resx">
+      <DependentUpon>ReferencesH.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge1.resx">
       <DependentUpon>CheckupBookLarge1.cs</DependentUpon>
     </EmbeddedResource>
@@ -3682,8 +3848,17 @@
     <EmbeddedResource Include="Reports\Operating\Checkup\CheckupCSR.resx">
       <DependentUpon>CheckupCSR.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\MedicalCheckUpReport\MedReport1.resx">
+      <DependentUpon>MedReport1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\MedicalCheckUpReport\MedReport2.resx">
+      <DependentUpon>MedReport2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Checkup\Muscle.resx">
       <DependentUpon>Muscle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\Occupational.resx">
+      <DependentUpon>Occupational.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Checkup\Papsmear.resx">
       <DependentUpon>Papsmear.cs</DependentUpon>
@@ -3720,6 +3895,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Checkup\RiskMobileCheckup2.resx">
       <DependentUpon>RiskMobileCheckup2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\VisionTest.resx">
+      <DependentUpon>VisionTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Inventory\GoodReceiveReport.resx">
       <DependentUpon>GoodReceiveReport.cs</DependentUpon>
@@ -3820,6 +3998,9 @@
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificate2Parts.resx">
       <DependentUpon>MedicalCertificate2Parts.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificateDriver2.resx">
+      <DependentUpon>MedicalCertificateDriver2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificateEng.resx">
       <DependentUpon>MedicalCertificateEng.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -3832,6 +4013,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalCouncil10.resx">
       <DependentUpon>MedicalCouncil10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalCouncil8.resx">
+      <DependentUpon>MedicalCouncil8.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalFitness.resx">
       <DependentUpon>MedicalFitness.cs</DependentUpon>
@@ -3858,6 +4042,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificateEng2.resx">
       <DependentUpon>WorkingHeightCertificateEng2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\WorkPermitCertificate.resx">
+      <DependentUpon>WorkPermitCertificate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MobileSticker.resx">
       <DependentUpon>MobileSticker.cs</DependentUpon>
@@ -3916,6 +4103,9 @@
     <EmbeddedResource Include="Reports\Operating\Radiology\ImagingReport.resx">
       <DependentUpon>ImagingReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Radiology\ImagingReportA5.resx">
+      <DependentUpon>ImagingReportA5.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Radiology\ImagingReportThai.resx">
       <DependentUpon>ImagingReportThai.cs</DependentUpon>
     </EmbeddedResource>
@@ -3924,6 +4114,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Cashier\DataStockToEcount.resx">
       <DependentUpon>DataStockToEcount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Cashier\UCSAndForeignerFeeReport.resx">
+      <DependentUpon>UCSAndForeignerFeeReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Cashier\UltrasoundFeeReport.resx">
+      <DependentUpon>UltrasoundFeeReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Cashier\DoctorFeeReport2.resx">
       <DependentUpon>DoctorFeeReport2.cs</DependentUpon>
@@ -4042,11 +4238,17 @@
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupCopperBlood.resx">
       <DependentUpon>CheckupGroupCopperBlood.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupCReactive.resx">
+      <DependentUpon>CheckupGroupCReactive.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupCyclohexanone.resx">
       <DependentUpon>CheckupGroupCyclohexanone.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupEKG.resx">
       <DependentUpon>CheckupGroupEKG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupEthanolBlood.resx">
+      <DependentUpon>CheckupGroupEthanolBlood.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupEthylBenzene.resx">
       <DependentUpon>CheckupGroupEthylBenzene.cs</DependentUpon>
@@ -4074,6 +4276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupHexane.resx">
       <DependentUpon>CheckupGroupHexane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupHomocysteine.resx">
+      <DependentUpon>CheckupGroupHomocysteine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupHpylori.resx">
       <DependentUpon>CheckupGroupHpylori.cs</DependentUpon>

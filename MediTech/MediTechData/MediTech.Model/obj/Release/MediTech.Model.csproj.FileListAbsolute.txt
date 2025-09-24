@@ -1,0 +1,191 @@
+C:\Users\cacheconnect\Desktop\Project P2\MediTechData\MediTech.Model\obj\Release\MediTech.Model.pdb
+C:\Users\cacheconnect\Desktop\Project P2\MediTechData\MediTech.Model\bin\Release\MediTech.Model.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechData\MediTech.Model\bin\Release\MediTech.Model.pdb
+C:\Users\cacheconnect\Desktop\Project P2\MediTechData\MediTech.Model\obj\Release\MediTech.Model.csprojResolveAssemblyReference.cache
+C:\Users\cacheconnect\Desktop\Project P2\MediTechData\MediTech.Model\obj\Release\MediTech.Model.dll
+D:\Project P2\MediTechData\MediTech.Model\bin\Release\MediTech.Model.dll
+D:\Project P2\MediTechData\MediTech.Model\bin\Release\MediTech.Model.pdb
+D:\Project P2\MediTechData\MediTech.Model\obj\Release\MediTech.Model.dll
+D:\Project P2\MediTechData\MediTech.Model\obj\Release\MediTech.Model.pdb
+D:\Project P2\MediTechData\MediTech.Model\obj\Release\MediTech.Model.csprojResolveAssemblyReference.cache
+D:\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\MediTech.Model.dll
+D:\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\MediTech.Model.pdb
+D:\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Data.v17.1.dll
+D:\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Xpo.v17.1.dll
+D:\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Data.v17.1.xml
+D:\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Xpo.v17.1.xml
+D:\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.Data.v17.1.resources.dll
+D:\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.Data.v17.1.resources.dll
+D:\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.Data.v17.1.resources.dll
+D:\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\ru\DevExpress.Data.v17.1.resources.dll
+D:\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.Xpo.v17.1.resources.dll
+D:\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.Xpo.v17.1.resources.dll
+D:\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.Xpo.v17.1.resources.dll
+D:\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\ru\DevExpress.Xpo.v17.1.resources.dll
+D:\Project P2\Meditech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.csproj.CoreCompileInputs.cache
+D:\Project P2\Meditech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.dll
+D:\Project P2\Meditech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.pdb
+D:\Project P2\Meditech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.csprojResolveAssemblyReference.cache
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\MediTech.Model.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\MediTech.Model.pdb
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Data.v20.2.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Xpo.v20.2.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Data.v20.2.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Xpo.v20.2.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.Data.v20.2.resources.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.Data.v20.2.resources.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.Data.v20.2.resources.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\ru\DevExpress.Data.v20.2.resources.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.Xpo.v20.2.resources.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.Xpo.v20.2.resources.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.Xpo.v20.2.resources.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.Model\bin\Release\ru\DevExpress.Xpo.v20.2.resources.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.csproj.CoreCompileInputs.cache
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.csproj.CopyComplete
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.pdb
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.csprojAssemblyReference.cache
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\MediTech.Model.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\MediTech.Model.pdb
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.csproj.AssemblyReference.cache
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.csproj.CoreCompileInputs.cache
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.pdb
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\MediTech.Model.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\MediTech.Model.pdb
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.DataAccess.v22.1.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Xpo.v22.1.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Data.v22.1.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Printing.v22.1.Core.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.CodeParser.v22.1.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.RichEdit.v22.1.Core.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Office.v22.1.Core.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Drawing.v22.1.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Pdf.v22.1.Core.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Pdf.v22.1.Drawing.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.DataAccess.v22.1.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Xpo.v22.1.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Data.v22.1.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Printing.v22.1.Core.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.RichEdit.v22.1.Core.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Office.v22.1.Core.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Pdf.v22.1.Core.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Pdf.v22.1.Drawing.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.DataAccess.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.DataAccess.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.DataAccess.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.Xpo.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.Xpo.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.Xpo.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.Data.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.Data.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.Data.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.Printing.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.Printing.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.Printing.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.RichEdit.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.RichEdit.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.RichEdit.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.Office.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.Office.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.Office.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.Pdf.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.Pdf.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.Pdf.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.csproj.AssemblyReference.cache
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.csproj.CoreCompileInputs.cache
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.csproj.CopyComplete
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.pdb
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\MediTech.Model.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\MediTech.Model.pdb
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.DataAccess.v22.1.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Xpo.v22.1.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Data.v22.1.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Printing.v22.1.Core.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.CodeParser.v22.1.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.RichEdit.v22.1.Core.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Office.v22.1.Core.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Drawing.v22.1.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Pdf.v22.1.Core.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Pdf.v22.1.Drawing.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.DataAccess.v22.1.xml
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Xpo.v22.1.xml
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Data.v22.1.xml
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Printing.v22.1.Core.xml
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.RichEdit.v22.1.Core.xml
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Office.v22.1.Core.xml
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Pdf.v22.1.Core.xml
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\DevExpress.Pdf.v22.1.Drawing.xml
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.DataAccess.v22.1.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.DataAccess.v22.1.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.DataAccess.v22.1.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.Xpo.v22.1.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.Xpo.v22.1.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.Xpo.v22.1.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.Data.v22.1.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.Data.v22.1.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.Data.v22.1.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.Printing.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.Printing.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.Printing.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.RichEdit.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.RichEdit.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.RichEdit.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.Office.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.Office.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.Office.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.Pdf.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.Pdf.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.Pdf.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.csproj.AssemblyReference.cache
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.csproj.CoreCompileInputs.cache
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\obj\Release\MediTech.AAD34C4D.Up2Date
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.pdb
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\MediTech.Model.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\MediTech.Model.pdb
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\DevExpress.DataAccess.v22.1.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\DevExpress.Xpo.v22.1.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\DevExpress.Data.v22.1.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\DevExpress.Printing.v22.1.Core.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\DevExpress.CodeParser.v22.1.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\DevExpress.RichEdit.v22.1.Core.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\DevExpress.Office.v22.1.Core.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\DevExpress.Drawing.v22.1.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\DevExpress.Pdf.v22.1.Core.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\DevExpress.Pdf.v22.1.Drawing.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\DevExpress.DataAccess.v22.1.xml
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\DevExpress.Xpo.v22.1.xml
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\DevExpress.Data.v22.1.xml
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\DevExpress.Printing.v22.1.Core.xml
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\DevExpress.RichEdit.v22.1.Core.xml
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\DevExpress.Office.v22.1.Core.xml
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\DevExpress.Pdf.v22.1.Core.xml
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\DevExpress.Pdf.v22.1.Drawing.xml
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.DataAccess.v22.1.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.DataAccess.v22.1.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.DataAccess.v22.1.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.Xpo.v22.1.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.Xpo.v22.1.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.Xpo.v22.1.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.Data.v22.1.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.Data.v22.1.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.Data.v22.1.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.Printing.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.Printing.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.Printing.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.RichEdit.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.RichEdit.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.RichEdit.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.Office.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.Office.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.Office.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\de\DevExpress.Pdf.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\es\DevExpress.Pdf.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\bin\Release\ja\DevExpress.Pdf.v22.1.Core.resources.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.csproj.AssemblyReference.cache
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.csproj.CoreCompileInputs.cache
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\obj\Release\MediTech.AAD34C4D.Up2Date
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\MediTech.Model\obj\Release\MediTech.Model.pdb

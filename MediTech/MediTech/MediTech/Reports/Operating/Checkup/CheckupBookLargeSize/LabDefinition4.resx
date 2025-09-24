@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="xrLabel49.Text" xml:space="preserve">
+    <value>          คือ การตรวจวิเคราะห์น้ำปัสสาวะเพื่อดูลักษณะทางกายภาพ สารเคมี และตรวจทางกล้องจุลทรรศน์ เพื่อค้นหาความผิดปกติและประเมินความเสี่ยงโรคเบื้องต้นจากน้ำปัสสาวะ  เช่นโรคไต โรคทางเดินปัสสาวะ และโรคอื่นๆ   การตรวจปัสสาวะสามารถแบ่งออกได้เป็น 
+3 กลุ่ม โดยแพทย์จะประเมินทั้ง 3 กลุ่มรวมกันเพื่อหาความผิดปกติ ร่วมกับอาการและอาการแสดงทางคลินิก</value>
+  </data>
+  <data name="xrLabel5.Text" xml:space="preserve">
+    <value>*** ในกรณีที่ค่า SGOT และ SGPT สูงเล็กน้อยโดยที่ไม่พบความผิดปกติอื่น อาจเกิดจากภาวะที่ดื่มแอลกอฮอล์มากเกินไป หรือมีไขมันพอกตับ หรือมีความเสียหายของกล้ามเนื้อ หัวใจ ไต ตับอ่อน หรืออวัยวะที่เกี่ยวข้องอื่นๆแนะนำปฏิบัติตัวดังนี้</value>
+  </data>
+  <data name="xrLabel19.Text" xml:space="preserve">
+    <value>ทางการแพทย์เพื่อให้ได้มาซึ่งข้อมูลที่เกี่ยวกับสถานะของตับของผู้รับการตรวจ ค่าการทำงานของตับมีหลายตัว โดยแพทย์จะนำข้อมูลทุกตัวที่มีมารวมกันเพื่อใช้ประมวลผลและหาความผิดปกติและสาเหตุของการเกิดความผิดปกตินั้น โดยโรคที่พบได้บ่อยที่ทำให้เกิดความผิดปกติของการทำงานของตับได้แก่ ภาวะไขมันพอกตับหรือไขมันเกาะตับ โรคตับอักเสบ โรคตับแข็ง โรคมะเร็งตับ โรคของท่อน้ำดี เช่น ท่อน้ำดีอุดตันจากนิ่วหรือมะเร็ง</value>
+  </data>
+  <data name="xrLabel35.Text" xml:space="preserve">
+    <value>ต้องการในการใช้, ไขมันจากอาหาร,ไขมันแท้จริง, ไขมันที่แปรผันจากอาหารแป้งและโปรตีน  ระดับไขมันไตรกลีเซอไรด์มักไม่ค่อยคงที่ ขึ้นลงได้ง่าย ขึ้นอยู่กับปริมาณอาหารที่รับประทาน ในกรณีที่สูงกว่าค่าอ้างอิงมาก และสูงติดต่อกันเป็นเวลานาน ก็อาจเป็นผล 
+ให้เกิดโรคหลอดเลือดหัวใจหรือหลอดเลือดสมองตีบตันได้ </value>
+  </data>
+  <data name="xrLabel38.Text" xml:space="preserve">
+    <value>ซึ่งมีมากในเครื่องในสัตว์ เนื้อสัตว์ปีก อาหารทะเล ยอดอ่อนของผัก เช่น หน่อไม้ เห็ด แตงกวา ถั่วเกือบทุกชนิด และเกิดจากการสลายตัวของเซลล์ในร่างกาย กรดยูริคที่มีอยู่ในเลือดจะถูกขับออกทางไต ในกรณีที่มียูริคมากเกินไป จะทำให้ตกผลึกสะสมอยู่ตามข้อ ผิวหนัง ไต และอวัยวะอื่นๆ ทำให้เกิดโรคเก๊าต์ได้</value>
+  </data>
+  <data name="xrLabel42.Text" xml:space="preserve">
+    <value>ความเสียหายของตับ เม็ดเลือดแดง หัวใจ กล้ามเนื้อ ตับอ่อน หรือไต จะเห็นได้ว่าค่า AST นี้มิใช่ค่าเอนไซม์เฉพาะตับเท่านั้น แต่เป็นค่าที่สะท้อนจากทุกเนื้อเยื่อของทุกอวัยวะที่เสียหาย (เพียงแต่ตับเป็นอวัยวะที่ไวต่อโรคหรือจากสภาวะแวดล้อมที่มากระทบ จึงมักเป็นสาเหตุแรก ๆ ที่ทำให้ AST ซึ่งเกิดขึ้นจากตับมีค่าสูงขึ้นบ่อยครั้ง นั่นแปลว่า AST ที่สูงขึ้นผิดปกติมักมีสาเหตุมาจากตับมากกว่าอวัยวะอื่น) ด้วยเหตุนี้ จึงเป็นสิ่งจำเป็นอย่างยิ่งที่จะต้องใช้ค่า AST พิจารณาร่วมกับค่าผลเลือดตัวอื่นที่เกี่ยวข้องกับอวัยวะนั้น ๆ ด้วยเสมอ</value>
+  </data>
+  <data name="xrLabel50.Text" xml:space="preserve">
+    <value>อวัยวะใด ๆก็ได้ เช่น ไต หัวใจ กล้ามเนื้อ ตับอ่อน หรือตับ (ความเสียหายจากทุกอวัยวะ ยกเว้นตับ จะปรากฏค่า ALT ไม่มากนักและมักไม่อาจบ่งชี้ได้ว่ามาจากอวัยวะใดชัดเจน) แต่เฉพาะความเสียหายของตับเท่านั้นที่ค่า ALT จะแสดงค่าสูงขึ้นผิดปกติเป็นตัวเลขให้เห็นอย่างเด่นชัด นั่นแปลว่า หากมีโรคตับเมื่อใด ALT ในเลือดที่ตรวจได้ก็จะสูงกว่าปกติอย่างเด่นชัดเมื่อนั้น ด้วยเหตุนี้ ค่า ALT จึงเป็นตัวบ่งชี้ที่สำคัญของโรคตับ ALT จึงใช้เพื่อการตรวจสุขภาพของตับเป็นหลัก ซึ่งมักจะให้ความน่าเชื่อถือมากกว่าค่าผลเลือดตัวอื่น</value>
+  </data>
+  <data name="xrLabel54.Text" xml:space="preserve">
+    <value>ตับ กระดูก ลำไส้เล็ก ไต รกของหญิงตั้งครรภ์ (มาจากตับนับเป็นแหล่งใหญ่ที่สุดของ ALP รองลงมาคือกระดูก) เพื่อประโยชน์ต่อการวินิจฉัยแยกแยะระหว่างโรคตับและโรคกระดูก ในการเจาะเลือดตรวจ ALP ทุกครั้ง จำเป็นจะต้องตรวจค่า ALT และ AST พร้อม ๆ กันไปด้วยเสมอ โดยการแสดงค่าผลเลือดทั้ง 3 ตัวนี้ อาจช่วยบ่งชี้โรคที่สำคัญได้ เช่น ถ้าค่าทั้ง 3 ตัวนี้สูงทั้งหมด อาจบ่งชี้ได้ว่าเป็นโรคตับหรือโรคมะเร็งตับ แต่ถ้าค่า ALP สูงเพียงตัวเดียว (ALT กับ AST ปกติ) ก็อาจบ่งชี้ได้ว่าเป็นโรคกระดูกหรือโรคมะเร็งกระดูก</value>
+  </data>
+  <data name="xrLabel58.Text" xml:space="preserve">
+    <value>อายุขัยประมาณ 120 วัน) ก็จะถูกม้ามจับตัว แล้วทำการสลาย Hemoglobin ที่อยู่ภายในเม็ดเลือดแดงให้ส่วนหนึ่งกลายเป็นกรดอะมิโนเช่นเดียวกับสารอาหารที่ร่างกายใช้ประโยชน์ในฐานะสารโปรตีน และอีกส่วนหนึ่งที่เรียกว่า “Hema” ซึ่งละลายในน้ำ(เลือด)ไม่ได้ จึงต้องอาศัยการเกาะติดมากับ Albumin เพื่อจะนำไปสู่ที่ตับได้ ซึ่งทันทีที่ Hema + Albumin จับตัวกันลอยได้ในกระแสเลือดก็จะเรียกว่า “Bilirubin” แต่เมื่อยังไม่ไปถึงตับก็จะถูกเรียกว่า “Indirect bilirubin” และเมื่อ Bilirubin ลอยตามกระแสเลือดไปจนถึงตับ ก็จะถูกตับจับไปผสมกับกรดชนิดหนึ่งจนมีคุณสมบัติที่สามารถละลายน้ำได้และปรากฏเป็นสารของเหลวสีเหลือง เรียกว่า “Direct bilirubin”
+          การตรวจนี้เป็นส่วนหนึ่งของการตรวจการทำงานของตับ เป็นการตรวจเพื่อให้ทราบค่าบิลิรูบินทั้งหมดมีค่าสูงหรือต่ำกว่าค่าปกติเพียงใด ซึ่งค่าที่ผิดปกติก็ย่อมใช้เป็นเครื่องบ่งชี้สำคัญถึงการเกิดโรคของตับ รวมทั้งอวัยวะอื่น ๆ (เช่น ไต เม็ดเลือดแดง หรือนิ่วในถุงน้ำดี) และตรวจสอบว่าท่อน้ำดีถูกอุดกั้นหรือไม่
+</value>
+  </data>
+  <data name="xrLabel62.Text" xml:space="preserve">
+    <value>กับกรดชนิดหนึ่งจนมันมีคุณสมบัติสามารถละลายน้ำได้และเป็นสารของเหลวสีเหลืองที่พร้อมที่จะถูกทิ้งออกนอกร่างกายโดยอวัยวะตับและไต  ในผู้ที่มีสุขภาพทั่วไปเป็นปกติดี รวมทั้งดูแลเรื่องอาหารการกินมาตลอด ไม่กินยาหรือสมุนไพรอย่างผิด ๆ และไม่ดื่มแอลกอฮอล์ ตับก็ยังมีสุขภาพดีอยู่ จึงย่อมพบค่า Direct bilirubin ได้น้อย เพราะตับของคนกลุ่มนี้จะสามารถแปรสภาพ Indirect bilirubin ให้กลายเป็น Direct bilirubin ได้อย่างสมบูรณ์ โดยไม่เหลือคั่งค้าง รวมทั้งยังสามารถจัดการส่ง Direct bilirubin ทั้งหมดที่เกิดขึ้นไปผลิตกรดน้ำดีเก็บสะสมไว้ในถุงน้ำดี รอเวลาเพื่อนำไปใช้ย่อยอาหารจำพวกไขมันได้อย่างหมดจด  สาเหตุที่ทำให้ค่า Direct Bilirubin สูงกว่าปกติที่พบได้บ่อยก็คือ ภาวะการณ์อุดตันของท่อน้ำดี โรคตับแข็ง โรคตับอักเสบ หรือจากยาบางชนิด</value>
+  </data>
+  <data name="xrLabel65.Text" xml:space="preserve">
+    <value>เป็นหลักในการพิจารณาหาเลือดที่เหมาะสมและเข้ากันได้กับผู้ป่วยที่ต้องได้รับเลือดเพื่อการรักษาภาวะผิดปกติของร่างกาย เพื่อไม่ให้เกิดผลข้างเคียงจากการรับเลือด กล่าวคือ เมื่อเจ็บป่วยหรือประสบอุบัติเหตุฉุกเฉินจะทำให้มีความปลอดภัยมากขึ้นเมื่อผู้ป่วยต้องเข้ารับการเปลี่ยนถ่ายเลือด (ไม่ว่าจะเป็นในระหว่างการผ่าตัดหรือการเข้ารับการปลูกถ่ายอวัยวะ) ซึ่งหากผู้ป่วยไม่ทราบกรุ๊ปเลือดของตัวเองหรือแจ้งกรุ๊ปเลือดผิดก็อาจส่งผลอันตรายต่อผู้ป่วยได้  ในทางปฏิบัติ พนักงานทุกคนควรทราบทั้งหมู่เลือดหลัก และ Rh ของตนเอง เพื่อแจ้งให้ผู้เกี่ยวข้องทราบเมื่อเกิดภาวะฉุกเฉินขึ้น เช่น เลือดกรุ๊ป O Positive หรือ 
+O Negative เป็นต้น</value>
+  </data>
+</root>

@@ -1,0 +1,188 @@
+﻿<UserControl x:Class="MediTech.Views.AECheckout"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediTech.Views"
+              mc:Ignorable="d" 
+             DataContext="{Binding Path=AECheckoutViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="350" d:DesignWidth="650">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Horizontal" Margin="10,25,10,15" Height="300">
+                <dxlc:LayoutGroup Orientation="Vertical" Width="300">
+                    <dxlc:LayoutItem >
+                    <dxlc:LayoutItem.Label>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Outcome" />
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
+                    <dxe:ComboBoxEdit DisplayMember="Display" 
+                                      ValueMember="Key"
+                                      ItemsSource="{Binding OutcameSource}"
+                                      SelectedItem="{Binding SelectOutcame}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem >
+                            <dxlc:LayoutItem.Label>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                    <TextBlock Text="Checkout Date" />
+                                </StackPanel>
+                            </dxlc:LayoutItem.Label>
+                            <dxe:DateEdit EditValue="{Binding CheckoutDate}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Width="100">
+                            <dxlc:LayoutItem.Label>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                    <TextBlock Text="time" />
+                                </StackPanel>
+                            </dxlc:LayoutItem.Label>
+                            <dxe:DateEdit x:Name="timeEditor"
+                                      EditValue="{Binding CheckoutTime}"
+                                      DisplayFormatString="HH:mm"
+                                      Mask="HH:mm">
+                                <dxe:DateEdit.StyleSettings>
+                                    <dxe:DateEditTimePickerStyleSettings/>
+                                </dxe:DateEdit.StyleSettings>
+                            </dxe:DateEdit>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Visibility="{Binding VisibiltyCareprovider}">
+                        <dxlc:LayoutItem.Label>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                <TextBlock Text="Doctor" />
+                            </StackPanel>
+                        </dxlc:LayoutItem.Label>
+                        <dxe:ComboBoxEdit DisplayMember="FullName"
+                                      NullValueButtonPlacement="EditBox"
+                                      ValueMember="CareproviderUID"
+                                      ItemsSource="{Binding CareproviderSource}"
+                                      SelectedItem="{Binding SelectCareprovider}"/>
+                    </dxlc:LayoutItem>
+                    <!--<dxlc:LayoutItem  Visibility="{Binding VisibiltyDepartment}">
+                        <dxlc:LayoutItem.Label>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Department" />
+                            </StackPanel>
+                        </dxlc:LayoutItem.Label>
+                        <dxe:ComboBoxEdit DisplayMember="Display" 
+                                      ValueMember="Key"
+                                      ItemsSource="{Binding DepartmentSource}"
+                                      SelectedItem="{Binding SelectDepartment}"/>
+                    </dxlc:LayoutItem>-->
+                    <dxlc:LayoutItem Label="Comment" LabelVerticalAlignment="Top" >
+                        <TextBox Name="txtDetail"   Text="{Binding Comment,Mode=TwoWay}"
+                                                     Height="50"
+                                                     AcceptsReturn="True"             
+                                                     TextWrapping="Wrap" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Orientation="Vertical" Width="300">
+                    <dxlc:LayoutItem Visibility="{Binding VisibiltySpeciality}">
+                        <dxlc:LayoutItem.Label>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Speciality" />
+                            </StackPanel>
+                        </dxlc:LayoutItem.Label>
+                        <dxe:ComboBoxEdit DisplayMember="Description" 
+                                      ValueMember="SpecialityUID"
+                                      ItemsSource="{Binding SpecialitySource}"
+                                      SelectedItem="{Binding SelectSpeciality}"/>
+                    </dxlc:LayoutItem>
+                
+                <dxlc:LayoutGroup Orientation="Vertical" Visibility="{Binding VisibiltyOP}">
+                    <dxlc:LayoutItem >
+                        <dxlc:LayoutItem.Label>
+                            <StackPanel Orientation="Horizontal">
+                                    <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                    <TextBlock Text="Discharge Type" />
+                            </StackPanel>
+                        </dxlc:LayoutItem.Label>
+                        <dxe:ComboBoxEdit DisplayMember="Display" 
+                                      ValueMember="Key"
+                                      ItemsSource="{Binding DischargeSource}"
+                                      SelectedItem="{Binding SelectDischarge}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem >
+                        <dxlc:LayoutItem.Label>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Destination" />
+                            </StackPanel>
+                        </dxlc:LayoutItem.Label>
+                        <dxe:ComboBoxEdit DisplayMember="Display" 
+                                      ValueMember="Key"
+                                      ItemsSource="{Binding DestinationSource}"
+                                      SelectedItem="{Binding SelectDestination}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem >
+                            <dxlc:LayoutItem.Label>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Deceassed Date" />
+                                </StackPanel>
+                            </dxlc:LayoutItem.Label>
+                            <dxe:DateEdit EditValue="{Binding DestinationDate}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Width="100">
+                            <dxlc:LayoutItem.Label>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Time" />
+                                </StackPanel>
+                            </dxlc:LayoutItem.Label>
+                            <dxe:DateEdit x:Name="DtimeEditor"
+                                      EditValue="{Binding DestinationTime}"
+                                      DisplayFormatString="HH:mm"
+                                      Mask="HH:mm">
+                                <dxe:DateEdit.StyleSettings>
+                                        <dxe:DateEditTimePickerStyleSettings/>
+                                </dxe:DateEdit.StyleSettings>
+                            </dxe:DateEdit>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutItem >
+                        <dxlc:LayoutItem.Label>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Autopsy Type" />
+                            </StackPanel>
+                        </dxlc:LayoutItem.Label>
+                        <dxe:ComboBoxEdit DisplayMember="Display" 
+                                      ValueMember="Key"
+                                      ItemsSource="{Binding AutopsySource}"
+                                      SelectedItem="{Binding SelectAutopsy}"/>
+                    </dxlc:LayoutItem>
+                        <dxlc:LayoutItem >
+                            <dxlc:LayoutItem.Label >
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                                <TextBlock Text="Disposition Type" />
+                            </StackPanel>
+                        </dxlc:LayoutItem.Label>
+                        <ListView ItemsSource="{Binding AEDischargeOutCome}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <CheckBox Content="{Binding Display}" IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsSelected, Mode=TwoWay}" />
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup >
+                <dx:SimpleButton Content="บันทึก" Width="80" Height="25" Command="{Binding SaveCommand}" HorizontalAlignment="Right"/>
+                    <dx:SimpleButton Content="ยกเลิก" Width="80" Height="25" Command="{Binding CancelCommand}" HorizontalAlignment="Right"/>
+                </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

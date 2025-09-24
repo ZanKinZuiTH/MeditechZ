@@ -32,6 +32,8 @@ namespace MediTech.Reports.Operating.Checkup
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Papsmear));
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
+            this.xrPictureBox3 = new DevExpress.XtraReports.UI.XRPictureBox();
+            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrTable7 = new DevExpress.XtraReports.UI.XRTable();
@@ -71,8 +73,6 @@ namespace MediTech.Reports.Operating.Checkup
             this.PayorDetailUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrPictureBox3 = new DevExpress.XtraReports.UI.XRPictureBox();
-            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
@@ -92,6 +92,30 @@ namespace MediTech.Reports.Operating.Checkup
             this.xrLabel1});
             this.TopMargin.HeightF = 118.3333F;
             this.TopMargin.Name = "TopMargin";
+            // 
+            // xrPictureBox3
+            // 
+            this.xrPictureBox3.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrPictureBox3.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("xrPictureBox3.ImageSource"));
+            this.xrPictureBox3.LocationFloat = new DevExpress.Utils.PointFloat(45.29177F, 46.00002F);
+            this.xrPictureBox3.Name = "xrPictureBox3";
+            this.xrPictureBox3.SizeF = new System.Drawing.SizeF(228.6801F, 72.33331F);
+            this.xrPictureBox3.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+            this.xrPictureBox3.StylePriority.UseBorders = false;
+            // 
+            // xrLabel1
+            // 
+            this.xrLabel1.Font = new System.Drawing.Font("EucrosiaUPC", 10F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(422.2918F, 46.00002F);
+            this.xrLabel1.Multiline = true;
+            this.xrLabel1.Name = "xrLabel1";
+            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(332.8333F, 72.33332F);
+            this.xrLabel1.StylePriority.UseFont = false;
+            this.xrLabel1.StylePriority.UseTextAlignment = false;
+            this.xrLabel1.Text = "โรงพยาบาลบูรพารักษ์ ( Burapharux Hospital )\r\n99/99 หมู่ 2 ต.หนองบัว อ.บ้านค่าย จ." +
+    "ระยอง 21120\r\ncontact@brxggroup.com Tel 038-032432\r\nเลขที่ใบอนุญาต 10201002665";
+            this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             // 
             // BottomMargin
             // 
@@ -356,10 +380,10 @@ namespace MediTech.Reports.Operating.Checkup
             // xrPictureBox1
             // 
             this.xrPictureBox1.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("xrPictureBox1.ImageSource"));
-            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(555.5267F, 812.6237F);
+            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(564.4852F, 825.9572F);
             this.xrPictureBox1.LockedInUserDesigner = true;
             this.xrPictureBox1.Name = "xrPictureBox1";
-            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(177.7083F, 114.3887F);
+            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(168.7497F, 87.83954F);
             this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
             // 
             // xrTable5
@@ -426,7 +450,7 @@ namespace MediTech.Reports.Operating.Checkup
             this.xrTableCell55.StylePriority.UseBorderWidth = false;
             this.xrTableCell55.StylePriority.UseFont = false;
             this.xrTableCell55.StylePriority.UseTextAlignment = false;
-            this.xrTableCell55.Text = "แพทย์หญิง รุจิรา เทียบเทียม ว.43355\r\n(แพทย์อาชีวเวชศาสตร์)";
+            this.xrTableCell55.Text = "แพทย์หญิง ธัญลักษณ์ นิลไพฑูรย์ ว.24689\r\n(แพทย์อาชีวเวชศาสตร์)";
             this.xrTableCell55.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             this.xrTableCell55.Weight = 1.6500003051757812D;
             // 
@@ -466,30 +490,6 @@ namespace MediTech.Reports.Operating.Checkup
             this.LogoType.Type = typeof(int);
             this.LogoType.ValueInfo = "0";
             this.LogoType.Visible = false;
-            // 
-            // xrPictureBox3
-            // 
-            this.xrPictureBox3.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrPictureBox3.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("xrPictureBox3.ImageSource"));
-            this.xrPictureBox3.LocationFloat = new DevExpress.Utils.PointFloat(45.29177F, 46.00002F);
-            this.xrPictureBox3.Name = "xrPictureBox3";
-            this.xrPictureBox3.SizeF = new System.Drawing.SizeF(228.6801F, 72.33331F);
-            this.xrPictureBox3.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
-            this.xrPictureBox3.StylePriority.UseBorders = false;
-            // 
-            // xrLabel1
-            // 
-            this.xrLabel1.Font = new System.Drawing.Font("EucrosiaUPC", 10F);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(422.2918F, 46.00002F);
-            this.xrLabel1.Multiline = true;
-            this.xrLabel1.Name = "xrLabel1";
-            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(332.8333F, 72.33332F);
-            this.xrLabel1.StylePriority.UseFont = false;
-            this.xrLabel1.StylePriority.UseTextAlignment = false;
-            this.xrLabel1.Text = "โรงพยาบาลบูรพารักษ์ ( Burapharux Hospital )\r\n99/99 หมู่ 2 ต.หนองบัว อ.บ้านค่าย จ." +
-    "ระยอง 21120\r\ncontact@brxggroup.com Tel 038-032432\r\nเลขที่ใบอนุญาต 10201002665";
-            this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             // 
             // Papsmear
             // 

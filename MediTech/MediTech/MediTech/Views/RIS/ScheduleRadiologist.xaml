@@ -1,0 +1,76 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediTech.Views"
+             xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduler" x:Class="MediTech.Views.ScheduleRadiologist"
+             xmlns:dxschi="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/internal"         
+             mc:Ignorable="d"
+             xmlns:vm="clr-namespace:MediTech.Views"
+             DataContext="{Binding ScheduleRadiologistViewModel, Source={StaticResource Locator}}"
+             d:DesignHeight="800" d:DesignWidth="900">
+    <UserControl.Resources>
+        <DataTemplate x:Key="HorizontalAppointmentSameDayContentTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="AUTO" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="FontSize" Value="10"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <dxschi:HorizontalAppointmentStartClockControl x:Name="startTime" ViewInfo="{Binding}" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock Text="{Binding Subject}" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <dxsch:SchedulerControl x:Name="scheControl" ActiveViewType="Month" 
+                                FormCustomizationUsingMVVMLocal="false" >
+            <dxsch:SchedulerControl.Storage>
+                <dxsch:SchedulerStorage>
+                    <dxsch:SchedulerStorage.AppointmentStorage>
+                        <dxsch:AppointmentStorage DataSource="{Binding RadiologistSchedules}" >
+                            <dxsch:AppointmentStorage.Mappings>
+                                <dxsch:AppointmentMapping AppointmentId="ScheduleRadiologistUID"
+                                    Start="StartWorkTime"
+                                    End="EndWorkTime"
+                                    AllDay="AllDay"
+                                    Label="Label"
+                                    Location="ImageType"
+                                    Subject="CareproviderName"
+                                    Status="Status"
+                                    RecurrenceInfo="RecurrenceInfo"
+                                    ReminderInfo="ReminderInfo"
+                                    Type="EventType" />
+                            </dxsch:AppointmentStorage.Mappings>
+                        </dxsch:AppointmentStorage>
+                    </dxsch:SchedulerStorage.AppointmentStorage>
+                </dxsch:SchedulerStorage>
+            </dxsch:SchedulerControl.Storage>
+            <dxsch:SchedulerControl.WorkWeekView>
+                <dxsch:WorkWeekView Enabled="False"></dxsch:WorkWeekView>
+            </dxsch:SchedulerControl.WorkWeekView>
+            <dxsch:SchedulerControl.WeekView>
+                <dxsch:WeekView Enabled="False"></dxsch:WeekView>
+            </dxsch:SchedulerControl.WeekView>
+            <dxsch:SchedulerControl.MonthView>
+                <dxsch:MonthView x:Name="schMonthView" 
+                                 HorizontalAppointmentContentTemplate="{StaticResource HorizontalAppointmentSameDayContentTemplate}">
+                    
+                </dxsch:MonthView>
+            </dxsch:SchedulerControl.MonthView>
+            <dxsch:SchedulerControl.TimelineView>
+                <dxsch:TimelineView Enabled="False">
+                </dxsch:TimelineView>
+            </dxsch:SchedulerControl.TimelineView>
+        </dxsch:SchedulerControl>
+    </Grid>
+</UserControl>

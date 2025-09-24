@@ -58,9 +58,28 @@
                         </dxg:LookUpEdit.PopupContentTemplate>
                     </cc:MyLookUpEdit>
                 </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="ประเภทค่าแพทย์">
+                    <dxe:ComboBoxEdit DisplayMember="Display" 
+                                   ValueMember="Key"
+                                   ItemsSource="{Binding DoctorFeeTypeSource}"
+                                   NullValueButtonPlacement="EditBox"
+                                   SelectedItem="{Binding SelectedDoctorFeeType}"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem Label="สถานประกอบการ">
+                    <dxe:ComboBoxEdit x:Name="lkeOrganisationFrom" ItemsSource="{Binding Organisations}"
+                                                          IsTextEditable="False" 
+                                                          DisplayMember="Name"
+                                                          ValueMember="HealthOrganisationUID"
+                                                          EditValue="{Binding Path=SelectOrganisations}">
+                        <dxe:ComboBoxEdit.StyleSettings>
+                            <dxe:CheckedComboBoxStyleSettings />
+                        </dxe:ComboBoxEdit.StyleSettings>
+                    </dxe:ComboBoxEdit>
+                </dxlc:LayoutItem>
                 <dxlc:LayoutItem />
             </dxlc:LayoutGroup>
-
 
             <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                 <dx:SimpleButton Width="80" Command="{Binding PrintCommand}" HorizontalAlignment="Right" 

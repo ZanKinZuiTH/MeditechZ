@@ -1,0 +1,564 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using GalaSoft.MvvmLight.CommandWpf;
+using MediTech.Model;
+using System.Windows;
+using ShareLibrary;
+using System.Collections.ObjectModel;
+using System.Windows.Forms;
+using MediTech.Views;
+using System.IO;
+using System.Diagnostics;
+using MediTech.Converter;
+using DevExpress.Charts.Native;
+using DevExpress.Mvvm.Xpf;
+
+namespace MediTech.ViewModels
+{
+    public class EnterResultsLabViewModel : MediTechViewModelBase
+    {
+        #region Properties
+        public List<CareproviderModel> Careprovider { get; set; }
+        private CareproviderModel _SelectCareprovider;
+
+        public CareproviderModel SelectCareprovider
+        {
+            get { return _SelectCareprovider; }
+            set { Set(ref _SelectCareprovider, value); }
+        }
+
+        public List<CareproviderModel> QCCareprovider { get; set; }
+
+        private CareproviderModel _SelectQCCareprovider;
+
+        public CareproviderModel SelectQCCareprovider
+        {
+            get { return _SelectQCCareprovider; }
+            set { Set(ref _SelectQCCareprovider, value); }
+        }
+
+        private List<LookupReferenceValueModel> _ResultItemRanges;
+
+        public List<LookupReferenceValueModel> ResultItemRanges
+        {
+            get { return _ResultItemRanges; }
+            set { Set(ref _ResultItemRanges, value); }
+        }
+
+        private LookupReferenceValueModel _SelectResultItemRange;
+
+        public LookupReferenceValueModel SelectResultItemRange
+        {
+            get { return _SelectResultItemRange; }
+            set { Set(ref _SelectResultItemRange, value); }
+        }
+
+        private RequestLabModel _RequestLab;
+
+        public RequestLabModel RequestLab
+        {
+            get { return _RequestLab; }
+            set { Set(ref _RequestLab, value); }
+        }
+
+        private List<RequestDetailItemModel> _RequestDetailLabs;
+
+        public List<RequestDetailItemModel> RequestDetailLabs
+        {
+            get { return _RequestDetailLabs; }
+            set { Set(ref _RequestDetailLabs, value);  }
+        }
+
+        private ResultComponentModel _SelectResultComponent;
+
+        public ResultComponentModel SelectResultComponent
+        {
+            get { return _SelectResultComponent; }
+            set { Set(ref _SelectResultComponent, value);
+            }
+        }
+
+        private bool _Permission;
+        public bool Permission
+        {
+            get { return _Permission; }
+            set { Set(ref _Permission, value); }
+        }
+        #endregion
+
+        #region Command
+
+
+        private RelayCommand _GetRangeCommand;
+
+        /// <summary>
+        /// Gets the SaveCommand.
+        /// </summary>
+        public RelayCommand GetRangeCommand
+        {
+            get
+            {
+                return _GetRangeCommand
+                    ?? (_GetRangeCommand = new RelayCommand(GetRange));
+            }
+
+        }
+
+        private RelayCommand _SaveCommand;
+
+        /// <summary>
+        /// Gets the SaveCommand.
+        /// </summary>
+        public RelayCommand SaveCommand
+        {
+            get
+            {
+                return _SaveCommand
+                    ?? (_SaveCommand = new RelayCommand(SaveLabResult));
+            }
+
+        }
+        private RelayCommand _CloseCommand;
+
+        /// <summary>
+        /// Gets the CancelCommand.
+        /// </summary>
+        public RelayCommand CloseCommand
+        {
+            get
+            {
+                return _CloseCommand
+                    ?? (_CloseCommand = new RelayCommand(Close));
+            }
+
+        }
+
+        private RelayCommand _OpenLabImageCommand;
+
+        /// <summary>
+        /// Gets the OpenLabImageCommand.
+        /// </summary>
+        public RelayCommand OpenLabImageCommand
+        {
+            get
+            {
+                return _OpenLabImageCommand
+                    ?? (_OpenLabImageCommand = new RelayCommand(OpenLabImage));
+            }
+
+        }
+
+
+        private RelayCommand _ChooseFileCommand;
+
+        /// <summary>
+        /// Gets the ChooseFileCommand.
+        /// </summary>
+        public RelayCommand ChooseFileCommand
+        {
+            get
+            {
+                return _ChooseFileCommand
+                    ?? (_ChooseFileCommand = new RelayCommand(ChooseFile));
+            }
+
+        }
+
+
+        private RelayCommand _DeleteFileCommand;
+
+        /// <summary>
+        /// Gets the DeleteFileCommand.
+        /// </summary>
+        public RelayCommand DeleteFileCommand
+        {
+            get
+            {
+                return _DeleteFileCommand
+                    ?? (_DeleteFileCommand = new RelayCommand(DeleteFile));
+            }
+
+        }
+
+        
+
+        #endregion
+
+        #region Method
+
+        public EnterResultsLabViewModel()
+        {
+            ResultItemRanges = DataService.Technical.GetReferenceValueMany("LABRAM");
+            SelectResultItemRange = ResultItemRanges.FirstOrDefault();
+            int labTechnicianUID = DataService.Technical.GetReferenceValueByCode("CPTYP", "CPTEN06").Key ?? 0;
+            Permission = RoleIsConfidential();
+
+            //ไม่ใช่คลินิกหัวใจ
+            if (AppUtil.Current.OwnerOrganisationUID != 26)
+            {
+                Careprovider = DataService.UserManage.GetCareProviderByType(labTechnicianUID);
+                SelectCareprovider = Careprovider.FirstOrDefault();
+                QCCareprovider = DataService.UserManage.GetCareProviderByType(labTechnicianUID);
+                SelectQCCareprovider = QCCareprovider.FirstOrDefault();
+            }
+        }
+
+        private  void SaveLabResult()
+        {
+            try
+            {
+                //ไม่ใช่คลินิกหัวใจ
+                if (AppUtil.Current.OwnerOrganisationUID != 26)
+                {
+                    if (SelectCareprovider == null)
+                    {
+                        WarningDialog("กรุณาเลือกนักเทคนิคห้องปฏิบัติการ");
+                        return;
+                    }
+
+                    if (SelectQCCareprovider == null)
+                    {
+                        WarningDialog("กรุณาเลือกเจ้าหน้าที่ตรวจสอบผล");
+                        return;
+                    }
+                }
+
+                int careproviderUID = SelectCareprovider != null ? SelectCareprovider.CareproviderUID : 0;
+
+                List<RequestDetailItemModel> reviewRequestDetails = new List<RequestDetailItemModel>();
+                reviewRequestDetails = RequestDetailLabs.Where(p => p.ResultComponents.Count(f => !string.IsNullOrEmpty(f.ResultValue)) > 0).ToList();
+                if (reviewRequestDetails != null && reviewRequestDetails.Count > 0)
+                {
+                    foreach (var reviewRequestDetail in reviewRequestDetails)
+                    {
+                        reviewRequestDetail.ResultComponents = new ObservableCollection<ResultComponentModel>
+                            (RequestDetailLabs.FirstOrDefault(p => p.RequestDetailUID == reviewRequestDetail.RequestDetailUID).ResultComponents.Where(p => p.RequestDetailUID == reviewRequestDetail.RequestDetailUID && !string.IsNullOrEmpty(p.ResultValue)).ToList());
+
+                            reviewRequestDetail.ResultEnterUID = SelectCareprovider?.CareproviderUID;
+                            reviewRequestDetail.ResultedEnterBy = SelectCareprovider?.FullName;
+                            reviewRequestDetail.ResultQCUID = SelectQCCareprovider?.CareproviderUID;
+                            reviewRequestDetail.ResultedQCBy = SelectQCCareprovider?.FullName;
+                        
+                    }
+                }
+
+               
+                DataService.Lab.ReviewLabResult(reviewRequestDetails, careproviderUID, AppUtil.Current.UserID);
+                SaveSuccessDialog();
+                CloseViewDialog(ActionDialog.Save);
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+        }
+
+        public void AssignModel(RequestLabModel requestLab)
+        {
+            this.RequestLab = requestLab;
+
+            RequestDetailLabs = DataService.Lab.GetResultLabByRequestUID(RequestLab.RequestUID);
+            if (RequestDetailLabs != null && RequestDetailLabs.Count > 0)
+            {
+                RequestDetailLabs = RequestDetailLabs.Where(p => p.OrderStatus != "Cancelled").OrderBy(p => p.RequestItemName).ToList();
+                
+                if(RequestDetailLabs.FirstOrDefault(p => p.IsConfidential == "Y") != null)
+                {
+                    if(Permission != true)
+                    {
+                        foreach(var item in RequestDetailLabs.ToList())
+                        {
+                            if(item.IsConfidential == "Y")
+                            {
+                                RequestDetailLabs.Remove(item);
+                            }
+                        }
+                    }
+                }
+            }
+            //ไม่ใช่คลินิกหัวใจ
+            if (AppUtil.Current.OwnerOrganisationUID != 26)
+            {
+                int? resultBy = RequestDetailLabs.FirstOrDefault().ResultEnterUID;
+                int? qcBy = RequestDetailLabs.FirstOrDefault().ResultQCUID;
+                SelectCareprovider = resultBy != 0 ? Careprovider.FirstOrDefault(p => p.CareproviderUID == resultBy) : Careprovider.FirstOrDefault();
+                SelectQCCareprovider = qcBy != 0 ? QCCareprovider.FirstOrDefault(p => p.CareproviderUID == qcBy) : QCCareprovider.FirstOrDefault();
+            }
+        }
+        private void GetRange()
+        {
+            if (SelectResultItemRange != null)
+            {
+                var resultItemRange = DataService.Lab.GetResultItemRangeByLABRAMUID(SelectResultItemRange.Key.Value);
+                foreach (var item1 in RequestDetailLabs)
+                {
+                    foreach (var item2 in item1.ResultComponents)
+                    {
+                        var itemRange = resultItemRange.FirstOrDefault(p => p.ResultItemUID == item2.ResultItemUID && (p.SEXXXUID == 3));
+                        if (itemRange != null)
+                        {
+                            if (item2.ResultValueType == "Numeric")
+                            {
+                                item2.Low = itemRange.Low;
+                                item2.High = itemRange.High;
+                            }
+                            else if(item2.ResultValueType == "Free Text Field")
+                            {
+                                item2.ReferenceRange = itemRange.DisplayValue;
+                            }
+                        }
+                        else
+                        {
+                            var itemRangeGender = resultItemRange.FirstOrDefault(p => p.ResultItemUID == item2.ResultItemUID && (p.SEXXXUID == RequestLab.SEXXXUID));
+                            if (itemRangeGender != null)
+                            {
+                                if (item2.ResultValueType == "Numeric")
+                                {
+                                    item2.Low = itemRangeGender.Low;
+                                    item2.High = itemRangeGender.High;
+                                }
+                                else if (item2.ResultValueType == "Free Text Field")
+                                {
+                                    item2.ReferenceRange = itemRangeGender.DisplayValue;
+                                }
+                            }
+
+                        }
+
+                    }
+                }
+
+            }
+        }
+
+        private void Close()
+        {
+            CloseViewDialog(ActionDialog.Cancel);
+        }
+
+        private void OpenLabImage()
+        {
+            try
+            {
+                //if (SelectResultComponent.ResultComponentUID != 0  
+                //    && SelectResultComponent.ResultComponentUID != null
+                //    && SelectResultComponent.ImageContent == null)
+                //{
+                //    var imageData = DataService.Lab.GetResultImageByComponentUID(SelectResultComponent.ResultComponentUID ?? 0);
+                //    if (imageData != null)
+                //    {
+                //        SelectResultComponent.ImageContent = imageData.ImageContent;
+                //    }
+                //}
+
+                string extension = Path.GetExtension(SelectResultComponent.ResultValue); // "pdf", etc
+                string filename = System.IO.Path.GetTempFileName() + extension; // Makes something like "C:\Temp\blah.tmp.pdf"
+
+                File.WriteAllBytes(filename, SelectResultComponent.ImageContent);
+
+
+                var process = new System.Diagnostics.Process();
+                process.StartInfo.FileName = filename;
+                process.StartInfo.Verb = "Open";
+                process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+                process.EnableRaisingEvents = true;
+                //process.Exited += delegate
+                //{
+                //    System.IO.File.Delete(filename);
+                //};
+                process.Start();
+
+                // Clean up our temporary file...
+
+
+            }
+            catch (Exception ex)
+            {
+
+                ErrorDialog(ex.Message);
+            }
+
+        }
+        private void ChooseFile()
+        {
+            if (SelectResultComponent != null)
+            {
+                OpenFileDialog openDialog = new OpenFileDialog();
+                openDialog.Filter = @"Image files (*.bmp, *.gif, *.jpeg, *.jpg, *.png)|*.bmp; *.gif; *.jpeg; *.jpg; *.png
+|PDF (*.pdf)|*.pdf|Html (*.htm,*.html)|*.htm;*.html|Documents (*.doc,*.docx)|*.doc;*.docx";
+                openDialog.ShowDialog();
+                if (openDialog.FileName.Trim() != "")
+                {
+                    try
+                    {
+                        SelectResultComponent.ResultValue = openDialog.SafeFileName.Trim();
+                        byte[] fileData = File.ReadAllBytes(openDialog.FileName);
+                        SelectResultComponent.ImageContent = fileData;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorDialog(ex.Message);
+                    }
+                }
+            }
+        }
+
+        private void DeleteFile()
+        {
+            if (SelectResultComponent != null)
+            {
+                SelectResultComponent.ResultValue = string.Empty;
+                SelectResultComponent.ImageContent = null;
+            }
+        }
+
+        public void CalculateEGFR(double SCr)
+        {
+            if (SCr == 0)
+            {
+                var data = RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents;
+                if (data.Where(p => p.ResultItemCode == "C0073").FirstOrDefault().ResultValue != null)
+                {
+                    RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0073").FirstOrDefault().ResultValue = null;
+
+                }
+
+                if (data.Where(p => p.ResultItemCode == "C0074").FirstOrDefault().ResultValue != null)
+                {
+                    RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0074").FirstOrDefault().ResultValue = null;
+
+                }
+
+                if (data.Where(p => p.ResultItemCode == "C0075").FirstOrDefault().ResultValue != null)
+                {
+                    RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0075").FirstOrDefault().ResultValue = null;
+
+                }
+
+            }
+            else
+            {
+                var ptNation = DataService.PatientIdentity.GetPatientByHN(RequestLab.PatientID);
+
+                var age = double.Parse(this.RequestLab.PatientAge);
+                double eGFRval;
+                bool isFemale = this.RequestLab.SEXXXUID == 2 ? true : false;
+                bool Africa = false;
+                bool NonTHNonAf = false;
+                bool IsThai = false;
+                var val = 175 * Math.Pow(SCr, -1.154) * Math.Pow(age, -0.203);
+                
+
+                if (ptNation.NATNLUID != null)
+                {
+                    var NationalString = DataService.Technical.GetReferenceValue(ptNation.NATNLUID ?? 0);
+                    if (NationalString.Display.Contains("แอฟริกา"))
+                    {
+                        Africa = true;
+
+                    }
+
+                    if (NationalString.Display.Contains("ไทย"))
+                    {
+                        IsThai = true;
+                    }
+
+                    if (!NationalString.Display.Contains("แอฟริกา") && !NationalString.Display.Contains("ไทย"))
+                    {
+                        NonTHNonAf = true;
+                    }
+                }
+                else
+                {
+                    IsThai = true;
+                }
+
+                if (SCr != 0)
+                {
+                    double val2 = 0;
+                    if (isFemale == true)
+                    {
+                        #region eGFR (CKD-EPI)
+                        var valScr = SCr / 0.7;
+                        if (SCr <= 0.7)
+                        {
+
+                            val2 = 144 * Math.Pow(valScr, -0.329) * Math.Pow(0.993, age);
+                        }
+
+                        if (SCr > 0.7)
+                        {
+                            val2 = 144 * Math.Pow(valScr, -1.209) * Math.Pow(0.993, age);
+                        }
+
+                        #endregion
+                        eGFRval = Math.Round(val * 0.742, 2);
+
+                        if (Africa == true)
+                        {
+                            double eGFRvalAF;
+                            eGFRvalAF = Math.Round(eGFRval * 1.212, 2);
+                            RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0074").FirstOrDefault().ResultValue = eGFRvalAF.ToString();
+                        }
+
+                        if (IsThai == true)
+                        {
+                            var valFemale = Math.Round(val2, 2);
+                            //RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0073").FirstOrDefault().ResultValue = eGFRval.ToString();
+                            RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0073").FirstOrDefault().ResultValue = valFemale.ToString();
+                        }
+
+                        if (NonTHNonAf == true)
+                        {
+                            RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0075").FirstOrDefault().ResultValue = eGFRval.ToString();
+                        }
+                    }
+
+                    if (isFemale != true)
+                    {
+                        #region eGFR (CKD-EPI)
+                        var valScr = SCr / 0.9;
+                        double valMale = 0;
+                        if (SCr <= 0.9)
+                        {
+
+                            valMale = 141 * Math.Pow(valScr, -0.411) * Math.Pow(0.993, age);
+                        }
+
+                        if (SCr > 0.9)
+                        {
+                            valMale = 141 * Math.Pow(valScr, -1.209) * Math.Pow(0.993, age);
+                        }
+
+                        #endregion
+
+                        if (Africa == true)
+                        {
+                            double eGFRvalAF;
+                            eGFRvalAF = Math.Round(val * 1.212, 2);
+                            RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0074").FirstOrDefault().ResultValue = eGFRvalAF.ToString();
+                        }
+
+                        if (IsThai == true)
+                        {
+                            //RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0073").FirstOrDefault().ResultValue = Math.Round(val, 2).ToString();
+                            RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0073").FirstOrDefault().ResultValue = Math.Round(valMale, 2).ToString();
+                        }
+
+                        if (NonTHNonAf == true)
+                        {
+                            RequestDetailLabs.FirstOrDefault(p => p.RequestItemCode == "LAB212").ResultComponents.Where(p => p.ResultItemCode == "C0075").FirstOrDefault().ResultValue = Math.Round(val, 2).ToString();
+                        }
+                    }
+                }
+            }
+        }
+
+        #endregion
+    }
+}

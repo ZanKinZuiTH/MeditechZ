@@ -1,0 +1,171 @@
+C:\Users\cacheconnect\Desktop\XMedAssist\ShareLibrary\bin\Release\ShareLibrary.dll
+C:\Users\cacheconnect\Desktop\XMedAssist\ShareLibrary\bin\Release\ShareLibrary.pdb
+C:\Users\cacheconnect\Desktop\XMedAssist\ShareLibrary\bin\Release\Ionic.Zip.dll
+C:\Users\cacheconnect\Desktop\XMedAssist\ShareLibrary\obj\Release\ShareLibrary.dll
+C:\Users\cacheconnect\Desktop\XMedAssist\ShareLibrary\obj\Release\ShareLibrary.pdb
+C:\Users\cacheconnect\Documents\Visual Studio 2013\Projects\XmedAssist\ShareLibrary\bin\Release\ShareLibrary.dll
+C:\Users\cacheconnect\Documents\Visual Studio 2013\Projects\XmedAssist\ShareLibrary\bin\Release\ShareLibrary.pdb
+C:\Users\cacheconnect\Documents\Visual Studio 2013\Projects\XmedAssist\ShareLibrary\bin\Release\Excel.dll
+C:\Users\cacheconnect\Documents\Visual Studio 2013\Projects\XmedAssist\ShareLibrary\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\cacheconnect\Documents\Visual Studio 2013\Projects\XmedAssist\ShareLibrary\bin\Release\Ionic.Zip.dll
+C:\Users\cacheconnect\Documents\Visual Studio 2013\Projects\XmedAssist\ShareLibrary\bin\Release\Excel.pdb
+C:\Users\cacheconnect\Documents\Visual Studio 2013\Projects\XmedAssist\ShareLibrary\obj\Release\ShareLibrary.csprojResolveAssemblyReference.cache
+C:\Users\cacheconnect\Documents\Visual Studio 2013\Projects\XmedAssist\ShareLibrary\obj\Release\ShareLibrary.dll
+C:\Users\cacheconnect\Documents\Visual Studio 2013\Projects\XmedAssist\ShareLibrary\obj\Release\ShareLibrary.pdb
+C:\Users\cacheconnect\Desktop\จิปาถะ\Backup Program\XmedAssist\ShareLibrary\bin\Release\ShareLibrary.dll
+C:\Users\cacheconnect\Desktop\จิปาถะ\Backup Program\XmedAssist\ShareLibrary\bin\Release\ShareLibrary.pdb
+C:\Users\cacheconnect\Desktop\จิปาถะ\Backup Program\XmedAssist\ShareLibrary\bin\Release\Excel.dll
+C:\Users\cacheconnect\Desktop\จิปาถะ\Backup Program\XmedAssist\ShareLibrary\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\cacheconnect\Desktop\จิปาถะ\Backup Program\XmedAssist\ShareLibrary\bin\Release\Ionic.Zip.dll
+C:\Users\cacheconnect\Desktop\จิปาถะ\Backup Program\XmedAssist\ShareLibrary\bin\Release\Excel.pdb
+C:\Users\cacheconnect\Desktop\จิปาถะ\Backup Program\XmedAssist\ShareLibrary\obj\Release\ShareLibrary.csprojResolveAssemblyReference.cache
+C:\Users\cacheconnect\Desktop\จิปาถะ\Backup Program\XmedAssist\ShareLibrary\obj\Release\ShareLibrary.dll
+C:\Users\cacheconnect\Desktop\จิปาถะ\Backup Program\XmedAssist\ShareLibrary\obj\Release\ShareLibrary.pdb
+C:\Users\cacheconnect\Desktop\Project P2\MediTechData\ShareLibrary\bin\Release\ShareLibrary.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechData\ShareLibrary\bin\Release\ShareLibrary.pdb
+C:\Users\cacheconnect\Desktop\Project P2\MediTechData\ShareLibrary\bin\Release\Newtonsoft.Json.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechData\ShareLibrary\obj\Release\ShareLibrary.csprojResolveAssemblyReference.cache
+C:\Users\cacheconnect\Desktop\Project P2\MediTechData\ShareLibrary\obj\Release\ShareLibrary.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechData\ShareLibrary\obj\Release\ShareLibrary.pdb
+D:\Project P2\MediTechData\ShareLibrary\bin\Release\ShareLibrary.dll
+D:\Project P2\MediTechData\ShareLibrary\bin\Release\ShareLibrary.pdb
+D:\Project P2\MediTechData\ShareLibrary\bin\Release\Excel.dll
+D:\Project P2\MediTechData\ShareLibrary\bin\Release\ICSharpCode.SharpZipLib.dll
+D:\Project P2\MediTechData\ShareLibrary\bin\Release\Newtonsoft.Json.dll
+D:\Project P2\MediTechData\ShareLibrary\bin\Release\System.Net.Http.Formatting.dll
+D:\Project P2\MediTechData\ShareLibrary\bin\Release\System.Web.Http.dll
+D:\Project P2\MediTechData\ShareLibrary\bin\Release\Excel.pdb
+D:\Project P2\MediTechData\ShareLibrary\bin\Release\Newtonsoft.Json.xml
+D:\Project P2\MediTechData\ShareLibrary\bin\Release\System.Net.Http.Formatting.xml
+D:\Project P2\MediTechData\ShareLibrary\bin\Release\System.Web.Http.xml
+D:\Project P2\MediTechData\ShareLibrary\obj\Release\ShareLibrary.csprojResolveAssemblyReference.cache
+D:\Project P2\MediTechData\ShareLibrary\obj\Release\ShareLibrary.dll
+D:\Project P2\MediTechData\ShareLibrary\obj\Release\ShareLibrary.pdb
+D:\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\ShareLibrary.dll.config
+D:\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\ShareLibrary.dll
+D:\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\ShareLibrary.pdb
+D:\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\Excel.dll
+D:\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\ICSharpCode.SharpZipLib.dll
+D:\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\Newtonsoft.Json.dll
+D:\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\System.Net.Http.Formatting.dll
+D:\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\System.Web.Http.dll
+D:\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\Excel.pdb
+D:\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\Newtonsoft.Json.xml
+D:\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\System.Net.Http.Formatting.xml
+D:\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\System.Web.Http.xml
+D:\Project P2\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.csprojResolveAssemblyReference.cache
+D:\Project P2\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.csproj.CoreCompileInputs.cache
+D:\Project P2\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.dll
+D:\Project P2\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.pdb
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\ShareLibrary.dll.config
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\ShareLibrary.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\ShareLibrary.pdb
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\DevExpress.Data.v20.2.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\DevExpress.Xpo.v20.2.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\DotNetZip.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\Excel.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\Newtonsoft.Json.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\System.Net.Http.Formatting.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\System.Web.Http.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\DevExpress.Data.v20.2.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\DevExpress.Xpo.v20.2.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\DotNetZip.pdb
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\DotNetZip.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\Excel.pdb
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\Newtonsoft.Json.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\System.Net.Http.Formatting.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\System.Web.Http.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\de\DevExpress.Data.v20.2.resources.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\es\DevExpress.Data.v20.2.resources.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\ja\DevExpress.Data.v20.2.resources.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\ru\DevExpress.Data.v20.2.resources.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\de\DevExpress.Xpo.v20.2.resources.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\es\DevExpress.Xpo.v20.2.resources.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\ja\DevExpress.Xpo.v20.2.resources.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Release\ru\DevExpress.Xpo.v20.2.resources.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.csproj.CoreCompileInputs.cache
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.csproj.CopyComplete
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.pdb
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.csprojAssemblyReference.cache
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\ShareLibrary.dll.config
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\ShareLibrary.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\ShareLibrary.pdb
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\DotNetZip.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\Excel.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\Newtonsoft.Json.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\System.Net.Http.Formatting.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\System.Web.Http.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\DotNetZip.pdb
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\DotNetZip.xml
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\Excel.pdb
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\Newtonsoft.Json.xml
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\System.Net.Http.Formatting.xml
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\System.Web.Http.xml
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.csproj.AssemblyReference.cache
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.csproj.CoreCompileInputs.cache
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.csproj.CopyComplete
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.pdb
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\ShareLibrary.dll.config
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\ShareLibrary.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\ShareLibrary.pdb
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\DotNetZip.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\Excel.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\Newtonsoft.Json.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\System.Net.Http.Formatting.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\System.Web.Http.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\DotNetZip.pdb
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\DotNetZip.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\Excel.pdb
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\Newtonsoft.Json.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\System.Net.Http.Formatting.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\bin\Release\System.Web.Http.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.csproj.AssemblyReference.cache
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.csproj.CoreCompileInputs.cache
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.csproj.CopyComplete
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.pdb
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\ShareLibrary\bin\Release\ShareLibrary.dll.config
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\ShareLibrary\bin\Release\ShareLibrary.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\ShareLibrary\bin\Release\ShareLibrary.pdb
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\ShareLibrary\bin\Release\DotNetZip.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\ShareLibrary\bin\Release\Excel.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\ShareLibrary\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\ShareLibrary\bin\Release\Newtonsoft.Json.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\ShareLibrary\bin\Release\System.Net.Http.Formatting.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\ShareLibrary\bin\Release\System.Web.Http.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\ShareLibrary\bin\Release\DotNetZip.pdb
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\ShareLibrary\bin\Release\DotNetZip.xml
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\ShareLibrary\bin\Release\Excel.pdb
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\ShareLibrary\bin\Release\Newtonsoft.Json.xml
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\ShareLibrary\bin\Release\System.Net.Http.Formatting.xml
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\ShareLibrary\bin\Release\System.Web.Http.xml
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.csproj.AssemblyReference.cache
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.csproj.CoreCompileInputs.cache
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLib.E71E47A3.Up2Date
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.dll
+C:\Users\BRXGDev\Desktop\Meditech\Meditech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.pdb
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\ShareLibrary\bin\Release\ShareLibrary.dll.config
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\ShareLibrary\bin\Release\ShareLibrary.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\ShareLibrary\bin\Release\ShareLibrary.pdb
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\ShareLibrary\bin\Release\DotNetZip.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\ShareLibrary\bin\Release\Excel.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\ShareLibrary\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\ShareLibrary\bin\Release\Newtonsoft.Json.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\ShareLibrary\bin\Release\System.Net.Http.Formatting.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\ShareLibrary\bin\Release\System.Web.Http.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\ShareLibrary\bin\Release\DotNetZip.pdb
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\ShareLibrary\bin\Release\DotNetZip.xml
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\ShareLibrary\bin\Release\Excel.pdb
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\ShareLibrary\bin\Release\Newtonsoft.Json.xml
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\ShareLibrary\bin\Release\System.Net.Http.Formatting.xml
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\ShareLibrary\bin\Release\System.Web.Http.xml
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.csproj.AssemblyReference.cache
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.csproj.CoreCompileInputs.cache
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\ShareLibrary\obj\Release\ShareLib.E71E47A3.Up2Date
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.dll
+C:\Users\BRXGDev\Desktop\Meditech101 update by GQOM แก้ zinc in serum กับ formaldehide in urine\Meditech101\Meditech\MediTech\MediTechData\ShareLibrary\obj\Release\ShareLibrary.pdb

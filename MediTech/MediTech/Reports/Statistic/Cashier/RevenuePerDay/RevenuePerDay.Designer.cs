@@ -78,6 +78,7 @@ namespace MediTech.Reports.Statistic.Cashier
             this.crossTabDataStyle1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.crossTabTotalStyle1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.GroupFooter1 = new DevExpress.XtraReports.UI.GroupFooterBand();
+            this.xrSubreport1 = new DevExpress.XtraReports.UI.XRSubreport();
             this.xrTable2 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow4 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -85,7 +86,6 @@ namespace MediTech.Reports.Statistic.Cashier
             this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.Incharge = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrSubreport1 = new DevExpress.XtraReports.UI.XRSubreport();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrCrossTab1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -504,6 +504,14 @@ namespace MediTech.Reports.Statistic.Cashier
             this.GroupFooter1.HeightF = 280.3686F;
             this.GroupFooter1.Name = "GroupFooter1";
             // 
+            // xrSubreport1
+            // 
+            this.xrSubreport1.LocationFloat = new DevExpress.Utils.PointFloat(42.04F, 101.6217F);
+            this.xrSubreport1.Name = "xrSubreport1";
+            this.xrSubreport1.ReportSource = new MediTech.Reports.Statistic.Cashier.PayorSummeryCount();
+            this.xrSubreport1.SizeF = new System.Drawing.SizeF(480.2397F, 162.7469F);
+            this.xrSubreport1.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrSubreport1_BeforePrint);
+            // 
             // xrTable2
             // 
             this.xrTable2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
@@ -576,14 +584,6 @@ namespace MediTech.Reports.Statistic.Cashier
             this.Incharge.Description = "เจ้าหน้าที่ Incharge";
             this.Incharge.Name = "Incharge";
             // 
-            // xrSubreport1
-            // 
-            this.xrSubreport1.LocationFloat = new DevExpress.Utils.PointFloat(42.04F, 101.6217F);
-            this.xrSubreport1.Name = "xrSubreport1";
-            this.xrSubreport1.ReportSource = new MediTech.Reports.Statistic.Cashier.PayorSummeryCount();
-            this.xrSubreport1.SizeF = new System.Drawing.SizeF(480.2397F, 162.7469F);
-            this.xrSubreport1.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrSubreport1_BeforePrint);
-            // 
             // RevenuePerDay
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -609,7 +609,7 @@ namespace MediTech.Reports.Statistic.Cashier
             this.crossTabHeaderStyle1,
             this.crossTabDataStyle1,
             this.crossTabTotalStyle1});
-            this.Version = "20.2";
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrCrossTab1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();

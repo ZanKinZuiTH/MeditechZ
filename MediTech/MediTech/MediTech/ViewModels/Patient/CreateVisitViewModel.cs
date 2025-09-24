@@ -1,0 +1,1254 @@
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
+using MediTech.DataService;
+using MediTech.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using ShareLibrary;
+using System.Windows.Media.Imaging;
+using System.IO;
+using MediTech.Helpers;
+using MediTech.Views;
+using System.Drawing;
+using System.Collections.ObjectModel;
+using DevExpress.XtraReports.UI;
+using MediTech.Reports.Operating.Patient;
+
+namespace MediTech.ViewModels
+{
+    public class CreateVisitViewModel : MediTechViewModelBase
+    {
+        #region Properties
+
+        //private List<HealthOrganisationModel> _Organisations;
+
+        //public List<HealthOrganisationModel> Organisations
+        //{
+        //    get { return _Organisations; }
+        //    set { Set(ref _Organisations, value); }
+        //}
+
+        //private HealthOrganisationModel _SelectOrganisation;
+
+        //public HealthOrganisationModel SelectOrganisation
+        //{
+        //    get { return _SelectOrganisation; }
+        //    set
+        //    {
+        //        Set(ref _SelectOrganisation, value);
+        //        if (SelectOrganisation != null)
+        //        {
+        //            Locations = DataService.MasterData.GetLocationIsRegister(SelectOrganisation.HealthOrganisationUID);
+        //            SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
+        //            if (SelectOrganisation.HealthOrganisationUID == 5)
+        //            {
+        //                SelectedVisitType = VisitTypeSource.FirstOrDefault(p => p.ValueCode == "MBCHK");
+        //            }
+        //        }
+        //    }
+        //}
+
+        private List<LocationModel> _Locations;
+
+        public List<LocationModel> Locations
+        {
+            get { return _Locations; }
+            set { Set(ref _Locations, value); }
+        }
+
+        private LocationModel _SelectLocation;
+
+        public LocationModel SelectLocation
+        {
+            get { return _SelectLocation; }
+            set
+            {
+                Set(ref _SelectLocation, value);
+            }
+        }
+
+
+        private List<LookupReferenceValueModel> _VisitTypeSource;
+
+        public List<LookupReferenceValueModel> VisitTypeSource
+        {
+            get { return _VisitTypeSource; }
+            set
+            {
+                Set(ref _VisitTypeSource, value);
+            }
+        }
+
+        private List<LookupReferenceValueModel> _EncouterTypeSource;
+
+        public List<LookupReferenceValueModel> EncouterTypeSource
+        {
+            get { return _EncouterTypeSource; }
+            set
+            {
+                Set(ref _EncouterTypeSource, value);
+            }
+        }
+
+
+        private LookupReferenceValueModel _SelectedVisitType;
+
+        public LookupReferenceValueModel SelectedVisitType
+        {
+            get { return _SelectedVisitType; }
+            set
+            {
+                Set(ref _SelectedVisitType, value);
+                if (_SelectedVisitType != null)
+                {
+                    VisibiltyCheckupCompany = Visibility.Collapsed;
+                    VisibiltyEmployerAddress = Visibility.Collapsed;
+                    VisibilityCareprovider2 = Visibility.Collapsed;
+                    CareproviderLabel = "แพทย์";
+                    CareproviderLabel2 = "";
+                    if (SelectedVisitType.ValueCode == "MBCHK" || SelectedVisitType.ValueCode == "CHKUP" || SelectedVisitType.ValueCode == "CHKIN" || SelectedVisitType.ValueCode == "CHKIN5" || SelectedVisitType.ValueCode == "CHKIN6")
+                    {
+                        if (CheckupJobSource == null)
+                        {
+                            CheckupJobSource = DataService.Checkup.GetCheckupJobContactAllActive();
+                        }
+
+                        VisibiltyCheckupCompany = Visibility.Visible;
+                    }
+                    if (SelectedVisitType.ValueCode == "CHKIN3" || SelectedVisitType.ValueCode == "UCS1" || SelectedVisitType.ValueCode == "UCS2" || SelectedVisitType.ValueCode == "UCS3")
+                    {
+                        VisibiltyEmployerAddress = Visibility.Visible;
+                        VisibilityCareprovider2 = Visibility.Visible;
+                        CareproviderLabel2 = "แพทย์ DRC";
+                    }
+
+                    if (SelectedVisitType.ValueCode == "CHKIN4" || SelectedVisitType.ValueCode == "CHKIN5" || SelectedVisitType.ValueCode == "CHKIN6")
+                    {
+                        VisibilityCareprovider2 = Visibility.Visible;
+                        CareproviderLabel = "แพทย์อาชีว";
+                        CareproviderLabel2 = "แพทย์ GP";
+                    }
+                }
+            }
+        }
+
+        private DateTime _StartDate;
+
+        public DateTime StartDate
+        {
+            get { return _StartDate; }
+            set { Set(ref _StartDate, value); }
+        }
+
+        private DateTime _StartTime;
+        public DateTime StartTime
+        {
+            get { return _StartTime; }
+            set { Set(ref _StartTime, value); }
+        }
+
+
+        private List<LookupReferenceValueModel> _PrioritySource;
+
+        public List<LookupReferenceValueModel> PrioritySource
+        {
+            get { return _PrioritySource; }
+            set
+            {
+                Set(ref _PrioritySource, value);
+            }
+        }
+
+
+        private LookupReferenceValueModel _SelectedPriority;
+
+        public LookupReferenceValueModel SelectedPriority
+        {
+            get { return _SelectedPriority; }
+            set
+            {
+                Set(ref _SelectedPriority, value);
+            }
+        }
+
+        private List<LookupReferenceValueModel> _PayorTypes;
+
+        public List<LookupReferenceValueModel> PayorTypes
+        {
+            get { return _PayorTypes; }
+            set
+            {
+                Set(ref _PayorTypes, value);
+            }
+        }
+
+
+        private LookupReferenceValueModel _SelectedPayorType;
+
+        public LookupReferenceValueModel SelectedPayorType
+        {
+            get { return _SelectedPayorType; }
+            set
+            {
+                Set(ref _SelectedPayorType, value);
+            }
+        }
+
+        private List<InsuranceCompanyModel> _InsuranceCompanys;
+
+        public List<InsuranceCompanyModel> InsuranceCompanys
+        {
+            get { return _InsuranceCompanys; }
+            set { Set(ref _InsuranceCompanys, value); }
+        }
+
+        private InsuranceCompanyModel _SelectInsuranceCompany;
+
+        public InsuranceCompanyModel SelectInsuranceCompany
+        {
+            get { return _SelectInsuranceCompany; }
+            set
+            {
+                Set(ref _SelectInsuranceCompany, value);
+                if (_SelectInsuranceCompany != null)
+                {
+                    InsurancePlans = DataService.Billing.GetInsurancePlans(_SelectInsuranceCompany.InsuranceCompanyUID);
+                }
+            }
+        }
+
+        private List<InsurancePlanModel> _InsurancePlans;
+
+        public List<InsurancePlanModel> InsurancePlans
+        {
+            get { return _InsurancePlans; }
+            set { Set(ref _InsurancePlans, value); }
+        }
+
+        private InsurancePlanModel _SelectInsurancePlan;
+
+        public InsurancePlanModel SelectInsurancePlan
+        {
+            get { return _SelectInsurancePlan; }
+            set
+            {
+                Set(ref _SelectInsurancePlan, value);
+                if (_SelectInsurancePlan != null)
+                {
+                    OPDCoverPerDay = _SelectInsurancePlan.OPDCoverPerDay;
+                    FixedCopayAmount = _SelectInsurancePlan.FixedCopayAmount;
+                    ClaimPercentage = _SelectInsurancePlan.ClaimPercentage;
+                }
+            }
+        }
+
+        private List<CheckupJobContactModel> _CheckupJobSource;
+
+        public List<CheckupJobContactModel> CheckupJobSource
+        {
+            get { return _CheckupJobSource; }
+            set { Set(ref _CheckupJobSource, value); }
+        }
+
+        private CheckupJobContactModel _SelectedCheckupJob;
+
+        public CheckupJobContactModel SelectedCheckupJob
+        {
+            get { return _SelectedCheckupJob; }
+            set { Set(ref _SelectedCheckupJob, value); }
+        }
+
+        private List<PatientVisitPayorModel> _deletedVisitPayorList;
+        private ObservableCollection<PatientVisitPayorModel> _PatientVisitPayorList;
+
+        public ObservableCollection<PatientVisitPayorModel> PatientVisitPayorList
+        {
+            get { return _PatientVisitPayorList; }
+            set { Set(ref _PatientVisitPayorList, value); }
+        }
+
+        private PatientVisitPayorModel _SelectedPatientVisitPayor;
+
+        public PatientVisitPayorModel SelectedPatientVisitPayor
+        {
+            get { return _SelectedPatientVisitPayor; }
+            set
+            {
+                Set(ref _SelectedPatientVisitPayor, value);
+                if (_SelectedPatientVisitPayor != null)
+                {
+                    SelectedPayorType = PayorTypes.FirstOrDefault(p => p.Key == _SelectedPatientVisitPayor.PAYRTPUID);
+                    SelectInsuranceCompany = InsuranceCompanys.FirstOrDefault(p => p.InsuranceCompanyUID == _SelectedPatientVisitPayor.InsuranceCompanyUID);
+                    SelectInsurancePlan = InsurancePlans.FirstOrDefault(p => p.PayorAgreementUID == _SelectedPatientVisitPayor.PayorAgreementUID);
+                    OPDCoverPerDay = _SelectedPatientVisitPayor.EligibleAmount;
+                    ClaimPercentage = _SelectedPatientVisitPayor.ClaimPercentage;
+                    FixedCopayAmount = _SelectedPatientVisitPayor.FixedCopayAmount;
+                    ActiveFrom = _SelectedPatientVisitPayor.ActiveFrom;
+                    ActiveTo = _SelectedPatientVisitPayor.ActiveTo;
+                }
+
+            }
+        }
+
+        private List<CareproviderModel> _CareproviderSource;
+
+        public List<CareproviderModel> CareproviderSource
+        {
+            get { return _CareproviderSource; }
+            set { Set(ref _CareproviderSource, value); }
+        }
+
+        private CareproviderModel _SelectedCareprovider;
+
+        public CareproviderModel SelectedCareprovider
+        {
+            get { return _SelectedCareprovider; }
+            set { Set(ref _SelectedCareprovider, value); }
+        }
+
+
+        private CareproviderModel _SelectedCareprovider2;
+
+        public CareproviderModel SelectedCareprovider2
+        {
+            get { return _SelectedCareprovider2; }
+            set { Set(ref _SelectedCareprovider2, value); }
+        }
+
+        private string _CareproviderLabel = "แพทย์";
+
+        public string CareproviderLabel
+        {
+            get { return _CareproviderLabel; }
+            set { Set(ref _CareproviderLabel, value); }
+        }
+
+        private string _CareproviderLabel2;
+
+        public string CareproviderLabel2
+        {
+            get { return _CareproviderLabel2; }
+            set { Set(ref _CareproviderLabel2, value); }
+        }   
+
+
+
+        private string _CommentDoctor;
+
+        public string CommentDoctor
+        {
+            get { return _CommentDoctor; }
+            set { Set(ref _CommentDoctor, value); }
+        }
+
+        private string _Comments;
+
+        public string Comments
+        {
+            get { return _Comments; }
+            set { Set(ref _Comments, value); }
+        }
+
+        private string _Company;
+
+        public string Company
+        {
+            get { return _Company; }
+            set { Set(ref _Company, value); }
+        }
+        
+        private string _EmployerAddress;
+
+        public string EmployerAddress
+        {
+            get { return _EmployerAddress; }
+            set { Set(ref _EmployerAddress, value); }
+        }
+
+        private double? _OPDCoverPerDay;
+
+        public double? OPDCoverPerDay
+        {
+            get { return _OPDCoverPerDay; }
+            set { Set(ref _OPDCoverPerDay, value); }
+        }
+
+        private double? _ClaimPercentage;
+
+        public double? ClaimPercentage
+        {
+            get { return _ClaimPercentage; }
+            set { Set(ref _ClaimPercentage, value); }
+        }
+
+        private double? _FixedCopayAmount;
+
+        public double? FixedCopayAmount
+        {
+            get { return _FixedCopayAmount; }
+            set { Set(ref _FixedCopayAmount, value); }
+        }
+
+
+        private DateTime? _ActiveForm;
+
+        public DateTime? ActiveFrom
+        {
+            get { return _ActiveForm; }
+            set { Set(ref _ActiveForm, value); }
+        }
+
+        private DateTime? _ActiveTo;
+
+        public DateTime? ActiveTo
+        {
+            get { return _ActiveTo; }
+            set { Set(ref _ActiveTo, value); }
+        }
+
+        private Visibility _VisibiltyEmployerAddress = Visibility.Collapsed;
+
+        public Visibility VisibiltyEmployerAddress
+        {
+            get { return _VisibiltyEmployerAddress; }
+            set { Set(ref _VisibiltyEmployerAddress, value); }
+        }
+
+        private Visibility _VisibiltyCheckupCompany = Visibility.Collapsed;
+
+        public Visibility VisibiltyCheckupCompany
+        {
+            get { return _VisibiltyCheckupCompany; }
+            set { Set(ref _VisibiltyCheckupCompany, value); }
+        }
+
+
+        private Visibility _VisibilityCancelVisit;
+
+        public Visibility VisibilityCancelVisit
+        {
+            get { return _VisibilityCancelVisit; }
+            set { Set(ref _VisibilityCancelVisit, value); }
+        }
+
+        private Visibility _VisibilityCancel;
+
+        public Visibility VisibilityCancel
+        {
+            get { return _VisibilityCancel; }
+            set { Set(ref _VisibilityCancel, value); }
+        }
+
+        private bool _IsUpdateVisit = false;
+
+        public bool IsUpdateVisit
+        {
+            get { return _IsUpdateVisit; }
+            set { Set(ref _IsUpdateVisit, value); }
+        }
+
+        private bool? _IsDupicateVisit;
+
+        public bool? IsDupicateVisit
+        {
+            get { return _IsDupicateVisit; }
+            set { Set(ref _IsDupicateVisit, value); }
+        }
+
+        private Visibility _VisibilityCareprovider2 = Visibility.Collapsed;
+
+        public Visibility VisibilityCareprovider2
+        {
+            get { return _VisibilityCareprovider2; }
+            set { Set(ref _VisibilityCareprovider2, value); }
+        }
+
+
+        private PatientInformationModel _Patient;
+
+        public PatientInformationModel Patient
+        {
+            get { return _Patient; }
+            set
+            {
+                Set(ref _Patient, value);
+                if (_Patient != null)
+                {
+                    IsPatientVisibility = Visibility.Visible;
+                }
+                else
+                {
+                    IsPatientVisibility = Visibility.Collapsed;
+                }
+            }
+        }
+
+        private Visibility _IsPatientVisibility = Visibility.Collapsed;
+
+        public Visibility IsPatientVisibility
+        {
+            get { return _IsPatientVisibility; }
+            set { Set(ref _IsPatientVisibility, value); }
+        }
+
+
+        private BookingModel _Booking;
+
+        public BookingModel Booking
+        {
+            get { return _Booking; }
+            set
+            {
+                _Booking = value;
+
+            }
+        }
+
+        private bool _UseReadCard = false;
+
+        public bool UseReadCard
+        {
+            get { return _UseReadCard; }
+            set { _UseReadCard = value; }
+        }
+
+        private bool _IsMassRegister = false;
+
+        public bool IsMassRegister
+        {
+            get { return _IsMassRegister; }
+            set { _IsMassRegister = value; }
+        }
+
+        private Visibility _ShowSaveButton = Visibility.Collapsed;
+
+        public Visibility ShowSaveButton
+        {
+            get { return _ShowSaveButton; }
+            set { Set(ref _ShowSaveButton, value); }
+        }
+
+        public PatientVisitModel PatientVisitInfo { get; set; }
+        #endregion
+
+        #region Command
+        private RelayCommand _AddVisitPayorCommand;
+
+        public RelayCommand AddVisitPayorCommand
+        {
+            get { return _AddVisitPayorCommand ?? (_AddVisitPayorCommand = new RelayCommand(AddVisitPayor)); }
+        }
+
+        private RelayCommand _UpdateVisitPayorCommand;
+
+        public RelayCommand UpdateVisitPayorCommand
+        {
+            get { return _UpdateVisitPayorCommand ?? (_UpdateVisitPayorCommand = new RelayCommand(UpdateVisitPayor)); }
+        }
+
+        private RelayCommand _DeleteVisitPayorCommand;
+
+        public RelayCommand DeleteVisitPayorCommand
+        {
+            get { return _DeleteVisitPayorCommand ?? (_DeleteVisitPayorCommand = new RelayCommand(DeleteVisitPayor)); }
+        }
+
+
+
+        private RelayCommand _SaveCommand;
+
+        public RelayCommand SaveCommand
+        {
+            get { return _SaveCommand ?? (_SaveCommand = new RelayCommand(SavePatientVisit)); }
+        }
+
+        private RelayCommand _SaveAndPrintCommand;
+
+        public RelayCommand SaveAndPrintCommand
+        {
+            get { return _SaveAndPrintCommand ?? (_SaveAndPrintCommand = new RelayCommand(SaveAndPrintPatientVisit)); }
+        }
+
+        private RelayCommand _CancelCommand;
+
+        public RelayCommand CancelCommand
+        {
+            get { return _CancelCommand ?? (_CancelCommand = new RelayCommand(Cancel)); }
+        }
+        #endregion
+
+        #region Method
+
+
+        public override void OnLoaded()
+        {
+            base.OnLoaded();
+            DateTime now = DateTime.Now;
+
+
+            var LocationSource = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
+            Locations = LocationSource.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+            List<LookupReferenceValueModel> dataLookupSource = DataService.Technical.GetReferenceValueList("VISTY,RQPRT,PAYRTP,ENTYP");
+            //Organisations = GetHealthOrganisationMedical();
+            VisitTypeSource = dataLookupSource.Where(p => p.DomainCode == "VISTY").ToList();
+            PrioritySource = dataLookupSource.Where(P => P.DomainCode == "RQPRT").ToList();
+            PayorTypes = dataLookupSource.Where(P => P.DomainCode == "PAYRTP").ToList();
+            CareproviderSource = DataService.UserManage.GetCareproviderDoctor();
+            InsuranceCompanys = DataService.Billing.GetInsuranceCompanies();
+            EncouterTypeSource = dataLookupSource.Where(p => p.DomainCode == "ENTYP").ToList();
+            //SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+            SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
+            SelectedVisitType = VisitTypeSource.FirstOrDefault();
+            SelectedPriority = PrioritySource.FirstOrDefault(p => p.Key == 440);
+
+            StartDate = now.Date;
+            StartTime = now;
+
+            ActiveFrom = now;
+
+            if (Patient != null)
+            {
+                (this.View as CreateVisit).banner.SetPatientBanner(Patient.PatientUID, 0);
+                LoadPatientVisitPayors();
+            }
+            else
+            {
+                SelectedVisitType = VisitTypeSource.FirstOrDefault(p => p.Display == "Mobile X-ray");
+            }
+
+            if (PatientVisitPayorList != null && PatientVisitPayorList.Count() > 0 && PayorTypes != null)
+                SelectedPayorType = (from p in PayorTypes where (!(from q in PatientVisitPayorList select q.PAYRTPUID).Contains(p.Key)) select p).FirstOrDefault();
+            else
+                SelectedPayorType = PayorTypes.FirstOrDefault(p => p.ValueCode == "PRIMARY");
+
+
+            if (IsUpdateVisit == false && !IsMassRegister)
+            {
+                #region CheckVisitDuplicate
+
+                List<PatientVisitModel> visitData = DataService.PatientIdentity.GetPatientVisitByPatientUID(Patient.PatientUID);
+                if (visitData != null && visitData.Count > 0)
+                {
+                    var notCloseVisit = visitData.FirstOrDefault(p => p.VisitType != "Mobile X-ray" && p.EndDttm == null);
+                    if (notCloseVisit != null)
+                    {
+                        MessageBoxResult dialogResult = System.Windows.MessageBox.Show("ผู้ป่วยมีการลงทะเบียนที่ยังไม่ปิดไว้วันที่ " + notCloseVisit.StartDttm.Value.ToString("dd/MM/yyyy") + "\r\n คุณต้องการลงทะเบียนต่อหรือไม่ ? ", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                        if (dialogResult == MessageBoxResult.Yes)
+                        {
+                            IsDupicateVisit = true;
+                        }
+                        else
+                        {
+                            IsDupicateVisit = false;
+                            return;
+                        }
+                    }
+                }
+
+
+                #endregion
+            }
+
+            if (Booking != null)
+            {
+                SelectedCareprovider = CareproviderSource?.FirstOrDefault(p => p.CareproviderUID == Booking.CareProviderUID);
+            }
+        }
+
+
+
+        void LoadPatientVisitPayors()
+        {
+            _deletedVisitPayorList = new List<PatientVisitPayorModel>();
+            PatientVisitPayorList = new ObservableCollection<PatientVisitPayorModel>();
+            var patientInsuranceDetail = DataService.PatientIdentity.GetPatientInsuranceDetail(Patient.PatientUID);
+            if (patientInsuranceDetail != null && patientInsuranceDetail.Count > 0)
+            {
+                foreach (var aIns in patientInsuranceDetail)
+                {
+                    if (aIns.EndDttm == null || aIns.EndDttm >= DateTime.Today)
+                    {
+                        PatientVisitPayorModel aPayor = new PatientVisitPayorModel();
+                        aPayor.PatientUID = Patient.PatientUID;
+                        aPayor.PatientVisitUID = 0;
+                        aPayor.PayorDetailUID = aIns.PayorDetailUID ?? 0;
+                        aPayor.PayorAgreementUID = aIns.PayorAgreementUID ?? 0;
+                        var agreement = GetAgreement(aIns.PayorAgreementUID ?? 0);
+                        if (agreement != null)
+                        {
+                            aPayor.AgreementName = agreement.Name;
+                            aPayor.PolicyMasterUID = agreement.PolicyMasterUID;
+                            aPayor.PolicyName = agreement.PolicyName;
+                        };
+                        aPayor.InsuranceCompanyUID = aIns.InsuranceCompanyUID;
+                        aPayor.InsuranceName = GetInsuranceComapnyName(aIns.InsuranceCompanyUID);
+                        aPayor.PAYRTPUID = aIns.PAYRTPUID;
+                        aPayor.PayorType = PayorTypes.FirstOrDefault(p => p.Key == aIns.PAYRTPUID) != null ? PayorTypes.FirstOrDefault(p => p.Key == aIns.PAYRTPUID).Display : "";
+                        aPayor.EligibleAmount = aIns.EligibleAmount;
+                        aPayor.ActiveFrom = aIns.StartDttm;
+                        aPayor.ActiveTo = aIns.EndDttm;
+                        aPayor.ClaimPercentage = aIns.ClaimPercentage;
+                        if (aPayor.ClaimPercentage == 0)
+                            aPayor.ClaimPercentage = null;
+                        aPayor.FixedCopayAmount = aIns.FixedCopayAmount;
+                        if (aPayor.FixedCopayAmount == 0)
+                            aPayor.FixedCopayAmount = null;
+                        aPayor.PayorName = GetPayorDetailName(aIns.PayorDetailUID.Value);
+                        aPayor.StatusFlag = "A";
+                        aPayor.CUser = AppUtil.Current.UserID;
+                        aPayor.MUser = AppUtil.Current.UserID;
+                        aPayor.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+                        PatientVisitPayorList.Add(aPayor);
+                    }
+                }
+            }
+            else
+            {
+                var billconfiguration = DataService.Billing.GetBillConFiguration(AppUtil.Current.OwnerOrganisationUID);
+                if (billconfiguration != null)
+                {
+                    if (billconfiguration.InsuranceCompanyUID != null && billconfiguration.InsuranceCompanyUID > 0)
+                    {
+                        PatientVisitPayorModel defaultPatientVisitPayor = new PatientVisitPayorModel();
+                        defaultPatientVisitPayor.PatientUID = Patient.PatientUID;
+                        defaultPatientVisitPayor.ActiveFrom = DateTime.Now;
+                        defaultPatientVisitPayor.PAYRTPUID = PayorTypes.FirstOrDefault(p => p.ValueCode == "PRIMARY").Key;
+                        defaultPatientVisitPayor.PayorType = PayorTypes.FirstOrDefault(p => p.ValueCode == "PRIMARY").Display;
+                        defaultPatientVisitPayor.InsuranceCompanyUID = billconfiguration.InsuranceCompanyUID;
+                        defaultPatientVisitPayor.InsuranceName = GetInsuranceComapnyName(billconfiguration.InsuranceCompanyUID ?? 0);
+                        defaultPatientVisitPayor.PayorAgreementUID = billconfiguration.PayorAgreementUID ?? 0;
+                        var agreement = GetAgreement(billconfiguration.PayorAgreementUID ?? 0);
+                        if (agreement != null)
+                        {
+                            defaultPatientVisitPayor.AgreementName = agreement.Name;
+                            defaultPatientVisitPayor.PolicyMasterUID = agreement.PolicyMasterUID;
+                            defaultPatientVisitPayor.PolicyName = agreement.PolicyName;
+                        }
+
+                        defaultPatientVisitPayor.ClaimPercentage = null;
+                        defaultPatientVisitPayor.FixedCopayAmount = null;
+                        defaultPatientVisitPayor.PayorDetailUID = (billconfiguration.PayorUID ?? 0);
+                        defaultPatientVisitPayor.PayorName = GetPayorDetailName(billconfiguration.PayorUID ?? 0);
+                        defaultPatientVisitPayor.StatusFlag = "A";
+                        defaultPatientVisitPayor.CUser = AppUtil.Current.UserID;
+                        defaultPatientVisitPayor.MUser = AppUtil.Current.UserID;
+                        defaultPatientVisitPayor.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+                        PatientVisitPayorList.Add(defaultPatientVisitPayor);
+                    }
+                }
+            }
+        }
+
+        void AddVisitPayor()
+        {
+            if (PatientVisitPayorList == null)
+                PatientVisitPayorList = new ObservableCollection<PatientVisitPayorModel>();
+
+            if (SelectInsuranceCompany == null || SelectInsuranceCompany.InsuranceCompanyUID == 0)
+            {
+                WarningDialog("กรุณาเลือก Payor");
+                return;
+            }
+            if (SelectInsurancePlan == null || SelectInsurancePlan.PayorAgreementUID == 0)
+            {
+                WarningDialog("กรุณาเลือก Agreement");
+                return;
+            }
+
+            if (ActiveFrom == null)
+            {
+                WarningDialog("กรุณาระบุวัน ActiveFrom");
+                return;
+            }
+
+            if (ClaimPercentage != null && ClaimPercentage > 100)
+            {
+                WarningDialog("ClaimPercentage ไม่ถูกต้อง");
+                return;
+            }
+            if (PatientVisitPayorList != null && PatientVisitPayorList.Count() > 0)
+            {
+                if (PatientVisitPayorList.Where(i => i.PAYRTPUID == SelectedPayorType.Key) != null && PatientVisitPayorList.Where(i => i.PAYRTPUID == SelectedPayorType.Key).Count() > 0)
+                {
+                    WarningDialog("Rank ซ้ำ กรุณาตรวจสอบ");
+                    return;
+                }
+            }
+
+            if (CheckDataPresentInList(new PatientVisitPayorModel { PayorAgreementUID = SelectInsurancePlan.PayorAgreementUID, PayorDetailUID = SelectInsurancePlan.PayorDetailUID }))
+            {
+                WarningDialog("Payor ซ้ำ กรุณาตรวจสอบ");
+                return;
+            }
+
+            PatientVisitPayorModel newPatientVisitPayor = new PatientVisitPayorModel();
+            newPatientVisitPayor.PatientUID = Patient != null ? Patient.PatientUID : 0;
+            newPatientVisitPayor.PAYRTPUID = SelectedPayorType.Key;
+            newPatientVisitPayor.PayorType = SelectedPayorType.Display;
+            newPatientVisitPayor.InsuranceCompanyUID = SelectInsuranceCompany.InsuranceCompanyUID;
+            newPatientVisitPayor.InsuranceName = SelectInsuranceCompany.CompanyName;
+            newPatientVisitPayor.PayorAgreementUID = SelectInsurancePlan.PayorAgreementUID;
+            newPatientVisitPayor.AgreementName = SelectInsurancePlan.PayorAgreementName;
+            newPatientVisitPayor.PayorDetailUID = SelectInsurancePlan.PayorDetailUID;
+            newPatientVisitPayor.PayorName = GetPayorDetailName(SelectInsurancePlan.PayorDetailUID);
+            var agreement = GetAgreement(newPatientVisitPayor.PayorAgreementUID);
+            if (agreement != null)
+            {
+                newPatientVisitPayor.PolicyMasterUID = agreement.PolicyMasterUID;
+                newPatientVisitPayor.PolicyName = agreement.PolicyName;
+            }
+            newPatientVisitPayor.Comment = Comments;
+            newPatientVisitPayor.ClaimPercentage = ClaimPercentage;
+            newPatientVisitPayor.FixedCopayAmount = FixedCopayAmount;
+            newPatientVisitPayor.EligibleAmount = OPDCoverPerDay;
+            newPatientVisitPayor.ActiveFrom = ActiveFrom;
+            newPatientVisitPayor.ActiveTo = ActiveTo;
+            newPatientVisitPayor.StatusFlag = "A";
+            newPatientVisitPayor.CUser = AppUtil.Current.UserID;
+            newPatientVisitPayor.MUser = AppUtil.Current.UserID;
+            newPatientVisitPayor.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+            newPatientVisitPayor.CreatedBy = AppUtil.Current.UserName;
+            PatientVisitPayorList.Add(newPatientVisitPayor);
+            ClearControl();
+        }
+        void UpdateVisitPayor()
+        {
+            if (SelectedPatientVisitPayor != null)
+            {
+                if (SelectInsuranceCompany == null || SelectInsuranceCompany.InsuranceCompanyUID == 0)
+                {
+                    WarningDialog("กรุณาเลือก Payor");
+                    return;
+                }
+                if (SelectInsurancePlan == null || SelectInsurancePlan.PayorAgreementUID == 0)
+                {
+                    WarningDialog("กรุณาเลือก Agreement");
+                    return;
+                }
+
+                if (ClaimPercentage != null && ClaimPercentage > 100)
+                {
+                    WarningDialog("ClaimPercentage ไม่ถูกต้อง");
+                    return;
+                }
+
+                if (ActiveFrom == null)
+                {
+                    WarningDialog("กรุณาระบุวัน ActiveFrom");
+                    return;
+                }
+
+                if (PatientVisitPayorList != null && PatientVisitPayorList.Count() > 0)
+                {
+                    if (PatientVisitPayorList.Where(i => i.PAYRTPUID == SelectedPayorType.Key && !i.Equals(SelectedPatientVisitPayor)) != null
+                        && PatientVisitPayorList.Where(i => i.PAYRTPUID == SelectedPayorType.Key && !i.Equals(SelectedPatientVisitPayor)).Count() > 0)
+                    {
+                        WarningDialog("Rank ซ้ำ กรุณาตรวจสอบ");
+                        return;
+                    }
+                }
+
+                if (PatientVisitPayorList != null && PatientVisitPayorList.Count > 0)
+                {
+                    foreach (PatientVisitPayorModel payor in PatientVisitPayorList)
+                    {
+                        if (payor.PayorDetailUID == SelectInsurancePlan.PayorDetailUID
+                            && payor.PayorAgreementUID == SelectInsurancePlan.PayorAgreementUID
+                            && !payor.Equals(SelectedPatientVisitPayor)
+                            )
+                        {
+                            WarningDialog("Payor ซ้ำ กรุณาตรวจสอบ");
+                            return;
+                        }
+                    }
+                }
+
+                SelectedPatientVisitPayor.PAYRTPUID = SelectedPayorType.Key;
+                SelectedPatientVisitPayor.PayorType = SelectedPayorType.Display;
+                SelectedPatientVisitPayor.InsuranceCompanyUID = SelectInsuranceCompany.InsuranceCompanyUID;
+                SelectedPatientVisitPayor.InsuranceName = SelectInsuranceCompany.CompanyName;
+                SelectedPatientVisitPayor.PayorAgreementUID = SelectInsurancePlan.PayorAgreementUID;
+                SelectedPatientVisitPayor.AgreementName = SelectInsurancePlan.PayorAgreementName;
+                SelectedPatientVisitPayor.PayorDetailUID = SelectInsurancePlan.PayorDetailUID;
+                SelectedPatientVisitPayor.PayorName = GetPayorDetailName(SelectInsurancePlan.PayorDetailUID);
+                var agreement = GetAgreement(SelectedPatientVisitPayor.PayorAgreementUID);
+                if (agreement != null)
+                {
+                    SelectedPatientVisitPayor.PolicyMasterUID = agreement.PolicyMasterUID;
+                    SelectedPatientVisitPayor.PolicyName = agreement.PolicyName;
+                }
+                SelectedPatientVisitPayor.Comment = Comments;
+                SelectedPatientVisitPayor.ClaimPercentage = ClaimPercentage;
+                SelectedPatientVisitPayor.FixedCopayAmount = FixedCopayAmount;
+                SelectedPatientVisitPayor.EligibleAmount = OPDCoverPerDay;
+                SelectedPatientVisitPayor.ActiveFrom = ActiveFrom;
+                SelectedPatientVisitPayor.ActiveTo = ActiveTo;
+                SelectedPatientVisitPayor.StatusFlag = "A";
+                SelectedPatientVisitPayor.CUser = AppUtil.Current.UserID;
+                SelectedPatientVisitPayor.MUser = AppUtil.Current.UserID;
+                SelectedPatientVisitPayor.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+                SelectedPatientVisitPayor.CreatedBy = AppUtil.Current.UserName;
+                ClearControl();
+            }
+        }
+
+        void DeleteVisitPayor()
+        {
+            if (SelectedPatientVisitPayor != null)
+            {
+                SelectedPatientVisitPayor.StatusFlag = "D";
+                _deletedVisitPayorList.Add(SelectedPatientVisitPayor);
+                PatientVisitPayorList.Remove(SelectedPatientVisitPayor);
+                ClearControl();
+            }
+        }
+
+        void ClearControl()
+        {
+            if (PatientVisitPayorList != null && PatientVisitPayorList.Count() > 0 && PayorTypes != null)
+            {
+                SelectedPayorType = (from p in PayorTypes where (!(from q in PatientVisitPayorList select q.PAYRTPUID).Contains(p.Key)) select p).FirstOrDefault();
+                PatientVisitPayorList = new ObservableCollection<PatientVisitPayorModel>(PatientVisitPayorList.OrderBy(p => Convert.ToInt32(p.PayorType)));
+            }
+            else
+            {
+                SelectedPayorType = PayorTypes.FirstOrDefault(p => p.ValueCode == "PRIMARY");
+            }
+
+            SelectInsuranceCompany = null;
+            SelectInsurancePlan = null;
+            Comments = null;
+            OPDCoverPerDay = null;
+            FixedCopayAmount = null;
+            ClaimPercentage = null;
+            ActiveFrom = DateTime.Now;
+            ActiveTo = null;
+            InsurancePlans = new List<InsurancePlanModel>();
+            SelectedPatientVisitPayor = null;
+            (this.View as CreateVisit).grdVisitPayor.RefreshData();
+        }
+
+
+
+        void SavePatientVisit()
+        {
+            if (ValidateVisitData())
+            {
+                return;
+            }
+
+            PatientVisitModel visitInfo = new PatientVisitModel();
+            visitInfo.StartDttm = DateTime.Parse(StartDate.ToString("dd/MM/yyyy") + " " + StartTime.ToString("HH:mm"));
+            visitInfo.PatientUID = Patient != null ? Patient.PatientUID : 0;
+            visitInfo.VISTYUID = SelectedVisitType.Key;
+            switch (SelectedVisitType.ValueCode)
+            {
+                case "HLPRO":
+                case "MBCHK":
+                    visitInfo.ENTYPUID = EncouterTypeSource.FirstOrDefault(p => p.ValueCode == "HEAL").Key;
+                    break;
+                case "EMR":
+                    visitInfo.ENTYPUID = EncouterTypeSource.FirstOrDefault(p => p.ValueCode == "AEPAT").Key;
+                    break;
+                default:
+                    visitInfo.ENTYPUID = EncouterTypeSource.FirstOrDefault(p => p.ValueCode == "OUPAT").Key;
+                    break;
+            }
+            visitInfo.VISTSUID = 417;
+            visitInfo.PRITYUID = SelectedPriority.Key;
+            visitInfo.Comments = CommentDoctor;
+            visitInfo.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+            visitInfo.CheckupJobUID = SelectedCheckupJob != null ? SelectedCheckupJob.CheckupJobContactUID : (int?)null;
+
+            if (SelectedCareprovider != null)
+                visitInfo.CareProviderUID = SelectedCareprovider.CareproviderUID;
+
+            if (SelectedCareprovider2 != null && VisibilityCareprovider2 == Visibility.Visible)
+            {
+                visitInfo.CareProvider2UID = SelectedCareprovider2.CareproviderUID;
+            }
+
+            visitInfo.LocationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
+            visitInfo.PatientVisitPayors = PatientVisitPayorList.ToList();
+            visitInfo.CompanyName = Company;
+            visitInfo.EmployerAddress = EmployerAddress;
+            if (!IsMassRegister)
+            {
+
+
+                if (UseReadCard && Booking == null && Patient.PatientUID != 0)
+                {
+                    var Bookings = DataService.PatientIdentity.SearchBookingNotExistsVisit(DateTime.Now, DateTime.Now, null, Patient.PatientUID, 2944, null, AppUtil.Current.OwnerOrganisationUID);
+                    if (Bookings != null && Bookings.Count > 0)
+                    {
+                        string reminderMessage = Bookings.FirstOrDefault().PatientReminderMessage;
+                        MessageBoxResult result = QuestionDialog("ผู้ป่วยมีนัด " + reminderMessage + " วันนี้ คุณต้องการดึงนัดมาลงทะเบียน หรือไม่?");
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            Booking = Bookings.FirstOrDefault();
+                        }
+                    }
+                }
+
+                if (Booking != null)
+                    visitInfo.BookingUID = Booking.BookingUID; //Appointment
+
+                PatientVisitModel returnData = DataService.PatientIdentity.SavePatientVisit(visitInfo, AppUtil.Current.UserID);
+                if (string.IsNullOrEmpty(returnData.VisitID))
+                {
+                    ErrorDialog("ไม่สามารถบันทึกข้อมูล Visit ผู้ป่วยได้ ติดต่อ Admin");
+                    return;
+                }
+                else
+                {
+                    var PateintVisitPayorDatas = PatientVisitPayorList.ToList();
+                    if (_deletedVisitPayorList != null)
+                        PateintVisitPayorDatas.AddRange(_deletedVisitPayorList);
+                    DataService.PatientIdentity.ManagePatientInsuranceDetail(PateintVisitPayorDatas, AppUtil.Current.UserID);
+                    if (Booking != null)
+                    {
+                        DataService.PatientIdentity.UpdateBookingArrive(Booking.BookingUID, AppUtil.Current.UserID);
+                    }
+                }
+            }
+            else
+            {
+                PatientVisitInfo = visitInfo;
+            }
+
+
+            var parent = ((System.Windows.Controls.UserControl)this.View).Parent;
+            if (parent != null && parent is System.Windows.Window)
+            {
+                CloseViewDialog(ActionDialog.Save);
+            }
+            else
+            {
+                PatientList list = new PatientList();
+                ChangeViewPermission(list);
+            }
+        }
+
+        void SaveAndPrintPatientVisit()
+        {
+            if (ValidateVisitData())
+            {
+                return;
+            }
+
+            PatientVisitModel visitInfo = new PatientVisitModel();
+            visitInfo.StartDttm = DateTime.Parse(StartDate.ToString("dd/MM/yyyy") + " " + StartTime.ToString("HH:mm"));
+            visitInfo.PatientUID = Patient.PatientUID;
+            visitInfo.VISTYUID = SelectedVisitType.Key;
+            switch (SelectedVisitType.ValueCode)
+            {
+                case "HLPRO":
+                case "MBCHK":
+                    visitInfo.ENTYPUID = EncouterTypeSource.FirstOrDefault(p => p.ValueCode == "HEAL").Key;
+                    break;
+                case "EMR":
+                    visitInfo.ENTYPUID = EncouterTypeSource.FirstOrDefault(p => p.ValueCode == "AEPAT").Key;
+                    break;
+                default:
+                    visitInfo.ENTYPUID = EncouterTypeSource.FirstOrDefault(p => p.ValueCode == "OUPAT").Key;
+                    break;
+            }
+            visitInfo.VISTSUID = 417;
+            visitInfo.PRITYUID = SelectedPriority.Key;
+            visitInfo.Comments = CommentDoctor;
+            visitInfo.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+            visitInfo.CheckupJobUID = SelectedCheckupJob != null ? SelectedCheckupJob.CheckupJobContactUID : (int?)null;
+
+            if (SelectedCareprovider != null)
+                visitInfo.CareProviderUID = SelectedCareprovider.CareproviderUID;
+
+            if (SelectedCareprovider2 != null && VisibilityCareprovider2 == Visibility.Visible)
+            {
+                visitInfo.CareProvider2UID = SelectedCareprovider2.CareproviderUID;
+            }
+            visitInfo.LocationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
+            visitInfo.PatientVisitPayors = PatientVisitPayorList.ToList();
+            visitInfo.CompanyName = Company;
+            visitInfo.EmployerAddress = EmployerAddress;
+            if (!IsMassRegister)
+            {
+
+
+                if (UseReadCard && Booking == null && Patient.PatientUID != 0)
+                {
+                    var Bookings = DataService.PatientIdentity.SearchBookingNotExistsVisit(DateTime.Now, DateTime.Now, null, Patient.PatientUID, 2944, null, AppUtil.Current.OwnerOrganisationUID);
+                    if (Bookings != null && Bookings.Count > 0)
+                    {
+                        string reminderMessage = Bookings.FirstOrDefault().PatientReminderMessage;
+                        MessageBoxResult result = QuestionDialog("ผู้ป่วยมีนัด " + reminderMessage + " วันนี้ คุณต้องการดึงนัดมาลงทะเบียน หรือไม่?");
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            Booking = Bookings.FirstOrDefault();
+                        }
+                    }
+                }
+
+                if (Booking != null)
+                    visitInfo.BookingUID = Booking.BookingUID; //Appointment
+
+                PatientVisitModel returnData = DataService.PatientIdentity.SavePatientVisit(visitInfo, AppUtil.Current.UserID);
+                if (string.IsNullOrEmpty(returnData.VisitID))
+                {
+                    ErrorDialog("ไม่สามารถบันทึกข้อมูล Visit ผู้ป่วยได้ ติดต่อ Admin");
+                    return;
+                }
+                else
+                {
+                    var PateintVisitPayorDatas = PatientVisitPayorList.ToList();
+                    if (_deletedVisitPayorList != null)
+                        PateintVisitPayorDatas.AddRange(_deletedVisitPayorList);
+                    DataService.PatientIdentity.ManagePatientInsuranceDetail(PateintVisitPayorDatas, AppUtil.Current.UserID);
+                    if (Booking != null)
+                    {
+                        DataService.PatientIdentity.UpdateBookingArrive(Booking.BookingUID, AppUtil.Current.UserID);
+                    }
+                }
+
+                PatientVisitSlip rpt = new PatientVisitSlip();
+                ReportPrintTool printTool = new ReportPrintTool(rpt);
+                rpt.Parameters["OrganisationUID"].Value = returnData.OwnerOrganisationUID;
+                rpt.Parameters["PatientUID"].Value = returnData.PatientUID;
+                rpt.Parameters["PatientVisitUID"].Value = returnData.PatientVisitUID;
+                rpt.RequestParameters = false;
+                rpt.ShowPrintMarginsWarning = false;
+                printTool.ShowPreviewDialog(); ;
+            }
+            else
+            {
+                PatientVisitInfo = visitInfo;
+            }
+
+            var parent = ((System.Windows.Controls.UserControl)this.View).Parent;
+            if (parent != null && parent is System.Windows.Window)
+            {
+                CloseViewDialog(ActionDialog.Save);
+            }
+            else
+            {
+                PatientList list = new PatientList();
+                ChangeViewPermission(list);
+            }
+        }
+        string GetInsuranceComapnyName(int insuranceComapnyUID)
+        {
+            string name = string.Empty;
+
+            var insuranceCompany = DataService.Billing.GetInsuranceCompanyByUID(insuranceComapnyUID);
+            if (insuranceCompany != null)
+            {
+                name = insuranceCompany.CompanyName;
+            }
+
+            return name;
+        }
+
+        private bool CheckDataPresentInList(PatientVisitPayorModel inputPayor)
+        {
+            bool ret = false;
+            if (PatientVisitPayorList != null && PatientVisitPayorList.Count > 0)
+            {
+                foreach (PatientVisitPayorModel payor in PatientVisitPayorList)
+                {
+                    if (payor.PayorDetailUID == inputPayor.PayorDetailUID
+                        && payor.PayorAgreementUID == inputPayor.PayorAgreementUID)
+                    {
+                        ret = true;
+                        break;
+                    }
+                }
+            }
+            return ret;
+        }
+
+        string GetPayorDetailName(int payorDetailUID)
+        {
+            string name = string.Empty;
+
+            var payorDetail = DataService.Billing.GetPayorDetailByUID(payorDetailUID);
+            if (payorDetail != null)
+            {
+                name = payorDetail.PayorName;
+            }
+
+            return name;
+        }
+
+        PayorAgreementModel GetAgreement(int agreeementUID)
+        {
+
+            var payorAgreement = DataService.Billing.GetPayorAgreementByUID(agreeementUID);
+            return payorAgreement;
+
+        }
+
+        private void Cancel()
+        {
+            CloseViewDialog(ActionDialog.Cancel);
+        }
+
+        public bool ValidateVisitData()
+        {
+            ////if (SelectOrganisation == null)
+            //{
+            //    WarningDialog("กรุณาเลือก สถานประกอบการ");
+            //    return true;
+            //}
+
+            if (SelectLocation == null)
+            {
+                WarningDialog("กรุณาเลือก แผนก");
+                return true;
+            }
+
+            if (SelectedVisitType == null)
+            {
+                WarningDialog("กรุณาเลือก ประเภท Visit");
+                return true;
+            }
+
+
+            if (VisibiltyCheckupCompany == Visibility.Visible)
+            {
+                if (SelectedCheckupJob == null)
+                {
+                    WarningDialog("กรุณาเลือก Checkup Job");
+                    return true;
+                }
+            }
+
+            if (SelectedPriority == null)
+            {
+                WarningDialog("กรุณาเลือก ความสำคัญ");
+                return true;
+            }
+
+            if (PatientVisitPayorList == null || PatientVisitPayorList.Count() <= 0)
+            {
+                WarningDialog("กรุณาใส่ข้อมูล Payor");
+                return true;
+            }
+
+
+            if (PatientVisitPayorList != null || PatientVisitPayorList.Count() >= 0)
+            {
+                if (PatientVisitPayorList.Count(p => p.PayorType == "1") <= 0)
+                {
+                    WarningDialog("กรุณาใส่ข้อมูล Payor Rank 1");
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        #endregion
+    }
+}

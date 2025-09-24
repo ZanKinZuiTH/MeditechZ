@@ -2132,7 +2132,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTDoctorFee2(DateTime dateFrom, DateTime dateTo, int? careproviderUID)
+        public static DataTable pRPTDoctorFee2(DateTime dateFrom, DateTime dateTo, int? careproviderUID, string doctorfeeType, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTDoctorFee2", entities.Database.Connection.ConnectionString);
@@ -2140,6 +2140,8 @@ namespace MediTech.DataBase
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DoctorFeeType", doctorfeeType);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             adp.SelectCommand.Parameters.AddWithValue("@P_CareproviderUID", (careproviderUID != null && careproviderUID != 0) ? careproviderUID : (object)DBNull.Value);
             DataSet ds = new DataSet();
             adp.Fill(ds);

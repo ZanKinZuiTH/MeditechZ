@@ -37,14 +37,11 @@
             this.xrLabel39 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel40 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel38 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel35 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel34 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel33 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel32 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel31 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel30 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrCheckBox21 = new DevExpress.XtraReports.UI.XRCheckBox();
-            this.xrCheckBox22 = new DevExpress.XtraReports.UI.XRCheckBox();
             this.xrCheckBox19 = new DevExpress.XtraReports.UI.XRCheckBox();
             this.xrCheckBox20 = new DevExpress.XtraReports.UI.XRCheckBox();
             this.xrCheckBox17 = new DevExpress.XtraReports.UI.XRCheckBox();
@@ -130,14 +127,11 @@
             this.xrLabel39,
             this.xrLabel40,
             this.xrLabel38,
-            this.xrLabel35,
             this.xrLabel34,
             this.xrLabel33,
             this.xrLabel32,
             this.xrLabel31,
             this.xrLabel30,
-            this.xrCheckBox21,
-            this.xrCheckBox22,
             this.xrCheckBox19,
             this.xrCheckBox20,
             this.xrCheckBox17,
@@ -270,14 +264,6 @@
             this.xrLabel38.SizeF = new System.Drawing.SizeF(660.8332F, 23F);
             this.xrLabel38.Text = resources.GetString("xrLabel38.Text");
             // 
-            // xrLabel35
-            // 
-            this.xrLabel35.LocationFloat = new DevExpress.Utils.PointFloat(454.167F, 459.6668F);
-            this.xrLabel35.Name = "xrLabel35";
-            this.xrLabel35.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel35.SizeF = new System.Drawing.SizeF(216.6663F, 23.00003F);
-            this.xrLabel35.Text = "(ระบุ)...................................................................";
-            // 
             // xrLabel34
             // 
             this.xrLabel34.LocationFloat = new DevExpress.Utils.PointFloat(454.167F, 436.6667F);
@@ -317,20 +303,6 @@
             this.xrLabel30.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel30.SizeF = new System.Drawing.SizeF(216.6663F, 23F);
             this.xrLabel30.Text = "(ระบุ)...................................................................";
-            // 
-            // xrCheckBox21
-            // 
-            this.xrCheckBox21.LocationFloat = new DevExpress.Utils.PointFloat(387.5004F, 459.6668F);
-            this.xrCheckBox21.Name = "xrCheckBox21";
-            this.xrCheckBox21.SizeF = new System.Drawing.SizeF(66.66663F, 23F);
-            this.xrCheckBox21.Text = " ผิดปกติ";
-            // 
-            // xrCheckBox22
-            // 
-            this.xrCheckBox22.LocationFloat = new DevExpress.Utils.PointFloat(325.8334F, 459.6667F);
-            this.xrCheckBox22.Name = "xrCheckBox22";
-            this.xrCheckBox22.SizeF = new System.Drawing.SizeF(50.83333F, 23F);
-            this.xrCheckBox22.Text = " ปกติ";
             // 
             // xrCheckBox19
             // 
@@ -609,11 +581,13 @@
             // 
             // xrLabel28
             // 
-            this.xrLabel28.LocationFloat = new DevExpress.Utils.PointFloat(75.83334F, 459.6668F);
+            this.xrLabel28.LocationFloat = new DevExpress.Utils.PointFloat(75.83338F, 459.6668F);
             this.xrLabel28.Name = "xrLabel28";
             this.xrLabel28.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel28.SizeF = new System.Drawing.SizeF(148.3334F, 23.00003F);
-            this.xrLabel28.Text = "7. การตรวจวิเคราะห์ปัสสาวะ";
+            this.xrLabel28.SizeF = new System.Drawing.SizeF(594.9996F, 23F);
+            this.xrLabel28.Text = "7. .............................................................................." +
+    "................................................................................" +
+    "............................";
             // 
             // xrCheckBox9
             // 
@@ -954,14 +928,11 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel7;
         private DevExpress.XtraReports.UI.XRLabel xrLabel9;
         private DevExpress.XtraReports.UI.XRLabel xrLabel38;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel35;
         private DevExpress.XtraReports.UI.XRLabel xrLabel34;
         private DevExpress.XtraReports.UI.XRLabel xrLabel33;
         private DevExpress.XtraReports.UI.XRLabel xrLabel32;
         private DevExpress.XtraReports.UI.XRLabel xrLabel31;
         private DevExpress.XtraReports.UI.XRLabel xrLabel30;
-        private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox21;
-        private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox22;
         private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox19;
         private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox20;
         private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox17;

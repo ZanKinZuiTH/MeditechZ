@@ -1,0 +1,126 @@
+﻿<UserControl xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             x:Class="MediTech.Views.ManageSession"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cc="clr-namespace:MediTech.CustomControl"
+             mc:Ignorable="d"
+             DataContext="{Binding ManageSessionViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Vertical" Margin="120,0,120,0">
+                <dxlc:LayoutGroup Orientation="Horizontal">
+                    <dxlc:LayoutItem>
+                        <dxlc:LayoutItem.Label>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                <TextBlock Text="Doctor" />
+                            </StackPanel>
+                        </dxlc:LayoutItem.Label>
+                        <cc:MyLookUpEdit     ItemsSource="{Binding Doctors}"
+                                         SelectedItem="{Binding SelectDoctor}"
+                                         DisplayMember="FullName"
+                                         ValueMember="CareproviderUID"
+                                         AutoComplete="False"
+                                         IncrementalFiltering="True"
+                                         AllowNullInput="True"
+                                         ImmediatePopup="True"
+                                         FindButtonPlacement="Popup"
+                                         FindMode = "Always"
+                                         PopupMinHeight="100"
+                                         PopupHeight="400"                                        
+                                         AutoPopulateColumns="False">
+                            <cc:MyLookUpEdit.ColumnsToFilter>
+                                <cc:ColumnItem FieldName="FirstName"/>
+                                <cc:ColumnItem FieldName="LastName"/>
+                            </cc:MyLookUpEdit.ColumnsToFilter>
+                            <dxg:LookUpEdit.PopupContentTemplate>
+                                <ControlTemplate>
+                                    <dxg:GridControl  Name="PART_GridControl" >
+                                        <dxg:GridColumn Header="ชื่อ" FieldName="FullName" Width="*" 
+                                                    AllowSearchPanel="True" 
+                                                    AllowIncrementalSearch="True" 
+                                                    AllowAutoFilter="True"
+                                                    ReadOnly="True"/>
+                                        <dxg:GridControl.View>
+                                            <dxg:TableView Name="view"
+                                                       ShowGroupPanel="False"/>
+                                        </dxg:GridControl.View>
+                                    </dxg:GridControl>
+                                </ControlTemplate>
+                            </dxg:LookUpEdit.PopupContentTemplate>
+                        </cc:MyLookUpEdit>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem />
+                </dxlc:LayoutGroup>
+   
+                <dxlc:LayoutGroup Orientation="Vertical">
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="Start Time">
+                            <dxe:DateEdit x:Name="timeEditor"
+                                      EditValue="{Binding StartTime}"
+                                      DisplayFormatString="HH:mm"
+                                      Mask="HH:mm">
+                                <dxe:DateEdit.StyleSettings>
+                                    <dxe:DateEditPickerStyleSettings/>
+                                </dxe:DateEdit.StyleSettings>
+                            </dxe:DateEdit>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="End Time">
+                            <dxe:DateEdit EditValue="{Binding EndTime}"
+                                      DisplayFormatString="HH:mm"
+                                      Mask="HH:mm">
+                                <dxe:DateEdit.StyleSettings>
+                                    <dxe:DateEditPickerStyleSettings/>
+                                </dxe:DateEdit.StyleSettings>
+                            </dxe:DateEdit>
+                        </dxlc:LayoutItem>
+
+
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="Start Date">
+                            <dxe:DateEdit EditValue="{Binding StartDate}" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="End Date">
+                            <dxe:DateEdit EditValue="{Binding EndDate}" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Monday" IsChecked="{Binding IsDay1}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Tuesday" IsChecked="{Binding IsDay2}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Wednesday" IsChecked="{Binding IsDay3}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Thursday" IsChecked="{Binding IsDay4}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Friday" IsChecked="{Binding IsDay5}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Saturday" IsChecked="{Binding IsDay6}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="Sunday" IsChecked="{Binding IsDay7}"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <dx:SimpleButton Command="{Binding SaveCommand}" Content="บันทึก" Width="80" Height="25" />
+                <dx:SimpleButton Command="{Binding CancelCommand}" Content="ยกเลิก" Width="80" Height="25" />
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

@@ -1,0 +1,326 @@
+﻿<UserControl xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"   xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" x:Class="MediTech.Views.PatientDiagnosis"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cv="clr-namespace:MediTech.Converter"          
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d"
+             DataContext="{Binding Path=PatientDiagnosisViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="900">
+    <dxlc:LayoutControl Orientation="Vertical">
+        <dxlc:LayoutGroup >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".5*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <dxlc:LayoutGroup View="Tabs">
+                    <dxlc:LayoutGroup Name="SearchDiagnosis" Header="Search Diagnosis">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0" Margin="0,2,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                </Grid.RowDefinitions>
+
+                               <TextBlock x:Name="tbsdiag"  Grid.Row="0" FontSize="12" Margin="3,0,0,0" FontWeight="ExtraBold" 
+                                               HorizontalAlignment="Left"  VerticalAlignment="Center" Text="*SEARCH DIAGNOSIS" />
+                                <dxe:TextEdit x:Name="tbsearch"
+                                              ValidateOnEnterKeyPressed="False" AcceptsReturn="False"
+                                              Text="{Binding SearchDiagnosisCriteria,UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" 
+                                              HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                                              NullText="Press Enter For Searching" >
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="KeyDown">
+                                            <mvvm:EventToCommand Command="{Binding SearchDiagnosisEnterCommand}" PassEventArgsToCommand="True" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </dxe:TextEdit>
+
+                            </Grid>
+                            <!--VirtualizingStackPanel.IsVirtualizing="True"-->
+                            <dxg:GridControl  Grid.Row="1" 
+                                              ItemsSource="{Binding SearchProblemList}"
+                                              SelectedItem="{Binding SelectProblemList}"
+                                              >
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger  EventName="MouseDoubleClick">
+                                        <mvvm:EventToCommand Command="{Binding SearchProblemDoubleClickCommand}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <dxg:GridControl.Columns>
+                                    <dxg:GridColumn Header="รหัส" FieldName="Code" ReadOnly="True" Width="50"/>
+                                    <dxg:GridColumn Header="ชื่อ" FieldName="Name"
+                                                    ReadOnly="True" Width="*">
+                                        <dxg:GridColumn.EditSettings>
+                                            <dxe:TextEditSettings AcceptsReturn="True" TextWrapping="Wrap"/>
+                                        </dxg:GridColumn.EditSettings>
+                                    </dxg:GridColumn>
+                                </dxg:GridControl.Columns>
+                                <dxg:GridControl.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem  Header="เพิ่ม Favourites" Command="{Binding AddFavoritesCommand}"/>
+                                    </ContextMenu>
+                                </dxg:GridControl.ContextMenu>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView ShowGroupPanel="False"/>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </Grid>
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Name="DiasHistory" Orientation="Vertical"
+                                      Header="Diagnosis History">
+                        <dxlc:LayoutItem>
+                            <dxe:ListBoxEdit ShowBorder="False" Background="{x:Null}" SelectedIndex="{Binding SelectIndexDiasHis}" 
+                                             x:Name="lbButtonIndex" Margin="0,0,0,5">
+                                <dxe:ListBoxEditItem Content="All" />
+                                <dxe:ListBoxEditItem Content="Last Visit" Margin="6,0,0,0" />
+                                <dxe:ListBoxEdit.StyleSettings>
+                                    <dxe:RadioListBoxEditStyleSettings />
+                                </dxe:ListBoxEdit.StyleSettings>
+                                <dxe:ListBoxEdit.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </dxe:ListBoxEdit.ItemsPanel>
+                            </dxe:ListBoxEdit>
+                        </dxlc:LayoutItem>
+                        <dxg:GridControl  Grid.Row="1" 
+                                          ItemsSource="{Binding DiagnosisHistory}"
+                                          SelectedItem="{Binding SelectDiagnosisHistory}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger  EventName="MouseDoubleClick">
+                                    <mvvm:EventToCommand Command="{Binding DiagnosisHistoryDoubleClickCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <dxg:GridControl.Columns>
+                                <dxg:GridColumn Header="รหัส" FieldName="ProblemCode" ReadOnly="True" Width="50"/>
+                                <dxg:GridColumn Header="ชื่อ" FieldName="ProblemName"
+                                                    ReadOnly="True" Width="160">
+                                    <dxg:GridColumn.EditSettings>
+                                        <dxe:TextEditSettings AcceptsReturn="True" TextWrapping="Wrap"/>
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>
+                                <dxg:GridColumn Header="ประเภท" FieldName="DiagnosisType" ReadOnly="True" />
+                                <dxg:GridColumn Header="เวลาบันทึก" FieldName="RecordedDttm" ReadOnly="True" />
+                                <dxg:GridColumn Header="ผู้บันทึก" FieldName="RecordedName" ReadOnly="True" />
+                            </dxg:GridControl.Columns>
+                            <dxg:GridControl.View>
+                                <dxg:TableView ShowGroupPanel="False"/>
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Name="Favourites" Header="Favourites">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0" Margin="0,2,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                </Grid.RowDefinitions>
+
+
+                                <TextBlock Grid.Column="1" Grid.Row="0" FontSize="12" Margin="3,0,0,0" FontWeight="ExtraBold" 
+                                           HorizontalAlignment="Left"  VerticalAlignment="Center" Text="*SEARCH FAVORITES DIAGNOSIS" Foreground="Gray" />
+                                <dxe:TextEdit x:Name="tbsearchfav"
+                                              ValidateOnEnterKeyPressed="False" AcceptsReturn="False"
+                                              Text="{Binding SearchFavouritesCriteria,UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" 
+                                              HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                                              NullText="Press Enter For Searching" >
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="KeyDown">
+                                            <mvvm:EventToCommand Command="{Binding SearchFavoritesEnterCommand}" PassEventArgsToCommand="True" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </dxe:TextEdit>
+                            </Grid>
+
+                            <dxg:GridControl  Grid.Row="1" ItemsSource="{Binding FavouritesItemList}"
+                                              SelectedItem="{Binding SelectFavouritesItemList}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger  EventName="MouseDoubleClick">
+                                        <mvvm:EventToCommand Command="{Binding SearchFavouritesDobuleClickCommand}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <dxg:GridControl.Columns>
+                                    <dxg:GridColumn Header="รหัส" FieldName="ProblemCode" ReadOnly="True" Width="50"/>
+                                    <dxg:GridColumn Header="ชื่อ" FieldName="ProblemName" ReadOnly="True" Width="*">
+                                        <dxg:GridColumn.EditSettings>
+                                            <dxe:TextEditSettings AcceptsReturn="True" TextWrapping="Wrap"/>
+                                        </dxg:GridColumn.EditSettings>
+                                    </dxg:GridColumn>
+                                </dxg:GridControl.Columns>
+                                <dxg:GridControl.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem  Header="ลบ Favorites" Command="{Binding RemoveFavoritesCommand}"/>
+                                    </ContextMenu>
+                                </dxg:GridControl.ContextMenu>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView ShowGroupPanel="False"/>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </Grid>
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutControl Grid.Column="1" Orientation="Vertical">
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="รหัสโรค">
+                            <TextBlock Text="{Binding Path=SelectedProblem.Code}" 
+                                           VerticalAlignment="Center"
+                                           FlowDirection="LeftToRight"
+                                           TextTrimming="CharacterEllipsis"
+                                           ToolTip="{Binding Path=SelectedProblem.Code}"
+                                           FontWeight="Bold"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="ชื่อโรค">
+                            <TextBlock Text="{Binding Path=SelectedProblem.Name}" 
+                                           VerticalAlignment="Center"
+                                           FlowDirection="LeftToRight"
+                                           TextTrimming="CharacterEllipsis"
+                                           ToolTip="{Binding Path=SelectedProblem.Name}"
+                                           FontWeight="Bold"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label=" ">
+                            <CheckBox x:Name="chkunderlying" 
+                                      Content="UNDERLYING"  
+                                      FontWeight="Bold" 
+                                      IsChecked="{Binding IsUnderline}" VerticalAlignment="Center" ClickMode="Press" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem >
+                            <dxlc:LayoutItem.Label>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                    <TextBlock Text="ประเภท" />
+                                </StackPanel>
+                            </dxlc:LayoutItem.Label>
+                            <dxe:ComboBoxEdit 
+                                ValueMember="Key"
+                                DisplayMember="Display"
+                                ItemsSource="{Binding DiagnosisType}"
+                                SelectedItem="{Binding SelectDiagnosisType}"
+                                Name="cmbDiagType"
+                                IsTextEditable="False" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="วันที่เริ่มต้นการวินิจฉัย">
+                            <dxe:DateEdit EditValue="{Binding OnsetDttm}" Name="dteOnset"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="ความรุนแรง">
+                            <dxe:ComboBoxEdit 
+                                ValueMember="Key"
+                                DisplayMember="Display"
+                                ItemsSource="{Binding Severity}"
+                                SelectedItem="{Binding SelectSeverity}"
+                                Name="cmbSeverity"
+                                IsTextEditable="False" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="ยืนยันการวินิจฉัย">
+                            <dxe:ComboBoxEdit 
+                                Name="cmbAccuracy"
+                                ValueMember="Key"
+                                DisplayMember="Display"
+                                ItemsSource="{Binding Accuracy}"
+                                SelectedItem="{Binding SelectAccuracy}"
+                                IsTextEditable="False" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="ช่วงระยะ">
+                            <dxe:ComboBoxEdit 
+                                Name="cmbCounter"
+                                ValueMember="Key"
+                                DisplayMember="Display"
+                                ItemsSource="{Binding Encounter}"
+                                SelectedItem="{Binding SelectEncounter}"
+                                IsTextEditable="False" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="ตำแหน่ง">
+                            <dxe:ComboBoxEdit 
+                                ValueMember="Key"
+                                DisplayMember="Display"
+                                ItemsSource="{Binding BodyLocation}"
+                                SelectedItem="{Binding SelectBodyLocation}"
+                                Name="cmbBodysite"
+                                IsTextEditable="False" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup>
+                        <dxlc:LayoutItem Label="วันที่ลง">
+                            <dxe:DateEdit EditValue="{Binding RecordDttm}" Name="dteRecordDate"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="วันที่สิ้นสุดการวินิจฉัย">
+                            <dxe:DateEdit EditValue="{Binding CloseDttm}" Name="dteClostDate"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="รายละเอียด" VerticalAlignment="Top" LabelVerticalAlignment="Top">
+                            <dxe:MemoEdit Text="{Binding ClosureComments}" ShowIcon="False"/>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dx:SimpleButton Grid.Row="1" Grid.ColumnSpan="2" Width="80" 
+                         HorizontalAlignment="Right"
+                         Command="{Binding AddProblemCommand}"
+                         Height="25" Content="เพิ่ม"/>
+                        <dx:SimpleButton Grid.Row="1" Grid.ColumnSpan="2" Width="80" 
+                         HorizontalAlignment="Right"
+                         Command="{Binding EditProblemCommand}"
+                         Height="25" Content="แก้ไข"/>
+                        <dx:SimpleButton Grid.Row="1" Grid.ColumnSpan="2" Width="80" 
+                         HorizontalAlignment="Right"
+                         Command="{Binding RemoveProblemCommand}"
+                         Height="25" Content="ลบ"/>
+                    </dxlc:LayoutGroup>
+                    <dxg:GridControl Name="grdPatientProblem" ItemsSource="{Binding PatientProblemList}"
+                                     SelectedItem="{Binding SelectPatientProblemList}">
+                        <dxg:GridControl.Columns>
+                            <dxg:GridColumn Header="รหัสโรค" FieldName="ProblemCode" ReadOnly="True"/>
+                            <dxg:GridColumn Header="ชื่อโรค" FieldName="ProblemName" ReadOnly="True"/>
+                            <dxg:GridColumn Header="ประเภท" FieldName="DiagnosisType" ReadOnly="True"/>
+                            <dxg:GridColumn Header="วันทีมีอาการ" FieldName="OnsetDttm" ReadOnly="True"/>
+                            <dxg:GridColumn Header="ความรุนแรง" FieldName="Severity" ReadOnly="True"/>
+                            <dxg:GridColumn Header="ความเชื่อมั่น" FieldName="Certanity" ReadOnly="True"/>
+                            <dxg:GridColumn Header="ตำแหน่ง" FieldName="BodyLocation" ReadOnly="True"/>
+                            <dxg:GridColumn Header="วันที่บันทึก" FieldName="RecordedDttm" ReadOnly="True"/>
+                            <dxg:GridColumn Header="ผู้บันทึก" FieldName="RecordedName" ReadOnly="True"/>
+                            <dxg:GridColumn Header="ช่วงระยะ" FieldName="ProblemType" ReadOnly="True"/>
+                            <dxg:GridColumn Header="ติดตามอาการ" FieldName="IsUnderline" ReadOnly="True"/>
+                            <dxg:GridColumn Header="วันที่ปิด" FieldName="ClosureDttm" ReadOnly="True"/>
+                            <dxg:GridColumn Header="รายละเอียด" FieldName="ClosureComments" ReadOnly="True"/>
+                            <dxg:GridColumn />
+                        </dxg:GridControl.Columns>
+                        <dxg:GridControl.View>
+                            <dxg:TableView ShowGroupPanel="False"/>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </dxlc:LayoutControl>
+            </Grid>
+        </dxlc:LayoutGroup>
+        <dxlc:LayoutGroup HorizontalAlignment="Right"
+                                  VerticalAlignment="Bottom" >
+            <dx:SimpleButton Width="80" Command="{Binding SaveCommand}"
+                                     Height="25" Content="บันทึก"/>
+            <dx:SimpleButton Width="85" Command="{Binding CancelCommand}"
+                                     Height="25" Content="ยกเลิก"/>
+        </dxlc:LayoutGroup>
+
+    </dxlc:LayoutControl>
+</UserControl>

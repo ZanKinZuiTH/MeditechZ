@@ -1,0 +1,68 @@
+﻿<UserControl xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" x:Class="MediTech.Views.CustomTemplate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        Height="400" Width="400">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutItem>
+                <dxe:ComboBoxEdit Width="150"
+                                  DisplayMember="Display"
+                                  ValueMember="Key"
+                                  IsEnabled="False"
+                                  ItemsSource="{Binding Types}"
+                                  SelectedItem="{Binding SelectType}"
+                                  HorizontalAlignment="Left"/>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem>
+                <Border  BorderBrush="Black" BorderThickness="0,0,0,1"/>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem x:Name="layTitle" Label="{Binding TitleLabel}">
+                    <dxe:TextEdit Text="{Binding Name}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutGroup HorizontalAlignment="Right" >
+                    <dx:SimpleButton Width="30" Command="{Binding AddCommand}"
+                                     Height="25" >
+                        <TextBlock Text="+" FontSize="18" VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   FontWeight="Bold"/>
+                    </dx:SimpleButton>
+                    <dx:SimpleButton Width="30" Command="{Binding DeleteCommand}"
+                                     Height="25" >
+                        <TextBlock Text="-" FontSize="18" VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   FontWeight="Bold"/>
+                    </dx:SimpleButton>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+            <dxg:GridControl ItemsSource="{Binding CCHPIMasters}"
+                             SelectedItem="{Binding SelectCCHPIMaster}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger  EventName="MouseDoubleClick">
+                        <mvvm:EventToCommand Command="{Binding AcceptCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <dxg:GridColumn FieldName="Name" Width="Auto">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings AcceptsReturn="True" TextWrapping="Wrap"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridControl.View>
+                    <dxg:TableView ShowGroupPanel="False"
+                                   ShowColumnHeaders="False"
+                                   ShowSearchPanelMode="Always"
+                                   SearchPanelFindMode="Always"
+                                   AllowEditing="False"
+                                   NavigationStyle="Row"
+                                   AutoWidth="True"
+                                   SearchPanelHighlightResults="True"/>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+            <dx:SimpleButton Width="80" Command="{Binding AcceptCommand}"
+                             HorizontalAlignment="Right"
+                                     Height="25" Content="Accept"/>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

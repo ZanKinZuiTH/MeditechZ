@@ -1,0 +1,616 @@
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\MediTechWebApi.dll.config
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\MediTechWebApi.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\MediTechWebApi.pdb
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\Antlr3.Runtime.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\EntityFramework.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\EntityFramework.SqlServer.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\MediTech.DataBase.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\MediTech.Model.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\Newtonsoft.Json.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\ShareLibrary.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Net.Http.Formatting.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Helpers.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Http.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Http.WebHost.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Mvc.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Optimization.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Razor.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.WebPages.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\WebGrease.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\Ionic.Zip.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\MediTech.DataBase.pdb
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\MediTech.Model.pdb
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\ShareLibrary.pdb
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\EntityFramework.xml
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\EntityFramework.SqlServer.xml
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\Newtonsoft.Json.xml
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Net.Http.Formatting.xml
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Helpers.xml
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Http.xml
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Http.WebHost.xml
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Mvc.xml
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Optimization.xml
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Razor.xml
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.WebPages.xml
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.xml
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.xml
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\bin\Antlr3.Runtime.pdb
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csprojResolveAssemblyReference.cache
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\obj\Debug\MediTechWebApi.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechWebApi\MediTechWebApi\obj\Debug\MediTechWebApi.pdb
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\MediTechWebApi.dll.config
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\MediTechWebApi.dll
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\MediTechWebApi.pdb
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\Antlr3.Runtime.dll
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\EntityFramework.dll
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\EntityFramework.SqlServer.dll
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\MediTech.DataBase.dll
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\MediTech.Model.dll
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\Microsoft.Web.Infrastructure.dll
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\Newtonsoft.Json.dll
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\ShareLibrary.dll
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Net.Http.Formatting.dll
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Helpers.dll
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Http.dll
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Http.WebHost.dll
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Mvc.dll
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Optimization.dll
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Razor.dll
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.dll
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.WebPages.dll
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.dll
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\WebGrease.dll
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\Ionic.Zip.dll
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\MediTech.DataBase.pdb
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\MediTech.Model.pdb
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\ShareLibrary.pdb
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\EntityFramework.xml
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\EntityFramework.SqlServer.xml
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\Newtonsoft.Json.xml
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Net.Http.Formatting.xml
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Helpers.xml
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Http.xml
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Http.WebHost.xml
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Mvc.xml
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Optimization.xml
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.Razor.xml
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.WebPages.xml
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.xml
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.xml
+D:\Project P2\MediTechWebApi\MediTechWebApi\bin\Antlr3.Runtime.pdb
+D:\Project P2\MediTechWebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csprojResolveAssemblyReference.cache
+D:\Project P2\MediTechWebApi\MediTechWebApi\obj\Debug\MediTechWebApi.dll
+D:\Project P2\MediTechWebApi\MediTechWebApi\obj\Debug\MediTechWebApi.pdb
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\MediTechWebApi.dll.config
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\MediTechWebApi.dll
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\MediTechWebApi.pdb
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\Antlr3.Runtime.dll
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\Dicom.Core.dll
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\EntityFramework.dll
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\EntityFramework.SqlServer.dll
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\MediTech.DataBase.dll
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\MediTech.Model.dll
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\Microsoft.Web.Infrastructure.dll
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\Newtonsoft.Json.dll
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\ShareLibrary.dll
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\System.Net.Http.Formatting.dll
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\System.Web.Helpers.dll
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\System.Web.Http.dll
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\System.Web.Http.WebHost.dll
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\System.Web.Mvc.dll
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\System.Web.Optimization.dll
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\System.Web.Razor.dll
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.dll
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\System.Web.WebPages.dll
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.dll
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\WebGrease.dll
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\Ionic.Zip.dll
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\MediTech.DataBase.pdb
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\MediTech.Model.pdb
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\ShareLibrary.pdb
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\Dicom.Core.pdb
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\EntityFramework.xml
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\EntityFramework.SqlServer.xml
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\Newtonsoft.Json.xml
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\System.Net.Http.Formatting.xml
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\System.Web.Helpers.xml
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\System.Web.Http.xml
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\System.Web.Http.WebHost.xml
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\System.Web.Mvc.xml
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\System.Web.Optimization.xml
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\System.Web.Razor.xml
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\System.Web.WebPages.xml
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.xml
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.xml
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\Antlr3.Runtime.pdb
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csprojResolveAssemblyReference.cache
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\obj\Debug\MediTechWebApi.dll
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\obj\Debug\MediTechWebApi.pdb
+D:\Project P2\MediTech\MediTechWebApi\MediTechWebApi\bin\Dicom.Native64.dll
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.dll.config
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.dll
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.pdb
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\Antlr3.Runtime.dll
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.dll
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.SqlServer.dll
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.dll
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\MediTech.Model.dll
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\Microsoft.Web.Infrastructure.dll
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\Newtonsoft.Json.dll
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.dll
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Net.Http.Formatting.dll
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Helpers.dll
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.dll
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.WebHost.dll
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Mvc.dll
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Optimization.dll
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Razor.dll
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.dll
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.dll
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.dll
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\WebGrease.dll
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\Ionic.Zip.dll
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.pdb
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.dll.config
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\MediTech.Model.pdb
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.pdb
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.dll.config
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.xml
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.SqlServer.xml
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\Newtonsoft.Json.xml
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Net.Http.Formatting.xml
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.xml
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.WebHost.xml
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Helpers.xml
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Mvc.xml
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Optimization.xml
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Razor.xml
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.xml
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.xml
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.xml
+D:\Project P2\Meditech\WebApi\MediTechWebApi\bin\Antlr3.Runtime.pdb
+D:\Project P2\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csprojResolveAssemblyReference.cache
+D:\Project P2\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csproj.CoreCompileInputs.cache
+D:\Project P2\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.dll
+D:\Project P2\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.pdb
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.dll.config
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.pdb
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\Antlr3.Runtime.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.SqlServer.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\MediTech.Model.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\Newtonsoft.Json.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Net.Http.Formatting.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Helpers.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.WebHost.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Mvc.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Optimization.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Razor.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\WebGrease.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.pdb
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.dll.config
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\MediTech.Model.pdb
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.pdb
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.dll.config
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.SqlServer.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\Newtonsoft.Json.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Net.Http.Formatting.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.WebHost.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Helpers.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Mvc.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Optimization.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.Razor.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\Antlr3.Runtime.pdb
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.pdb
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csprojAssemblyReference.cache
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csproj.CoreCompileInputs.cache
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csproj.CopyComplete
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.pdb
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.dll.config
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.pdb
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\Antlr3.Runtime.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.SqlServer.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTech.Model.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\Newtonsoft.Json.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Net.Http.Formatting.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Helpers.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.WebHost.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Mvc.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Optimization.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Razor.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\WebGrease.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.pdb
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.dll.config
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTech.Model.pdb
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.pdb
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.dll.config
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.xml
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.SqlServer.xml
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\Newtonsoft.Json.xml
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Net.Http.Formatting.xml
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.xml
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.WebHost.xml
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Helpers.xml
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Mvc.xml
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Optimization.xml
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Razor.xml
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.xml
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.xml
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.xml
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\Antlr3.Runtime.pdb
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.pdb
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.xml
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csproj.AssemblyReference.cache
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csproj.CoreCompileInputs.cache
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csproj.CopyComplete
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.pdb
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Configuration.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.dll.config
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.pdb
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\Antlr3.Runtime.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.SqlServer.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTech.Model.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\Newtonsoft.Json.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Configuration.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Net.Http.Formatting.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Helpers.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.WebHost.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Mvc.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Optimization.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Razor.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\WebGrease.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.pdb
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.dll.config
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTech.Model.pdb
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.pdb
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.dll.config
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.SqlServer.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\Newtonsoft.Json.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Net.Http.Formatting.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.WebHost.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Helpers.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Mvc.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Optimization.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Razor.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\Antlr3.Runtime.pdb
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.pdb
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csproj.AssemblyReference.cache
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csproj.CoreCompileInputs.cache
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csproj.CopyComplete
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.pdb
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.dll.config
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.dll
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.pdb
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\Antlr3.Runtime.dll
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.dll
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.SqlServer.dll
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.dll
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTech.Model.dll
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\Newtonsoft.Json.dll
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.dll
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Configuration.dll
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Net.Http.Formatting.dll
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Helpers.dll
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.dll
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.WebHost.dll
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Mvc.dll
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Optimization.dll
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Razor.dll
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.dll
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.dll
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.dll
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\WebGrease.dll
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.dll
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.pdb
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.dll.config
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\MediTech.Model.pdb
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.pdb
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.dll.config
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.xml
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.SqlServer.xml
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\Newtonsoft.Json.xml
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Net.Http.Formatting.xml
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.xml
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.WebHost.xml
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Helpers.xml
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Mvc.xml
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Optimization.xml
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.Razor.xml
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.xml
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.xml
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.xml
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\Antlr3.Runtime.pdb
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.pdb
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.xml
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csproj.AssemblyReference.cache
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csproj.CoreCompileInputs.cache
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csproj.CopyComplete
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.dll
+C:\Users\gun_g\OneDrive\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.pdb
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DevExpress.DataAccess.v22.1.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DevExpress.Xpo.v22.1.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DevExpress.Data.v22.1.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DevExpress.Printing.v22.1.Core.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DevExpress.CodeParser.v22.1.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DevExpress.RichEdit.v22.1.Core.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DevExpress.Office.v22.1.Core.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DevExpress.Drawing.v22.1.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DevExpress.Pdf.v22.1.Core.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DevExpress.Pdf.v22.1.Drawing.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DevExpress.DataAccess.v22.1.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DevExpress.Xpo.v22.1.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DevExpress.Data.v22.1.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DevExpress.Printing.v22.1.Core.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DevExpress.RichEdit.v22.1.Core.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DevExpress.Office.v22.1.Core.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DevExpress.Pdf.v22.1.Core.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\DevExpress.Pdf.v22.1.Drawing.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\de\DevExpress.DataAccess.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\es\DevExpress.DataAccess.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\ja\DevExpress.DataAccess.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\de\DevExpress.Xpo.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\es\DevExpress.Xpo.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\ja\DevExpress.Xpo.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\de\DevExpress.Data.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\es\DevExpress.Data.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\ja\DevExpress.Data.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\de\DevExpress.Printing.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\es\DevExpress.Printing.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\ja\DevExpress.Printing.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\de\DevExpress.RichEdit.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\es\DevExpress.RichEdit.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\ja\DevExpress.RichEdit.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\de\DevExpress.Office.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\es\DevExpress.Office.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\ja\DevExpress.Office.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\de\DevExpress.Pdf.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\es\DevExpress.Pdf.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\WebApi\MediTechWebApi\bin\ja\DevExpress.Pdf.v22.1.Core.resources.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.dll.config
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.pdb
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\Antlr3.Runtime.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.SqlServer.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\MediTech.Model.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\Microsoft.Web.Infrastructure.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\Newtonsoft.Json.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\System.Configuration.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\System.Net.Http.Formatting.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\System.Web.Helpers.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.WebHost.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\System.Web.Mvc.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\System.Web.Optimization.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\System.Web.Razor.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\WebGrease.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.pdb
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.dll.config
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\MediTech.Model.pdb
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.pdb
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.dll.config
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.xml
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.SqlServer.xml
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\Newtonsoft.Json.xml
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\System.Net.Http.Formatting.xml
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.xml
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.WebHost.xml
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\System.Web.Helpers.xml
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\System.Web.Mvc.xml
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\System.Web.Optimization.xml
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\System.Web.Razor.xml
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.xml
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.xml
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.xml
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\Antlr3.Runtime.pdb
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.pdb
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.xml
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csproj.AssemblyReference.cache
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csproj.CoreCompileInputs.cache
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csproj.CopyComplete
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.dll
+D:\MeditechNew\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.pdb
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.dll.config
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.dll
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.pdb
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\Antlr3.Runtime.dll
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.dll
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.SqlServer.dll
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.dll
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\MediTech.Model.dll
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\Microsoft.Web.Infrastructure.dll
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\Newtonsoft.Json.dll
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.dll
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\System.Configuration.dll
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\System.Net.Http.Formatting.dll
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\System.Web.Helpers.dll
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.dll
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.WebHost.dll
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\System.Web.Mvc.dll
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\System.Web.Optimization.dll
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\System.Web.Razor.dll
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.dll
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.dll
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.dll
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\WebGrease.dll
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.dll
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.pdb
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.dll.config
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\MediTech.Model.pdb
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.pdb
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.dll.config
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.xml
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.SqlServer.xml
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\Newtonsoft.Json.xml
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\System.Net.Http.Formatting.xml
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.xml
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.WebHost.xml
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\System.Web.Helpers.xml
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\System.Web.Mvc.xml
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\System.Web.Optimization.xml
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\System.Web.Razor.xml
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.xml
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.xml
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.xml
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\Antlr3.Runtime.pdb
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.pdb
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.xml
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csproj.AssemblyReference.cache
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csproj.CoreCompileInputs.cache
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTech.D2B5E1F0.Up2Date
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.dll
+D:\MeditechOri\MeditechEdit\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.pdb
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.dll.config
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.dll
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.pdb
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\Antlr3.Runtime.dll
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.dll
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.SqlServer.dll
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.dll
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\MediTech.Model.dll
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\Microsoft.Web.Infrastructure.dll
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\Newtonsoft.Json.dll
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.dll
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\System.Configuration.dll
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\System.Net.Http.Formatting.dll
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\System.Web.Helpers.dll
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.dll
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.WebHost.dll
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\System.Web.Mvc.dll
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\System.Web.Optimization.dll
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\System.Web.Razor.dll
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.dll
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.dll
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.dll
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\WebGrease.dll
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.dll
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.pdb
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.dll.config
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\MediTech.Model.pdb
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.pdb
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.dll.config
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.xml
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.SqlServer.xml
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\Newtonsoft.Json.xml
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\System.Net.Http.Formatting.xml
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.xml
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.WebHost.xml
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\System.Web.Helpers.xml
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\System.Web.Mvc.xml
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\System.Web.Optimization.xml
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\System.Web.Razor.xml
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.xml
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.xml
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.xml
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\Antlr3.Runtime.pdb
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.pdb
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.xml
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csproj.AssemblyReference.cache
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csproj.CoreCompileInputs.cache
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTech.D2B5E1F0.Up2Date
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.dll
+D:\Meditech10\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.pdb
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.dll.config
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.dll
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\MediTechWebApi.pdb
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\Antlr3.Runtime.dll
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.dll
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.SqlServer.dll
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.dll
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\MediTech.Model.dll
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\Microsoft.Web.Infrastructure.dll
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\Newtonsoft.Json.dll
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.dll
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\System.Configuration.dll
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\System.Net.Http.Formatting.dll
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\System.Web.Helpers.dll
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.dll
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.WebHost.dll
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\System.Web.Mvc.dll
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\System.Web.Optimization.dll
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\System.Web.Razor.dll
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.dll
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.dll
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.dll
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\WebGrease.dll
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.dll
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.pdb
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\MediTech.DataBase.dll.config
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\MediTech.Model.pdb
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.pdb
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\ShareLibrary.dll.config
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.xml
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\EntityFramework.SqlServer.xml
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\Newtonsoft.Json.xml
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\System.Net.Http.Formatting.xml
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.xml
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\System.Web.Http.WebHost.xml
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\System.Web.Helpers.xml
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\System.Web.Mvc.xml
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\System.Web.Optimization.xml
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\System.Web.Razor.xml
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.xml
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Deployment.xml
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\System.Web.WebPages.Razor.xml
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\Antlr3.Runtime.pdb
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.pdb
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\bin\DotNetZip.xml
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csproj.AssemblyReference.cache
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.csproj.CoreCompileInputs.cache
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTech.D2B5E1F0.Up2Date
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.dll
+D:\Meditech19112024\Meditech101\Meditech\WebApi\MediTechWebApi\obj\Debug\MediTechWebApi.pdb

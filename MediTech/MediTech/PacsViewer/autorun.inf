@@ -1,0 +1,7 @@
+[AutoRun.Amd64]
+open=x64\mdicom.exe DICOMDIR
+icon=x64\mdicom.exe,0
+
+[AutoRun]
+open=Win32\mdicom.exe DICOMDIR
+icon=Win32\mdicom.exe,0

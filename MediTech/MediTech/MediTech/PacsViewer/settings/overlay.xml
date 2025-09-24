@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<Overlay>
+	<entry group="0x0010" element="0x0010" position="topLeft" description="DCM_PatientName"/>
+	<entry group="0x0010" element="0x0040" position="topLeft" description="DCM_PatientSex"/>
+	<entry group="0x0010" element="0x0020" position="topLeft" description="DCM_PatientID"/>
+	<entry group="0x0010" element="0x0030" position="topLeft" description="DCM_PatientBirthDate"/>
+	<entry group="0x0008" element="0x0060" position="topLeft" description="DCM_Modality"/>
+	<entry group="0x0008" element="0x0080" position="topRight" description="DCM_InstitutionName"/>
+	<entry group="0x0008" element="0x1090" position="topRight" description="DCM_ManufacturerModelName"/>
+	<entry group="0x0008" element="0x0090" position="topRight" description="DCM_ReferringPhysicianName"/>
+	<entry group="0x0008" element="0x0020" position="topRight" description="DCM_StudyDate" group_if_missing="0x0008" element_if_missing="0x0021"/>
+	<entry group="0x0008" element="0x0030" position="topRight" description="DCM_StudyTime" group_if_missing="0x0008" element_if_missing="0x0031"/>
+	<entry group="0x0008" element="0x103e" position="bottomLeft" description="DCM_SeriesDescription"/>
+	<entry group="0x0018" element="0x0050" position="bottomLeft" description="DCM_SliceThickness" text="ST"/>
+	<entry group="0x0018" element="0x0080" position="bottomLeft" description="DCM_RepetitionTime" text="RT"/>
+	<entry group="0x0018" element="0x0081" position="bottomLeft" description="DCM_EchoTime" text="ET"/>
+	<entry viewElement="windowLength" position="bottomRight" description="Window Length" text="L:"/>
+	<entry viewElement="windowWidth" position="bottomRight" description="Windows Width" text="W:"/>
+	<entry viewElement="zoom" position="bottomRight" description="Zoom" text="Zoom:"/>
+</Overlay>

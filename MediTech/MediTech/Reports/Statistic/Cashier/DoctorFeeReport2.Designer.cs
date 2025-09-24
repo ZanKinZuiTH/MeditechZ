@@ -37,6 +37,7 @@
             this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell22 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -62,6 +63,7 @@
             this.xrTableCell14 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell21 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -74,9 +76,9 @@
             this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
             this.groupFooterBand1 = new DevExpress.XtraReports.UI.GroupFooterBand();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrTableCell21 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell22 = new DevExpress.XtraReports.UI.XRTableCell();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.OrganisationList = new DevExpress.XtraReports.Parameters.Parameter();
+            this.DoctorFeeType = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -143,6 +145,17 @@
             this.xrTableCell4.Multiline = true;
             this.xrTableCell4.Name = "xrTableCell4";
             this.xrTableCell4.Weight = 0.5102077834328772D;
+            // 
+            // xrTableCell22
+            // 
+            this.xrTableCell22.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "VisitType")});
+            this.xrTableCell22.Multiline = true;
+            this.xrTableCell22.Name = "xrTableCell22";
+            this.xrTableCell22.StylePriority.UseTextAlignment = false;
+            this.xrTableCell22.Text = "xrTableCell22";
+            this.xrTableCell22.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.xrTableCell22.Weight = 0.40454416181717856D;
             // 
             // xrTableCell5
             // 
@@ -383,6 +396,13 @@
             this.xrTableCell3.Text = "PatientName";
             this.xrTableCell3.Weight = 0.71536098385532554D;
             // 
+            // xrTableCell21
+            // 
+            this.xrTableCell21.Multiline = true;
+            this.xrTableCell21.Name = "xrTableCell21";
+            this.xrTableCell21.Text = "VisitType";
+            this.xrTableCell21.Weight = 0.56186707136994363D;
+            // 
             // xrTableCell9
             // 
             this.xrTableCell9.Name = "xrTableCell9";
@@ -497,28 +517,22 @@
             this.xrLabel7.Summary = xrSummary2;
             this.xrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
-            // xrTableCell21
-            // 
-            this.xrTableCell21.Multiline = true;
-            this.xrTableCell21.Name = "xrTableCell21";
-            this.xrTableCell21.Text = "VisitType";
-            this.xrTableCell21.Weight = 0.56186707136994363D;
-            // 
-            // xrTableCell22
-            // 
-            this.xrTableCell22.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "VisitType")});
-            this.xrTableCell22.Multiline = true;
-            this.xrTableCell22.Name = "xrTableCell22";
-            this.xrTableCell22.StylePriority.UseTextAlignment = false;
-            this.xrTableCell22.Text = "xrTableCell22";
-            this.xrTableCell22.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            this.xrTableCell22.Weight = 0.40454416181717856D;
-            // 
             // objectDataSource1
             // 
             this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.DoctorFeeReportModel);
             this.objectDataSource1.Name = "objectDataSource1";
+            // 
+            // OrganisationList
+            // 
+            this.OrganisationList.Description = "OrganisationUIDs";
+            this.OrganisationList.Name = "OrganisationList";
+            this.OrganisationList.Visible = false;
+            // 
+            // DoctorFeeType
+            // 
+            this.DoctorFeeType.Description = "DoctorFeeType";
+            this.DoctorFeeType.Name = "DoctorFeeType";
+            this.DoctorFeeType.Visible = false;
             // 
             // DoctorFeeReport2
             // 
@@ -538,10 +552,18 @@
             this.PageHeight = 1169;
             this.PageWidth = 1351;
             this.PaperKind = System.Drawing.Printing.PaperKind.Custom;
+            this.ParameterPanelLayoutItems.AddRange(new DevExpress.XtraReports.Parameters.ParameterPanelLayoutItem[] {
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.DateFrom, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.DateTo, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.CareproviderUID, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.OrganisationList, DevExpress.XtraReports.Parameters.Orientation.Horizontal),
+            new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.DoctorFeeType, DevExpress.XtraReports.Parameters.Orientation.Horizontal)});
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.DateFrom,
             this.DateTo,
-            this.CareproviderUID});
+            this.CareproviderUID,
+            this.OrganisationList,
+            this.DoctorFeeType});
             this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).EndInit();
@@ -598,5 +620,7 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell19;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell22;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell21;
+        private DevExpress.XtraReports.Parameters.Parameter OrganisationList;
+        private DevExpress.XtraReports.Parameters.Parameter DoctorFeeType;
     }
 }

@@ -20,7 +20,9 @@ namespace MediTech.Reports.Statistic.Cashier
             int? careproviderUID = this.Parameters["CareproviderUID"].Value.ToString() != "0" ? Convert.ToInt32(this.Parameters["CareproviderUID"].Value) : (int?)null;
             DateTime dateFrom = Convert.ToDateTime(this.Parameters["DateFrom"].Value);
             DateTime dateTo = Convert.ToDateTime(this.Parameters["DateTo"].Value);
-            var data = (new ReportsService()).GetDoctorfeeReport2(dateFrom, dateTo, careproviderUID);
+            string doctorfeetype = this.Parameters["DoctorFeeType"].Value.ToString();
+            string organisationList = this.Parameters["OrganisationList"].Value.ToString();
+            var data = (new ReportsService()).GetDoctorfeeReport2(dateFrom, dateTo, careproviderUID, doctorfeetype, organisationList);
             this.DataSource = data;
         }
     }

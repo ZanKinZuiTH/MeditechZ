@@ -1,0 +1,2 @@
+<?xml version="1.0"?>
+<ExportDicom target="image" imageSize="original" exportFrameToSeparateFiles="false" seperateFiles="false" videoSize="original" exportAnnotations="false"/>

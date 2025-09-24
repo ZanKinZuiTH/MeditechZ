@@ -1,0 +1,78 @@
+﻿<UserControl xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        x:Class="MediTech.Views.ScheduleAppointmentEditForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:cc="clr-namespace:MediTech.CustomControl"
+        xmlns:local="clr-namespace:MediTech.Views"
+        mc:Ignorable="d"
+        Height="200" Width="300">
+    <dxlc:LayoutControl Orientation="Vertical" ItemSpace="10">
+        <dxlc:LayoutItem>
+            <dxlc:LayoutItem.Label>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                    <TextBlock Text="Radioligist" />
+                </StackPanel>
+            </dxlc:LayoutItem.Label>
+            <cc:MyLookUpEdit x:Name="lkeRadiologist"    DisplayMember="FullName"
+                                ValueMember="CareproviderUID"
+                                AutoComplete="False"
+                                IncrementalFiltering="True"
+                                AllowNullInput="True"
+                                ImmediatePopup="True"
+                                FindButtonPlacement="Popup"
+                                FindMode = "Always"
+                                PopupMinHeight="100"
+                                PopupHeight="400"                                        
+                                AutoPopulateColumns="False">
+                <cc:MyLookUpEdit.ColumnsToFilter>
+                    <cc:ColumnItem FieldName="FirstName"/>
+                    <cc:ColumnItem FieldName="LastName"/>
+                </cc:MyLookUpEdit.ColumnsToFilter>
+                <dxg:LookUpEdit.PopupContentTemplate>
+                    <ControlTemplate>
+                        <dxg:GridControl  Name="PART_GridControl" >
+                            <dxg:GridColumn Header="ชื่อ" FieldName="FullName" Width="*" 
+                                                    AllowSearchPanel="True" 
+                                                    AllowIncrementalSearch="True" 
+                                                    AllowAutoFilter="True"
+                                                    ReadOnly="True"/>
+                            <dxg:GridControl.View>
+                                <dxg:TableView Name="view"
+                                                       ShowGroupPanel="False"/>
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
+                    </ControlTemplate>
+                </dxg:LookUpEdit.PopupContentTemplate>
+            </cc:MyLookUpEdit>
+        </dxlc:LayoutItem>
+        <dxlc:LayoutItem Label="Image Type">
+            <dxe:ComboBoxEdit Name="cmbImageType"
+                                          DisplayMember="Display"
+                                          AllowNullInput="True"                                      
+                                          ValueMember="Key"
+                                          SelectedItem="{Binding SelectImageType}"/>
+        </dxlc:LayoutItem>
+        <dxlc:LayoutItem Label="Date">
+            <dxe:DateEdit x:Name="dteStartDate" />
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem Label="Time">
+            <dxlc:LayoutGroup  Orientation="Horizontal">
+                <RadioButton x:Name="rad1" Content="19:00 - 1:00"/>
+                <RadioButton x:Name="rad2" Content="1:00 - 7.00"/>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutItem>
+        <dxlc:LayoutGroup HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <dx:SimpleButton x:Name="btnSave"
+                             Content="บันทึก" Width="80" Height="25" />
+            <dx:SimpleButton x:Name="btnCancel"
+                             Content="ยกเลิก ตารางเวลา" Width="110" Height="25" />
+        </dxlc:LayoutGroup>
+    </dxlc:LayoutControl>
+</UserControl>

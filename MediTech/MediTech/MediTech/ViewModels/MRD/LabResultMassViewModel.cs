@@ -1,0 +1,295 @@
+﻿using DevExpress.XtraReports.UI;
+using GalaSoft.MvvmLight.Command;
+using MediTech.Model;
+using MediTech.Reports.Operating.Patient.CheckupBook;
+using MediTech.Reports.Operating.Checkup.CheckupBookReport;
+using MediTech.Views;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using MediTech.Reports.Operating.Checkup.RiskBook2547;
+
+namespace MediTech.ViewModels
+{
+    public class LabResultMassViewModel : MediTechViewModelBase
+    {
+        #region Properties
+
+        #region PatientSearch
+
+        private string _SearchPatientCriteria;
+
+        public string SearchPatientCriteria
+        {
+            get { return _SearchPatientCriteria; }
+            set
+            {
+                Set(ref _SearchPatientCriteria, value);
+                PatientsSearchSource = null;
+            }
+        }
+
+
+        private List<PatientInformationModel> _PatientsSearchSource;
+
+        public List<PatientInformationModel> PatientsSearchSource
+        {
+            get { return _PatientsSearchSource; }
+            set { Set(ref _PatientsSearchSource, value); }
+        }
+
+        private PatientInformationModel _SelectedPateintSearch;
+
+        public PatientInformationModel SelectedPateintSearch
+        {
+            get { return _SelectedPateintSearch; }
+            set
+            {
+                _SelectedPateintSearch = value;
+                if (SelectedPateintSearch != null)
+                {
+                    Search();
+                    SearchPatientCriteria = string.Empty;
+                }
+            }
+        }
+
+        #endregion
+
+        private string _FileLocation;
+
+        public string FileLocation
+        {
+            get { return _FileLocation; }
+            set { Set(ref _FileLocation, value); }
+        }
+
+        private int _TotalRecord;
+
+        public int TotalRecord
+        {
+            get { return _TotalRecord; }
+            set { Set(ref _TotalRecord, value); }
+        }
+
+
+        private DateTime? _DateFrom;
+
+        public DateTime? DateFrom
+        {
+            get { return _DateFrom; }
+            set { Set(ref _DateFrom, value); }
+        }
+
+        private DateTime? _DateTo;
+
+        public DateTime? DateTo
+        {
+            get { return _DateTo; }
+            set { Set(ref _DateTo, value); }
+        }
+
+        private List<InsuranceCompanyModel> _InsuranceCompany;
+
+        public List<InsuranceCompanyModel> InsuranceCompany
+        {
+            get { return _InsuranceCompany; }
+            set { Set(ref _InsuranceCompany, value); }
+        }
+
+        private InsuranceCompanyModel _SelectInsuranceCompany;
+
+        public InsuranceCompanyModel SelectInsuranceCompany
+        {
+            get { return _SelectInsuranceCompany; }
+            set { Set(ref _SelectInsuranceCompany, value); }
+        }
+
+
+        private List<PatientResultComponentModel> _PatientResultLabList;
+
+        public List<PatientResultComponentModel> PatientResultLabList
+        {
+            get { return _PatientResultLabList; }
+            set { Set(ref _PatientResultLabList, value); }
+        }
+        
+
+        private List<PatientResultComponentModel> _PivotPatientLabData;
+
+        public List<PatientResultComponentModel> PivotPatientLabData
+        {
+            get { return _PivotPatientLabData; }
+            set { Set(ref _PivotPatientLabData, value); }
+        }
+
+        #endregion
+
+        #region Command
+
+        private RelayCommand _SearchCommand;
+
+        public RelayCommand SearchCommand
+        {
+            get
+            {
+                return _SearchCommand
+                    ?? (_SearchCommand = new RelayCommand(Search));
+            }
+        }
+
+
+        private RelayCommand _ExportPivotGridToExcelCommand;
+
+        public RelayCommand ExportPivotGridToExcelCommand
+        {
+            get { return _ExportPivotGridToExcelCommand ?? (_ExportPivotGridToExcelCommand = new RelayCommand(ExportPivotGridToExcel)); }
+        }
+
+        private RelayCommand _PatientSearchCommand;
+        /// <summary>
+        /// Gets the PatientSearchCommand.
+        /// </summary>
+        public RelayCommand PatientSearchCommand
+        {
+            get
+            {
+                return _PatientSearchCommand
+                    ?? (_PatientSearchCommand = new RelayCommand(PatientSearch));
+            }
+        }
+        #endregion
+
+        #region Method
+
+        public LabResultMassViewModel()
+        {
+            DateFrom = DateTime.Now;
+            DateTo = DateTime.Now;
+            InsuranceCompany = DataService.Billing.GetInsuranceCompanyAll();
+
+        }
+
+        private void PrintingSystem_StartPrint(object sender, DevExpress.XtraPrinting.PrintDocumentEventArgs e)
+        {
+            if (!e.PrintDocument.PrinterSettings.CanDuplex)
+            {
+                throw new Exception("Cannot print in duplex mode");
+            }
+            e.PrintDocument.PrinterSettings.Duplex = System.Drawing.Printing.Duplex.Vertical;
+        }
+
+        void ExportPivotGridToExcel()
+        {
+            if (PivotPatientLabData != null)
+            {
+                string fileName = ShowSaveFileDialog("Microsoft Excel Document", "Microsoft Excel|*.xlsx");
+                if (fileName != "")
+                {
+                    LabResultMass view = (LabResultMass)this.View;
+                    var exportOptions = new DevExpress.XtraPrinting.XlsxExportOptionsEx();
+                    exportOptions.ExportType = DevExpress.Export.ExportType.WYSIWYG;
+                    view.pivotData.ExportToXlsx(fileName, exportOptions);
+                    OpenFile(fileName);
+                }
+
+            }
+        }
+        void Search()
+        {
+            long? patientUID = null;
+            int? insuranceCompanyUID = SelectInsuranceCompany != null ? SelectInsuranceCompany.InsuranceCompanyUID : (int?)null;
+            if (!string.IsNullOrEmpty(SearchPatientCriteria))
+            {
+                if (SelectedPateintSearch != null)
+                {
+                    patientUID = SelectedPateintSearch.PatientUID;
+                }
+            }
+
+            var dataCheckupValue = DataService.Lab.SearchResultLabList(DateFrom, DateTo, patientUID, insuranceCompanyUID);
+
+            if (dataCheckupValue != null)
+            {
+                PivotPatientLabData = dataCheckupValue
+                    .GroupBy(g => new {  g.PatientUID, g.PatientID, g.FirstName, g.LastName, g.StartDttm, g.TITLEUID, g.Title, g.SEXXXUID, g.Gender, g.Age })
+                    .Select(p => new PatientResultComponentModel
+                    {
+                        PatientVisitUID = p.FirstOrDefault().PatientVisitUID,
+                        PatientUID = p.FirstOrDefault().PatientUID,
+                        PatientID = p.FirstOrDefault().PatientID,
+                        FirstName = p.FirstOrDefault().FirstName,
+                        LastName = p.FirstOrDefault().LastName,
+                        PayorDetailUID = p.FirstOrDefault().PayorDetailUID,
+                        StartDttm = p.FirstOrDefault().StartDttm,
+                        TITLEUID = p.FirstOrDefault().TITLEUID,
+                        Title = p.FirstOrDefault().Title,
+                        SEXXXUID = p.FirstOrDefault().SEXXXUID,
+                        Gender = p.FirstOrDefault().Gender,
+                        Age = p.FirstOrDefault().Age,
+                        EmployeeID = p.FirstOrDefault().EmployeeID,
+                        CompanyName = p.FirstOrDefault().CompanyName,
+                        Department = p.FirstOrDefault().Department,
+                        Position = p.FirstOrDefault().Position
+                    }).ToList();
+
+                PivotPatientLabData = dataCheckupValue;
+                
+            }
+            else
+            {
+                PivotPatientLabData = null;
+            }
+
+        }
+        public void PatientSearch()
+        {
+            string patientID = string.Empty;
+            string firstName = string.Empty; ;
+            string lastName = string.Empty;
+            if (SearchPatientCriteria.Length >= 3)
+            {
+                string[] patientName = SearchPatientCriteria.Split(' ');
+                if (patientName.Length >= 2)
+                {
+                    firstName = patientName[0];
+                    lastName = patientName[1];
+                }
+                else
+                {
+                    int num = 0;
+                    foreach (var ch in SearchPatientCriteria)
+                    {
+                        if (ShareLibrary.CheckValidate.IsNumber(ch.ToString()))
+                        {
+                            num++;
+                        }
+                    }
+                    if (num >= 5)
+                    {
+                        patientID = SearchPatientCriteria;
+                    }
+                    else if (num <= 2)
+                    {
+                        firstName = SearchPatientCriteria;
+                        lastName = "empty";
+                    }
+
+                }
+                List<PatientInformationModel> searchResult = DataService.PatientIdentity.SearchPatient(patientID, firstName, "", lastName, "", null, null, "", null, "", "");
+                PatientsSearchSource = searchResult;
+            }
+            else
+            {
+                PatientsSearchSource = null;
+            }
+
+        }
+
+        #endregion
+    }
+}

@@ -243,10 +243,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetDoctorfeeReport2")]
         [HttpGet]
-        public List<DoctorFeeReportModel> GetDoctorfeeReport2(DateTime dateFrom, DateTime dateTo, int? careproviderUID)
+        public List<DoctorFeeReportModel> GetDoctorfeeReport2(DateTime dateFrom, DateTime dateTo, int? careproviderUID, string doctorfeeType, string organisationList)
         {
             List<DoctorFeeReportModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTDoctorFee2(dateFrom, dateTo, careproviderUID);
+            DataTable dt = SqlDirectStore.pRPTDoctorFee2(dateFrom, dateTo, careproviderUID, doctorfeeType, organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<DoctorFeeReportModel>();
@@ -823,7 +823,7 @@ namespace MediTechWebApi.Controllers
             data.PatientAddresses = (new PatientIdentityController()).GetPatientAddressByPatientUID(patientUID);
 
             return data;
-        }
+        }  
 
 
         [Route("GetCheckupRiskAudioTimus")]

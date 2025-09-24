@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="MediTech.Views.ListPackage"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediTech.Views"
+             mc:Ignorable="d" 
+             DataContext="{Binding ListPackageViewModel ,Source={StaticResource Locator}}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="Code">
+                    <dxe:TextEdit Text="{Binding PackageCode}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Name">
+                    <dxe:TextEdit Text="{Binding PackageName}"/>
+                </dxlc:LayoutItem>
+                <dx:SimpleButton Width="80" Margin="50,0,0,0" Command="{Binding SearchCommand}"
+                                     Height="25" Content="ค้นหา"/>
+            </dxlc:LayoutGroup>
+            
+            <dxg:GridControl x:Name="grdBillableItem" ItemsSource="{Binding BillPackage}"
+                             SelectedItem="{Binding SelectBillPackage}">
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn Header="Code" FieldName="Code"/>
+                    <dxg:GridColumn Header="PackageName" FieldName="PackageName"/>
+                    <dxg:GridColumn Header="Total Amount" FieldName="TotalAmount"/>
+                    <dxg:GridColumn Header="Catagory" FieldName="OrderCategory"/>
+                    <dxg:GridColumn Header="SubCatagory" FieldName="OrderSubCategory"/>
+                    <dxg:GridColumn Header="เปิดใช้งาน" FieldName="ActiveFrom"/>
+                    <dxg:GridColumn Header="ปิดใช้งาน" FieldName="ActiveTo"/>
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView x:Name="gvBillPackage" ShowGroupPanel="False"  AllowEditing="False" />
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+            <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
+                <dx:SimpleButton Width="80" Command="{Binding AddCommand}"
+                                     Height="25" Content="เพิ่ม"/>
+                <dx:SimpleButton Width="80" Command="{Binding EditCommand}"
+                                     Height="25" Content="แก้ไข"/>
+                <dx:SimpleButton Width="80" Margin="50,0,0,0" Command="{Binding DeleteCommand}"
+                                     Height="25" Content="ลบ"/>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

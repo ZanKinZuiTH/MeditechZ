@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="MediTech.Views.ManageInsurancePlan"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"   
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediTech.Views"
+             mc:Ignorable="d" 
+              DataContext="{Binding Path=ManageInsurancePlanViewModel,Source={StaticResource Locator}}"
+             Width="800" Height="350"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical" Margin="10,10,-10,-9.6">
+            <dxlc:LayoutGroup Margin="50" Orientation="Horizontal">
+                <dxlc:LayoutGroup Orientation="Vertical">
+                    <dxlc:LayoutItem Margin="5">
+                        <dxlc:LayoutItem.Label>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                <TextBlock Text="Agreement Name" />
+                            </StackPanel>
+                        </dxlc:LayoutItem.Label>
+                        <dxe:ComboBoxEdit ItemsSource="{Binding AgreementSource}"
+                                                      SelectedItem="{Binding SelectAgreement}"
+                                                      DisplayMember="Name"
+                                                      ValueMember="PayorAgreementUID"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Margin="5">
+                        <dxlc:LayoutItem.Label>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                <TextBlock Text="Payor Office" />
+                            </StackPanel>
+                        </dxlc:LayoutItem.Label>
+                        <dxe:ComboBoxEdit ItemsSource="{Binding PayorOfficeSource}"
+                                                      SelectedItem="{Binding SelectPayorOffice}"
+                                                      DisplayMember="PayorName"
+                                                      ValueMember="PayorDetailUID"/>
+
+                    </dxlc:LayoutItem>
+                    
+                    <dxlc:LayoutItem Margin="5" Label="Policy Name">
+                        <dxe:TextEdit Text="{Binding SelectPolicy.PolicyName}" IsEnabled="False"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Margin="5" Label="เปิดใช้งาน">
+                        <dxe:DateEdit EditValue="{Binding ActiveFrom}"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Margin="5" Label="ปิดใช้งาน">
+                        <dxe:DateEdit EditValue="{Binding ActiveTo}"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup>
+                <dx:SimpleButton Width="80" 
+                                     HorizontalAlignment="Right"
+                                     Command="{Binding SaveCommand}"
+                                     Height="25" Content="บันทึก"/>
+                <dx:SimpleButton Width="80" 
+                                     HorizontalAlignment="Right"
+                                     Command="{Binding CancelCommand}"
+                                     Height="25" Content="ยกเลิก"/>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

@@ -592,9 +592,9 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2547
                     //    .Where(p => p.RequestItemCode.Contains("AUDIO"));
                     //GenerateAudio(AudioResult);
 
-                    IEnumerable<PatientResultComponentModel> SpiroResult = occmed
-                        .Where(p => p.RequestItemCode.Contains("SPIRO"));
-                    GenerateSpiro(SpiroResult);
+                    //IEnumerable<PatientResultComponentModel> SpiroResult = occmed
+                    //    .Where(p => p.RequestItemCode.Contains("SPIRO"));
+                    //GenerateSpiro(SpiroResult);
 
                     IEnumerable<PatientResultComponentModel> PhysicalExam = occmed
                         .Where(p => p.RequestItemCode.Contains("PEXAM"));
@@ -604,6 +604,10 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2547
                 var audiotim = dataAudiotis;
                 if (audiotim != null)
                 {
+                    IEnumerable<PatientResultComponentModel> SpiroResult = audiotim
+                        .Where(p => p.RequestItemCode.Contains("SPIRO"));
+                    GenerateSpiro(SpiroResult);
+
                     IEnumerable<PatientResultComponentModel> timusResult = audiotim
                         .Where(p => p.RequestItemCode.Contains("TIMUS"));
                     GenerateTimus(timusResult);
@@ -2135,8 +2139,8 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2547
                 Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 - 1;
-                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 - 1;
+                int? year2 = countYear >= 2 ? (Years.ElementAtOrDefault(1) != null ? Years[1] : year1 - 1) : null;
+                int? year3 = countYear >= 3 ? (Years.ElementAtOrDefault(2) != null ? Years[2] : year2 - 1) : null;
                 page4.Ryear1.Text = "ปี" + " " + (year1 + 543).ToString();
                 page4.Ryear2.Text = "ปี" + " " + (year2 + 543).ToString();
                 page4.Ryear3.Text = "ปี" + " " + (year3 + 543).ToString();
@@ -2200,15 +2204,25 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook2547
                 Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 - 1;
-                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 - 1;
+                int? year2 = countYear >= 2 ? (Years.ElementAtOrDefault(1) != null ? Years[1] : year1 - 1) : null;
+                int? year3 = countYear >= 3 ? (Years.ElementAtOrDefault(2) != null ? Years[2] : year2 - 1) : null;
+
+
                 page4.LungYear1.Text = "ปี" + " " + (year1 + 543).ToString();
                 page4.LungYear2.Text = "ปี" + " " + (year2 + 543).ToString();
                 page4.LungYear3.Text = "ปี" + " " + (year3 + 543).ToString();
 
-                page4.lbFVCPer1.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO3")?.ResultValue;
-                page4.lbFEV1Per1.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO6")?.ResultValue;
-                page4.lbFEVPer1.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO9")?.ResultValue;
+                page4.lbFVCPer1.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO3" && p.Year == year1)?.ResultValue;
+                page4.lbFEV1Per1.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO6" && p.Year == year1)?.ResultValue;
+                page4.lbFEVPer1.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO9" && p.Year == year1)?.ResultValue;
+
+                page4.lbFVCPer2.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO3" && p.Year == year2)?.ResultValue;
+                page4.lbFEV1Per2.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO6" && p.Year == year2)?.ResultValue;
+                page4.lbFEVPer2.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO9" && p.Year == year2)?.ResultValue;
+
+                page4.lbFVCPer3.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO3" && p.Year == year3)?.ResultValue;
+                page4.lbFEV1Per3.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO6" && p.Year == year3)?.ResultValue;
+                page4.lbFEVPer3.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO9" && p.Year == year3)?.ResultValue;
             }
         }
 

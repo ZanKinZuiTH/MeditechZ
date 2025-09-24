@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<WINDOWLEVEL>
+	<PRESET name="Skull" center="25" width="95"/>
+	<PRESET name="Lung" center="-400" width="1600"/>
+	<PRESET name="Abdomen" center="10" width="400"/>
+	<PRESET name="Mediastinum" center="10" width="450"/>
+	<PRESET name="Bone" center="300" width="2500"/>
+	<PRESET name="Spine" center="20" width="300"/>
+	<PRESET name="Postmyelo" center="200" width="1000"/>
+	<PRESET name="Felsenbein" center="500" width="4000"/>
+</WINDOWLEVEL>

@@ -1,0 +1,322 @@
+﻿<UserControl x:Class="MediTech.Views.TranslateCheckupResult"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cv="clr-namespace:MediTech.Converter"
+             xmlns:local="clr-namespace:MediTech.Views"
+             xmlns:cc="clr-namespace:MediTech.CustomControl"
+             DataContext="{Binding Path=TranslateCheckupResultViewModel,Source={StaticResource Locator}}"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:helper="clr-namespace:MediTech.Helpers"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="900">
+    <UserControl.Resources>
+        <cv:AddValueConverter x:Key="AddValueConverter" />
+        <cc:PatientSearchPopUp x:Key="PatientColumn" d:IsDataSource="True" />
+    </UserControl.Resources>
+    <Grid>
+        <dx:DXTabControl>
+            <dx:DXTabItem Header="ประมวลผลรายกลุ่ม">
+                <dxlc:DockLayoutControl x:Name="layoutItems">
+                    <dxlc:LayoutControl>
+                        <dxlc:LayoutGroup Orientation="Vertical" dxlc:DockLayoutControl.Dock="Left"
+                              Width="300"
+                              dxlc:DockLayoutControl.AllowHorizontalSizing="True">
+                            <dxlc:LayoutItem Label="Payor">
+                                <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding InsuranceCompany}" 
+                                      SelectedItem="{Binding SelectInsuranceCompany}"
+                                      ValueMember="InsuranceCompanyUID"
+                                      DisplayMember="CompanyName"
+                                      NullValueButtonPlacement="EditBox"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="400"
+                                      PopupHeight="300" 
+                                      IsPopupAutoWidth="True"
+                                      AutoPopulateColumns="False">
+                                    <dxg:LookUpEdit.PopupContentTemplate>
+                                        <ControlTemplate>
+                                            <dxg:GridControl x:Name="PART_GridControl"  >
+                                                <dxg:GridControl.View>
+                                                    <dxg:TableView
+                        x:Name="View"  ShowColumnHeaders="False"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" />
+                                                </dxg:GridControl.View>
+                                                <dxg:GridColumn x:Name="colPayorName" FieldName="CompanyName"/>
+                                            </dxg:GridControl>
+                                        </ControlTemplate>
+                                    </dxg:LookUpEdit.PopupContentTemplate>
+                                    <dxg:LookUpEdit.StyleSettings>
+                                        <dxg:SearchLookUpEditStyleSettings/>
+                                    </dxg:LookUpEdit.StyleSettings>
+                                </dxg:LookUpEdit>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Job">
+                                <dxg:LookUpEdit x:Name="lkeCompanyName" ItemsSource="{Binding CheckupJobContactList}" 
+                                      SelectedItem="{Binding SelectCheckupJobContact}"
+                                      ValueMember="CheckupJobContactUID"
+                                      DisplayMember="CompanyName"
+                                      NullValueButtonPlacement="EditBox"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="600"
+                                      PopupHeight="300" 
+                                      IsPopupAutoWidth="True"
+                                      AutoPopulateColumns="False">
+                                    <dxg:LookUpEdit.PopupContentTemplate>
+                                        <ControlTemplate>
+                                            <dxg:GridControl x:Name="PART_GridControl"  >
+                                                <dxg:GridControl.View>
+                                                    <dxg:TableView
+                        x:Name="View"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" />
+                                                </dxg:GridControl.View>
+                                                <dxg:GridColumn Header="JobNumber" FieldName="JobNumber"/>
+                                                <dxg:GridColumn Header="บริษัท" FieldName="CompanyName"/>
+                                                <dxg:GridColumn Header="การให้บริการ" FieldName="ServiceName"/>
+                                                <dxg:GridColumn Header="วันที่ตรวจ" FieldName="StartDttm"/>
+                                            </dxg:GridControl>
+                                        </ControlTemplate>
+                                    </dxg:LookUpEdit.PopupContentTemplate>
+                                    <dxg:LookUpEdit.StyleSettings>
+                                        <dxg:SearchLookUpEditStyleSettings/>
+                                    </dxg:LookUpEdit.StyleSettings>
+                                </dxg:LookUpEdit>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:LayoutItem Label="จากวันที่">
+                                    <dxe:DateEdit EditValue="{Binding JobDateFrom}" AllowNullInput="False"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="ถึงวันที่">
+                                    <dxe:DateEdit EditValue="{Binding JobDateTo}"/>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                            
+                            <dxg:GridControl x:Name="gcGroupResult" ItemsSource="{Binding CheckupJobTasks}" 
+                                 SelectedItem="{Binding SelectCheckupJobTask}">
+                                <dxg:GridColumn x:Name="colSelected" 
+                                        Fixed="Left"
+                                        Width="30"
+                                        AllowEditing="True"
+                                        AllowBestFit="False"
+                                        AllowResizing="False"
+                                        AllowGrouping="False"
+                                        AllowSorting="False"
+                                        AllowIncrementalSearch="False"
+                                        AllowMoving="False"
+                                        AllowColumnFiltering="False"
+                                        HorizontalHeaderContentAlignment="Center">
+                                    <dxg:GridColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <dxe:CheckEdit
+                                        Cursor="Hand"
+                                        IsChecked="{Binding Path=DataContext.IsSelectedAll
+                                        ,RelativeSource={RelativeSource AncestorType={x:Type local:TranslateCheckupResult}}}"/>
+                                        </DataTemplate>
+                                    </dxg:GridColumn.HeaderTemplate>
+                                    <dxg:GridColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <dxe:CheckEdit x:Name="chkIsSelect"
+                                        IsChecked="{Binding RowData.Row.IsSelected}"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Cursor="Hand">
+                                            </dxe:CheckEdit>
+                                        </DataTemplate>
+                                    </dxg:GridColumn.CellTemplate>
+                                </dxg:GridColumn>
+                                <dxg:GridColumn Header="Group Result" FieldName="GroupResultName" ReadOnly="True"
+                                    AllowSorting="False"/>
+                                <dxmvvm:Interaction.Behaviors>
+                                    <helper:DeferredColumnFitBehavior/>
+                                </dxmvvm:Interaction.Behaviors>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView x:Name="gvGroupResult" NavigationStyle="Row"
+                                       ShowGroupPanel="False" />
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutControl>
+                    <dxlc:LayoutGroup dxlc:DockLayoutControl.Dock="Client" Orientation="Vertical">
+                        <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right" ItemSpace="20">
+                            <dxlc:LayoutItem Name="lytProcessAll" LabelPosition="Top">
+                                <dxlc:LayoutItem.Label>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="ประมาลผลใหม่ทุกคน" FontWeight="Bold"/>
+                                    </StackPanel>
+                                </dxlc:LayoutItem.Label>
+                                <dx:SimpleButton Name="btnProcessAll"  Height="30" Width="100" Foreground="Red"
+                                         Command="{Binding TranslateAllCommand}" >
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/MediTech;component/Resources/Images/Action/Refersh.png" />
+                                        <TextBlock Text="ประมวลผล" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </dx:SimpleButton>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem  LabelPosition="Top">
+                                <dxlc:LayoutItem.Label>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="เฉพาะที่ยังไม่ได้ประมวลผล" FontWeight="Bold"/>
+                                    </StackPanel>
+                                </dxlc:LayoutItem.Label>
+                                <dx:SimpleButton Height="30" Width="100" Command="{Binding TranslateSpecificCommand}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/MediTech;component/Resources/Images/Action/Refersh.png" />
+                                        <TextBlock Text="ประมวลผล" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </dx:SimpleButton>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem  LabelPosition="Top">
+                                <dxlc:LayoutItem.Label>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="เฉพาะที่ยังไม่ได้ยืนยันผล" FontWeight="Bold"/>
+                                    </StackPanel>
+                                </dxlc:LayoutItem.Label>
+                                <dx:SimpleButton Height="30" Width="100" Command="{Binding TranslateNonConfirmCommand}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/MediTech;component/Resources/Images/Action/Refersh.png" />
+                                        <TextBlock Text="ประมวลผล" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </dx:SimpleButton>
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutItem>
+                            <ProgressBar Height="15"   Name="progressBar1"/>
+                        </dxlc:LayoutItem>
+                        <dxg:GridControl x:Name="gcResultList" ColumnsSource="{Binding ColumnsResultItems,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"                                
+                                     ColumnGeneratorTemplate="{StaticResource DefaultColumnTemplate}">
+                            <dxg:GridControl.View>
+                                <dxg:TableView Name="gvResultList" ShowGroupPanel="False"/>
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
+                        <dxlc:LayoutGroup Padding="0" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                            <dxlc:LayoutItem HorizontalAlignment="Right">
+                                <dx:SimpleButton Width="80" Height="25" Content="Load" Command="{Binding LoadDataCommand}"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem>
+                                <dx:SimpleButton  Width="80" Command="{Binding ExportDataCommand}"
+                                     Height="25" Content="ExportData"/>
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+
+                    </dxlc:LayoutGroup>
+                </dxlc:DockLayoutControl>
+            </dx:DXTabItem>
+            <dx:DXTabItem Header="ประมวลผลรายบุคคล">
+                <dxlc:LayoutControl Orientation="Vertical" Padding="0">
+                    <dxlc:LayoutItem HorizontalAlignment="Right">
+                        <dx:SimpleButton Height="30" Width="100" Command="{Binding TranslatePatientCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MediTech;component/Resources/Images/Action/Refersh.png" />
+                                <TextBlock Text="ประมวลผล" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </dx:SimpleButton>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="จากวันที่">
+                            <dxe:DateEdit EditValue="{Binding DateFrom}"/>
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="ถึงวันที่">
+                            <dxe:DateEdit EditValue="{Binding DateTo}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem x:Name="layoutSearchPatient" Label="ค้นหาผู้ป่วย">
+                            <cc:AutoCompleteTextBox Text="{Binding SearchPatientCriteria, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            ColumnsSource="{Binding Columns, Source={StaticResource PatientColumn}}"
+                                            OnTextChangedEvent="False"
+                                            Binding="{Binding PatientName}"
+                                            MaxCompletions="30"
+                                            ItemsSource="{Binding PatientsSearchSource}"
+                                            SelectedItem="{Binding SelectedPateintSearch, Mode=OneWayToSource}">
+                                <cc:AutoCompleteTextBox.InputBindings>
+                                    <KeyBinding Key="Enter" Command="{Binding PatientSearchCommand}" />
+                                </cc:AutoCompleteTextBox.InputBindings>
+                            </cc:AutoCompleteTextBox>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="Payor">
+                            <dxg:LookUpEdit x:Name="lkePayorName2" ItemsSource="{Binding InsuranceCompany2}" 
+                                      SelectedItem="{Binding SelectInsuranceCompany2}"
+                                      ValueMember="InsuranceCompanyUID"
+                                      DisplayMember="CompanyName"
+                                      NullValueButtonPlacement="EditBox"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="400"
+                                      PopupHeight="300" 
+                                      IsPopupAutoWidth="True"
+                                      AutoPopulateColumns="False">
+                                <dxg:LookUpEdit.PopupContentTemplate>
+                                    <ControlTemplate>
+                                        <dxg:GridControl x:Name="PART_GridControl"  >
+                                            <dxg:GridControl.View>
+                                                <dxg:TableView
+                        x:Name="View"  ShowColumnHeaders="False"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" />
+                                            </dxg:GridControl.View>
+                                            <dxg:GridColumn x:Name="colPayorName" FieldName="CompanyName"/>
+                                        </dxg:GridControl>
+                                    </ControlTemplate>
+                                </dxg:LookUpEdit.PopupContentTemplate>
+                                <dxg:LookUpEdit.StyleSettings>
+                                    <dxg:SearchLookUpEditStyleSettings/>
+                                </dxg:LookUpEdit.StyleSettings>
+                            </dxg:LookUpEdit>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem/>
+                        <dxlc:LayoutItem>
+                            <dx:SimpleButton Content="ค้นหา" HorizontalAlignment="Right" Width="80" Height="25" Command="{Binding SearchPatientVisitCommand}"/>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxg:GridControl x:Name="grdVisitList"
+                         ItemsSource="{Binding PatientVisits}"
+                         SelectionMode="MultipleRow"
+                         SelectedItems="{Binding SelectPatientVisits}"
+                         SelectedItem="{Binding SelectPatientVisit}">
+                        <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID" ReadOnly="True"/>
+                        <dxg:GridColumn Header="ชื่อ-นามสกุล" FieldName="PatientName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="เพศ" FieldName="Gender" ReadOnly="True"/>
+                        <dxg:GridColumn Header="อายุ" FieldName="Age" ReadOnly="True"/>
+                        <dxg:GridColumn Header="สถานะ" FieldName="VisitStatus" ReadOnly="True"/>
+                        <dxg:GridColumn Header="ประเภท Visit" FieldName="VisitType" ReadOnly="True"/>
+                        <dxg:GridColumn Header="เข้ารับบริการ" FieldName="StartDttm"  ReadOnly="True">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:DateEditSettings DisplayFormat="dd/MM/yyyy HH:mm" />
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Header="แพทย์เจ้าของผู้ป่วย" FieldName="CareProviderName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="VisitID" FieldName="VisitID" ReadOnly="True"/>
+                        <dxg:GridColumn Header="สถานประกอบการ" FieldName="OwnerOrganisation" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Payor" FieldName="PayorName" ReadOnly="True"/>
+                        <dxg:GridControl.View>
+                            <dxg:TableView ShowGroupPanel="False" ShowCheckBoxSelectorColumn="True"/>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </dxlc:LayoutControl>
+            </dx:DXTabItem>
+        </dx:DXTabControl>
+    </Grid>
+</UserControl>

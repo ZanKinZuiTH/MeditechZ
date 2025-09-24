@@ -214,8 +214,8 @@
             // xrLabel45
             // 
             this.xrLabel45.CanGrow = false;
-            this.xrLabel45.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Pulse")});
+            this.xrLabel45.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Pulse]")});
             this.xrLabel45.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
             this.xrLabel45.LocationFloat = new DevExpress.Utils.PointFloat(703.1279F, 524.0662F);
             this.xrLabel45.Name = "xrLabel45";
@@ -240,8 +240,8 @@
             // xrLabel44
             // 
             this.xrLabel44.CanGrow = false;
-            this.xrLabel44.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Height")});
+            this.xrLabel44.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Height]")});
             this.xrLabel44.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
             this.xrLabel44.LocationFloat = new DevExpress.Utils.PointFloat(395.8557F, 525.2406F);
             this.xrLabel44.Name = "xrLabel44";
@@ -254,8 +254,8 @@
             // xrLabel43
             // 
             this.xrLabel43.CanGrow = false;
-            this.xrLabel43.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Weight")});
+            this.xrLabel43.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Weight]")});
             this.xrLabel43.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
             this.xrLabel43.LocationFloat = new DevExpress.Utils.PointFloat(276.5377F, 524.199F);
             this.xrLabel43.Name = "xrLabel43";
@@ -268,8 +268,8 @@
             // xrLabel42
             // 
             this.xrLabel42.CanGrow = false;
-            this.xrLabel42.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "strVisitData")});
+            this.xrLabel42.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[strVisitData]")});
             this.xrLabel42.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
             this.xrLabel42.LocationFloat = new DevExpress.Utils.PointFloat(634.4217F, 497.947F);
             this.xrLabel42.Name = "xrLabel42";
@@ -283,8 +283,8 @@
             // xrLabel41
             // 
             this.xrLabel41.CanGrow = false;
-            this.xrLabel41.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PatientName")});
+            this.xrLabel41.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[PatientName]")});
             this.xrLabel41.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
             this.xrLabel41.LocationFloat = new DevExpress.Utils.PointFloat(272.2442F, 497.7364F);
             this.xrLabel41.Name = "xrLabel41";
@@ -321,8 +321,8 @@
             // xrLabel38
             // 
             this.xrLabel38.CanGrow = false;
-            this.xrLabel38.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "strVisitData")});
+            this.xrLabel38.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[strVisitData]")});
             this.xrLabel38.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
             this.xrLabel38.LocationFloat = new DevExpress.Utils.PointFloat(591.1387F, 820.7747F);
             this.xrLabel38.Name = "xrLabel38";
@@ -336,8 +336,8 @@
             // xrLabel37
             // 
             this.xrLabel37.CanGrow = false;
-            this.xrLabel37.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "strVisitData")});
+            this.xrLabel37.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[strVisitData]")});
             this.xrLabel37.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
             this.xrLabel37.LocationFloat = new DevExpress.Utils.PointFloat(591.1387F, 327.0997F);
             this.xrLabel37.Name = "xrLabel37";
@@ -351,8 +351,8 @@
             // xrLabel35
             // 
             this.xrLabel35.CanGrow = false;
-            this.xrLabel35.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "IDCard")});
+            this.xrLabel35.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[IDCard]")});
             this.xrLabel35.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
             this.xrLabel35.LocationFloat = new DevExpress.Utils.PointFloat(609.2365F, 81.37881F);
             this.xrLabel35.Name = "xrLabel35";
@@ -365,8 +365,8 @@
             // xrLabel34
             // 
             this.xrLabel34.CanGrow = false;
-            this.xrLabel34.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PatientName")});
+            this.xrLabel34.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[PatientName]")});
             this.xrLabel34.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
             this.xrLabel34.LocationFloat = new DevExpress.Utils.PointFloat(217.2045F, 81.37881F);
             this.xrLabel34.Name = "xrLabel34";
@@ -1032,7 +1032,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.MedicalCertificateModel);
+            this.objectDataSource1.DataSourceType = null;
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // MedicalCertificateEng2

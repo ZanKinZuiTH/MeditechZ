@@ -1,0 +1,2 @@
+<?xml version="1.0"?>
+<ExportVideo target="series" imageFormat="wmv" framePerSecond="25" exportFrame="true" noCompression="false" seperateFiles="false" videoSize="original" exportAnnotations="true" exportOverlayType="all" quality="100"/>

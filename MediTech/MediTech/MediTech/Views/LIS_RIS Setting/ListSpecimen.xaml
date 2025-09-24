@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="MediTech.Views.ListSpecimen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:local="clr-namespace:MediTech.Views"
+             DataContext="{Binding Path=ListSpecimenViewModel,Source={StaticResource Locator}}"
+             mc:Ignorable="d" 
+            d:DesignHeight="600" d:DesignWidth="900">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem Label="Specimen Name/Code">
+                    <dxe:TextEdit Text="{Binding SpecimenNameCode}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutGroup>
+                    <dx:SimpleButton Content="ค้นหา" Command="{Binding SearchCommnad}"
+                                     Width="80" Height="25"/>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutItem/>
+            </dxlc:LayoutGroup>
+            <dxg:GridControl x:Name="grdSpecimen" ItemsSource="{Binding ListSpecimans}"
+                             SelectedItem="{Binding SelectSpecimen}">
+                <dxg:GridColumn Header="Name" FieldName="Name"/>
+                <dxg:GridColumn Header="Code" FieldName="Code"/>
+                <dxg:GridColumn Header="Speciment Type" FieldName="SpecimenType"/>
+                <dxg:GridColumn Header="IsVolume CollectionRequired" FieldName="IsVolumeCollectionReqd"/>
+                <dxg:GridColumn Header="Volume Collected" FieldName="VolumeCollected"/>
+                <dxg:GridColumn Header="Expiry Date" FieldName="ExpiryDttm"/>
+                <dxg:GridColumn Header="Collection Site" FieldName="CollectionSite"/>
+                <dxg:GridColumn Header="Collection Route" FieldName="CollectionRoute"/>
+                <dxg:GridColumn Header="Collection Method" FieldName="CollectionMethod"/>
+                <dxg:GridColumn Header="Storage Instuction" FieldName="StorageInstuction"/>
+                <dxg:GridColumn Header="Handling Instuction" FieldName="HandlingInstruction"/>
+                <dxg:GridControl.View>
+                    <dxg:TableView ShowGroupPanel="False" AllowEditing="False" />
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+            <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
+                <dx:SimpleButton Width="80" Command="{Binding AddCommand}"
+                                     Height="25" Content="เพิ่ม"/>
+                <dx:SimpleButton Width="80" Command="{Binding EditCommand}"
+                                     Height="25" Content="แก้ไข"/>
+                <dx:SimpleButton Width="80" Margin="50,0,0,0" Command="{Binding DeleteCommand}"
+                                     Height="25" Content="ลบ"/>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

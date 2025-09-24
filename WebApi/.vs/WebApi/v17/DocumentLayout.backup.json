@@ -1,0 +1,152 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Meditech_20250118\\WebApi\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9B04478D-936B-4760-BD44-1D91E7FD51BD}|MediTechWebApi\\MediTechWebApi.csproj|d:\\meditech_20250118\\webapi\\meditechwebapi\\controllers\\usermanagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B04478D-936B-4760-BD44-1D91E7FD51BD}|MediTechWebApi\\MediTechWebApi.csproj|solutionrelative:meditechwebapi\\controllers\\usermanagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{589883CB-19B6-48D8-BEA9-985E2320CA0C}|..\\MediTechData\\MediTech.DataService\\MediTech.DataService.csproj|d:\\meditech_20250118\\meditechdata\\meditech.dataservice\\dataservice\\usermanageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1033F4F2-5443-4F48-8720-5C0A32D0FB11}|..\\MediTechData\\MediTech.DataBase\\MediTech.DataBase.csproj|d:\\meditech_20250118\\meditechdata\\meditech.database\\sqlfunction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B04478D-936B-4760-BD44-1D91E7FD51BD}|MediTechWebApi\\MediTechWebApi.csproj|D:\\Meditech_20250118\\WebApi\\meditechwebapi\\controllers\\technicalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B04478D-936B-4760-BD44-1D91E7FD51BD}|MediTechWebApi\\MediTechWebApi.csproj|solutionrelative:meditechwebapi\\controllers\\technicalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B04478D-936B-4760-BD44-1D91E7FD51BD}|MediTechWebApi\\MediTechWebApi.csproj|D:\\Meditech_20250118\\WebApi\\meditechwebapi\\controllers\\radiologycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B04478D-936B-4760-BD44-1D91E7FD51BD}|MediTechWebApi\\MediTechWebApi.csproj|solutionrelative:meditechwebapi\\controllers\\radiologycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B04478D-936B-4760-BD44-1D91E7FD51BD}|MediTechWebApi\\MediTechWebApi.csproj|D:\\Meditech_20250118\\WebApi\\meditechwebapi\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B04478D-936B-4760-BD44-1D91E7FD51BD}|MediTechWebApi\\MediTechWebApi.csproj|solutionrelative:meditechwebapi\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B04478D-936B-4760-BD44-1D91E7FD51BD}|MediTechWebApi\\MediTechWebApi.csproj|D:\\Meditech_20250118\\WebApi\\meditechwebapi\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{9B04478D-936B-4760-BD44-1D91E7FD51BD}|MediTechWebApi\\MediTechWebApi.csproj|solutionrelative:meditechwebapi\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B04478D-936B-4760-BD44-1D91E7FD51BD}|MediTechWebApi\\MediTechWebApi.csproj|D:\\Meditech_20250118\\WebApi\\meditechwebapi\\controllers\\checkupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B04478D-936B-4760-BD44-1D91E7FD51BD}|MediTechWebApi\\MediTechWebApi.csproj|solutionrelative:meditechwebapi\\controllers\\checkupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserManageService.cs",
+              "DocumentMoniker": "D:\\Meditech_20250118\\MediTechData\\MediTech.DataService\\DataService\\UserManageService.cs",
+              "RelativeDocumentMoniker": "..\\MediTechData\\MediTech.DataService\\DataService\\UserManageService.cs",
+              "ToolTip": "D:\\Meditech_20250118\\MediTechData\\MediTech.DataService\\DataService\\UserManageService.cs",
+              "RelativeToolTip": "..\\MediTechData\\MediTech.DataService\\DataService\\UserManageService.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAADwv0cAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-19T07:15:04.331Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SqlFunction.cs",
+              "DocumentMoniker": "D:\\Meditech_20250118\\MediTechData\\MediTech.DataBase\\SqlFunction.cs",
+              "RelativeDocumentMoniker": "..\\MediTechData\\MediTech.DataBase\\SqlFunction.cs",
+              "ToolTip": "D:\\Meditech_20250118\\MediTechData\\MediTech.DataBase\\SqlFunction.cs",
+              "RelativeToolTip": "..\\MediTechData\\MediTech.DataBase\\SqlFunction.cs",
+              "ViewState": "AgIAAMkDAAAAAAAAAAAswOMDAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-16T16:42:54.577Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ReportsController.cs",
+              "DocumentMoniker": "D:\\Meditech_20250118\\WebApi\\MediTechWebApi\\Controllers\\ReportsController.cs",
+              "RelativeDocumentMoniker": "MediTechWebApi\\Controllers\\ReportsController.cs",
+              "ToolTip": "D:\\Meditech_20250118\\WebApi\\MediTechWebApi\\Controllers\\ReportsController.cs",
+              "RelativeToolTip": "MediTechWebApi\\Controllers\\ReportsController.cs",
+              "ViewState": "AgIAAPUAAAAAAAAAAMBUwPgAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-01T16:11:21.846Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RadiologyController.cs",
+              "DocumentMoniker": "D:\\Meditech_20250118\\WebApi\\MediTechWebApi\\Controllers\\RadiologyController.cs",
+              "RelativeDocumentMoniker": "MediTechWebApi\\Controllers\\RadiologyController.cs",
+              "ToolTip": "D:\\Meditech_20250118\\WebApi\\MediTechWebApi\\Controllers\\RadiologyController.cs",
+              "RelativeToolTip": "MediTechWebApi\\Controllers\\RadiologyController.cs",
+              "ViewState": "AgIAAGUIAAAAAAAAAABRwGgIAABtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T06:28:23.287Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TechnicalController.cs",
+              "DocumentMoniker": "D:\\Meditech_20250118\\WebApi\\MediTechWebApi\\Controllers\\TechnicalController.cs",
+              "RelativeDocumentMoniker": "MediTechWebApi\\Controllers\\TechnicalController.cs",
+              "ToolTip": "D:\\Meditech_20250118\\WebApi\\MediTechWebApi\\Controllers\\TechnicalController.cs",
+              "RelativeToolTip": "MediTechWebApi\\Controllers\\TechnicalController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T06:16:02.183Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Web.config",
+              "DocumentMoniker": "D:\\Meditech_20250118\\WebApi\\MediTechWebApi\\Web.config",
+              "RelativeDocumentMoniker": "MediTechWebApi\\Web.config",
+              "ToolTip": "D:\\Meditech_20250118\\WebApi\\MediTechWebApi\\Web.config",
+              "RelativeToolTip": "MediTechWebApi\\Web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAlAQAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-09-01T16:11:22.136Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CheckupController.cs",
+              "DocumentMoniker": "D:\\Meditech_20250118\\WebApi\\MediTechWebApi\\Controllers\\CheckupController.cs",
+              "RelativeDocumentMoniker": "MediTechWebApi\\Controllers\\CheckupController.cs",
+              "ToolTip": "D:\\Meditech_20250118\\WebApi\\MediTechWebApi\\Controllers\\CheckupController.cs",
+              "RelativeToolTip": "MediTechWebApi\\Controllers\\CheckupController.cs",
+              "ViewState": "AQIAAGQGAAAAAAAAAAAswHAGAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-01T16:11:21.434Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserManageController.cs",
+              "DocumentMoniker": "D:\\Meditech_20250118\\WebApi\\MediTechWebApi\\Controllers\\UserManageController.cs",
+              "RelativeDocumentMoniker": "MediTechWebApi\\Controllers\\UserManageController.cs",
+              "ToolTip": "D:\\Meditech_20250118\\WebApi\\MediTechWebApi\\Controllers\\UserManageController.cs",
+              "RelativeToolTip": "MediTechWebApi\\Controllers\\UserManageController.cs",
+              "ViewState": "AgIAAGECAAAAAAAAAADwv9ACAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T06:16:04.403Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

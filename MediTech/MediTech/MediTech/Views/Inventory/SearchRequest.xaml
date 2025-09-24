@@ -1,0 +1,163 @@
+﻿<UserControl  xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" x:Class="MediTech.Views.SearchRequest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:helper="clr-namespace:MediTech.Helpers"
+             mc:Ignorable="d"
+             DataContext="{Binding Path=SearchRequestViewModel, Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="จากวันที่">
+                    <dxe:DateEdit EditValue="{Binding DateFrom}" AllowNullInput="False"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="ถึงวันที่">
+                    <dxe:DateEdit EditValue="{Binding DateTo}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="เลขที่อ้างอิง">
+                    <dxe:TextEdit Text="{Binding RequestNo}"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="ร้องขอโดย">
+                    <dxg:LookUpEdit Name="lkeOrganisationFrom" ItemsSource="{Binding OrganisationsFrom}" 
+                                      SelectedItem="{Binding SelectOrganisationFrom}"
+                                      ValueMember="HealthOrganisationUID"
+                                      DisplayMember="Name"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="100"
+                                      PopupHeight="400" 
+                                      IsPopupAutoWidth="True"
+                                      NullValueButtonPlacement="EditBox"
+                                      PopupContentTemplate="{StaticResource HealthOrganisationTemplate}"
+                                      AutoPopulateColumns="False">
+                        <dxg:LookUpEdit.StyleSettings>
+                            <dxg:SearchLookUpEditStyleSettings/>
+                        </dxg:LookUpEdit.StyleSettings>
+                    </dxg:LookUpEdit>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="ร้องขอโดย แผนก/สถานที่">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding LocationFrom}" 
+                                      SelectedItem="{Binding SelectLocationFrom}"
+                                      ValueMember="LocationUID"
+                                      DisplayMember="Name"
+                                      NullValueButtonPlacement="EditBox"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="สถานะ">
+                    <dxe:ComboBoxEdit Name="cmbRequestStatus"
+                                      ItemsSource="{Binding RequestStatus}" 
+                                      SelectedItem="{Binding SelectRequestStatus}"
+                                      ValueMember="Key"
+                                      DisplayMember="Display"
+                                      AutoComplete="True"
+                                      NullValueButtonPlacement="EditBox"
+                                      AllowNullInput="True"
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem Label="ถึง สถานประกอบการ">
+                    <dxg:LookUpEdit Name="lkeOrganisationTo" ItemsSource="{Binding OrganisationsTo}" 
+                                      SelectedItem="{Binding SelectOrganisationTo}"
+                                      ValueMember="HealthOrganisationUID"
+                                      DisplayMember="Name"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="100"
+                                      PopupHeight="400" 
+                                      IsPopupAutoWidth="True"
+                                      NullValueButtonPlacement="EditBox"
+                                      PopupContentTemplate="{StaticResource HealthOrganisationTemplate}"
+                                      AutoPopulateColumns="False">
+                        <dxg:LookUpEdit.StyleSettings>
+                            <dxg:SearchLookUpEditStyleSettings/>
+                        </dxg:LookUpEdit.StyleSettings>
+                    </dxg:LookUpEdit>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="ถึง แผนก/สถานที่">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding LocationTo}" 
+                                      SelectedItem="{Binding SelectLocationTo}"
+                                      ValueMember="LocationUID"
+                                      DisplayMember="Name" 
+                                      NullValueButtonPlacement="EditBox"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem/>
+
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutItem >
+                <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
+
+                    <dx:SimpleButton Width="80" Command="{Binding SearchCommand}"
+                                     Height="25" Content="ค้นหา"/>
+                    <dx:SimpleButton Width="80" Command="{Binding ClearCommand}"
+                                     Height="25" Content="คืนค่า"/>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutItem>
+            <dxg:GridControl ItemsSource="{Binding ItemRequests}"
+                                 SelectedItem="{Binding SelectItemRequest}">
+                <dxmvvm:Interaction.Behaviors>
+                    <helper:DeferredColumnFitBehavior/>
+                </dxmvvm:Interaction.Behaviors>
+                <dxg:GridControl.Columns >
+                    <dxg:GridColumn Header="สถานะ" FieldName="RequestStatus" ReadOnly="True"/>
+                    <dxg:GridColumn Header="สถานประกอบการ" FieldName="Organisation" ReadOnly="True"/>
+                    <dxg:GridColumn Header="แผนก/สถานที่" FieldName="LocationName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Store" FieldName="Store" ReadOnly="True"/>
+                    <dxg:GridColumn Header="ถึง สถานประกอบการ" FieldName="RequestOnOrganisation" ReadOnly="True"/>
+                    <dxg:GridColumn Header="ถึง แผนก/สถานที่" FieldName="RequestOnLocation" ReadOnly="True"/>
+                    <dxg:GridColumn Header="ถึง Store" FieldName="RequestOnStore" ReadOnly="True"/>
+                    <dxg:GridColumn Header="วันที่ร้องขอ" FieldName="RequestedDttm" ReadOnly="True"/>
+                    <dxg:GridColumn Header="เลขเอกสารอ้างอิง" FieldName="ItemRequestID" ReadOnly="True"/>
+                    <dxg:GridColumn Header="ความสำคัญ" FieldName="Priority" ReadOnly="True"/>
+                    <dxg:GridColumn Header="ทำรายการโดย" FieldName="RequestedByName" ReadOnly="True"/>
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView ShowGroupPanel="False"/>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+            <dxlc:LayoutGroup Orientation="Vertical">
+                <dxlc:LayoutItem>
+                    <TextBlock Text="รายการสินค้า" FontWeight="Bold"/>
+                </dxlc:LayoutItem>
+                <dxg:GridControl ItemsSource="{Binding ItemRequestDetails}" IsEnabled="{Binding IsEnableEdit}"
+                                 SelectedItem="{Binding SelectItemRequestDetail}">
+                    <dxmvvm:Interaction.Behaviors>
+                        <helper:DeferredColumnFitBehavior/>
+                    </dxmvvm:Interaction.Behaviors>
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn Header="รายการสินค้า" FieldName="ItemName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="จำนวน" FieldName="Quantity" ReadOnly="True"/>
+                        <dxg:GridColumn Header="หน่วย" FieldName="Unit" ReadOnly="True"/>
+                        <dxg:GridColumn Header="จำนวนคงคลัง" FieldName="StockQuantity" ReadOnly="True"/>
+                    </dxg:GridControl.Columns>
+                    <dxg:GridControl.View>
+                        <dxg:TableView ShowGroupPanel="False"/>
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
+                <dx:SimpleButton Width="80" Command="{Binding SaveCommand}" IsEnabled="{Binding IsEnableEdit}"
+                                     Height="25" Content="บันทึก"/>
+                <dx:SimpleButton Width="80" Command="{Binding CancelCommand}"
+                                     Height="25" Content="ยกเลิก"/>
+            </dxlc:LayoutGroup>
+
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

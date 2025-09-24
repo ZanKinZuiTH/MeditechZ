@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="MediTech.Views.SearchItem"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"   
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             mc:Ignorable="d" 
+             DataContext="{Binding Path=SearchItemViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="Code">
+                <dxe:TextEdit Text="{Binding ItemCode}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="ItemName">
+                    <dxe:TextEdit Text="{Binding ItemName}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="ประเภท">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding ServiceTypes}"
+                                      DisplayMember="Display"
+                                      ValueMember="Key"
+                                      SelectedItem="{Binding SelectServiceTypes}"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup HorizontalAlignment="Right">
+                <dxlc:LayoutItem>
+                    <dx:SimpleButton Width="80" 
+                                     Command="{Binding SearchCommand}"
+                                     Height="25" Content="ค้นหา"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem>
+                    <dx:SimpleButton Width="80" 
+                                     Command="{Binding ClaerCommand}"
+                                     Height="25" Content="Claer"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxg:GridControl x:Name="grdBillableItem" ItemsSource="{Binding ItemMaster}"
+                             SelectedItem="{Binding SelectItemMaster}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <mvvm:EventToCommand Command="{Binding AddCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn Header="Code" FieldName="Code"/>
+                    <dxg:GridColumn Header="ชื่อ" FieldName="Name"/>
+                    <dxg:GridColumn Header="รายละเอียด" FieldName="Description"/>
+                    <dxg:GridColumn Header="บริษัทผู้ผลิต" FieldName="Manufacturer">
+                        <dxg:GridColumn.Style>
+                            <Style TargetType="dxg:GridColumn">
+                                <Setter Property="Visible" Value="False" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectServiceTypes.Display}" Value="Drug">
+                                        <Setter Property="Visible" Value="True"></Setter>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </dxg:GridColumn.Style>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="เปิดใช้งาน" FieldName="ActiveFrom"/>
+                    <dxg:GridColumn Header="ปิดใช้งาน" FieldName="ActiveTo"/>
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView x:Name="gvBillableItem" ShowGroupPanel="False"  AllowEditing="False" />
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+            <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
+                <dx:SimpleButton Width="80" Command="{Binding AddCommand}"
+                                     Height="25" Content="เพิ่ม"/>
+                <dx:SimpleButton Width="80" Command="{Binding CancelCommand}"
+                                     Height="25" Content="ยกเลิก"/>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

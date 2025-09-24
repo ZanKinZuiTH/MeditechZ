@@ -1,0 +1,100 @@
+﻿<UserControl x:Class="MediTech.Views.EMRView"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:uc="clr-namespace:MediTech.CustomControl.Banner"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             xmlns:local="clr-namespace:MediTech.Views" xmlns:dxa="http://schemas.devexpress.com/winfx/2008/xaml/accordion" xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"
+             mc:Ignorable="d"
+             xmlns:model="clr-namespace:MediTech.Model;assembly=MediTech.Model"
+             DataContext="{Binding Path=EMRViewViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="900">
+    <UserControl.Resources>
+        <DataTemplate  DataType="{x:Type model:PageViewModuleModel}">
+            <ContentControl>
+                <TextBlock Text="{Binding ModuleName}" TextTrimming="CharacterEllipsis" />
+            </ContentControl>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type model:PageViewModel}" >
+            <ContentControl>
+                <TextBlock Text="{Binding Name}" Foreground="Blue" TextTrimming="CharacterEllipsis"  TextDecorations="Underline"/>
+            </ContentControl>
+        </DataTemplate>
+    </UserControl.Resources>
+    <AdornerDecorator>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutItem >
+                <uc:PatientBanner x:Name="PatientBanner"
+PatientVisit="{Binding Path=DataContext.SelectedPatientVisit,UpdateSourceTrigger=PropertyChanged
+                        ,RelativeSource={RelativeSource AncestorType={x:Type local:EMRView}}}"
+                                  Visibility="Collapsed"/>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutGroup x:Name="layoutVisit" Orientation="Horizontal" Visibility="{Binding PatientVisitListVisibility,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                <dxlc:LayoutItem x:Name="layVisit" Label="Select Visit" 
+                             HorizontalAlignment="Left">
+
+                    <dxe:ComboBoxEdit x:Name="cmbVisit" Width="270" 
+                                  DisplayMember="Comments"
+                                  ValueMember="PatientVisitUID"
+                                  IsTextEditable="False"
+                                  ItemsSource="{Binding PatientVisitLists}"
+                                  SelectedItem="{Binding SelectedPatientVisit}" >
+                        <dxe:ComboBoxEdit.StyleSettings>
+                            <dxe:ComboBoxStyleSettings />
+                        </dxe:ComboBoxEdit.StyleSettings>
+                    </dxe:ComboBoxEdit>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="25" Cursor="Hand"
+                           Margin="10,0,0,0"
+                                   Height="25"
+                                   Source="/MediTech;component/Resources/Images/Medical/VitalSign.png"
+                                   ToolTip="Vital Sign" >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger  EventName="MouseLeftButtonUp">
+                                    <mvvm:EventToCommand Command="{Binding OpenVitalSignsChartCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Image>
+
+                        <Image Width="25" Cursor="Hand"
+                           Margin="5,0,0,0"
+                                   Height="25"
+                                   Source="/MediTech;component/Resources/Images/Menu/ScannedDocument.png"
+                                   ToolTip="Scanned Document" >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger  EventName="MouseLeftButtonUp">
+                                    <mvvm:EventToCommand Command="{Binding OpenScannedDocumentCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Image>
+                    </StackPanel>
+
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+
+            <dxlc:DockLayoutControl>
+                <dxwui:NavigationFrame dxlc:DockLayoutControl.Dock="Client" NavigationCacheMode="Disabled"   x:Name="documentFrame" >
+                    <local:SummeryView  x:Name="summeryView" Height="Auto"/>
+                </dxwui:NavigationFrame>
+
+                <dxa:AccordionControl dxlc:DockLayoutControl.Dock="Right" x:Name="accordion" Width="170"
+                                  HorizontalAlignment="Stretch"
+                                  ExpandMode="SingleOrNone"
+                                  SelectedItem="{Binding SelectedPage,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                  SelectionUnit="SubItem"
+                                  ItemsSource="{Binding PageViewModule,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                  ChildrenPath="PageViews"
+                                  ShowSearchControl="False"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                  VerticalAlignment="Top">
+                </dxa:AccordionControl>
+            </dxlc:DockLayoutControl>
+
+        </dxlc:LayoutControl>
+    </AdornerDecorator>
+</UserControl>

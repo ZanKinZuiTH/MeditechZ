@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="MediTech.Views.ReviewHistory"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:behaviors="clr-namespace:MediTech.Helpers"
+             DataContext="{Binding Path=ReviewHistoryViewModel,Source={StaticResource Locator}}"
+             mc:Ignorable="d"
+             xmlns:cc="clr-namespace:MediTech.CustomControl"
+             d:DesignHeight="400" d:DesignWidth="800">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxg:GridControl ItemsSource="{Binding ResultHistory}"
+                                 SelectedItem="{Binding SelectResultHistory}"
+                                 Width="250">
+                    <dxg:GridColumn Header="วันที่ลงผล" Width="*" FieldName="CWhen" ReadOnly="True">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy HH:mm" />
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="Version"
+                                    Width="50"
+                                    FieldName="ResultVersion" 
+                                    ReadOnly="True">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings HorizontalContentAlignment="Left"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridControl.View>
+                        <dxg:TableView ShowGroupPanel="False" NavigationStyle="Row"/>
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+                <RichTextBox ScrollViewer.VerticalScrollBarVisibility="Auto"
+             behaviors:HtmlRichTextBoxBehavior.Text="{Binding ReviewResult}"
+             IsDocumentEnabled="True"
+             IsReadOnly="True"/>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

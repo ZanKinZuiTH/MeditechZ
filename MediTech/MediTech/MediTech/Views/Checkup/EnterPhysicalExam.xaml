@@ -1,0 +1,177 @@
+﻿<UserControl xmlns:Banner="clr-namespace:MediTech.CustomControl.Banner"  x:Class="MediTech.Views.EnterPhysicalExam"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediTech.Views"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             mc:Ignorable="d"
+             DataContext="{Binding Path=EnterPhysicalExamViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Banner:PatientRequestBanner x:Name="patientBanner"/>
+        <dxlc:LayoutControl Grid.Row="1" Orientation="Vertical">
+            <dxlc:LayoutGroup VerticalAlignment="Top" Orientation="Vertical">
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="น้ำหนัก" FontSize="17">
+                            <dxe:TextEdit  Name="txtWeight" Height="25"  EditValue="{Binding PatientVitalSign.Weight,Mode=TwoWay}"
+                                       Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                       Width="80" 
+                                       VerticalAlignment="Top"/>
+                        </dxlc:LayoutItem>
+                        <TextBlock Text="กก." FontSize="17"/>
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="ส่วนสูง" FontSize="17">
+                            <dxe:TextEdit  Name="txtHeight" Height="25"  EditValue="{Binding PatientVitalSign.Height,Mode=TwoWay}"
+                                 Width="80" 
+                                 VerticalAlignment="Top" Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"/>
+                        </dxlc:LayoutItem>
+                        <TextBlock Text="ซม." FontSize="17" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="ความดันช่วงบน" FontSize="17">
+                            <dxe:TextEdit Height="25" EditValue="{Binding PatientVitalSign.BPSys,Mode=TwoWay}"
+                                 Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                 Name="txtSBP"
+                                 Width="80" 
+                                 VerticalAlignment="Top"/>
+                        </dxlc:LayoutItem>
+                        <TextBlock Text="mm/Hg." FontSize="17"/>
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="ความดันช่วงล่าง" FontSize="17">
+                            <dxe:TextEdit  Height="25" EditValue="{Binding PatientVitalSign.BPDio,Mode=TwoWay}"
+                               Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                 Name="txtDBP"
+                                 Width="80" 
+                                 VerticalAlignment="Top"/>
+                        </dxlc:LayoutItem>
+                        <TextBlock Text="mm/Hg." FontSize="17"/>
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="ชีพจร" FontSize="17">
+                            <dxe:TextEdit Height="25" 
+                                 Name="txtPluse" EditValue="{Binding PatientVitalSign.Pulse,Mode=TwoWay}"
+                                 Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                 Width="80" VerticalAlignment="Top"/>
+                        </dxlc:LayoutItem>
+                        <TextBlock Text="ครั้ง/นาที" FontSize="17" />
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="เส้นรอบเอว" FontSize="17">
+                            <dxe:TextEdit  Height="25" EditValue="{Binding PatientVitalSign.WaistCircumference,Mode=TwoWay}"
+                               Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                 Name="txtWaist"
+                                 Width="80" 
+                                 VerticalAlignment="Top"/>
+                        </dxlc:LayoutItem>
+                        <TextBlock Text="ซม." FontSize="17"/>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="เส้นรอบสะโพก" FontSize="17">
+                            <dxe:TextEdit  Height="25" EditValue="{Binding PatientVitalSign.HipCircumference,Mode=TwoWay}"
+                               Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                 Name="txtHip"
+                                 Width="80" 
+                                 VerticalAlignment="Top"/>
+                        </dxlc:LayoutItem>
+                        <TextBlock Text="ซม." FontSize="17"/>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="ตั้งครรภ์" FontSize="17">
+                            <dxe:CheckEdit  Height="25" EditValue="{Binding PatientVitalSign.IsPregnant,Mode=TwoWay}"
+                                            VerticalAlignment="Top"/>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+            <Border VerticalAlignment="Top" BorderThickness="0,0,0,0.5" BorderBrush="Black"/>
+            <dxlc:LayoutItem>
+                <TextBlock Text="{Binding RequestItemName}" FontWeight="Bold" FontSize="18"/>
+            </dxlc:LayoutItem>
+            <dxg:GridControl ItemsSource="{Binding ResultComponentItems}" SelectionMode="Cell"
+                             AutoGenerateColumns="None">
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn FieldName="ResultItemName"  ReadOnly="True">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <dxe:TextEdit Name="PART_Editor"  FontSize="17" 
+                                              HorizontalContentAlignment="Center"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="CheckDataList"  Width="*">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <dxe:ListBoxEdit Name="PART_Editor" ShowCustomItems="False"
+                                                 ItemsSource="{Binding RowData.Row.AutoValueList}" 
+                                                 FontWeight="Bold" FontSize="16">
+                                    <dxe:ListBoxEdit.Resources>
+                                        <Style TargetType="dxe:CheckEdit">
+                                            <Setter Property="Margin" Value="5,5,0,0"/>
+                                        </Style>
+                                    </dxe:ListBoxEdit.Resources>
+                                    <dxe:ListBoxEdit.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Height="60" Orientation="Vertical"/>
+                                        </ItemsPanelTemplate>
+                                    </dxe:ListBoxEdit.ItemsPanel>
+                                    <dxe:ListBoxEdit.StyleSettings>
+                                        <dxe:CheckedListBoxEditStyleSettings/>
+                                    </dxe:ListBoxEdit.StyleSettings>
+                                </dxe:ListBoxEdit>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="TokenDataList" Width="350">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <dxe:ComboBoxEdit Name="PART_Editor"
+                                                  EditValue="{Binding RowData.Row.TokenDataList,Mode=TwoWay}"
+                                                  FontSize="18"
+                                      MaxHeight="50" IsTextEditable="True"
+                                      ValidateOnEnterKeyPressed="True">
+                                    <dxe:ComboBoxEdit.StyleSettings>
+                                        <dxe:TokenComboBoxStyleSettings NewTokenPosition="Far" EnableTokenWrapping="True"/>
+                                    </dxe:ComboBoxEdit.StyleSettings>
+                                </dxe:ComboBoxEdit>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView EditorShowMode="MouseDown" ShowGroupPanel="False" ShowColumnHeaders="False" AllowSorting="False">
+                        <dxg:TableView.RowStyle>
+                            <Style TargetType="{x:Type dxg:RowControl}">
+                                <Setter Property="dxg:GridRowContent.Background" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=BorderNoneBrush}}" />
+                                <Setter Property="dxg:GridRowContent.Foreground" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=TextUnfocusedBrush}}" />
+                            </Style>
+                        </dxg:TableView.RowStyle>
+                        <dxg:TableView.CellStyle>
+                            <Style TargetType="dxg:LightweightCellEditor">
+                                <Setter Property="BorderBrush" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=GridDataRowDelimiterBrush}}" />
+                            </Style>
+                        </dxg:TableView.CellStyle>
+                    </dxg:TableView>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+            <dxlc:LayoutGroup HorizontalAlignment="Right">
+                <dx:SimpleButton Content="Save" Command="{Binding SaveCommand}" Width="80" Height="25"/>
+                <dx:SimpleButton Content="Cancel" Command="{Binding CloseCommand}" Width="80" Height="25"/>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

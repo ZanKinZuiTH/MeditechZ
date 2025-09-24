@@ -1,0 +1,121 @@
+﻿<UserControl x:Class="MediTech.Views.IPDMedicalDischarge"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:uc="clr-namespace:MediTech.CustomControl.Banner"
+             mc:Ignorable="d"
+             DataContext="{Binding IPDMedicalDischargeViewModel ,Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem Name="Banner" Visibility="{Binding IsBanner}">
+                    <uc:PatientBanner PatientVisit="{Binding SelectPatientVisit}"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup  ItemSpace="10" HorizontalAlignment="Left" Orientation="Vertical" Width="500" Margin="50">
+                <dxlc:LayoutItem>
+                    <dxlc:LayoutItem.Label>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                               Foreground="Red"/>
+                            <TextBlock Text="Status of Medical Discharge" />
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
+                    <dxe:ComboBoxEdit DisplayMember="Display" 
+                                      ValueMember="Key"
+                                      NullValueButtonPlacement="EditBox"
+                                      ItemsSource="{Binding DischargeStatus}"
+                                      SelectedItem="{Binding SelectDischargeStatus}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutGroup>
+                        <dxlc:LayoutItem>
+                            <dxlc:LayoutItem.Label>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                               Foreground="Red"/>
+                                    <TextBlock Text="Discharge Date" />
+                                </StackPanel>
+                            </dxlc:LayoutItem.Label>
+                            <dxe:DateEdit EditValue="{Binding DischargeDate}" IsEnabled="False"/>
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Width="100">
+                            <dxlc:LayoutItem.Label>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label FontSize="15" Margin="0,-10,0,0"/>
+                                    <TextBlock Text="Time" />
+                                </StackPanel>
+                            </dxlc:LayoutItem.Label>
+                            <dxe:DateEdit EditValue="{Binding DischargeDate}"
+                                      AllowNullInput="True"
+                                      IsEnabled="False"
+                                      DisplayFormatString="HH:mm"
+                                      x:Name="editor" Mask="HH:mm">
+                                <dxe:DateEdit.StyleSettings>
+                                <dxe:DateEditTimePickerStyleSettings/>
+                                </dxe:DateEdit.StyleSettings>
+                            </dxe:DateEdit>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                <dxlc:LayoutItem Label="Recommended By">
+                        <dxe:ComboBoxEdit x:Name="cmbDoctor"
+                                          ItemsSource="{Binding DoctorsRecommended}"
+                                          SelectedItem="{Binding SelectDoctorsRecommended}"
+                                          IsTextEditable="True" 
+                                          NullValueButtonPlacement="EditBox"
+                                          DisplayMember="FullName"
+                                          AllowNullInput="True"
+                                          ValueMember="CareproviderUID" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Infection Type">
+                        <dxe:ComboBoxEdit DisplayMember="Display" 
+                                          ValueMember="Key"
+                                          NullValueButtonPlacement="EditBox"
+                                          ItemsSource="{Binding InfectionTypes}"
+                                          SelectedItem="{Binding SelectInfectionTypes}"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Disposition Type">
+                        <dxe:ComboBoxEdit DisplayMember="Display" 
+                                          NullValueButtonPlacement="EditBox"
+                                          ValueMember="Key"
+                                          ItemsSource="{Binding DispositionTypes}"
+                                          SelectedItem="{Binding SelectDispositionTypes}"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Discharge Type">
+                        <dxe:ComboBoxEdit DisplayMember="Display" 
+                                          NullValueButtonPlacement="EditBox"
+                                          ValueMember="Key"
+                                          ItemsSource="{Binding DischargeTypes}"
+                                          SelectedItem="{Binding SelectDischargeTypes}"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Mode of Transport">
+                        <dxe:ComboBoxEdit DisplayMember="Display" 
+                                          NullValueButtonPlacement="EditBox"
+                                          ValueMember="Key"
+                                          ItemsSource="{Binding ModeTransport}"
+                                          SelectedItem="{Binding SelectModeTransport}"/>
+                    </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="Comment">
+                    <dxlc:LayoutItem  LabelVerticalAlignment="Top">
+                        <dxe:TextEdit Text="{Binding Comment}" Height="50" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup HorizontalAlignment="Right" >
+                <dx:SimpleButton Width="80" Height="25" Content="Save" Command="{Binding SaveCommand}"/>
+                <dx:SimpleButton Width="80" Height="25" Content="Cancel" Command="{Binding CancelCommand}"/>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

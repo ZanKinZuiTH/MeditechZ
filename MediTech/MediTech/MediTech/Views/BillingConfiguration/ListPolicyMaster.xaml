@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="MediTech.Views.ListPolicyMaster"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediTech.Views"
+             mc:Ignorable="d" 
+             DataContext="{Binding Path=ListPolicyMasterViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem Label="code">
+                    <dxe:TextEdit Text="{Binding ItemCode}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="ชื่อ">
+                    <dxe:TextEdit Text="{Binding ItemName}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem>
+                    <dx:SimpleButton Width="80" 
+                                     HorizontalAlignment="Right"
+                                     Command="{Binding SearchCommand}"
+                                     Height="25" Content="ค้นหา"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            
+            <dxlc:LayoutGroup Orientation="Vertical">
+                <dxg:GridControl x:Name="grdInsuranceCompany" ItemsSource="{Binding PolicyMasterSource}"
+                             SelectedItem="{Binding SelectPolicyMaster}">
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn Header="Code" FieldName="Code"/>
+                        <dxg:GridColumn Header="Name" FieldName="PolicyName" Width="300"/>
+                        <dxg:GridColumn Header="Description" FieldName="Description" Width="300"/>
+                    </dxg:GridControl.Columns>
+                    <dxg:GridControl.View>
+                        <dxg:TableView Name="gvOrderSet" ShowGroupPanel="False"  AllowEditing="False" />
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+                <dxlc:LayoutGroup>
+                    <dx:SimpleButton Width="80" 
+                                     HorizontalAlignment="Right"
+                                     Command="{Binding AddCommand}"
+                                     Height="25" Content="เพิ่ม"/>
+                    <dx:SimpleButton Width="80" 
+                                     HorizontalAlignment="Right"
+                                     Command="{Binding ModifyCommand}"
+                                     Height="25" Content="แก้ไข"/>
+                    <dx:SimpleButton Width="80" 
+                                     HorizontalAlignment="Right"
+                                     Command="{Binding DeleteCommand}"
+                                     Height="25" Content="ลบ"/>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

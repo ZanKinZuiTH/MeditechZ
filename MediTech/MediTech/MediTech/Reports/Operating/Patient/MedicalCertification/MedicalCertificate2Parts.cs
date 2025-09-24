@@ -1,0 +1,161 @@
+﻿using System;
+using System.Drawing;
+using System.Collections;
+using System.ComponentModel;
+using DevExpress.XtraReports.UI;
+using MediTech.DataService;
+using MediTech.Model;
+using System.Collections.Generic;
+using DevExpress.XtraReports.Parameters;
+using System.IO;
+
+namespace MediTech.Reports.Operating.Patient
+{
+    public partial class MedicalCertificate2Parts : DevExpress.XtraReports.UI.XtraReport
+    {
+        List<HealthOrganisationModel> Organisations = new List<HealthOrganisationModel>();
+        List<LookupReferenceValueModel> ListText = new List<LookupReferenceValueModel>();
+        public MedicalCertificate2Parts()
+        {
+            InitializeComponent();
+            Organisations = (new MasterDataService()).GetHealthOrganisation();
+            ListText = (new TechnicalService()).GetReferenceValueMany("MDCFC");
+            StaticListLookUpSettings lookupSettings = new StaticListLookUpSettings();
+            foreach (var item in Organisations)
+            {
+                lookupSettings.LookUpValues.Add(new LookUpValue(item.HealthOrganisationUID, item.Name));
+            }
+
+            StaticListLookUpSettings lookupMDtext = new StaticListLookUpSettings();
+            foreach (var item in ListText)
+            {
+                lookupMDtext.LookUpValues.Add(new LookUpValue(item.Key, item.AlternateName));
+            }
+
+            this.MDtext.LookUpSettings = lookupMDtext;
+            this.LogoType.LookUpSettings = lookupSettings;
+            this.BeforePrint += MedicalCertificate2Parts_BeforePrint;
+        }
+
+        private void MedicalCertificate2Parts_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            int OrganisationUID = int.Parse(this.Parameters["OrganisationUID"].Value.ToString());
+            long PatientVisitUID = long.Parse(this.Parameters["PatientVisitUID"].Value.ToString());
+            var dataSource = (new ReportsService()).PrintConfinedSpaceCertificate(PatientVisitUID);
+            int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
+            int valueText = Convert.ToInt32(this.Parameters["MDtext"].Value.ToString());
+            var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);
+
+            //if (dataSource.VisitCodeType == "CHKIN4" || dataSource.VisitCodeType == "CHKIN5")
+            //{
+            //    xrLabel53.Text = dataSource.Doctor2;
+            //    xrLabel70.Text = dataSource.DoctorLicenseNo2;
+            //    xrLabel66.Text = dataSource.Doctor2;
+            //}
+            //else
+            //{
+            xrLabel53.Text = dataSource.Doctor;
+            xrLabel70.Text = dataSource.DoctorLicenseNo;
+            xrLabel66.Text = dataSource.Doctor;
+            //}
+            if (valueText != 0)
+            {
+                autoMDText.Text = (new TechnicalService()).GetReferenceValue(valueText).AlternateName;
+            }
+            else
+            {
+                autoMDText.Text = "";
+            }
+
+            if (logoType == 0)
+            {
+                //var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+                HealthOrganisationModel OrganisationDefault = new HealthOrganisationModel();
+                if (OrganisationUID == 17)
+                {
+                    var visitType = new PatientIdentityService().GetPatientVisitByUID(PatientVisitUID);
+                    if (visitType.VISTYUID == 4867)
+                    {
+                        OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(30);
+                    }
+                    else
+                    {
+                        OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+                    }
+                }
+                else
+                {
+                    OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+                }
+
+                if (OrganisationDefault != null)
+                {
+                    lbOgenisation.Text = OrganisationDefault.Description?.ToString();
+                    lbLicenseNo.Text = OrganisationDefault.LicenseNo != null ? "ใบอนุญาตเลขที่ " + OrganisationDefault.LicenseNo.ToString() : "";
+                    lbFooterOrganisation.Text = lbOgenisation.Text + " " + lbLicenseNo.Text;
+                 
+
+                    string mobile1 = OrganisationDefault.MobileNo != null ? "โทรศัพท์ " + OrganisationDefault.MobileNo.ToString() : "";
+                    string mobile2 = OrganisationDefault.MobileNo != null ? "Tel. " + OrganisationDefault.MobileNo.ToString() : "";
+                    string email = OrganisationDefault.Email != null ? "e-mail:" + OrganisationDefault.Email.ToString() : "";
+
+                    lbAddress1.Text = OrganisationDefault.Address?.ToString() + " " + mobile1 + " " + email;
+                    lbAddress2.Text = OrganisationDefault.Address2?.ToString() + " " + mobile2 + " " + email;
+
+                    infoOrganisation1.Text = OrganisationDefault.Description?.ToString();
+                    infoOrganisation2.Text = OrganisationDefault.Description?.ToString();
+                    infoAddress.Text = OrganisationDefault.Address?.ToString();
+
+                    if (OrganisationDefault.LogoImage != null)
+                    {
+                        MemoryStream ms = new MemoryStream(OrganisationDefault.LogoImage);
+                        logo.Image = Image.FromStream(ms);
+                        logoFooter.Image = Image.FromStream(ms);
+                    }
+                    else
+                    {
+                        MemoryStream ms = new MemoryStream(OrganisationBRXG.LogoImage);
+                        logo.Image = Image.FromStream(ms);
+                        logoFooter.Image = Image.FromStream(ms);
+                    }
+                }
+            }
+            else
+            {
+                var SelectOrganisation = (new MasterDataService()).GetHealthOrganisationByUID(logoType);
+                if (SelectOrganisation != null)
+                {
+                    lbOgenisation.Text = SelectOrganisation.Description?.ToString();
+                    lbLicenseNo.Text = SelectOrganisation.LicenseNo != null ? "ใบอนุญาตเลขที่ " + SelectOrganisation.LicenseNo.ToString() : "";
+                    lbFooterOrganisation.Text = lbOgenisation.Text + " " + lbLicenseNo.Text;
+
+                    string mobile1 = SelectOrganisation.MobileNo != null ? "โทรศัพท์ " + SelectOrganisation.MobileNo.ToString() : "";
+                    string mobile2 = SelectOrganisation.MobileNo != null ? "Tel. " + SelectOrganisation.MobileNo.ToString() : "";
+                    string email = SelectOrganisation.Email != null ? "e-mail:" + SelectOrganisation.Email.ToString() : "";
+
+                    lbAddress1.Text = SelectOrganisation.Address?.ToString() + " " + mobile1 + " " + email;
+                    lbAddress2.Text = SelectOrganisation.Address2?.ToString() + " " + mobile2 + " " + email;
+
+                    infoOrganisation1.Text = SelectOrganisation.Description?.ToString();
+                    infoOrganisation2.Text = SelectOrganisation.Description?.ToString();
+                    infoAddress.Text = SelectOrganisation.Address?.ToString();
+
+                    if (SelectOrganisation.LogoImage != null)
+                    {
+                        MemoryStream ms = new MemoryStream(SelectOrganisation.LogoImage);
+                        logo.Image = Image.FromStream(ms);
+                        logoFooter.Image = Image.FromStream(ms);
+                    }
+                    else
+                    {
+                        MemoryStream ms = new MemoryStream(OrganisationBRXG.LogoImage);
+                        logo.Image = Image.FromStream(ms);
+                        logoFooter.Image = Image.FromStream(ms);
+                    }
+                }
+            }
+
+            this.DataSource = dataSource;
+        }
+    }
+}

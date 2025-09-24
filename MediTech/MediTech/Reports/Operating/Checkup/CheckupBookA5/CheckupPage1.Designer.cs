@@ -1247,7 +1247,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel4.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel4.BorderWidth = 0F;
             this.xrLabel4.CanGrow = false;
-            this.xrLabel4.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
+            this.xrLabel4.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(314.5294F, 733.2928F);
             this.xrLabel4.Multiline = true;
             this.xrLabel4.Name = "xrLabel4";
@@ -1258,7 +1258,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel4.StylePriority.UseFont = false;
             this.xrLabel4.StylePriority.UsePadding = false;
             this.xrLabel4.StylePriority.UseTextAlignment = false;
-            this.xrLabel4.Text = "แพทย์หญิง รุจิรา เทียบเทียม ว.43355\r\n(แพทย์อาชีวเวชศาสตร์)";
+            this.xrLabel4.Text = "พ.ญ. ธัญลักษณ์ นิลไพฑูรย์\r\nว.24689(แพทย์อาชีวเวชศาสตร์)";
             this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // PatientUID

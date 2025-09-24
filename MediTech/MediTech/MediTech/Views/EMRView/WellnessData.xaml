@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="MediTech.Views.WellnessData"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediTech.Views"
+             mc:Ignorable="d"
+             Height="500" Width="600"
+             d:DesignHeight="450" d:DesignWidth="700"
+             DataContext="{Binding Path=WellnessDataViewModel,Source={StaticResource Locator}}">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+
+            <!--<dxlc:LayoutItem>
+                <TextBlock Text="Diagnosis"             
+                                   FontWeight="Bold"
+                                   FontSize="15"
+                                   Foreground="Blue"/>
+            </dxlc:LayoutItem>
+
+            <dxe:TextEdit Text="{Binding Diagnosis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                          AcceptsReturn="True"
+                          VerticalContentAlignment="Top"
+                          TextWrapping="Wrap"/>-->
+            <dxlc:LayoutItem>
+                <TextBlock Text="Wellness Result"             
+                                   FontWeight="Bold"
+                                   FontSize="15"
+                                   Foreground="Blue"/>
+            </dxlc:LayoutItem>
+            <dxe:TextEdit Text="{Binding WellnessResult,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                          AcceptsReturn="True"
+                          VerticalContentAlignment="Top"
+                          TextWrapping="Wrap"/>
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutGroup HorizontalAlignment="Right"
+                                  VerticalAlignment="Bottom" >
+                    <dx:SimpleButton Width="80" Command="{Binding SaveCommand}"
+                                     Height="25" Content="บันทึก"/>
+                    <dx:SimpleButton Width="85" Command="{Binding CancelCommand}"
+                                     Height="25" Content="ยกเลิก"/>
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

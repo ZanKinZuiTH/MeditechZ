@@ -1,0 +1,211 @@
+﻿<UserControl x:Class="MediTech.Views.ListQueryBillsIP"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cc="clr-namespace:MediTech.CustomControl"
+             xmlns:cv="clr-namespace:MediTech.Converter"
+             xmlns:vm="clr-namespace:MediTech.Views"
+             mc:Ignorable="d"
+             DataContext="{Binding Path=ListQueryBillsIPViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <cc:PatientSearchPopUp x:Key="PatientColumn" d:IsDataSource="True" />
+        <cv:VisibilityConverter x:Key="visibleconvert" />
+        <DataTemplate x:Key="DetailCoreTemplate">
+            <dx:MeasurePixelSnapper>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Margin="20,0,0,0" Grid.Column="1">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Row.PatientName}" FontSize="16" Margin="0,0,5,0" />
+                                <TextBlock Text="(" FontSize="16"/>
+                                <TextBlock Text="{Binding Row.PatientID}" FontSize="16" />
+                                <TextBlock Text=")" FontSize="16" />
+                                <TextBlock Text="อายุ" Margin="10,0,0,0" FontWeight="Bold" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding Row.AgeString}"  Margin="5,0,0,0" VerticalAlignment="Center" />
+                                <TextBlock Text="วัน เดือน ปี เกิด" Margin="5,0,0,0" FontWeight="Bold" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding Row.BirthDttm, StringFormat=dd/MM/yyyy}" Margin="5,0,0,0" VerticalAlignment="Center" />
+                                <Image Source="/MediTech;component/Resources/Images/Other/VIP.png" 
+                                   Margin="10,0,0,0"
+                                   VerticalAlignment="Top"
+                                   Visibility="{Binding Row.IsVIP, Converter={StaticResource visibleconvert}}"
+                                   Width="30" Height="30"
+                                   Cursor="Hand"
+                                   ToolTip="VIP"/>
+                            </StackPanel>
+
+                            <StackPanel   Orientation="Horizontal" Margin="0,10,0,0">
+                                <TextBlock  Text="เพศ" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Row.Gender}" Margin="5,0,0,0" />
+                                <TextBlock Text="กรุ๊ปเลือด" Margin="5,0,0,0" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Row.BloodGroup}" Margin="5,0,0,0" />
+                                <TextBlock Text="แพทย์" Margin="5,0,0,0" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Row.CareProviderName}"
+                                   Margin="5,0,0,0" HorizontalAlignment="Center" 
+                                   Grid.Column="1" Grid.Row="1" />
+
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <TextBlock Text="ที่อยู่" FontWeight="Bold" />
+                                <TextBlock Text="{Binding Row.PatientAddress}"  Margin="5,0,0,0" />
+                                <TextBlock Text="เบอร์โทร" Margin="5,0,0,0" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Row.SecondPhone}"  Margin="5,0,0,0" />
+                                <TextBlock Text="มือถือ" Margin="5,0,0,0" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Row.MobilePhone}"  Margin="5,0,0,0" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Grid.Column="2" HorizontalAlignment="Right">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Visibility="{Binding Row.LockVisibility}" Source="/MediTech;component/Resources/Images/Fincace/unlock.png"
+                                   Width="30" Height="30"
+                                   Cursor="Hand"                                   
+                                   ToolTip="Lock">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.LockCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:ListQueryBillsIP}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
+                                <Image Visibility="{Binding Row.UnlockVisibility}" Source="/MediTech;component/Resources/Images/Fincace/lock.png"
+                                   Width="30" Height="30"
+                                   Cursor="Hand"                                   
+                                   ToolTip="Unlock">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.UnLockCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:ListQueryBillsIP}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
+                                <Image Source="/MediTech;component/Resources/Images/Fincace/money-bag.png"
+                                   Margin="0,0,2,0"
+                                   Width="30" Height="30"
+                                   Cursor="Hand"                                   
+                                   ToolTip="Allocate Bill">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.AllocateBillCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:ListQueryBillsIP}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
+                                <Image Source="/MediTech;component/Resources/Images/Fincace/modifypayor.png"
+                                   Width="30" Height="30"
+                                   Cursor="Hand"                                   
+                                   ToolTip="แก้ไข Payor">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.ModifyVisitPayorCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:ListQueryBillsIP}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
+                                <Image Source="/MediTech;component/Resources/Images/Medical/Medical Supply.png"
+                                   Width="30" Height="30"
+                                   Cursor="Hand"                                   
+                                   ToolTip="คีย์ Order">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.CreateOrderCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:ListQueryBillsIP}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
+                                <Image Source="/MediTech;component/Resources/Images/Time/PatientTracking.png"
+                                   Width="30" Height="30"
+                                   Cursor="Hand"                                   
+                                   ToolTip="Patient Tracking">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.PatientTrackingCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:ListQueryBillsIP}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </dx:MeasurePixelSnapper>
+        </DataTemplate>
+        <ControlTemplate x:Key="detailContainerTemplate" TargetType="{x:Type ContentControl}">
+            <Border BorderThickness="0,1,0,0" BorderBrush="{TemplateBinding BorderBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="12,12,12,12" Background="{TemplateBinding Background}">
+                <ContentPresenter />
+            </Border>
+        </ControlTemplate>
+        <DataTemplate x:Key="expandableRowDetailTemplate">
+            <StackPanel Orientation="Vertical">
+                <dx:MeasurePixelSnapper>
+                    <ContentPresenter x:Name="defaultRowPresenter" Content="{Binding}" ContentTemplate="{Binding View.DefaultDataRowTemplate}" />
+                </dx:MeasurePixelSnapper>
+                <dx:DXExpander IsExpanded="{Binding Path=IsSelected}" HorizontalExpand="None" VerticalExpand="FromTopToBottom">
+                    <dxg:RowDetailContainerControl Template="{StaticResource detailContainerTemplate}" Content="{Binding}" ContentTemplate="{DynamicResource DetailCoreTemplate}" />
+                </dx:DXExpander>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="จากวันที่">
+                    <dxe:DateEdit EditValue="{Binding DateFrom}" AllowNullInput="False"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="ถึงวันที่">
+                    <dxe:DateEdit EditValue="{Binding DateTo}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="ค้นหาผู้ป่วย">
+                    <cc:AutoCompleteTextBox     Text="{Binding SearchPatientCriteria,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                    ColumnsSource="{Binding Path=Columns,Source={StaticResource PatientColumn}}"
+                                                    OnTextChangedEvent="False"
+                                                    Binding="{Binding PatientName}"
+                                                    MaxCompletions="30"
+                                                    ItemsSource="{Binding PatientsSearchSource}"
+                                                    SelectedItem="{Binding SelectedPateintSearch,Mode=OneWayToSource}">
+                        <cc:AutoCompleteTextBox.InputBindings>
+                            <KeyBinding Key="Enter" Command="{Binding PatientSearchCommand}" />
+                        </cc:AutoCompleteTextBox.InputBindings>
+                    </cc:AutoCompleteTextBox>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutItem>
+                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                    <dx:SimpleButton Width="80" Command="{Binding SearchCommand}"
+                                     Height="25" Content="ค้นหา"/>
+                    <dx:SimpleButton Width="80" Command="{Binding CleanCommand}"
+                                     Height="25" Content="Clear"/>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutItem>
+            <dxg:GridControl  x:Name="gPatient" ItemsSource="{Binding UnBilledPatientLists,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                              SelectionMode="Cell"
+                                  SelectedItem="{Binding SelectUnBilledPatient,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+                <dxg:GridControl.View>
+                    <dxg:TableView ShowGroupPanel="False" AllowScrollAnimation="True" 
+                                   UseLightweightTemplates="None"
+                                   NavigationStyle="Row"
+                                   DataRowTemplate="{StaticResource expandableRowDetailTemplate}"/>
+                </dxg:GridControl.View>
+                <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID" ReadOnly="True"/>
+                <dxg:GridColumn Header="ชื่อ-นามสกุล" FieldName="PatientName" ReadOnly="True"/>
+                <dxg:GridColumn Header="VisitID" FieldName="VisitID"  ReadOnly="True"/>
+                <dxg:GridColumn Header="Status" FieldName="VisitStatus"  ReadOnly="True"/>
+                <dxg:GridColumn Header="วันที่ลงทะเบียน" FieldName="StartDttm"  ReadOnly="True"/>
+                <dxg:GridColumn Header="แผนก" FieldName="LocationName"  ReadOnly="True"/>
+                <dxg:GridColumn Header="DischargeDttm" FieldName="DischargeDttm"  ReadOnly="True">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy HH:mm"  MaskType="DateTime"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="Discharge User" FieldName="DischargedUser"  ReadOnly="True"/>
+            </dxg:GridControl>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

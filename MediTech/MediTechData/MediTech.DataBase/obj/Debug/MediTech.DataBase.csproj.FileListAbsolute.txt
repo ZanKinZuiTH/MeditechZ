@@ -1,0 +1,166 @@
+c:\Users\cacheconnect\documents\visual studio 2013\Projects\MediTech\MediTech.DataBase\bin\Debug\MediTech.DataBase.dll.config
+c:\Users\cacheconnect\documents\visual studio 2013\Projects\MediTech\MediTech.DataBase\bin\Debug\MediTech.DataBase.dll
+c:\Users\cacheconnect\documents\visual studio 2013\Projects\MediTech\MediTech.DataBase\bin\Debug\MediTech.DataBase.pdb
+c:\Users\cacheconnect\documents\visual studio 2013\Projects\MediTech\MediTech.DataBase\bin\Debug\EntityFramework.dll
+c:\Users\cacheconnect\documents\visual studio 2013\Projects\MediTech\MediTech.DataBase\bin\Debug\EntityFramework.SqlServer.dll
+c:\Users\cacheconnect\documents\visual studio 2013\Projects\MediTech\MediTech.DataBase\bin\Debug\EntityFramework.xml
+c:\Users\cacheconnect\documents\visual studio 2013\Projects\MediTech\MediTech.DataBase\bin\Debug\EntityFramework.SqlServer.xml
+c:\Users\cacheconnect\documents\visual studio 2013\Projects\MediTech\MediTech.DataBase\obj\Debug\MediTech.DataBase.csprojResolveAssemblyReference.cache
+c:\Users\cacheconnect\documents\visual studio 2013\Projects\MediTech\MediTech.DataBase\obj\Debug\MediTech.DataBase.dll
+c:\Users\cacheconnect\documents\visual studio 2013\Projects\MediTech\MediTech.DataBase\obj\Debug\MediTech.DataBase.pdb
+C:\Users\cacheconnect\Desktop\Project P2\MediTechData\MediTech.DataBase\bin\Debug\MediTech.DataBase.dll.config
+C:\Users\cacheconnect\Desktop\Project P2\MediTechData\MediTech.DataBase\bin\Debug\MediTech.DataBase.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechData\MediTech.DataBase\bin\Debug\MediTech.DataBase.pdb
+C:\Users\cacheconnect\Desktop\Project P2\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.xml
+C:\Users\cacheconnect\Desktop\Project P2\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\cacheconnect\Desktop\Project P2\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.dll
+C:\Users\cacheconnect\Desktop\Project P2\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.pdb
+D:\Project P2\MediTechData\MediTech.DataBase\bin\Debug\MediTech.DataBase.dll.config
+D:\Project P2\MediTechData\MediTech.DataBase\bin\Debug\MediTech.DataBase.dll
+D:\Project P2\MediTechData\MediTech.DataBase\bin\Debug\MediTech.DataBase.pdb
+D:\Project P2\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.dll
+D:\Project P2\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.SqlServer.dll
+D:\Project P2\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.xml
+D:\Project P2\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.SqlServer.xml
+D:\Project P2\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.csprojResolveAssemblyReference.cache
+D:\Project P2\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.dll
+D:\Project P2\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.pdb
+D:\Project P2\Meditech\MediTechData\MediTech.DataBase\bin\Debug\MediTech.DataBase.dll.config
+D:\Project P2\Meditech\MediTechData\MediTech.DataBase\bin\Debug\MediTech.DataBase.dll
+D:\Project P2\Meditech\MediTechData\MediTech.DataBase\bin\Debug\MediTech.DataBase.pdb
+D:\Project P2\Meditech\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.dll
+D:\Project P2\Meditech\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.SqlServer.dll
+D:\Project P2\Meditech\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.xml
+D:\Project P2\Meditech\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.SqlServer.xml
+D:\Project P2\Meditech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.csprojResolveAssemblyReference.cache
+D:\Project P2\Meditech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.csproj.CoreCompileInputs.cache
+D:\Project P2\Meditech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.dll
+D:\Project P2\Meditech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.pdb
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.csproj.CoreCompileInputs.cache
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.DataBase\bin\Debug\MediTech.DataBase.dll.config
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.DataBase\bin\Debug\MediTech.DataBase.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.DataBase\bin\Debug\MediTech.DataBase.pdb
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.csproj.CopyComplete
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.dll
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.pdb
+C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.csprojAssemblyReference.cache
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\MediTech.DataBase.dll.config
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\MediTech.DataBase.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\MediTech.DataBase.pdb
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.xml
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.csproj.AssemblyReference.cache
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.csproj.CoreCompileInputs.cache
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.csproj.CopyComplete
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.dll
+C:\Users\gun_g\OneDrive\เอกสาร\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.pdb
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\MediTech.DataBase.dll.config
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\MediTech.DataBase.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\MediTech.DataBase.pdb
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.csproj.AssemblyReference.cache
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.csproj.CoreCompileInputs.cache
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.csproj.CopyComplete
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.pdb
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.DataAccess.v22.1.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Xpo.v22.1.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Data.v22.1.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Printing.v22.1.Core.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.CodeParser.v22.1.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.RichEdit.v22.1.Core.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Office.v22.1.Core.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Drawing.v22.1.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Pdf.v22.1.Core.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Pdf.v22.1.Drawing.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.DataAccess.v22.1.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Xpo.v22.1.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Data.v22.1.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Printing.v22.1.Core.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.RichEdit.v22.1.Core.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Office.v22.1.Core.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Pdf.v22.1.Core.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Pdf.v22.1.Drawing.xml
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\de\DevExpress.DataAccess.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\es\DevExpress.DataAccess.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\ja\DevExpress.DataAccess.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\de\DevExpress.Xpo.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\es\DevExpress.Xpo.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\ja\DevExpress.Xpo.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\de\DevExpress.Data.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\es\DevExpress.Data.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\ja\DevExpress.Data.v22.1.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\de\DevExpress.Printing.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\es\DevExpress.Printing.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\ja\DevExpress.Printing.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\de\DevExpress.RichEdit.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\es\DevExpress.RichEdit.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\ja\DevExpress.RichEdit.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\de\DevExpress.Office.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\es\DevExpress.Office.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\ja\DevExpress.Office.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\de\DevExpress.Pdf.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\es\DevExpress.Pdf.v22.1.Core.resources.dll
+C:\Users\gun_g\Documents\Visual Studio 2022\Meditech\MediTechData\MediTech.DataBase\bin\Debug\ja\DevExpress.Pdf.v22.1.Core.resources.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\MediTech.DataBase.dll.config
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\MediTech.DataBase.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\MediTech.DataBase.pdb
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.DataAccess.v22.1.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Xpo.v22.1.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.SqlServer.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Data.v22.1.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Printing.v22.1.Core.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.CodeParser.v22.1.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.RichEdit.v22.1.Core.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Office.v22.1.Core.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Drawing.v22.1.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Pdf.v22.1.Core.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Pdf.v22.1.Drawing.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.DataAccess.v22.1.xml
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Xpo.v22.1.xml
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.xml
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\EntityFramework.SqlServer.xml
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Data.v22.1.xml
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Printing.v22.1.Core.xml
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.RichEdit.v22.1.Core.xml
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Office.v22.1.Core.xml
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Pdf.v22.1.Core.xml
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\DevExpress.Pdf.v22.1.Drawing.xml
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\de\DevExpress.DataAccess.v22.1.resources.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\es\DevExpress.DataAccess.v22.1.resources.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\ja\DevExpress.DataAccess.v22.1.resources.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\de\DevExpress.Xpo.v22.1.resources.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\es\DevExpress.Xpo.v22.1.resources.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\ja\DevExpress.Xpo.v22.1.resources.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\de\DevExpress.Data.v22.1.resources.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\es\DevExpress.Data.v22.1.resources.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\ja\DevExpress.Data.v22.1.resources.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\de\DevExpress.Printing.v22.1.Core.resources.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\es\DevExpress.Printing.v22.1.Core.resources.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\ja\DevExpress.Printing.v22.1.Core.resources.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\de\DevExpress.RichEdit.v22.1.Core.resources.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\es\DevExpress.RichEdit.v22.1.Core.resources.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\ja\DevExpress.RichEdit.v22.1.Core.resources.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\de\DevExpress.Office.v22.1.Core.resources.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\es\DevExpress.Office.v22.1.Core.resources.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\ja\DevExpress.Office.v22.1.Core.resources.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\de\DevExpress.Pdf.v22.1.Core.resources.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\es\DevExpress.Pdf.v22.1.Core.resources.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\bin\Debug\ja\DevExpress.Pdf.v22.1.Core.resources.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.csproj.AssemblyReference.cache
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.csproj.CoreCompileInputs.cache
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.9017E073.Up2Date
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.dll
+D:\MeditechOri\MeditechEdit\Meditech\MediTech\MediTechData\MediTech.DataBase\obj\Debug\MediTech.DataBase.pdb

@@ -2153,7 +2153,7 @@ namespace MediTechWebApi.Controllers
                                                               ResultEnteredDate = rs.ResultEnteredDttm.Value,
                                                               ResultEnteredTime = rs.ResultEnteredDttm.Value,
                                                               ItemName = rs.RequestItemCode + " : " + rs.RequestItemName,
-                                                              DoctorFee = pd.NetAmount ?? 0
+                                                              DoctorFee = pd.DoctorFee ?? 0
                                                           }).ToList();
 
             return listRadiologsitReport;

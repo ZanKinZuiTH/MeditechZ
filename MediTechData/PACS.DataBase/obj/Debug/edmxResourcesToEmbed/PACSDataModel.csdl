@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PACSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="PACSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="PACSModel.Accounts" />
+    <EntitySet Name="AETitles" EntityType="PACSModel.AETitles" />
+    <EntitySet Name="Annotations" EntityType="PACSModel.Annotations" />
+    <EntitySet Name="Companies" EntityType="PACSModel.Companies" />
+    <EntitySet Name="Configs" EntityType="PACSModel.Configs" />
+    <EntitySet Name="Instances" EntityType="PACSModel.Instances" />
+    <EntitySet Name="Institutions" EntityType="PACSModel.Institutions" />
+    <EntitySet Name="Passwords" EntityType="PACSModel.Passwords" />
+    <EntitySet Name="Patients" EntityType="PACSModel.Patients" />
+    <EntitySet Name="ProductProperties" EntityType="PACSModel.ProductProperties" />
+    <EntitySet Name="Providers" EntityType="PACSModel.Providers" />
+    <EntitySet Name="Roles" EntityType="PACSModel.Roles" />
+    <EntitySet Name="SendSettings" EntityType="PACSModel.SendSettings" />
+    <EntitySet Name="Series" EntityType="PACSModel.Series" />
+    <EntitySet Name="Settings" EntityType="PACSModel.Settings" />
+    <EntitySet Name="Studies" EntityType="PACSModel.Studies" />
+    <EntitySet Name="Users" EntityType="PACSModel.Users" />
+  </EntityContainer>
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Authority" Type="Int32" Nullable="false" />
+    <Property Name="ReferringPhysicianName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AETitles">
+    <Key>
+      <PropertyRef Name="Title" />
+    </Key>
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Annotations">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReferenceNo" Type="Int32" Nullable="false" />
+    <Property Name="Data" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="PatientID" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="StudyInstanceUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="SeriesInstanceUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="SOPInstanceUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Writer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ViewID" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="Deleted" Type="DateTime" Precision="3" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Companies">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ContactPersonnel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Website" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Configs">
+    <Key>
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Value" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Edited" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Instances">
+    <Key>
+      <PropertyRef Name="SOPInstanceUID" />
+    </Key>
+    <Property Name="SOPInstanceUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="SeriesInstanceUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="StudyInstanceUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="SOPClassUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="TransferSyntaxUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PatientID" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="PatientName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="ReferringPhysicianName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="PerformingPhysicianName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="PatientComments" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="PatientBirthDate" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="PatientSex" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="StudyDescription" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="StudyID" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="StudyDate" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="StudyTime" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="AccessionNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="InstitutionName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="SeriesNumber" Type="Int32" />
+    <Property Name="SeriesDate" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="SeriesTime" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="SeriesDescription" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Modality" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="BodypartExamined" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="InstanceNumber" Type="Int32" />
+    <Property Name="NumberOfFrames" Type="Int32" />
+    <Property Name="PixelSpacing" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PixelAspectRatio" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="SliceThickness" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="SpacingBetweenSlices" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="SliceLocation" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PatientOrientation" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePositionPatient" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="ImageOrientationPatient" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Width" Type="Int32" />
+    <Property Name="Height" Type="Int32" />
+    <Property Name="RescaleIntercept" Type="Int32" />
+    <Property Name="RescaleSlope" Type="Double" />
+    <Property Name="RescaleType" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="WindowWidth" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="WindowCenter" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="SamplesPerPixel" Type="Int32" />
+    <Property Name="PlanarConfiguration" Type="Int32" />
+    <Property Name="BitsAllocated" Type="Int32" />
+    <Property Name="BitsStored" Type="Int32" />
+    <Property Name="HighBit" Type="Int32" />
+    <Property Name="PixelRepresentation" Type="Int32" />
+    <Property Name="PixelData" Type="Int32" />
+    <Property Name="AETitle" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="FileSize" Type="Int64" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SpecificCharacterSet" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="ImageType" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="PhotometricInterpretation" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="PatientAge" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="LossyImageCompression" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="Method" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Institutions">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Logo" Type="Guid" />
+    <Property Name="Url" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Tel" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="Mail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Passwords">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Value" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Patients">
+    <Key>
+      <PropertyRef Name="PatientID" />
+    </Key>
+    <Property Name="PatientID" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="PatientName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="PatientComments" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="PatientBirthDate" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="PatientSex" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="NumberOfPatientRelatedStudies" Type="Int32" Nullable="false" />
+    <Property Name="NumberOfPatientRelatedSeries" Type="Int32" Nullable="false" />
+    <Property Name="NumberOfPatientRelatedInstances" Type="Int32" Nullable="false" />
+    <Property Name="SpecificCharacterSet" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Edited" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="ProductProperties">
+    <Key>
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Value" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Edited" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Providers">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AETitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Port" Type="Int32" Nullable="false" />
+    <Property Name="IsAnonymous" Type="Boolean" Nullable="false" />
+    <Property Name="AllowAnonymousUsers" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Permissions" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SendSettings">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Account" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CalledAETitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CallingAETitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Port" Type="Int32" Nullable="false" />
+    <Property Name="IPAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Series">
+    <Key>
+      <PropertyRef Name="SeriesInstanceUID" />
+    </Key>
+    <Property Name="SeriesInstanceUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="StudyInstanceUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PatientID" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="SeriesNumber" Type="Int32" />
+    <Property Name="SeriesDate" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="SeriesTime" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="SeriesDescription" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Modality" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="BodypartExamined" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="NumberOfSeriesRelatedInstances" Type="Int32" Nullable="false" />
+    <Property Name="SpecificCharacterSet" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Edited" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Settings">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Account" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Value" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Studies">
+    <Key>
+      <PropertyRef Name="StudyInstanceUID" />
+    </Key>
+    <Property Name="StudyInstanceUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PatientID" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="PatientName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="PerformingPhysicianName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="ReferringPhysicianName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="PatientComments" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="PatientBirthDate" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="PatientSex" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="StudyDescription" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="StudyID" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="StudyDate" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="StudyTime" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="AccessionNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="InstitutionName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ModalitiesInStudy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="BodyPartsInStudy" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="NumberOfStudyRelatedSeries" Type="Int32" Nullable="false" />
+    <Property Name="NumberOfStudyRelatedInstances" Type="Int32" Nullable="false" />
+    <Property Name="SpecificCharacterSet" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="PatientAge" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Edited" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AETitle" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="ReportStatus" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Provider" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AETitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Port" Type="Int32" Nullable="false" />
+    <Property Name="IPAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

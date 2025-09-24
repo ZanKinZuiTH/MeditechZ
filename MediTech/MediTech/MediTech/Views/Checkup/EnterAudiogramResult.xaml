@@ -1,0 +1,150 @@
+﻿<UserControl x:Class="MediTech.Views.EnterAudiogramResult"
+             xmlns:Banner="clr-namespace:MediTech.CustomControl.Banner"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediTech.Views"
+             mc:Ignorable="d"
+             xmlns:helper="clr-namespace:MediTech.Helpers"
+             DataContext="{Binding Path=EnterAudiogramResultViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="800">
+    <UserControl.Resources>
+        <helper:EditorTemplateAudio x:Key="TemplateSelector"/>
+        <DataTemplate x:Key="ComboBoxEdit">
+            <dxe:ComboBoxEdit Name="PART_Editor" IsTextEditable="False"
+                              NullValueButtonPlacement="EditBox"
+                              FontSize="18" FontWeight="Bold"
+                              HorizontalContentAlignment="Center">
+                <dxe:ComboBoxEdit.Items>
+                    <dxe:ComboBoxEditItem Content="-10"/>
+                    <dxe:ComboBoxEditItem Content="-5" />
+                    <dxe:ComboBoxEditItem Content="0" />
+                    <dxe:ComboBoxEditItem Content="5" />
+                    <dxe:ComboBoxEditItem Content="10" />
+                    <dxe:ComboBoxEditItem Content="15" />
+                    <dxe:ComboBoxEditItem Content="20" />
+                    <dxe:ComboBoxEditItem Content="25" />
+                    <dxe:ComboBoxEditItem Content="30" />
+                    <dxe:ComboBoxEditItem Content="35" />
+                    <dxe:ComboBoxEditItem Content="40" />
+                    <dxe:ComboBoxEditItem Content="45" />
+                    <dxe:ComboBoxEditItem Content="50" />
+                    <dxe:ComboBoxEditItem Content="55" />
+                    <dxe:ComboBoxEditItem Content="60" />
+                    <dxe:ComboBoxEditItem Content="65" />
+                    <dxe:ComboBoxEditItem Content="70" />
+                    <dxe:ComboBoxEditItem Content="75" />
+                    <dxe:ComboBoxEditItem Content="80" />
+                    <dxe:ComboBoxEditItem Content="85" />
+                    <dxe:ComboBoxEditItem Content="90" />
+                    <dxe:ComboBoxEditItem Content="95" />
+                    <dxe:ComboBoxEditItem Content="100" />
+                    <dxe:ComboBoxEditItem Content="105" />
+                    <dxe:ComboBoxEditItem Content="110" />
+                    <dxe:ComboBoxEditItem Content="115" />
+                    <dxe:ComboBoxEditItem Content="120" />
+                </dxe:ComboBoxEdit.Items>
+            </dxe:ComboBoxEdit>
+        </DataTemplate>
+        <DataTemplate x:Key="textEditEditor">
+            <dxe:TextEdit Name="PART_Editor"/>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Banner:PatientRequestBanner x:Name="patientBanner"/>
+        <dxlc:LayoutControl Grid.Row="1" Orientation="Vertical">
+            <dxlc:LayoutItem>
+                <TextBlock Text="{Binding RequestItemName}" FontWeight="Bold" FontSize="18"/>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutGroup Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <TextBlock Text="Right Ear" FontWeight="Bold" FontSize="18"/>
+                    </dxlc:LayoutItem>
+                    <dxg:GridControl Name="grdRightEar"
+                                     ItemsSource="{Binding RightEarResultComponentItems}"
+                             AutoGenerateColumns="None" SelectionMode="Cell">
+                        <dxg:GridColumn FieldName="ResultItemName" Header="Frequency in Herts (Hz)" ReadOnly="True">
+                            <dxg:GridColumn.CellTemplate>
+                                <DataTemplate>
+                                    <dxe:TextEdit Name="PART_Editor" FontSize="18"
+                                              Foreground="Red"
+                                              HorizontalContentAlignment="Center"/>
+                                </DataTemplate>
+                            </dxg:GridColumn.CellTemplate>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn x:Name="colRightValue" FieldName="ResultValue" 
+                                        AllowEditing="true" 
+                                        Header="Intensity in Decibels (dB HL)" Width="*"
+                                    HorizontalHeaderContentAlignment="Center"
+                                    CellTemplateSelector="{StaticResource TemplateSelector}">
+                            <dxg:GridColumn.DisplayTemplate>
+                                <ControlTemplate>
+                                    <TextBlock FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                 Text="{Binding Path=DisplayText, Mode=OneWay, 
+                                                 RelativeSource={RelativeSource TemplatedParent}}"/>
+                                </ControlTemplate>
+                            </dxg:GridColumn.DisplayTemplate>
+                        </dxg:GridColumn>
+                        <dxg:GridControl.View>
+                            <dxg:TableView Name="gvRightEar" ShowGroupPanel="False" EditorShowMode="MouseDown"
+                                           AllowSorting="False" RowMinHeight="50"/>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </dxlc:LayoutGroup>
+
+
+                <dxlc:LayoutGroup Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <TextBlock Text="Left Ear" FontWeight="Bold" FontSize="18"/>
+                    </dxlc:LayoutItem>
+                    <dxg:GridControl Name="grdLeftEar" ItemsSource="{Binding LeftEarResultComponentItems}"
+                             AutoGenerateColumns="None" SelectionMode="Cell">
+                        <dxg:GridColumn FieldName="ResultItemName" 
+                                    Header="Frequency in Herts (Hz)" Width="Auto" ReadOnly="True">
+                            <dxg:GridColumn.CellTemplate>
+                                <DataTemplate>
+                                    <dxe:TextEdit Name="PART_Editor" FontSize="18"
+                                              Foreground="Blue"
+                                              HorizontalContentAlignment="Center"/>
+                                </DataTemplate>
+                            </dxg:GridColumn.CellTemplate>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Name="colLeftValue" FieldName="ResultValue"  Header="Intensity in Decibels (dB HL)" Width="*"
+                                        AllowEditing="true"
+                                    CellTemplateSelector="{StaticResource TemplateSelector}"
+                                    HorizontalHeaderContentAlignment="Center">
+                            <dxg:GridColumn.DisplayTemplate>
+                                <ControlTemplate>
+                                    <TextBlock FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                 Text="{Binding Path=DisplayText, Mode=OneWay, 
+                                                 RelativeSource={RelativeSource TemplatedParent}}"/>
+                                </ControlTemplate>
+                            </dxg:GridColumn.DisplayTemplate>
+                        </dxg:GridColumn>
+                        <dxg:GridControl.View>
+                            <dxg:TableView Name="gvLeftEar" EditorShowMode="MouseDown"
+                                           ShowGroupPanel="False" AllowSorting="False" RowMinHeight="50"/>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </dxlc:LayoutGroup>
+
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup HorizontalAlignment="Right">
+                <dx:SimpleButton x:Name="btnSave" Content="Save" Command="{Binding SaveCommand}" Width="80" Height="25"/>
+                <dx:SimpleButton Content="Cancel" Command="{Binding CloseCommand}" Width="80" Height="25"/>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

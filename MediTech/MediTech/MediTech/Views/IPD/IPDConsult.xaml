@@ -1,0 +1,161 @@
+﻿<UserControl x:Class="MediTech.Views.IPDConsult"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:cc="clr-namespace:MediTech.CustomControl"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"   
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediTech.Views" 
+             xmlns:uc="clr-namespace:MediTech.CustomControl.Banner"
+             mc:Ignorable="d" 
+             DataContext="{Binding Path=IPDConsultViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="450" d:DesignWidth="900">
+    <UserControl.Resources>
+        <cc:PatientSearchPopUp x:Key="PatientColumn" d:IsDataSource="True" />
+    </UserControl.Resources>
+    <Grid>
+        
+   
+        <dxlc:LayoutControl Orientation="Vertical">
+
+            <!--<dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Name="Banner" Visibility="{Binding IsBanner}">
+                    <uc:PatientBanner PatientVisit="{Binding SelectPatientVisit}"/>
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>-->
+            <dxlc:LayoutGroup Orientation="Horizontal">
+
+                <dxlc:LayoutItem Label="แพทย์">
+                    <dxe:ComboBoxEdit x:Name="cmbDoctor"
+                                              ItemsSource="{Binding Doctors}"
+                                              SelectedItem="{Binding SelectDoctor}"
+                                              IsTextEditable="False" 
+                                              DisplayMember="FullName"
+                                              NullValueButtonPlacement="EditBox"
+                                              ValueMember="CareproviderUID"
+                                              />
+                </dxlc:LayoutItem>
+
+
+
+                <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="Start Date">
+                    <dxe:DateEdit EditValue="{Binding StartDateConsult}" Height="25"/>
+                </dxlc:LayoutItem>
+                    <dxe:DateEdit x:Name="time1" Height="25"   Width="60"
+                                      EditValue="{Binding StartTimeConsult}"
+                                      DisplayFormatString="dd:mm:yyyy"
+                                      Mask="HH:mm">
+                    <dxe:DateEdit.StyleSettings>
+                            <dxe:DateEditTimePickerStyleSettings/>
+                    </dxe:DateEdit.StyleSettings>
+                </dxe:DateEdit>
+                <dxlc:LayoutItem Label="ถึงวันที่">
+                    <dxe:DateEdit EditValue="{Binding EndDateConsult}" Height="25"  />
+                </dxlc:LayoutItem>
+                    <dxe:DateEdit x:Name="time2" Height="25"  Width="60"
+                                      EditValue="{Binding EndTimeConsult}"
+                                      DisplayFormatString="HH:mm"
+                                      Mask="HH:mm">
+                    <dxe:DateEdit.StyleSettings>
+                            <dxe:DateEditTimePickerStyleSettings/>
+                    </dxe:DateEdit.StyleSettings>
+                </dxe:DateEdit>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+            
+            
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="Consult Type">
+                    <dxe:ComboBoxEdit  x:Name="cmbConsultType"
+                                     DisplayMember="Display"
+                                     ValueMember="Key"
+                                      NullValueButtonPlacement="EditBox"
+                                      AllowNullInput="True"
+                                      ItemsSource="{Binding cmbConsultType}"
+                                      SelectedItem="{Binding SelectConsultType}"/>
+
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="Status">
+                    <dxe:ComboBoxEdit  x:Name="cmbConsultStatus"
+                                     DisplayMember="Display"
+                                     ValueMember="Key"
+                                      NullValueButtonPlacement="EditBox"
+                                      AllowNullInput="True"
+                                      ItemsSource="{Binding cmbConsultStatus}"
+                                      SelectedItem="{Binding SelectConsultStatus}"/>
+                </dxlc:LayoutItem>
+                
+                <dxlc:LayoutItem Label="Note">
+                    <dxe:TextEdit Text="{Binding Comments,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem >
+                    <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                        <dx:SimpleButton Width="80" Command="{Binding AddCommand}"
+                                     Height="25" Content="Add"/>
+                        <dx:SimpleButton Width="80" Command="{Binding UpdateConsultCommand}"
+                                     Height="25" Content="Update"/>
+                        <dx:SimpleButton Width="80" Command="{Binding DeleteConsultCommand}"
+                                     Height="25" Content="Delete"/>
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxg:GridControl x:Name="grdAdmissionRequest" ItemsSource="{Binding IPDConsultList}"
+                             SelectedItem="{Binding SelectPatientConsult}">
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn Header="HN" FieldName="PatientID" ReadOnly="True"/>
+                        <dxg:GridColumn Header="EN" FieldName="VisitID" ReadOnly="True"/>
+                        <dxg:GridColumn Header="PatientName" FieldName="PatientName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Doctor" FieldName="CareProviderName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Start Date" FieldName="StartConsultDate"  ReadOnly="True" Width="200"/>
+                        <dxg:GridColumn Header="End Date" FieldName="EndConsultDate"  ReadOnly="True"/>
+                        <dxg:GridColumn Header="Consultation Type" FieldName="ConultTypeStr"  ReadOnly="True"/>
+                        <dxg:GridColumn Header="Status" FieldName="ConultStatusStr"  ReadOnly="True"/>
+                        <dxg:GridColumn Header="Note" FieldName="Note"  ReadOnly="True"/>
+                    </dxg:GridControl.Columns>
+                    <dxg:GridControl.View>
+                        <dxg:TableView x:Name="viewAdmissionRequest" ShowGroupPanel="False">
+                        </dxg:TableView>
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+
+                   
+                    <dxlc:LayoutItem HorizontalAlignment="Right">
+                        <dx:SimpleButton Content="บันทึก" Width="80" Height="25" Command="{Binding SaveCommand}">
+                           
+                        </dx:SimpleButton>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem HorizontalAlignment="Right">
+                        <dx:SimpleButton Content="ยกเลิก" Width="80" Height="25" 
+                                         Command="{Binding CancelCommand}">
+                            <dx:SimpleButton.Style>
+                                <Style TargetType="dx:SimpleButton">
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsRequest}" Value="false">
+                                            <Setter Property="IsEnabled" Value="false"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </dx:SimpleButton.Style>
+                        </dx:SimpleButton>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+            
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

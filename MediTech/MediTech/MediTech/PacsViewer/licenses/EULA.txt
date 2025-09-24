@@ -1,0 +1,37 @@
+End-User License Agreement for MicroDicom DICOM viewer
+
+READ CAREFULLY: This End-User License Agreement ("EULA") is a legal agreement between you ("end user") and MicroDicom ("the author") for the "MicroDicom DICOM Viewer", which includes computer software and may include associated media, printed materials and 'online' or electronic documentation ("SOFTWARE PRODUCT"). You agree to be bound by the terms of this EULA by installing, copying or otherwise using the product. If you do NOT agree, do NOT install or use the SOFTWARE PRODUCT.
+
+1. Grant of license. The author grants end user the following rights provided that you comply with all terms and conditions of this EULA:
+ - Installation and use. End user may install the SOFTWARE PRODUCT on a hard disk or other storage device. The end user may install and use the SOFTWARE PRODUCT on a single computer when provided a single license by the author for an indefinite period.
+ - The author offers free technical support ("SUPPORT") for SOFTWARE PRODUCT on all licensed software products for 12 months from the date of purchasing the license key. SUPPORT is available via electronic mail only. All SUPPORT requests must be submitted in English. The provision of SUPPORT does not imply or guarantee that reported faults or errors in the SOFTWARE PRODUCT will be corrected.
+ - Product Upgrades. The author offers free upgrades for SOFTWARE PRODUCT's on all licensed software products for 12 months from the date of purchasing the license key.
+ - The end user can renew support and product upgrades when expire the 12 months from the date of purchasing the license key.
+ - The SOFTWARE PRODUCT is free for non-commercial use, but for commercial use the end user have to purchase license key by the author.
+ - The end user may not modify, translate, disassemble, decompile, reverse engineer, or create derivative works based upon the SOFTWARE. 
+ - The end user may not permit other individuals or entities to use or have access to the SOFTWARE PRODUCT. 
+ - The end user may not disclose the license key to other individuals or entities, and may not permit other individuals or entities to use or have access to end user's license key.
+ - Backup. The end user may make copies of the SOFTWARE PRODUCT for archive or backup purposes.
+ - Reservation of rights. The author reserves all rights not expressly granted to end user in this EULA.
+ 
+2. Termination. Without prejudice to any other rights, the author may cancel this EULA if you do not abide by the terms and conditions of this EULA, in which case you must return all serial number provided with the SOFTWARE PRODUCT.
+
+3. Not for resale software. This SOFTWARE PRODUCT may not be resold, transferred or used for any other purpose other than demonstration, test or evaluation unless specifically agreed otherwise (Distributor).
+
+4. Disclaimer. The SOFTWARE PRODUCT is sold 'as is' and without warranties as to performance unless specifically expressed or implied. Any liability of the seller will be limited exclusively to product replacements or refund of purchase price. Any illegal use of the SOFTWARE PRODUCT will be treated as software piracy.
+
+5. Exclusion of incidental, consequential and certain other damages, to the maximum extent permitted by applicable law, in no event shall the author or its suppliers be liable for any special, incidental, indirect or consequential damages whatsoever (including, but not limited to, damages for loss of profits or confidential or other information, for business interruption, for personal injury, for loss of privacy, for failure to meet and duty including good faith or of reasonable care, for negligence, and for any other pecuniary or other loss whatsoever) arising out of or in any way related to the use of or inability to use the SOFTWARE PRODUCT, the provision of or failure to provide support services, or otherwise under or in connection with any provision of this EULA, even in the event of fault, tort (including negligence), strict liability, breach of contract or breach of warranty of the author or any supplier, and even if the author or any supplier has been advised of the possibility of such damages.
+
+6. NO WARRANTIES. The author of this software expressly disclaims any warranty for the SOFTWARE PRODUCT. The SOFTWARE PRODUCT and any related documentation is provided “as is” without warranty of any kind, either express or implied, including, without limitation, the implied warranties or merchantability, fitness for a particular purpose, or no infringement. The entire risk arising out of use or performance of the SOFTWARE PRODUCT remains with you.
+
+7. NO LIABILITY FOR DAMAGES. In no event shall the author of this SOFTWARE PRODUCT be liable for any special, consequential, incidental or indirect damages whatsoever (including, without limitation, damages for loss of business profits, business interruption, loss of business information, or any other pecuniary loss) arising out of the use of or inability to use this product, even if the author of this SOFTWARE PRODUCT is aware of the possibility of such damages and known defects.
+
+8. Applicable law. This agreement will solely be governed by the laws of the European Union. This EULA will not be governed by the United Convention on Contract for the International Sale of Goods, the application of which is expressly excluded. If any part of this EULA is found void and unenforceable, it will not affect the validity of the balance of the EULA, which shall remain valid and enforceable according to its terms.
+
+9. Agreement in English. End user and the author agree that this EULA and all related documents may be written in the English language.
+
+10. Copyright notice. Copyright (c) 2007-2017 MicroDicom. All rights reserved. The SOFTWARE PRODUCT is the property of the author and is protected by European Union copyright laws and international treaty provisions. Any reproduction or in whole or in part is strictly prohibited. All rights in the SOFTWARE PRODUCT including license keys, copyrights, licensing rights, patents, trademarks, trade secrets, design rights, engineering rights, moral rights, and any other intellectual property rights belong to author. These rights are not transferred as part of this agreement. No part of the SOFTWARE PRODUCT including the License Agreement may be reproduced, published, transmitted electronically, mechanically or otherwise, transcribed, stored in a retrieval system or translated into any language in any form, by any means, for any purpose other than the purchaser's personal use, without the express written permission of author.
+
+11. The SOFTWARE PRODUCT (including the SOFTWARE PRODUCT with the key) is not certified as medical product, therefore it shall only be used to view DICOM images and not to: 
+- Additional for a diagnosis of a doctor by profession
+- be used in the process of making diagnostic and therapeutic judgements

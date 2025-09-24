@@ -1,0 +1,214 @@
+﻿<UserControl x:Class="MediTech.Views.AllocateBillPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediTech.Views" xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:cv="clr-namespace:MediTech.Converter"
+             mc:Ignorable="d"
+             DataContext="{Binding Path=AllocateBillPopupViewModel,Source={StaticResource Locator}}"
+             Width="550" Height="300">
+    <UserControl.Resources>
+        <cv:NumericN2Formatter x:Key="NumericN2Formatter" />
+        <cv:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+    </UserControl.Resources>
+    <AdornerDecorator>
+        <dxlc:LayoutControl>
+            <dxlc:LayoutGroup Orientation="Vertical">
+                <dxlc:LayoutItem Label="SourcePayor">
+                    <ComboBox ItemsSource="{Binding Path= SourceVisitPayors,UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" DisplayMemberPath="PayorName" SelectedValuePath="PatientVisitPayorUID" SelectedValue="{Binding Path=SelectAllocateItem.PatientVisitPayorUID,UpdateSourceTrigger=PropertyChanged}" />
+                </dxlc:LayoutItem>
+                <TabControl Name="ControlTab">
+                    <TabItem Header="Item">
+                        <dxlc:LayoutGroup Orientation="Vertical">
+                            <dxlc:LayoutItem >
+                                <Label Content="{Binding Path=SelectAllocateItem.SubAccountName,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutGroup Orientation="Horizontal" >
+                                <dxlc:LayoutItem Label="DestinationPayor" IsEnabled="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource InverseBooleanConverter}}">
+                                    <ComboBox ItemsSource="{Binding Path= DestinationVisitPayors,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="PayorName" SelectedItem="{Binding Path=SelectedModifyPatientVisitPayor,UpdateSourceTrigger=PropertyChanged}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="KeepDiscount" IsEnabled="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource InverseBooleanConverter}}">
+                                    <CheckBox IsChecked="{Binding Path=CanKeepDiscount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutItem Label="IsSplit" >
+                                <CheckBox IsChecked="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutGroup IsEnabled="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="3"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="3"/>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="3"/>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="3"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="3"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="3"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="25"/>
+                                        <RowDefinition Height="3"/>
+                                        <RowDefinition Height="25"/>
+                                        <RowDefinition Height="3"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Column="0" Grid.Row="0" Content="Amount" HorizontalAlignment="Right" />
+                                    <Label Grid.Column="2" Grid.Row="0" Content="{Binding Path = DisplayAmount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NumericN2Formatter}}" HorizontalContentAlignment="Right"/>
+                                    <Label Grid.Column="4" Grid.Row="0" Content="Disc" HorizontalAlignment="Right"/>
+                                    <Label Grid.Column="6" Grid.Row="0" Content="{Binding Path = Discount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NumericN2Formatter}}" HorizontalContentAlignment="Right"/>
+                                    <Label Grid.Column="8" Grid.Row="0" Content="Net" HorizontalAlignment="Right"/>
+                                    <Label Grid.Column="10" Grid.Row="0" Content="{Binding Path = DisplayNetAmount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NumericN2Formatter}}" HorizontalContentAlignment="Right"/>
+
+                                    <Label Grid.Column="0" Grid.Row="2" Content="TotalSplit" HorizontalAlignment="Right"/>
+                                    <TextBox Grid.Column="2" Grid.Row="2" Name="SplitAmountTxt" Text="{Binding Path = AmountString, Converter={StaticResource NumericN2Formatter}, UpdateSourceTrigger = PropertyChanged,Mode=TwoWay}"  HorizontalContentAlignment="Right" />
+                                    <Label Grid.Column="4" Grid.Row="2" Content="Disc" HorizontalAlignment="Right"/>
+                                    <Label Grid.Column="6" Grid.Row="2" Content="{Binding Path = ConvertedDiscount, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NumericN2Formatter}, Mode=TwoWay}" HorizontalContentAlignment="Right"/>
+                                    <Label Grid.Column="8" Grid.Row="2" Content="NetSplit" HorizontalAlignment="Right"/>
+                                    <TextBox Grid.Column="10" Grid.Row="2" Text="{Binding Path = NetAmountString, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NumericN2Formatter}, Mode=TwoWay}" HorizontalContentAlignment="Right"/>
+                                </Grid>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutGroup>
+                    </TabItem>
+                    <TabItem Header="Sub Group">
+                        <dxlc:LayoutGroup Orientation="Vertical">
+                            <dxlc:LayoutItem >
+                                <Label Content="{Binding Path=SelectAllocateItem.SubGroupName,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:LayoutItem Label="DestinationPayor" IsEnabled="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource InverseBooleanConverter}}">
+                                    <ComboBox ItemsSource="{Binding Path= DestinationVisitPayors,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="PayorName" SelectedItem="{Binding Path=SelectedModifyPatientVisitPayor,UpdateSourceTrigger=PropertyChanged}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="KeepDiscount" IsEnabled="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource InverseBooleanConverter}}">
+                                    <CheckBox IsChecked="{Binding Path=CanKeepDiscount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutItem Label="IsSplit" >
+                                <CheckBox IsChecked="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutGroup IsEnabled="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="3"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="3"/>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="3"/>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="3"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="3"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="3"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="25"/>
+                                        <RowDefinition Height="3"/>
+                                        <RowDefinition Height="25"/>
+                                        <RowDefinition Height="3"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Column="0" Grid.Row="0" Content="Amount" HorizontalAlignment="Right" />
+                                    <Label Grid.Column="2" Grid.Row="0" Content="{Binding Path = SubGroupTotal, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NumericN2Formatter}}" HorizontalContentAlignment="Right"/>
+                                    <Label Grid.Column="4" Grid.Row="0" Content="Disc" HorizontalAlignment="Right"/>
+                                    <Label Grid.Column="6" Grid.Row="0" Content="{Binding Path = SubGroupDiscount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NumericN2Formatter}}" HorizontalContentAlignment="Right"/>
+                                    <Label Grid.Column="8" Grid.Row="0" Content="Net" HorizontalAlignment="Right"/>
+                                    <Label Grid.Column="10" Grid.Row="0" Content="{Binding Path = SubGroupCovered, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NumericN2Formatter}}" HorizontalContentAlignment="Right"/>
+
+                                    <Label Grid.Column="0" Grid.Row="2" Content="TotalSplit" HorizontalAlignment="Right"/>
+                                    <TextBox Grid.Column="2" Grid.Row="2" Name="SubGroupSplitAmountTxt" Text="{Binding Path = SubGroupTotalSplitAmount, Converter={StaticResource NumericN2Formatter}, UpdateSourceTrigger = PropertyChanged,Mode=TwoWay}"  HorizontalContentAlignment="Right" />
+                                    <Label Grid.Column="4" Grid.Row="2" Content="Disc" HorizontalAlignment="Right"/>
+                                    <Label Grid.Column="6" Grid.Row="2" Content="{Binding Path = SubGroupDisplayDiscount, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NumericN2Formatter}, Mode=TwoWay}" HorizontalContentAlignment="Right"/>
+                                    <Label Grid.Column="8" Grid.Row="2" Content="NetSplit" HorizontalAlignment="Right"/>
+                                    <TextBox Grid.Column="10" Grid.Row="2" Text="{Binding Path = SubGroupSplitAmount, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NumericN2Formatter}, Mode=TwoWay}" HorizontalContentAlignment="Right"/>
+
+                                </Grid>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutGroup>
+                    </TabItem>
+                    <TabItem Header="Group">
+                        <dxlc:LayoutGroup Orientation="Vertical">
+                            <dxlc:LayoutItem >
+                                <Label Content="{Binding Path=SelectAllocateItem.GroupName,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:LayoutItem Label="DestinationPayor" IsEnabled="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource InverseBooleanConverter}}">
+                                    <ComboBox ItemsSource="{Binding Path= DestinationVisitPayors,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="PayorName" SelectedItem="{Binding Path=SelectedModifyPatientVisitPayor,UpdateSourceTrigger=PropertyChanged}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="KeepDiscount" IsEnabled="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource InverseBooleanConverter}}">
+                                    <CheckBox IsChecked="{Binding Path=CanKeepDiscount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutItem Label="IsSplit" >
+                                <CheckBox IsChecked="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutGroup IsEnabled="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="3"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="3"/>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="3"/>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="3"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="3"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="3"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="25"/>
+                                        <RowDefinition Height="3"/>
+                                        <RowDefinition Height="25"/>
+                                        <RowDefinition Height="3"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Column="0" Grid.Row="0" Content="Amount" HorizontalAlignment="Right" />
+                                    <Label Grid.Column="2" Grid.Row="0" Content="{Binding Path = GroupTotal, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NumericN2Formatter}}" HorizontalContentAlignment="Right"/>
+                                    <Label Grid.Column="4" Grid.Row="0" Content="Disc" HorizontalAlignment="Right"/>
+                                    <Label Grid.Column="6" Grid.Row="0" Content="{Binding Path = GroupDiscount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NumericN2Formatter}}" HorizontalContentAlignment="Right"/>
+                                    <Label Grid.Column="8" Grid.Row="0" Content="Net" HorizontalAlignment="Right"/>
+                                    <Label Grid.Column="10" Grid.Row="0" Content="{Binding Path = GroupCovered, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NumericN2Formatter}}" HorizontalContentAlignment="Right"/>
+
+                                    <Label Grid.Column="0" Grid.Row="2" Content="TotalSplit" HorizontalAlignment="Right"/>
+                                    <TextBox Grid.Column="2" Grid.Row="2" Name="GroupSplitAmountTxt" Text="{Binding Path = GroupTotalSplitAmount, Converter={StaticResource NumericN2Formatter}, UpdateSourceTrigger = PropertyChanged,Mode=TwoWay}"  HorizontalContentAlignment="Right" />
+                                    <Label Grid.Column="4" Grid.Row="2" Content="Disc" HorizontalAlignment="Right"/>
+                                    <Label Grid.Column="6" Grid.Row="2" Content="{Binding Path = GroupDisplayDiscount, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NumericN2Formatter}, Mode=TwoWay}" HorizontalContentAlignment="Right"/>
+                                    <Label Grid.Column="8" Grid.Row="2" Content="NetSplit" HorizontalAlignment="Right"/>
+                                    <TextBox Grid.Column="10" Grid.Row="2" Text="{Binding Path = GroupSplitAmount, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NumericN2Formatter}, Mode=TwoWay}" HorizontalContentAlignment="Right"/>
+                                </Grid>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutGroup>
+                    </TabItem>
+                </TabControl>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="SplitPayor" IsEnabled="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+                        <ComboBox ItemsSource="{Binding Path= DestinationVisitPayors,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="PayorName" SelectedValuePath="PatientVisitPayorUID" SelectedValue="{Binding Path=SplitPayorUID,UpdateSourceTrigger=PropertyChanged}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="KeepDiscount" IsEnabled="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" >
+                        <CheckBox IsChecked="{Binding Path=CanKeepDiscount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Center"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Orientation="Horizontal">
+                    <dxlc:LayoutItem>
+                        <TextBlock Name="ErrorBlock" Foreground="Red" Text="{Binding Path=Errors}" FlowDirection="LeftToRight" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                        <DockPanel  HorizontalAlignment="Stretch">
+                            <Button  DockPanel.Dock="Right" Name="CancelButton" VerticalAlignment="Center" Width="80" IsCancel="True" Content="ยกเลิก" Command="{Binding CancelCommand}" />
+                            <Button DockPanel.Dock="Right"  Name="SaveButton" VerticalAlignment="Center" Width="80" IsDefault="True" Content="บันทึก" Command="{Binding SaveCommand}" />
+                        </DockPanel>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </AdornerDecorator>
+</UserControl>

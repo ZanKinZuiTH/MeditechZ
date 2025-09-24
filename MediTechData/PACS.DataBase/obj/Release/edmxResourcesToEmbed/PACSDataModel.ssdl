@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PACSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Authority" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Configs">
+    <Key>
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Value" Type="nvarchar" MaxLength="4000" />
+    <Property Name="Edited" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Instances">
+    <Key>
+      <PropertyRef Name="SOPInstanceUID" />
+    </Key>
+    <Property Name="SOPInstanceUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="SeriesInstanceUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="StudyInstanceUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="SOPClassUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="TransferSyntaxUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="PatientID" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="PatientName" Type="nvarchar" MaxLength="256" />
+    <Property Name="PatientComments" Type="nvarchar" MaxLength="4000" />
+    <Property Name="PatientBirthDate" Type="nvarchar" MaxLength="16" />
+    <Property Name="PatientSex" Type="nvarchar" MaxLength="16" />
+    <Property Name="StudyDescription" Type="nvarchar" MaxLength="256" />
+    <Property Name="StudyID" Type="nvarchar" MaxLength="256" />
+    <Property Name="StudyDate" Type="nvarchar" MaxLength="16" />
+    <Property Name="StudyTime" Type="nvarchar" MaxLength="16" />
+    <Property Name="AccessionNumber" Type="nvarchar" MaxLength="256" />
+    <Property Name="InstitutionName" Type="nvarchar" MaxLength="128" />
+    <Property Name="SeriesNumber" Type="int" />
+    <Property Name="SeriesDate" Type="nvarchar" MaxLength="16" />
+    <Property Name="SeriesTime" Type="nvarchar" MaxLength="16" />
+    <Property Name="SeriesDescription" Type="nvarchar" MaxLength="256" />
+    <Property Name="Modality" Type="nvarchar" MaxLength="8" />
+    <Property Name="BodypartExamined" Type="nvarchar" MaxLength="256" />
+    <Property Name="InstanceNumber" Type="int" />
+    <Property Name="NumberOfFrames" Type="int" />
+    <Property Name="PixelSpacing" Type="nvarchar" MaxLength="64" />
+    <Property Name="PixelAspectRatio" Type="nvarchar" MaxLength="64" />
+    <Property Name="SliceThickness" Type="nvarchar" MaxLength="64" />
+    <Property Name="SpacingBetweenSlices" Type="nvarchar" MaxLength="64" />
+    <Property Name="SliceLocation" Type="nvarchar" MaxLength="64" />
+    <Property Name="PatientOrientation" Type="nvarchar" MaxLength="256" />
+    <Property Name="ImagePositionPatient" Type="nvarchar" MaxLength="256" />
+    <Property Name="ImageOrientationPatient" Type="nvarchar" MaxLength="256" />
+    <Property Name="Width" Type="int" />
+    <Property Name="Height" Type="int" />
+    <Property Name="RescaleIntercept" Type="int" />
+    <Property Name="RescaleSlope" Type="float" />
+    <Property Name="RescaleType" Type="nvarchar" MaxLength="32" />
+    <Property Name="WindowWidth" Type="nvarchar" MaxLength="128" />
+    <Property Name="WindowCenter" Type="nvarchar" MaxLength="128" />
+    <Property Name="SamplesPerPixel" Type="int" />
+    <Property Name="PlanarConfiguration" Type="int" />
+    <Property Name="BitsAllocated" Type="int" />
+    <Property Name="BitsStored" Type="int" />
+    <Property Name="HighBit" Type="int" />
+    <Property Name="PixelRepresentation" Type="int" />
+    <Property Name="PixelData" Type="int" />
+    <Property Name="Sender" Type="nvarchar" MaxLength="64" />
+    <Property Name="FileSize" Type="bigint" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="SpecificCharacterSet" Type="nvarchar" MaxLength="256" />
+    <Property Name="ImageType" Type="nvarchar" MaxLength="256" />
+    <Property Name="PhotoMatricInterpretation" Type="nvarchar" MaxLength="32" />
+    <Property Name="PatientAge" Type="nvarchar" MaxLength="8" />
+    <Property Name="LossyImageCompression" Type="nvarchar" MaxLength="32" />
+    <Property Name="Method" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Passwords">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Value" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Patients">
+    <Key>
+      <PropertyRef Name="PatientID" />
+    </Key>
+    <Property Name="PatientID" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="PatientName" Type="nvarchar" MaxLength="256" />
+    <Property Name="PatientComments" Type="nvarchar" MaxLength="4000" />
+    <Property Name="PatientBirthDate" Type="nvarchar" MaxLength="16" />
+    <Property Name="PatientSex" Type="nvarchar" MaxLength="16" />
+    <Property Name="NumberOfPatientRelatedStudies" Type="int" Nullable="false" />
+    <Property Name="NumberOfPatientRelatedSeries" Type="int" Nullable="false" />
+    <Property Name="NumberOfPatientRelatedInstances" Type="int" Nullable="false" />
+    <Property Name="SpecificCharacterSet" Type="nvarchar" MaxLength="256" />
+    <Property Name="Edited" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Providers">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AETitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Port" Type="int" Nullable="false" />
+    <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+    <Property Name="AllowAnonymousUsers" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SendSettings">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Account" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CalledAETitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CallingAETitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Port" Type="int" Nullable="false" />
+    <Property Name="IPAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Series">
+    <Key>
+      <PropertyRef Name="SeriesInstanceUID" />
+    </Key>
+    <Property Name="SeriesInstanceUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="StudyInstanceUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="PatientID" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="SeriesNumber" Type="int" />
+    <Property Name="SeriesDate" Type="nvarchar" MaxLength="16" />
+    <Property Name="SeriesTime" Type="nvarchar" MaxLength="16" />
+    <Property Name="SeriesDescription" Type="nvarchar" MaxLength="256" />
+    <Property Name="Modality" Type="nvarchar" MaxLength="8" />
+    <Property Name="BodypartExamined" Type="nvarchar" MaxLength="256" />
+    <Property Name="NumberOfSeriesRelatedInstances" Type="int" Nullable="false" />
+    <Property Name="SpecificCharacterSet" Type="nvarchar" MaxLength="256" />
+    <Property Name="Edited" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Settings">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Account" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Value" Type="nvarchar" MaxLength="4000" />
+  </EntityType>
+  <EntityType Name="Studies">
+    <Key>
+      <PropertyRef Name="StudyInstanceUID" />
+    </Key>
+    <Property Name="StudyInstanceUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="PatientID" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="PatientName" Type="nvarchar" MaxLength="256" />
+    <Property Name="PatientComments" Type="nvarchar" MaxLength="4000" />
+    <Property Name="PatientBirthDate" Type="nvarchar" MaxLength="16" />
+    <Property Name="PatientSex" Type="nvarchar" MaxLength="16" />
+    <Property Name="StudyDescription" Type="nvarchar" MaxLength="256" />
+    <Property Name="StudyID" Type="nvarchar" MaxLength="256" />
+    <Property Name="StudyDate" Type="nvarchar" MaxLength="16" />
+    <Property Name="StudyTime" Type="nvarchar" MaxLength="16" />
+    <Property Name="AccessionNumber" Type="nvarchar" MaxLength="256" />
+    <Property Name="InstitutionName" Type="nvarchar" MaxLength="128" />
+    <Property Name="ModalitiesInStudy" Type="nvarchar" MaxLength="256" />
+    <Property Name="BodyPartsInStudy" Type="nvarchar" MaxLength="512" />
+    <Property Name="NumberOfStudyRelatedSeries" Type="int" Nullable="false" />
+    <Property Name="NumberOfStudyRelatedInstances" Type="int" Nullable="false" />
+    <Property Name="SpecificCharacterSet" Type="nvarchar" MaxLength="256" />
+    <Property Name="PatientAge" Type="nvarchar" MaxLength="256" />
+    <Property Name="Edited" Type="datetime" Nullable="false" />
+    <Property Name="ReportStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Provider" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AETitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Port" Type="int" Nullable="false" />
+    <Property Name="IPAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="PACSModelStoreContainer">
+    <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Configs" EntityType="Self.Configs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Instances" EntityType="Self.Instances" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Passwords" EntityType="Self.Passwords" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Providers" EntityType="Self.Providers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SendSettings" EntityType="Self.SendSettings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Series" EntityType="Self.Series" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Studies" EntityType="Self.Studies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

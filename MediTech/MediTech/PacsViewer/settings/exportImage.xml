@@ -1,0 +1,2 @@
+<?xml version="1.0"?>
+<ExportImage target="image" imageFormat="jpg" exportFrame="true" createSubFolder="true" imageSize="original" exportAnnotations="true" exportOverlayType="all" jpeg_quality="75"/>

@@ -707,14 +707,26 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
 
                         IEnumerable<PatientResultComponentModel> cbcTestSet = labCompare
                         .Where(p => p.RequestItemName.Contains("CBC")
-                        || p.RequestItemCode.Contains("LAB597"))
+                        || p.RequestItemCode.Contains("LAB597")
+                        // เพิ่มการกรองแม็กนีเซียมในเลือดในส่วน Complete Blood Count
+                        || (p.PrintAs.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("cbc"))
+                        || (p.PrintAs.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("cbc"))
+                        || (p.RequestItemName.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("cbc"))
+                        || (p.RequestItemName.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("cbc"))
+                        )
                         .OrderByDescending(p => p.Year);
                         GenerateCompleteBloodCount(cbcTestSet);
                         #endregion
 
                         #region Urinalysis
                         IEnumerable<PatientResultComponentModel> uaTestSet = labCompare
-                            .Where(p => p.RequestItemName.Contains("UA"))
+                            .Where(p => p.RequestItemName.Contains("UA")
+                            // เพิ่มการกรองแม็กนีเซียมในเลือดในส่วน Urinalysis
+                            || (p.PrintAs.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("urinalysis"))
+                            || (p.PrintAs.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("urinalysis"))
+                            || (p.RequestItemName.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("urinalysis"))
+                            || (p.RequestItemName.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("urinalysis"))
+                            )
                             .OrderByDescending(p => p.Year);
                         GenerateUrinalysis(uaTestSet);
 
@@ -724,7 +736,13 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         IEnumerable<PatientResultComponentModel> RenalTestSet = labCompare
                             .Where(p => p.RequestItemCode.Contains("LAB212")
                             || p.RequestItemCode.Contains("LAB211")
-                            || p.RequestItemCode.Contains("LAB213"))
+                            || p.RequestItemCode.Contains("LAB213")
+                            // เพิ่มการกรองแม็กนีเซียมในเลือดในส่วน Renal Function
+                            || (p.PrintAs.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("renal"))
+                            || (p.PrintAs.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("renal"))
+                            || (p.RequestItemName.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("renal"))
+                            || (p.RequestItemName.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("renal"))
+                            )
                             .OrderByDescending(p => p.Year);
                         GenerateRenalFunction(RenalTestSet);
 
@@ -733,7 +751,13 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         #region Fasting Blood Sugar
                         IEnumerable<PatientResultComponentModel> FbsTestSet = labCompare
                             .Where(p => p.RequestItemCode.Contains("LAB231")
-                            || p.RequestItemCode.Contains("LAB232"))
+                            || p.RequestItemCode.Contains("LAB232")
+                            // เพิ่มการกรองแม็กนีเซียมในเลือดในส่วน Fasting Blood Sugar
+                            || (p.PrintAs.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("glucose"))
+                            || (p.PrintAs.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("glucose"))
+                            || (p.RequestItemName.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("glucose"))
+                            || (p.RequestItemName.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("glucose"))
+                            )
                              .OrderByDescending(p => p.Year);
                         GenerateFastingBloodSugar(FbsTestSet);
 
@@ -741,7 +765,13 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
 
                         #region Uric acid
                         IEnumerable<PatientResultComponentModel> UricTestSet = labCompare
-                            .Where(p => p.RequestItemCode.Contains("LAB261"))
+                            .Where(p => p.RequestItemCode.Contains("LAB261")
+                            // เพิ่มการกรองแม็กนีเซียมในเลือดในส่วน Uric Acid
+                            || (p.PrintAs.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("uric"))
+                            || (p.PrintAs.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("uric"))
+                            || (p.RequestItemName.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("uric"))
+                            || (p.RequestItemName.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("uric"))
+                            )
                             .OrderByDescending(p => p.Year);
                         GenerateUricAcid(UricTestSet);
 
@@ -752,7 +782,12 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             .Where(p => p.RequestItemCode.Contains("LAB241")
                             || p.RequestItemCode.Contains("LAB242")
                             || p.RequestItemCode.Contains("LAB243")
-                            || p.RequestItemCode.Contains("LAB244"))
+                            || p.RequestItemCode.Contains("LAB244")
+                            // เพิ่มการกรองแม็กนีเซียมในเลือดในส่วน Lipid Profiles
+                            || (p.PrintAs.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("lipid"))
+                            || (p.PrintAs.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("lipid"))
+                            || (p.RequestItemName.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("lipid"))
+                            || (p.RequestItemName.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("lipid")))
                              .OrderByDescending(p => p.Year);
                         GenerateLipidProfiles(LipidTestSet);
 
@@ -770,6 +805,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             || p.RequestItemCode.Contains("LAB225")
                             || p.RequestItemCode.Contains("LAB226")
                             || p.RequestItemCode.Contains("LAB227")
+                            // เพิ่มการกรองแม็กนีเซียมในเลือดในส่วน Liver Function
+                            || (p.PrintAs.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("liver"))
+                            || (p.PrintAs.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("liver"))
+                            || (p.RequestItemName.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("liver"))
+                            || (p.RequestItemName.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("liver"))
                             ).OrderByDescending(p => p.Year);
                         GenerateLiverFunction(LiverTestSet);
                         #endregion
@@ -784,6 +824,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             || p.RequestItemCode.Contains("LAB596")
                             || p.RequestItemCode.Contains("LAB582")
                             || p.RequestItemCode.Contains("LAB452")
+                            // เพิ่มการกรองแม็กนีเซียมในเลือดในส่วน Immunology
+                            || (p.PrintAs.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("immunology"))
+                            || (p.PrintAs.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("immunology"))
+                            || (p.RequestItemName.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("immunology"))
+                            || (p.RequestItemName.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("immunology"))
                             )
                              .OrderByDescending(p => p.Year);
                         GenerateImmunology(ImmunologyTestSet);
@@ -791,14 +836,26 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
 
                         #region Stool Exam
                         IEnumerable<PatientResultComponentModel> StoolTestSet = labCompare
-                            .Where(p => p.RequestItemName.Contains("Stool Examination"))
+                            .Where(p => p.RequestItemName.Contains("Stool Examination")
+                            // เพิ่มการกรองแม็กนีเซียมในเลือดในส่วน Stool Exam
+                            || (p.PrintAs.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("stool"))
+                            || (p.PrintAs.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("stool"))
+                            || (p.RequestItemName.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("stool"))
+                            || (p.RequestItemName.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("stool"))
+                            )
                              .OrderByDescending(p => p.Year);
                         GenerateStool(StoolTestSet);
                         #endregion
 
                         #region Stool Culture
                         IEnumerable<PatientResultComponentModel> StoolCultureTestSet = labCompare
-                            .Where(p => p.RequestItemCode.Contains("LAB322"))
+                            .Where(p => p.RequestItemCode.Contains("LAB322")
+                            // เพิ่มการกรองแม็กนีเซียมในเลือดในส่วน Stool Culture
+                            || (p.PrintAs.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("culture"))
+                            || (p.PrintAs.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("culture"))
+                            || (p.RequestItemName.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("culture"))
+                            || (p.RequestItemName.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("culture"))
+                            )
                              .OrderByDescending(p => p.Year);
                         GenerateStoolCulture(StoolCultureTestSet);
                         #endregion
@@ -810,14 +867,24 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             || p.RequestItemCode.Contains("LAB283") //cea
                             || p.RequestItemCode.Contains("LAB284") //psa
                             || p.RequestItemCode.Contains("LAB285") //ca125
-                            || p.RequestItemCode.Contains("LAB286")) //ca153
+                            || p.RequestItemCode.Contains("LAB286") //ca153
+                            // เพิ่มการกรองแม็กนีเซียมในเลือดในส่วน Tumor Marker
+                            || (p.PrintAs.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("tumor"))
+                            || (p.PrintAs.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("tumor"))
+                            || (p.RequestItemName.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("tumor"))
+                            || (p.RequestItemName.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("tumor"))
+                            )
                          .OrderByDescending(p => p.Year);
                         GenerateTumorMarker(TumorMarker);
                         #endregion
 
                         #region Toxicology
                         IEnumerable<PatientResultComponentModel> ToxicoTestSet = labCompare
-                            .Where(p => p.Catagory.ToLower() == "toxicology")
+                            .Where(p => p.Catagory.ToLower() == "toxicology"
+                            || p.PrintAs.ToLower().Contains("magnesium")
+                            || p.PrintAs.ToLower().Contains("แม็กนีเซียม")
+                            || p.RequestItemName.ToLower().Contains("magnesium")
+                            || p.RequestItemName.ToLower().Contains("แม็กนีเซียม"))
                             .OrderByDescending(p => p.Year);
 
                         //IEnumerable<PatientResultComponentModel> ToxicoTestSet = labCompare
@@ -879,6 +946,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         //    || p.RequestItemCode.Contains("LAB645") //Trichloroacetic Acid in urine
                         //    || p.RequestItemCode.Contains("LAB612") //Widal Agglutination
                         //    || p.RequestItemCode.Contains("LAB642") // Methy tert-butly ether (MTBE)
+                        //    || p.RequestItemCode.Contains("LAB547") 
+                        //    || p.RequestItemCode.Contains("LAB513")
                         //    )
                         //     .OrderByDescending(p => p.Year);
                         GenerateToxicology(ToxicoTestSet);
@@ -887,6 +956,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         #region Widal Teat
                         IEnumerable<PatientResultComponentModel> WidalTestSet = labCompare
                             .Where(p => p.RequestItemCode.Contains("LAB612")
+                            // เพิ่มการกรองแม็กนีเซียมในเลือดในส่วน Widal Test
+                            || (p.PrintAs.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("widal"))
+                            || (p.PrintAs.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("widal"))
+                            || (p.RequestItemName.ToLower().Contains("magnesium") && p.Catagory.ToLower().Contains("widal"))
+                            || (p.RequestItemName.ToLower().Contains("แม็กนีเซียม") && p.Catagory.ToLower().Contains("widal"))
                              ).OrderByDescending(p => p.Year);
                         GenerateWidal(WidalTestSet);
                         #endregion
@@ -905,6 +979,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                             || p.RequestItemCode.Contains("LAB565")
                             || p.RequestItemCode.Contains("LAB480")
                             || p.RequestItemCode.Contains("LAB262")
+                            // เพิ่มการกรองแม็กนีเซียมในเลือดที่ไม่ได้อยู่ในตารางพิษวิทยา
+                            || (p.PrintAs.ToLower().Contains("magnesium") && !p.Catagory.ToLower().Contains("toxicology"))
+                            || (p.PrintAs.ToLower().Contains("แม็กนีเซียม") && !p.Catagory.ToLower().Contains("toxicology"))
+                            || (p.RequestItemName.ToLower().Contains("magnesium") && !p.Catagory.ToLower().Contains("toxicology"))
+                            || (p.RequestItemName.ToLower().Contains("แม็กนีเซียม") && !p.Catagory.ToLower().Contains("toxicology"))
                              ).OrderByDescending(p => p.Year);
                         GenerateOther(OtherTestSet);
                         #endregion

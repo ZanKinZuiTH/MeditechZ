@@ -1,0 +1,2124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="xrLabel4.BackColor" type="System.Drawing.Color, System.Drawing">
+    <value>192, 192, 255</value>
+  </data>
+  <data name="xrLabel4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 12pt, style=Bold</value>
+  </data>
+  <assembly alias="DevExpress.Data.v20.2" name="DevExpress.Data.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  <data name="xrLabel4.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
+    <value>58.3333321, 27.5131474</value>
+  </data>
+  <data name="xrLabel4.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>285.833466, 21.3333263</value>
+  </data>
+  <data name="xrLabel4.Text" xml:space="preserve">
+    <value>ผลการตรวจสมรรถภาพกล้ามเนื้อ (Strength  muscle)</value>
+  </data>
+  <data name="xrLabel4.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="tbCBC.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
+    <value>428.833374, 52.17982</value>
+  </data>
+  <data name="xrTableCell3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell3.Text" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="xrTableCell3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="xrTableCell3.Weight" type="System.Double, mscorlib">
+    <value>0.75</value>
+  </data>
+  <data name="xrTableCell4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell4.Text" xml:space="preserve">
+    <value>Normal Range</value>
+  </data>
+  <data name="xrTableCell4.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell4.Weight" type="System.Double, mscorlib">
+    <value>1.1412997033294881</value>
+  </data>
+  <data name="xrTableCell5.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell5.Text" xml:space="preserve">
+    <value>Report Result</value>
+  </data>
+  <data name="xrTableCell5.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell5.Weight" type="System.Double, mscorlib">
+    <value>1.7253668616119184</value>
+  </data>
+  <data name="xrTableRow4.Weight" type="System.Double, mscorlib">
+    <value>0.80846874314452544</value>
+  </data>
+  <data name="xrTableCell6.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell6.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell6.Weight" type="System.Double, mscorlib">
+    <value>0.75</value>
+  </data>
+  <data name="xrTableCell7.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell7.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell7.Weight" type="System.Double, mscorlib">
+    <value>1.1412998554966656</value>
+  </data>
+  <data name="cellCBCYear1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="cellCBCYear1.Text" xml:space="preserve">
+    <value>ปีที่ 1</value>
+  </data>
+  <data name="cellCBCYear1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellCBCYear1.Weight" type="System.Double, mscorlib">
+    <value>0.57516045482368439</value>
+  </data>
+  <data name="cellCBCYear2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="cellCBCYear2.Text" xml:space="preserve">
+    <value>ปีที่ 2</value>
+  </data>
+  <data name="cellCBCYear2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellCBCYear2.Weight" type="System.Double, mscorlib">
+    <value>0.59168931183148854</value>
+  </data>
+  <data name="cellCBCYear3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="cellCBCYear3.Text" xml:space="preserve">
+    <value>ปีที่ 3</value>
+  </data>
+  <data name="cellCBCYear3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellCBCYear3.Weight" type="System.Double, mscorlib">
+    <value>0.55851694278956776</value>
+  </data>
+  <data name="xrTableRow5.Weight" type="System.Double, mscorlib">
+    <value>0.75319218786214048</value>
+  </data>
+  <data name="xrTableCell9.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell9.Text" xml:space="preserve">
+    <value>Hb</value>
+  </data>
+  <data name="xrTableCell9.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell9.Weight" type="System.Double, mscorlib">
+    <value>0.75</value>
+  </data>
+  <data name="cellHbRange.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="cellHbRange.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellHbRange.Weight" type="System.Double, mscorlib">
+    <value>1.1412998554966656</value>
+  </data>
+  <data name="cellHb1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellHb1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellHb1.Weight" type="System.Double, mscorlib">
+    <value>0.57516045482368439</value>
+  </data>
+  <data name="cellHb2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellHb2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellHb2.Weight" type="System.Double, mscorlib">
+    <value>0.59168931183148854</value>
+  </data>
+  <data name="cellHb3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellHb3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellHb3.Weight" type="System.Double, mscorlib">
+    <value>0.55851694278956776</value>
+  </data>
+  <data name="xrTableRow6.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTableCell14.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell14.Text" xml:space="preserve">
+    <value>Hct</value>
+  </data>
+  <data name="xrTableCell14.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell14.Weight" type="System.Double, mscorlib">
+    <value>0.75</value>
+  </data>
+  <data name="cellHctRange.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="cellHctRange.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellHctRange.Weight" type="System.Double, mscorlib">
+    <value>1.1412998554966656</value>
+  </data>
+  <data name="cellHct1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellHct1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellHct1.Weight" type="System.Double, mscorlib">
+    <value>0.57516045482368439</value>
+  </data>
+  <data name="cellHct2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellHct2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellHct2.Weight" type="System.Double, mscorlib">
+    <value>0.59168931183148854</value>
+  </data>
+  <data name="cellHct3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellHct3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellHct3.Weight" type="System.Double, mscorlib">
+    <value>0.55851694278956776</value>
+  </data>
+  <data name="xrTableRow7.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTableCell19.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell19.Text" xml:space="preserve">
+    <value>MCV</value>
+  </data>
+  <data name="xrTableCell19.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell19.Weight" type="System.Double, mscorlib">
+    <value>0.75</value>
+  </data>
+  <data name="cellMcvRange.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="cellMcvRange.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellMcvRange.Weight" type="System.Double, mscorlib">
+    <value>1.1412998554966656</value>
+  </data>
+  <data name="cellMcv1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellMcv1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellMcv1.Weight" type="System.Double, mscorlib">
+    <value>0.57516045482368439</value>
+  </data>
+  <data name="cellMcv2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellMcv2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellMcv2.Weight" type="System.Double, mscorlib">
+    <value>0.59168931183148854</value>
+  </data>
+  <data name="cellMcv3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellMcv3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellMcv3.Weight" type="System.Double, mscorlib">
+    <value>0.55851694278956776</value>
+  </data>
+  <data name="xrTableRow8.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTableCell24.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell24.Text" xml:space="preserve">
+    <value>MCH</value>
+  </data>
+  <data name="xrTableCell24.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell24.Weight" type="System.Double, mscorlib">
+    <value>0.75</value>
+  </data>
+  <data name="cellMchRange.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="cellMchRange.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellMchRange.Weight" type="System.Double, mscorlib">
+    <value>1.1412998554966656</value>
+  </data>
+  <data name="cellMch1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellMch1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellMch1.Weight" type="System.Double, mscorlib">
+    <value>0.57516045482368439</value>
+  </data>
+  <data name="cellMch2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellMch2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellMch2.Weight" type="System.Double, mscorlib">
+    <value>0.59168931183148854</value>
+  </data>
+  <data name="cellMch3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellMch3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellMch3.Weight" type="System.Double, mscorlib">
+    <value>0.55851694278956776</value>
+  </data>
+  <data name="xrTableRow9.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTableCell29.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell29.Text" xml:space="preserve">
+    <value>MCHC</value>
+  </data>
+  <data name="xrTableCell29.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell29.Weight" type="System.Double, mscorlib">
+    <value>0.75</value>
+  </data>
+  <data name="cellMchcRange.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="cellMchcRange.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellMchcRange.Weight" type="System.Double, mscorlib">
+    <value>1.1412998554966656</value>
+  </data>
+  <data name="cellMchc1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellMchc1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellMchc1.Weight" type="System.Double, mscorlib">
+    <value>0.57516045482368439</value>
+  </data>
+  <data name="cellMchc2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellMchc2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellMchc2.Weight" type="System.Double, mscorlib">
+    <value>0.59168931183148854</value>
+  </data>
+  <data name="cellMchc3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellMchc3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellMchc3.Weight" type="System.Double, mscorlib">
+    <value>0.55851694278956776</value>
+  </data>
+  <data name="xrTableRow10.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTableCell34.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell34.Text" xml:space="preserve">
+    <value>RDW</value>
+  </data>
+  <data name="xrTableCell34.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell34.Weight" type="System.Double, mscorlib">
+    <value>0.75</value>
+  </data>
+  <data name="cellRdwRange.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="cellRdwRange.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellRdwRange.Weight" type="System.Double, mscorlib">
+    <value>1.1412998554966656</value>
+  </data>
+  <data name="cellRdw1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellRdw1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellRdw1.Weight" type="System.Double, mscorlib">
+    <value>0.57516045482368439</value>
+  </data>
+  <data name="cellRdw2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellRdw2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellRdw2.Weight" type="System.Double, mscorlib">
+    <value>0.59168931183148854</value>
+  </data>
+  <data name="cellRdw3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellRdw3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellRdw3.Weight" type="System.Double, mscorlib">
+    <value>0.55851694278956776</value>
+  </data>
+  <data name="xrTableRow11.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTableCell39.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell39.Text" xml:space="preserve">
+    <value>RBC</value>
+  </data>
+  <data name="xrTableCell39.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell39.Weight" type="System.Double, mscorlib">
+    <value>0.75</value>
+  </data>
+  <data name="cellRbcRange.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="cellRbcRange.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellRbcRange.Weight" type="System.Double, mscorlib">
+    <value>1.1412998554966656</value>
+  </data>
+  <data name="cellRbc1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellRbc1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellRbc1.Weight" type="System.Double, mscorlib">
+    <value>0.57516045482368439</value>
+  </data>
+  <data name="cellRbc2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellRbc2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellRbc2.Weight" type="System.Double, mscorlib">
+    <value>0.59168931183148854</value>
+  </data>
+  <data name="cellRbc3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellRbc3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellRbc3.Weight" type="System.Double, mscorlib">
+    <value>0.55851694278956776</value>
+  </data>
+  <data name="xrTableRow12.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTableCell44.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell44.Text" xml:space="preserve">
+    <value>RBC Morphology</value>
+  </data>
+  <data name="xrTableCell44.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell44.Weight" type="System.Double, mscorlib">
+    <value>0.75</value>
+  </data>
+  <data name="cellRbcMorRange.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="cellRbcMorRange.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellRbcMorRange.Weight" type="System.Double, mscorlib">
+    <value>1.1412998554966656</value>
+  </data>
+  <data name="cellRbcMor1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellRbcMor1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellRbcMor1.Weight" type="System.Double, mscorlib">
+    <value>0.57516045482368439</value>
+  </data>
+  <data name="cellRbcMor2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellRbcMor2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellRbcMor2.Weight" type="System.Double, mscorlib">
+    <value>0.59168931183148854</value>
+  </data>
+  <data name="cellRbcMor3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellRbcMor3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellRbcMor3.Weight" type="System.Double, mscorlib">
+    <value>0.55851694278956776</value>
+  </data>
+  <data name="xrTableRow13.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTableCell49.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell49.Text" xml:space="preserve">
+    <value>WBC</value>
+  </data>
+  <data name="xrTableCell49.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell49.Weight" type="System.Double, mscorlib">
+    <value>0.75</value>
+  </data>
+  <data name="cellWbcRange.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="cellWbcRange.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellWbcRange.Weight" type="System.Double, mscorlib">
+    <value>1.1412998554966656</value>
+  </data>
+  <data name="cellWbc1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellWbc1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellWbc1.Weight" type="System.Double, mscorlib">
+    <value>0.57516045482368439</value>
+  </data>
+  <data name="cellWbc2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellWbc2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellWbc2.Weight" type="System.Double, mscorlib">
+    <value>0.59168931183148854</value>
+  </data>
+  <data name="cellWbc3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellWbc3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellWbc3.Weight" type="System.Double, mscorlib">
+    <value>0.55851694278956776</value>
+  </data>
+  <data name="xrTableRow14.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTableCell54.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell54.Text" xml:space="preserve">
+    <value>Neutrophil</value>
+  </data>
+  <data name="xrTableCell54.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell54.Weight" type="System.Double, mscorlib">
+    <value>0.75</value>
+  </data>
+  <data name="cellNectophilRange.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="cellNectophilRange.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellNectophilRange.Weight" type="System.Double, mscorlib">
+    <value>1.1412998554966656</value>
+  </data>
+  <data name="cellNectophil1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellNectophil1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellNectophil1.Weight" type="System.Double, mscorlib">
+    <value>0.57516045482368439</value>
+  </data>
+  <data name="cellNectophil2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellNectophil2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellNectophil2.Weight" type="System.Double, mscorlib">
+    <value>0.59168931183148854</value>
+  </data>
+  <data name="cellNectophil3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellNectophil3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellNectophil3.Weight" type="System.Double, mscorlib">
+    <value>0.55851694278956776</value>
+  </data>
+  <data name="xrTableRow15.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTableCell59.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell59.Text" xml:space="preserve">
+    <value>Lymphocyte</value>
+  </data>
+  <data name="xrTableCell59.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell59.Weight" type="System.Double, mscorlib">
+    <value>0.75</value>
+  </data>
+  <data name="cellLymphocyteRange.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="cellLymphocyteRange.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellLymphocyteRange.Weight" type="System.Double, mscorlib">
+    <value>1.1412998554966656</value>
+  </data>
+  <data name="cellLymphocyte1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellLymphocyte1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellLymphocyte1.Weight" type="System.Double, mscorlib">
+    <value>0.57516045482368439</value>
+  </data>
+  <data name="cellLymphocyte2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellLymphocyte2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellLymphocyte2.Weight" type="System.Double, mscorlib">
+    <value>0.59168931183148854</value>
+  </data>
+  <data name="cellLymphocyte3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellLymphocyte3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellLymphocyte3.Weight" type="System.Double, mscorlib">
+    <value>0.55851694278956776</value>
+  </data>
+  <data name="xrTableRow17.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTableCell64.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell64.Text" xml:space="preserve">
+    <value>Monocyte</value>
+  </data>
+  <data name="xrTableCell64.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell64.Weight" type="System.Double, mscorlib">
+    <value>0.75</value>
+  </data>
+  <data name="cellMonocyteRange.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="cellMonocyteRange.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellMonocyteRange.Weight" type="System.Double, mscorlib">
+    <value>1.1412998554966656</value>
+  </data>
+  <data name="cellMonocyte1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellMonocyte1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellMonocyte1.Weight" type="System.Double, mscorlib">
+    <value>0.57516045482368439</value>
+  </data>
+  <data name="cellMonocyte2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellMonocyte2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellMonocyte2.Weight" type="System.Double, mscorlib">
+    <value>0.59168931183148854</value>
+  </data>
+  <data name="cellMonocyte3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellMonocyte3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellMonocyte3.Weight" type="System.Double, mscorlib">
+    <value>0.55851694278956776</value>
+  </data>
+  <data name="xrTableRow18.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTableCell69.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell69.Text" xml:space="preserve">
+    <value>Eosinophil</value>
+  </data>
+  <data name="xrTableCell69.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell69.Weight" type="System.Double, mscorlib">
+    <value>0.75</value>
+  </data>
+  <data name="cellEosinophilRange.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="cellEosinophilRange.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellEosinophilRange.Weight" type="System.Double, mscorlib">
+    <value>1.1412998554966656</value>
+  </data>
+  <data name="cellEosinophil1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellEosinophil1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellEosinophil1.Weight" type="System.Double, mscorlib">
+    <value>0.57516045482368439</value>
+  </data>
+  <data name="cellEosinophil2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellEosinophil2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellEosinophil2.Weight" type="System.Double, mscorlib">
+    <value>0.59168931183148854</value>
+  </data>
+  <data name="cellEosinophil3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellEosinophil3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellEosinophil3.Weight" type="System.Double, mscorlib">
+    <value>0.55851694278956776</value>
+  </data>
+  <data name="xrTableRow19.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTableCell74.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell74.Text" xml:space="preserve">
+    <value>Basophil</value>
+  </data>
+  <data name="xrTableCell74.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell74.Weight" type="System.Double, mscorlib">
+    <value>0.75</value>
+  </data>
+  <data name="cellBasophilRange.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="cellBasophilRange.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellBasophilRange.Weight" type="System.Double, mscorlib">
+    <value>1.1412998554966656</value>
+  </data>
+  <data name="cellBasophil1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellBasophil1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellBasophil1.Weight" type="System.Double, mscorlib">
+    <value>0.57516045482368439</value>
+  </data>
+  <data name="cellBasophil2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellBasophil2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellBasophil2.Weight" type="System.Double, mscorlib">
+    <value>0.59168931183148854</value>
+  </data>
+  <data name="cellBasophil3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellBasophil3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellBasophil3.Weight" type="System.Double, mscorlib">
+    <value>0.55851694278956776</value>
+  </data>
+  <data name="xrTableRow20.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTableCell10.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell10.Text" xml:space="preserve">
+    <value>(Other)</value>
+  </data>
+  <data name="xrTableCell10.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell10.Weight" type="System.Double, mscorlib">
+    <value>0.75</value>
+  </data>
+  <data name="xrTableCell80.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell80.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell80.Weight" type="System.Double, mscorlib">
+    <value>1.1412998554966656</value>
+  </data>
+  <data name="xrTableCell11.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="xrTableCell11.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell11.Weight" type="System.Double, mscorlib">
+    <value>0.57516045482368439</value>
+  </data>
+  <data name="xrTableCell82.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="xrTableCell82.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell82.Weight" type="System.Double, mscorlib">
+    <value>0.59168931183148854</value>
+  </data>
+  <data name="xrTableCell12.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="xrTableCell12.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell12.Weight" type="System.Double, mscorlib">
+    <value>0.55851694278956776</value>
+  </data>
+  <data name="xrTableRow21.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTableCell84.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell84.Text" xml:space="preserve">
+    <value>Platelet Smear</value>
+  </data>
+  <data name="xrTableCell84.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell84.Weight" type="System.Double, mscorlib">
+    <value>0.75</value>
+  </data>
+  <data name="cellPlateletSmearRange.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="cellPlateletSmearRange.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellPlateletSmearRange.Weight" type="System.Double, mscorlib">
+    <value>1.1412998554966656</value>
+  </data>
+  <data name="cellPlateletSmear1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellPlateletSmear1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellPlateletSmear1.Weight" type="System.Double, mscorlib">
+    <value>0.57516045482368439</value>
+  </data>
+  <data name="cellPlateletSmear2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellPlateletSmear2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellPlateletSmear2.Weight" type="System.Double, mscorlib">
+    <value>0.59168931183148854</value>
+  </data>
+  <data name="cellPlateletSmear3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellPlateletSmear3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellPlateletSmear3.Weight" type="System.Double, mscorlib">
+    <value>0.55851694278956776</value>
+  </data>
+  <data name="xrTableRow22.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTableCell13.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell13.Text" xml:space="preserve">
+    <value>Platelets Count</value>
+  </data>
+  <data name="xrTableCell13.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell13.Weight" type="System.Double, mscorlib">
+    <value>0.75</value>
+  </data>
+  <data name="cellPlateletsCountRange.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="cellPlateletsCountRange.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellPlateletsCountRange.Weight" type="System.Double, mscorlib">
+    <value>1.1412998554966656</value>
+  </data>
+  <data name="cellPlateletsCount1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellPlateletsCount1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellPlateletsCount1.Weight" type="System.Double, mscorlib">
+    <value>0.57516045482368439</value>
+  </data>
+  <data name="cellPlateletsCount2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellPlateletsCount2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellPlateletsCount2.Weight" type="System.Double, mscorlib">
+    <value>0.59168931183148854</value>
+  </data>
+  <data name="cellPlateletsCount3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="cellPlateletsCount3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="cellPlateletsCount3.Weight" type="System.Double, mscorlib">
+    <value>0.55851694278956776</value>
+  </data>
+  <data name="xrTableRow23.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tbCBC.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>372.6667, 360.9254</value>
+  </data>
+  <data name="tbCBC.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrLabel3.BackColor" type="System.Drawing.Color, System.Drawing">
+    <value>192, 192, 255</value>
+  </data>
+  <data name="xrLabel3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 12pt, style=Bold</value>
+  </data>
+  <data name="xrLabel3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
+    <value>440.3332, 25.8464565</value>
+  </data>
+  <data name="xrLabel3.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>343.3334, 23.00001</value>
+  </data>
+  <data name="xrLabel3.Text" xml:space="preserve">
+    <value>  ผลการตรวจความสมบูรณ์ของเม็ดเลือด (Complete Blood Count : CBC ) </value>
+  </data>
+  <data name="xrLabel3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrLabel2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="xrLabel2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
+    <value>795.333252, 10</value>
+  </data>
+  <data name="xrLabel2.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>21.666687, 23</value>
+  </data>
+  <data name="xrLabel2.Text" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="xrLabel1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="xrLabel1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
+    <value>10, 10</value>
+  </data>
+  <data name="xrLabel1.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>21.666687, 23</value>
+  </data>
+  <data name="xrLabel1.Text" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="xrLabel1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopRight</value>
+  </data>
+  <data name="xrTable2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
+    <value>25.8334579, 52.7347946</value>
+  </data>
+  <data name="xrTableCell2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell2.Text" xml:space="preserve">
+    <value>Back Muscle</value>
+  </data>
+  <data name="xrTableCell2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell2.Weight" type="System.Double, mscorlib">
+    <value>0.49999998139170132</value>
+  </data>
+  <data name="xrTableCell56.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell56.Text" xml:space="preserve">
+    <value>Leg Muscle</value>
+  </data>
+  <data name="xrTableCell56.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell56.Weight" type="System.Double, mscorlib">
+    <value>0.50000007536357161</value>
+  </data>
+  <data name="xrTableCell15.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell15.Text" xml:space="preserve">
+    <value>Grip Muscle</value>
+  </data>
+  <data name="xrTableCell15.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell15.Weight" type="System.Double, mscorlib">
+    <value>0.49999999906962334</value>
+  </data>
+  <data name="xrTableRow3.Weight" type="System.Double, mscorlib">
+    <value>0.71766081624575584</value>
+  </data>
+  <data name="xrTableCell62.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell62.Text" xml:space="preserve">
+    <value>Value Back Strength</value>
+  </data>
+  <data name="xrTableCell62.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell62.Weight" type="System.Double, mscorlib">
+    <value>0.24999999327799916</value>
+  </data>
+  <data name="xrTableCell61.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell61.Text" xml:space="preserve">
+    <value>Back 
+Strength</value>
+  </data>
+  <data name="xrTableCell61.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell61.Weight" type="System.Double, mscorlib">
+    <value>0.24999999327799916</value>
+  </data>
+  <data name="xrTableCell63.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell63.Text" xml:space="preserve">
+    <value>Value Leg Strength</value>
+  </data>
+  <data name="xrTableCell63.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell63.Weight" type="System.Double, mscorlib">
+    <value>0.24999996050253506</value>
+  </data>
+  <data name="xrTableCell51.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell51.Text" xml:space="preserve">
+    <value>Leg
+Strength</value>
+  </data>
+  <data name="xrTableCell51.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell51.Weight" type="System.Double, mscorlib">
+    <value>0.24999996050253506</value>
+  </data>
+  <data name="xrTableCell65.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell65.Text" xml:space="preserve">
+    <value>Value Grip Strength</value>
+  </data>
+  <data name="xrTableCell65.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell65.Weight" type="System.Double, mscorlib">
+    <value>0.25000007413191394</value>
+  </data>
+  <data name="xrTableCell53.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell53.Text" xml:space="preserve">
+    <value>Grip 
+Strength</value>
+  </data>
+  <data name="xrTableCell53.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell53.Weight" type="System.Double, mscorlib">
+    <value>0.25000007413191394</value>
+  </data>
+  <data name="xrTableRow41.Weight" type="System.Double, mscorlib">
+    <value>1.3295856734749161</value>
+  </data>
+  <data name="lbBackValue.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="lbBackValue.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="lbBackValue.Weight" type="System.Double, mscorlib">
+    <value>0.25059633774680024</value>
+  </data>
+  <data name="lbBackStrenght.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="lbBackStrenght.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="lbBackStrenght.Weight" type="System.Double, mscorlib">
+    <value>0.24940364370820259</value>
+  </data>
+  <data name="lbValueLegStrength.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="lbValueLegStrength.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="lbValueLegStrength.Weight" type="System.Double, mscorlib">
+    <value>0.24999999582849694</value>
+  </data>
+  <data name="lbLegStrength.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="lbLegStrength.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="lbLegStrength.Weight" type="System.Double, mscorlib">
+    <value>0.24999999582849694</value>
+  </data>
+  <data name="lbValueGripStrength.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="lbValueGripStrength.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="lbValueGripStrength.Weight" type="System.Double, mscorlib">
+    <value>0.25000004135644982</value>
+  </data>
+  <data name="lbGripStrength.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="lbGripStrength.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="lbGripStrength.Weight" type="System.Double, mscorlib">
+    <value>0.25000004135644982</value>
+  </data>
+  <data name="xrTableRow42.Weight" type="System.Double, mscorlib">
+    <value>0.730354733878212</value>
+  </data>
+  <data name="xrTableCell21.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell21.Text" xml:space="preserve">
+    <value>สรุปผล</value>
+  </data>
+  <data name="xrTableCell21.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell21.Weight" type="System.Double, mscorlib">
+    <value>0.25059632754480932</value>
+  </data>
+  <data name="lbMuscleResult.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="lbMuscleResult.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="lbMuscleResult.Weight" type="System.Double, mscorlib">
+    <value>1.2494037282800869</value>
+  </data>
+  <data name="xrTableRow25.Weight" type="System.Double, mscorlib">
+    <value>0.78333073496612693</value>
+  </data>
+  <data name="xrTableCell48.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell48.Text" xml:space="preserve">
+    <value>หมายเหตุ</value>
+  </data>
+  <data name="xrTableCell48.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell48.Weight" type="System.Double, mscorlib">
+    <value>0.25059632754480932</value>
+  </data>
+  <data name="lbNoteMuscle.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="lbNoteMuscle.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="lbNoteMuscle.Weight" type="System.Double, mscorlib">
+    <value>1.2494037282800869</value>
+  </data>
+  <data name="xrTableRow33.Weight" type="System.Double, mscorlib">
+    <value>0.84652585140058567</value>
+  </data>
+  <data name="xrTable2.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>349.166443, 134.615234</value>
+  </data>
+  <data name="xrRichText1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt, style=Bold</value>
+  </data>
+  <data name="xrRichText1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
+    <value>25.8334541, 209.7032</value>
+  </data>
+  <data name="xrRichText1.SerializableRtfString" xml:space="preserve">
+    <value>ewBcAHIAdABmADEAXABkAGUAZgBmADAAewBcAGYAbwBuAHQAdABiAGwAewBcAGYAMAAgAEMAYQBsAGkAYgByAGkAOwB9AHsAXABmADEAIABUAGkAbQBlAHMAIABOAGUAdwAgAFIAbwBtAGEAbgA7AH0AewBcAGYAMgBcAGYAYwBoAGEAcgBzAGUAdAAyADIAMgAgAEEAbgBnAHMAYQBuAGEAIABOAGUAdwA7AH0AfQB7AFwAYwBvAGwAbwByAHQAYgBsACAAOwBcAHIAZQBkADAAXABnAHIAZQBlAG4AMABcAGIAbAB1AGUAMAAgADsAXAByAGUAZAAwAFwAZwByAGUAZQBuADAAXABiAGwAdQBlADIANQA1ACAAOwB9AHsAXAAqAFwAZABlAGYAYwBoAHAAIABcAGYAMQBcAGYAcwAyADQAfQB7AFwAcwB0AHkAbABlAHMAaABlAGUAdAAgAHsAXABxAGwAXABmADEAXABmAHMAMgA0ACAATgBvAHIAbQBhAGwAOwB9AHsAXAAqAFwAYwBzADEAXABmADEAXABmAHMAMgA0AFwAYwBmADEAIABEAGUAZgBhAHUAbAB0ACAAUABhAHIAYQBnAHIAYQBwAGgAIABGAG8AbgB0ADsAfQB7AFwAKgBcAGMAcwAyAFwAcwBiAGEAcwBlAGQAbwBuADEAXABmADEAXABmAHMAMgA0AFwAYwBmADEAIABMAGkAbgBlACAATgB1AG0AYgBlAHIAOwB9AHsAXAAqAFwAYwBzADMAXAB1AGwAXABmADEAXABmAHMAMgA0AFwAYwBmADIAIABIAHkAcABlAHIAbABpAG4AawA7AH0AewBcACoAXAB0AHMANABcAHQAcwByAG8AdwBkAFwAZgAxAFwAZgBzADIANABcAHEAbABcAHQAcwBjAGUAbABsAHAAYQBkAGQAZgBsADMAXAB0AHMAYwBlAGwAbABwAGEAZABkAGwAMQAwADgAXAB0AHMAYwBlAGwAbABwAGEAZABkAGYAYgAzAFwAdABzAGMAZQBsAGwAcABhAGQAZABmAHIAMwBcAHQAcwBjAGUAbABsAHAAYQBkAGQAcgAxADAAOABcAHQAcwBjAGUAbABsAHAAYQBkAGQAZgB0ADMAXAB0AHMAdgBlAHIAdABhAGwAdABcAGMAbAB0AHgAbAByAHQAYgAgAE4AbwByAG0AYQBsACAAVABhAGIAbABlADsAfQB7AFwAKgBcAHQAcwA1AFwAdABzAHIAbwB3AGQAXABzAGIAYQBzAGUAZABvAG4ANABcAGYAMQBcAGYAcwAyADQAXABxAGwAXAB0AHIAYgByAGQAcgB0AFwAYgByAGQAcgBzAFwAYgByAGQAcgB3ADEAMABcAHQAcgBiAHIAZAByAGwAXABiAHIAZAByAHMAXABiAHIAZAByAHcAMQAwAFwAdAByAGIAcgBkAHIAYgBcAGIAcgBkAHIAcwBcAGIAcgBkAHIAdwAxADAAXAB0AHIAYgByAGQAcgByAFwAYgByAGQAcgBzAFwAYgByAGQAcgB3ADEAMABcAHQAcgBiAHIAZAByAGgAXABiAHIAZAByAHMAXABiAHIAZAByAHcAMQAwAFwAdAByAGIAcgBkAHIAdgBcAGIAcgBkAHIAcwBcAGIAcgBkAHIAdwAxADAAXAB0AHMAYwBlAGwAbABwAGEAZABkAGYAbAAzAFwAdABzAGMAZQBsAGwAcABhAGQAZABsADEAMAA4AFwAdABzAGMAZQBsAGwAcABhAGQAZABmAHIAMwBcAHQAcwBjAGUAbABsAHAAYQBkAGQAcgAxADAAOABcAHQAcwB2AGUAcgB0AGEAbAB0AFwAYwBsAHQAeABsAHIAdABiACAAVABhAGIAbABlACAAUwBpAG0AcABsAGUAIAAxADsAfQB9AHsAXAAqAFwAbABpAHMAdABvAHYAZQByAHIAaQBkAGUAdABhAGIAbABlAH0AXABuAG8AdQBpAGMAbwBtAHAAYQB0AFwAcwBwAGwAeQB0AHcAbgBpAG4AZQBcAGgAdABtAGEAdQB0AHMAcABcAHAAYQByAGQAXABwAGwAYQBpAG4AXABxAGwAewBcAGwAYQBuAGcAMQAwADUANABcAGwAYQBuAGcAZgBlADEAMAA1ADQAXABiAFwAdQBsAFwAZgAyAFwAZgBzADIAMgBcAGMAZgAxACAAXAB1ADMANgA0ADgAXAAnAGUAMABcAHUAMwA1ADgANQBcACcAYQAxAFwAdQAzADYAMAAzAFwAJwBiADMAXAB1ADMANgAwADEAXAAnAGIAMQBcAHUAMwA2ADYAMABcACcAZQBjAFwAdQAzADYAMQAyAFwAJwBiAGMAXAB1ADMANgAyADEAXAAnAGMANQBcAHUAMwA1ADgANQBcACcAYQAxAFwAdQAzADYAMwA0AFwAJwBkADIAXAB1ADMANgAxADkAXAAnAGMAMwBcAHUAMwA2ADAANQBcACcAYgA1AFwAdQAzADYAMQA5AFwAJwBjADMAXAB1ADMANgAyADMAXAAnAGMANwBcAHUAMwA1ADkAMgBcACcAYQA4AFwAdQAzADYANAA5AFwAJwBlADEAXAB1ADMANgAxADkAXAAnAGMAMwBcAHUAMwA1ADkAMQBcACcAYQA3AFwAdQAzADYANAA4AFwAJwBlADAAXAB1ADMANgAyADcAXAAnAGMAYgBcAHUAMwA2ADEAOABcACcAYwAyAFwAdQAzADYAMwA3AFwAJwBkADUAXAB1ADMANgAxADgAXAAnAGMAMgBcAHUAMwA2ADAANABcACcAYgA0AFwAdQAzADYAMgA3AFwAJwBjAGIAXAB1ADMANgAyADEAXAAnAGMANQBcAHUAMwA2ADMAMwBcACcAZAAxAFwAdQAzADUAOQAxAFwAJwBhADcAfQBcAGIAXABmADIAXABmAHMAMgAwAFwAYwBmADEAXABwAGEAcgB9AA==</value>
+  </data>
+  <data name="xrRichText1.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>148.333328, 22.9999847</value>
+  </data>
+  <data name="xrTable3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 10pt</value>
+  </data>
+  <data name="xrTable3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
+    <value>25.8334541, 232.703186</value>
+  </data>
+  <data name="xrTableCell16.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell16.Text" xml:space="preserve">
+    <value>อายุ</value>
+  </data>
+  <data name="xrTableCell16.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell16.Weight" type="System.Double, mscorlib">
+    <value>0.56862615533069683</value>
+  </data>
+  <data name="xrTableCell17.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell17.Text" xml:space="preserve">
+    <value>Back Muscle</value>
+  </data>
+  <data name="xrTableCell17.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell17.Weight" type="System.Double, mscorlib">
+    <value>1.4337236018124793</value>
+  </data>
+  <data name="xrTableCell60.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell60.Text" xml:space="preserve">
+    <value>Leg Muscle</value>
+  </data>
+  <data name="xrTableCell60.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell60.Weight" type="System.Double, mscorlib">
+    <value>1.3003999684187948</value>
+  </data>
+  <data name="xrTableCell86.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell86.Text" xml:space="preserve">
+    <value>Grip Muscle</value>
+  </data>
+  <data name="xrTableCell86.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell86.Weight" type="System.Double, mscorlib">
+    <value>1.3427529806734311</value>
+  </data>
+  <data name="xrTableRow16.Weight" type="System.Double, mscorlib">
+    <value>0.76470548600704924</value>
+  </data>
+  <data name="xrTableCell46.Text" xml:space="preserve">
+    <value>อายุ</value>
+  </data>
+  <data name="xrTableCell46.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell46.Weight" type="System.Double, mscorlib">
+    <value>0.56862615533069683</value>
+  </data>
+  <data name="xrTableCell47.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell47.Text" xml:space="preserve">
+    <value>ค่าปกติ</value>
+  </data>
+  <data name="xrTableCell47.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell47.Weight" type="System.Double, mscorlib">
+    <value>1.4337236018124795</value>
+  </data>
+  <data name="xrTableCell66.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell66.Text" xml:space="preserve">
+    <value>ค่าปกติ</value>
+  </data>
+  <data name="xrTableCell66.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell66.Weight" type="System.Double, mscorlib">
+    <value>1.3003999684187948</value>
+  </data>
+  <data name="xrTableCell87.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell87.Text" xml:space="preserve">
+    <value>ค่าปกติ</value>
+  </data>
+  <data name="xrTableCell87.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell87.Weight" type="System.Double, mscorlib">
+    <value>1.3427529806734311</value>
+  </data>
+  <data name="xrTableRow32.Weight" type="System.Double, mscorlib">
+    <value>0.76470548600704924</value>
+  </data>
+  <data name="xrTableCell23.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell23.Weight" type="System.Double, mscorlib">
+    <value>0.45163002626630749</value>
+  </data>
+  <data name="xrTableCell25.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell25.Text" xml:space="preserve">
+    <value>ชาย</value>
+  </data>
+  <data name="xrTableCell25.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell25.Weight" type="System.Double, mscorlib">
+    <value>0.56438348211809708</value>
+  </data>
+  <data name="xrTableCell26.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell26.Text" xml:space="preserve">
+    <value>หญิง</value>
+  </data>
+  <data name="xrTableCell26.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell26.Weight" type="System.Double, mscorlib">
+    <value>0.57434828363728674</value>
+  </data>
+  <data name="xrTableCell22.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell22.Text" xml:space="preserve">
+    <value>ชาย</value>
+  </data>
+  <data name="xrTableCell22.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell22.Weight" type="System.Double, mscorlib">
+    <value>0.51081344193100431</value>
+  </data>
+  <data name="xrTableCell67.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell67.Text" xml:space="preserve">
+    <value>หญิง</value>
+  </data>
+  <data name="xrTableCell67.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell67.Weight" type="System.Double, mscorlib">
+    <value>0.52202617927897266</value>
+  </data>
+  <data name="xrTableCell77.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell77.Text" xml:space="preserve">
+    <value>ชาย</value>
+  </data>
+  <data name="xrTableCell77.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell77.Weight" type="System.Double, mscorlib">
+    <value>0.5313016418807387</value>
+  </data>
+  <data name="xrTableCell88.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell88.Text" xml:space="preserve">
+    <value>หญิง</value>
+  </data>
+  <data name="xrTableCell88.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell88.Weight" type="System.Double, mscorlib">
+    <value>0.535176761691159</value>
+  </data>
+  <data name="xrTableRow26.Weight" type="System.Double, mscorlib">
+    <value>0.76470673754204754</value>
+  </data>
+  <data name="xrTableCell27.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell27.Text" xml:space="preserve">
+    <value>50 - 59</value>
+  </data>
+  <data name="xrTableCell27.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell27.Weight" type="System.Double, mscorlib">
+    <value>0.45162988368680357</value>
+  </data>
+  <data name="xrTableCell28.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell28.Text" xml:space="preserve">
+    <value>1.63 - 1.99</value>
+  </data>
+  <data name="xrTableCell28.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell28.Weight" type="System.Double, mscorlib">
+    <value>0.56438369598735294</value>
+  </data>
+  <data name="xrTableCell30.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell30.Text" xml:space="preserve">
+    <value>0.88 - 1.14</value>
+  </data>
+  <data name="xrTableCell30.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell30.Weight" type="System.Double, mscorlib">
+    <value>0.57434828363728674</value>
+  </data>
+  <data name="xrTableCell50.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell50.Text" xml:space="preserve">
+    <value>1.63 - 1.99</value>
+  </data>
+  <data name="xrTableCell50.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell50.Weight" type="System.Double, mscorlib">
+    <value>0.51081329935150044</value>
+  </data>
+  <data name="xrTableCell68.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell68.Text" xml:space="preserve">
+    <value>0.88 - 1.14</value>
+  </data>
+  <data name="xrTableCell68.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell68.Weight" type="System.Double, mscorlib">
+    <value>0.52202617927897266</value>
+  </data>
+  <data name="xrTableCell78.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell78.Text" xml:space="preserve">
+    <value>0.55 - 0.66</value>
+  </data>
+  <data name="xrTableCell78.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell78.Weight" type="System.Double, mscorlib">
+    <value>0.53130164188073881</value>
+  </data>
+  <data name="xrTableCell89.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell89.Text" xml:space="preserve">
+    <value>0.39 - 0.47</value>
+  </data>
+  <data name="xrTableCell89.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell89.Weight" type="System.Double, mscorlib">
+    <value>0.535176832980911</value>
+  </data>
+  <data name="xrTableRow27.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTableCell31.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell31.Text" xml:space="preserve">
+    <value>40 - 49</value>
+  </data>
+  <data name="xrTableCell31.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell31.Weight" type="System.Double, mscorlib">
+    <value>0.45162988368680357</value>
+  </data>
+  <data name="xrTableCell32.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell32.Text" xml:space="preserve">
+    <value>1.82 - 2.22</value>
+  </data>
+  <data name="xrTableCell32.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell32.Weight" type="System.Double, mscorlib">
+    <value>0.56438369598735294</value>
+  </data>
+  <data name="xrTableCell33.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell33.Text" xml:space="preserve">
+    <value>1.01 - 1.33</value>
+  </data>
+  <data name="xrTableCell33.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell33.Weight" type="System.Double, mscorlib">
+    <value>0.57434828363728674</value>
+  </data>
+  <data name="xrTableCell52.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell52.Text" xml:space="preserve">
+    <value>1.82 - 2.22</value>
+  </data>
+  <data name="xrTableCell52.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell52.Weight" type="System.Double, mscorlib">
+    <value>0.51081329935150044</value>
+  </data>
+  <data name="xrTableCell70.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell70.Text" xml:space="preserve">
+    <value>1.01 - 1.33</value>
+  </data>
+  <data name="xrTableCell70.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell70.Weight" type="System.Double, mscorlib">
+    <value>0.52202617927897266</value>
+  </data>
+  <data name="xrTableCell79.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell79.Text" xml:space="preserve">
+    <value>0.61 - 0.71</value>
+  </data>
+  <data name="xrTableCell79.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell79.Weight" type="System.Double, mscorlib">
+    <value>0.53130164188073881</value>
+  </data>
+  <data name="xrTableCell90.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell90.Text" xml:space="preserve">
+    <value>0.44 - 0.52</value>
+  </data>
+  <data name="xrTableCell90.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell90.Weight" type="System.Double, mscorlib">
+    <value>0.535176832980911</value>
+  </data>
+  <data name="xrTableRow28.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTableCell35.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell35.Text" xml:space="preserve">
+    <value>30 - 39</value>
+  </data>
+  <data name="xrTableCell35.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell35.Weight" type="System.Double, mscorlib">
+    <value>0.45162988368680357</value>
+  </data>
+  <data name="xrTableCell36.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell36.Text" xml:space="preserve">
+    <value>1.99 - 2.39</value>
+  </data>
+  <data name="xrTableCell36.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell36.Weight" type="System.Double, mscorlib">
+    <value>0.56438369598735294</value>
+  </data>
+  <data name="xrTableCell37.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell37.Text" xml:space="preserve">
+    <value>1.15 - 1.47</value>
+  </data>
+  <data name="xrTableCell37.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell37.Weight" type="System.Double, mscorlib">
+    <value>0.57434828363728674</value>
+  </data>
+  <data name="xrTableCell55.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell55.Text" xml:space="preserve">
+    <value>1.99 - 2.39</value>
+  </data>
+  <data name="xrTableCell55.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell55.Weight" type="System.Double, mscorlib">
+    <value>0.51081329935150044</value>
+  </data>
+  <data name="xrTableCell71.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell71.Text" xml:space="preserve">
+    <value>1.15 - 1.47</value>
+  </data>
+  <data name="xrTableCell71.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell71.Weight" type="System.Double, mscorlib">
+    <value>0.52202617927897266</value>
+  </data>
+  <data name="xrTableCell81.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell81.Text" xml:space="preserve">
+    <value>0.65 - 0.75</value>
+  </data>
+  <data name="xrTableCell81.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell81.Weight" type="System.Double, mscorlib">
+    <value>0.53130164188073881</value>
+  </data>
+  <data name="xrTableCell91.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell91.Text" xml:space="preserve">
+    <value>0.48 - 0.56</value>
+  </data>
+  <data name="xrTableCell91.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell91.Weight" type="System.Double, mscorlib">
+    <value>0.535176832980911</value>
+  </data>
+  <data name="xrTableRow29.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTableCell38.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell38.Text" xml:space="preserve">
+    <value>20 - 29</value>
+  </data>
+  <data name="xrTableCell38.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell38.Weight" type="System.Double, mscorlib">
+    <value>0.45162988368680357</value>
+  </data>
+  <data name="xrTableCell40.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell40.Text" xml:space="preserve">
+    <value>2.11 - 2.57</value>
+  </data>
+  <data name="xrTableCell40.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell40.Weight" type="System.Double, mscorlib">
+    <value>0.56438369598735294</value>
+  </data>
+  <data name="xrTableCell41.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell41.Text" xml:space="preserve">
+    <value>1.23-1.57</value>
+  </data>
+  <data name="xrTableCell41.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell41.Weight" type="System.Double, mscorlib">
+    <value>0.57434828363728674</value>
+  </data>
+  <data name="xrTableCell57.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell57.Text" xml:space="preserve">
+    <value>2.11 - 2.57</value>
+  </data>
+  <data name="xrTableCell57.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell57.Weight" type="System.Double, mscorlib">
+    <value>0.51081329935150044</value>
+  </data>
+  <data name="xrTableCell72.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell72.Text" xml:space="preserve">
+    <value>1.23-1.57</value>
+  </data>
+  <data name="xrTableCell72.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell72.Weight" type="System.Double, mscorlib">
+    <value>0.52202617927897266</value>
+  </data>
+  <data name="xrTableCell83.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell83.Text" xml:space="preserve">
+    <value>0.68 - 0.78</value>
+  </data>
+  <data name="xrTableCell83.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell83.Weight" type="System.Double, mscorlib">
+    <value>0.53130164188073881</value>
+  </data>
+  <data name="xrTableCell92.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell92.Text" xml:space="preserve">
+    <value>0.50 - 0.60</value>
+  </data>
+  <data name="xrTableCell92.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell92.Weight" type="System.Double, mscorlib">
+    <value>0.535176832980911</value>
+  </data>
+  <data name="xrTableRow30.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTableCell42.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell42.Text" xml:space="preserve">
+    <value>17 - 19</value>
+  </data>
+  <data name="xrTableCell42.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell42.Weight" type="System.Double, mscorlib">
+    <value>0.45162988368680357</value>
+  </data>
+  <data name="xrTableCell43.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell43.Text" xml:space="preserve">
+    <value>1.98 - 2.50</value>
+  </data>
+  <data name="xrTableCell43.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell43.Weight" type="System.Double, mscorlib">
+    <value>0.56438369598735294</value>
+  </data>
+  <data name="xrTableCell45.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell45.Text" xml:space="preserve">
+    <value>1.16 - 1.58</value>
+  </data>
+  <data name="xrTableCell45.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell45.Weight" type="System.Double, mscorlib">
+    <value>0.57434828363728674</value>
+  </data>
+  <data name="xrTableCell58.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell58.Text" xml:space="preserve">
+    <value>1.98 - 2.50</value>
+  </data>
+  <data name="xrTableCell58.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell58.Weight" type="System.Double, mscorlib">
+    <value>0.51081329935150044</value>
+  </data>
+  <data name="xrTableCell73.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell73.Text" xml:space="preserve">
+    <value>1.16 - 1.58</value>
+  </data>
+  <data name="xrTableCell73.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell73.Weight" type="System.Double, mscorlib">
+    <value>0.52202617927897266</value>
+  </data>
+  <data name="xrTableCell85.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell85.Text" xml:space="preserve">
+    <value>0.67 - 0.79</value>
+  </data>
+  <data name="xrTableCell85.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell85.Weight" type="System.Double, mscorlib">
+    <value>0.53130164188073881</value>
+  </data>
+  <data name="xrTableCell93.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell93.Text" xml:space="preserve">
+    <value>0.49 - 0.59</value>
+  </data>
+  <data name="xrTableCell93.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrTableCell93.Weight" type="System.Double, mscorlib">
+    <value>0.535176832980911</value>
+  </data>
+  <data name="xrTableRow31.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTable3.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>349.1664, 141.528732</value>
+  </data>
+  <data name="Detail.HeightF" type="System.Single, mscorlib">
+    <value>520.833435</value>
+  </data>
+  <data name="Detail.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopLeft</value>
+  </data>
+  <data name="xrTable1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 8pt</value>
+  </data>
+  <data name="xrTable1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
+    <value>428.833374, 9</value>
+  </data>
+  <data name="xrTableCell1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell1.Text" xml:space="preserve">
+    <value>HN</value>
+  </data>
+  <data name="xrTableCell1.Weight" type="System.Double, mscorlib">
+    <value>0.15833343505859376</value>
+  </data>
+  <data name="lbHN3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="lbHN3.Weight" type="System.Double, mscorlib">
+    <value>0.40000005660517463</value>
+  </data>
+  <data name="lbName3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="lbName3.Weight" type="System.Double, mscorlib">
+    <value>1.5083327681018564</value>
+  </data>
+  <data name="xrTableRow2.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTable1.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>206.6666, 15</value>
+  </data>
+  <data name="xrTable4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 8pt</value>
+  </data>
+  <data name="xrTable4.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
+    <value>24.166666, 9</value>
+  </data>
+  <data name="xrTableCell8.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="xrTableCell8.Text" xml:space="preserve">
+    <value>HN</value>
+  </data>
+  <data name="xrTableCell8.Weight" type="System.Double, mscorlib">
+    <value>0.15833343505859376</value>
+  </data>
+  <data name="lbHN14.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="lbHN14.Weight" type="System.Double, mscorlib">
+    <value>0.40000005660517463</value>
+  </data>
+  <data name="lbName14.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Angsana New, 9pt</value>
+  </data>
+  <data name="lbName14.Weight" type="System.Double, mscorlib">
+    <value>1.5083327681018564</value>
+  </data>
+  <data name="xrTableRow1.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTable4.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>206.6666, 15</value>
+  </data>
+  <data name="TopMargin.HeightF" type="System.Single, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="TopMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopLeft</value>
+  </data>
+  <data name="BottomMargin.HeightF" type="System.Single, mscorlib">
+    <value>39</value>
+  </data>
+  <data name="BottomMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
+    <value>TopLeft</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.Landscape" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
+    <value>0, 0, 0, 39</value>
+  </data>
+  <data name="$this.PageHeight" type="System.Int32, mscorlib">
+    <value>583</value>
+  </data>
+  <data name="$this.PageWidth" type="System.Int32, mscorlib">
+    <value>827</value>
+  </data>
+  <data name="$this.PaperKind" type="System.Drawing.Printing.PaperKind, System.Drawing">
+    <value>A5</value>
+  </data>
+</root>

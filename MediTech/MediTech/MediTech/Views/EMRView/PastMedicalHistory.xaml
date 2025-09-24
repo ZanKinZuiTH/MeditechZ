@@ -1,0 +1,402 @@
+﻿<UserControl x:Class="MediTech.Views.PastMedicalHistory"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"   
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:vm="clr-namespace:MediTech.Views"
+             xmlns:model="clr-namespace:MediTech.Model;assembly=MediTech.Model"
+             mc:Ignorable="d"
+             DataContext="{Binding Path=PastMedicalHistoryViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="1000" d:DesignWidth="900">
+    <UserControl.Resources>
+        <HierarchicalDataTemplate x:Name="ResultTemplate" DataType="{x:Type model:RequestDetailItemModel}"
+                                ItemsSource = "{Binding Path=ResultComponents}">
+            <dxlc:LayoutControl Orientation="Horizontal">
+                <dxlc:LayoutItem>
+                    <TextBlock Text="{Binding Path=Row.RequestItemName}" FontWeight="Bold"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutControl>
+        </HierarchicalDataTemplate>
+        <DataTemplate x:Name="ResultItemTemplate"  
+                      DataType = "{x:Type model:ResultComponentModel}">
+            <DataTemplate.Resources>
+                <Style x:Key="Abnormal" TargetType="TextBlock">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=Row.IsAbnormal}" Value="H">
+                            <Setter Property="Foreground" Value="Red"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=Row.IsAbnormal}" Value="L">
+                            <Setter Property="Foreground" Value="Red"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataTemplate.Resources>
+            <ContentControl>
+                <ContentControl.Style>
+                    <Style TargetType="{x:Type ContentControl}">
+                        <Setter Property="Content" Value="{Binding}"/>
+                        <Setter Property="ContentTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <dxlc:LayoutControl Orientation="Horizontal">
+                                        <dxlc:LayoutItem>
+                                            <TextBlock  Text="{Binding Path=Row.ResultItemName}"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock FontWeight="Bold" Text="{Binding Path=Row.ResultValue}" Style="{StaticResource Abnormal}"/>
+                                                <Label Content="{Binding Path=Row.UnitofMeasure}" Margin="10,0,0,0"/>
+                                            </StackPanel>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Path=Row.ReferenceRange}" />
+                                            </StackPanel>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem>
+                                            <TextBlock Text="{Binding Path=Row.IsAbnormal}" />
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutControl>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=Row.ResultValueType}" Value="Image">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <dxlc:LayoutControl Orientation="Horizontal">
+                                                <dxlc:LayoutItem>
+                                                    <TextBlock  Text="{Binding Path=Row.ResultItemName}"/>
+                                                </dxlc:LayoutItem>
+                                                <dxlc:LayoutItem HorizontalAlignment="Left">
+                                                    <dxe:HyperlinkEdit EditValue="{Binding Path=Row.ResultValue}" HorizontalAlignment="Left">
+                                                        <i:Interaction.Triggers>
+                                                            <i:EventTrigger  EventName="RequestNavigation">
+                                                                <mvvm:EventToCommand CommandParameter="{Binding Path=Row.ResultComponentUID}" Command="{Binding DataContext.OpenLabImageCommand
+                                                            ,RelativeSource={RelativeSource AncestorType={x:Type vm:PastMedicalHistory}}}" />
+                                                            </i:EventTrigger>
+                                                        </i:Interaction.Triggers>
+                                                    </dxe:HyperlinkEdit>
+                                                </dxlc:LayoutItem>
+                                                <dxlc:LayoutItem/>
+                                                <dxlc:LayoutItem/>
+                                                <dxlc:LayoutItem/>
+                                            </dxlc:LayoutControl>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ContentControl.Style>
+            </ContentControl>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <dxlc:LayoutControl>
+            <dxlc:DockLayoutControl>
+                <dxlc:LayoutGroup dxlc:DockLayoutControl.Dock="Left" 
+                              Orientation="Vertical"
+                              dxlc:DockLayoutControl.AllowHorizontalSizing="True">
+                    <dxlc:LayoutItem>
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <RadioButton Content="Show as Group Boxes" Name="checkShowAsGroupBoxes" IsChecked="True" FontSize="10" />
+                            <RadioButton Content="Show as Tabs" Name="checkShowAsTabs" FontSize="10" />
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutItem>
+
+                    <dxg:GridControl ItemsSource="{Binding PastVisitList}"
+                                 SelectedItem="{Binding SelectPastVisit}">
+                        <dxg:GridColumn Header="วัน เวลา ที่มา" FieldName="StartDttm">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy HH:mm"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Header="Visit ID" FieldName="VisitID"/>
+                        <dxg:GridColumn Header="สถานที่" FieldName="OwnerOrganisation" />
+                        <dxg:GridControl.View>
+                            <dxg:TableView ShowGroupPanel="False" AllowEditing="False"/>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </dxlc:LayoutGroup>
+                <ScrollViewer dxlc:DockLayoutControl.Dock="Client"
+                          Padding="8"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <dxlc:LayoutGroup x:Name="groupContainer" Orientation="Vertical" >
+                        <dxlc:LayoutGroup Header="ข้อมูลเบื้องต้น"
+                                      View="GroupBox"
+                                      Padding="0"
+                                      Orientation="Vertical">
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Vital Sign :" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,3,0"/>
+                                <TextBlock Grid.Row="1" Text="Allergy :" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,3,0"/>
+                                <TextBlock Grid.Row="2"  Text="CC :" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,3,0"/>
+                                <TextBlock Grid.Row="3"  Text="PI :" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,3,0"/>
+
+                                <TextBlock Grid.Column="1"  Grid.Row="0" Text="{Binding VitalSignFormat,Mode=TwoWay}" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                                <TextBlock Grid.Column="1"  Grid.Row="1" Text="{Binding AllergyFormat}" TextWrapping="Wrap"  Margin="0,5,0,0"/>
+                                <TextBlock Grid.Column="1"  Grid.Row="2" Text="{Binding ChiftComplain}" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                                <TextBlock Grid.Column="1"  Grid.Row="3" Text="{Binding Presentillness}" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                            </Grid>
+
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Header="Note" View="GroupBox"  >
+                            <dxg:GridControl MaxHeight="500"
+                                         ItemsSource="{Binding ListNote}">
+                                <dxg:GridColumn FieldName="Note" Width="*"/>
+                                <dxg:GridColumn FieldName="RecordBy" Width="Auto"/>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView ShowGroupPanel="False"
+                                               AllowEditing="False">
+                                        <dxg:TableView.RowStyle>
+                                            <Style TargetType="{x:Type dxg:RowControl}">
+                                                <Setter Property="dxg:GridRowContent.Background" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=BorderNoneBrush}}" />
+                                                <Setter Property="dxg:GridRowContent.Foreground" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=TextUnfocusedBrush}}" />
+                                            </Style>
+                                        </dxg:TableView.RowStyle>
+                                        <dxg:TableView.CellStyle>
+                                            <Style TargetType="dxg:LightweightCellEditor">
+                                                <Setter Property="BorderBrush" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=GridDataRowDelimiterBrush}}" />
+                                            </Style>
+                                        </dxg:TableView.CellStyle>
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Header="ตรวจร่างกาย" View="GroupBox" >
+                            <RichTextBox x:Name="rtbeditor"  IsReadOnly="True" 
+                                      MaxHeight="500"/>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Header="วินิจฉัยโรค" View="GroupBox"  >
+                            <dxg:GridControl MaxHeight="500"
+                                         ItemsSource="{Binding ListDiagnosis}">
+                                <dxg:GridControl.Columns>
+                                    <dxg:GridColumn Header="รหัสโรค" FieldName="ProblemCode" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="ชื่อโรค" FieldName="ProblemName" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="ประเภท" FieldName="DiagnosisType" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="วันทีมีอาการ" FieldName="OnsetDttm" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="ความรุนแรง" FieldName="Severity" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="ความเชื่อมั่น" FieldName="Certanity" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="ตำแหน่ง" FieldName="BodyLocation" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="วันที่บันทึก" FieldName="RecordedDttm" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="ผู้บันทึก" FieldName="RecordedName" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="ช่วงระยะ" FieldName="ProblemType" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="ติดตามอาการ" FieldName="IsUnderline" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="วันที่ปิด" FieldName="ClosureDttm" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="รายละเอียด" FieldName="ClosureComments" ReadOnly="True"/>
+                                </dxg:GridControl.Columns>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView ShowGroupPanel="False"
+                                               NavigationStyle="None"
+                                               AllowEditing="False">
+                                        <dxg:TableView.RowStyle>
+                                            <Style TargetType="{x:Type dxg:RowControl}">
+                                                <Setter Property="dxg:GridRowContent.Background" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=BorderNoneBrush}}" />
+                                                <Setter Property="dxg:GridRowContent.Foreground" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=TextUnfocusedBrush}}" />
+                                            </Style>
+                                        </dxg:TableView.RowStyle>
+                                        <dxg:TableView.CellStyle>
+                                            <Style TargetType="dxg:LightweightCellEditor">
+                                                <Setter Property="BorderBrush" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=GridDataRowDelimiterBrush}}" />
+                                            </Style>
+                                        </dxg:TableView.CellStyle>
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Header="Orders" View="GroupBox" >
+                            <dxg:GridControl MaxHeight="500"
+                                         ItemsSource="{Binding ListOrder}">
+                                <dxg:GridColumn Header="รหัส" FieldName="ItemCode" ReadOnly="True"/>
+                                <dxg:GridColumn Name="colItemName" FieldName="ItemName"
+                                                Header="ชื่อ"  ReadOnly="True"/>
+                                <dxg:GridColumn Header="ราคาต่อหน่วย" FieldName="DisplayPrice"  ReadOnly="True">
+                                    <dxg:GridColumn.EditSettings>
+                                        <dxe:TextEditSettings DisplayFormat="#,#.00"/>
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>
+                                <dxg:GridColumn Header="ค่าแพทย์" FieldName="DoctorFee"  ReadOnly="True"/>
+                                <dxg:GridColumn Header="จำนวน" FieldName="Quantity" ReadOnly="True"/>
+                                <dxg:GridColumn Header="ราคารวม" FieldName="NetAmount" ReadOnly="True">
+                                    <dxg:GridColumn.EditSettings>
+                                        <dxe:TextEditSettings DisplayFormat="#,#.00"/>
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>
+                                <dxg:GridColumn Header="หมายเหตุ" FieldName="Comments" ReadOnly="True"/>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView ShowGroupPanel="False" AllowEditing="False">
+                                        <dxg:TableView.RowStyle>
+                                            <Style TargetType="{x:Type dxg:RowControl}">
+                                                <Setter Property="dxg:GridRowContent.Background" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=BorderNoneBrush}}" />
+                                                <Setter Property="dxg:GridRowContent.Foreground" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=TextUnfocusedBrush}}" />
+                                            </Style>
+                                        </dxg:TableView.RowStyle>
+                                        <dxg:TableView.CellStyle>
+                                            <Style TargetType="dxg:LightweightCellEditor">
+                                                <Setter Property="BorderBrush" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=GridDataRowDelimiterBrush}}" />
+                                            </Style>
+                                        </dxg:TableView.CellStyle>
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Header="Drug Profile" View="GroupBox" >
+                            <dxg:GridControl MaxHeight="500"
+                                         ItemsSource="{Binding ListDrugProfile}">
+                                <dxg:GridColumn FieldName="ItemName" Header="ชื่อยา" Width="120">
+                                    <dxg:GridColumn.EditSettings>
+                                        <dxe:TextEditSettings TextWrapping="Wrap" AcceptsReturn="True"/>
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>
+                                <dxg:GridColumn Header="จำนวน" FieldName="Quantity" ReadOnly="True"/>
+                                <dxg:GridColumn Header="ปริมาณยาที่กิน" FieldName="Dosage" ReadOnly="True"/>
+                                <dxg:GridColumn Header="Frequency" FieldName="DrugFrequency" ReadOnly="True"/>
+                                <dxg:GridColumn Header="คำแนะนำ" FieldName="InstructionText" ReadOnly="True"/>
+                                <dxg:GridColumn Header="Note" FieldName="LocalInstructionText" ReadOnly="True"/>
+                                <dxg:GridColumn FieldName="CWhen" Header="วันที่คีย์" Width="Auto">
+                                    <dxg:GridColumn.EditSettings>
+                                        <dxe:TextEditSettings DisplayFormat="dd/MM/yyy HH:mm"/>
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView ShowGroupPanel="False" AllowEditing="False">
+                                        <dxg:TableView.RowStyle>
+                                            <Style TargetType="{x:Type dxg:RowControl}">
+                                                <Setter Property="dxg:GridRowContent.Background" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=BorderNoneBrush}}" />
+                                                <Setter Property="dxg:GridRowContent.Foreground" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=TextUnfocusedBrush}}" />
+                                            </Style>
+                                        </dxg:TableView.RowStyle>
+                                        <dxg:TableView.CellStyle>
+                                            <Style TargetType="dxg:LightweightCellEditor">
+                                                <Setter Property="BorderBrush" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=GridDataRowDelimiterBrush}}" />
+                                            </Style>
+                                        </dxg:TableView.CellStyle>
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Header="Radiology Result" View="GroupBox"  >
+                            <dxg:GridControl MaxHeight="500"
+                                         ItemsSource="{Binding ListRadiologyResult}">
+                                <dxg:GridColumn Header="รายการ" FieldName="RequestItemName"  Width="Auto">
+                                    <dxg:GridColumn.EditSettings>
+                                        <dxe:TextEditSettings AcceptsReturn="True" VerticalContentAlignment="Top"/>
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>
+                                <dxg:GridColumn Header="สถานะ" FieldName="ResultStatus"  Width="Auto" >
+                                    <dxg:GridColumn.EditSettings>
+                                        <dxe:TextEditSettings AcceptsReturn="True" VerticalContentAlignment="Top"/>
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>
+                                <dxg:GridColumn Header="ผล" FieldName="PlainText" Width="*">
+                                    <dxg:GridColumn.EditSettings>
+                                        <dxe:TextEditSettings AcceptsReturn="True"  TextWrapping="Wrap"/>
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView ShowGroupPanel="False"
+                                               NavigationStyle="None"
+                                               AllowEditing="False">
+                                        <dxg:TableView.RowStyle>
+                                            <Style TargetType="{x:Type dxg:RowControl}">
+                                                <Setter Property="dxg:GridRowContent.Background" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=BorderNoneBrush}}" />
+                                                <Setter Property="dxg:GridRowContent.Foreground" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=TextUnfocusedBrush}}" />
+                                            </Style>
+                                        </dxg:TableView.RowStyle>
+                                        <dxg:TableView.CellStyle>
+                                            <Style TargetType="dxg:LightweightCellEditor">
+                                                <Setter Property="BorderBrush" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=GridDataRowDelimiterBrush}}" />
+                                            </Style>
+                                        </dxg:TableView.CellStyle>
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Header="Lab Result" View="GroupBox" >
+                            <dxg:GridControl MaxHeight="500" Name="listLabResultGroupLabNumber" AutoExpandAllGroups="True"
+                                             ItemsSource="{Binding LabResultDetails}">
+                                <dxg:GridColumn FieldName="LabNumber"/>
+                                <dxg:GridColumn FieldName="RequestedDttm">
+                                    <dxg:GridColumn.EditSettings>
+                                        <dxe:TextEditSettings DisplayFormat="dd/MM/yyy HH:mm"/>
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>
+                                <dxg:GridColumn FieldName="PatientID"/>
+                                <dxg:GridColumn FieldName="PatientName"/>
+                                <dxg:GridColumn FieldName="OrderStatus"/>
+                                <dxg:GridColumn FieldName="ReviewedBy"/>
+                                <dxg:GridControl.DetailDescriptor>
+                                    <dxg:ContentDetailDescriptor>
+                                        <dxg:ContentDetailDescriptor.ContentTemplate>
+                                            <DataTemplate>
+                                                <dxg:TreeListControl x:Name="PART_Editor"  Height="335"
+                                                                     SelectedItem="{Binding DataContext.SelectResultComponent,RelativeSource={RelativeSource AncestorType={x:Type vm:PastMedicalHistory}}}"    
+                                                                     ItemsSource="{Binding Path=RequestDetailLabs}">
+                                                    <dxg:TreeListControl.View>
+                                                        <dxg:TreeListView x:Name="treeView" TreeDerivationMode="HierarchicalDataTemplate" AutoExpandAllNodes="True"
+                                      ShowIndicator="False" ShowColumnHeaders="False"/>
+                                                    </dxg:TreeListControl.View>
+                                                </dxg:TreeListControl>
+                                            </DataTemplate>
+                                        </dxg:ContentDetailDescriptor.ContentTemplate>
+                                    </dxg:ContentDetailDescriptor>
+                                </dxg:GridControl.DetailDescriptor>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView ShowGroupPanel="False" AllowEditing="False"/>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>
+                </ScrollViewer>
+                <dxlc:LayoutGroup dxlc:DockLayoutControl.Dock="Bottom" >
+                    <dxlc:LayoutGroup HorizontalAlignment="Left" View="Group">
+                        <dxlc:LayoutItem>
+                            <dxe:CheckEdit IsChecked="{Binding IsCheckDiagnosis}"
+                                       IsEnabled="{Binding IsEnableDiagnosis}"
+                                       Content="วินิจฉัย"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem>
+                            <dxe:CheckEdit IsChecked="{Binding IsCheckDrug}"
+                                       IsEnabled="{Binding IsEnableDrug}"
+                                       Content="ยา"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem>
+                            <dx:SimpleButton Width="95" Command="{Binding RemedicalCommand}" 
+                                         HorizontalAlignment="Right"
+                                         IsEnabled="{Binding IsEnableRemed}"
+                                     Height="25" Content="Re-Med"/>
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutItem HorizontalAlignment="Right">
+                        <dx:SimpleButton Width="95" Command="{Binding PrintOPDCommand}"
+                                     Height="25" Content="OPD เก่า"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem HorizontalAlignment="Right">
+                        <dx:SimpleButton Width="85" Command="{Binding CancelCommand}" 
+                                     Height="25" Content="ยกเลิก"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+            </dxlc:DockLayoutControl>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

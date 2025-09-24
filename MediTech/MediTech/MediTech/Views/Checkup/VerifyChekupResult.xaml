@@ -1,0 +1,272 @@
+﻿<UserControl x:Class="MediTech.Views.VerifyChekupResult"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediTech.Views"
+             xmlns:helper="clr-namespace:MediTech.Helpers"
+             xmlns:cv="clr-namespace:MediTech.Converter"
+             xmlns:cc="clr-namespace:MediTech.CustomControl"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             DataContext="{Binding Path=VerifyChekupResultViewModel,Source={StaticResource Locator}}"
+             mc:Ignorable="d" 
+             d:DesignHeight="1200" d:DesignWidth="1100">
+    <UserControl.Resources>
+        <cv:AddValueConverter x:Key="AddValueConverter" />
+        <cc:PatientSearchPopUp x:Key="PatientColumn" d:IsDataSource="True" />
+    </UserControl.Resources>
+    <Grid>
+        <dxlc:DockLayoutControl x:Name="layoutItems">
+            <dxlc:LayoutControl>
+                <dxlc:LayoutGroup Orientation="Vertical" dxlc:DockLayoutControl.Dock="Left"
+                              Width="300"
+                              dxlc:DockLayoutControl.AllowHorizontalSizing="True">
+                    <dxlc:LayoutItem >
+                        <dxlc:LayoutItem.Label>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                <TextBlock Text="Payor" />
+                            </StackPanel>
+                        </dxlc:LayoutItem.Label>
+                        <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding InsuranceCompany}" 
+                                      SelectedItem="{Binding SelectInsuranceCompany}"
+                                      ValueMember="InsuranceCompanyUID"
+                                      DisplayMember="CompanyName"
+                                      NullValueButtonPlacement="EditBox"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="400"
+                                      PopupHeight="300" 
+                                      IsPopupAutoWidth="True"
+                                      AutoPopulateColumns="False">
+                            <dxg:LookUpEdit.PopupContentTemplate>
+                                <ControlTemplate>
+                                    <dxg:GridControl x:Name="PART_GridControl"  >
+                                        <dxg:GridControl.View>
+                                            <dxg:TableView
+                        x:Name="View"  ShowColumnHeaders="False"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" />
+                                        </dxg:GridControl.View>
+                                        <dxg:GridColumn x:Name="colPayorName" FieldName="CompanyName"/>
+                                    </dxg:GridControl>
+                                </ControlTemplate>
+                            </dxg:LookUpEdit.PopupContentTemplate>
+                            <dxg:LookUpEdit.StyleSettings>
+                                <dxg:SearchLookUpEditStyleSettings/>
+                            </dxg:LookUpEdit.StyleSettings>
+                        </dxg:LookUpEdit>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Job">
+                        <dxg:LookUpEdit x:Name="lkeCompanyName" ItemsSource="{Binding CheckupJobContactList}" 
+                                      SelectedItem="{Binding SelectCheckupJobContact}"
+                                      ValueMember="CheckupJobContactUID"
+                                      DisplayMember="CompanyName"
+                                      NullValueButtonPlacement="EditBox"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="600"
+                                      PopupHeight="300" 
+                                      IsPopupAutoWidth="True"
+                                      AutoPopulateColumns="False">
+                            <dxg:LookUpEdit.PopupContentTemplate>
+                                <ControlTemplate>
+                                    <dxg:GridControl x:Name="PART_GridControl"  >
+                                        <dxg:GridControl.View>
+                                            <dxg:TableView
+                        x:Name="View"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" />
+                                        </dxg:GridControl.View>
+                                        <dxg:GridColumn Header="JobNumber" FieldName="JobNumber"/>
+                                        <dxg:GridColumn Header="บริษัท" FieldName="CompanyName"/>
+                                        <dxg:GridColumn Header="การให้บริการ" FieldName="ServiceName"/>
+                                        <dxg:GridColumn Header="วันที่ตรวจ" FieldName="StartDttm"/>
+                                    </dxg:GridControl>
+                                </ControlTemplate>
+                            </dxg:LookUpEdit.PopupContentTemplate>
+                            <dxg:LookUpEdit.StyleSettings>
+                                <dxg:SearchLookUpEditStyleSettings/>
+                            </dxg:LookUpEdit.StyleSettings>
+                        </dxg:LookUpEdit>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="จากวันที่">
+                            <dxe:DateEdit EditValue="{Binding DateFrom}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="ถึงวันที่">
+                            <dxe:DateEdit EditValue="{Binding DateTo}"/>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutItem  Label="ชื่อผู้ป่วย">
+                        <cc:AutoCompleteTextBox     Text="{Binding SearchPatientCriteria,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                    ColumnsSource="{Binding Path=Columns,Source={StaticResource PatientColumn}}"
+                                                    OnTextChangedEvent="False"
+                                                    Binding="{Binding PatientName}"
+                                                    MaxCompletions="30"
+                                                    ItemsSource="{Binding PatientsSearchSource}"
+                                                    SelectedItem="{Binding SelectedPateintSearch,Mode=OneWayToSource}"
+                                                    >
+                            <cc:AutoCompleteTextBox.InputBindings>
+                                <KeyBinding Key="Enter" Command="{Binding PatientSearchCommand}" />
+                            </cc:AutoCompleteTextBox.InputBindings>
+                        </cc:AutoCompleteTextBox>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton HorizontalAlignment="Right" Width="80" Height="25" Content="ค้นหา" Command="{Binding SearchPatientVisitCommand}"/>
+                    </dxlc:LayoutItem>
+                    <dxg:GridControl x:Name="gcPatientVisit" ItemsSource="{Binding PatientVisits}"
+                                 SelectedItem="{Binding SelectPatientVisit}">
+                        <dxg:GridColumn FieldName="No" Width="30" Fixed="Left">
+                            <dxg:GridColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding RowData.RowHandle.Value
+                                ,Converter={StaticResource AddValueConverter}
+                                ,ConverterParameter=1}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </DataTemplate>
+                            </dxg:GridColumn.CellTemplate>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID" Width="70" ReadOnly="True"/>
+                        <dxg:GridColumn Header="ชื่อผู้ป่วย" FieldName="PatientName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="เพศ" FieldName="Gender" ReadOnly="True" Width="80"/>
+                        <dxg:GridColumn Header="อายุ" FieldName="Age" ReadOnly="True" Width="30"/>
+                        <dxg:GridColumn Header="วันที่ตรวจ" FieldName="StartDttm" ReadOnly="True">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn FieldName="IsWillnessResult" Visible="False"/>
+                        <dxg:GridControl.View>
+                            <dxg:TableView x:Name="gvPatientVisit"
+                                       ShowCheckBoxSelectorColumn="True"
+                                       CheckBoxSelectorColumnWidth="30" ShowGroupPanel="False">
+                                <dxg:TableView.FormatConditions>
+                                    <dxg:FormatCondition ApplyToRow="True" Expression="[IsWellnessResult] = 'True'" FieldName="IsWellnessResult">
+                                        <dx:Format Background="#FF83B5F1"/>
+                                    </dxg:FormatCondition>
+                                </dxg:TableView.FormatConditions>
+                            </dxg:TableView>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Orientation="Horizontal" dxlc:DockLayoutControl.Dock="Client">
+                    <dxlc:LayoutGroup Orientation="Vertical">
+                        <dxg:GridControl Height="250" ItemsSource="{Binding GroupResults}"
+                                         SelectedItem="{Binding SelectGroupResult,Mode=TwoWay}">
+                            <dxg:GridColumn FieldName="No" Width="30" Fixed="Left">
+                                <dxg:GridColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding RowData.RowHandle.Value
+                                ,Converter={StaticResource AddValueConverter}
+                                ,ConverterParameter=1}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </DataTemplate>
+                                </dxg:GridColumn.CellTemplate>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn Header="Group Result" FieldName="Display" AllowSorting="False" Width="*" ReadOnly="True"/>
+                            <dxg:GridControl.View>
+                                <dxg:TableView ShowGroupPanel="False" NavigationStyle="Row"/>
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
+                        <dxlc:LayoutGroup Orientation="Vertical">
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:LayoutItem HorizontalAlignment="Left">
+                                    <TextBlock Text="สรุปผลทั้งหมดในเล่มรายบุคคล" FontSize="15" 
+                                           FontWeight="Bold"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem HorizontalAlignment="Right">
+                                    <dx:SimpleButton Height="25" Width="80" Content="ยืนยันผล" Command="{Binding SaveWellNessResultCommand}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem HorizontalAlignment="Right">
+                                    <dx:SimpleButton Height="25" Width="100" Content="ตัวอย่างก่อนพิมพ์" Command="{Binding PreviewWellnessCommand}"/>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                            <dxe:TextEdit x:Name="txtWellness" AcceptsReturn="True" TextWrapping="Wrap"
+                                          FontSize="14"
+                                          Text="{Binding WellnessResult}"
+                                          VerticalContentAlignment="Top"/>
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup Orientation="Vertical">
+                        <dxg:GridControl Name="gcResult" Height="380" ItemsSource="{Binding ResultComponents}"
+                                         Visibility="{Binding VisibilityLab}"
+                                         SelectedItem="{Binding SelectResultComponent}">
+                            <dxmvvm:Interaction.Behaviors>
+                                <helper:DeferredColumnFitBehavior/>
+                            </dxmvvm:Interaction.Behaviors>
+                            <dxg:GridColumn Header="รายการตรวจ" FieldName="ResultItemName" ReadOnly="True">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:TextEditSettings TextWrapping="Wrap"/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn Header="ผลตรวจ" FieldName="ResultValue1" ReadOnly="True">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:TextEditSettings TextWrapping="Wrap"/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn Header="ย้อนหลัง1" FieldName="ResultValue2" ReadOnly="True">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:TextEditSettings TextWrapping="Wrap"/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn Header="ย้อนหลัง2" FieldName="ResultValue3" ReadOnly="True">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:TextEditSettings TextWrapping="Wrap"/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn Header="Normal" FieldName="ReferenceRange" ReadOnly="True">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:TextEditSettings TextWrapping="Wrap"/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                            <dxg:GridControl.View>
+                                <dxg:TableView Name="gvResult" ShowGroupPanel="False" />
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
+                        <dxg:GridControl Height="380" ItemsSource="{Binding ResultRadiologys}" 
+                                         Visibility="{Binding VisibilityRadiology}">
+                            <dxg:GridColumn Header="Status" FieldName="ResultStatus" Width="80"/>
+                            <dxg:GridColumn Header="Result" FieldName="PlainText" Width="300">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:TextEditSettings TextWrapping="Wrap"/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn Header="รังสีแพทย์" FieldName="Radiologist" Width="80"/>
+                            <dxg:GridControl.View>
+                                <dxg:TableView ShowGroupPanel="False"/>
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dxe:ComboBoxEdit x:Name="cmbResultStatus" Width="120" ItemsSource="{Binding ResultStatus}"
+                                              SelectedItem="{Binding SelectResultStatus}"
+                                              DisplayMember="Display"
+                                              ValueMember="Key"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Right">
+                                <dx:SimpleButton Height="25" Width="80" Content="บันทึก" Command="{Binding SaveCheckupGroupResultCommand}"/>
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+                        <dxe:TextEdit AcceptsReturn="True" Text="{Binding TextSummeryReslt}"
+                                      TextWrapping="Wrap"
+                                      FontWeight="Bold"
+                                      FontSize="16"
+                                      VerticalContentAlignment="Top"/>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutControl>
+        </dxlc:DockLayoutControl>
+    </Grid>
+</UserControl>

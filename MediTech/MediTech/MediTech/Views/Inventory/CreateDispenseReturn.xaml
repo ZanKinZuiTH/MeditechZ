@@ -1,0 +1,141 @@
+﻿<UserControl x:Class="MediTech.Views.CreateDispenseReturn"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:cc="clr-namespace:MediTech.CustomControl"
+             mc:Ignorable="d" 
+             DataContext="{Binding Path=createDispenseReturnViewModel, Source={StaticResource Locator}}"
+             d:DesignHeight="450" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <cc:PatientSearchPopUp x:Key="PatientColumn" d:IsDataSource="True" />
+    </UserControl.Resources>
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem Name="layoutSearchPatient" Label="ค้นหาผู้ป่วย">
+                    <cc:AutoCompleteTextBox     Text="{Binding SearchPatientCriteria,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                    ColumnsSource="{Binding Path=Columns,Source={StaticResource PatientColumn}}"
+                                                    OnTextChangedEvent="False"
+                                                    Binding="{Binding PatientName}"
+                                                    MaxCompletions="30"
+                                                    ItemsSource="{Binding PatientsSearchSource}"
+                                                    SelectedItem="{Binding SelectedPateintSearch,Mode=OneWayToSource}"
+                                                    >
+                        <cc:AutoCompleteTextBox.InputBindings>
+                            <KeyBinding Key="Enter" Command="{Binding PatientSearchCommand}" />
+                        </cc:AutoCompleteTextBox.InputBindings>
+                    </cc:AutoCompleteTextBox>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem x:Name="layVisit" Label="Select Visit" >
+                    <dxe:ComboBoxEdit x:Name="cmbVisit"
+                                  DisplayMember="Comments"
+                                  ValueMember="PatientVisitUID"
+                                  IsTextEditable="False"
+                                  ItemsSource="{Binding PatientVisitLists}"
+                                  SelectedItem="{Binding SelectedPatientVisit}" >
+                        <dxe:ComboBoxEdit.StyleSettings>
+                            <dxe:ComboBoxStyleSettings />
+                        </dxe:ComboBoxEdit.StyleSettings>
+                    </dxe:ComboBoxEdit>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Pres No.">
+                    <dxe:TextEdit Text="{Binding PrescriptionNumber}" RenderTransformOrigin="0.5,0.5">
+                        <dxe:TextEdit.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="0.904"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </dxe:TextEdit.RenderTransform>
+                    </dxe:TextEdit>
+                </dxlc:LayoutItem>
+
+
+
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="Store">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Stores}" 
+                                      SelectedItem="{Binding SelectStore}"
+                                      ValueMember="StoreUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="ItemName">
+                    <dxe:TextEdit Text="{Binding ItemName}"/>
+                </dxlc:LayoutItem>
+                
+                <dxlc:LayoutItem>
+                    <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                        <dx:SimpleButton Width="80" Command="{Binding SearchDispenseCommand}"
+                                     Height="25" Content="ค้นหา"/>
+                        <dx:SimpleButton Width="80" Command="{Binding ClearCommand}"
+                                     Height="25" Content="Clear"/>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+            
+
+            <dxg:GridControl  AutoExpandAllGroups="True" Name="grdItemReturn" 
+                             ItemsSource="{Binding DispenseItems}"
+                             SelectedItem="{Binding SelectDispenseItem}"
+                             >
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn Header="" FieldName="Selected" ReadOnly="False" Width="35" >
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:CheckEditSettings IsEnabled="{Binding Row.IsCanReturn}"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="Prescription No" FieldName="PrescriptionNumber" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Item Code" FieldName="ItemCode" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Item Name" FieldName="ItemName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Dispensed Qty" FieldName="DispensedQty" ReadOnly="True" />
+                    <dxg:GridColumn Header="Return Qty" FieldName="ReturnQty" ReadOnly="False" />
+                    <dxg:GridColumn Header="Previous Qty" FieldName="PreviousReturnQty" ReadOnly="True" />
+                    <dxg:GridColumn Header="Unit" FieldName="UOMDesc" ReadOnly="True" />
+                    <dxg:GridColumn Header="Is Billed" FieldName="IsBilled" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Batch ID" FieldName="BatchID" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Expiry Date" FieldName="ExpiryDate" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Dispense By" FieldName="DispensedUser" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Dispense Date" FieldName="DispensedDttm" ReadOnly="True">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="Is Continuous" FieldName="IsContinuous" ReadOnly="True"/>
+                    <dxg:GridColumn Header="AvgCost" FieldName="AvgCost" ReadOnly="True"/>
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView x:Name="view"  ShowCheckBoxSelectorColumn="True" ShowGroupPanel="False" />
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem HorizontalAlignment="Left">
+                    <dxe:CheckEdit Content="Select All" IsChecked="{Binding SelectedAll}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem>
+                    <TextBlock Text="{Binding ReturnType}" FontSize="18" HorizontalAlignment="Center"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                    <dxlc:LayoutItem Label="Comments:">
+                        <dxe:TextEdit Text="{Binding Comments}" Height="25" Width="230"/>
+                    </dxlc:LayoutItem>
+
+                    <dx:SimpleButton Width="80" Command="{Binding SaveCommand}" 
+                                     Height="25" Content="บันทึก" IsEnabled="{Binding IsCanSave}"/>
+                    <dx:SimpleButton Width="80" Command="{Binding CloseCommand}"
+                                     Height="25" Content="ยกเลิก"/>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

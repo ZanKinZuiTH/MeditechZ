@@ -1,0 +1,11 @@
+﻿<Window x:Class="MediTech.WebView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowState="Maximized"
+        Title="WebBrowser" Height="300" Width="300">
+    <Grid>
+        <Grid>
+            <WebBrowser x:Name="browser"/>
+        </Grid>
+    </Grid>
+</Window>

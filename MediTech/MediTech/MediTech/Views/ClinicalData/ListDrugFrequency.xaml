@@ -1,0 +1,49 @@
+﻿<UserControl xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" x:Class="MediTech.Views.ListDrugFrequency"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
+             xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             DataContext="{Binding Path=ListDrugFrequencyViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="900">
+    <Grid>
+        <dxr:RibbonControl RibbonStyle="Office2010" x:Name="ribbon"
+                               IsMinimized="True" MinimizationButtonVisibility="Collapsed"                              
+                               AllowCustomization="False">
+            <dxr:RibbonDefaultPageCategory >
+                <dxr:RibbonPage Caption="มุมมอง" MergeOrder="99">
+                    <dxr:RibbonPageGroup Caption="Export" >
+                        <dxb:BarButtonItem Content="Export to XLSX" Command="{Binding ExportToXLSXCommand}" LargeGlyph="{dx:DXImage SvgImages/Export/ExportToXLSX.svg}"/>
+                    </dxr:RibbonPageGroup>
+                </dxr:RibbonPage>
+            </dxr:RibbonDefaultPageCategory>
+        </dxr:RibbonControl>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxg:GridControl x:Name="grdDrugFrequency" ItemsSource="{Binding DrugFrequencys}"
+                             SelectedItem="{Binding SelectDrugFrequency}">
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn Header="Code" FieldName="Code"/>
+                    <dxg:GridColumn Header="อังกฤษ" FieldName="Name"/>
+                    <dxg:GridColumn Header="ไทย" FieldName="Comments"/>
+                    <dxg:GridColumn Header="จำนวนต่อเวลา" FieldName="AmountPerTimes"/>
+                    <dxg:GridColumn Header="เปิดใช้งาน" FieldName="ActiveFrom"/>
+                    <dxg:GridColumn Header="ปิดใช้งาน" FieldName="ActiveTo"/>
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView ShowGroupPanel="False" x:Name="gvDrugFrequency"  ShowSearchPanelMode="Always" 
+                                   SearchPanelNullText="ค้นหา" AllowEditing="False" />
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+            <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
+                <dx:SimpleButton Width="80" Command="{Binding AddCommand}"
+                                     Height="25" Content="เพิ่ม"/>
+                <dx:SimpleButton Width="80" Command="{Binding EditCommand}"
+                                     Height="25" Content="แก้ไข"/>
+                <dx:SimpleButton Width="80" Margin="50,0,0,0" Command="{Binding DeleteCommand}"
+                                     Height="25" Content="ลบ"/>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

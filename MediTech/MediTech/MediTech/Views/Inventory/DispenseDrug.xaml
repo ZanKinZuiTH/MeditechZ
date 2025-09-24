@@ -1,0 +1,124 @@
+﻿<UserControl x:Class="MediTech.Views.DispenseDrug"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediTech.Views"
+             xmlns:cc="clr-namespace:MediTech.CustomControl"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:helper="clr-namespace:MediTech.Helpers"
+             xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             mc:Ignorable="d"
+             xmlns:uc="clr-namespace:MediTech.CustomControl.Banner" xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             DataContext="{Binding Path=DispenseDrugViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <cc:PatientSearchPopUp x:Key="PatientColumn" d:IsDataSource="True" />
+
+        <Style x:Key="BackgroundStyle" TargetType="{x:Type dxg:GridRowContent}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Row.IsWithoutStock}" Value="True">
+                    <Setter Property="Background" Value="Red"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Row.IsExpired}" Value="True">
+                    <Setter Property="Background" Value="#FFA5A5A5"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <DataTemplate x:Key="DetailCoreTemplate">
+            <dx:MeasurePixelSnapper>
+                <Grid>
+                    <dxg:GridControl ItemsSource="{Binding Row.StoreStockItem}" 
+                                                 Height="150">
+                        <dxg:GridColumn Header="จำนวน" Width="50" FieldName="Quantity" ReadOnly="True"/>
+                        <dxg:GridColumn Header="จำนวนคงเหลือ" Width="80"  FieldName="BalQty" ReadOnly="True"/>
+                        <dxg:GridColumn Header="หน่วย" Width="80"  FieldName="QuantityUnit" ReadOnly="True"/>
+                        <dxg:GridColumn Header="วันหมดอายุ" Width="80" FieldName="ExpiryDate" ReadOnly="True"/>
+                        <dxg:GridColumn Header="BatchID" Width="90" FieldName="BatchID" ReadOnly="True"/>
+                        <dxg:GridColumn Header="คลัง" FieldName="StoreName" ReadOnly="True">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings TextWrapping="Wrap"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn FieldName="IsWithoutStock" Visible="False"/>
+                        <dxg:GridColumn FieldName="IsExpired" Visible="False"/>
+                        <dxg:GridControl.View>
+                            <dxg:TableView ShowGroupPanel="False">
+                                <dxg:TableView.FormatConditions>
+                                    <dxg:FormatCondition ApplyToRow="True" Expression="[IsWithoutStock] = 'True'" FieldName="IsWithoutStock">
+                                        <dx:Format Background="Red"/>
+                                    </dxg:FormatCondition>
+                                    <dxg:FormatCondition ApplyToRow="True" Expression="[IsExpired] = 'True'" FieldName="IsExpired">
+                                        <dx:Format Background="#FFA5A5A5"/>
+                                    </dxg:FormatCondition>
+                                </dxg:TableView.FormatConditions>
+                            </dxg:TableView>
+
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </Grid>
+            </dx:MeasurePixelSnapper>
+        </DataTemplate>
+        <DataTemplate x:Key="rowToolTipTemplate">
+            <ContentPresenter Content="{Binding}" ContentTemplate="{Binding View.DefaultDataRowTemplate}">
+                <ToolTipService.InitialShowDelay>10</ToolTipService.InitialShowDelay>
+                <ToolTipService.HasDropShadow>false</ToolTipService.HasDropShadow>
+                <ToolTipService.ToolTip>
+                    <ContentControl Content="{Binding}" ContentTemplate="{DynamicResource DetailCoreTemplate}" Tag="Transparent" MaxWidth="600"/>
+                </ToolTipService.ToolTip>
+            </ContentPresenter>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutItem Name="Banner" Visibility="{Binding IsBanner}">
+                <uc:PatientBanner PatientVisit="{Binding PatientVisit}"/>
+            </dxlc:LayoutItem>
+            <dxg:GridControl ItemsSource="{Binding PrescriptionItems}">
+                <dxmvvm:Interaction.Behaviors>
+                    <helper:DeferredColumnFitBehavior/>
+                </dxmvvm:Interaction.Behaviors>
+                <dxg:GridColumn Header="รหัส" FieldName="ItemCode" ReadOnly="True" Fixed="Left"/>
+                <dxg:GridColumn x:Name="colDrugname" Header="ชื่อ" FieldName="ItemName" ReadOnly="True" Fixed="Left"/>
+                <dxg:GridColumn Header="Dosage" FieldName="Dosage" Width="60"  ReadOnly="True"/>
+                <dxg:GridColumn Header="Form" FieldName="DrugForm" ReadOnly="True"/>
+                <dxg:GridColumn Header="Frequency" FieldName="Frequency" ReadOnly="True"/>
+                <dxg:GridColumn Header="จำนวน" FieldName="Quantity" Width="60" ReadOnly="True"/>
+                <dxg:GridColumn Header="จำนวนคงเหลือ" FieldName="BalQty" ReadOnly="True"/>
+                <dxg:GridColumn Header="หน่วย" FieldName="QuantityUnit" ReadOnly="True"/>
+                <dxg:GridColumn Header="ข้อความบนฉลาก" FieldName="LocalInstructionText" />
+                <dxg:GridColumn Header="Note For Phamacy" FieldName="ClinicalComments" ReadOnly="True"/>
+                <dxg:GridControl.View>
+                    <dxg:TableView  ShowGroupPanel="False"
+                                    UseLightweightTemplates="None" 
+                                    RowStyle="{StaticResource BackgroundStyle}"
+                                    DataRowTemplate="{StaticResource rowToolTipTemplate}"
+                                    >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger  EventName="RowUpdated">
+                                <mvvm:EventToCommand Command="{Binding RowUpdatedCommand}" 
+                                                     PassEventArgsToCommand="True"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </dxg:TableView>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+            <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                <dxlc:LayoutItem HorizontalAlignment="Left" Label="ปริ้นเตอร์">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding PrinterLists}"
+                                      SelectedItem="{Binding SelectPrinter}"
+                        Width="180" Height="25"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem>
+                    <dxe:CheckEdit IsChecked="{Binding IsPrintSticker,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Content="ปริ้นสติกเกอร์"/>
+                </dxlc:LayoutItem>
+                <dx:SimpleButton Width="80" Command="{Binding SaveCommand}"
+                                     Height="25" Content="บันทึก"/>
+                <dx:SimpleButton Width="80" Command="{Binding CancelCommand}"
+                                     Height="25" Content="ยกเลิก"/>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

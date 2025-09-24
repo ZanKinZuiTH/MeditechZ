@@ -1,0 +1,121 @@
+﻿<UserControl xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             x:Class="MediTech.Views.ListDoctorFeesRIS"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cc="clr-namespace:MediTech.CustomControl"
+             mc:Ignorable="d"
+             DataContext="{Binding Path=ListDoctorFeesRISViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="900">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="จากวันที่">
+                    <dxe:DateEdit EditValue="{Binding DateFrom}" />
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem  Label="ถึงวันที่">
+                    <dxe:DateEdit EditValue="{Binding DateTo}"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem Label="รังสีแพทย์"  
+                                 Visibility="{Binding IsVisibility}">
+                    <cc:MyLookUpEdit     ItemsSource="{Binding Doctors}"
+                                         SelectedItem="{Binding SelectDoctor}"
+                                         DisplayMember="FullName"
+                                         ValueMember="CareproviderUID"
+                                         AutoComplete="False"
+                                         IncrementalFiltering="True"
+                                         AllowNullInput="True"
+                                         ImmediatePopup="True"
+                                         FindButtonPlacement="Popup"
+                                         FindMode = "Always"
+                                         PopupMinHeight="100"
+                                         PopupHeight="400"
+                                         NullValueButtonPlacement="EditBox"
+                                         AutoPopulateColumns="False">
+                        <cc:MyLookUpEdit.ColumnsToFilter>
+                            <cc:ColumnItem FieldName="FirstName"/>
+                            <cc:ColumnItem FieldName="LastName"/>
+                        </cc:MyLookUpEdit.ColumnsToFilter>
+                        <dxg:LookUpEdit.PopupContentTemplate>
+                            <ControlTemplate>
+                                <dxg:GridControl  Name="PART_GridControl" >
+                                    <dxg:GridColumn Header="ชื่อ" FieldName="FullName" Width="*" 
+                                                    AllowSearchPanel="True" 
+                                                    AllowIncrementalSearch="True" 
+                                                    AllowAutoFilter="True"
+                                                    ReadOnly="True"/>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView Name="view"
+                                                       ShowGroupPanel="False"/>
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                            </ControlTemplate>
+                        </dxg:LookUpEdit.PopupContentTemplate>
+                    </cc:MyLookUpEdit>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem>
+                    <dx:SimpleButton Command="{Binding SearchCommand}" Content="ค้นหา" 
+                                     Width="80" Height="25" HorizontalAlignment="Right"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutGroup Orientation="Vertical">
+                    <dxlc:LayoutItem HorizontalAlignment="Center">
+                        <TextBlock Text="ยังไม่จ่าย" FontWeight="SemiBold" FontSize="15"/>
+                    </dxlc:LayoutItem>
+                    <dxg:GridControl ItemsSource="{Binding ListDoctorFeeNonPay}"
+                                     SelectedItems="{Binding SelectDoctorFeeNonPay}"
+                                     SelectionMode="MultipleRow">
+                        <dxg:GridColumn Header="ชื่อแพทย์" FieldName="CareproviderName" />
+                        <dxg:GridColumn Header="รายการ" FieldName="ItemName"/>
+                        <dxg:GridColumn Header="ชื่อผู้ป่วย" FieldName="PatientName"/>
+                        <dxg:GridColumn Header="วันที่" FieldName="StartDttm">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Header="DF" FieldName="DoctorFee"/>
+                        <dxg:GridColumn Header="ภาษี" FieldName="Vat"/>
+                        <dxg:GridControl.View>
+                            <dxg:TableView ShowGroupPanel="False" AllowEditing="False"
+                                           ShowCheckBoxSelectorColumn="{Binding ShowCheckBoxColumn}"/>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Orientation="Vertical"
+                                  Visibility="{Binding IsVisibility}"
+                                  VerticalAlignment="Center">
+                    <dx:SimpleButton Command="{Binding AddCommand}" Content=">>" Height="25" Width="50"/>
+                    <dx:SimpleButton Command="{Binding RemoveCommand}" Content="&lt;&lt;" Height="25" Width="50"/>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Orientation="Vertical">
+                    <dxlc:LayoutItem HorizontalAlignment="Center">
+                        <TextBlock Text="จ่ายเงินแล้ว" FontWeight="SemiBold" FontSize="15"/>
+                    </dxlc:LayoutItem>
+                    <dxg:GridControl ItemsSource="{Binding ListDoctorFee}"
+                                     SelectedItems="{Binding SelectDoctorFee}" 
+                                     SelectionMode="MultipleRow">
+                        <dxg:GridColumn Header="ชื่อแพทย์" FieldName="CareproviderName" />
+                        <dxg:GridColumn Header="รายการ" FieldName="ItemName"/>
+                        <dxg:GridColumn Header="ชื่อผู้ป่วย" FieldName="PatientName"/>
+                        <dxg:GridColumn Header="วันที่" FieldName="StartDttm">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Header="DF" FieldName="DoctorFee"/>
+                        <dxg:GridColumn Header="ภาษี" FieldName="Vat"/>
+                        <dxg:GridControl.View>
+                            <dxg:TableView ShowGroupPanel="False" AllowEditing="False"
+                                           ShowCheckBoxSelectorColumn="{Binding ShowCheckBoxColumn}"/>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>
