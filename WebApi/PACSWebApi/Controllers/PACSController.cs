@@ -806,6 +806,18 @@ Update Instances Set PatientID = @NewHN  Where PatientID = @OldHN
                         return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "หมายเหตุผู้ป่วยยาวเกินกำหนด (สูงสุด 4000 ตัวอักษร)");
                     }
 
+                    // Allowed modality set validation
+                    if (!string.IsNullOrWhiteSpace(request.ModalitiesInStudy))
+                    {
+                        var allowedModalities = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+                        { "CR","DX","CT","ES","MR","MG","OT","RF","US" };
+                        if (!allowedModalities.Contains(request.ModalitiesInStudy))
+                        {
+                            StructuredLogger.Error(new { corrId, error = "Modality not allowed", request.ModalitiesInStudy });
+                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "ค่า Modality ไม่ถูกต้อง (อนุญาตเฉพาะ CR, DX, CT, ES, MR, MG, OT, RF, US)");
+                        }
+                    }
+
                     // Optional bodypart standardization via mapping table
                     var enableStd = System.Configuration.ConfigurationManager.AppSettings["EnableBodypartStandardization"];
                     if (!string.IsNullOrWhiteSpace(enableStd) && enableStd.Equals("true", StringComparison.OrdinalIgnoreCase))
@@ -823,6 +835,10 @@ Update Instances Set PatientID = @NewHN  Where PatientID = @OldHN
                                 {
                                     StructuredLogger.Info(new { corrId, mapping = "Bodypart", input = request.BodyPartsInStudy, mapped = std });
                                     request.BodyPartsInStudy = std;
+                                }
+                                else
+                                {
+                                    StructuredLogger.Info(new { corrId, mapping = "Bodypart", input = request.BodyPartsInStudy, mapped = (string)null, note = "no mapping found" });
                                 }
                             }
                         }
@@ -883,7 +899,9 @@ Update Instances Set PatientID = @NewHN  Where PatientID = @OldHN
 
                     tran.Complete();
                     StructuredLogger.Info(new { corrId, action = "UpdateStudyDetailsWithAudit:success", changesCount = changes.Count, request.StudyInstanceUID });
-                    return Request.CreateResponse(HttpStatusCode.OK, true);
+                    var resp = Request.CreateResponse(HttpStatusCode.OK, true);
+                    resp.Headers.Add("X-Correlation-ID", corrId);
+                    return resp;
                 }
             }
             catch (Exception ex)

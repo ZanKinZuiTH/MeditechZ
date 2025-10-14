@@ -26,7 +26,17 @@
                     <dxe:TextEdit Text="{Binding SelectedStudy.PatientName}" IsReadOnly="True"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="Modality" LabelPosition="Top">
-                    <dxe:TextEdit Text="{Binding ModalitiesInStudy}"/>
+                    <dxe:ComboBoxEdit EditValue="{Binding ModalitiesInStudy}" IsTextEditable="False">
+                        <dxe:ComboBoxEditItem Content="CR"/>
+                        <dxe:ComboBoxEditItem Content="DX"/>
+                        <dxe:ComboBoxEditItem Content="CT"/>
+                        <dxe:ComboBoxEditItem Content="ES"/>
+                        <dxe:ComboBoxEditItem Content="MR"/>
+                        <dxe:ComboBoxEditItem Content="MG"/>
+                        <dxe:ComboBoxEditItem Content="OT"/>
+                        <dxe:ComboBoxEditItem Content="RF"/>
+                        <dxe:ComboBoxEditItem Content="US"/>
+                    </dxe:ComboBoxEdit>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
 
@@ -51,6 +61,7 @@
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dx:SimpleButton Content="ยกเลิก" Width="90" Height="30" Command="{Binding CancelChangesCommand}"/>
                 <dx:SimpleButton Content="บันทึก" Width="100" Height="30" Command="{Binding SaveChangesCommand}" IsEnabled="{Binding IsAuthorized}"/>
+                <dx:SimpleButton Content="รีเฟรชประวัติ" Width="110" Height="30" Command="{Binding LoadAuditHistoryCommand}"/>
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup Orientation="Vertical">

@@ -132,6 +132,16 @@ namespace MediTech.ViewModels
                 if (!silent) WarningDialog("กรุณาระบุ Modality");
                 return false;
             }
+            else
+            {
+                var allowedModalities = new System.Collections.Generic.HashSet<string>(StringComparer.OrdinalIgnoreCase)
+                { "CR","DX","CT","ES","MR","MG","OT","RF","US" };
+                if (!allowedModalities.Contains(ModalitiesInStudy))
+                {
+                    if (!silent) WarningDialog("ค่า Modality ไม่ถูกต้อง (อนุญาตเฉพาะ CR, DX, CT, ES, MR, MG, OT, RF, US)");
+                    return false;
+                }
+            }
             if (!string.IsNullOrEmpty(StudyDescription) && StudyDescription.Length > 256)
             {
                 if (!silent) WarningDialog("รายละเอียดการตรวจยาวเกินกำหนด (สูงสุด 256 ตัวอักษร)");
