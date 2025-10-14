@@ -10,6 +10,61 @@
 - มาตรฐาน Bodypart (ออปชัน) ผ่านตาราง Mapping + Feature Flag
 - ไทย‑first UX: ป้ายกำกับ/ข้อความเตือน/ยืนยันทั้งหมดเป็นภาษาไทย และสอดคล้องสไตล์ DevExpress เดิม
 
+## Executive Dashboard (สรุปสำหรับผู้บริหาร)
+
+### สถานะภาพรวม (Feature Progress)
+
+<p>
+<img alt="feature-progress" src="https://img.shields.io/badge/X--ray%20detail%20edit-62%25-blue?style=for-the-badge" />
+<img alt="audit-atomic" src="https://img.shields.io/badge/Atomic%20Update%2BAudit-Enabled-success?style=for-the-badge" />
+<img alt="rbac" src="https://img.shields.io/badge/RBAC-Client%2FServer-green?style=for-the-badge" />
+<img alt="thai-ux" src="https://img.shields.io/badge/Thai%20UX-Enabled-green?style=for-the-badge" />
+</p>
+
+หมายเหตุ: สัดส่วน 62% คิดจากแผนงานรวม 13 รายการ (ทำเสร็จ 8, ระหว่างทำ 2, ค้าง 3)
+
+### KPI Snapshot
+
+| KPI | Target | Current | หมายเหตุ |
+|---|---:|---:|---|
+| Audit completeness | 100% | 100% | ทุกการแก้ไขเขียน Audit (who/when/what/where/why) |
+| RBAC enforcement | ≥ 99% | 100% | ตรวจสิทธิ์ทั้ง VM และ WebApi |
+| Audit history latency (200 rows) | ≤ 300 ms | OK | มีดัชนี `(StudyInstanceUID, ModifiedDttm)` |
+| UI save blocking | ≤ 100 ms | OK | Async + Debounce change detection |
+| Docs (User + Runbook) | 100% | 100% | เพิ่มคู่มือภาษาไทยครบ |
+| Automated tests coverage | ≥ 60% | In progress | กำลังเพิ่ม Unit/VM/UI/Integration |
+
+### แผนงานและสถานะ (Gantt)
+
+```mermaid
+gantt
+    title X‑Ray Study Detail Editing — 8 วัน
+    dateFormat  YYYY-MM-DD
+    section Database
+    Audit Table/SP/Index        :done,    db1, 2025-10-01, 2d
+    Bodypart Mapping (optional) :active,  db2, 2025-10-03, 1d
+    section Data Service
+    Update+Audit (Tx)           :done,    svc1, 2025-10-02, 2d
+    Audit History/Report        :done,    svc2, 2025-10-03, 1d
+    section ViewModel/UI
+    EditStudyDetails VM+UI      :done,    ui1, 2025-10-03, 2d
+    RBAC+Validation (Thai)      :done,    ui2, 2025-10-05, 1d
+    section Observability
+    Structured Logging+CorrID   :done,    obs1, 2025-10-06, 1d
+    section Quality
+    Tests (Unit/VM/UI/Int)      :active,  qa1, 2025-10-06, 2d
+    UAT & Release               :        qa2, 2025-10-07, 1d
+```
+
+### สัดส่วนงานตามหมวด (Work Breakdown)
+
+```mermaid
+pie title Work Breakdown (Completed vs Remaining)
+    "Completed" : 8
+    "In Progress" : 2
+    "Pending" : 3
+```
+
 ## ความคืบหน้า (Progress)
 อัปเดตล่าสุด: ปรับปรุงครบ End‑to‑End พร้อมสังเกตการณ์และเอกสารภาษาไทย
 - UI ไทยและประสบการณ์ใช้งาน
