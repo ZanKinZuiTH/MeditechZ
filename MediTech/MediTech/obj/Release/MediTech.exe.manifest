@@ -1807,14 +1807,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MediTech.exe" size="14152192">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MediTech.exe" size="15113728">
       <assemblyIdentity name="MediTech" version="1.5.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>2GtwhmpkRLg/Kx4/OyeE5ybhrwUe/nyIa1Qn8aq8Nhg=</dsig:DigestValue>
+        <dsig:DigestValue>r4gzu6Lrp8ZSZRhiQp7GpEqebmznZN/4L+hWMGyn+sY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -1850,7 +1850,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>HCHy6OP+9Q2tVHq/yA31s27AFGFFLqBnykP1Rj3crEw=</dsig:DigestValue>
+        <dsig:DigestValue>RYySyEWpCk6rCMv6aWDLSwGZg6y9pDLiEBRdIokjdlQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

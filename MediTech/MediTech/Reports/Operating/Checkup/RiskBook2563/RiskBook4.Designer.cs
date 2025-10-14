@@ -446,7 +446,7 @@
             this.xrTableCell38.StylePriority.UseBorderWidth = false;
             this.xrTableCell38.StylePriority.UseFont = false;
             this.xrTableCell38.StylePriority.UseTextAlignment = false;
-            this.xrTableCell38.Text = "แพทย์หญิง ธัญลักษณ์ นิลไพฑูรย์\r\n(แพทย์อาชีวเวชศาสตร์)";
+            this.xrTableCell38.Text = "นายแพทย์ รัฐวัชร์ อริยรัฐรังสี\r\n(แพทย์อาชีวเวชศาสตร์)";
             this.xrTableCell38.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             this.xrTableCell38.Weight = 1.6500003051757812D;
             // 
@@ -4861,7 +4861,7 @@
             this.xrTableCell9.Name = "xrTableCell9";
             this.xrTableCell9.StylePriority.UseFont = false;
             this.xrTableCell9.StylePriority.UseTextAlignment = false;
-            this.xrTableCell9.Text = "แพทย์หญิง ธัญลักษณ์ นิลไพฑูรย์";
+            this.xrTableCell9.Text = "นายแพทย์ รัฐวัชร์ อริยรัฐรังสี";
             this.xrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell9.Weight = 2.1513773088349266D;
             // 
@@ -4893,7 +4893,7 @@
             this.xrTableCell11.Name = "xrTableCell11";
             this.xrTableCell11.StylePriority.UseFont = false;
             this.xrTableCell11.StylePriority.UseTextAlignment = false;
-            this.xrTableCell11.Text = " ว.24689";
+            this.xrTableCell11.Text = "ว.19832";
             this.xrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell11.Weight = 1.9210527713846712D;
             // 

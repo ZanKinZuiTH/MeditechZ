@@ -13,6 +13,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:MediTech.ViewModels"/>
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <ControlTemplate  x:Key="ReferencevalueTemplate" x:Name="ReferencevalueTemplate">
                 <dxg:GridControl x:Name="PART_GridControl"  >
                     <dxg:GridControl.Columns>

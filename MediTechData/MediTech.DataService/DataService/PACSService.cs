@@ -138,5 +138,49 @@ namespace MediTech.DataService
             }
             return flag;
         }
+
+        public bool UpdateStudyDetailsWithAudit(UpdateStudyDetailsRequest request)
+        {
+            try
+            {
+                string requestApi = string.Format("Api/PACS/UpdateStudyDetailsWithAudit");
+                var result = PACSApiHelper.Post<UpdateStudyDetailsRequest, bool>(requestApi, request);
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<StudyAuditLogEntry> GetStudyAuditHistory(string studyInstanceUID)
+        {
+            try
+            {
+                string requestApi = string.Format("Api/PACS/GetStudyAuditHistory?studyInstanceUID={0}", studyInstanceUID);
+                var result = PACSApiHelper.Get<List<StudyAuditLogEntry>>(requestApi);
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<StudyAuditLogEntry> GetAuditReport(DateTime from, DateTime to, int? userId = null)
+        {
+            try
+            {
+                string requestApi = userId.HasValue
+                    ? string.Format("Api/PACS/GetAuditReport?from={0:MM/dd/yyyy}&to={1:MM/dd/yyyy}&userId={2}", from, to, userId.Value)
+                    : string.Format("Api/PACS/GetAuditReport?from={0:MM/dd/yyyy}&to={1:MM/dd/yyyy}", from, to);
+                var result = PACSApiHelper.Get<List<StudyAuditLogEntry>>(requestApi);
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

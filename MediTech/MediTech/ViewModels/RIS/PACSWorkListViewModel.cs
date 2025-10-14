@@ -471,6 +471,17 @@ namespace MediTech.ViewModels
             }
         }
 
+        private RelayCommand _EditStudyDetailsCommand;
+
+        public RelayCommand EditStudyDetailsCommand
+        {
+            get
+            {
+                return _EditStudyDetailsCommand
+                    ?? (_EditStudyDetailsCommand = new RelayCommand(EditStudyDetails, CanEditStudyDetails));
+            }
+        }
+
 
         private RelayCommand _MicroDicomCommand;
 
@@ -947,6 +958,27 @@ namespace MediTech.ViewModels
                 }
             }
 
+        }
+
+        private bool CanEditStudyDetails()
+        {
+            return SelectStudies != null && ((AppUtil.Current.IsAdminRadiologist == true) || (AppUtil.Current.IsRadiologist == true) || (AppUtil.Current.IsRDUStaff == true) || (AppUtil.Current.IsAdmin == true));
+        }
+
+        private void EditStudyDetails()
+        {
+            if (!CanEditStudyDetails())
+            {
+                WarningDialog("คุณไม่มีสิทธิ์แก้ไขรายละเอียดการตรวจ");
+                return;
+            }
+            if (SelectStudies == null) return;
+            var pageView = new EditStudyDetails(SelectStudies);
+            var vm = (EditStudyDetailsViewModel)LaunchViewDialogNonPermiss(pageView, true, false);
+            if (vm.ResultDialog == ActionDialog.Save)
+            {
+                Search();
+            }
         }
 
         private async Task GetDicomByteArray(List<InstancesModel> instancesFilms)

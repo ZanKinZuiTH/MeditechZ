@@ -22,6 +22,7 @@ using System.Data.Entity.Core.EntityClient;
 using System.Data.Entity.Migrations;
 using PACS.DataBase;
 using System.Transactions;
+using System.Text;
 
 namespace MediTechWebApi.Controllers
 {
@@ -751,6 +752,198 @@ Update Instances Set PatientID = @NewHN  Where PatientID = @OldHN
             {
                 //transaction.Rollback();
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("UpdateStudyDetailsWithAudit")]
+        [HttpPost]
+        public HttpResponseMessage UpdateStudyDetailsWithAudit(UpdateStudyDetailsRequest request)
+        {
+            try
+            {
+                using (var tran = new TransactionScope())
+                {
+                    var study = dbPACS.Studies.Find(request.StudyInstanceUID);
+                    if (study == null)
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "ไม่พบ Study ที่ต้องการแก้ไข");
+                    }
+
+                    // Role-based authorization (basic)
+                    var allowedRoles = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+                    {
+                        "AdminRadiologist","Radiologist","RDUStaff","Admin"
+                    };
+                    if (string.IsNullOrWhiteSpace(request.RoleName) || !allowedRoles.Contains(request.RoleName))
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.Forbidden, "คุณไม่มีสิทธิ์แก้ไขรายละเอียดการตรวจ");
+                    }
+
+                    // Basic server-side validation with Thai messages
+                    if (!string.IsNullOrEmpty(request.StudyDescription) && request.StudyDescription.Length > 256)
+                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "รายละเอียดการตรวจยาวเกินกำหนด (สูงสุด 256 ตัวอักษร)");
+                    if (!string.IsNullOrEmpty(request.BodyPartsInStudy) && request.BodyPartsInStudy.Length > 512)
+                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "อวัยวะที่ตรวจยาวเกินกำหนด (สูงสุด 512 ตัวอักษร)");
+                    if (!string.IsNullOrEmpty(request.ModalitiesInStudy) && request.ModalitiesInStudy.Length > 256)
+                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Modality ยาวเกินกำหนด (สูงสุด 256 ตัวอักษร)");
+                    if (!string.IsNullOrEmpty(request.PatientComments) && request.PatientComments.Length > 4000)
+                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "หมายเหตุผู้ป่วยยาวเกินกำหนด (สูงสุด 4000 ตัวอักษร)");
+
+                    // Optional bodypart standardization via mapping table
+                    var enableStd = System.Configuration.ConfigurationManager.AppSettings["EnableBodypartStandardization"];
+                    if (!string.IsNullOrWhiteSpace(enableStd) && enableStd.Equals("true", StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (!string.IsNullOrWhiteSpace(request.BodyPartsInStudy))
+                        {
+                            Connect();
+                            using (var cmd = new SqlCommand())
+                            {
+                                cmd.Connection = conn;
+                                cmd.CommandText = "SELECT TOP 1 StandardValue FROM dicom.dbo.BodypartMapping WITH (NOLOCK) WHERE IsActive = 1 AND InputValue = @InputValue";
+                                cmd.Parameters.AddWithValue("@InputValue", request.BodyPartsInStudy);
+                                var std = cmd.ExecuteScalar() as string;
+                                if (!string.IsNullOrWhiteSpace(std))
+                                {
+                                    request.BodyPartsInStudy = std;
+                                }
+                            }
+                        }
+                    }
+
+                    var changes = new List<StudyDetailChange>();
+
+                    // Compute changes safely and update
+                    if (request.BodyPartsInStudy != null && request.BodyPartsInStudy != study.BodyPartsInStudy)
+                    {
+                        changes.Add(new StudyDetailChange { FieldName = "BodyPartsInStudy", OldValue = study.BodyPartsInStudy, NewValue = request.BodyPartsInStudy });
+                        study.BodyPartsInStudy = request.BodyPartsInStudy;
+                    }
+                    if (request.StudyDescription != null && request.StudyDescription != study.StudyDescription)
+                    {
+                        changes.Add(new StudyDetailChange { FieldName = "StudyDescription", OldValue = study.StudyDescription, NewValue = request.StudyDescription });
+                        study.StudyDescription = request.StudyDescription;
+                    }
+                    if (request.ModalitiesInStudy != null && request.ModalitiesInStudy != study.ModalitiesInStudy)
+                    {
+                        changes.Add(new StudyDetailChange { FieldName = "ModalitiesInStudy", OldValue = study.ModalitiesInStudy, NewValue = request.ModalitiesInStudy });
+                        study.ModalitiesInStudy = request.ModalitiesInStudy;
+                    }
+                    if (request.PatientComments != null && request.PatientComments != study.PatientComments)
+                    {
+                        changes.Add(new StudyDetailChange { FieldName = "PatientComments", OldValue = study.PatientComments, NewValue = request.PatientComments });
+                        study.PatientComments = request.PatientComments;
+                    }
+
+                    if (changes.Count == 0)
+                    {
+                        return Request.CreateResponse(HttpStatusCode.OK, true);
+                    }
+
+                    dbPACS.Studies.Attach(study);
+                    dbPACS.SaveChanges();
+
+                    // Audit write via stored procedure for performance and consistency
+                    Connect();
+                    foreach (var ch in changes)
+                    {
+                        using (var cmd = new SqlCommand("SP_InsertPACSStudyAuditLog", conn))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@StudyInstanceUID", request.StudyInstanceUID);
+                            cmd.Parameters.AddWithValue("@ModifiedBy", request.ModifiedBy);
+                            cmd.Parameters.AddWithValue("@ModifiedByName", (object)request.ModifiedByName ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@ActionType", (object)request.ActionType ?? "Edit");
+                            cmd.Parameters.AddWithValue("@FieldName", ch.FieldName);
+                            cmd.Parameters.AddWithValue("@OldValue", (object)ch.OldValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@NewValue", (object)ch.NewValue ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@IPAddress", (object)request.IPAddress ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@UserAgent", (object)request.UserAgent ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@OrganisationUID", (object)request.OrganisationUID ?? DBNull.Value);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    tran.Complete();
+                    return Request.CreateResponse(HttpStatusCode.OK, true);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+            finally
+            {
+                Disconnect();
+            }
+        }
+
+        [Route("GetStudyAuditHistory")]
+        [HttpGet]
+        public HttpResponseMessage GetStudyAuditHistory(string studyInstanceUID)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                Connect();
+                using (var cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = @"SELECT TOP 200 AuditId, StudyInstanceUID, ModifiedDttm, ModifiedBy, ModifiedByName, ActionType, FieldName, OldValue, NewValue, IPAddress, UserAgent, OrganisationUID
+                                          FROM dicom.dbo.PACSStudyAuditLog WITH (NOLOCK)
+                                          WHERE StudyInstanceUID = @StudyInstanceUID
+                                          ORDER BY ModifiedDttm DESC, AuditId DESC";
+                    cmd.Parameters.AddWithValue("@StudyInstanceUID", studyInstanceUID);
+                    dt.Load(cmd.ExecuteReader());
+                }
+                var list = dt.ToList<StudyAuditLogEntry>();
+                return Request.CreateResponse(HttpStatusCode.OK, list);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+            finally
+            {
+                Disconnect();
+            }
+        }
+
+        [Route("GetAuditReport")]
+        [HttpGet]
+        public HttpResponseMessage GetAuditReport(DateTime from, DateTime to, int? userId = null)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                Connect();
+                using (var cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    var sb = new StringBuilder();
+                    sb.Append(@"SELECT StudyInstanceUID, ModifiedDttm, ModifiedBy, ModifiedByName, ActionType, FieldName, OldValue, NewValue, IPAddress, UserAgent, OrganisationUID
+                                FROM dicom.dbo.PACSStudyAuditLog WITH (NOLOCK)
+                                WHERE ModifiedDttm >= @From AND ModifiedDttm < DATEADD(DAY,1,@To)");
+                    if (userId.HasValue)
+                    {
+                        sb.Append(" AND ModifiedBy = @UserId");
+                    }
+                    sb.Append(" ORDER BY ModifiedDttm DESC, AuditId DESC");
+                    cmd.CommandText = sb.ToString();
+                    cmd.Parameters.AddWithValue("@From", from);
+                    cmd.Parameters.AddWithValue("@To", to);
+                    if (userId.HasValue) cmd.Parameters.AddWithValue("@UserId", userId.Value);
+                    dt.Load(cmd.ExecuteReader());
+                }
+                var list = dt.ToList<StudyAuditLogEntry>();
+                return Request.CreateResponse(HttpStatusCode.OK, list);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+            finally
+            {
+                Disconnect();
             }
         }
 

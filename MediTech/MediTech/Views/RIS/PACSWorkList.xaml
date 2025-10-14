@@ -292,6 +292,9 @@
                                     <dx:SimpleButton Command="{Binding EditStudyCommand}" 
                                      Content="Edit Study" Width="90" 
                                      Height="25" HorizontalAlignment="Left" />
+                                    <dx:SimpleButton Command="{Binding EditStudyDetailsCommand}"
+                                                     Content="แก้ไขรายละเอียด" Width="110"
+                                                     Height="25" HorizontalAlignment="Left" />
                                     
                                     <dx:SimpleButton Command="{Binding MicroDicomCommand}" 
                                                      IsEnabled="{Binding IsEnabledMicroDiom}"

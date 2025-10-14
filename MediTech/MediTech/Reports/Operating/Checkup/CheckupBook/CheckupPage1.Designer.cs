@@ -530,7 +530,7 @@
             this.xrTableCell1,
             this.lbDateCheckup});
             this.xrTableRow1.Name = "xrTableRow1";
-            this.xrTableRow1.Weight = 0.75999891052229474D;
+            this.xrTableRow1.Weight = 0.75999891052229473D;
             // 
             // xrTableCell1
             // 
@@ -674,7 +674,7 @@
             this.lbGender.StylePriority.UsePadding = false;
             this.lbGender.StylePriority.UseTextAlignment = false;
             this.lbGender.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            this.lbGender.Weight = 1.0210340503487037D;
+            this.lbGender.Weight = 1.0210340503487036D;
             // 
             // xrTableRow4
             // 
@@ -899,7 +899,7 @@
             this.xrTableCell55.StylePriority.UseBorderWidth = false;
             this.xrTableCell55.StylePriority.UseFont = false;
             this.xrTableCell55.StylePriority.UseTextAlignment = false;
-            this.xrTableCell55.Text = "แพทย์หญิง รุจิรา เทียบเทียม ว.43355\r\n(แพทย์อาชีวเวชศาสตร์)";
+            this.xrTableCell55.Text = "นายแพทย์ รัฐวัชร์ อริยรัฐรังสี ว.19832\r\n(แพทย์อาชีวเวชศาสตร์)";
             this.xrTableCell55.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             this.xrTableCell55.Weight = 1.6500003051757812D;
             // 
@@ -996,7 +996,7 @@
             this.lbName16.Font = new System.Drawing.Font("Angsana New", 8F);
             this.lbName16.Name = "lbName16";
             this.lbName16.StylePriority.UseFont = false;
-            this.lbName16.Weight = 1.5083327681018564D;
+            this.lbName16.Weight = 1.5083327681018563D;
             // 
             // TopMargin
             // 
@@ -1050,7 +1050,7 @@
             this.PatientUID,
             this.PatientVisitUID,
             this.PayorDetailUID});
-            this.Version = "20.2";
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVatalSign)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
