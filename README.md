@@ -10,6 +10,47 @@
 - มาตรฐาน Bodypart (ออปชัน) ผ่านตาราง Mapping + Feature Flag
 - ไทย‑first UX: ป้ายกำกับ/ข้อความเตือน/ยืนยันทั้งหมดเป็นภาษาไทย และสอดคล้องสไตล์ DevExpress เดิม
 
+## ความคืบหน้า (Progress)
+อัปเดตล่าสุด: ปรับปรุงครบ End‑to‑End พร้อมสังเกตการณ์และเอกสารภาษาไทย
+- UI ไทยและประสบการณ์ใช้งาน
+  - สร้างหน้าต่าง “แก้ไขรายละเอียด” (DevExpress) + สรุป diff ไทย + ปุ่มรีเฟรชประวัติ + Modality แบบคอมโบบ็อกซ์ (CR/DX/CT/ES/MR/MG/OT/RF/US)
+  - Debounce ตรวจจับการเปลี่ยนแปลง ลดภาระ UI และเพิ่มความลื่นไหล
+- Service/WebApi
+  - Endpoint: Update + Audit History + Audit Report (with transaction)
+  - Validation สองชั้น (Client/Server) ข้อความไทยครบ และ RBAC ทั้งสองฝั่ง
+  - Bodypart Standardization (ออปชัน) ผ่านตาราง Mapping + Feature Flag
+- Database/SQL
+  - ตาราง Audit พร้อมดัชนี, Stored Procedure แบบ idempotent, สคริปต์ Mapping (ออปชัน)
+- Observability/Performance
+  - Structured logging + Correlation ID (วิเคราะห์เหตุขัดข้องเร็วขึ้น) และ query audit เร็วด้วยดัชนี
+- เอกสารไทยครบ
+  - คู่มือผู้ใช้/Runbook Admin‑Ops/แผนพัฒนา และสรุปผู้บริหาร (ลิงก์ด้านล่าง)
+
+## ความยาก/ผลกระทบเชิงเทคนิค (Complexity & Impact)
+- Cross‑Layer Change: UI (WPF/DevExpress) ↔ ViewModel (MVVM) ↔ DataService ↔ WebApi ↔ SQL — ต้องคงสัญญาข้อมูลและ validation ให้สอดคล้องสองฝั่ง
+- Atomic Update+Audit: ใช้ธุรกรรมรับประกันความถูกต้องของประวัติและข้อมูลจริง (no partial write)
+- RBAC สองชั้น + Validation สองชั้น: ลดความเสี่ยงจาก misuse และข้อมูลผิดรูปแบบ
+- Standardization Flag: ออกแบบให้เปิด/ปิดได้แบบ config‑driven ไม่ต้องแก้โค้ด
+- Observability: เพิ่ม correlation ID + structured logs ช่วยลด MTTR และรองรับการตรวจสอบย้อนหลัง
+- Performance: ดัชนีประวัติ audit, UI async/debounce ป้องกัน freeze, query ไม่มี N+1
+
+## KPI เป้าหมาย (เสนอใช้วัดทีม Dev)
+- Data Correctness & Auditability
+  - 100% ของการแก้ไขมี audit entry ครบ (who/when/what/where/why)
+  - 0 partial update ในธุรกรรม update+audit
+- Security & Compliance
+  - ≥ 99% ของ request ที่ไม่มีสิทธิ์ถูกปฏิเสธ (RBAC ทั้งสองฝั่ง)
+  - ไม่มี PII รั่วใน log (ตรวจด้วย code review checklist)
+- Performance & UX
+  - โหลดประวัติ 200 รายการ ≤ 300 ms บนสภาพแวดล้อมเป้าหมาย
+  - UI save asynchronous: ไม่เกิด UI freeze ที่สังเกตได้ (≤ 100 ms block)
+- Operability
+  - ลด MTTR เหตุขัดข้องที่เกี่ยวกับฟีเจอร์ ≥ 30% ด้วย correlation ID
+  - เอกสารผู้ใช้/Runbook ครบและผ่านการทดสอบ UAT
+- Delivery
+  - Test coverage (unit/VM/UI/integration) ≥ เกณฑ์ทีม (เช่น 60–80%)
+  - Lead time for change ลดลงเมื่อเทียบฟีเจอร์เทียบเคียง (ระบุใน Sprint Report)
+
 ## โครงสร้างและสถาปัตยกรรม (สรุป)
 - Desktop: WPF (.NET, MVVM via MvvmLight), DevExpress
 - Web API: ASP.NET WebApi 2 (PACSWebApi)
