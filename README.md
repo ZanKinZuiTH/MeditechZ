@@ -80,6 +80,8 @@ GET /Api/PACS/GetAuditReport?from=2025-10-01&to=2025-10-14&userId=123
 - แผนพัฒนาและรายละเอียด End‑to‑End: [`PACS_Xray_Detail_Edit_Feature_Development_Plan.md`](./PACS_Xray_Detail_Edit_Feature_Development_Plan.md)
 - วิเคราะห์ปัญหา Bodypart: [`PACS_Bodypart_Issue_Analysis_Report.md`](./PACS_Bodypart_Issue_Analysis_Report.md)
 - SQL Scripts: [`Documentation/SQL`](./Documentation/SQL)
+ - คู่มือผู้ใช้ (ไทย): [`Documentation/UserGuide_XrayEdit_TH.md`](./Documentation/UserGuide_XrayEdit_TH.md)
+ - Runbook Admin/Ops (ไทย): [`Documentation/AdminOps_Runbook_TH.md`](./Documentation/AdminOps_Runbook_TH.md)
 
 ## เส้นทางทดสอบ/UAT (สั้น)
 - แก้ไข Bodypart/Description/Modality/Comments → บันทึก → ตรวจ Audit ล่าสุดต้องมีรายการใหม่ (1 ฟิลด์ = 1 แถว)

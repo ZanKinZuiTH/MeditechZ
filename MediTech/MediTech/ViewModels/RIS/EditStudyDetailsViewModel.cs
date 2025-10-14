@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace MediTech.ViewModels
 {
@@ -20,28 +21,28 @@ namespace MediTech.ViewModels
         public string BodyPartsInStudy
         {
             get { return _BodyPartsInStudy; }
-            set { Set(ref _BodyPartsInStudy, value); CheckForChanges(); }
+            set { Set(ref _BodyPartsInStudy, value); DebounceChanges(); }
         }
 
         private string _StudyDescription;
         public string StudyDescription
         {
             get { return _StudyDescription; }
-            set { Set(ref _StudyDescription, value); CheckForChanges(); }
+            set { Set(ref _StudyDescription, value); DebounceChanges(); }
         }
 
         private string _ModalitiesInStudy;
         public string ModalitiesInStudy
         {
             get { return _ModalitiesInStudy; }
-            set { Set(ref _ModalitiesInStudy, value); CheckForChanges(); }
+            set { Set(ref _ModalitiesInStudy, value); DebounceChanges(); }
         }
 
         private string _PatientComments;
         public string PatientComments
         {
             get { return _PatientComments; }
-            set { Set(ref _PatientComments, value); CheckForChanges(); }
+            set { Set(ref _PatientComments, value); DebounceChanges(); }
         }
 
         private List<StudyAuditLogEntry> _AuditHistory;
@@ -192,6 +193,25 @@ namespace MediTech.ViewModels
                 ChangeSummary = string.Empty;
             }
             SaveChangesCommand.RaiseCanExecuteChanged();
+        }
+
+        private DispatcherTimer _debounceTimer;
+        private void DebounceChanges()
+        {
+            if (_debounceTimer == null)
+            {
+                _debounceTimer = new DispatcherTimer
+                {
+                    Interval = TimeSpan.FromMilliseconds(200)
+                };
+                _debounceTimer.Tick += (s, e) =>
+                {
+                    _debounceTimer.Stop();
+                    CheckForChanges();
+                };
+            }
+            _debounceTimer.Stop();
+            _debounceTimer.Start();
         }
 
         private static string Safe(string v)
