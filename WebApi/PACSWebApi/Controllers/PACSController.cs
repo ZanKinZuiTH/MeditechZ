@@ -23,6 +23,7 @@ using System.Data.Entity.Migrations;
 using PACS.DataBase;
 using System.Transactions;
 using System.Text;
+using PACSWebApi.Helpter;
 
 namespace MediTechWebApi.Controllers
 {
@@ -761,11 +762,14 @@ Update Instances Set PatientID = @NewHN  Where PatientID = @OldHN
         {
             try
             {
+                var corrId = Guid.NewGuid().ToString("N");
+                StructuredLogger.Info(new { corrId, action = "UpdateStudyDetailsWithAudit:request", request = new { request.StudyInstanceUID, request.ModifiedBy, request.ModifiedByName, request.RoleUID, request.RoleName } });
                 using (var tran = new TransactionScope())
                 {
                     var study = dbPACS.Studies.Find(request.StudyInstanceUID);
                     if (study == null)
                     {
+                        StructuredLogger.Error(new { corrId, error = "Study not found", request.StudyInstanceUID });
                         return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "ไม่พบ Study ที่ต้องการแก้ไข");
                     }
 
@@ -776,18 +780,31 @@ Update Instances Set PatientID = @NewHN  Where PatientID = @OldHN
                     };
                     if (string.IsNullOrWhiteSpace(request.RoleName) || !allowedRoles.Contains(request.RoleName))
                     {
+                        StructuredLogger.Error(new { corrId, error = "Forbidden role", request.RoleName });
                         return Request.CreateErrorResponse(HttpStatusCode.Forbidden, "คุณไม่มีสิทธิ์แก้ไขรายละเอียดการตรวจ");
                     }
 
                     // Basic server-side validation with Thai messages
                     if (!string.IsNullOrEmpty(request.StudyDescription) && request.StudyDescription.Length > 256)
+                    {
+                        StructuredLogger.Error(new { corrId, error = "StudyDescription too long", request.StudyDescriptionLength = request.StudyDescription.Length });
                         return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "รายละเอียดการตรวจยาวเกินกำหนด (สูงสุด 256 ตัวอักษร)");
+                    }
                     if (!string.IsNullOrEmpty(request.BodyPartsInStudy) && request.BodyPartsInStudy.Length > 512)
+                    {
+                        StructuredLogger.Error(new { corrId, error = "BodyPartsInStudy too long", request.BodyPartsInStudyLength = request.BodyPartsInStudy.Length });
                         return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "อวัยวะที่ตรวจยาวเกินกำหนด (สูงสุด 512 ตัวอักษร)");
+                    }
                     if (!string.IsNullOrEmpty(request.ModalitiesInStudy) && request.ModalitiesInStudy.Length > 256)
+                    {
+                        StructuredLogger.Error(new { corrId, error = "ModalitiesInStudy too long", request.ModalitiesInStudyLength = request.ModalitiesInStudy.Length });
                         return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Modality ยาวเกินกำหนด (สูงสุด 256 ตัวอักษร)");
+                    }
                     if (!string.IsNullOrEmpty(request.PatientComments) && request.PatientComments.Length > 4000)
+                    {
+                        StructuredLogger.Error(new { corrId, error = "PatientComments too long", request.PatientCommentsLength = request.PatientComments.Length });
                         return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "หมายเหตุผู้ป่วยยาวเกินกำหนด (สูงสุด 4000 ตัวอักษร)");
+                    }
 
                     // Optional bodypart standardization via mapping table
                     var enableStd = System.Configuration.ConfigurationManager.AppSettings["EnableBodypartStandardization"];
@@ -804,6 +821,7 @@ Update Instances Set PatientID = @NewHN  Where PatientID = @OldHN
                                 var std = cmd.ExecuteScalar() as string;
                                 if (!string.IsNullOrWhiteSpace(std))
                                 {
+                                    StructuredLogger.Info(new { corrId, mapping = "Bodypart", input = request.BodyPartsInStudy, mapped = std });
                                     request.BodyPartsInStudy = std;
                                 }
                             }
@@ -864,11 +882,13 @@ Update Instances Set PatientID = @NewHN  Where PatientID = @OldHN
                     }
 
                     tran.Complete();
+                    StructuredLogger.Info(new { corrId, action = "UpdateStudyDetailsWithAudit:success", changesCount = changes.Count, request.StudyInstanceUID });
                     return Request.CreateResponse(HttpStatusCode.OK, true);
                 }
             }
             catch (Exception ex)
             {
+                StructuredLogger.Error(new { action = "UpdateStudyDetailsWithAudit:exception", ex.Message, ex.StackTrace });
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
             }
             finally
