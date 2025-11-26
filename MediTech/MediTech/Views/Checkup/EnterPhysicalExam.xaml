@@ -94,6 +94,10 @@
                             <dxe:CheckEdit  Height="25" EditValue="{Binding PatientVitalSign.IsPregnant,Mode=TwoWay}"
                                             VerticalAlignment="Top"/>
                         </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="สงสัยตั้งครรภ์" FontSize="17">
+                            <dxe:CheckEdit  Height="25" EditValue="{Binding PatientVitalSign.IsSuspectedPregnant,Mode=TwoWay}"
+                                            VerticalAlignment="Top"/>
+                        </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                     
                 </dxlc:LayoutGroup>

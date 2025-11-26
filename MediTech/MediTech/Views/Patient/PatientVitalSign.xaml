@@ -176,6 +176,15 @@
                             <TextBlock />
                             <TextBlock />
                         </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup>
+                            <TextBlock Name="lblSuspectedPregnant" Text="สงสัยตั้งครรภ์" FontSize="14" />
+                            <dxe:CheckEdit  Height="25" EditValue="{Binding IsSuspectedPregnant}"
+                                            AllowNullInput="True"
+                                            Width="100" VerticalAlignment="Top"/>
+                            <TextBlock />
+                            <TextBlock />
+                            <TextBlock />
+                        </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup Orientation="Horizontal">
                             <TextBlock Name="lblSkin" Text="สีผิว" FontSize="14" />
                             <dxe:ComboBoxEdit 

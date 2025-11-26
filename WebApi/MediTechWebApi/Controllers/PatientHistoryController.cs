@@ -51,6 +51,7 @@ namespace MediTechWebApi.Controllers
                     OxygenSat = p.OxygenSat,
                     WaistCircumference = p.WaistCircumference,
                     IsPregnant = p.IsPregnant,
+                    IsSuspectedPregnant = p.IsSuspectedPregnant,
                     Comments = p.Comments,
                     RecordedBy = SqlFunction.fGetCareProviderName(p.CUser),
                     HipCircumference = p.HipCircumference,
@@ -86,6 +87,7 @@ namespace MediTechWebApi.Controllers
                     HipCircumference = p.HipCircumference,
                     WHRValue = p.WHRValue,
                     IsPregnant = p.IsPregnant,
+                    IsSuspectedPregnant = p.IsSuspectedPregnant,
                     Comments = p.Comments,
                     RecordedBy = SqlFunction.fGetCareProviderName(p.CUser)
                 }).ToList();
@@ -119,6 +121,7 @@ namespace MediTechWebApi.Controllers
                     HipCircumference = p.HipCircumference,
                     WHRValue = p.WHRValue,
                     IsPregnant = p.IsPregnant,
+                    IsSuspectedPregnant = p.IsSuspectedPregnant,
                     Comments = p.Comments,
                     Skin = p.Skin,
                     MentalHealth = p.MentalHealth,
@@ -165,6 +168,7 @@ namespace MediTechWebApi.Controllers
                 vitalsign.HipCircumference = model.HipCircumference;
                 vitalsign.WHRValue = model.WHRValue;
                 vitalsign.IsPregnant = model.IsPregnant;
+                vitalsign.IsSuspectedPregnant = model.IsSuspectedPregnant;
                 vitalsign.Skin = model.Skin;
                 vitalsign.MentalHealth = model.MentalHealth;
                 vitalsign.Comments = model.Comments;

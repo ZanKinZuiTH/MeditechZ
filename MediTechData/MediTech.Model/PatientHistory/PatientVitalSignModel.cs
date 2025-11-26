@@ -27,6 +27,7 @@ namespace MediTech.Model
         public Nullable<double> HipCircumference { get; set; }
         public Nullable<double> WHRValue { get; set; }
         public bool? IsPregnant { get; set; }
+        public bool? IsSuspectedPregnant { get; set; }
         public string Comments { get; set; }
         public string Skin { get; set; }
         public string MentalHealth { get; set; }

@@ -226,7 +226,7 @@ namespace MediTech.ViewModels
                 reviewRequestDetail.ResultComponents = new ObservableCollection<ResultComponentModel>(ResultComponentItems.Where(p => !string.IsNullOrEmpty(p.ResultValue)));
                 if (PatientVitalSign.Weight != null || PatientVitalSign.Height != null || PatientVitalSign.BPSys != null || PatientVitalSign.BPDio != null
                     || PatientVitalSign.Pulse != null || PatientVitalSign.WaistCircumference != null || PatientVitalSign.HipCircumference != null
-                    || PatientVitalSign.IsPregnant == true)
+                    || PatientVitalSign.IsPregnant == true || PatientVitalSign.IsSuspectedPregnant == true)
                 {
                     PatientVitalSign.RecordedDttm = DateTime.Now;
                     DataService.PatientHistory.ManagePatientVitalSign(PatientVitalSign, AppUtil.Current.UserID);
