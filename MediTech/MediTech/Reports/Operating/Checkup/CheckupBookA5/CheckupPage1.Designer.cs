@@ -1258,7 +1258,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel4.StylePriority.UseFont = false;
             this.xrLabel4.StylePriority.UsePadding = false;
             this.xrLabel4.StylePriority.UseTextAlignment = false;
-            this.xrLabel4.Text = "พ.ญ. ธัญลักษณ์ นิลไพฑูรย์\r\nว.24689(แพทย์อาชีวเวชศาสตร์)";
+            this.xrLabel4.Text = "นายแพทย์ รัฐวัชร์ อริยรัฐรังสี ว.19832\r\n(แพทย์อาชีวเวชศาสตร์)";
             this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // PatientUID

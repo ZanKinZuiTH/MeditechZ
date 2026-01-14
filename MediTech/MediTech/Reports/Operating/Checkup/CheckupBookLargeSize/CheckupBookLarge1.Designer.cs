@@ -311,7 +311,7 @@
             this.xrTableCell55.StylePriority.UseBorderWidth = false;
             this.xrTableCell55.StylePriority.UseFont = false;
             this.xrTableCell55.StylePriority.UseTextAlignment = false;
-            this.xrTableCell55.Text = "แพทย์หญิง รุจิรา เทียบเทียม ว.43355\r\n(แพทย์อาชีวเวชศาสตร์)";
+            this.xrTableCell55.Text = "นายแพทย์ รัฐวัชร์ อริยรัฐรังสี ว.19832\r\n(แพทย์อาชีวเวชศาสตร์)";
             this.xrTableCell55.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             this.xrTableCell55.Weight = 1.6500003051757812D;
             // 
@@ -670,7 +670,7 @@
             this.xrTableCell1,
             this.lbDateCheckup});
             this.xrTableRow1.Name = "xrTableRow1";
-            this.xrTableRow1.Weight = 0.75999891052229474D;
+            this.xrTableRow1.Weight = 0.75999891052229473D;
             // 
             // xrTableCell1
             // 
@@ -1216,7 +1216,7 @@
             this.PatientUID,
             this.PatientVisitUID,
             this.PayorDetailUID});
-            this.Version = "20.2";
+            this.Version = "22.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbPatientDetail)).EndInit();

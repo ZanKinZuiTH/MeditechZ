@@ -589,7 +589,7 @@ namespace MediTech.DataBase
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTCheckupLabCompareByGroupTest_Result>("pRPTCheckupLabCompareByGroupTest", p_PatientUIDParameter, p_PayorDetailUIDParameter, p_GPRSTUIDParameter, p_PatientVisitUIDParameter);
         }
     
-        public virtual ObjectResult<pRPTDoctorFee2_Result> pRPTDoctorFee2(Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, Nullable<int> p_CareproviderUID)
+        public virtual ObjectResult<pRPTDoctorFee2_Result> pRPTDoctorFee2(Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, Nullable<int> p_CareproviderUID, string p_DoctorFeeType, string p_OrganisationList)
         {
             var p_DateFromParameter = p_DateFrom.HasValue ?
                 new ObjectParameter("P_DateFrom", p_DateFrom) :
@@ -603,7 +603,15 @@ namespace MediTech.DataBase
                 new ObjectParameter("P_CareproviderUID", p_CareproviderUID) :
                 new ObjectParameter("P_CareproviderUID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTDoctorFee2_Result>("pRPTDoctorFee2", p_DateFromParameter, p_DateToParameter, p_CareproviderUIDParameter);
+            var p_DoctorFeeTypeParameter = p_DoctorFeeType != null ?
+                new ObjectParameter("P_DoctorFeeType", p_DoctorFeeType) :
+                new ObjectParameter("P_DoctorFeeType", typeof(string));
+    
+            var p_OrganisationListParameter = p_OrganisationList != null ?
+                new ObjectParameter("P_OrganisationList", p_OrganisationList) :
+                new ObjectParameter("P_OrganisationList", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTDoctorFee2_Result>("pRPTDoctorFee2", p_DateFromParameter, p_DateToParameter, p_CareproviderUIDParameter, p_DoctorFeeTypeParameter, p_OrganisationListParameter);
         }
     
         public virtual ObjectResult<pRPTUltrasoundFee_Result> pRPTUltrasoundFee(Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, Nullable<int> p_CareproviderUID)

@@ -138,6 +138,25 @@ namespace MediTechWebApi.Controllers
             {
                 DateTime now = DateTime.Now;
 
+                // Enforce mutually exclusive flags at API boundary (for older clients / bad payloads)
+                if (model != null)
+                {
+                    bool isPregnant = model.IsPregnant ?? false;
+                    bool isSuspected = model.IsSuspectedPregnant ?? false;
+                    if (isPregnant && isSuspected)
+                    {
+                        // Confirmed pregnancy wins
+                        model.IsSuspectedPregnant = false;
+                    }
+                    else if (isPregnant)
+                    {
+                        model.IsSuspectedPregnant = false;
+                    }
+                    else if (isSuspected)
+                    {
+                        model.IsPregnant = false;
+                    }
+                }
 
                 PatientVitalSign vitalsign = db.PatientVitalSign.Find(model.PatientVitalSignUID);
 

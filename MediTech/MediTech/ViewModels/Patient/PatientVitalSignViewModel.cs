@@ -191,14 +191,41 @@ namespace MediTech.ViewModels
             set { Set(ref _WaistCircumference, value); }
         }
 
+        private bool _suppressPregnancyMutualExclusion;
+
         private bool _IsPregnant;
 
         public bool IsPregnant
         {
             get { return _IsPregnant; }
-            set { Set(ref _IsPregnant, value); }
+            set
+            {
+                Set(ref _IsPregnant, value);
+                if (!_suppressPregnancyMutualExclusion && value == true)
+                {
+                    _suppressPregnancyMutualExclusion = true;
+                    IsSuspectedPregnant = false;
+                    _suppressPregnancyMutualExclusion = false;
+                }
+            }
         }
 
+        private bool _IsSuspectedPregnant;
+
+        public bool IsSuspectedPregnant
+        {
+            get { return _IsSuspectedPregnant; }
+            set
+            {
+                Set(ref _IsSuspectedPregnant, value);
+                if (!_suppressPregnancyMutualExclusion && value == true)
+                {
+                    _suppressPregnancyMutualExclusion = true;
+                    IsPregnant = false;
+                    _suppressPregnancyMutualExclusion = false;
+                }
+            }
+        }
 
         private string _Comment;
 
@@ -304,7 +331,33 @@ namespace MediTech.ViewModels
         public bool IsPregnantRe
         {
             get { return _IsPregnantRe; }
-            set { Set(ref _IsPregnantRe, value); }
+            set
+            {
+                Set(ref _IsPregnantRe, value);
+                if (!_suppressPregnancyMutualExclusion && value == true)
+                {
+                    _suppressPregnancyMutualExclusion = true;
+                    IsSuspectedPregnantRe = false;
+                    _suppressPregnancyMutualExclusion = false;
+                }
+            }
+        }
+
+        private bool _IsSuspectedPregnantRe;
+
+        public bool IsSuspectedPregnantRe
+        {
+            get { return _IsSuspectedPregnantRe; }
+            set
+            {
+                Set(ref _IsSuspectedPregnantRe, value);
+                if (!_suppressPregnancyMutualExclusion && value == true)
+                {
+                    _suppressPregnancyMutualExclusion = true;
+                    IsPregnantRe = false;
+                    _suppressPregnancyMutualExclusion = false;
+                }
+            }
         }
 
         private string _CommentRe;
@@ -441,6 +494,9 @@ namespace MediTech.ViewModels
                     OxygenSatRe = null;
                     WaistCircumferenceRe = null;
                     IsPregnant = false;
+                    IsSuspectedPregnant = false;
+                    IsPregnantRe = false;
+                    IsSuspectedPregnantRe = false;
                     CommentRe = null;
                     SelectedSkinRe = null;
                     SelectedMentalHealthRe = null;
@@ -479,6 +535,7 @@ namespace MediTech.ViewModels
             StampTimeRe = model.RecordedDttm;
             WaistCircumferenceRe = model.WaistCircumference;
             IsPregnantRe = model.IsPregnant ?? false;
+            IsSuspectedPregnantRe = model.IsSuspectedPregnant ?? false;
             SelectedSkinRe = model.Skin != null ? SkinSource.FirstOrDefault(p => p.Display == model.Skin) : null;
             SelectedMentalHealthRe = model.MentalHealth != null ? MentalHealthSource.FirstOrDefault(p => p.Display == model.MentalHealth) : null;
             CommentRe = model.Comments;
@@ -504,6 +561,7 @@ namespace MediTech.ViewModels
                 model.RecordedDttm = DateTime.Now;
                 model.WaistCircumference = WaistCircumference;
                 model.IsPregnant = IsPregnant;
+                model.IsSuspectedPregnant = IsSuspectedPregnant;
                 model.Skin = SelectedSkin?.Display;
                 model.MentalHealth = SelectedMentalHealth?.Display;
                 model.RecordedDttm = DateTime.Parse(StampDate.Value.ToString("dd/MM/yyyy") + " " + StampTime.Value.ToString("HH:mm"));
@@ -525,6 +583,7 @@ namespace MediTech.ViewModels
                     model.OxygenSat = OxygenSatRe;
                     model.WaistCircumference = WaistCircumferenceRe;
                     model.IsPregnant = IsPregnantRe;
+                    model.IsSuspectedPregnant = IsSuspectedPregnantRe;
                     model.RecordedDttm = DateTime.Parse(StampDateRe.Value.ToString("dd/MM/yyyy") + " " + StampTimeRe.Value.ToString("HH:mm"));
                     model.Comments = !string.IsNullOrEmpty(CommentRe) ? CommentRe.Trim() : null;
                     model.Skin = SelectedSkinRe?.Display;

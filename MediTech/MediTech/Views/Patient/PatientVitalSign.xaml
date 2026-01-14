@@ -168,7 +168,16 @@
                             <TextBlock />
                         </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup>
-                            <TextBlock Name="lblPregnant" Text="Pregnant" FontSize="14" />
+                            <TextBlock Name="lblSuspectedPregnant" Text="สงสัยตั้งครรภ์" FontSize="14" />
+                            <dxe:CheckEdit  Height="25" EditValue="{Binding IsSuspectedPregnant}"
+                                            AllowNullInput="True"
+                                            Width="100" VerticalAlignment="Top"/>
+                            <TextBlock />
+                            <TextBlock />
+                            <TextBlock />
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup>
+                            <TextBlock Name="lblPregnant" Text="ตั้งครรภ์" FontSize="14" />
                             <dxe:CheckEdit  Height="25" EditValue="{Binding IsPregnant}"
                                             AllowNullInput="True"
                                             Width="100" VerticalAlignment="Top"/>
@@ -401,7 +410,14 @@
                                 <TextBlock />
                             </dxlc:LayoutGroup>
                             <dxlc:LayoutGroup>
-                                <TextBlock Name="lblPregnantRe" Text="Pregnant" FontSize="14" />
+                                <TextBlock Name="lblSuspectedPregnantRe" Text="สงสัยตั้งครรภ์" FontSize="14" />
+                                <dxe:CheckEdit Width="100"   EditValue="{Binding IsSuspectedPregnantRe}"  />
+                                <TextBlock />
+                                <TextBlock />
+                                <TextBlock />
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup>
+                                <TextBlock Name="lblPregnantRe" Text="ตั้งครรภ์" FontSize="14" />
                                 <dxe:CheckEdit Width="100"   EditValue="{Binding IsPregnantRe}"  />
                                 <TextBlock />
                                 <TextBlock />

@@ -174,15 +174,16 @@ namespace MediTech.Reports.Operating.Checkup
                     lbResultWellness.Text = sb.ToString();
 
 
-                    if (wellnessResult.Contains("สงสัยตั้งครรภ์") == true)
-                    {
-                        lbBMI.Text = "";
-                        lbObesity.Text = "สงสัยตั้งครรภ์";
-                    }
-                    else if (wellnessResult.Contains("ตั้งครรภ์") == true)
+                    // Confirmed pregnancy wins over suspected (mutual exclusive safety)
+                    if (wellnessResult.Contains("ตั้งครรภ์") == true)
                     {
                         lbBMI.Text = "";
                         lbObesity.Text = "ตั้งครรภ์";
+                    }
+                    else if (wellnessResult.Contains("สงสัยตั้งครรภ์") == true)
+                    {
+                        lbBMI.Text = "";
+                        lbObesity.Text = "สงสัยตั้งครรภ์";
                     }
                     else
                     {

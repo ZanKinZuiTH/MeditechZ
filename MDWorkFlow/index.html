@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MDWorkFlow - Daily Progress Dashboard</title>
+  <meta name="description" content="แดชบอร์ดรายงานความคืบหน้างานแบบมืออาชีพ สำหรับหัวหน้างานและผู้บริหาร">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="container header-flex">
+      <div>
+        <h1>MDWorkFlow</h1>
+        <p>ภาพรวมงานปัจจุบัน • สถานะ • ระยะเวลา • ขั้นตอน</p>
+      </div>
+      <div class="progress-block">
+        <div class="progress-label">ความคืบหน้า</div>
+        <div class="progress">
+          <div class="progress-bar" id="progress-bar" style="width:0%"></div>
+        </div>
+        <div class="progress-meta"><span id="progress-text">0%</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="summary" class="card">
+      <div class="section-head">
+        <h2>ภาพรวมสถานะ</h2>
+        <div class="filters">
+          <span class="badge" id="period">—</span>
+          <span class="badge" id="project-status">—</span>
+        </div>
+      </div>
+      <div id="overview" class="overview"></div>
+    </section>
+
+    <section id="today" class="card">
+      <div class="section-head">
+        <h2>สรุปวันนี้</h2>
+        <span class="badge" id="today-date">—</span>
+      </div>
+      <div id="today-summary" class="today-grid"></div>
+    </section>
+
+    <section id="timeline" class="card">
+      <h2>ไทม์ไลน์และแผนงาน</h2>
+      <div id="milestones" class="milestones"></div>
+    </section>
+
+    <section id="tasks" class="card">
+      <h2>งานที่กำลังทำ</h2>
+      <div id="task-list" class="task-list"></div>
+    </section>
+
+    <section id="daily" class="card">
+      <h2>Daily Updates</h2>
+      <div id="daily-list" class="daily-list"></div>
+    </section>
+
+    <section id="changelog" class="card">
+      <h2>อัปเดตล่าสุด</h2>
+      <div id="changelog-list" class="changelog-list"></div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="container">
+      <span>อัปเดตล่าสุด: <strong id="last-updated">—</strong></span>
+      <span class="sep">•</span>
+      <a href="CHANGELOG.md" target="_blank">ดู CHANGELOG</a>
+      <span class="sep">•</span>
+      <a href="README.md" target="_blank">README</a>
+    </div>
+  </footer>
+
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

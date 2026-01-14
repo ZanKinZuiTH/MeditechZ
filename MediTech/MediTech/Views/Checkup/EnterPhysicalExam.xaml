@@ -90,6 +90,10 @@
                         <TextBlock Text="ซม." FontSize="17"/>
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="สงสัยตั้งครรภ์" FontSize="17">
+                            <dxe:CheckEdit  Height="25" EditValue="{Binding PatientVitalSign.IsSuspectedPregnant,Mode=TwoWay}"
+                                            VerticalAlignment="Top"/>
+                        </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="ตั้งครรภ์" FontSize="17">
                             <dxe:CheckEdit  Height="25" EditValue="{Binding PatientVitalSign.IsPregnant,Mode=TwoWay}"
                                             VerticalAlignment="Top"/>
