@@ -51,6 +51,7 @@ namespace MediTechWebApi.Controllers
                     OxygenSat = p.OxygenSat,
                     WaistCircumference = p.WaistCircumference,
                     IsPregnant = p.IsPregnant,
+                    IsSuspectedPregnant = p.IsSuspectedPregnant,
                     Comments = p.Comments,
                     RecordedBy = SqlFunction.fGetCareProviderName(p.CUser),
                     HipCircumference = p.HipCircumference,
@@ -86,6 +87,7 @@ namespace MediTechWebApi.Controllers
                     HipCircumference = p.HipCircumference,
                     WHRValue = p.WHRValue,
                     IsPregnant = p.IsPregnant,
+                    IsSuspectedPregnant = p.IsSuspectedPregnant,
                     Comments = p.Comments,
                     RecordedBy = SqlFunction.fGetCareProviderName(p.CUser)
                 }).ToList();
@@ -119,6 +121,7 @@ namespace MediTechWebApi.Controllers
                     HipCircumference = p.HipCircumference,
                     WHRValue = p.WHRValue,
                     IsPregnant = p.IsPregnant,
+                    IsSuspectedPregnant = p.IsSuspectedPregnant,
                     Comments = p.Comments,
                     Skin = p.Skin,
                     MentalHealth = p.MentalHealth,
@@ -138,6 +141,25 @@ namespace MediTechWebApi.Controllers
             {
                 DateTime now = DateTime.Now;
 
+                // Enforce mutually exclusive flags at API boundary (for older clients / bad payloads)
+                if (model != null)
+                {
+                    bool isPregnant = model.IsPregnant ?? false;
+                    bool isSuspected = model.IsSuspectedPregnant ?? false;
+                    if (isPregnant && isSuspected)
+                    {
+                        // Confirmed pregnancy wins
+                        model.IsSuspectedPregnant = false;
+                    }
+                    else if (isPregnant)
+                    {
+                        model.IsSuspectedPregnant = false;
+                    }
+                    else if (isSuspected)
+                    {
+                        model.IsPregnant = false;
+                    }
+                }
 
                 PatientVitalSign vitalsign = db.PatientVitalSign.Find(model.PatientVitalSignUID);
 
@@ -165,6 +187,7 @@ namespace MediTechWebApi.Controllers
                 vitalsign.HipCircumference = model.HipCircumference;
                 vitalsign.WHRValue = model.WHRValue;
                 vitalsign.IsPregnant = model.IsPregnant;
+                vitalsign.IsSuspectedPregnant = model.IsSuspectedPregnant;
                 vitalsign.Skin = model.Skin;
                 vitalsign.MentalHealth = model.MentalHealth;
                 vitalsign.Comments = model.Comments;

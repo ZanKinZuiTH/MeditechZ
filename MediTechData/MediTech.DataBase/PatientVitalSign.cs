@@ -32,6 +32,7 @@ namespace MediTech.DataBase
         public Nullable<double> WaistCircumference { get; set; }
         public Nullable<double> WHRValue { get; set; }
         public Nullable<bool> IsPregnant { get; set; }
+        public Nullable<bool> IsSuspectedPregnant { get; set; }
         public string Skin { get; set; }
         public string MentalHealth { get; set; }
         public string Comments { get; set; }
@@ -41,5 +42,6 @@ namespace MediTech.DataBase
         public int MUser { get; set; }
         public string StatusFlag { get; set; }
         public byte[] TIMESTAMP { get; set; }
+        public Nullable<bool> IsSuspectedPregnant { get; set; }
     }
 }
