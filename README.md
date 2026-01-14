@@ -15,6 +15,15 @@
 
 ---
 
+## Quick navigation
+
+- **ภาพรวม**: [ภาพรวมใน 30 วินาที](#ภาพรวมใน-30-วินาที) • [จุดเด่นเชิงวิศวกรรม](#จุดเด่นเชิงวิศวกรรม-why-this-matters) • [Impact](#impact-ใส่-ตัวเลขจริง-ได้ทันที)
+- **ภาพรวมระบบ**: [สถาปัตยกรรม](#สถาปัตยกรรม-ภาพรวม) • [Flow ของข้อมูล](#flow-ของข้อมูล-จาก-ui-ไปถึง-dbreport)
+- **ติดตามงาน**: [สถานะงานปัจจุบัน](#สถานะงานปัจจุบัน-ติดตามง่าย--อัปเดตได้เลย)
+- **เอกสาร**: [เอกสารหลัก](#เอกสารหลัก-เริ่มอ่านจากตรงนี้)
+
+---
+
 ## ภาพรวมใน 30 วินาที
 
 - **Solo owner 100% (ตั้งแต่เริ่ม → go‑live → ดูแลต่อเนื่อง)**: เก็บ requirement หน้างาน, ออกแบบระบบ/DB, พัฒนา, ทดสอบ, ส่งมอบ, แก้ปัญหา production, ทำเอกสาร และพัฒนาเพิ่มตามการใช้งานจริง
@@ -53,6 +62,31 @@ flowchart LR
   D --> E[(Microsoft SQL Server)]
   A --> F[Report Templates\n(XtraReports)]
   F --> E
+```
+
+---
+
+## Flow ของข้อมูล (จาก UI ไปถึง DB/Report)
+
+```mermaid
+sequenceDiagram
+  participant UI as WPF UI
+  participant VM as ViewModel
+  participant DS as DataService
+  participant API as Web API
+  participant DB as SQL Server
+  participant RP as Reports
+
+  UI->>VM: ผู้ใช้กรอก/กดบันทึก
+  VM->>DS: เรียก service method
+  DS->>API: HTTP request
+  API->>DB: EF save/query
+  DB-->>API: ผลลัพธ์
+  API-->>DS: response
+  DS-->>VM: model
+  VM-->>UI: update state
+  UI->>RP: preview/print report
+  RP->>DB: query data
 ```
 
 ---
