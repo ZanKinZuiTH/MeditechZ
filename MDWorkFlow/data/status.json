@@ -1,0 +1,38 @@
+{
+  "updatedAt": "2025-09-23T12:05:00+07:00",
+  "project": {
+    "name": "MediTech - เอกสารตรวจสุขภาพ A5 & Toxicology",
+    "status": "in_progress",
+    "start": "2025-09-20",
+    "end": "2025-09-30",
+    "progress": 78
+  },
+  "today": {
+    "plan": "รีวิวผลการแสดง Magnesium บนเอกสาร A5 และปรับ UI แดชบอร์ดรายงาน",
+    "done": "เพิ่มเงื่อนไขกรอง magnesium/แม็กนีเซียม ใน Toxicology และส่วนที่เกี่ยวข้องทั้งหมด, สร้าง MDWorkFlow พร้อมหน้าแดชบอร์ดและ deploy workflow",
+    "risks": "ความสม่ำเสมอของ Catagory จากต้นทางข้อมูล อาจมีรายการใหม่สะกดชื่อแตกต่าง",
+    "next": "UAT กับเคสจริง 3-5 เคส และบันทึกผล/สรุปสำหรับส่งอนุมัติใช้งานจริง"
+  },
+  "milestones": [
+    { "title": "วิเคราะห์โครงสร้าง A5 และ Toxicology", "start": "2025-09-20", "end": "2025-09-21", "status": "completed" },
+    { "title": "เพิ่มเงื่อนไขแสดง Magnesium", "start": "2025-09-22", "end": "2025-09-23", "status": "completed" },
+    { "title": "ทดสอบ/ทวนสอบรายงาน", "start": "2025-09-24", "end": "2025-09-25", "status": "in_progress" },
+    { "title": "สรุปรายงานส่งหัวหน้างาน", "start": "2025-09-26", "end": "2025-09-26", "status": "pending" }
+  ],
+  "tasks": [
+    { "title": "เพิ่มการกรอง magnesium/แม็กนีเซียม ใน Toxicology", "status": "completed", "owner": "Dev" },
+    { "title": "ตรวจ UI/ตาราง tbToxicology และปีที่แสดงผล", "status": "completed", "owner": "QA" },
+    { "title": "รีวิวโค้ดและเอกสารประกอบ", "status": "in_progress", "owner": "Lead" },
+    { "title": "เตรียม UAT และคู่มือสั้น", "status": "pending", "owner": "PM" }
+  ],
+  "daily": [
+    { "title": "แก้เงื่อนไขให้ Magnesium แสดงใน Toxicology", "date": "2025-09-23", "owner": "Dev" },
+    { "title": "สร้างแดชบอร์ด MDWorkFlow และตั้งค่า Pages", "date": "2025-09-23", "owner": "DevOps" },
+    { "title": "ตรวจสอบเลย์เอาต์/ฟอนต์ให้คงเดิม", "date": "2025-09-23", "owner": "QA" }
+  ],
+  "changelog": [
+    { "title": "feat(report): include magnesium in Toxicology table", "date": "2025-09-23" },
+    { "title": "docs: add README/CHANGELOG for MDWorkFlow", "date": "2025-09-23" },
+    { "title": "ci: add GitHub Pages workflow", "date": "2025-09-23" }
+  ]
+}

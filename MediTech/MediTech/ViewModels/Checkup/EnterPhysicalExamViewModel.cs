@@ -228,6 +228,11 @@ namespace MediTech.ViewModels
                     || PatientVitalSign.Pulse != null || PatientVitalSign.WaistCircumference != null || PatientVitalSign.HipCircumference != null
                     || PatientVitalSign.IsPregnant == true || PatientVitalSign.IsSuspectedPregnant == true)
                 {
+                    // Safety net (should already be prevented by model/UI): confirmed pregnancy wins over suspected
+                    if ((PatientVitalSign.IsPregnant ?? false) && (PatientVitalSign.IsSuspectedPregnant ?? false))
+                    {
+                        PatientVitalSign.IsSuspectedPregnant = false;
+                    }
                     PatientVitalSign.RecordedDttm = DateTime.Now;
                     DataService.PatientHistory.ManagePatientVitalSign(PatientVitalSign, AppUtil.Current.UserID);
                 }

@@ -26,8 +26,36 @@ namespace MediTech.Model
         public Nullable<double> WaistCircumference { get; set; }
         public Nullable<double> HipCircumference { get; set; }
         public Nullable<double> WHRValue { get; set; }
-        public bool? IsPregnant { get; set; }
-        public bool? IsSuspectedPregnant { get; set; }
+        // Mutually exclusive flags:
+        // - If IsPregnant becomes true => force IsSuspectedPregnant to false
+        // - If IsSuspectedPregnant becomes true => force IsPregnant to false
+        private bool? _isPregnant;
+        public bool? IsPregnant
+        {
+            get { return _isPregnant; }
+            set
+            {
+                _isPregnant = value;
+                if ((_isPregnant ?? false) == true)
+                {
+                    _isSuspectedPregnant = false;
+                }
+            }
+        }
+
+        private bool? _isSuspectedPregnant;
+        public bool? IsSuspectedPregnant
+        {
+            get { return _isSuspectedPregnant; }
+            set
+            {
+                _isSuspectedPregnant = value;
+                if ((_isSuspectedPregnant ?? false) == true)
+                {
+                    _isPregnant = false;
+                }
+            }
+        }
         public string Comments { get; set; }
         public string Skin { get; set; }
         public string MentalHealth { get; set; }

@@ -42,5 +42,6 @@ namespace MediTech.DataBase
         public int MUser { get; set; }
         public string StatusFlag { get; set; }
         public byte[] TIMESTAMP { get; set; }
+        public Nullable<bool> IsSuspectedPregnant { get; set; }
     }
 }

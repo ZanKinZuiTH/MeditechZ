@@ -5,21 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="MediTechModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'MediTech.dbo.AddressSheet1$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="AddressSheet1$">
-          <Property Name="HN" Type="nvarchar" MaxLength="255" />
-          <Property Name="ชื่อสถานประกอบการ" Type="nvarchar" MaxLength="255" />
-          <Property Name="บ้านเลขที่" Type="nvarchar" MaxLength="255" />
-          <Property Name="หมู่" Type="float" />
-          <Property Name="ซอย" Type="nvarchar" MaxLength="255" />
-          <Property Name="ถนน" Type="nvarchar" MaxLength="255" />
-          <Property Name="ตำบล(แขวง)" Type="nvarchar" MaxLength="255" />
-          <Property Name="อำเภอ(เขต)" Type="nvarchar" MaxLength="255" />
-          <Property Name="จังหวัด" Type="nvarchar" MaxLength="255" />
-          <Property Name="รหัสไปรษณีย์" Type="float" />
-          <Property Name="โทรศัพท์" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
         <EntityType Name="AdmissionEvent">
           <Key>
             <PropertyRef Name="UID" />
@@ -3037,6 +3022,7 @@ warning 6013: The table/view 'MediTech.dbo.AddressSheet1$' does not have a prima
           <Property Name="MUser" Type="int" Nullable="false" />
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="IsSuspectedPregnant" Type="bit" />
         </EntityType>
         <EntityType Name="PatientWorkHistory">
           <Key>
@@ -4254,20 +4240,6 @@ warning 6013: The table/view 'MediTech.dbo.AddressSheet1$' does not have a prima
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'MediTech.dbo.Sheet1$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Sheet1$">
-          <Property Name="HN" Type="float" />
-          <Property Name="บ้านเลขที่" Type="nvarchar" MaxLength="255" />
-          <Property Name="หมู่" Type="float" />
-          <Property Name="ซอย" Type="nvarchar" MaxLength="255" />
-          <Property Name="ถนน" Type="nvarchar" MaxLength="255" />
-          <Property Name="ตำบล(แขวง)" Type="nvarchar" MaxLength="255" />
-          <Property Name="อำเภอ(เขต)" Type="nvarchar" MaxLength="255" />
-          <Property Name="จังหวัด" Type="nvarchar" MaxLength="255" />
-          <Property Name="รหัสไปรษณีย์" Type="float" />
-          <Property Name="โทรศัพท์" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
         <EntityType Name="Speciality">
           <Key>
             <PropertyRef Name="UID" />
@@ -5508,6 +5480,8 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
           <Parameter Name="P_CareproviderUID" Type="int" Mode="In" />
+          <Parameter Name="P_DoctorFeeType" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTDrugStoreNetProfit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
@@ -6420,6 +6394,8 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
             <Parameter Name="P_CareproviderUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_DoctorFeeType" Mode="In" Type="String" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pRPTUltrasoundFee" ReturnType="Collection(MediTechModel.pRPTUltrasoundFee_Result)">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
@@ -9976,6 +9952,7 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
           <Property Name="MUser" Type="Int32" Nullable="false" />
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IsSuspectedPregnant" Type="Boolean" />
         </EntityType>
         <EntityType Name="PatientWorkHistory">
           <Key>
@@ -15090,6 +15067,7 @@ warning 6002: The table/view 'MediTech.dbo.vAllPayorAgreementsDiscount' does not
           <EntitySetMapping Name="PatientVitalSign">
             <EntityTypeMapping TypeName="MediTechModel.PatientVitalSign">
               <MappingFragment StoreEntitySet="PatientVitalSign">
+                <ScalarProperty Name="IsSuspectedPregnant" ColumnName="IsSuspectedPregnant" />
                 <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
                 <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
                 <ScalarProperty Name="MUser" ColumnName="MUser" />

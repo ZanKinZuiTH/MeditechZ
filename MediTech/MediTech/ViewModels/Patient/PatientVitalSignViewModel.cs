@@ -191,12 +191,23 @@ namespace MediTech.ViewModels
             set { Set(ref _WaistCircumference, value); }
         }
 
+        private bool _suppressPregnancyMutualExclusion;
+
         private bool _IsPregnant;
 
         public bool IsPregnant
         {
             get { return _IsPregnant; }
-            set { Set(ref _IsPregnant, value); }
+            set
+            {
+                Set(ref _IsPregnant, value);
+                if (!_suppressPregnancyMutualExclusion && value == true)
+                {
+                    _suppressPregnancyMutualExclusion = true;
+                    IsSuspectedPregnant = false;
+                    _suppressPregnancyMutualExclusion = false;
+                }
+            }
         }
 
         private bool _IsSuspectedPregnant;
@@ -204,9 +215,17 @@ namespace MediTech.ViewModels
         public bool IsSuspectedPregnant
         {
             get { return _IsSuspectedPregnant; }
-            set { Set(ref _IsSuspectedPregnant, value); }
+            set
+            {
+                Set(ref _IsSuspectedPregnant, value);
+                if (!_suppressPregnancyMutualExclusion && value == true)
+                {
+                    _suppressPregnancyMutualExclusion = true;
+                    IsPregnant = false;
+                    _suppressPregnancyMutualExclusion = false;
+                }
+            }
         }
-
 
         private string _Comment;
 
@@ -312,7 +331,16 @@ namespace MediTech.ViewModels
         public bool IsPregnantRe
         {
             get { return _IsPregnantRe; }
-            set { Set(ref _IsPregnantRe, value); }
+            set
+            {
+                Set(ref _IsPregnantRe, value);
+                if (!_suppressPregnancyMutualExclusion && value == true)
+                {
+                    _suppressPregnancyMutualExclusion = true;
+                    IsSuspectedPregnantRe = false;
+                    _suppressPregnancyMutualExclusion = false;
+                }
+            }
         }
 
         private bool _IsSuspectedPregnantRe;
@@ -320,7 +348,16 @@ namespace MediTech.ViewModels
         public bool IsSuspectedPregnantRe
         {
             get { return _IsSuspectedPregnantRe; }
-            set { Set(ref _IsSuspectedPregnantRe, value); }
+            set
+            {
+                Set(ref _IsSuspectedPregnantRe, value);
+                if (!_suppressPregnancyMutualExclusion && value == true)
+                {
+                    _suppressPregnancyMutualExclusion = true;
+                    IsPregnantRe = false;
+                    _suppressPregnancyMutualExclusion = false;
+                }
+            }
         }
 
         private string _CommentRe;
@@ -458,6 +495,8 @@ namespace MediTech.ViewModels
                     WaistCircumferenceRe = null;
                     IsPregnant = false;
                     IsSuspectedPregnant = false;
+                    IsPregnantRe = false;
+                    IsSuspectedPregnantRe = false;
                     CommentRe = null;
                     SelectedSkinRe = null;
                     SelectedMentalHealthRe = null;

@@ -1,0 +1,30 @@
+# Build outputs
+**/bin/
+**/obj/
+**/app.publish/
+
+# Visual Studio / Rider / VS Code
+**/.vs/
+**/.idea/
+**/.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.aps
+*.bak
+*.cache
+*.log
+
+# MSBuild / NuGet artifacts
+*.pdb
+*.ilk
+*.exp
+*.ipch
+*.nupkg
+packages/*/build/
+
+# OS files
+Thumbs.db
+Desktop.ini
+

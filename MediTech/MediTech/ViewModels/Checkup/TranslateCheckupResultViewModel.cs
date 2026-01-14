@@ -525,13 +525,14 @@ namespace MediTech.ViewModels
                     {
                         ResultComponentModel bmiComponent = new ResultComponentModel() { ResultItemUID = 328, GPRSTUID = 3177, ResultItemCode = "PEBMI", ResultItemName = "BMI (ดัชนีมวลกาย)", ResultValue = vitalSign.BMIValue.ToString() };
                         string pregnancyComment = "";
-                        if (vitalSign.IsSuspectedPregnant ?? false)
-                        {
-                            pregnancyComment = "สงสัยตั้งครรภ์";
-                        }
-                        else if (vitalSign.IsPregnant ?? false)
+                        // Confirmed pregnancy wins over suspected (mutual exclusive safety)
+                        if (vitalSign.IsPregnant ?? false)
                         {
                             pregnancyComment = "ตั้งครรภ์";
+                        }
+                        else if (vitalSign.IsSuspectedPregnant ?? false)
+                        {
+                            pregnancyComment = "สงสัยตั้งครรภ์";
                         }
                         ResultComponentModel commentComponent = new ResultComponentModel() { ResultItemUID = 116, GPRSTUID = 3177, ResultItemCode = "PAR67", ResultItemName = "Comment", ResultValue = pregnancyComment };
                         resultComponent.Add(bmiComponent);
